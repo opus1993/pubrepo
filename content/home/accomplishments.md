@@ -1,0 +1,43 @@
++++
+# Accomplishments widget.
+widget = "accomplishments"  # See https://sourcethemes.com/academic/docs/page-builder/
+headless = true  # This file represents a page section.
+active = true  # Activate this widget? true/false
+weight = 50  # Order that this section will appear.
+
+title = "Accomplish&shy;ments"
+subtitle = ""
+
+# Date format
+#   Refer to https://sourcethemes.com/academic/docs/customization/#date-format
+date_format = "Jan 2006"
+
+# Accomplishments.
+#   Add/remove as many `[[item]]` blocks below as you like.
+#   `title`, `organization` and `date_start` are the required parameters.
+#   Leave other parameters empty if not required.
+#   Begin/end multi-line descriptions with 3 quotes `"""`.
+
+[[item]]
+  organization = "DataCamp"
+  organization_url = "https://www.datacamp.com"
+  title = "R Programming"
+  url = ""
+  certificate_url = "https://www.datacamp.com/statement-of-accomplishment/track/5b6e0f25ff9b9508baf6b9e3174e72b98436288d"
+  date_start = "2019-07-01"
+  date_end = "2019-07-06"
+  description = ""
+
+[[item]]
+  organization = "DataCamp"
+  organization_url = "https://www.datacamp.com"
+  title = "Data Scientist with R"
+  url = ""
+  certificate_url = "https://www.datacamp.com/statement-of-accomplishment/track/94c0003aab6e2c380f7eecab100c8116eea64879"
+  date_start = "2019-07-01"
+  date_end = "2019-11-06"
+  description = ""
+
++++
+
+
