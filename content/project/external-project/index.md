@@ -1,11 +1,24 @@
 ---
 date: "2016-04-27T00:00:00Z"
-external_link: http://example.org
+external_link: https://youtu.be/SSbnXqo96j8
 image:
-  caption: Photo by Toa Heftiba on Unsplash
+  caption: Continuously Variable Transmission
   focal_point: Smart
-summary: An example of linking directly to an external project website using `external_link`.
+summary: First in its class Continuously Variable Transmission
 tags:
-- Demo
-title: External Project
+- Agriculture
+title: 4WD Tractor CVT
+---
+
+---
+date: "2016-04-27T00:00:00Z"
+external_link: https://youtu.be/lzZQnsLwMmU
+image:
+  caption: Track Leadership
+  focal_point: Smart
+summary: 20 years of AG Track Leadership
+tags:
+- Agriculture
+title: 4WD Tractor Track Leadership
+
 ---

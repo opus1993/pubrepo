@@ -2,21 +2,21 @@
 authors:
 - admin
 bio: Originally from Northeast Iowa, my career has taken me through Ames, Iowa and Racine, Wisconsin to suburban Chicago, Illinois.
-#Education:
-#  College:
-#  - course: MS Business Analytics
-#    institution: Stanford University
-#    year: 2012
-#  - course: MBA
-#    institution: Massachusetts Institute of Technology
-#    year: 2009
-#  - course: BS Mechanical Engineering
-#    institution: Massachusetts Institute of Technology
-#    year: 2008
+Education:
+  Courses:
+  - course: MS Business Analytics
+    institution: University of Notre Dame Mendoza College of Business
+    year: 2020
+  - course: MBA
+    institution: University of Wisconsin Parkside
+    year: 2000
+  - course: BS Mechanical Engineering
+    institution: Iowa State University
+    year: 1993
 email: ""
 interests:
 - Machine Learning
-- Agriculture
+- Technology
 - Cycling
 name: Jim Gruman
 organizations:
@@ -39,5 +39,5 @@ user_groups:
 - Visitors
 ---
 
-Jim Gruman works at the forefront of digital transformation efforts with innovators in mobile power, decision intelligence, and product management.
+Jim Gruman works at the forefront of digital transformation efforts with innovators in mobile power, decision intelligence, and agriculture.
 
