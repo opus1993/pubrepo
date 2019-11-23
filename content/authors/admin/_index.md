@@ -4,7 +4,7 @@ authors:
 bio: Originally from Northeast Iowa, my career has taken me through Ames, Iowa and Racine, Wisconsin to suburban Chicago, Illinois.
 #Education:
 #  College:
-#  - College: MS Business Analytics
+#  - course: MS Business Analytics
 #    institution: Stanford University
 #    year: 2012
 #  - course: MBA
