@@ -45,12 +45,12 @@ We can also get the difference of the range,...
 usedcars %>% pull(price) %>% range() %>% diff()
 ```
 
-...and the inter-quartile range (Q3-Q1) using the IQR() function. 
+...and the inter-quartile range (Q3-Q1) using the <span style="color:red">IQR()</span> function. 
 ```{r}
 usedcars %>% pull(price) %>% IQR()
 ```
 
-We can also use the quantile() function to calculate the five-number summary, ...
+We can also use the <span style="color:red">quantile()</span> function to calculate the five-number summary, ...
 ```{r}
 usedcars %>% pull(price) %>% quantile()
 ```
@@ -60,7 +60,7 @@ usedcars %>% pull(price) %>% quantile()
 usedcars %>% pull(price) %>% quantile(probs = c(0.01, 0.99))
 ```
 
-The var() and sd() functions give us the variance and standard deviation. 
+The <span style="color:red">var()</span> and <span style="color:red">sd()</span> functions give us the variance and standard deviation. 
 ```{r}
 usedcars %>% pull(price) %>% var()
 usedcars %>% pull(price) %>% sd()
@@ -79,12 +79,12 @@ usedcars <- mutate(usedcars, color = as.factor(color))
 usedcars <- mutate(usedcars, transmission = as.factor(transmission))
 ```
 
-Notice the differences in the summaries
+Notice the differences in the presentation of the factors in the summary
 ```{r}
 summary(usedcars)
 ```
 
-To see the full data distribution for a feature, we use the table() function.
+To see the full data distribution for a feature, we use the <span style="color:red">table()</span> function.
 ```{r}
 usedcars %>% pull(year) %>% table()
 usedcars %>% pull(color) %>% table()

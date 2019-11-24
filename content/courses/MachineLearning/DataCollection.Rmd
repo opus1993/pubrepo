@@ -16,13 +16,13 @@ weight: 1
 
 ## Data Collection
 
-Every project requires a team-wide understanding of the client's pain points and the decisions that they face. What knowledge gives the client a competitive advantage? What is their naiive baseline?
+Every project must start with a team-wide understanding of the client's pain points and the decisions that they face. What knowledge gives the client a competitive advantage? What is their naiive baseline?
 
-Given that the business has policy expectations, and a capacity for taking risks, we can start exploring within available data resources.  Know how the data was acquired, and be cognisant of biases. Much of this crucial work is called Analytics.
+Given a firm grasp of the businesses expectations, we can start exploring within available data resources.  Be cognisant of how the data was acquired, and any biases. This crucial work is often called Analytics, and normally has practitioners embedded within the team of domain experts.
 
-R offers packages for importing most sources of data, ranging from CSV text to databases to SAS. For text formats, the most commonly used are the packages <span style="color:blue">readr</span>, <span style="color:blue">data.table</span>, and <span style="color:blue">readxl</span>
+R offers packages for importing most sources of data, ranging from CSV text to databases to SAS. For basic formats, the most commonly used are the packages <span style="color:blue">readr</span>, <span style="color:blue">data.table</span>, and <span style="color:blue">readxl</span>
 
-Package must first be installed to the computer, via <span style="color:red">install.packages(" ")</span>. At the beginning of the R script, it then is available for loading into session with
+All packages must first be installed to the computer, via <span style="color:red">install.packages(" ")</span>. At the beginning of the R script, it then is available for loading into session with
 ```{r}
 library(readr)
 ```
