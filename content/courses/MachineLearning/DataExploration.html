@@ -1,0 +1,136 @@
+---
+author: "Jim Gruman"
+output: html_document
+date: "2019-05-05T00:00:00+01:00"
+draft: false
+linktitle: Data Exploration
+menu:
+  example:
+    parent: Topic
+    weight: 2
+title: Machine Learning in R
+toc: true
+type: docs
+weight: 1
+---
+
+
+<div id="TOC">
+true
+</div>
+
+<div id="data-exploration" class="section level2">
+<h2>Data Exploration</h2>
+<p>This time we will load all of the packages in <span style="color:blue">tidyverse</span>.</p>
+<p>We can measure the spread of the features independently. For example, for the ‘price’ feature, we can get mean, min, max and range.</p>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% mean()</code></pre>
+<pre><code>## [1] 12961.93</code></pre>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% min()</code></pre>
+<pre><code>## [1] 3800</code></pre>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% max()</code></pre>
+<pre><code>## [1] 21992</code></pre>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% range()</code></pre>
+<pre><code>## [1]  3800 21992</code></pre>
+<p>We can also get the difference of the range,…</p>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% range() %&gt;% diff()</code></pre>
+<pre><code>## [1] 18192</code></pre>
+<p>…and the inter-quartile range (Q3-Q1) using the IQR() function.</p>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% IQR()</code></pre>
+<pre><code>## [1] 3909.5</code></pre>
+<p>We can also use the quantile() function to calculate the five-number summary, …</p>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% quantile()</code></pre>
+<pre><code>##      0%     25%     50%     75%    100% 
+##  3800.0 10995.0 13591.5 14904.5 21992.0</code></pre>
+<p>… and the 1st and 99th percentiles for example.</p>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% quantile(probs = c(0.01, 0.99))</code></pre>
+<pre><code>##       1%      99% 
+##  5428.69 20505.00</code></pre>
+<p>The var() and sd() functions give us the variance and standard deviation.</p>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% var()</code></pre>
+<pre><code>## [1] 9749892</code></pre>
+<pre class="r"><code>usedcars %&gt;% pull(price) %&gt;% sd()</code></pre>
+<pre><code>## [1] 3122.482</code></pre>
+<p>Remember that we can also get summary statistics on discrete features.</p>
+<pre class="r"><code>summary(usedcars$price)</code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    3800   10995   13592   12962   14904   21992</code></pre>
+<p>Notice that ‘model’, ‘color’ and ‘transmission’ are treated as string values. To get better summaries, we need to convert them to factors. Let’s also convert ‘year’ to a factor.</p>
+<pre class="r"><code>usedcars &lt;- mutate(usedcars, year = as.factor(year))
+usedcars &lt;- mutate(usedcars, model = as.factor(model))
+usedcars &lt;- mutate(usedcars, color = as.factor(color))
+usedcars &lt;- mutate(usedcars, transmission = as.factor(transmission))</code></pre>
+<p>Notice the differences in the summaries</p>
+<pre class="r"><code>summary(usedcars)</code></pre>
+<pre><code>##       year    model        price          mileage           color   
+##  2010   :49   SE :78   Min.   : 3800   Min.   :  4867   Black  :35  
+##  2009   :42   SEL:23   1st Qu.:10995   1st Qu.: 27200   Silver :32  
+##  2011   :16   SES:49   Median :13592   Median : 36385   Red    :25  
+##  2008   :14            Mean   :12962   Mean   : 44261   Blue   :17  
+##  2007   :11            3rd Qu.:14904   3rd Qu.: 55125   Gray   :16  
+##  2006   : 6            Max.   :21992   Max.   :151479   White  :16  
+##  (Other):12                                             (Other): 9  
+##  transmission
+##  AUTO  :128  
+##  MANUAL: 22  
+##              
+##              
+##              
+##              
+## </code></pre>
+<p>To see the full data distribution for a feature, we use the table() function.</p>
+<pre class="r"><code>usedcars %&gt;% pull(year) %&gt;% table()</code></pre>
+<pre><code>## .
+## 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012 
+##    3    1    1    1    3    2    6   11   14   42   49   16    1</code></pre>
+<pre class="r"><code>usedcars %&gt;% pull(color) %&gt;% table()</code></pre>
+<pre><code>## .
+##  Black   Blue   Gold   Gray  Green    Red Silver  White Yellow 
+##     35     17      1     16      5     25     32     16      3</code></pre>
+<p>We can also compute the distribution proportions (rounded to 2 decimal places).</p>
+<pre class="r"><code>usedcars %&gt;% pull(model) %&gt;% table()</code></pre>
+<pre><code>## .
+##  SE SEL SES 
+##  78  23  49</code></pre>
+<pre class="r"><code>usedcars %&gt;% pull(model) %&gt;% table() %&gt;% prop.table() %&gt;% round(digits=4) * 100</code></pre>
+<pre><code>## .
+##    SE   SEL   SES 
+## 52.00 15.33 32.67</code></pre>
+<p>Let’s do some visual exploration against our data.</p>
+<p>Create a scatterplot of price vs. mileage.</p>
+<pre class="r"><code>usedcars %&gt;%
+ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price)) +
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-15-1.png" width="672" />
+What can we infer from the scatterplot?</p>
+<p>What if we tried to group our plot by transmission? Do we learn anything new?</p>
+<pre class="r"><code>usedcars %&gt;%
+  ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price, color = transmission)) +
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>What about grouping by model?</p>
+<pre class="r"><code>usedcars %&gt;%
+  ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price, color = model)) +
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>And when you group by year, what do we see?</p>
+<pre class="r"><code>usedcars %&gt;%
+  ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price, color = year)) +
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Using a box plot to show price by year reveals the expected.</p>
+<pre class="r"><code>usedcars %&gt;%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = year, y = price, fill = year)) +
+  labs(title = &quot;Boxplot of Used Car Prices by Year&quot;, x = &quot;Year&quot;, y = &quot;Price ($)&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>What does the boxplot of price by model type tell us?</p>
+<pre class="r"><code>usedcars %&gt;%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = model, y = price, fill = model)) +
+  labs(title = &quot;Boxplot of Used Car Prices by Model&quot;, x = &quot;Model&quot;, y = &quot;Price ($)&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>

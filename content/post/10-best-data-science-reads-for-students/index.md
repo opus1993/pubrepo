@@ -9,7 +9,7 @@ math: true
 title: 10 Best Data Science Reads for Students
 ---
 
-This series from Cassie Kozyrkov is perhaps the best *best of* compilation for Students approaching Machine Learning from statistics for the first time. 
+This series from Cassie Kozyrkov is perhaps the best *best of* compilation for students approaching Machine Learning, starting from statistics, for the first time. 
 
 {{< tweet 1162535925068398593 >}}
 
