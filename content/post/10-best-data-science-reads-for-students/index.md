@@ -7,6 +7,12 @@ image:
 markup: mmark
 math: true
 title: 10 Best Data Science Reads for Students
+slug: DataScience
+categories:
+  - R
+tags:
+  - plot
+  - R Markdown
 ---
 
 This series from Cassie Kozyrkov is perhaps the best *best of* compilation for students approaching Machine Learning, starting from statistics, for the first time. 

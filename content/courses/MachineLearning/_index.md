@@ -19,6 +19,8 @@ weight: 1
 Add images to this deck, consistent with the CNH powerpoint
 See if the supervised / unsupervised content can be interleaved
 
+{{< tweet 1193190944675381248 >}}
+
 ### Data Collection
 
 ### Data Exploration
