@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: Originally from Northeast Iowa, my career has taken me through Ames, Iowa and Racine, Wisconsin to suburban Chicago, Illinois with CNH Industrial.
+bio: Originally from Northeast Iowa, my career has taken me through Ames, Iowa and Racine, Wisconsin to suburban Chicago, Illinois.
 Education:
   Courses:
   - course: MS Business Analytics
