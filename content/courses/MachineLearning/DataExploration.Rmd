@@ -1,15 +1,17 @@
 ---
+title: "Machine Learning in R"
 author: "Jim Gruman"
-output: html_document
-date: "2019-05-05T00:00:00+01:00"
-draft: false
-linktitle: Data Exploration
+date: '2019-05-05T00:00:00+01:00'
+output:
+  pdf_document: default
+  html_document: default
 menu:
   example:
     parent: Topic
     weight: 2
-title: Machine Learning in R
-toc: true
+linktitle: Data Exploration
+draft: no
+toc: yes
 type: docs
 weight: 1
 ---
@@ -146,3 +148,6 @@ usedcars %>%
   geom_boxplot(mapping = aes(x = model, y = price, fill = model)) +
   labs(title = "Boxplot of Used Car Prices by Model", x = "Model", y = "Price ($)")
 ```
+
+
+$Net Interest Margin = \frac{(Investment Returns - Interest Expense)}{Average Earning Assets} $
