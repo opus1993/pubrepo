@@ -30,6 +30,7 @@ The general approach for functional programming many models:
 
 ```{r}
 library(tidyverse)
+library(tidyr)
 library(broom)
 library(purrr)
 library(dslabs)

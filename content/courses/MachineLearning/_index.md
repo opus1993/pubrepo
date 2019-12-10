@@ -16,10 +16,7 @@ weight: 1
 
 ## The Process
 
-Add images to this deck, consistent with the CNH powerpoint
-See if the supervised / unsupervised content can be interleaved
 
-{{< tweet 1193190944675381248 >}}
 
 ### Data Collection
 
@@ -32,5 +29,12 @@ See if the supervised / unsupervised content can be interleaved
 ### Model Evaluation
 
 ### Model Optimisation
+
+Add images to this deck, consistent with the CNH powerpoint
+See if the supervised / unsupervised content can be interleaved
+
+{{< tweet 1193190944675381248 >}}
+
+
 
 

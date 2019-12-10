@@ -21,14 +21,14 @@ true
 
 <div id="data-collection" class="section level2">
 <h2>Data Collection</h2>
-<p>Every project must start with a team-wide understanding of the client’s pain points and the decisions that they face. What knowledge gives the client a competitive advantage? What is their naiive baseline?</p>
+<p>Every project must start with a team-wide understanding of the client’s pain points and the decisions that they face. What knowledge gives your client a competitive advantage? What is their naiive baseline?</p>
 <p>Given a firm grasp of the businesses expectations, we can start exploring within available data resources. Be cognisant of how the data was acquired, and any biases. This crucial work is often called Analytics, and normally has practitioners embedded within the team of domain experts.</p>
 <p>R offers packages for importing most sources of data, ranging from CSV text to databases to SAS. For basic formats, the most commonly used are the packages <span style="color:blue">readr</span>, <span style="color:blue">data.table</span>, and <span style="color:blue">readxl</span></p>
 <p>All packages must first be installed to the computer, via <span style="color:red">install.packages(" ")</span>. At the beginning of the R script, it then is available for loading into session with</p>
 <pre class="r"><code>library(readr)</code></pre>
 <p>We will read the <em>Used Cars</em> dataset from <a href="https://s3.amazonaws.com/notredame.analytics.data/usedcars.csv">notredame.analytics.data</a></p>
 <pre class="r"><code>usedcars &lt;-
-  read_csv(&#39;https://s3.amazonaws.com/notredame.analytics.data/usedcars.csv&#39;)</code></pre>
+  read_csv(&#39;./usedcars.csv&#39;)</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   year = col_double(),
