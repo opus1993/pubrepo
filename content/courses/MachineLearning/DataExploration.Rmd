@@ -24,7 +24,7 @@ This time we will load all of the packages in <span style="color:blue">tidyverse
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 usedcars <-
-  read_csv('https://s3.amazonaws.com/notredame.analytics.data/usedcars.csv')
+  read_csv('./usedcars.csv')
 ```
 
 We can measure the spread of the features independently. For example, for the 'price' feature, we can get mean, min, max and range.
@@ -148,6 +148,3 @@ usedcars %>%
   geom_boxplot(mapping = aes(x = model, y = price, fill = model)) +
   labs(title = "Boxplot of Used Car Prices by Model", x = "Model", y = "Price ($)")
 ```
-
-
-$Net Interest Margin = \frac{(Investment Returns - Interest Expense)}{Average Earning Assets} $

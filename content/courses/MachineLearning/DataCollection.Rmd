@@ -16,7 +16,7 @@ weight: 1
 
 ## Data Collection
 
-Every project must start with a team-wide understanding of the client's pain points and the decisions that they face. What knowledge gives the client a competitive advantage? What is their naiive baseline?
+Every project must start with a team-wide understanding of the client's pain points and the decisions that they face. What knowledge gives your client a competitive advantage? What is their naiive baseline?
 
 Given a firm grasp of the businesses expectations, we can start exploring within available data resources.  Be cognisant of how the data was acquired, and any biases. This crucial work is often called Analytics, and normally has practitioners embedded within the team of domain experts.
 
@@ -31,7 +31,7 @@ We will read the *Used Cars* dataset from [notredame.analytics.data](https://s3.
 
 ```{r}
 usedcars <-
-  read_csv('https://s3.amazonaws.com/notredame.analytics.data/usedcars.csv')
+  read_csv('./usedcars.csv')
 ```
 Note the column specification assumed. For data sets with more than 1000 lines, it is best to set <span style="color:red">col_types = </span> to a character vector to force the field types.  See <span style="color:red">?read_csv</span> for the help screen for the function.
 
