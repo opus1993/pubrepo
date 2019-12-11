@@ -39,5 +39,5 @@ user_groups:
 - Visitors
 ---
 
-Jim Gruman works at the forefront of digital transformation efforts with innovators in mobile power, decision intelligence, and agriculture.
+Working at the forefront of digital transformation efforts with innovators in mobile power, decision intelligence, and agriculture.
 

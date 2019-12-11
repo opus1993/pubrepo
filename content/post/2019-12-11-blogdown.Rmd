@@ -1,0 +1,31 @@
+---
+title: Blogdown
+author: Jim Gruman
+date: '2019-12-11'
+slug: blogdown
+categories:
+  - R
+tags:
+  - R Markdown
+subtitle: ''
+summary: ''
+authors: []
+lastmod: '2019-12-11T17:29:56-06:00'
+featured: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+This web site is made possible with the assistance of 
+
+## [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/)
+
+by Yihui Xie, Amber Thomas, Alison Presmanes Hill
+
+![[blogdown-Creating-Wegsites-with-R-Markdown](./blogdown_cover.png "blogdown")](https://www.crcpress.com/blogdown-Creating-Websites-with-R-Markdown/Xie-Hill-Thomas/p/book/9780815363729)
+
+{{< tweet 1189994763358859264 >}}
+
