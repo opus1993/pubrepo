@@ -7,17 +7,13 @@ linktitle: Tidyverse ML
 menu:
   example:
     parent: Topic
-    weight: 1
+    weight: 5
 title: Machine Learning in R
-toc: true
 type: docs
-weight: 1
+weight: 5
 ---
 
 
-<div id="TOC">
-true
-</div>
 
 <div id="machine-learning-in-the-tidyverse" class="section level2">
 <h2>Machine Learning in the Tidyverse</h2>
@@ -195,7 +191,7 @@ gapminder &lt;- gapminder %&gt;%
 ## 6 Iraq    [15 x 6] &lt;lm&gt;      0.650       0.555   0.512      6.81 7.34e-3     4
 ## # ... with 5 more variables: logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;,
 ## #   deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
-<p>This is the predicted with the original value, in Botswana, on the three feature model:</p>
+<p>Plot of the predicted fitted values with the original value, in Botswana, on the three feature model:</p>
 <pre class="r"><code>gap_models %&gt;% filter(country == &quot;Botswana&quot;)%&gt;%
   mutate(augmented = map(model, ~augment(.x))) %&gt;%
   unnest(augmented) %&gt;%
@@ -210,7 +206,7 @@ gapminder &lt;- gapminder %&gt;%
 </div>
 <div id="how-will-my-model-perform-on-new-data" class="section level2">
 <h2>How will my model perform on new data?</h2>
-<p>What is the best performing model?</p>
+<p>Did I select best performing model?</p>
 <p>Always make a test/train split</p>
 <p>Prepare the initial split object</p>
 <pre class="r"><code>gap_split &lt;- initial_split(gapminder, prop = .75)</code></pre>
@@ -250,10 +246,10 @@ cv_data &lt;- cv_split %&gt;%
 <p>Print the validate_mae column</p>
 <pre class="r"><code>cv_eval_lm$validate_mae</code></pre>
 <pre><code>##        1        2        3        4        5 
-## 1.451769 1.451124 1.464037 1.488180 1.530198</code></pre>
+## 1.456621 1.496387 1.417063 1.507885 1.520575</code></pre>
 <p>Calculate the mean of validate_mae column</p>
 <pre class="r"><code>mean(cv_eval_lm$validate_mae)</code></pre>
-<pre><code>## [1] 1.477062</code></pre>
+<pre><code>## [1] 1.479706</code></pre>
 <p>Build a random forest model for each fold</p>
 <pre class="r"><code>cv_models_rf &lt;- cv_data %&gt;% 
   mutate(model = map(train, ~ranger(formula = life_expectancy~., data = .x, num.trees = 100, seed = 42)))</code></pre>
@@ -267,13 +263,14 @@ cv_data &lt;- cv_split %&gt;%
 <p>Print the validate_mae column</p>
 <pre class="r"><code>cv_eval_rf$validate_mae</code></pre>
 <pre><code>##         1         2         3         4         5 
-## 0.9329130 0.9177961 0.8975019 0.9903150 0.9537147</code></pre>
+## 0.8889666 0.9622339 0.9571839 0.9825148 1.0078032</code></pre>
 <p>Calculate the mean of validate_mae column</p>
 <pre class="r"><code>mean(cv_eval_rf$validate_mae)</code></pre>
-<pre><code>## [1] 0.9384481</code></pre>
+<pre><code>## [1] 0.9597405</code></pre>
 <p>Prepare for tuning your cross validation folds by varying mtry</p>
-<pre class="r"><code>cv_tune &lt;- cv_data %&gt;% 
-  crossing(mtry = 2:5) </code></pre>
+<pre class="r"><code>cv_tune&lt;- tidyr::expand_grid(cv_data, mtry = 2:5)
+
+# if this fails, try tidyr::expand_grid in place of crossing()</code></pre>
 <p>Build a model for each fold &amp; mtry combination</p>
 <pre class="r"><code>cv_model_tunerf &lt;- cv_tune %&gt;% 
   mutate(model = map2(.x = train, .y = mtry, ~ranger(formula = life_expectancy~., 
@@ -293,10 +290,10 @@ cv_data &lt;- cv_split %&gt;%
 <pre><code>## # A tibble: 4 x 2
 ##    mtry mean_mae
 ##   &lt;int&gt;    &lt;dbl&gt;
-## 1     2    0.938
-## 2     3    0.936
-## 3     4    0.948
-## 4     5    0.953</code></pre>
+## 1     2    0.960
+## 2     3    0.963
+## 3     4    0.970
+## 4     5    0.980</code></pre>
 <p>The best random forest model has the lowest MAE: mtry of 2 for 0.954</p>
 <p>Build the model using all training data and the best performing parameter</p>
 <pre class="r"><code>best_model &lt;- ranger(formula = life_expectancy~., data = training_data,
@@ -307,7 +304,7 @@ cv_data &lt;- cv_split %&gt;%
 <pre class="r"><code>test_predicted &lt;- predict(best_model, testing_data)$predictions</code></pre>
 <p>Calculate the test MAE</p>
 <pre class="r"><code>mae(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.8417971</code></pre>
+<pre><code>## [1] 0.7984506</code></pre>
 <div id="section" class="section level51">
 <p></p>
 </div>
@@ -350,17 +347,17 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <pre class="r"><code>table(validate_actual, validate_predicted)</code></pre>
 <pre><code>##                validate_predicted
 ## validate_actual FALSE TRUE
-##           FALSE   178    6
-##           TRUE     21   16</code></pre>
+##           FALSE   176    9
+##           TRUE     20   16</code></pre>
 <p>Calculate the accuracy</p>
 <pre class="r"><code>1-ce(validate_actual, validate_predicted)</code></pre>
-<pre><code>## [1] 0.8778281</code></pre>
+<pre><code>## [1] 0.8687783</code></pre>
 <p>Calculate the precision</p>
 <pre class="r"><code>precision(validate_actual, validate_predicted)</code></pre>
-<pre><code>## [1] 0.7272727</code></pre>
+<pre><code>## [1] 0.64</code></pre>
 <p>Calculate the recall</p>
 <pre class="r"><code>recall(validate_actual, validate_predicted)</code></pre>
-<pre><code>## [1] 0.4324324</code></pre>
+<pre><code>## [1] 0.4444444</code></pre>
 <p>Prepare for cross-validated performance</p>
 <pre class="r"><code>cv_prep_lr &lt;- cv_models_lr %&gt;% 
   mutate(
@@ -376,10 +373,10 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <p>Print the validate_recall column</p>
 <pre class="r"><code>cv_perf_recall$validate_recall</code></pre>
 <pre><code>##         1         2         3         4         5 
-## 0.4324324 0.3611111 0.4615385 0.4848485 0.5714286</code></pre>
+## 0.4444444 0.3750000 0.3095238 0.5000000 0.4411765</code></pre>
 <p>Calculate the average of the validate_recall column</p>
 <pre class="r"><code>mean(cv_perf_recall$validate_recall)</code></pre>
-<pre><code>## [1] 0.4622718</code></pre>
+<pre><code>## [1] 0.4140289</code></pre>
 <div id="section-1" class="section level42">
 <p></p>
 <p>#With a random forest for classification</p>
@@ -408,21 +405,21 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <pre><code>## # A tibble: 15 x 2
 ##     mtry mean_recall
 ##    &lt;int&gt;       &lt;dbl&gt;
-##  1     2      0.0670
-##  2     3      0.0854
-##  3     4      0.110 
-##  4     5      0.130 
-##  5     6      0.148 
-##  6     7      0.158 
-##  7     8      0.163 
-##  8     9      0.140 
-##  9    10      0.177 
-## 10    11      0.180 
-## 11    12      0.200 
-## 12    13      0.158 
-## 13    14      0.160 
-## 14    15      0.184 
-## 15    16      0.217</code></pre>
+##  1     2      0.0567
+##  2     3      0.0973
+##  3     4      0.0920
+##  4     5      0.0957
+##  5     6      0.136 
+##  6     7      0.142 
+##  7     8      0.161 
+##  8     9      0.142 
+##  9    10      0.147 
+## 10    11      0.175 
+## 11    12      0.135 
+## 12    13      0.163 
+## 13    14      0.149 
+## 14    15      0.186 
+## 15    16      0.201</code></pre>
 <p>none of the random forest models here outperforms the recall of the logistic regression models</p>
 <p>Build out the final production model</p>
 <p>Build the logistic regression model using all training data</p>
@@ -436,16 +433,16 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <pre class="r"><code>table(test_actual, test_predicted)</code></pre>
 <pre><code>##            test_predicted
 ## test_actual FALSE TRUE
-##       FALSE   292   11
-##       TRUE     33   31</code></pre>
+##       FALSE   299    9
+##       TRUE     34   25</code></pre>
 <p>Calculate the test accuracy</p>
 <pre class="r"><code>1-ce(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.880109</code></pre>
+<pre><code>## [1] 0.8828338</code></pre>
 <p>Calculate the test precision</p>
 <pre class="r"><code>precision(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.7380952</code></pre>
+<pre><code>## [1] 0.7352941</code></pre>
 <p>Calculate the test recall</p>
 <pre class="r"><code>recall(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.484375</code></pre>
+<pre><code>## [1] 0.4237288</code></pre>
 </div>
 </div>

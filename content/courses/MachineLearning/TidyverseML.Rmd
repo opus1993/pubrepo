@@ -7,11 +7,10 @@ linktitle: Tidyverse ML
 menu:
   example:
     parent: Topic
-    weight: 1
+    weight: 5
 title: Machine Learning in R
-toc: true
 type: docs
-weight: 1
+weight: 5
 ---
 
 ## Machine Learning in the Tidyverse
@@ -150,7 +149,7 @@ gap_models %>%
   top_n(n= 6, wt = -r.squared)
 ```
 
-This is the predicted with the original value, in Botswana, on the three feature model:
+Plot of the predicted fitted values with the original value, in Botswana, on the three feature model:
 
 ```{r}
 gap_models %>% filter(country == "Botswana")%>%
@@ -167,7 +166,7 @@ gap_models %>% filter(country == "Botswana")%>%
 
 ## How will my model perform on new data?   
 
-What is the best performing model?
+Did I select best performing model?
   
 Always make a test/train split
 
@@ -285,8 +284,9 @@ mean(cv_eval_rf$validate_mae)
 Prepare for tuning your cross validation folds by varying mtry
 
 ```{r}
-cv_tune <- cv_data %>% 
-  crossing(mtry = 2:5) 
+cv_tune<- tidyr::expand_grid(cv_data, mtry = 2:5)
+
+# if this fails, try tidyr::expand_grid in place of crossing()
 ```
 
 Build a model for each fold & mtry combination

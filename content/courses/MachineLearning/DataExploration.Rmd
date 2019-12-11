@@ -11,7 +11,6 @@ menu:
     weight: 2
 linktitle: Data Exploration
 draft: no
-toc: yes
 type: docs
 weight: 1
 ---
@@ -105,7 +104,10 @@ Create a scatterplot of price vs. mileage.
 usedcars %>%
 ggplot() +
   geom_point(mapping = aes(x = mileage, y = price)) +
-  labs(title = "Scatterplot of Price vs. Mileage", x = "Used Car Odometer (mi.)", y = "Used Car Price ($)")
+  labs(title = "Scatterplot of Price vs. Mileage", 
+       x = "Used Car Odometer (mi.)", 
+       y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()
 ```
 What can we infer from the scatterplot?
  
@@ -114,7 +116,11 @@ What if we tried to group our plot by transmission? Do we learn anything new?
 usedcars %>%
   ggplot() +
   geom_point(mapping = aes(x = mileage, y = price, color = transmission)) +
-  labs(title = "Scatterplot of Price vs. Mileage", x = "Used Car Odometer (mi.)", y = "Used Car Price ($)")
+  labs(title = "Scatterplot of Price vs. Mileage", 
+       x = "Used Car Odometer (mi.)", 
+       y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()+
+       theme(legend.position = "top")
 ```
 
 What about grouping by model?
@@ -122,7 +128,11 @@ What about grouping by model?
 usedcars %>%
   ggplot() +
   geom_point(mapping = aes(x = mileage, y = price, color = model)) +
-  labs(title = "Scatterplot of Price vs. Mileage", x = "Used Car Odometer (mi.)", y = "Used Car Price ($)")
+  labs(title = "Scatterplot of Price vs. Mileage", 
+       x = "Used Car Odometer (mi.)", 
+       y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()+
+       theme(legend.position = "top")
 ```
 
 And when you group by year, what do we see?
@@ -130,7 +140,9 @@ And when you group by year, what do we see?
 usedcars %>%
   ggplot() +
   geom_point(mapping = aes(x = mileage, y = price, color = year)) +
-  labs(title = "Scatterplot of Price vs. Mileage", x = "Used Car Odometer (mi.)", y = "Used Car Price ($)")
+  labs(title = "Scatterplot of Price vs. Mileage", x = "Used Car Odometer (mi.)", y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()+
+       theme(legend.position = "left")
 ```
 
 Using a box plot to show price by year reveals the expected.
@@ -138,7 +150,12 @@ Using a box plot to show price by year reveals the expected.
 usedcars %>%
   ggplot() +
   geom_boxplot(mapping = aes(x = year, y = price, fill = year)) +
-  labs(title = "Boxplot of Used Car Prices by Year", x = "Year", y = "Price ($)")
+  labs(title = "Boxplot of Used Car Prices by Year", 
+       x = "Year", 
+       y = "Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+
+       theme_minimal()+
+       theme(legend.position = "")
 ```
 
 What does the boxplot of price by model type tell us?
@@ -146,5 +163,10 @@ What does the boxplot of price by model type tell us?
 usedcars %>%
   ggplot() +
   geom_boxplot(mapping = aes(x = model, y = price, fill = model)) +
-  labs(title = "Boxplot of Used Car Prices by Model", x = "Model", y = "Price ($)")
+  labs(title = "Boxplot of Used Car Prices by Model", 
+       x = "Model", 
+       y = "Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+
+       theme_minimal()+
+       theme(legend.position = "")
 ```

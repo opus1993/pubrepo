@@ -11,15 +11,11 @@ menu:
     weight: 2
 linktitle: Data Exploration
 draft: no
-toc: yes
 type: docs
 weight: 1
 ---
 
 
-<div id="TOC">
-yes
-</div>
 
 <div id="data-exploration" class="section level2">
 <h2>Data Exploration</h2>
@@ -102,37 +98,60 @@ usedcars &lt;- mutate(usedcars, transmission = as.factor(transmission))</code></
 <pre class="r"><code>usedcars %&gt;%
 ggplot() +
   geom_point(mapping = aes(x = mileage, y = price)) +
-  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, 
+       x = &quot;Used Car Odometer (mi.)&quot;, 
+       y = &quot;Used Car Price ($)&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: usedcars&quot;)+theme_minimal()</code></pre>
 <p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 What can we infer from the scatterplot?</p>
 <p>What if we tried to group our plot by transmission? Do we learn anything new?</p>
 <pre class="r"><code>usedcars %&gt;%
   ggplot() +
   geom_point(mapping = aes(x = mileage, y = price, color = transmission)) +
-  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, 
+       x = &quot;Used Car Odometer (mi.)&quot;, 
+       y = &quot;Used Car Price ($)&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: usedcars&quot;)+theme_minimal()+
+       theme(legend.position = &quot;top&quot;)</code></pre>
 <p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>What about grouping by model?</p>
 <pre class="r"><code>usedcars %&gt;%
   ggplot() +
   geom_point(mapping = aes(x = mileage, y = price, color = model)) +
-  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, 
+       x = &quot;Used Car Odometer (mi.)&quot;, 
+       y = &quot;Used Car Price ($)&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: usedcars&quot;)+theme_minimal()+
+       theme(legend.position = &quot;top&quot;)</code></pre>
 <p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>And when you group by year, what do we see?</p>
 <pre class="r"><code>usedcars %&gt;%
   ggplot() +
   geom_point(mapping = aes(x = mileage, y = price, color = year)) +
-  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;)</code></pre>
+  labs(title = &quot;Scatterplot of Price vs. Mileage&quot;, x = &quot;Used Car Odometer (mi.)&quot;, y = &quot;Used Car Price ($)&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: usedcars&quot;)+theme_minimal()+
+       theme(legend.position = &quot;left&quot;)</code></pre>
 <p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Using a box plot to show price by year reveals the expected.</p>
 <pre class="r"><code>usedcars %&gt;%
   ggplot() +
   geom_boxplot(mapping = aes(x = year, y = price, fill = year)) +
-  labs(title = &quot;Boxplot of Used Car Prices by Year&quot;, x = &quot;Year&quot;, y = &quot;Price ($)&quot;)</code></pre>
+  labs(title = &quot;Boxplot of Used Car Prices by Year&quot;, 
+       x = &quot;Year&quot;, 
+       y = &quot;Price ($)&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: usedcars&quot;)+
+       theme_minimal()+
+       theme(legend.position = &quot;&quot;)</code></pre>
 <p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>What does the boxplot of price by model type tell us?</p>
 <pre class="r"><code>usedcars %&gt;%
   ggplot() +
   geom_boxplot(mapping = aes(x = model, y = price, fill = model)) +
-  labs(title = &quot;Boxplot of Used Car Prices by Model&quot;, x = &quot;Model&quot;, y = &quot;Price ($)&quot;)</code></pre>
+  labs(title = &quot;Boxplot of Used Car Prices by Model&quot;, 
+       x = &quot;Model&quot;, 
+       y = &quot;Price ($)&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: usedcars&quot;)+
+       theme_minimal()+
+       theme(legend.position = &quot;&quot;)</code></pre>
 <p><img src="/courses/MachineLearning/DataExploration_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 </div>

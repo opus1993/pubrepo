@@ -9,7 +9,6 @@ menu:
     parent: Topic
     weight: 1
 title: Machine Learning in R
-toc: true
 type: docs
 weight: 1
 ---
@@ -18,22 +17,22 @@ weight: 1
 
 Every project must start with a team-wide understanding of the client's pain points and the decisions that they face. What knowledge gives your client a competitive advantage? What is their naiive baseline?
 
-Given a firm grasp of the businesses expectations, we can start exploring within available data resources.  Be cognisant of how the data was acquired, and any biases. This crucial work is often called Analytics, and normally has practitioners embedded within the team of domain experts.
+Given a firm grasp of the businesses expectations, start exploring available data resources.  Be cognisant of how the data was acquired, and any biases. This crucial work normally already has practitioners embedded within the team of domain experts.
 
 R offers packages for importing most sources of data, ranging from CSV text to databases to SAS. For basic formats, the most commonly used are the packages <span style="color:blue">readr</span>, <span style="color:blue">data.table</span>, and <span style="color:blue">readxl</span>
 
-All packages must first be installed to the computer, via <span style="color:red">install.packages(" ")</span>. At the beginning of the R script, it then is available for loading into session with
+All packages must first be installed to R, via <span style="color:red">install.packages(" ")</span>. At the beginning of the R script, it then is available for loading into session with
 ```{r}
 library(readr)
 ```
 
-We will read the *Used Cars* dataset from [notredame.analytics.data](https://s3.amazonaws.com/notredame.analytics.data/usedcars.csv)
+As an example, we will read the *Used Cars* dataset from [notredame.analytics.data](https://s3.amazonaws.com/notredame.analytics.data/usedcars.csv)
 
-```{r}
+```{r read data, message=TRUE, warning=FALSE}
 usedcars <-
   read_csv('./usedcars.csv')
 ```
-Note the column specification assumed. For data sets with more than 1000 lines, it is best to set <span style="color:red">col_types = </span> to a character vector to force the field types.  See <span style="color:red">?read_csv</span> for the help screen for the function.
+Note the column specification assumed by the read_csv command. For data sets with more than 1000 lines, it is best to set <span style="color:red">col_types = </span> to a character vector to force the field types.  See <span style="color:red">?read_csv</span> for the help for the function.
 
 Let's take a look at what our data looks like.
 ```{r}
