@@ -1,0 +1,451 @@
+---
+author: "Jim Gruman"
+output: html_document
+date: "2019-12-10T00:00:00+01:00"
+draft: false
+linktitle: Tidyverse ML
+menu:
+  example:
+    parent: Topic
+    weight: 1
+title: Machine Learning in R
+toc: true
+type: docs
+weight: 1
+---
+
+
+<div id="TOC">
+true
+</div>
+
+<div id="machine-learning-in-the-tidyverse" class="section level2">
+<h2>Machine Learning in the Tidyverse</h2>
+<p>The general approach for functional programming many models:</p>
+<table>
+<colgroup>
+<col width="34%" />
+<col width="31%" />
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Step1: Make a list column, using</th>
+<th align="left">Step2: Work with list columns</th>
+<th align="left">Step3: Simplify the list columns</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">initial_split()</td>
+<td align="left">map()</td>
+<td align="left">unnest()</td>
+</tr>
+<tr class="even">
+<td align="left">vfold_cv()</td>
+<td align="left">training()</td>
+<td align="left">map_dbl()</td>
+</tr>
+<tr class="odd">
+<td align="left">crossing()</td>
+<td align="left">testing()</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">lm()</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"></td>
+<td align="left">ranger()</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"></td>
+<td align="left">mae()</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ---------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v ggplot2 3.2.1.9000     v purrr   0.3.3     
+## v tibble  2.1.3          v dplyr   0.8.3     
+## v tidyr   1.0.0          v stringr 1.4.0     
+## v readr   1.3.1          v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(tidyr)
+library(broom)
+library(purrr)
+library(dslabs)
+library(rsample)
+library(ModelMetrics)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;ModelMetrics&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:base&#39;:
+## 
+##     kappa</code></pre>
+<pre class="r"><code>library(ranger)
+library(viridis)</code></pre>
+<pre><code>## Loading required package: viridisLite</code></pre>
+<p>Load the gapminder dataset from the <span style="color:blue">dslabs</span> package</p>
+<pre class="r"><code>data(gapminder)
+###########   later, use continent and region to impute averages
+gapminder &lt;- gapminder %&gt;%
+  filter(!is.na(gdp), !is.na(infant_mortality)) %&gt;%
+  select(-continent, -region)</code></pre>
+<p>Nest the dataframe into a tibble</p>
+<pre class="r"><code>gap_nested&lt;- gapminder %&gt;%
+     group_by(country)%&gt;%
+     nest()</code></pre>
+<p>Create linear models for each country</p>
+<pre class="r"><code>gap_models&lt;-gap_nested %&gt;%
+    mutate(model = map(.x=data, .f = ~lm(formula = life_expectancy~year, data = .x)))</code></pre>
+<p>Illustrate the linear coefficients for each country</p>
+<pre class="r"><code>gap_models %&gt;%
+  mutate(coef = map(model, ~tidy(.x))) %&gt;%
+  unnest(coef) %&gt;%
+  filter(term == &quot;year&quot;)%&gt;%
+  ggplot()+geom_histogram(aes(estimate))+
+  labs(title = &quot;Linear Coefficients of Life Expectancy by Year&quot;,
+       subtitle = &quot;Histogram for all Gapminder Countries&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: dslabs package&quot;)+
+  theme_minimal()</code></pre>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="/courses/MachineLearning/TidyverseML_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Illustrate the R squared model fit for each country</p>
+<p>The best models</p>
+<pre class="r"><code>gap_models %&gt;%
+  mutate(coef =  map(model, ~glance(.x))) %&gt;%
+  unnest(coef) %&gt;%
+  ungroup()%&gt;%
+  top_n(n= 6, wt = r.squared)</code></pre>
+<pre><code>## # A tibble: 6 x 14
+##   country     data model r.squared adj.r.squared  sigma statistic  p.value    df
+##   &lt;fct&gt;   &lt;list&lt;d&gt; &lt;lis&gt;     &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
+## 1 Italy   [52 x 6] &lt;lm&gt;      0.997         0.997 0.226     15665. 4.14e-64     2
+## 2 Maurit~ [52 x 6] &lt;lm&gt;      0.996         0.995 0.490     11097. 2.22e-60     2
+## 3 Singap~ [52 x 6] &lt;lm&gt;      0.996         0.996 0.316     13777. 1.02e-62     2
+## 4 Germany [42 x 6] &lt;lm&gt;      0.997         0.997 0.160     14304. 1.02e-52     2
+## 5 Vietnam [28 x 6] &lt;lm&gt;      0.999         0.999 0.0727    24920. 2.66e-40     2
+## 6 Yemen   [22 x 6] &lt;lm&gt;      0.998         0.997 0.135      8000. 1.64e-27     2
+## # ... with 5 more variables: logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;,
+## #   deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>The worst models</p>
+<pre class="r"><code>gap_models %&gt;%
+  mutate(coef =  map(model, ~glance(.x))) %&gt;%
+  unnest(coef) %&gt;%
+  ungroup()%&gt;%
+  top_n(n= 6, wt = -r.squared)</code></pre>
+<pre><code>## # A tibble: 6 x 14
+##   country     data model r.squared adj.r.squared sigma statistic p.value    df
+##   &lt;fct&gt;   &lt;list&lt;d&gt; &lt;lis&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+## 1 Botswa~ [52 x 6] &lt;lm&gt;    0.0136       -0.00608  5.11    0.692    0.409     2
+## 2 Lesotho [52 x 6] &lt;lm&gt;    0.00296      -0.0170   5.32    0.148    0.702     2
+## 3 Ukraine [25 x 6] &lt;lm&gt;    0.0310       -0.0112   1.40    0.735    0.400     2
+## 4 Russia  [23 x 6] &lt;lm&gt;    0.00489      -0.0425   1.93    0.103    0.751     2
+## 5 Haiti   [21 x 6] &lt;lm&gt;    0.00222      -0.0503   6.32    0.0423   0.839     2
+## 6 Kuwait  [20 x 6] &lt;lm&gt;    0.0233       -0.0309   1.01    0.430    0.520     2
+## # ... with 5 more variables: logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;,
+## #   deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>Compare the predicted with the original value, in Italy</p>
+<pre class="r"><code>gap_models %&gt;% filter(country == &quot;Italy&quot;)%&gt;%
+  mutate(augmented = map(model, ~augment(.x))) %&gt;%
+  unnest(augmented) %&gt;%
+  ggplot(aes(x=year, y=life_expectancy))+
+  geom_point()+
+  geom_line(aes(y=.fitted), color = &quot;red&quot;)+
+  labs(title = &quot;Gapminder Life Expectancy Trend&quot;,
+       subtitle = &quot;Italy actuals and Fitted Linear Model&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: dslabs package&quot;)+
+  theme_minimal()</code></pre>
+<p><img src="/courses/MachineLearning/TidyverseML_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p>This is the predicted with the original value, in Botswana</p>
+<pre class="r"><code>gap_models %&gt;% filter(country == &quot;Botswana&quot;)%&gt;%
+  mutate(augmented = map(model, ~augment(.x))) %&gt;%
+  unnest(augmented) %&gt;%
+  ggplot(aes(x=year, y=life_expectancy))+
+  geom_point()+
+  geom_line(aes(y=.fitted), color = &quot;red&quot;)+
+  labs(title = &quot;Gapminder Life Expectancy Trend&quot;,
+       subtitle = &quot;Botswana actuals and Fitted Linear Model on Year only&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: dslabs package&quot;)+
+  theme_minimal()</code></pre>
+<p><img src="/courses/MachineLearning/TidyverseML_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Explore more complex regression models. In this case, with three features:</p>
+<pre class="r"><code>gap_models&lt;-gap_nested %&gt;%
+  mutate(model = map(.x=data, .f = ~lm(formula = life_expectancy~year+fertility+population, data = .x, na.action=na.exclude)))</code></pre>
+<p>The worst models, updated with the three feature linear model:</p>
+<pre class="r"><code>gap_models %&gt;%
+  mutate(coef =  map(model, ~glance(.x))) %&gt;%
+  unnest(coef) %&gt;%
+  ungroup()%&gt;%
+  top_n(n= 6, wt = -r.squared)</code></pre>
+<pre><code>## # A tibble: 6 x 14
+##   country     data model r.squared adj.r.squared sigma statistic p.value    df
+##   &lt;fct&gt;   &lt;list&lt;d&gt; &lt;lis&gt;     &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;
+## 1 Namibia [32 x 6] &lt;lm&gt;      0.323       0.250   2.83       4.45 1.12e-2     4
+## 2 Grenada [28 x 6] &lt;lm&gt;      0.651       0.608   0.421     14.9  1.07e-5     4
+## 3 Haiti   [21 x 6] &lt;lm&gt;      0.159       0.0110  6.14       1.07 3.86e-1     4
+## 4 Eritrea [20 x 6] &lt;lm&gt;      0.165       0.00821 5.15       1.05 3.97e-1     4
+## 5 Kuwait  [20 x 6] &lt;lm&gt;      0.488       0.392   0.772      5.09 1.16e-2     4
+## 6 Iraq    [15 x 6] &lt;lm&gt;      0.650       0.555   0.512      6.81 7.34e-3     4
+## # ... with 5 more variables: logLik &lt;dbl&gt;, AIC &lt;dbl&gt;, BIC &lt;dbl&gt;,
+## #   deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
+<p>This is the predicted with the original value, in Botswana, on the three feature model:</p>
+<pre class="r"><code>gap_models %&gt;% filter(country == &quot;Botswana&quot;)%&gt;%
+  mutate(augmented = map(model, ~augment(.x))) %&gt;%
+  unnest(augmented) %&gt;%
+  ggplot(aes(x=year, y=life_expectancy))+
+  geom_point()+
+  geom_line(aes(y=.fitted), color = &quot;red&quot;)+
+  labs(title = &quot;Gapminder Life Expectancy Trend&quot;,
+       subtitle = &quot;Botswana actuals and Fitted Linear Model on three features&quot;,
+       caption = &quot;Plot: Jim Gruman. Data: dslabs package&quot;)+
+  theme_minimal()</code></pre>
+<p><img src="/courses/MachineLearning/TidyverseML_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+</div>
+<div id="how-will-my-model-perform-on-new-data" class="section level2">
+<h2>How will my model perform on new data?</h2>
+<p>What is the best performing model?</p>
+<p>Always make a test/train split</p>
+<p>Prepare the initial split object</p>
+<pre class="r"><code>gap_split &lt;- initial_split(gapminder, prop = .75)</code></pre>
+<p>Extract the training dataframe</p>
+<pre class="r"><code>training_data &lt;- training(gap_split)</code></pre>
+<p>Extract the testing dataframe</p>
+<pre class="r"><code>testing_data &lt;- testing(gap_split)</code></pre>
+<p>Calculate the dimensions of both training_data and testing_data to confirm data set sizes</p>
+<pre class="r"><code>dim(training_data)</code></pre>
+<pre><code>## [1] 5355    7</code></pre>
+<pre class="r"><code>dim(testing_data)</code></pre>
+<pre><code>## [1] 1784    7</code></pre>
+<p>Prepare the dataframe containing the cross validation partitions</p>
+<pre class="r"><code>cv_split &lt;- vfold_cv(training_data, v = 5)
+
+cv_data &lt;- cv_split %&gt;% 
+  mutate(
+    # Extract the train dataframe for each split
+    train = map(splits, ~training(.x)), 
+    # Extract the validate dataframe for each split
+    validate = map(splits, ~testing(.x))
+  )</code></pre>
+<p>Build linear models against all available features</p>
+<pre class="r"><code>cv_models_lm &lt;- cv_data %&gt;% 
+  mutate(model = map(train, ~lm(formula = life_expectancy~., data = .x)))</code></pre>
+<p>Extract the actual life expectancy, for comparison with the fitted models</p>
+<pre class="r"><code>cv_prep_lm &lt;- cv_models_lm %&gt;% 
+  mutate(
+    # Extract the recorded life expectancy for the records in the validate dataframes
+    validate_actual = map(validate, ~.x$life_expectancy),
+    # Predict life expectancy for each validate set using its corresponding model
+    validate_predicted = map2(.x = model, .y = validate, ~predict(.x, .y))
+  )</code></pre>
+<p>Calculate the mean absolute error for each validate fold</p>
+<pre class="r"><code>cv_eval_lm &lt;- cv_prep_lm %&gt;% 
+  mutate(validate_mae = map2_dbl(validate_actual, validate_predicted, ~mae(actual = .x, predicted = .y)))</code></pre>
+<p>Print the validate_mae column</p>
+<pre class="r"><code>cv_eval_lm$validate_mae</code></pre>
+<pre><code>##        1        2        3        4        5 
+## 1.451769 1.451124 1.464037 1.488180 1.530198</code></pre>
+<p>Calculate the mean of validate_mae column</p>
+<pre class="r"><code>mean(cv_eval_lm$validate_mae)</code></pre>
+<pre><code>## [1] 1.477062</code></pre>
+<p>Build a random forest model for each fold</p>
+<pre class="r"><code>cv_models_rf &lt;- cv_data %&gt;% 
+  mutate(model = map(train, ~ranger(formula = life_expectancy~., data = .x, num.trees = 100, seed = 42)))</code></pre>
+<p>Generate predictions using the random forest model</p>
+<pre class="r"><code>cv_prep_rf &lt;- cv_models_rf %&gt;% 
+  mutate(validate_predicted = map2(.x = model , .y = validate, ~predict(.x, .y)$predictions),
+         validate_actual = map(validate, ~.x$life_expectancy))</code></pre>
+<p>Calculate validate MAE for each fold</p>
+<pre class="r"><code>cv_eval_rf &lt;- cv_prep_rf %&gt;% 
+  mutate(validate_mae = map2_dbl(validate_actual, validate_predicted, ~mae(actual = .x, predicted = .y)))</code></pre>
+<p>Print the validate_mae column</p>
+<pre class="r"><code>cv_eval_rf$validate_mae</code></pre>
+<pre><code>##         1         2         3         4         5 
+## 0.9329130 0.9177961 0.8975019 0.9903150 0.9537147</code></pre>
+<p>Calculate the mean of validate_mae column</p>
+<pre class="r"><code>mean(cv_eval_rf$validate_mae)</code></pre>
+<pre><code>## [1] 0.9384481</code></pre>
+<p>Prepare for tuning your cross validation folds by varying mtry</p>
+<pre class="r"><code>cv_tune &lt;- cv_data %&gt;% 
+  crossing(mtry = 2:5) </code></pre>
+<p>Build a model for each fold &amp; mtry combination</p>
+<pre class="r"><code>cv_model_tunerf &lt;- cv_tune %&gt;% 
+  mutate(model = map2(.x = train, .y = mtry, ~ranger(formula = life_expectancy~., 
+                                                     data = .x, mtry = .y, 
+                                                     num.trees = 100, seed = 42)))</code></pre>
+<p>Generate validate predictions for each model</p>
+<pre class="r"><code>cv_prep_tunerf &lt;- cv_model_tunerf %&gt;% 
+  mutate(validate_predicted = map2(.x = model, .y = validate, ~predict(.x, .y)$predictions),
+         validate_actual = map(validate, ~.x$life_expectancy))</code></pre>
+<p>Calculate validate MAE for each fold and mtry combination</p>
+<pre class="r"><code>cv_eval_tunerf &lt;- cv_prep_tunerf %&gt;% 
+  mutate(validate_mae = map2_dbl(.x = validate_actual, .y = validate_predicted, ~mae(actual = .x, predicted = .y)))</code></pre>
+<p>Calculate the mean validate_mae for each mtry used</p>
+<pre class="r"><code>cv_eval_tunerf %&gt;% 
+  group_by(mtry) %&gt;% 
+  summarise(mean_mae = mean(validate_mae))</code></pre>
+<pre><code>## # A tibble: 4 x 2
+##    mtry mean_mae
+##   &lt;int&gt;    &lt;dbl&gt;
+## 1     2    0.938
+## 2     3    0.936
+## 3     4    0.948
+## 4     5    0.953</code></pre>
+<p>The best random forest model has the lowest MAE: mtry of 2 for 0.954</p>
+<p>Build the model using all training data and the best performing parameter</p>
+<pre class="r"><code>best_model &lt;- ranger(formula = life_expectancy~., data = training_data,
+                     mtry = 2, num.trees = 100, seed = 42)</code></pre>
+<p>Prepare the test_actual vector</p>
+<pre class="r"><code>test_actual &lt;- testing_data$life_expectancy</code></pre>
+<p>Predict life_expectancy for the testing_data</p>
+<pre class="r"><code>test_predicted &lt;- predict(best_model, testing_data)$predictions</code></pre>
+<p>Calculate the test MAE</p>
+<pre class="r"><code>mae(test_actual, test_predicted)</code></pre>
+<pre><code>## [1] 0.8417971</code></pre>
+<div id="section" class="section level51">
+<p></p>
+</div>
+</div>
+<div id="binary-classification-models" class="section level1">
+<h1>Binary classification models</h1>
+<p>These are very common models - in this case, using simple logistic regression</p>
+<p>Changing to now use the attrition dataset. These data are from the IBM Watson Analytics Lab. The website describes the data with “Uncover the factors that lead to employee attrition and explore important questions such as ‘show me a breakdown of distance from home by job role and attrition’ or ‘compare average monthly income by education and attrition’. This is a fictional data set created by IBM data scientists.”</p>
+<pre class="r"><code>data(attrition)</code></pre>
+<p>Prepare the initial split object</p>
+<pre class="r"><code>data_split &lt;- initial_split(attrition, prop = .75)</code></pre>
+<p>Extract the training dataframe</p>
+<pre class="r"><code>training_data &lt;- training(data_split)</code></pre>
+<p>Extract the testing dataframe</p>
+<pre class="r"><code>testing_data &lt;- testing(data_split)</code></pre>
+<p>Prepare the dataframe containing the cross validation partitions</p>
+<pre class="r"><code>cv_split &lt;- vfold_cv(training_data, v = 5)
+
+cv_data &lt;- cv_split %&gt;% 
+  mutate(
+    # Extract the train dataframe for each split
+    train = map(splits, ~training(.x)),
+    # Extract the validate dataframe for each split
+    validate = map(splits, ~testing(.x))
+  )</code></pre>
+<p>Build a model using the train data for each fold of the cross validation</p>
+<pre class="r"><code>cv_models_lr &lt;- cv_data %&gt;% 
+  mutate(model = map(train, ~glm(formula = Attrition~., 
+                                 data = .x, family = &quot;binomial&quot;)))</code></pre>
+<p>Extract the first model and validate</p>
+<pre class="r"><code>model &lt;- cv_models_lr$model[[1]]
+validate &lt;- cv_models_lr$validate[[1]]</code></pre>
+<p>Prepare binary vector of actual Attrition values in validate</p>
+<pre class="r"><code>validate_actual &lt;- validate$Attrition == &quot;Yes&quot;</code></pre>
+<p>Predict the probabilities for the observations in validate</p>
+<pre class="r"><code>validate_prob &lt;- predict(model, validate, type = &quot;response&quot;)</code></pre>
+<p>Prepare binary vector of predicted Attrition values for validate</p>
+<pre class="r"><code>validate_predicted &lt;- validate_prob &gt; 0.5</code></pre>
+<p>Compare the actual &amp; predicted performance visually using a table</p>
+<pre class="r"><code>table(validate_actual, validate_predicted)</code></pre>
+<pre><code>##                validate_predicted
+## validate_actual FALSE TRUE
+##           FALSE   178    6
+##           TRUE     21   16</code></pre>
+<p>Calculate the accuracy</p>
+<pre class="r"><code>1-ce(validate_actual, validate_predicted)</code></pre>
+<pre><code>## [1] 0.8778281</code></pre>
+<p>Calculate the precision</p>
+<pre class="r"><code>precision(validate_actual, validate_predicted)</code></pre>
+<pre><code>## [1] 0.7272727</code></pre>
+<p>Calculate the recall</p>
+<pre class="r"><code>recall(validate_actual, validate_predicted)</code></pre>
+<pre><code>## [1] 0.4324324</code></pre>
+<p>Prepare for cross-validated performance</p>
+<pre class="r"><code>cv_prep_lr &lt;- cv_models_lr %&gt;% 
+  mutate(
+    # Prepare binary vector of actual Attrition values in validate
+    validate_actual = map(validate, ~.x$Attrition == &quot;Yes&quot;),
+    # Prepare binary vector of predicted Attrition values for validate
+    validate_predicted = map2(.x = model, .y = validate, ~predict(.x, .y, type = &quot;response&quot;) &gt; 0.5)
+  )</code></pre>
+<p>Calculate the validate recall for each cross validation fold</p>
+<pre class="r"><code>cv_perf_recall &lt;- cv_prep_lr %&gt;% 
+  mutate(validate_recall = map2_dbl(validate_actual, validate_predicted, 
+                                    ~recall(actual = .x, predicted = .y)))</code></pre>
+<p>Print the validate_recall column</p>
+<pre class="r"><code>cv_perf_recall$validate_recall</code></pre>
+<pre><code>##         1         2         3         4         5 
+## 0.4324324 0.3611111 0.4615385 0.4848485 0.5714286</code></pre>
+<p>Calculate the average of the validate_recall column</p>
+<pre class="r"><code>mean(cv_perf_recall$validate_recall)</code></pre>
+<pre><code>## [1] 0.4622718</code></pre>
+<div id="section-1" class="section level42">
+<p></p>
+<p>#With a random forest for classification</p>
+<p>Prepare for tuning your cross validation folds by varying mtry</p>
+<pre class="r"><code>cv_tune &lt;- cv_data %&gt;%
+  crossing(mtry = 2:16) </code></pre>
+<p>Build a cross validation model for each fold &amp; mtry combination</p>
+<pre class="r"><code>cv_models_rf &lt;- cv_tune %&gt;% 
+  mutate(model = map2(train, mtry, ~ranger(formula = Attrition~., 
+                                           data = .x, mtry = .y,
+                                        num.trees = 100, seed = 42)))</code></pre>
+<pre class="r"><code>cv_prep_rf &lt;- cv_models_rf %&gt;% 
+  mutate(
+    # Prepare binary vector of actual Attrition values in validate
+    validate_actual = map(validate, ~.x$Attrition == &quot;Yes&quot;),
+    # Prepare binary vector of predicted Attrition values for validate
+    validate_predicted = map2(.x = model, .y = validate, ~predict(.x, .y, type = &quot;response&quot;)$predictions == &quot;Yes&quot;)
+  )</code></pre>
+<p>Calculate the validate recall for each cross validation fold</p>
+<pre class="r"><code>cv_perf_recall &lt;- cv_prep_rf %&gt;% 
+  mutate(recall = map2_dbl(.x = validate_actual, .y = validate_predicted, ~recall(actual = .x, predicted = .y)))</code></pre>
+<p>Calculate the mean recall for each mtry used</p>
+<pre class="r"><code>cv_perf_recall %&gt;% 
+  group_by(mtry) %&gt;% 
+  summarise(mean_recall = mean(recall))</code></pre>
+<pre><code>## # A tibble: 15 x 2
+##     mtry mean_recall
+##    &lt;int&gt;       &lt;dbl&gt;
+##  1     2      0.0670
+##  2     3      0.0854
+##  3     4      0.110 
+##  4     5      0.130 
+##  5     6      0.148 
+##  6     7      0.158 
+##  7     8      0.163 
+##  8     9      0.140 
+##  9    10      0.177 
+## 10    11      0.180 
+## 11    12      0.200 
+## 12    13      0.158 
+## 13    14      0.160 
+## 14    15      0.184 
+## 15    16      0.217</code></pre>
+<p>none of the random forest models here outperforms the recall of the logistic regression models</p>
+<p>Build out the final production model</p>
+<p>Build the logistic regression model using all training data</p>
+<pre class="r"><code>best_model &lt;- glm(formula = Attrition~., 
+                  data = training_data, family = &quot;binomial&quot;)</code></pre>
+<p>Prepare binary vector of actual Attrition values for testing_data</p>
+<pre class="r"><code>test_actual &lt;- testing_data$Attrition == &quot;Yes&quot;</code></pre>
+<p>Prepare binary vector of predicted Attrition values for testing_data</p>
+<pre class="r"><code>test_predicted &lt;- predict(best_model, testing_data, type = &quot;response&quot;) &gt; 0.5</code></pre>
+<p>Compare the actual &amp; predicted performance visually using a table</p>
+<pre class="r"><code>table(test_actual, test_predicted)</code></pre>
+<pre><code>##            test_predicted
+## test_actual FALSE TRUE
+##       FALSE   292   11
+##       TRUE     33   31</code></pre>
+<p>Calculate the test accuracy</p>
+<pre class="r"><code>1-ce(test_actual, test_predicted)</code></pre>
+<pre><code>## [1] 0.880109</code></pre>
+<p>Calculate the test precision</p>
+<pre class="r"><code>precision(test_actual, test_predicted)</code></pre>
+<pre><code>## [1] 0.7380952</code></pre>
+<p>Calculate the test recall</p>
+<pre class="r"><code>recall(test_actual, test_predicted)</code></pre>
+<pre><code>## [1] 0.484375</code></pre>
+</div>
+</div>
