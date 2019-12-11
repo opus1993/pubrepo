@@ -14,9 +14,7 @@ type: docs
 weight: 1
 ---
 
-## The Process
-
-
+## Agenda
 
 ### Data Collection
 
@@ -25,6 +23,8 @@ weight: 1
 ### Data Preparation
 
 ### Predictive Techniques
+
+### Tidyverse ML
 
 ### Model Evaluation
 
