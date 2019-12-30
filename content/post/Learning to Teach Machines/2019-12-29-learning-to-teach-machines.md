@@ -19,7 +19,7 @@ tags:
   - Deep Learning
 ---
 
-Below, I’m sharing a more or less comprehensive list of bookmarked resources, organized roughly in the order I think they are most helpful for beginners.
+Below, I’m sharing a more or less comprehensive list of bookmarked resources, organized roughly in the order they are most helpful for beginners.
 
 [Machine Learning for Everyone](https://vas3k.com/blog/machine_learning/)
 **In simple words. With real-world examples.** The biggest hurdle to getting started is sifting through both the hype and the math. This is a readable illustrated introduction to key concepts that will help you start building your own mental model of this space. For example, “the only goal of machine learning is to predict results based on incoming data. That’s it.” There you go! Start here.

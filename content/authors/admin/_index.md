@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: Originally from Northeast Iowa, my career has taken me through Ames, Iowa and Racine, Wisconsin to suburban Chicago, Illinois.
+bio: Serving in enterprise digital transformation with innovators in mobile power, decision intelligence, and product management
 Education:
   Courses:
   - course: MS Business Analytics
@@ -39,5 +39,5 @@ user_groups:
 - Visitors
 ---
 
-Working at the forefront of digital transformation efforts with innovators in mobile power, decision intelligence, and agriculture.
+I have extensive cross-functional team experience, strong quantitative analysis skills, and a passion for technology gained in roles in product development, strategic sourcing, and digital operations 
 
