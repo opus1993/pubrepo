@@ -1,0 +1,943 @@
+---
+author: "Jim Gruman"
+output: html_document
+date: "12/29/2019"
+draft: false
+linktitle: ML with Caret
+menu:
+  example:
+    parent: Topic
+    weight: 6
+title: Machine Learning with Caret
+type: docs
+weight: 6
+---
+
+
+
+<p>The caret package (short for <strong>C</strong>lassification <strong>A</strong>nd <strong>RE</strong>gression <strong>T</strong>raining) contains functions to streamline the model training process for complex regression and classification problems. It utilizes a number of other R packages but tries not to load them all at package start-up. As of this writing, version 6.0-84 was available at CRAN, currently maintained by Max Kuhn. The main help pages for the package are at <a href="https://topepo.github.io/caret/">Caret at Github</a> Max includes extended examples and a large amount of information that previously found in the package vignettes.</p>
+<pre class="r"><code>library(caret)</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre class="r"><code>library(mlbench)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>data(&quot;mtcars&quot;)</code></pre>
+<p>Caret has several functions that attempt to streamline the model building and evaluation process, as well as feature selection and other techniques.</p>
+<p>One of the primary tools in the package is the train function which can be used to</p>
+<blockquote>
+<p>evaluate, using resampling, the effect of model tuning parameters on performance</p>
+</blockquote>
+<blockquote>
+<p>choose the ``optimal’’ model across these parameters</p>
+</blockquote>
+<blockquote>
+<p>estimate model performance</p>
+</blockquote>
+<p>Caret includes options for customizing almost every step of this process (e.g. resampling technique, choosing the optimal parameters etc).</p>
+<p>As a quick demonstration, a linear model can be built on the widely known mtcars data to model mpg by hp as follows:</p>
+<pre class="r"><code>set.seed(42)
+
+model&lt;-train(
+    mpg ~ hp, mtcars,
+    method = &quot;lm&quot;,
+)
+
+model$method</code></pre>
+<pre><code>## [1] &quot;lm&quot;</code></pre>
+<pre class="r"><code>model$finalModel$coefficients</code></pre>
+<pre><code>## (Intercept)          hp 
+## 30.09886054 -0.06822828</code></pre>
+<pre class="r"><code>model$coefnames</code></pre>
+<pre><code>## [1] &quot;hp&quot;</code></pre>
+<pre class="r"><code>model$results</code></pre>
+<pre><code>##   intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD     MAESD
+## 1      TRUE 4.064945 0.6633927 3.214819 0.922679 0.09029965 0.7759477</code></pre>
+<pre class="r"><code>newdata&lt;-data.frame(hp = seq(50,300,10))
+
+newdata$mpg&lt;-predict(model, newdata)
+
+ggplot(mtcars, aes(hp, mpg))+
+  geom_point()+
+  geom_smooth(method = &quot;lm&quot;, color = &quot;red&quot;) +
+  theme_minimal() +
+  theme(legend.position = &#39;none&#39;)</code></pre>
+<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/lm-1.png" width="672" /></p>
+<p>For a slightly more complex demonstration, we look at Housing data for 506 census tracts of Boston from the 1970 census. In this case, we will model median value by 12 numeric plus one 2-level categorical feature. In this case, we will apply 5-fold cross validation. Simple bootstrap resampling is the default in trainControl</p>
+<pre class="r"><code>data(&quot;BostonHousing&quot;)
+
+# Fit lm model using 5-fold CV: model
+model &lt;- train(
+  medv~., 
+  BostonHousing,
+  method = &quot;lm&quot;,
+  trControl = trainControl(
+    method = &quot;cv&quot;, 
+    number = 5,
+    verboseIter = TRUE
+  )
+)</code></pre>
+<pre><code>## + Fold1: intercept=TRUE 
+## - Fold1: intercept=TRUE 
+## + Fold2: intercept=TRUE 
+## - Fold2: intercept=TRUE 
+## + Fold3: intercept=TRUE 
+## - Fold3: intercept=TRUE 
+## + Fold4: intercept=TRUE 
+## - Fold4: intercept=TRUE 
+## + Fold5: intercept=TRUE 
+## - Fold5: intercept=TRUE 
+## Aggregating results
+## Fitting final model on full training set</code></pre>
+<pre class="r"><code># Print model to console
+model$method</code></pre>
+<pre><code>## [1] &quot;lm&quot;</code></pre>
+<pre class="r"><code>model$finalModel$coefficients</code></pre>
+<pre><code>##   (Intercept)          crim            zn         indus         chas1 
+##  3.645949e+01 -1.080114e-01  4.642046e-02  2.055863e-02  2.686734e+00 
+##           nox            rm           age           dis           rad 
+## -1.776661e+01  3.809865e+00  6.922246e-04 -1.475567e+00  3.060495e-01 
+##           tax       ptratio             b         lstat 
+## -1.233459e-02 -9.527472e-01  9.311683e-03 -5.247584e-01</code></pre>
+<pre class="r"><code>model$results</code></pre>
+<pre><code>##   intercept     RMSE  Rsquared      MAE    RMSESD RsquaredSD     MAESD
+## 1      TRUE 4.781609 0.7316689 3.354985 0.4922888  0.0318399 0.1808421</code></pre>
+<p>Another method, “repeatedcv”, is used to specify repeated K-fold cross-validation (and the argument <strong>repeats</strong> controls the number of repetitions). <strong>K</strong> is controlled by the number argument and defaults to 10. The new syntax for an lm model using 5 x 5-fold CV: model is then:</p>
+<pre class="r"><code>model &lt;- train(
+  medv ~ ., 
+  BostonHousing,
+  method = &quot;lm&quot;,
+  trControl = trainControl(
+    method = &quot;repeatedcv&quot;, 
+    number = 5,
+    repeats = 5, 
+    verboseIter = TRUE
+  )
+)</code></pre>
+<pre><code>## + Fold1.Rep1: intercept=TRUE 
+## - Fold1.Rep1: intercept=TRUE 
+## + Fold2.Rep1: intercept=TRUE 
+## - Fold2.Rep1: intercept=TRUE 
+## + Fold3.Rep1: intercept=TRUE 
+## - Fold3.Rep1: intercept=TRUE 
+## + Fold4.Rep1: intercept=TRUE 
+## - Fold4.Rep1: intercept=TRUE 
+## + Fold5.Rep1: intercept=TRUE 
+## - Fold5.Rep1: intercept=TRUE 
+## + Fold1.Rep2: intercept=TRUE 
+## - Fold1.Rep2: intercept=TRUE 
+## + Fold2.Rep2: intercept=TRUE 
+## - Fold2.Rep2: intercept=TRUE 
+## + Fold3.Rep2: intercept=TRUE 
+## - Fold3.Rep2: intercept=TRUE 
+## + Fold4.Rep2: intercept=TRUE 
+## - Fold4.Rep2: intercept=TRUE 
+## + Fold5.Rep2: intercept=TRUE 
+## - Fold5.Rep2: intercept=TRUE 
+## + Fold1.Rep3: intercept=TRUE 
+## - Fold1.Rep3: intercept=TRUE 
+## + Fold2.Rep3: intercept=TRUE 
+## - Fold2.Rep3: intercept=TRUE 
+## + Fold3.Rep3: intercept=TRUE 
+## - Fold3.Rep3: intercept=TRUE 
+## + Fold4.Rep3: intercept=TRUE 
+## - Fold4.Rep3: intercept=TRUE 
+## + Fold5.Rep3: intercept=TRUE 
+## - Fold5.Rep3: intercept=TRUE 
+## + Fold1.Rep4: intercept=TRUE 
+## - Fold1.Rep4: intercept=TRUE 
+## + Fold2.Rep4: intercept=TRUE 
+## - Fold2.Rep4: intercept=TRUE 
+## + Fold3.Rep4: intercept=TRUE 
+## - Fold3.Rep4: intercept=TRUE 
+## + Fold4.Rep4: intercept=TRUE 
+## - Fold4.Rep4: intercept=TRUE 
+## + Fold5.Rep4: intercept=TRUE 
+## - Fold5.Rep4: intercept=TRUE 
+## + Fold1.Rep5: intercept=TRUE 
+## - Fold1.Rep5: intercept=TRUE 
+## + Fold2.Rep5: intercept=TRUE 
+## - Fold2.Rep5: intercept=TRUE 
+## + Fold3.Rep5: intercept=TRUE 
+## - Fold3.Rep5: intercept=TRUE 
+## + Fold4.Rep5: intercept=TRUE 
+## - Fold4.Rep5: intercept=TRUE 
+## + Fold5.Rep5: intercept=TRUE 
+## - Fold5.Rep5: intercept=TRUE 
+## Aggregating results
+## Fitting final model on full training set</code></pre>
+<pre class="r"><code># Print model to console
+model$method</code></pre>
+<pre><code>## [1] &quot;lm&quot;</code></pre>
+<pre class="r"><code>model$finalModel$coefficients</code></pre>
+<pre><code>##   (Intercept)          crim            zn         indus         chas1 
+##  3.645949e+01 -1.080114e-01  4.642046e-02  2.055863e-02  2.686734e+00 
+##           nox            rm           age           dis           rad 
+## -1.776661e+01  3.809865e+00  6.922246e-04 -1.475567e+00  3.060495e-01 
+##           tax       ptratio             b         lstat 
+## -1.233459e-02 -9.527472e-01  9.311683e-03 -5.247584e-01</code></pre>
+<pre class="r"><code>model$results</code></pre>
+<pre><code>##   intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD     MAESD
+## 1      TRUE 4.820318 0.7285316 3.379137 0.566678 0.04952456 0.2604407</code></pre>
+<div id="the-sonar-dataset" class="section level1">
+<h1>The Sonar Dataset</h1>
+<div id="partial-least-squares-and-regularized-discriminant-analysis" class="section level2">
+<h2>Partial Least Squares and Regularized Discriminant Analysis</h2>
+<p>The mlbench <strong>Sonar</strong> data set was used in a study of the classification of sonar signals to train a network to discriminate between signals bounced off a metal cylinder and those bounced off a roughly cylindrical rock. Each of 208 observations are patterns in a set with 60 numbers in the range 0.0 to 1.0. Each number represents the energy within a particular frequency band, integrated over a certain period of time. The integration aperture for higher frequencies occur later in time, since these frequencies are transmitted later during the chirp.</p>
+<p>The label associated with each record contains the letter “R” if the object is a rock and “M” if it is a mine (metal cylinder). The numbers in the labels are in increasing order of aspect angle, but they do not encode the angle directly.</p>
+<p>First, we split the data into two groups: a training set and a test set with the <strong>createDataPartition</strong> function. By default, <strong>createDataPartition</strong> does a stratified random split of the data. Here, a partial least squares discriminant analysis (PLSDA) model will be tuned over the number of PLS components that should be retained.</p>
+<p>We would like to customize it in a few ways:
+- expand the set of PLS models that the function evaluates. By default, the function will tune over three values of each tuning parameter.
+- the type of resampling used. The simple bootstrap is used by default. We will have the function use three repeats of 10-fold cross-validation.
+- the methods for measuring performance. If unspecified, overall accuracy and the Kappa statistic are computed. For regression models, root mean squared error and R2 are computed. Here, the function will be altered to estimate the area under the ROC curve, the sensitivity and specificity</p>
+<p>To change the candidate values of the tuning parameter, either of the <strong>tuneLength</strong> or <strong>tuneGrid</strong> arguments can be used. The train function can generate a candidate set of parameter values and the tuneLength argument controls how many are evaluated. In the case of PLS, the function uses a sequence of integers from 1 to tuneLength. If we want to evaluate all integers between 1 and 15, setting tuneLength = 15 would achieve this. The <strong>tuneGrid</strong> argument is used when specific values are desired. A data frame is used where each row is a tuning parameter setting and each column is a tuning parameter. An example is used below to illustrate this.</p>
+<p>The function will pick the tuning parameters associated with the best results. Since we are using custom performance measures, the criterion that should be optimized must also be specified. In the call to train, we can use <strong>metric</strong> = “ROC” to do this.</p>
+<pre class="r"><code># Create trainControl object: myControl
+data(&quot;Sonar&quot;)
+set.seed(42)
+
+inTrain &lt;- createDataPartition(
+  y = Sonar$Class,
+  ## the outcome data are needed
+  p = .75,
+  ## The percentage of data in the
+  ## training set
+  list = FALSE
+)
+
+training &lt;- Sonar[ inTrain,]
+testing  &lt;- Sonar[-inTrain,]
+
+myControl &lt;- trainControl(
+  method = &quot;repeatedcv&quot;,
+  repeats = 3,
+  summaryFunction = twoClassSummary,
+  classProbs = TRUE, # IMPORTANT!   must have to calculate AUC or logloss
+#  verboseIter = TRUE
+)
+
+# Train pls with custom trainControl: model
+plsModel&lt;-train(
+  Class~., 
+  data = training,
+  method = &quot;pls&quot;,
+  trControl = myControl,
+  tuneLength = 15,
+  preProc = c(&quot;center&quot;,&quot;scale&quot;),
+  metric = &quot;ROC&quot;)
+
+# Print model to console
+plsModel</code></pre>
+<pre><code>## Partial Least Squares 
+## 
+## 157 samples
+##  60 predictor
+##   2 classes: &#39;M&#39;, &#39;R&#39; 
+## 
+## Pre-processing: centered (60), scaled (60) 
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 141, 142, 141, 142, 141, 141, ... 
+## Resampling results across tuning parameters:
+## 
+##   ncomp  ROC        Sens       Spec     
+##    1     0.8216353  0.6939815  0.7071429
+##    2     0.8677993  0.7884259  0.7892857
+##    3     0.9093833  0.7902778  0.8238095
+##    4     0.8945933  0.7736111  0.8029762
+##    5     0.8750909  0.7555556  0.7934524
+##    6     0.8638476  0.7740741  0.7976190
+##    7     0.8667163  0.7898148  0.7934524
+##    8     0.8670552  0.8000000  0.8154762
+##    9     0.8740162  0.8004630  0.8196429
+##   10     0.8764716  0.8000000  0.8208333
+##   11     0.8747106  0.7921296  0.8113095
+##   12     0.8714947  0.7759259  0.8130952
+##   13     0.8659722  0.7712963  0.7934524
+##   14     0.8622354  0.7833333  0.7928571
+##   15     0.8665427  0.8041667  0.7976190
+## 
+## ROC was used to select the optimal model using the largest value.
+## The final value used for the model was ncomp = 3.</code></pre>
+<pre class="r"><code>ggplot(plsModel)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/sonar-1.png" width="672" /></p>
+<p>In this output the grid of results are the average resampled estimates of performance. The note at the bottom tells the user that 4 PLS components were found to be optimal. Based on this value, a final PLS model is fit to the whole data set using this specification and this is the model that is used to predict future samples.</p>
+<p>The package has several functions for visualizing the results. One method for doing this is the ggplot function for train objects. The command ggplot(plsFit) produced the results seen in Figure and shows the relationship between the resampled performance values and the number of PLS components.</p>
+<pre class="r"><code>plsClasses &lt;- predict(plsModel, newdata = testing)
+str(plsClasses)</code></pre>
+<pre><code>##  Factor w/ 2 levels &quot;M&quot;,&quot;R&quot;: 1 2 2 1 1 2 1 2 1 2 ...</code></pre>
+<pre class="r"><code>plsProbs &lt;- predict(plsModel, newdata = testing, type = &quot;prob&quot;)
+head(plsProbs)</code></pre>
+<pre><code>##            M         R
+## 3  0.7024082 0.2975918
+## 4  0.4722453 0.5277547
+## 7  0.4640816 0.5359184
+## 8  0.6450411 0.3549589
+## 9  0.6122580 0.3877420
+## 19 0.2623379 0.7376621</code></pre>
+<p><strong>Caret</strong> contains a function to compute the confusion matrix and associated statistics for the model fit:</p>
+<pre class="r"><code>confusionMatrix(data = plsClasses, testing$Class)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  M  R
+##          M 20  6
+##          R  7 18
+##                                           
+##                Accuracy : 0.7451          
+##                  95% CI : (0.6037, 0.8567)
+##     No Information Rate : 0.5294          
+##     P-Value [Acc &gt; NIR] : 0.001311        
+##                                           
+##                   Kappa : 0.4896          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 1.000000        
+##                                           
+##             Sensitivity : 0.7407          
+##             Specificity : 0.7500          
+##          Pos Pred Value : 0.7692          
+##          Neg Pred Value : 0.7200          
+##              Prevalence : 0.5294          
+##          Detection Rate : 0.3922          
+##    Detection Prevalence : 0.5098          
+##       Balanced Accuracy : 0.7454          
+##                                           
+##        &#39;Positive&#39; Class : M               
+## </code></pre>
+<p>To fit an another model to the data, train can be invoked with minimal changes. Lists of models available can be found at (<a href="https://topepo.github.io/caret/available-models.html" class="uri">https://topepo.github.io/caret/available-models.html</a>) or (<a href="https://topepo.github.io/caret/train-models-by-tag.html" class="uri">https://topepo.github.io/caret/train-models-by-tag.html</a>). For example, to fit a regularized discriminant model to these data, the following syntax can be used:</p>
+<pre class="r"><code>## To illustrate, a custom grid is used
+rdaGrid = data.frame(gamma = (0:4)/4, lambda = 3/4)
+set.seed(42)
+rdaModel&lt;- train(
+  Class ~ .,
+  data = training,
+  method = &quot;rda&quot;,
+  tuneGrid = rdaGrid,
+  trControl = myControl,
+  metric = &quot;ROC&quot;
+)
+rdaModel</code></pre>
+<pre><code>## Regularized Discriminant Analysis 
+## 
+## 157 samples
+##  60 predictor
+##   2 classes: &#39;M&#39;, &#39;R&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 3 times) 
+## Summary of sample sizes: 142, 142, 141, 142, 140, 142, ... 
+## Resampling results across tuning parameters:
+## 
+##   gamma  ROC        Sens       Spec     
+##   0.00   0.8879299  0.8296296  0.8345238
+##   0.25   0.9224289  0.8837963  0.8589286
+##   0.50   0.9177331  0.8675926  0.8029762
+##   0.75   0.8986938  0.8064815  0.7845238
+##   1.00   0.7436508  0.6652778  0.6250000
+## 
+## Tuning parameter &#39;lambda&#39; was held constant at a value of 0.75
+## ROC was used to select the optimal model using the largest value.
+## The final values used for the model were gamma = 0.25 and lambda = 0.75.</code></pre>
+<pre class="r"><code>rdaClasses &lt;- predict(rdaModel, newdata = testing)
+confusionMatrix(rdaClasses, testing$Class)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  M  R
+##          M 23  7
+##          R  4 17
+##                                           
+##                Accuracy : 0.7843          
+##                  95% CI : (0.6468, 0.8871)
+##     No Information Rate : 0.5294          
+##     P-Value [Acc &gt; NIR] : 0.0001502       
+##                                           
+##                   Kappa : 0.5641          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.5464936       
+##                                           
+##             Sensitivity : 0.8519          
+##             Specificity : 0.7083          
+##          Pos Pred Value : 0.7667          
+##          Neg Pred Value : 0.8095          
+##              Prevalence : 0.5294          
+##          Detection Rate : 0.4510          
+##    Detection Prevalence : 0.5882          
+##       Balanced Accuracy : 0.7801          
+##                                           
+##        &#39;Positive&#39; Class : M               
+## </code></pre>
+<p>How do these models compare in terms of their resampling results? The <strong>resamples</strong> function can be used to collect, summarize and contrast the resampling results. Since the random number seeds were initialized to the same value prior to calling `train}, the same folds were used for each model. To assemble them:</p>
+<pre class="r"><code>resamps &lt;- resamples(list(pls = plsModel, rda = rdaModel))
+summary(resamps)</code></pre>
+<pre><code>## 
+## Call:
+## summary.resamples(object = resamps)
+## 
+## Models: pls, rda 
+## Number of resamples: 30 
+## 
+## ROC 
+##          Min.   1st Qu.    Median      Mean  3rd Qu. Max. NA&#39;s
+## pls 0.7142857 0.8497024 0.9419643 0.9093833 0.968626    1    0
+## rda 0.5937500 0.8784722 0.9409722 0.9224289 1.000000    1    0
+## 
+## Sens 
+##      Min.   1st Qu.    Median      Mean   3rd Qu. Max. NA&#39;s
+## pls 0.500 0.6666667 0.7777778 0.7902778 0.8888889    1    0
+## rda 0.625 0.8020833 0.8888889 0.8837963 1.0000000    1    0
+## 
+## Spec 
+##          Min.   1st Qu.    Median      Mean 3rd Qu. Max. NA&#39;s
+## pls 0.5714286 0.7142857 0.8035714 0.8238095       1    1    0
+## rda 0.3750000 0.7767857 0.8571429 0.8589286       1    1    0</code></pre>
+<pre class="r"><code>xyplot(resamps, what = &quot;BlandAltman&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/resamples%20Sonar-1.png" width="672" /></p>
+<p>The results look similar. Since, for each resample, there are paired results a paired t-test can be used to assess whether there is a difference in the average resampled area under the ROC curve. The diff.resamples function can be used to compute this:</p>
+<pre class="r"><code>diffs &lt;- diff(resamps)
+summary(diffs)</code></pre>
+<pre><code>## 
+## Call:
+## summary.diff.resamples(object = diffs)
+## 
+## p-value adjustment: bonferroni 
+## Upper diagonal: estimates of the difference
+## Lower diagonal: p-value for H0: difference = 0
+## 
+## ROC 
+##     pls    rda     
+## pls        -0.01305
+## rda 0.5535         
+## 
+## Sens 
+##     pls     rda     
+## pls         -0.09352
+## rda 0.03227         
+## 
+## Spec 
+##     pls    rda     
+## pls        -0.03512
+## rda 0.2497</code></pre>
+<p>Based on this analysis, the difference between the models is -0.013 ROC units (the RDA model is slightly higher) and the two-sided p-value for this difference is 0.000.</p>
+<hr />
+</div>
+</div>
+<div id="the-wine-dataset" class="section level1">
+<h1>The Wine Dataset</h1>
+<div id="glmnet-and-ranger" class="section level2">
+<h2>GLMnet and Ranger</h2>
+<p>The University of California Irvine Machine Learning Laboratory hosts 488+ datasets. A proper citation for the work at the repository:</p>
+<p>Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [<a href="http://archive.ics.uci.edu/ml" class="uri">http://archive.ics.uci.edu/ml</a>]. Irvine, CA: University of California, School of Information and Computer Science.</p>
+<p>The wine data sets are the results of a chemical analysis of product grown in the same region in Italy but derived from three different cultivars. The analysis determined the quantities of 13 constituents found in each of the three types of wines.</p>
+<p>The attributes are (donated by Riccardo Leardi, riclea ‘@’ anchem.unige.it )
+1) Alcohol
+2) Malic acid
+3) Ash
+4) Alcalinity of ash
+5) Magnesium
+6) Total phenols
+7) Flavanoids
+8) Nonflavanoid phenols
+9) Proanthocyanins
+10) Color intensity
+11) Hue
+12) OD280/OD315 of diluted wines
+13) Proline</p>
+<p>All attributes are continuous</p>
+<pre class="r"><code>url &lt;- &#39;https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv&#39;
+
+library(tidyverse)</code></pre>
+<pre><code>## -- Attaching packages ---------------------------------------- tidyverse 1.3.0 --</code></pre>
+<pre><code>## v tibble  2.1.3     v purrr   0.3.3
+## v tidyr   1.0.0     v stringr 1.4.0
+## v readr   1.3.1     v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------- tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## x purrr::lift()   masks caret::lift()</code></pre>
+<pre class="r"><code>wine &lt;- read_csv2(url, col_types = c(&quot;nnnnnnnnnnnf&quot;))</code></pre>
+<pre><code>## Using &#39;,&#39; as decimal and &#39;.&#39; as grouping mark. Use read_delim() for more control.</code></pre>
+<pre class="r"><code>head(wine)</code></pre>
+<pre><code>## # A tibble: 6 x 12
+##   `fixed acidity` `volatile acidi~ `citric acid` `residual sugar` chlorides
+##             &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+## 1               7               27            36              207        45
+## 2              63                3            34               16        49
+## 3              81               28             4               69         5
+## 4              72               23            32               85        58
+## 5              72               23            32               85        58
+## 6              81               28             4               69         5
+## # ... with 7 more variables: `free sulfur dioxide` &lt;dbl&gt;, `total sulfur
+## #   dioxide` &lt;dbl&gt;, density &lt;dbl&gt;, pH &lt;dbl&gt;, sulphates &lt;dbl&gt;, alcohol &lt;dbl&gt;,
+## #   quality &lt;fct&gt;</code></pre>
+<pre class="r"><code>summary(wine)</code></pre>
+<pre><code>##  fixed acidity    volatile acidity   citric acid     residual sugar   
+##  Min.   :  5.00   Min.   :   1.00   Min.   :  0.00   Min.   :   1.00  
+##  1st Qu.: 61.00   1st Qu.:  19.00   1st Qu.: 24.00   1st Qu.:  15.00  
+##  Median : 67.00   Median :  25.00   Median : 31.00   Median :  46.00  
+##  Mean   : 62.41   Mean   :  35.31   Mean   : 30.03   Mean   : 109.22  
+##  3rd Qu.: 73.00   3rd Qu.:  32.00   3rd Qu.: 37.00   3rd Qu.:  98.75  
+##  Max.   :715.00   Max.   :1005.00   Max.   :166.00   Max.   :2605.00  
+##                                                                       
+##    chlorides      free sulfur dioxide total sulfur dioxide    density      
+##  Min.   :  2.00   Min.   :   2.00     Min.   :   9.0       Min.   :     1  
+##  1st Qu.: 33.00   1st Qu.:  23.00     1st Qu.: 108.0       1st Qu.:  9934  
+##  Median : 41.00   Median :  34.00     Median : 134.0       Median :  9986  
+##  Mean   : 41.12   Mean   :  41.01     Mean   : 148.6       Mean   : 52184  
+##  3rd Qu.: 48.00   3rd Qu.:  46.00     3rd Qu.: 167.8       3rd Qu.: 99284  
+##  Max.   :346.00   Max.   :1465.00     Max.   :3665.0       Max.   :998365  
+##                                                                            
+##        pH          sulphates        alcohol          quality 
+##  Min.   :  3.0   Min.   :  1.0   Min.   :8.000e+00   6:2198  
+##  1st Qu.:304.0   1st Qu.: 38.0   1st Qu.:9.200e+01   5:1457  
+##  Median :316.0   Median : 46.0   Median :1.010e+02   7: 880  
+##  Mean   :287.1   Mean   : 43.8   Mean   :1.823e+12   8: 175  
+##  3rd Qu.:326.0   3rd Qu.: 54.0   3rd Qu.:1.130e+02   4: 163  
+##  Max.   :382.0   Max.   :108.0   Max.   :9.733e+14   3:  20  
+##                                                      9:   5</code></pre>
+<p>As before, the first step is to partition the data.</p>
+<pre class="r"><code>set.seed(42)
+
+inTrain &lt;- createDataPartition(
+  y = wine$quality,
+  ## the outcome data are needed
+  p = .75,
+  ## The percentage of data in the
+  ## training set
+  list = FALSE
+)
+
+training &lt;- wine[ inTrain,]
+testing  &lt;- wine[-inTrain,]</code></pre>
+</div>
+</div>
+<div id="fit-random-forest-model" class="section level1">
+<h1>Fit random forest: model</h1>
+<p>model &lt;- train(
+quality~.,
+tuneLength = 1,
+data = wine,
+method = “ranger”,
+trControl = trainControl(
+method = “cv”,
+number = 5,
+verboseIter = TRUE
+)
+)</p>
+</div>
+<div id="print-model-to-console" class="section level1">
+<h1>Print model to console</h1>
+<p>model</p>
+</div>
+<div id="tuning-for-mtry-in-the-random-forest" class="section level1">
+<h1>tuning for mtry in the random forest</h1>
+<p>model&lt;-train(
+Class ~ .,
+data = Sonar,
+method = “ranger”,
+tuneLength = 10
+)</p>
+<p>model</p>
+</div>
+<div id="fit-random-forest-model-1" class="section level1">
+<h1>Fit random forest: model</h1>
+<p>model &lt;- train(
+quality~.,
+tuneLength = 3,
+data = wine,
+method = “ranger”,
+trControl = trainControl(
+method = “cv”,
+number = 5,
+verboseIter = TRUE
+)
+)</p>
+</div>
+<div id="print-model-to-console-1" class="section level1">
+<h1>Print model to console</h1>
+<p>model</p>
+</div>
+<div id="plot-model" class="section level1">
+<h1>Plot model</h1>
+<p>plot(model)</p>
+<div id="fit-a-random-forest-with-custom-tuning" class="section level4">
+<h4>Fit a random forest with custom tuning</h4>
+</div>
+</div>
+<div id="define-the-tuning-grid-tunegrid" class="section level1">
+<h1>Define the tuning grid: tuneGrid</h1>
+<p>tuneGrid &lt;- data.frame(
+.mtry = c(2,3,7),
+.splitrule = “variance”,
+.min.node.size = 5
+)</p>
+</div>
+<div id="fit-random-forest-model-2" class="section level1">
+<h1>Fit random forest: model</h1>
+<p>model &lt;- train(
+quality~.,
+tuneGrid = tuneGrid,
+data = wine,
+method = “ranger”,
+trControl = trainControl(
+method = “cv”,
+number = 5,
+verboseIter = TRUE
+)
+)</p>
+<div id="extension-of-glm-function-to-glmnet" class="section level5">
+<h5>extension of glm function to glmnet</h5>
+</div>
+</div>
+<div id="lasso-regression-or-ridge-regression" class="section level1">
+<h1>lasso regression or ridge regression</h1>
+</div>
+<div id="seeks-a-parsimonious-model" class="section level1">
+<h1>seeks a parsimonious model</h1>
+</div>
+<div id="alpha-pure-ridge-to-pure-lasso" class="section level1">
+<h1>alpha<a href="#section-23"></a> pure ridge to pure lasso</h1>
+</div>
+<div id="lambda-0-infinity-size-of-the-penalty" class="section level1">
+<h1>lambda (0, infinity) size of the penalty</h1>
+<p># Create custom trainControl: myControl
+myControl &lt;- trainControl(
+method = “cv”,
+number = 10,
+summaryFunction = twoClassSummary,
+classProbs = TRUE, # IMPORTANT!
+verboseIter = TRUE
+)</p>
+<p># Fit glmnet model: model
+model &lt;- train(
+y~.,
+overfit,
+method = “glmnet”,
+trControl = myControl
+)</p>
+<p># Print model to console
+model</p>
+<p># Print maximum ROC statistic
+max(model[[“results”]]$ROC)</p>
+<p>########################################
+########################################</p>
+<p>data(overfit)</p>
+<p># Train glmnet with custom trainControl and tuning: model
+model &lt;- train(
+y~.,
+overfit,
+tuneGrid = expand.grid(
+alpha=0:1,
+lambda = seq(0.0001,1,length = 20)
+),
+method = “glmnet”,
+trControl = myControl
+)</p>
+<p># Print model to console
+model</p>
+<p># Print maximum ROC statistic
+max(model[[“results”]][[“ROC”]])</p>
+<div id="section" class="section level46">
+<p></p>
+</div>
+<div id="section-1" class="section level45">
+<p></p>
+</div>
+<div id="section-2" class="section level3">
+<h3></h3>
+</div>
+<div id="handling-missing-data" class="section level3">
+<h3>Handling missing data</h3>
+</div>
+<div id="section-3" class="section level3">
+<h3></h3>
+<p>model&lt;- train(X, Y, preProcess = “medianImpute”)
+print(model)</p>
+<p>data() Wisconsin Breast Cancer Dataset</p>
+</div>
+</div>
+<div id="apply-median-imputation-median_model" class="section level1">
+<h1>Apply median imputation: median_model</h1>
+<p>median_model &lt;- train(
+x = breast_cancer_x,
+y = breast_cancer_y,
+method = “glm”,
+trControl = myControl,
+preProcess = “medianImpute”
+)
+# Print median_model to console
+median_model</p>
+<div id="section-4" class="section level17">
+<p></p>
+</div>
+<div id="section-5" class="section level3">
+<h3></h3>
+</div>
+<div id="what-if-the-missing-is-not-at-random-if-median-will-not-be-best-imputation" class="section level3">
+<h3>what if the missing is not at random (if median will not be best imputation)</h3>
+</div>
+<div id="section-6" class="section level3">
+<h3></h3>
+</div>
+<div id="knn-imputation-is-available-but-slower" class="section level3">
+<h3>kNN imputation is available, but slower</h3>
+</div>
+</div>
+<div id="apply-knn-imputation-knn_model" class="section level1">
+<h1>Apply KNN imputation: knn_model</h1>
+<p>knn_model &lt;- train(
+x = breast_cancer_x,
+y = breast_cancer_y,
+method = “glm”,
+trControl = myControl,
+preProcess = “knnImpute”
+)</p>
+</div>
+<div id="print-knn_model-to-console" class="section level1">
+<h1>Print knn_model to console</h1>
+<p>knn_model</p>
+<div id="section-7" class="section level37">
+<p></p>
+</div>
+</div>
+<div id="update-model-with-standardization" class="section level1">
+<h1>Update model with standardization</h1>
+<p>model &lt;- train(
+x = breast_cancer_x,
+y = breast_cancer_y,
+method = “glm”,
+trControl = myControl,
+preProcess = c(“medianImpute”, “center”, “scale”)
+)</p>
+</div>
+<div id="print-updated-model" class="section level1">
+<h1>Print updated model</h1>
+<p>model</p>
+</div>
+<div id="preprocessing-cheat-sheet-1-start-with-median-imputation" class="section level1">
+<h1>Preprocessing cheat sheet: 1) start with median imputation</h1>
+</div>
+<div id="consider-knn-imputation-if-data-missing-is-not-at-random" class="section level1">
+<h1>2) consider knn imputation if data missing is not at random</h1>
+</div>
+<div id="for-linear-models-center-and-scale" class="section level1">
+<h1>3) for linear models, center and scale</h1>
+</div>
+<div id="try-pca-and-spatial-sign" class="section level1">
+<h1>4) try PCA and spatial sign</h1>
+</div>
+<div id="example-preprocess-czv-center-scale-pca" class="section level1">
+<h1>example preProcess = c(“zv”, “center”, “scale”, “pca”)</h1>
+<div id="section-8" class="section level35">
+<p></p>
+</div>
+<div id="section-9" class="section level3">
+<h3></h3>
+</div>
+<div id="removing-constant-columns-or-nearly-constant-columns" class="section level3">
+<h3>removing constant columns, or nearly constant columns</h3>
+</div>
+<div id="section-10" class="section level3">
+<h3></h3>
+</div>
+<div id="section-11" class="section level3">
+<h3></h3>
+</div>
+</div>
+<div id="identify-near-zero-variance-predictors-remove_cols" class="section level1">
+<h1>Identify near zero variance predictors: remove_cols</h1>
+<p>remove_cols &lt;- nearZeroVar(bloodbrain_x, names = TRUE,
+freqCut = 2, uniqueCut = 20)</p>
+</div>
+<div id="get-all-column-names-from-bloodbrain_x-all_cols" class="section level1">
+<h1>Get all column names from bloodbrain_x: all_cols</h1>
+<p>all_cols&lt;-names(bloodbrain_x)</p>
+</div>
+<div id="remove-from-data-bloodbrain_x_small" class="section level1">
+<h1>Remove from data: bloodbrain_x_small</h1>
+<p>bloodbrain_x_small &lt;- bloodbrain_x[ , setdiff(all_cols, remove_cols)]</p>
+</div>
+<div id="or-use-train-with-preprocess-and-nzv-in-the-character-string" class="section level1">
+<h1>OR — use train with preProcess and “nzv” in the character string</h1>
+</div>
+<div id="fit-model-on-reduced-data-model" class="section level1">
+<h1>Fit model on reduced data: model</h1>
+<p>model &lt;- train(
+x = bloodbrain_x_small,
+y = bloodbrain_y,
+method = “glm”
+)</p>
+</div>
+<div id="print-model-to-console-2" class="section level1">
+<h1>Print model to console</h1>
+<p>model</p>
+<div id="section-12" class="section level23">
+<p></p>
+</div>
+<div id="section-13" class="section level3">
+<h3></h3>
+</div>
+<div id="principal-components-analysis-as-a-pre-processing-step" class="section level3">
+<h3>Principal components analysis as a pre-processing step</h3>
+</div>
+<div id="section-14" class="section level3">
+<h3></h3>
+</div>
+<div id="section-15" class="section level3">
+<h3></h3>
+</div>
+</div>
+<div id="basic-model" class="section level1">
+<h1>basic model</h1>
+<p>set.seed(42)</p>
+<p>data(BloodBrain)</p>
+<p>model &lt;- train(
+bbbDescr,
+logBBB,
+method = “glm”,
+trControl = trainControl(
+method = “cv”, number = 10, verbose = TRUE,
+),
+preProcess = c(“zv”, “center”, “scale”, “pca”)
+)</p>
+<p>min(model<span class="math inline">\(results\)</span>RMSE)</p>
+<div id="section-16" class="section level25">
+<p></p>
+</div>
+<div id="section-17" class="section level3">
+<h3></h3>
+</div>
+<div id="reusing-traincontrol-for-apples-to-apples-comparison" class="section level3">
+<h3>reusing traincontrol for apples to apples comparison</h3>
+</div>
+<div id="section-18" class="section level3">
+<h3></h3>
+</div>
+<div id="pre-define-traincontrol" class="section level3">
+<h3>pre-define trainControl</h3>
+<p>library(caret)
+library(C50)
+data(churn)</p>
+<p>table(churnTrain$churn) / nrow(churnTrain)</p>
+</div>
+</div>
+<div id="create-traintest-indexes" class="section level1">
+<h1>create train/test indexes</h1>
+<p>set.seed(42)
+myFolds&lt;- createFolds(churnTrain$churn, k=5)</p>
+<p>#compare class distribution</p>
+<p>i&lt;- myFolds<span class="math inline">\(Fold2 table(churnTrain\)</span>churn[i])/ length(i)</p>
+</div>
+<div id="use-the-folds-to-create-a-traincontrol-object-to-fit-many-models" class="section level1">
+<h1>use the folds to create a trainControl object, to fit many models</h1>
+<p>myControl &lt;- trainControl(
+summaryFunction = twoClassSummary,
+classProbs = TRUE,
+verboseIter = TRUE,
+savePredictions = TRUE,
+index = myFolds
+)</p>
+</div>
+<div id="recall-the-glmnet-almost-always-the-first-model-to-try-on-new-datasets" class="section level1">
+<h1>recall the glmnet — almost always the first model to try on new datasets</h1>
+</div>
+<div id="fits-quickly-provides-linear-regression-components" class="section level1">
+<h1>fits quickly, provides linear regression components</h1>
+</div>
+<div id="ignores-noisy-coefficients" class="section level1">
+<h1>ignores noisy coefficients</h1>
+<p>model_glmnet &lt;- train(
+churn ~ .,
+churnTrain,
+metric = “ROC”,
+method = “glmnet”,
+tuneGrid = expand.grid(
+alpha = 0:1,
+lambda = 0:10 / 10
+),
+trControl = myControl
+)</p>
+<p>plot(model_glmnet)</p>
+</div>
+<div id="then-try-random-forest-good-practice-to-try-as-second" class="section level1">
+<h1>then try random forest (good practice to try as second)</h1>
+</div>
+<div id="easier-to-tun-but-slower" class="section level1">
+<h1>easier to tun, but slower</h1>
+</div>
+<div id="section-19" class="section level1">
+<h1></h1>
+<p>model_rf&lt;- train(
+churn ~ .,
+churnTrain,
+metric = “ROC”,
+method = “ranger”,
+trControl = myControl
+)</p>
+<p>plot(model_rf)</p>
+</div>
+<div id="often-comparing-models-target-highest-average-auc-and-lowest" class="section level1">
+<h1>often comparing models, target highest average AUC and lowest</h1>
+</div>
+<div id="resamples-function-is-your-friend" class="section level1">
+<h1>resamples() function is your friend</h1>
+<p>model_list&lt;- list(
+glmnet = model_glmnet,
+rf = model_rf
+)</p>
+<p>resamps &lt;- resamples(model_list)
+resamps</p>
+<p>summary(resamps)</p>
+<p>densityplot(resamps, metric = “ROC”)</p>
+<p>bwplot(resamps, metric = “ROC”)</p>
+<p>xyplot(resamps, metric = “ROC”)</p>
+<div id="section-20" class="section level29">
+<p></p>
+</div>
+<div id="section-21" class="section level3">
+<h3></h3>
+</div>
+<div id="for-custom-ensembles" class="section level3">
+<h3>for custom ensembles</h3>
+</div>
+</div>
+<div id="create-ensemble-model-stack" class="section level1">
+<h1>Create ensemble model: stack</h1>
+<p>stack &lt;- caretStack(model_list, method = “glm”)</p>
+</div>
+<div id="look-at-summary" class="section level1">
+<h1>Look at summary</h1>
+<p>summary(stack)</p>
+<p>Leftover code ??????</p>
+</div>
+<div id="if-p-exceeds-threshold-of-0.5-m-else-r-m_or_r" class="section level1">
+<h1>If p exceeds threshold of 0.5, M else R: m_or_r</h1>
+<p>m_or_r&lt;-ifelse(p&gt;0.5,“M”,“R”)</p>
+</div>
+<div id="convert-to-factor-p_class" class="section level1">
+<h1>Convert to factor: p_class</h1>
+<p>p_class&lt;-as.factor(m_or_r)
+test[[“Class”]]
+# Create confusion matrix
+confusionMatrix(p_class, test[[“Class”]])</p>
+<div id="section-22" class="section level40">
+<p></p>
+<p>library(caTools)
+# Predict on test: p
+p&lt;-predict(model, test, type = “response”)</p>
+<p>colAUC(p, test[[“Class”]], plotROC = TRUE)</p>
+</div>
+</div>
+<div id="use-auc-to-rank-different-models-on-the-same-data-set" class="section level1">
+<h1>use AUC to rank different models on the same data set</h1>
+<div id="section-23" class="section level24">
+<p></p>
+</div>
+</div>

@@ -2,7 +2,7 @@
 date: '2019-12-29'
 diagram: true
 image: 
-  caption: 'Image credit: [**Andy Kelly @askkell**](https://unsplash.com/photos/0E_vhMVqL9g)'
+  caption: 'Image credit: [**Andy Kelly**](https://unsplash.com/photos/0E_vhMVqL9g)'
   placment: 3
 markup: mmark
 math: true
@@ -19,7 +19,7 @@ tags:
   - Deep Learning
 ---
 
-Below, I’m sharing a more or less comprehensive list of bookmarked resources, organized roughly in the order they are most helpful for beginners.
+Alison Hill recently shared a more or less comprehensive list of bookmarked resources, organized roughly in the order they are most helpful for beginners. These were all written before the release of Tidymodels, Recipes, and and Drake packages. Even so, they provide a very good foundation and they execute well on Microsoft's R Open distribution provided with the Azure DSVM and HDInsight.
 
 [Machine Learning for Everyone](https://vas3k.com/blog/machine_learning/)
 **In simple words. With real-world examples.** The biggest hurdle to getting started is sifting through both the hype and the math. This is a readable illustrated introduction to key concepts that will help you start building your own mental model of this space. For example, “the only goal of machine learning is to predict results based on incoming data. That’s it.” There you go! Start here.
@@ -34,12 +34,14 @@ Taught with R and the caret package, this is a great next step in your machine l
 
 [Interpretable Machine Learning: A Guide for Making Black Box Models Explainable](https://christophm.github.io/interpretable-ml-book/) the whole book is excellent and well-written.
 
-Model evaluation, model selection, and algorithm selection in machine learning- a 4-part series by Sebastian Raschka. I found this to be a great evidence-based, thorough overview of the methods for machine learning. I especially liked how he walks you step-by-step from the simplest methods like the holdout method up to nested cross-validation:
+Model evaluation, model selection, and algorithm selection in machine learning- a 4-part series by Sebastian Raschka. This is a a great evidence-based, thorough overview of the methods for machine learning. Alison noted that he walks you step-by-step from the simplest methods like the holdout method up to nested cross-validation:
 
 - [Part 1: The Basics](https://sebastianraschka.com/blog/2016/model-evaluation-selection-part1.html)
 - [Part 2: Bootstrapping and Uncertainties](https://sebastianraschka.com/blog/2016/model-evaluation-selection-part2.html)
 - [Part 3: Cross-validation and hyperparameter tuning](https://sebastianraschka.com/blog/2016/model-evaluation-selection-part3.html)
 - [Part 4: Part IV - Comparing the performance of machine learning models and algorithms using statistical tests and nested cross-validation](https://sebastianraschka.com/blog/2018/model-evaluation-selection-part4.html)
+
+At this point, if you can read through the above resources and you are no longer feeling awash in new terminology, your vocabulary and mental model are in pretty good shape! That means you are ready for the next step, which is to read Max Kuhn and Kjell Johnson’s new book:
 
 [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/)
 
