@@ -30,7 +30,8 @@ weight: 1
 
 ### Model Optimisation
 
-Add images to this deck, consistent with the CNH powerpoint
+Add images to this deck, consistent with Fred's deck
+
 See if the supervised / unsupervised content can be interleaved
 
 {{< tweet 1193190944675381248 >}}

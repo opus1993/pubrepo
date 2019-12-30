@@ -1,22 +1,22 @@
 ---
+date: '2019-12-29'
+diagram: true
+image: 
+  caption: 'Image credit: [**Andy Kelly @askkell**](https://unsplash.com/photos/0E_vhMVqL9g)'
+  placment: 3
+markup: mmark
+math: true
 title: Learning to Teach Machines
 author: Jim Gruman
-date: '2019-12-29'
+authors: []
+lastmod: '2019-12-29T17:15:37-06:00'
+featured: no
+projects: []
 slug: learning-to-teach-machines
 categories:
   - R
 tags:
   - Deep Learning
-subtitle: ''
-summary: ''
-authors: []
-lastmod: '2019-12-29T17:15:37-06:00'
-featured: no
-image:
-  caption: ''
-  focal_point: ''
-  preview_only: no
-projects: []
 ---
 
 Below, I’m sharing a more or less comprehensive list of bookmarked resources, organized roughly in the order I think they are most helpful for beginners.
@@ -43,7 +43,7 @@ Model evaluation, model selection, and algorithm selection in machine learning- 
 
 [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/)
 
-
+### Did you find this page helpful? Consider sharing it 🙌
 
 
 
