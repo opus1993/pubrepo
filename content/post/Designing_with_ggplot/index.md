@@ -4,7 +4,7 @@ diagram: true
 image: 
   caption: 'Image credit: [**Charlie Marusiak**](https://unsplash.com/photos/34_yVm7ZWhw)'
   placment: 3
-markup: mmark
+markup: goldmark
 math: true
 title: Designing with ggplot
 author: Jim Gruman

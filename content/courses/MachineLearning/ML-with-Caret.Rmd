@@ -17,18 +17,24 @@ weight: 6
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-The caret package (short for **C**lassification **A**nd **RE**gression **T**raining) contains functions to streamline the model training process for complex regression and classification problems. It utilizes a number of other R packages but tries not to load them all at package start-up. As of this writing, version 6.0-84 was available at CRAN, currently maintained by Max Kuhn. The main help pages for the package are at [Caret at Github](https://topepo.github.io/caret/) Max includes extended examples and a large amount of information that previously found in the package vignettes.
+The caret package (short for **C**lassification **A**nd **RE**gression **T**raining) provides a unified interface and contains functions to streamline the model training process for complex regression and classification problems. It utilizes a number of other R packages but tries not to load them all at package start-up. Caret has built-in parallel processing for increased computational efficiency. 
+
+As of this writing, version 6.0-84 was available at CRAN, currently maintained by Max Kuhn. The main help pages for the package are at [Caret at Github](https://topepo.github.io/caret/). Max includes extended examples and a large amount of information in the package vignettes.
 
 ```{r setup}
 library(caret)
 library(mlbench)
 library(dplyr)
-data("mtcars")
+library(parallel)
+library(doParallel)
+cores<-detectCores()
+doParallel::registerDoParallel(cores = cores)
+library(pROC)
 ```
 
 Caret has several functions that attempt to streamline the model building and evaluation process, as well as feature selection and other techniques.
 
-One of the primary tools in the package is the train function which can be used to
+One of the primary tools in the package is the train function which are be used to
 
 > evaluate, using resampling, the effect of model tuning parameters on performance
 
@@ -41,6 +47,7 @@ Caret includes options for customizing almost every step of this process (e.g. r
 As a quick demonstration, a linear model can be built on the widely known mtcars data to model mpg by hp as follows:
 
 ```{r lm}
+data("mtcars")
 set.seed(42)
 
 model<-train(
@@ -68,12 +75,22 @@ ggplot(mtcars, aes(hp, mpg))+
 
 ```
 
-For a slightly more complex demonstration, we look at Housing data for 506 census tracts of Boston from the 1970 census. In this case, we will model median value by 12 numeric plus one 2-level categorical feature. In this case, we will apply 5-fold cross validation. Simple bootstrap resampling is the default in trainControl
+For a slightly more complex demonstration, we look at Housing data for 506 census tracts of Boston from the 1970 census. 
 
-```{r medv lm}
-
+```{r medv dataviz}
 data("BostonHousing")
 
+regVar <- c("age", "lstat", "tax")
+
+featurePlot(x = BostonHousing[, regVar], 
+            y = BostonHousing$medv, 
+            plot = "scatter", 
+            layout = c(3, 1))
+```
+
+In this case, we will model median home value medv in a regression by 12 numeric and one 2-level categorical feature. In this case, we will apply 5-fold cross validation. Simple bootstrap resampling is the default in trainControl
+
+```{r medv lm}
 # Fit lm model using 5-fold CV: model
 model <- train(
   medv~., 
@@ -119,11 +136,93 @@ model$results
 
 ```
 
+-----------------------
+
+# Handling missing data
+
+Most models require numbers and cannot handle missing data. A common approach is to remove rows entirely with missing data, which can create biases and generate over-confident models. A much better strategy is to replace the missing values with the median, if and only if the data are missing at random.
+
+For linear regression models, it is a best practice to preProcess with medianImpute, centering, scaling, and then fit the glm model. Another option is to preProcess with knnImpute.
+
+In the real world, some variables do non contain much information. For example, variables that are mostly constant should be removed because one fold could end up with that column. Nearly constant columns should also be removed. 
+
+For example:
+   preProcess = c("zv", "medianImpute", "center", "scale", "pca")
+
+A Preprocessing cheat sheet:  
+
+1) start with median imputation
+
+2) consider knn imputation if the data missing is not at random
+
+3) for linear models, center and scale
+
+4) try PCA and spatial sign
+
+> example preProcess = c("nzv", "center", "scale", "pca") 
+
+```{r BloodBrain}
+data("BloodBrain")
+
+bloodbrain_x<-bbbDescr
+bloodbrain_y<-logBBB
+
+# Identify near zero variance predictors: remove_cols
+remove_cols <- nearZeroVar(bloodbrain_x, names = TRUE, 
+                           freqCut = 2, uniqueCut = 20)
+
+# Get all column names from bloodbrain_x: all_cols
+all_cols<-names(bloodbrain_x)
+
+# Remove from data: bloodbrain_x_small
+bloodbrain_x_small <- bloodbrain_x[ , setdiff(all_cols, remove_cols)]
+```
+
+OR  --- use train with preProcess and "nzv" in the character string
+
+```{r BloodBrain model}
+# Fit model on reduced data: model
+model <- train(
+  x = bloodbrain_x_small, 
+  y = bloodbrain_y, 
+  method = "glm"
+)
+
+# Print model to console
+model 
+```
+
+## Principal components analysis as a pre-processing step in regression models
+
+1) Combines low-variance and correlated variables
+
+2) Aggregates into a single set of high-variance, perpendicular predictors
+
+3) Prevents collinearity
+
+```{r BloodBrain PCA}
+set.seed(42)
+
+model <- train(
+  bbbDescr,
+  logBBB,
+  method = "glm",
+  trControl = trainControl(
+    method = "cv", number = 10, verbose = TRUE,
+  ),
+  preProcess = c("zv", "center", "scale", "pca")
+)
+
+min(model$results$RMSE)
+```
+
+-----------------
+
 # The Sonar Dataset
 
 ## Partial Least Squares and Regularized Discriminant Analysis
 
-The mlbench **Sonar** data set was used in a study of the classification of sonar signals to train a network to discriminate between signals bounced off a metal cylinder and those bounced off a roughly cylindrical rock. Each of 208 observations are patterns in a set with 60 numbers in the range 0.0 to 1.0. Each number represents the energy within a particular frequency band, integrated over a certain period of time. The integration aperture for higher frequencies occur later in time, since these frequencies are transmitted later during the chirp.
+The mlbench **Sonar** data set was used initially in a study of the classification of sonar signals to train a network to discriminate between signals bounced off a metal cylinder and those bounced off a roughly cylindrical rock. Each of 208 observations are patterns in a set with 60 numbers in the range 0.0 to 1.0. Each number represents the energy within a particular frequency band, integrated over a certain period of time. The integration aperture for higher frequencies occur later in time, since these frequencies are transmitted later during the chirp.
 
 The label associated with each record contains the letter "R" if the object is a rock and "M" if it is a mine (metal cylinder). The numbers in the labels are in increasing order of aspect angle, but they do not encode the angle directly.
 
@@ -177,11 +276,17 @@ plsModel<-train(
 plsModel
 
 ggplot(plsModel)
+
+# Let’s save the model. If you want to deploy it, you can push .rda file with your code to production.
+# save(plsModel, file = "./plsModel.rda")
+
+# Once you successfully save it, close the current R session. Then, you can load it back in the new session. It’s ready for use.
+# load("plsModel.rda")
 ```
 
 In this output the grid of results are the average resampled estimates of performance. The note at the bottom tells the user that 4 PLS components were found to be optimal. Based on this value, a final PLS model is fit to the whole data set using this specification and this is the model that is used to predict future samples.
 
-The package has several functions for visualizing the results. One method for doing this is the ggplot function for train objects. The command ggplot(plsFit) produced the results seen in Figure and shows the relationship between the resampled performance values and the number of PLS components.
+The package has several functions for visualizing the results. One method for doing this is the ggplot function for train objects. The command ggplot(plsFit) produces the results seen in Figure and shows the relationship between the resampled performance values and the number of PLS components.
 
 ```{r sonar prediction}
 plsClasses <- predict(plsModel, newdata = testing)
@@ -199,7 +304,7 @@ confusionMatrix(data = plsClasses, testing$Class)
 
 ```
 
-To fit an another model to the data, train can be invoked with minimal changes. Lists of models available can be found at (https://topepo.github.io/caret/available-models.html) or (https://topepo.github.io/caret/train-models-by-tag.html). For example, to fit a regularized discriminant model to these data, the following syntax can be used:
+To fit an another model to the data, train can be invoked with minimal changes. Lists of the wide variety of models available can be found at (https://topepo.github.io/caret/available-models.html) or (https://topepo.github.io/caret/train-models-by-tag.html). For example, to fit a regularized discriminant model to these data, the following syntax is used:
 
 ```{r sonar rdm}
 ## To illustrate, a custom grid is used
@@ -219,7 +324,7 @@ rdaClasses <- predict(rdaModel, newdata = testing)
 confusionMatrix(rdaClasses, testing$Class)
 ```
 
-How do these models compare in terms of their resampling results? The **resamples** function can be used to collect, summarize and contrast the resampling results. Since the random number seeds were initialized to the same value prior to calling `train}, the same folds were used for each model. To assemble them:
+How do these models compare in terms of their resampling results? The **resamples** function can be used to collect, summarize and contrast the resampling results. Since the random number seeds were initialized to the same value prior to calling train, the same folds were used for each model. To assemble them:
 
 ```{r resamples Sonar}
 resamps <- resamples(list(pls = plsModel, rda = rdaModel))
@@ -240,382 +345,203 @@ Based on this analysis, the difference between the models is -0.013 ROC units (t
 
 ---------------------------------------------------
 
-# The Wine Dataset
+# SGI Simulated Dataset of Telecom Churn
 
-## GLMnet and Ranger
+The C50 dataset comes with pre-defined churnTrain and churnTest partitions. Note that the observations are un-balanced, with responses that churn = "yes" at 14.4% 
 
-The University of California Irvine Machine Learning Laboratory hosts 488+ datasets. A proper citation for the work at the repository:
+## Generalized Boosted Models
 
-Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science. 
-
-The wine data sets are the results of a chemical analysis of product grown in the same region in Italy but derived from three different cultivars. The analysis determined the quantities of 13 constituents found in each of the three types of wines. 
-
-The attributes are (donated by Riccardo Leardi, riclea '@' anchem.unige.it ) 
-1) Alcohol 
-2) Malic acid 
-3) Ash 
-4) Alcalinity of ash 
-5) Magnesium 
-6) Total phenols 
-7) Flavanoids 
-8) Nonflavanoid phenols 
-9) Proanthocyanins 
-10) Color intensity 
-11) Hue 
-12) OD280/OD315 of diluted wines 
-13) Proline 
-
-All attributes are continuous 
-
-```{r download wine}
-url <- 'https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv'
-
-library(tidyverse)
-wine <- read_csv2(url, col_types = c("nnnnnnnnnnnf"))
-
-head(wine)
-
-summary(wine)
-
-```
-
-As before, the first step is to partition the data.
-
-```{r partition wines}
-set.seed(42)
-
-inTrain <- createDataPartition(
-  y = wine$quality,
-  ## the outcome data are needed
-  p = .75,
-  ## The percentage of data in the
-  ## training set
-  list = FALSE
-)
-
-training <- wine[ inTrain,]
-testing  <- wine[-inTrain,]
-```
-
-
-
-
-
-
-# Fit random forest: model
-model <- train(
-  quality~.,
-  tuneLength = 1,
-  data = wine, 
-  method = "ranger",
-  trControl = trainControl(
-    method = "cv", 
-    number = 5, 
-    verboseIter = TRUE
-  )
-)
-
-# Print model to console
-model
-
-#       tuning for mtry in the random forest
-
-model<-train(
-  Class ~ .,
-  data = Sonar,
-  method = "ranger",
-  tuneLength = 10
-)
-
-model
-
-
-
-# Fit random forest: model
-model <- train(
-  quality~.,
-  tuneLength = 3,
-  data = wine, 
-  method = "ranger",
-  trControl = trainControl(
-    method = "cv", 
-    number = 5, 
-    verboseIter = TRUE
-  )
-)
-
-# Print model to console
-model
-
-# Plot model
-plot(model)
-
-
-#### Fit a random forest with custom tuning
-
-# Define the tuning grid: tuneGrid
-tuneGrid <- data.frame(
-  .mtry = c(2,3,7),
-  .splitrule = "variance",
-  .min.node.size = 5
-)
-
-# Fit random forest: model
-model <- train(
-  quality~.,
-  tuneGrid = tuneGrid,
-  data = wine, 
-  method = "ranger",
-  trControl = trainControl(
-    method = "cv", 
-    number = 5, 
-    verboseIter = TRUE
-  )
-)
-
-
-#####      extension of glm function to glmnet
-
-#           lasso regression  or     ridge regression
-#           seeks a parsimonious model
-           
-#  alpha[ ]  pure ridge to pure lasso
-#   lambda (0, infinity)   size of the penalty
-   
-   
-           
-   # Create custom trainControl: myControl
-   myControl <- trainControl(
-     method = "cv", 
-     number = 10,
-     summaryFunction = twoClassSummary,
-     classProbs = TRUE, # IMPORTANT!
-     verboseIter = TRUE
-   )
-   
-   # Fit glmnet model: model
-   model <- train(
-     y~., 
-     overfit,
-     method = "glmnet",
-     trControl = myControl
-   )
-   
-   # Print model to console
-   model
-   
-   # Print maximum ROC statistic
-   max(model[["results"]]$ROC)
-
-
-   
-  ########################################
-  ########################################
-   
-   data(overfit)
-   
-   # Train glmnet with custom trainControl and tuning: model
-   model <- train(
-     y~., 
-     overfit,
-     tuneGrid = expand.grid(
-       alpha=0:1,
-       lambda = seq(0.0001,1,length = 20)
-     ),
-     method = "glmnet",
-     trControl = myControl
-   )
-   
-   # Print model to console
-   model
-   
-   # Print maximum ROC statistic
-   max(model[["results"]][["ROC"]])
-
-##############################################
-#############################################
-###
-###  Handling missing data
-###
-   
-model<- train(X, Y, preProcess = "medianImpute")
-print(model)
-
-data()  Wisconsin Breast Cancer Dataset
-
-# Apply median imputation: median_model
-median_model <- train(
-  x = breast_cancer_x, 
-  y = breast_cancer_y,
-  method = "glm",
-  trControl = myControl,
-  preProcess = "medianImpute"
-)
-# Print median_model to console
-median_model
-
-
-#################
-###
-###   what if the missing is not at random (if median will not be best imputation)
-###
-###            kNN imputation is available, but slower
-
-# Apply KNN imputation: knn_model
-knn_model <- train(
-  x = breast_cancer_x, 
-  y = breast_cancer_y,
-  method = "glm",
-  trControl = myControl,
-  preProcess = "knnImpute"
-)
-
-# Print knn_model to console
-knn_model
-
-#####################################
-
-
-# Update model with standardization
-model <- train(
-  x = breast_cancer_x, 
-  y = breast_cancer_y,
-  method = "glm",
-  trControl = myControl,
-  preProcess = c("medianImpute", "center", "scale")
-)
-
-# Print updated model
-model
-
-# Preprocessing cheat sheet:  1) start with median imputation
-# 2) consider knn imputation if data missing is not at random
-# 3) for linear models, center and scale
-# 4) try PCA and spatial sign
-# example preProcess = c("zv", "center", "scale", "pca") 
-
-###################################
-###
-###  removing constant columns, or nearly constant columns
-###
-###
-
-# Identify near zero variance predictors: remove_cols
-remove_cols <- nearZeroVar(bloodbrain_x, names = TRUE, 
-                           freqCut = 2, uniqueCut = 20)
-
-# Get all column names from bloodbrain_x: all_cols
-all_cols<-names(bloodbrain_x)
-
-# Remove from data: bloodbrain_x_small
-bloodbrain_x_small <- bloodbrain_x[ , setdiff(all_cols, remove_cols)]
-
-# OR  --- use train with preProcess and "nzv" in the character string
-
-# Fit model on reduced data: model
-model <- train(
-  x = bloodbrain_x_small, 
-  y = bloodbrain_y, 
-  method = "glm"
-)
-
-# Print model to console
-model 
-
-#######################
-###
-### Principal components analysis as a pre-processing step
-###
-###
-
-# basic model
-
-set.seed(42)
-
-data(BloodBrain)
-
-model <- train(
-  bbbDescr,
-  logBBB,
-  method = "glm",
-  trControl = trainControl(
-    method = "cv", number = 10, verbose = TRUE,
-  ),
-  preProcess = c("zv", "center", "scale", "pca")
-)
-
-min(model$results$RMSE)
-
-
-#########################
-###
-### reusing traincontrol for apples to apples comparison
-###
-###   pre-define trainControl
+```{r sgi churn}
 library(caret)
 library(C50)
 data(churn)
 
+str(churnTrain)
+
 table(churnTrain$churn) / nrow(churnTrain)
+```
 
-# create train/test indexes 
+The caret package will seed to predict the first factor of the churn feature - "yes" - which happens to be coded as 1 in this dataset.
 
-set.seed(42)
-myFolds<- createFolds(churnTrain$churn, k=5)
+```{r sgi churn predictors}
+predictors<- names(churnTrain)[names(churnTrain) != "churn"]
+```
 
-#compare class distribution
+*preProcess* calculates values that can be used to apply to any data set. They include centering, scaling, spatial sign imputation, PCA or ICA, Box-Cox transformations, and others. YeoJohnson is like Box-Cox, but does not require positive values always.
 
-i<- myFolds$Fold2
-table(churnTrain$churn[i])/ length(i)
+The prediction function can be called on the preProcess object and a data set to observe the preProcess transformation. The sequence of preProcess transformations is handled properly by caret internally.
 
-# use the folds to create a trainControl object, to fit many models
+```{r sgi churn preprocess}
+numerics<- c("account_length","total_day_calls", "total_night_calls")
+procValues<- preProcess(churnTrain[,numerics],
+                        method = c("center", "scale", "YeoJohnson"))
+trainScaled<- predict(procValues, churnTrain[,numerics])
+testScaled<- predict(procValues, churnTest[,numerics])
 
-myControl <- trainControl(
-     summaryFunction = twoClassSummary,
-     classProbs = TRUE,
-     verboseIter = TRUE,
-     savePredictions = TRUE,
-     index = myFolds
-)
+procValues
 
-# recall the glmnet --- almost always the first model to try on new datasets
-# fits quickly, provides linear regression components
-# ignores noisy coefficients
+```
 
-model_glmnet <- train(
-  churn ~ .,
-  churnTrain,
+Modeling often requires specific package knowledge to build the response variable and arrive at optimal tuning. In this demonstration with the Generalized Boosted Regression Model **gbm**, the caret package greatly simplifies the setup and interface.  In the basic call to **train**, we specify the predictor set, the outcome data, and the modeling technique. Note that the **train** is able to use the original factor input for classification. Again, for binary outcomes, the function models the probability of the first factor level. A numeric object would indicate that we are doing regression. 
+
+One problem is that **gbm** spits out a lot of information during model fitting. Let's omit theh functions logging by using the option verbose = FALSE.
+
+Also, the default **gbm** re-sampling is bootstrap. We can better control for and compare algorithms by creating a **trainControl** object to run 5 repeats of 10-fold cross validation.
+
+The default **gbm** performance metrics for classification are Cohen's kappa. Suppose we wanted to estimate sensitivity, specificty, and AUC of ROC. We need to tell **train** to produce class probabilities, estimate these statistics, and ran models by ROC AUC. In trainControl, indicating classProbs = TRUE and summaryFunction = twoClassSummary will ensure that the output model has these details.
+
+By default, **train** uses a minimal search grid:  3 values for each tuning parameter. We might also want to expand the scope of possible **gbm** models to test. Let's look at tree depths from 1:7, boosting iterations from 100 to 1,000, and two different learning rates.  See ?train for the tunable parameters by model type.
+
+```{r sgi churn gbm model 1}
+ctrl<- trainControl(method = "repeatedcv",
+                    repeats = 5,
+                    classProbs = TRUE,
+                    summaryFunction = twoClassSummary)
+
+grid<- expand.grid(interaction.depth = seq(1,7, by = 2),
+                   n.trees = seq(100, 1000, by = 50),
+                   shrinkage = c(0.01, 0.1),
+                   n.minobsinnode = 5)
+
+gbmTune <- train(x=churnTrain[,predictors],
+                 y= churnTrain$churn,
+                 method = "gbm",
+                 metric = "ROC",
+                 tuneGrid = grid,
+                 verbose = FALSE,
+                 trControl = ctrl,
+                 preProcess = )
+
+# an alternate formula interface is train(churn~., data = churnTrain, method="gbm")
+
+```
+
+Let's have a look at the predictions and performance measures.
+
+```{r sgi churn gbm model}
+gbmPred<- predict(gbmTune, churnTest)
+
+str(gbmPred)
+
+gbmProbs<- predict(gbmTune, churnTest, type = "prob")
+
+confusionMatrix(gbmPred, churnTest$churn)
+
+ggplot(gbmTune) + theme(legend.position = "top")
+```
+
+The train function runs the model one last time on all training data for the winning set of hyperparameters. 
+
+```{r churn gbm model roc}
+rocCurve<- roc(response = churnTest$churn,
+               predictor = gbmProbs[, "yes"],
+               levels = rev(levels(churnTest$churn)))
+rocCurve
+
+plot(rocCurve,
+     print.thres = c(.5,.2),
+     print.thres.pch = 16,
+     print.thres.cex = 1.2)
+```
+
+Next step:  model a Support Vector Machine and a Flexible discriminant model
+
+```{r churn svm and fda models}
+svmTune<-train(churn ~ ., data = churnTrain,
+               method = "svmRadial",
+               preProc = c("center","scale"),
+               tuneLength = 10,
+               trControl = ctrl,
+               metric = "ROC")
+
+fdaTune<-train(churn ~ ., data = churnTrain,
+               method = "fda",
+               tuneLength = 10,
+               trControl = ctrl,
+               metric = "ROC")
+```
+
+```{r churn svm and fda model roc}
+svmPred<- predict(svmTune, churnTest)
+
+svmProbs<- predict(svmTune, churnTest, type = "prob")
+
+confusionMatrix(svmPred, churnTest$churn)
+
+ggplot(svmTune) + theme(legend.position = "top")
+
+rocCurve<- roc(response = churnTest$churn,
+               predictor = svmProbs[, "yes"],
+               levels = rev(levels(churnTest$churn)))
+plot(rocCurve,
+     print.thres = c(.5,.2),
+     print.thres.pch = 16,
+     print.thres.cex = 1.2)
+
+fdaPred<- predict(fdaTune, churnTest)
+
+fdaProbs<- predict(fdaTune, churnTest, type = "prob")
+
+confusionMatrix(fdaPred, churnTest$churn)
+
+ggplot(fdaTune) + theme(legend.position = "top")
+
+rocCurve<- roc(response = churnTest$churn,
+               predictor = fdaProbs[, "yes"],
+               levels = rev(levels(churnTest$churn)))
+plot(rocCurve,
+     print.thres = c(.5,.2),
+     print.thres.pch = 16,
+     print.thres.cex = 1.2)
+
+```
+
+## GLMnet
+
+Recall the glmnet, which is almost always the first model to try on new datasets. It fits quickly and provides linear regression components while ignoring noisy coefficients.
+
+```{r churn glmnet}
+grid<- expand.grid(alpha = 0:1,
+                   lambda = 0:10 / 10)
+
+glmnetTune <- train(churn ~ ., data = churnTrain,
   metric = "ROC",
   method = "glmnet",
-  tuneGrid = expand.grid(
-    alpha = 0:1,
-    lambda = 0:10 / 10
-  ),
-  trControl = myControl
-)
+  tuneGrid = grid,
+  trControl = ctrl)
 
-plot(model_glmnet)
+plot(glmnetTune)
+```
 
-# then try random forest (good practice to try as second)
-# easier to tun, but slower
-#
+## Random Forest
 
-model_rf<- train(
-  churn ~ .,
-  churnTrain,
+A random forest may be a good practice to try as second model, as it is easier to tune, but it is slower
+
+```{r churn rf}
+grid<- expand.grid(mtry = seq(25,45, by = 5),
+                   splitrule = "extratrees",
+                   min.node.size = c(1, 5, 20))
+
+rfTune<- train(churn ~ ., data = churnTrain,
   metric = "ROC",
   method = "ranger",
-  trControl = myControl
+  trControl = ctrl,
+  tuneGrid = grid
 )
+rfTune
+plot(rfTune)
+```
 
-plot(model_rf)
+Often when comparing models, the **resamples** function is your friend. 
 
-# often comparing models, target highest average AUC and lowest 
-# resamples() function is your friend
+```{r model comparisons}
 
 model_list<- list(
-  glmnet = model_glmnet,
-  rf = model_rf 
+  gbm = gbmTune,
+  svm = svmTune,
+  fda = fdaTune,
+  glmnet = glmnetTune,
+  rf = rfTune
 )
 
 resamps <- resamples(model_list)
@@ -623,49 +549,11 @@ resamps
 
 summary(resamps)
 
-densityplot(resamps, metric = "ROC")
+# densityplot(resamps, metric = "ROC") 
 
-bwplot(resamps, metric = "ROC")
+bwplot(resamps, metric = "ROC") 
 
-xyplot(resamps, metric = "ROC")
+# xyplot(resamps, metric = "ROC") 
 
-
-#############################
-###
-###   for custom ensembles
-
-# Create ensemble model: stack
-stack <- caretStack(model_list, method = "glm")
-
-# Look at summary
-summary(stack)
-
-
-
-
-
-
-
-Leftover code ??????
-
-# If p exceeds threshold of 0.5, M else R: m_or_r
-m_or_r<-ifelse(p>0.5,"M","R")
-
-# Convert to factor: p_class
-p_class<-as.factor(m_or_r)
-test[["Class"]]
-# Create confusion matrix
-confusionMatrix(p_class, test[["Class"]])
-
-########################################
-library(caTools)
-# Predict on test: p
-p<-predict(model, test, type = "response")
-
-
-colAUC(p, test[["Class"]], plotROC = TRUE)
-
-# use AUC to rank different models on the same data set
-
-########################
+```
 

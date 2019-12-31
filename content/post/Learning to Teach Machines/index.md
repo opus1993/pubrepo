@@ -1,16 +1,13 @@
 ---
-date: '2019-12-29'
+date: "2019-12-29"
 diagram: true
 image: 
-  caption: 'Image credit: [**Andy Kelly**](https://unsplash.com/photos/0E_vhMVqL9g)'
+  caption: 'Image credit: [**Nikhita S @kryptonitenicky**](https://unsplash.com/photos/NsPDiPFTp4c)'
   placment: 3
-markup: mmark
+markup: goldmark
 math: true
 title: Learning to Teach Machines
 author: Jim Gruman
-authors: []
-lastmod: '2019-12-29T17:15:37-06:00'
-featured: no
 projects: []
 slug: learning-to-teach-machines
 categories:
@@ -19,16 +16,18 @@ tags:
   - Deep Learning
 ---
 
-Alison Hill recently shared a more or less comprehensive list of bookmarked resources, organized roughly in the order they are most helpful for beginners. These were all written before the release of Tidymodels, Recipes, and and Drake packages. Even so, they provide a very good foundation and they execute well on Microsoft's R Open distribution provided with the Azure DSVM and HDInsight.
+Alison Hill recently shared a more or less comprehensive list of resources, organized roughly in the order they are most helpful for beginners. These were all written before the release of the R Tidymodels, Recipes, and Drake packages. Even so, they provide a very good foundation and they execute well on Microsoft's dated R Open distribution currently provided with the Azure DSVM and HDInsight.
 
 [Machine Learning for Everyone](https://vas3k.com/blog/machine_learning/)
 **In simple words. With real-world examples.** The biggest hurdle to getting started is sifting through both the hype and the math. This is a readable illustrated introduction to key concepts that will help you start building your own mental model of this space. For example, “the only goal of machine learning is to predict results based on incoming data. That’s it.” There you go! Start here.
 
+{{< figure src="./7w1.jpg" title="" lightbox="true" >}}
+
 [Machine learning: a primer](https://www.nature.com/articles/nmeth.4526)
-by Danilo Bzdok, Martin Krzywinski & Naomi Altman, from the Nature Methods Points of Significance collection- this collection in general is always straight-forward with great visuals.
+by Danilo Bzdok, Martin Krzywinski & Naomi Altman, from the Nature Methods Points of Significance collection. This collection in general is straight-forward with great visuals.
 
 [Supervised Machine Learning by Julia Silege](https://supervised-ml-course.netlify.com/)
-Taught with R and the caret package, this is a great next step in your machine learning journey as you’ll start doing ML right away in your browser using an innovative course delivery platform. You’ll also get to play with data that is not iris, titanic, or AmesHousing. 
+Taught with R and the caret package, this is a solid next step in your machine learning journey as you’ll start doing ML right away in your browser using an innovative course delivery platform. You’ll also get to play with data that is not iris, titanic, or AmesHousing. 
 
 [Hands on Machine Learning in R](https://bradleyboehmke.github.io/HOML/) by Bradley Boehmke & Brandon Greenwell. Another great way to learn concepts plus code, and another one that focuses on the caret package. Each chapter maps onto a new learning algorithm, and provides a code-through with real data from building to tuning. The authors also offer practical advice for each algorithm, and the “final thoughts” sections at the end of each chapter will help you tie it all together.
 
@@ -44,6 +43,10 @@ Model evaluation, model selection, and algorithm selection in machine learning- 
 At this point, if you can read through the above resources and you are no longer feeling awash in new terminology, your vocabulary and mental model are in pretty good shape! That means you are ready for the next step, which is to read Max Kuhn and Kjell Johnson’s new book:
 
 [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/)
+
+------
+
+[April Hill's post](https://alison.rbind.io/post/2019-12-23-learning-to-teach-machines-to-learn/)
 
 ### Did you find this page helpful? Consider sharing it 🙌
 

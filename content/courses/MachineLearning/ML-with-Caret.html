@@ -15,8 +15,10 @@ weight: 6
 
 
 
-<p>The caret package (short for <strong>C</strong>lassification <strong>A</strong>nd <strong>RE</strong>gression <strong>T</strong>raining) contains functions to streamline the model training process for complex regression and classification problems. It utilizes a number of other R packages but tries not to load them all at package start-up. As of this writing, version 6.0-84 was available at CRAN, currently maintained by Max Kuhn. The main help pages for the package are at <a href="https://topepo.github.io/caret/">Caret at Github</a> Max includes extended examples and a large amount of information that previously found in the package vignettes.</p>
+<p>The caret package (short for <strong>C</strong>lassification <strong>A</strong>nd <strong>RE</strong>gression <strong>T</strong>raining) provides a unified interface and contains functions to streamline the model training process for complex regression and classification problems. It utilizes a number of other R packages but tries not to load them all at package start-up. Caret has built-in parallel processing for increased computational efficiency.</p>
+<p>As of this writing, version 6.0-84 was available at CRAN, currently maintained by Max Kuhn. The main help pages for the package are at <a href="https://topepo.github.io/caret/">Caret at Github</a>. Max includes extended examples and a large amount of information in the package vignettes.</p>
 <pre class="r"><code>library(caret)</code></pre>
+<pre><code>## Warning: package &#39;caret&#39; was built under R version 3.6.2</code></pre>
 <pre><code>## Loading required package: lattice</code></pre>
 <pre><code>## Loading required package: ggplot2</code></pre>
 <pre class="r"><code>library(mlbench)
@@ -29,9 +31,22 @@ library(dplyr)</code></pre>
 <pre><code>## The following objects are masked from &#39;package:base&#39;:
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>data(&quot;mtcars&quot;)</code></pre>
+<pre class="r"><code>library(parallel)
+library(doParallel)</code></pre>
+<pre><code>## Loading required package: foreach</code></pre>
+<pre><code>## Loading required package: iterators</code></pre>
+<pre class="r"><code>cores&lt;-detectCores()
+doParallel::registerDoParallel(cores = cores)
+library(pROC)</code></pre>
+<pre><code>## Warning: package &#39;pROC&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Type &#39;citation(&quot;pROC&quot;)&#39; for a citation.</code></pre>
+<pre><code>## 
+## Attaching package: &#39;pROC&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     cov, smooth, var</code></pre>
 <p>Caret has several functions that attempt to streamline the model building and evaluation process, as well as feature selection and other techniques.</p>
-<p>One of the primary tools in the package is the train function which can be used to</p>
+<p>One of the primary tools in the package is the train function which are be used to</p>
 <blockquote>
 <p>evaluate, using resampling, the effect of model tuning parameters on performance</p>
 </blockquote>
@@ -43,7 +58,8 @@ library(dplyr)</code></pre>
 </blockquote>
 <p>Caret includes options for customizing almost every step of this process (e.g. resampling technique, choosing the optimal parameters etc).</p>
 <p>As a quick demonstration, a linear model can be built on the widely known mtcars data to model mpg by hp as follows:</p>
-<pre class="r"><code>set.seed(42)
+<pre class="r"><code>data(&quot;mtcars&quot;)
+set.seed(42)
 
 model&lt;-train(
     mpg ~ hp, mtcars,
@@ -71,10 +87,18 @@ ggplot(mtcars, aes(hp, mpg))+
   theme(legend.position = &#39;none&#39;)</code></pre>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/lm-1.png" width="672" /></p>
-<p>For a slightly more complex demonstration, we look at Housing data for 506 census tracts of Boston from the 1970 census. In this case, we will model median value by 12 numeric plus one 2-level categorical feature. In this case, we will apply 5-fold cross validation. Simple bootstrap resampling is the default in trainControl</p>
+<p>For a slightly more complex demonstration, we look at Housing data for 506 census tracts of Boston from the 1970 census.</p>
 <pre class="r"><code>data(&quot;BostonHousing&quot;)
 
-# Fit lm model using 5-fold CV: model
+regVar &lt;- c(&quot;age&quot;, &quot;lstat&quot;, &quot;tax&quot;)
+
+featurePlot(x = BostonHousing[, regVar], 
+            y = BostonHousing$medv, 
+            plot = &quot;scatter&quot;, 
+            layout = c(3, 1))</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/medv%20dataviz-1.png" width="672" /></p>
+<p>In this case, we will model median home value medv in a regression by 12 numeric and one 2-level categorical feature. In this case, we will apply 5-fold cross validation. Simple bootstrap resampling is the default in trainControl</p>
+<pre class="r"><code># Fit lm model using 5-fold CV: model
 model &lt;- train(
   medv~., 
   BostonHousing,
@@ -85,17 +109,7 @@ model &lt;- train(
     verboseIter = TRUE
   )
 )</code></pre>
-<pre><code>## + Fold1: intercept=TRUE 
-## - Fold1: intercept=TRUE 
-## + Fold2: intercept=TRUE 
-## - Fold2: intercept=TRUE 
-## + Fold3: intercept=TRUE 
-## - Fold3: intercept=TRUE 
-## + Fold4: intercept=TRUE 
-## - Fold4: intercept=TRUE 
-## + Fold5: intercept=TRUE 
-## - Fold5: intercept=TRUE 
-## Aggregating results
+<pre><code>## Aggregating results
 ## Fitting final model on full training set</code></pre>
 <pre class="r"><code># Print model to console
 model$method</code></pre>
@@ -122,57 +136,7 @@ model$method</code></pre>
     verboseIter = TRUE
   )
 )</code></pre>
-<pre><code>## + Fold1.Rep1: intercept=TRUE 
-## - Fold1.Rep1: intercept=TRUE 
-## + Fold2.Rep1: intercept=TRUE 
-## - Fold2.Rep1: intercept=TRUE 
-## + Fold3.Rep1: intercept=TRUE 
-## - Fold3.Rep1: intercept=TRUE 
-## + Fold4.Rep1: intercept=TRUE 
-## - Fold4.Rep1: intercept=TRUE 
-## + Fold5.Rep1: intercept=TRUE 
-## - Fold5.Rep1: intercept=TRUE 
-## + Fold1.Rep2: intercept=TRUE 
-## - Fold1.Rep2: intercept=TRUE 
-## + Fold2.Rep2: intercept=TRUE 
-## - Fold2.Rep2: intercept=TRUE 
-## + Fold3.Rep2: intercept=TRUE 
-## - Fold3.Rep2: intercept=TRUE 
-## + Fold4.Rep2: intercept=TRUE 
-## - Fold4.Rep2: intercept=TRUE 
-## + Fold5.Rep2: intercept=TRUE 
-## - Fold5.Rep2: intercept=TRUE 
-## + Fold1.Rep3: intercept=TRUE 
-## - Fold1.Rep3: intercept=TRUE 
-## + Fold2.Rep3: intercept=TRUE 
-## - Fold2.Rep3: intercept=TRUE 
-## + Fold3.Rep3: intercept=TRUE 
-## - Fold3.Rep3: intercept=TRUE 
-## + Fold4.Rep3: intercept=TRUE 
-## - Fold4.Rep3: intercept=TRUE 
-## + Fold5.Rep3: intercept=TRUE 
-## - Fold5.Rep3: intercept=TRUE 
-## + Fold1.Rep4: intercept=TRUE 
-## - Fold1.Rep4: intercept=TRUE 
-## + Fold2.Rep4: intercept=TRUE 
-## - Fold2.Rep4: intercept=TRUE 
-## + Fold3.Rep4: intercept=TRUE 
-## - Fold3.Rep4: intercept=TRUE 
-## + Fold4.Rep4: intercept=TRUE 
-## - Fold4.Rep4: intercept=TRUE 
-## + Fold5.Rep4: intercept=TRUE 
-## - Fold5.Rep4: intercept=TRUE 
-## + Fold1.Rep5: intercept=TRUE 
-## - Fold1.Rep5: intercept=TRUE 
-## + Fold2.Rep5: intercept=TRUE 
-## - Fold2.Rep5: intercept=TRUE 
-## + Fold3.Rep5: intercept=TRUE 
-## - Fold3.Rep5: intercept=TRUE 
-## + Fold4.Rep5: intercept=TRUE 
-## - Fold4.Rep5: intercept=TRUE 
-## + Fold5.Rep5: intercept=TRUE 
-## - Fold5.Rep5: intercept=TRUE 
-## Aggregating results
+<pre><code>## Aggregating results
 ## Fitting final model on full training set</code></pre>
 <pre class="r"><code># Print model to console
 model$method</code></pre>
@@ -187,11 +151,90 @@ model$method</code></pre>
 <pre class="r"><code>model$results</code></pre>
 <pre><code>##   intercept     RMSE  Rsquared      MAE   RMSESD RsquaredSD     MAESD
 ## 1      TRUE 4.820318 0.7285316 3.379137 0.566678 0.04952456 0.2604407</code></pre>
+<hr />
+<div id="handling-missing-data" class="section level1">
+<h1>Handling missing data</h1>
+<p>Most models require numbers and cannot handle missing data. A common approach is to remove rows entirely with missing data, which can create biases and generate over-confident models. A much better strategy is to replace the missing values with the median, if and only if the data are missing at random.</p>
+<p>For linear regression models, it is a best practice to preProcess with medianImpute, centering, scaling, and then fit the glm model. Another option is to preProcess with knnImpute.</p>
+<p>In the real world, some variables do non contain much information. For example, variables that are mostly constant should be removed because one fold could end up with that column. Nearly constant columns should also be removed.</p>
+<p>For example:
+preProcess = c(“zv”, “medianImpute”, “center”, “scale”, “pca”)</p>
+<p>A Preprocessing cheat sheet:</p>
+<ol style="list-style-type: decimal">
+<li><p>start with median imputation</p></li>
+<li><p>consider knn imputation if the data missing is not at random</p></li>
+<li><p>for linear models, center and scale</p></li>
+<li><p>try PCA and spatial sign</p></li>
+</ol>
+<blockquote>
+<p>example preProcess = c(“nzv”, “center”, “scale”, “pca”)</p>
+</blockquote>
+<pre class="r"><code>data(&quot;BloodBrain&quot;)
+
+bloodbrain_x&lt;-bbbDescr
+bloodbrain_y&lt;-logBBB
+
+# Identify near zero variance predictors: remove_cols
+remove_cols &lt;- nearZeroVar(bloodbrain_x, names = TRUE, 
+                           freqCut = 2, uniqueCut = 20)
+
+# Get all column names from bloodbrain_x: all_cols
+all_cols&lt;-names(bloodbrain_x)
+
+# Remove from data: bloodbrain_x_small
+bloodbrain_x_small &lt;- bloodbrain_x[ , setdiff(all_cols, remove_cols)]</code></pre>
+<p>OR — use train with preProcess and “nzv” in the character string</p>
+<pre class="r"><code># Fit model on reduced data: model
+model &lt;- train(
+  x = bloodbrain_x_small, 
+  y = bloodbrain_y, 
+  method = &quot;glm&quot;
+)
+
+# Print model to console
+model </code></pre>
+<pre><code>## Generalized Linear Model 
+## 
+## 208 samples
+## 112 predictors
+## 
+## No pre-processing
+## Resampling: Bootstrapped (25 reps) 
+## Summary of sample sizes: 208, 208, 208, 208, 208, 208, ... 
+## Resampling results:
+## 
+##   RMSE      Rsquared   MAE     
+##   742.0165  0.1071357  181.8144</code></pre>
+<div id="principal-components-analysis-as-a-pre-processing-step-in-regression-models" class="section level2">
+<h2>Principal components analysis as a pre-processing step in regression models</h2>
+<ol style="list-style-type: decimal">
+<li><p>Combines low-variance and correlated variables</p></li>
+<li><p>Aggregates into a single set of high-variance, perpendicular predictors</p></li>
+<li><p>Prevents collinearity</p></li>
+</ol>
+<pre class="r"><code>set.seed(42)
+
+model &lt;- train(
+  bbbDescr,
+  logBBB,
+  method = &quot;glm&quot;,
+  trControl = trainControl(
+    method = &quot;cv&quot;, number = 10, verbose = TRUE,
+  ),
+  preProcess = c(&quot;zv&quot;, &quot;center&quot;, &quot;scale&quot;, &quot;pca&quot;)
+)</code></pre>
+<pre><code>## Aggregating results
+## Fitting final model on full training set</code></pre>
+<pre class="r"><code>min(model$results$RMSE)</code></pre>
+<pre><code>## [1] 0.5560624</code></pre>
+<hr />
+</div>
+</div>
 <div id="the-sonar-dataset" class="section level1">
 <h1>The Sonar Dataset</h1>
 <div id="partial-least-squares-and-regularized-discriminant-analysis" class="section level2">
 <h2>Partial Least Squares and Regularized Discriminant Analysis</h2>
-<p>The mlbench <strong>Sonar</strong> data set was used in a study of the classification of sonar signals to train a network to discriminate between signals bounced off a metal cylinder and those bounced off a roughly cylindrical rock. Each of 208 observations are patterns in a set with 60 numbers in the range 0.0 to 1.0. Each number represents the energy within a particular frequency band, integrated over a certain period of time. The integration aperture for higher frequencies occur later in time, since these frequencies are transmitted later during the chirp.</p>
+<p>The mlbench <strong>Sonar</strong> data set was used initially in a study of the classification of sonar signals to train a network to discriminate between signals bounced off a metal cylinder and those bounced off a roughly cylindrical rock. Each of 208 observations are patterns in a set with 60 numbers in the range 0.0 to 1.0. Each number represents the energy within a particular frequency band, integrated over a certain period of time. The integration aperture for higher frequencies occur later in time, since these frequencies are transmitted later during the chirp.</p>
 <p>The label associated with each record contains the letter “R” if the object is a rock and “M” if it is a mine (metal cylinder). The numbers in the labels are in increasing order of aspect angle, but they do not encode the angle directly.</p>
 <p>First, we split the data into two groups: a training set and a test set with the <strong>createDataPartition</strong> function. By default, <strong>createDataPartition</strong> does a stratified random split of the data. Here, a partial least squares discriminant analysis (PLSDA) model will be tuned over the number of PLS components that should be retained.</p>
 <p>We would like to customize it in a few ways:
@@ -268,8 +311,13 @@ plsModel</code></pre>
 ## The final value used for the model was ncomp = 3.</code></pre>
 <pre class="r"><code>ggplot(plsModel)</code></pre>
 <p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/sonar-1.png" width="672" /></p>
+<pre class="r"><code># Let’s save the model. If you want to deploy it, you can push .rda file with your code to production.
+# save(plsModel, file = &quot;./plsModel.rda&quot;)
+
+# Once you successfully save it, close the current R session. Then, you can load it back in the new session. It’s ready for use.
+# load(&quot;plsModel.rda&quot;)</code></pre>
 <p>In this output the grid of results are the average resampled estimates of performance. The note at the bottom tells the user that 4 PLS components were found to be optimal. Based on this value, a final PLS model is fit to the whole data set using this specification and this is the model that is used to predict future samples.</p>
-<p>The package has several functions for visualizing the results. One method for doing this is the ggplot function for train objects. The command ggplot(plsFit) produced the results seen in Figure and shows the relationship between the resampled performance values and the number of PLS components.</p>
+<p>The package has several functions for visualizing the results. One method for doing this is the ggplot function for train objects. The command ggplot(plsFit) produces the results seen in Figure and shows the relationship between the resampled performance values and the number of PLS components.</p>
 <pre class="r"><code>plsClasses &lt;- predict(plsModel, newdata = testing)
 str(plsClasses)</code></pre>
 <pre><code>##  Factor w/ 2 levels &quot;M&quot;,&quot;R&quot;: 1 2 2 1 1 2 1 2 1 2 ...</code></pre>
@@ -311,7 +359,7 @@ head(plsProbs)</code></pre>
 ##                                           
 ##        &#39;Positive&#39; Class : M               
 ## </code></pre>
-<p>To fit an another model to the data, train can be invoked with minimal changes. Lists of models available can be found at (<a href="https://topepo.github.io/caret/available-models.html" class="uri">https://topepo.github.io/caret/available-models.html</a>) or (<a href="https://topepo.github.io/caret/train-models-by-tag.html" class="uri">https://topepo.github.io/caret/train-models-by-tag.html</a>). For example, to fit a regularized discriminant model to these data, the following syntax can be used:</p>
+<p>To fit an another model to the data, train can be invoked with minimal changes. Lists of the wide variety of models available can be found at (<a href="https://topepo.github.io/caret/available-models.html" class="uri">https://topepo.github.io/caret/available-models.html</a>) or (<a href="https://topepo.github.io/caret/train-models-by-tag.html" class="uri">https://topepo.github.io/caret/train-models-by-tag.html</a>). For example, to fit a regularized discriminant model to these data, the following syntax is used:</p>
 <pre class="r"><code>## To illustrate, a custom grid is used
 rdaGrid = data.frame(gamma = (0:4)/4, lambda = 3/4)
 set.seed(42)
@@ -374,7 +422,7 @@ confusionMatrix(rdaClasses, testing$Class)</code></pre>
 ##                                           
 ##        &#39;Positive&#39; Class : M               
 ## </code></pre>
-<p>How do these models compare in terms of their resampling results? The <strong>resamples</strong> function can be used to collect, summarize and contrast the resampling results. Since the random number seeds were initialized to the same value prior to calling `train}, the same folds were used for each model. To assemble them:</p>
+<p>How do these models compare in terms of their resampling results? The <strong>resamples</strong> function can be used to collect, summarize and contrast the resampling results. Since the random number seeds were initialized to the same value prior to calling train, the same folds were used for each model. To assemble them:</p>
 <pre class="r"><code>resamps &lt;- resamples(list(pls = plsModel, rda = rdaModel))
 summary(resamps)</code></pre>
 <pre><code>## 
@@ -429,515 +477,366 @@ summary(diffs)</code></pre>
 <hr />
 </div>
 </div>
-<div id="the-wine-dataset" class="section level1">
-<h1>The Wine Dataset</h1>
-<div id="glmnet-and-ranger" class="section level2">
-<h2>GLMnet and Ranger</h2>
-<p>The University of California Irvine Machine Learning Laboratory hosts 488+ datasets. A proper citation for the work at the repository:</p>
-<p>Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [<a href="http://archive.ics.uci.edu/ml" class="uri">http://archive.ics.uci.edu/ml</a>]. Irvine, CA: University of California, School of Information and Computer Science.</p>
-<p>The wine data sets are the results of a chemical analysis of product grown in the same region in Italy but derived from three different cultivars. The analysis determined the quantities of 13 constituents found in each of the three types of wines.</p>
-<p>The attributes are (donated by Riccardo Leardi, riclea ‘@’ anchem.unige.it )
-1) Alcohol
-2) Malic acid
-3) Ash
-4) Alcalinity of ash
-5) Magnesium
-6) Total phenols
-7) Flavanoids
-8) Nonflavanoid phenols
-9) Proanthocyanins
-10) Color intensity
-11) Hue
-12) OD280/OD315 of diluted wines
-13) Proline</p>
-<p>All attributes are continuous</p>
-<pre class="r"><code>url &lt;- &#39;https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-white.csv&#39;
-
-library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages ---------------------------------------- tidyverse 1.3.0 --</code></pre>
-<pre><code>## v tibble  2.1.3     v purrr   0.3.3
-## v tidyr   1.0.0     v stringr 1.4.0
-## v readr   1.3.1     v forcats 0.4.0</code></pre>
-<pre><code>## -- Conflicts ------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()
-## x purrr::lift()   masks caret::lift()</code></pre>
-<pre class="r"><code>wine &lt;- read_csv2(url, col_types = c(&quot;nnnnnnnnnnnf&quot;))</code></pre>
-<pre><code>## Using &#39;,&#39; as decimal and &#39;.&#39; as grouping mark. Use read_delim() for more control.</code></pre>
-<pre class="r"><code>head(wine)</code></pre>
-<pre><code>## # A tibble: 6 x 12
-##   `fixed acidity` `volatile acidi~ `citric acid` `residual sugar` chlorides
-##             &lt;dbl&gt;            &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
-## 1               7               27            36              207        45
-## 2              63                3            34               16        49
-## 3              81               28             4               69         5
-## 4              72               23            32               85        58
-## 5              72               23            32               85        58
-## 6              81               28             4               69         5
-## # ... with 7 more variables: `free sulfur dioxide` &lt;dbl&gt;, `total sulfur
-## #   dioxide` &lt;dbl&gt;, density &lt;dbl&gt;, pH &lt;dbl&gt;, sulphates &lt;dbl&gt;, alcohol &lt;dbl&gt;,
-## #   quality &lt;fct&gt;</code></pre>
-<pre class="r"><code>summary(wine)</code></pre>
-<pre><code>##  fixed acidity    volatile acidity   citric acid     residual sugar   
-##  Min.   :  5.00   Min.   :   1.00   Min.   :  0.00   Min.   :   1.00  
-##  1st Qu.: 61.00   1st Qu.:  19.00   1st Qu.: 24.00   1st Qu.:  15.00  
-##  Median : 67.00   Median :  25.00   Median : 31.00   Median :  46.00  
-##  Mean   : 62.41   Mean   :  35.31   Mean   : 30.03   Mean   : 109.22  
-##  3rd Qu.: 73.00   3rd Qu.:  32.00   3rd Qu.: 37.00   3rd Qu.:  98.75  
-##  Max.   :715.00   Max.   :1005.00   Max.   :166.00   Max.   :2605.00  
-##                                                                       
-##    chlorides      free sulfur dioxide total sulfur dioxide    density      
-##  Min.   :  2.00   Min.   :   2.00     Min.   :   9.0       Min.   :     1  
-##  1st Qu.: 33.00   1st Qu.:  23.00     1st Qu.: 108.0       1st Qu.:  9934  
-##  Median : 41.00   Median :  34.00     Median : 134.0       Median :  9986  
-##  Mean   : 41.12   Mean   :  41.01     Mean   : 148.6       Mean   : 52184  
-##  3rd Qu.: 48.00   3rd Qu.:  46.00     3rd Qu.: 167.8       3rd Qu.: 99284  
-##  Max.   :346.00   Max.   :1465.00     Max.   :3665.0       Max.   :998365  
-##                                                                            
-##        pH          sulphates        alcohol          quality 
-##  Min.   :  3.0   Min.   :  1.0   Min.   :8.000e+00   6:2198  
-##  1st Qu.:304.0   1st Qu.: 38.0   1st Qu.:9.200e+01   5:1457  
-##  Median :316.0   Median : 46.0   Median :1.010e+02   7: 880  
-##  Mean   :287.1   Mean   : 43.8   Mean   :1.823e+12   8: 175  
-##  3rd Qu.:326.0   3rd Qu.: 54.0   3rd Qu.:1.130e+02   4: 163  
-##  Max.   :382.0   Max.   :108.0   Max.   :9.733e+14   3:  20  
-##                                                      9:   5</code></pre>
-<p>As before, the first step is to partition the data.</p>
-<pre class="r"><code>set.seed(42)
-
-inTrain &lt;- createDataPartition(
-  y = wine$quality,
-  ## the outcome data are needed
-  p = .75,
-  ## The percentage of data in the
-  ## training set
-  list = FALSE
-)
-
-training &lt;- wine[ inTrain,]
-testing  &lt;- wine[-inTrain,]</code></pre>
-</div>
-</div>
-<div id="fit-random-forest-model" class="section level1">
-<h1>Fit random forest: model</h1>
-<p>model &lt;- train(
-quality~.,
-tuneLength = 1,
-data = wine,
-method = “ranger”,
-trControl = trainControl(
-method = “cv”,
-number = 5,
-verboseIter = TRUE
-)
-)</p>
-</div>
-<div id="print-model-to-console" class="section level1">
-<h1>Print model to console</h1>
-<p>model</p>
-</div>
-<div id="tuning-for-mtry-in-the-random-forest" class="section level1">
-<h1>tuning for mtry in the random forest</h1>
-<p>model&lt;-train(
-Class ~ .,
-data = Sonar,
-method = “ranger”,
-tuneLength = 10
-)</p>
-<p>model</p>
-</div>
-<div id="fit-random-forest-model-1" class="section level1">
-<h1>Fit random forest: model</h1>
-<p>model &lt;- train(
-quality~.,
-tuneLength = 3,
-data = wine,
-method = “ranger”,
-trControl = trainControl(
-method = “cv”,
-number = 5,
-verboseIter = TRUE
-)
-)</p>
-</div>
-<div id="print-model-to-console-1" class="section level1">
-<h1>Print model to console</h1>
-<p>model</p>
-</div>
-<div id="plot-model" class="section level1">
-<h1>Plot model</h1>
-<p>plot(model)</p>
-<div id="fit-a-random-forest-with-custom-tuning" class="section level4">
-<h4>Fit a random forest with custom tuning</h4>
-</div>
-</div>
-<div id="define-the-tuning-grid-tunegrid" class="section level1">
-<h1>Define the tuning grid: tuneGrid</h1>
-<p>tuneGrid &lt;- data.frame(
-.mtry = c(2,3,7),
-.splitrule = “variance”,
-.min.node.size = 5
-)</p>
-</div>
-<div id="fit-random-forest-model-2" class="section level1">
-<h1>Fit random forest: model</h1>
-<p>model &lt;- train(
-quality~.,
-tuneGrid = tuneGrid,
-data = wine,
-method = “ranger”,
-trControl = trainControl(
-method = “cv”,
-number = 5,
-verboseIter = TRUE
-)
-)</p>
-<div id="extension-of-glm-function-to-glmnet" class="section level5">
-<h5>extension of glm function to glmnet</h5>
-</div>
-</div>
-<div id="lasso-regression-or-ridge-regression" class="section level1">
-<h1>lasso regression or ridge regression</h1>
-</div>
-<div id="seeks-a-parsimonious-model" class="section level1">
-<h1>seeks a parsimonious model</h1>
-</div>
-<div id="alpha-pure-ridge-to-pure-lasso" class="section level1">
-<h1>alpha<a href="#section-23"></a> pure ridge to pure lasso</h1>
-</div>
-<div id="lambda-0-infinity-size-of-the-penalty" class="section level1">
-<h1>lambda (0, infinity) size of the penalty</h1>
-<p># Create custom trainControl: myControl
-myControl &lt;- trainControl(
-method = “cv”,
-number = 10,
-summaryFunction = twoClassSummary,
-classProbs = TRUE, # IMPORTANT!
-verboseIter = TRUE
-)</p>
-<p># Fit glmnet model: model
-model &lt;- train(
-y~.,
-overfit,
-method = “glmnet”,
-trControl = myControl
-)</p>
-<p># Print model to console
-model</p>
-<p># Print maximum ROC statistic
-max(model[[“results”]]$ROC)</p>
-<p>########################################
-########################################</p>
-<p>data(overfit)</p>
-<p># Train glmnet with custom trainControl and tuning: model
-model &lt;- train(
-y~.,
-overfit,
-tuneGrid = expand.grid(
-alpha=0:1,
-lambda = seq(0.0001,1,length = 20)
-),
-method = “glmnet”,
-trControl = myControl
-)</p>
-<p># Print model to console
-model</p>
-<p># Print maximum ROC statistic
-max(model[[“results”]][[“ROC”]])</p>
-<div id="section" class="section level46">
-<p></p>
-</div>
-<div id="section-1" class="section level45">
-<p></p>
-</div>
-<div id="section-2" class="section level3">
-<h3></h3>
-</div>
-<div id="handling-missing-data" class="section level3">
-<h3>Handling missing data</h3>
-</div>
-<div id="section-3" class="section level3">
-<h3></h3>
-<p>model&lt;- train(X, Y, preProcess = “medianImpute”)
-print(model)</p>
-<p>data() Wisconsin Breast Cancer Dataset</p>
-</div>
-</div>
-<div id="apply-median-imputation-median_model" class="section level1">
-<h1>Apply median imputation: median_model</h1>
-<p>median_model &lt;- train(
-x = breast_cancer_x,
-y = breast_cancer_y,
-method = “glm”,
-trControl = myControl,
-preProcess = “medianImpute”
-)
-# Print median_model to console
-median_model</p>
-<div id="section-4" class="section level17">
-<p></p>
-</div>
-<div id="section-5" class="section level3">
-<h3></h3>
-</div>
-<div id="what-if-the-missing-is-not-at-random-if-median-will-not-be-best-imputation" class="section level3">
-<h3>what if the missing is not at random (if median will not be best imputation)</h3>
-</div>
-<div id="section-6" class="section level3">
-<h3></h3>
-</div>
-<div id="knn-imputation-is-available-but-slower" class="section level3">
-<h3>kNN imputation is available, but slower</h3>
-</div>
-</div>
-<div id="apply-knn-imputation-knn_model" class="section level1">
-<h1>Apply KNN imputation: knn_model</h1>
-<p>knn_model &lt;- train(
-x = breast_cancer_x,
-y = breast_cancer_y,
-method = “glm”,
-trControl = myControl,
-preProcess = “knnImpute”
-)</p>
-</div>
-<div id="print-knn_model-to-console" class="section level1">
-<h1>Print knn_model to console</h1>
-<p>knn_model</p>
-<div id="section-7" class="section level37">
-<p></p>
-</div>
-</div>
-<div id="update-model-with-standardization" class="section level1">
-<h1>Update model with standardization</h1>
-<p>model &lt;- train(
-x = breast_cancer_x,
-y = breast_cancer_y,
-method = “glm”,
-trControl = myControl,
-preProcess = c(“medianImpute”, “center”, “scale”)
-)</p>
-</div>
-<div id="print-updated-model" class="section level1">
-<h1>Print updated model</h1>
-<p>model</p>
-</div>
-<div id="preprocessing-cheat-sheet-1-start-with-median-imputation" class="section level1">
-<h1>Preprocessing cheat sheet: 1) start with median imputation</h1>
-</div>
-<div id="consider-knn-imputation-if-data-missing-is-not-at-random" class="section level1">
-<h1>2) consider knn imputation if data missing is not at random</h1>
-</div>
-<div id="for-linear-models-center-and-scale" class="section level1">
-<h1>3) for linear models, center and scale</h1>
-</div>
-<div id="try-pca-and-spatial-sign" class="section level1">
-<h1>4) try PCA and spatial sign</h1>
-</div>
-<div id="example-preprocess-czv-center-scale-pca" class="section level1">
-<h1>example preProcess = c(“zv”, “center”, “scale”, “pca”)</h1>
-<div id="section-8" class="section level35">
-<p></p>
-</div>
-<div id="section-9" class="section level3">
-<h3></h3>
-</div>
-<div id="removing-constant-columns-or-nearly-constant-columns" class="section level3">
-<h3>removing constant columns, or nearly constant columns</h3>
-</div>
-<div id="section-10" class="section level3">
-<h3></h3>
-</div>
-<div id="section-11" class="section level3">
-<h3></h3>
-</div>
-</div>
-<div id="identify-near-zero-variance-predictors-remove_cols" class="section level1">
-<h1>Identify near zero variance predictors: remove_cols</h1>
-<p>remove_cols &lt;- nearZeroVar(bloodbrain_x, names = TRUE,
-freqCut = 2, uniqueCut = 20)</p>
-</div>
-<div id="get-all-column-names-from-bloodbrain_x-all_cols" class="section level1">
-<h1>Get all column names from bloodbrain_x: all_cols</h1>
-<p>all_cols&lt;-names(bloodbrain_x)</p>
-</div>
-<div id="remove-from-data-bloodbrain_x_small" class="section level1">
-<h1>Remove from data: bloodbrain_x_small</h1>
-<p>bloodbrain_x_small &lt;- bloodbrain_x[ , setdiff(all_cols, remove_cols)]</p>
-</div>
-<div id="or-use-train-with-preprocess-and-nzv-in-the-character-string" class="section level1">
-<h1>OR — use train with preProcess and “nzv” in the character string</h1>
-</div>
-<div id="fit-model-on-reduced-data-model" class="section level1">
-<h1>Fit model on reduced data: model</h1>
-<p>model &lt;- train(
-x = bloodbrain_x_small,
-y = bloodbrain_y,
-method = “glm”
-)</p>
-</div>
-<div id="print-model-to-console-2" class="section level1">
-<h1>Print model to console</h1>
-<p>model</p>
-<div id="section-12" class="section level23">
-<p></p>
-</div>
-<div id="section-13" class="section level3">
-<h3></h3>
-</div>
-<div id="principal-components-analysis-as-a-pre-processing-step" class="section level3">
-<h3>Principal components analysis as a pre-processing step</h3>
-</div>
-<div id="section-14" class="section level3">
-<h3></h3>
-</div>
-<div id="section-15" class="section level3">
-<h3></h3>
-</div>
-</div>
-<div id="basic-model" class="section level1">
-<h1>basic model</h1>
-<p>set.seed(42)</p>
-<p>data(BloodBrain)</p>
-<p>model &lt;- train(
-bbbDescr,
-logBBB,
-method = “glm”,
-trControl = trainControl(
-method = “cv”, number = 10, verbose = TRUE,
-),
-preProcess = c(“zv”, “center”, “scale”, “pca”)
-)</p>
-<p>min(model<span class="math inline">\(results\)</span>RMSE)</p>
-<div id="section-16" class="section level25">
-<p></p>
-</div>
-<div id="section-17" class="section level3">
-<h3></h3>
-</div>
-<div id="reusing-traincontrol-for-apples-to-apples-comparison" class="section level3">
-<h3>reusing traincontrol for apples to apples comparison</h3>
-</div>
-<div id="section-18" class="section level3">
-<h3></h3>
-</div>
-<div id="pre-define-traincontrol" class="section level3">
-<h3>pre-define trainControl</h3>
-<p>library(caret)
+<div id="sgi-simulated-dataset-of-telecom-churn" class="section level1">
+<h1>SGI Simulated Dataset of Telecom Churn</h1>
+<p>The C50 dataset comes with pre-defined churnTrain and churnTest partitions. Note that the observations are un-balanced, with responses that churn = “yes” at 14.4%</p>
+<div id="generalized-boosted-models" class="section level2">
+<h2>Generalized Boosted Models</h2>
+<pre class="r"><code>library(caret)
 library(C50)
-data(churn)</p>
-<p>table(churnTrain$churn) / nrow(churnTrain)</p>
+data(churn)
+
+str(churnTrain)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    3333 obs. of  20 variables:
+##  $ state                        : Factor w/ 51 levels &quot;AK&quot;,&quot;AL&quot;,&quot;AR&quot;,..: 17 36 32 36 37 2 20 25 19 50 ...
+##  $ account_length               : int  128 107 137 84 75 118 121 147 117 141 ...
+##  $ area_code                    : Factor w/ 3 levels &quot;area_code_408&quot;,..: 2 2 2 1 2 3 3 2 1 2 ...
+##  $ international_plan           : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 1 1 1 2 2 2 1 2 1 2 ...
+##  $ voice_mail_plan              : Factor w/ 2 levels &quot;no&quot;,&quot;yes&quot;: 2 2 1 1 1 1 2 1 1 2 ...
+##  $ number_vmail_messages        : int  25 26 0 0 0 0 24 0 0 37 ...
+##  $ total_day_minutes            : num  265 162 243 299 167 ...
+##  $ total_day_calls              : int  110 123 114 71 113 98 88 79 97 84 ...
+##  $ total_day_charge             : num  45.1 27.5 41.4 50.9 28.3 ...
+##  $ total_eve_minutes            : num  197.4 195.5 121.2 61.9 148.3 ...
+##  $ total_eve_calls              : int  99 103 110 88 122 101 108 94 80 111 ...
+##  $ total_eve_charge             : num  16.78 16.62 10.3 5.26 12.61 ...
+##  $ total_night_minutes          : num  245 254 163 197 187 ...
+##  $ total_night_calls            : int  91 103 104 89 121 118 118 96 90 97 ...
+##  $ total_night_charge           : num  11.01 11.45 7.32 8.86 8.41 ...
+##  $ total_intl_minutes           : num  10 13.7 12.2 6.6 10.1 6.3 7.5 7.1 8.7 11.2 ...
+##  $ total_intl_calls             : int  3 3 5 7 3 6 7 6 4 5 ...
+##  $ total_intl_charge            : num  2.7 3.7 3.29 1.78 2.73 1.7 2.03 1.92 2.35 3.02 ...
+##  $ number_customer_service_calls: int  1 1 0 2 3 0 3 0 1 0 ...
+##  $ churn                        : Factor w/ 2 levels &quot;yes&quot;,&quot;no&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
+<pre class="r"><code>table(churnTrain$churn) / nrow(churnTrain)</code></pre>
+<pre><code>## 
+##       yes        no 
+## 0.1449145 0.8550855</code></pre>
+<p>The caret package will seed to predict the first factor of the churn feature - “yes” - which happens to be coded as 1 in this dataset.</p>
+<pre class="r"><code>predictors&lt;- names(churnTrain)[names(churnTrain) != &quot;churn&quot;]</code></pre>
+<p><em>preProcess</em> calculates values that can be used to apply to any data set. They include centering, scaling, spatial sign imputation, PCA or ICA, Box-Cox transformations, and others. YeoJohnson is like Box-Cox, but does not require positive values always.</p>
+<p>The prediction function can be called on the preProcess object and a data set to observe the preProcess transformation. The sequence of preProcess transformations is handled properly by caret internally.</p>
+<pre class="r"><code>numerics&lt;- c(&quot;account_length&quot;,&quot;total_day_calls&quot;, &quot;total_night_calls&quot;)
+procValues&lt;- preProcess(churnTrain[,numerics],
+                        method = c(&quot;center&quot;, &quot;scale&quot;, &quot;YeoJohnson&quot;))
+trainScaled&lt;- predict(procValues, churnTrain[,numerics])
+testScaled&lt;- predict(procValues, churnTest[,numerics])
+
+procValues</code></pre>
+<pre><code>## Created from 3333 samples and 3 variables
+## 
+## Pre-processing:
+##   - centered (3)
+##   - ignored (0)
+##   - scaled (3)
+##   - Yeo-Johnson transformation (3)
+## 
+## Lambda estimates for Yeo-Johnson transformation:
+## 0.89, 1.17, 0.93</code></pre>
+<p>Modeling often requires specific package knowledge to build the response variable and arrive at optimal tuning. In this demonstration with the Generalized Boosted Regression Model <strong>gbm</strong>, the caret package greatly simplifies the setup and interface. In the basic call to <strong>train</strong>, we specify the predictor set, the outcome data, and the modeling technique. Note that the <strong>train</strong> is able to use the original factor input for classification. Again, for binary outcomes, the function models the probability of the first factor level. A numeric object would indicate that we are doing regression.</p>
+<p>One problem is that <strong>gbm</strong> spits out a lot of information during model fitting. Let’s omit theh functions logging by using the option verbose = FALSE.</p>
+<p>Also, the default <strong>gbm</strong> re-sampling is bootstrap. We can better control for and compare algorithms by creating a <strong>trainControl</strong> object to run 5 repeats of 10-fold cross validation.</p>
+<p>The default <strong>gbm</strong> performance metrics for classification are Cohen’s kappa. Suppose we wanted to estimate sensitivity, specificty, and AUC of ROC. We need to tell <strong>train</strong> to produce class probabilities, estimate these statistics, and ran models by ROC AUC. In trainControl, indicating classProbs = TRUE and summaryFunction = twoClassSummary will ensure that the output model has these details.</p>
+<p>By default, <strong>train</strong> uses a minimal search grid: 3 values for each tuning parameter. We might also want to expand the scope of possible <strong>gbm</strong> models to test. Let’s look at tree depths from 1:7, boosting iterations from 100 to 1,000, and two different learning rates. See ?train for the tunable parameters by model type.</p>
+<pre class="r"><code>ctrl&lt;- trainControl(method = &quot;repeatedcv&quot;,
+                    repeats = 5,
+                    classProbs = TRUE,
+                    summaryFunction = twoClassSummary)
+
+grid&lt;- expand.grid(interaction.depth = seq(1,7, by = 2),
+                   n.trees = seq(100, 1000, by = 50),
+                   shrinkage = c(0.01, 0.1),
+                   n.minobsinnode = 5)
+
+gbmTune &lt;- train(x=churnTrain[,predictors],
+                 y= churnTrain$churn,
+                 method = &quot;gbm&quot;,
+                 metric = &quot;ROC&quot;,
+                 tuneGrid = grid,
+                 verbose = FALSE,
+                 trControl = ctrl,
+                 preProcess = )
+
+# an alternate formula interface is train(churn~., data = churnTrain, method=&quot;gbm&quot;)</code></pre>
+<p>Let’s have a look at the predictions and performance measures.</p>
+<pre class="r"><code>gbmPred&lt;- predict(gbmTune, churnTest)
+
+str(gbmPred)</code></pre>
+<pre><code>##  Factor w/ 2 levels &quot;yes&quot;,&quot;no&quot;: 2 2 2 2 2 2 2 2 2 2 ...</code></pre>
+<pre class="r"><code>gbmProbs&lt;- predict(gbmTune, churnTest, type = &quot;prob&quot;)
+
+confusionMatrix(gbmPred, churnTest$churn)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  yes   no
+##        yes  145   27
+##        no    79 1416
+##                                           
+##                Accuracy : 0.9364          
+##                  95% CI : (0.9236, 0.9476)
+##     No Information Rate : 0.8656          
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16       
+##                                           
+##                   Kappa : 0.6969          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 7.287e-07       
+##                                           
+##             Sensitivity : 0.64732         
+##             Specificity : 0.98129         
+##          Pos Pred Value : 0.84302         
+##          Neg Pred Value : 0.94716         
+##              Prevalence : 0.13437         
+##          Detection Rate : 0.08698         
+##    Detection Prevalence : 0.10318         
+##       Balanced Accuracy : 0.81431         
+##                                           
+##        &#39;Positive&#39; Class : yes             
+## </code></pre>
+<pre class="r"><code>ggplot(gbmTune) + theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/sgi%20churn%20gbm%20model-1.png" width="672" /></p>
+<p>The train function runs the model one last time on all training data for the winning set of hyperparameters.</p>
+<pre class="r"><code>rocCurve&lt;- roc(response = churnTest$churn,
+               predictor = gbmProbs[, &quot;yes&quot;],
+               levels = rev(levels(churnTest$churn)))</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre class="r"><code>rocCurve</code></pre>
+<pre><code>## 
+## Call:
+## roc.default(response = churnTest$churn, predictor = gbmProbs[,     &quot;yes&quot;], levels = rev(levels(churnTest$churn)))
+## 
+## Data: gbmProbs[, &quot;yes&quot;] in 1443 controls (churnTest$churn no) &lt; 224 cases (churnTest$churn yes).
+## Area under the curve: 0.9166</code></pre>
+<pre class="r"><code>plot(rocCurve,
+     print.thres = c(.5,.2),
+     print.thres.pch = 16,
+     print.thres.cex = 1.2)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/churn%20gbm%20model%20roc-1.png" width="672" /></p>
+<p>Next step: model a Support Vector Machine and a Flexible discriminant model</p>
+<pre class="r"><code>svmTune&lt;-train(churn ~ ., data = churnTrain,
+               method = &quot;svmRadial&quot;,
+               preProc = c(&quot;center&quot;,&quot;scale&quot;),
+               tuneLength = 10,
+               trControl = ctrl,
+               metric = &quot;ROC&quot;)
+
+fdaTune&lt;-train(churn ~ ., data = churnTrain,
+               method = &quot;fda&quot;,
+               tuneLength = 10,
+               trControl = ctrl,
+               metric = &quot;ROC&quot;)</code></pre>
+<pre><code>## Loading required package: earth</code></pre>
+<pre><code>## Warning: package &#39;earth&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Loading required package: Formula</code></pre>
+<pre><code>## Loading required package: plotmo</code></pre>
+<pre><code>## Warning: package &#39;plotmo&#39; was built under R version 3.6.2</code></pre>
+<pre><code>## Loading required package: plotrix</code></pre>
+<pre><code>## Loading required package: TeachingDemos</code></pre>
+<pre><code>## Warning: package &#39;TeachingDemos&#39; was built under R version 3.6.2</code></pre>
+<pre class="r"><code>svmPred&lt;- predict(svmTune, churnTest)
+
+svmProbs&lt;- predict(svmTune, churnTest, type = &quot;prob&quot;)
+
+confusionMatrix(svmPred, churnTest$churn)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  yes   no
+##        yes   92   30
+##        no   132 1413
+##                                           
+##                Accuracy : 0.9028          
+##                  95% CI : (0.8876, 0.9166)
+##     No Information Rate : 0.8656          
+##     P-Value [Acc &gt; NIR] : 2.087e-06       
+##                                           
+##                   Kappa : 0.4828          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 2.100e-15       
+##                                           
+##             Sensitivity : 0.41071         
+##             Specificity : 0.97921         
+##          Pos Pred Value : 0.75410         
+##          Neg Pred Value : 0.91456         
+##              Prevalence : 0.13437         
+##          Detection Rate : 0.05519         
+##    Detection Prevalence : 0.07319         
+##       Balanced Accuracy : 0.69496         
+##                                           
+##        &#39;Positive&#39; Class : yes             
+## </code></pre>
+<pre class="r"><code>ggplot(svmTune) + theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/churn%20svm%20and%20fda%20model%20roc-1.png" width="672" /></p>
+<pre class="r"><code>rocCurve&lt;- roc(response = churnTest$churn,
+               predictor = svmProbs[, &quot;yes&quot;],
+               levels = rev(levels(churnTest$churn)))</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre class="r"><code>plot(rocCurve,
+     print.thres = c(.5,.2),
+     print.thres.pch = 16,
+     print.thres.cex = 1.2)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/churn%20svm%20and%20fda%20model%20roc-2.png" width="672" /></p>
+<pre class="r"><code>fdaPred&lt;- predict(fdaTune, churnTest)
+
+fdaProbs&lt;- predict(fdaTune, churnTest, type = &quot;prob&quot;)
+
+confusionMatrix(fdaPred, churnTest$churn)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##           Reference
+## Prediction  yes   no
+##        yes  106   75
+##        no   118 1368
+##                                           
+##                Accuracy : 0.8842          
+##                  95% CI : (0.8679, 0.8992)
+##     No Information Rate : 0.8656          
+##     P-Value [Acc &gt; NIR] : 0.013006        
+##                                           
+##                   Kappa : 0.4584          
+##                                           
+##  Mcnemar&#39;s Test P-Value : 0.002501        
+##                                           
+##             Sensitivity : 0.47321         
+##             Specificity : 0.94802         
+##          Pos Pred Value : 0.58564         
+##          Neg Pred Value : 0.92059         
+##              Prevalence : 0.13437         
+##          Detection Rate : 0.06359         
+##    Detection Prevalence : 0.10858         
+##       Balanced Accuracy : 0.71062         
+##                                           
+##        &#39;Positive&#39; Class : yes             
+## </code></pre>
+<pre class="r"><code>ggplot(fdaTune) + theme(legend.position = &quot;top&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/churn%20svm%20and%20fda%20model%20roc-3.png" width="672" /></p>
+<pre class="r"><code>rocCurve&lt;- roc(response = churnTest$churn,
+               predictor = fdaProbs[, &quot;yes&quot;],
+               levels = rev(levels(churnTest$churn)))</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre class="r"><code>plot(rocCurve,
+     print.thres = c(.5,.2),
+     print.thres.pch = 16,
+     print.thres.cex = 1.2)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/churn%20svm%20and%20fda%20model%20roc-4.png" width="672" /></p>
 </div>
+<div id="glmnet" class="section level2">
+<h2>GLMnet</h2>
+<p>Recall the glmnet, which is almost always the first model to try on new datasets. It fits quickly and provides linear regression components while ignoring noisy coefficients.</p>
+<pre class="r"><code>grid&lt;- expand.grid(alpha = 0:1,
+                   lambda = 0:10 / 10)
+
+glmnetTune &lt;- train(churn ~ ., data = churnTrain,
+  metric = &quot;ROC&quot;,
+  method = &quot;glmnet&quot;,
+  tuneGrid = grid,
+  trControl = ctrl)
+
+plot(glmnetTune)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/churn%20glmnet-1.png" width="672" /></p>
 </div>
-<div id="create-traintest-indexes" class="section level1">
-<h1>create train/test indexes</h1>
-<p>set.seed(42)
-myFolds&lt;- createFolds(churnTrain$churn, k=5)</p>
-<p>#compare class distribution</p>
-<p>i&lt;- myFolds<span class="math inline">\(Fold2 table(churnTrain\)</span>churn[i])/ length(i)</p>
-</div>
-<div id="use-the-folds-to-create-a-traincontrol-object-to-fit-many-models" class="section level1">
-<h1>use the folds to create a trainControl object, to fit many models</h1>
-<p>myControl &lt;- trainControl(
-summaryFunction = twoClassSummary,
-classProbs = TRUE,
-verboseIter = TRUE,
-savePredictions = TRUE,
-index = myFolds
-)</p>
-</div>
-<div id="recall-the-glmnet-almost-always-the-first-model-to-try-on-new-datasets" class="section level1">
-<h1>recall the glmnet — almost always the first model to try on new datasets</h1>
-</div>
-<div id="fits-quickly-provides-linear-regression-components" class="section level1">
-<h1>fits quickly, provides linear regression components</h1>
-</div>
-<div id="ignores-noisy-coefficients" class="section level1">
-<h1>ignores noisy coefficients</h1>
-<p>model_glmnet &lt;- train(
-churn ~ .,
-churnTrain,
-metric = “ROC”,
-method = “glmnet”,
-tuneGrid = expand.grid(
-alpha = 0:1,
-lambda = 0:10 / 10
-),
-trControl = myControl
-)</p>
-<p>plot(model_glmnet)</p>
-</div>
-<div id="then-try-random-forest-good-practice-to-try-as-second" class="section level1">
-<h1>then try random forest (good practice to try as second)</h1>
-</div>
-<div id="easier-to-tun-but-slower" class="section level1">
-<h1>easier to tun, but slower</h1>
-</div>
-<div id="section-19" class="section level1">
-<h1></h1>
-<p>model_rf&lt;- train(
-churn ~ .,
-churnTrain,
-metric = “ROC”,
-method = “ranger”,
-trControl = myControl
-)</p>
-<p>plot(model_rf)</p>
-</div>
-<div id="often-comparing-models-target-highest-average-auc-and-lowest" class="section level1">
-<h1>often comparing models, target highest average AUC and lowest</h1>
-</div>
-<div id="resamples-function-is-your-friend" class="section level1">
-<h1>resamples() function is your friend</h1>
-<p>model_list&lt;- list(
-glmnet = model_glmnet,
-rf = model_rf
-)</p>
-<p>resamps &lt;- resamples(model_list)
-resamps</p>
-<p>summary(resamps)</p>
-<p>densityplot(resamps, metric = “ROC”)</p>
-<p>bwplot(resamps, metric = “ROC”)</p>
-<p>xyplot(resamps, metric = “ROC”)</p>
-<div id="section-20" class="section level29">
-<p></p>
-</div>
-<div id="section-21" class="section level3">
-<h3></h3>
-</div>
-<div id="for-custom-ensembles" class="section level3">
-<h3>for custom ensembles</h3>
-</div>
-</div>
-<div id="create-ensemble-model-stack" class="section level1">
-<h1>Create ensemble model: stack</h1>
-<p>stack &lt;- caretStack(model_list, method = “glm”)</p>
-</div>
-<div id="look-at-summary" class="section level1">
-<h1>Look at summary</h1>
-<p>summary(stack)</p>
-<p>Leftover code ??????</p>
-</div>
-<div id="if-p-exceeds-threshold-of-0.5-m-else-r-m_or_r" class="section level1">
-<h1>If p exceeds threshold of 0.5, M else R: m_or_r</h1>
-<p>m_or_r&lt;-ifelse(p&gt;0.5,“M”,“R”)</p>
-</div>
-<div id="convert-to-factor-p_class" class="section level1">
-<h1>Convert to factor: p_class</h1>
-<p>p_class&lt;-as.factor(m_or_r)
-test[[“Class”]]
-# Create confusion matrix
-confusionMatrix(p_class, test[[“Class”]])</p>
-<div id="section-22" class="section level40">
-<p></p>
-<p>library(caTools)
-# Predict on test: p
-p&lt;-predict(model, test, type = “response”)</p>
-<p>colAUC(p, test[[“Class”]], plotROC = TRUE)</p>
-</div>
-</div>
-<div id="use-auc-to-rank-different-models-on-the-same-data-set" class="section level1">
-<h1>use AUC to rank different models on the same data set</h1>
-<div id="section-23" class="section level24">
-<p></p>
+<div id="random-forest" class="section level2">
+<h2>Random Forest</h2>
+<p>A random forest may be a good practice to try as second model, as it is easier to tune, but it is slower</p>
+<pre class="r"><code>grid&lt;- expand.grid(mtry = seq(25,45, by = 5),
+                   splitrule = &quot;extratrees&quot;,
+                   min.node.size = c(1, 5, 20))
+
+rfTune&lt;- train(churn ~ ., data = churnTrain,
+  metric = &quot;ROC&quot;,
+  method = &quot;ranger&quot;,
+  trControl = ctrl,
+  tuneGrid = grid
+)
+rfTune</code></pre>
+<pre><code>## Random Forest 
+## 
+## 3333 samples
+##   19 predictor
+##    2 classes: &#39;yes&#39;, &#39;no&#39; 
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 5 times) 
+## Summary of sample sizes: 3000, 3000, 2999, 3000, 3000, 3000, ... 
+## Resampling results across tuning parameters:
+## 
+##   mtry  min.node.size  ROC        Sens       Spec     
+##   25     1             0.9182534  0.6861224  0.9920702
+##   25     5             0.9177765  0.6881973  0.9920702
+##   25    20             0.9169999  0.6596939  0.9924912
+##   30     1             0.9178059  0.7167347  0.9912281
+##   30     5             0.9171996  0.7122364  0.9906667
+##   30    20             0.9163033  0.6931633  0.9909474
+##   35     1             0.9166804  0.7307823  0.9904561
+##   35     5             0.9170929  0.7266582  0.9904561
+##   35    20             0.9158549  0.7154932  0.9898947
+##   40     1             0.9158828  0.7374150  0.9898947
+##   40     5             0.9160785  0.7361735  0.9906667
+##   40    20             0.9161064  0.7241752  0.9897544
+##   45     1             0.9152543  0.7423639  0.9899649
+##   45     5             0.9155461  0.7436139  0.9901754
+##   45    20             0.9149522  0.7303827  0.9893333
+## 
+## Tuning parameter &#39;splitrule&#39; was held constant at a value of extratrees
+## ROC was used to select the optimal model using the largest value.
+## The final values used for the model were mtry = 25, splitrule = extratrees
+##  and min.node.size = 1.</code></pre>
+<pre class="r"><code>plot(rfTune)</code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/churn%20rf-1.png" width="672" /></p>
+<p>Often when comparing models, the <strong>resamples</strong> function is your friend.</p>
+<pre class="r"><code>model_list&lt;- list(
+  gbm = gbmTune,
+  svm = svmTune,
+  fda = fdaTune,
+  glmnet = glmnetTune,
+  rf = rfTune
+)
+
+resamps &lt;- resamples(model_list)
+resamps</code></pre>
+<pre><code>## 
+## Call:
+## resamples.default(x = model_list)
+## 
+## Models: gbm, svm, fda, glmnet, rf 
+## Number of resamples: 50 
+## Performance metrics: ROC, Sens, Spec 
+## Time estimates for: everything, final model fit</code></pre>
+<pre class="r"><code>summary(resamps)</code></pre>
+<pre><code>## 
+## Call:
+## summary.resamples(object = resamps)
+## 
+## Models: gbm, svm, fda, glmnet, rf 
+## Number of resamples: 50 
+## 
+## ROC 
+##             Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
+## gbm    0.7985380 0.8804642 0.9107851 0.9051387 0.9361477 0.9621345    0
+## svm    0.8107456 0.8536699 0.8747076 0.8743018 0.8967083 0.9377730    0
+## fda    0.7910491 0.8471939 0.8724781 0.8714801 0.8971838 0.9414966    0
+## glmnet 0.7196637 0.7930328 0.8098371 0.8089440 0.8348516 0.8665951    0
+## rf     0.8645102 0.9032447 0.9204854 0.9182534 0.9414931 0.9605629    0
+## 
+## Sens 
+##             Min.    1st Qu.     Median       Mean    3rd Qu.      Max. NA&#39;s
+## gbm    0.5416667 0.61224490 0.65986395 0.65340986 0.68750000 0.7755102    0
+## svm    0.2448980 0.35416667 0.40199830 0.40664966 0.45833333 0.5625000    0
+## fda    0.2708333 0.46938776 0.48979592 0.49397109 0.52816752 0.6938776    0
+## glmnet 0.0000000 0.04081633 0.04166667 0.05634354 0.08290816 0.1458333    0
+## rf     0.5625000 0.63265306 0.69068878 0.68612245 0.72916667 0.8367347    0
+## 
+## Spec 
+##             Min.   1st Qu.    Median      Mean   3rd Qu.      Max. NA&#39;s
+## gbm    0.9578947 0.9754386 0.9807018 0.9807018 0.9885965 0.9964912    0
+## svm    0.9543860 0.9649123 0.9754386 0.9743860 0.9824561 1.0000000    0
+## fda    0.9192982 0.9333333 0.9473684 0.9453333 0.9543860 0.9789474    0
+## glmnet 0.9894737 0.9964912 0.9964912 0.9973333 1.0000000 1.0000000    0
+## rf     0.9789474 0.9894737 0.9929825 0.9920702 0.9964912 1.0000000    0</code></pre>
+<pre class="r"><code># densityplot(resamps, metric = &quot;ROC&quot;) 
+
+bwplot(resamps, metric = &quot;ROC&quot;) </code></pre>
+<p><img src="/courses/MachineLearning/ML-with-Caret_files/figure-html/model%20comparisons-1.png" width="672" /></p>
+<pre class="r"><code># xyplot(resamps, metric = &quot;ROC&quot;) </code></pre>
 </div>
 </div>
