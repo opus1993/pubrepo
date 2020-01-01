@@ -21,7 +21,7 @@ weight: 7
 <p>Buy the book here:</p>
 <p><a href="https://www.amazon.com/gp/product/149204637X/">Mastering Spark with R</a></p>
 <p>Another excellent online resource for learning Apache Spark with R is</p>
-<p><a href="https://spark.rstudio.com/"><img src="sparklyr-v2.png" alt="sparklyr: R interface for Apache Spark" /></a></p>
+<p><a href="https://spark.rstudio.com/"><img src="img/sparklyr-v2.png" alt="sparklyr: R interface for Apache Spark" /></a></p>
 <p>Be aware that the Rstudio content is not intended to be read from start to finish and assumes that you, the reader, have some knowledge of Apache Spark, R, and cluster computing.</p>
 <p>Richie Cotton of DataCamp also offers an overview course:</p>
 <p>[<img src="shield_image_course_3309_20180726-12-1ek0ctx.png" alt="Introduction to Spark in R using sparklyr" />]
@@ -161,7 +161,19 @@ model</code></pre>
 <div id="extensions" class="section level2">
 <h2>Extensions</h2>
 <p>In the same way that R is known for its vibrant community of package authors, at a smaller scale, many extensions for Spark and R have been written and are available. For instance, the sparkly.nested extension is an R package that extends sparklyr to help you manage values that contain nested information. A common use case involves JSON files that contain nested lists that require preprocessing before you can do meaningful data analysis. To use this extension, we first need to install it as follows:</p>
+<pre class="r"><code># install.packages(&quot;sparklyr.nested&quot;)</code></pre>
 <p>Then, we can use the sparklyr.nested extension to group all of the horsepower data points over the number of cylinders:</p>
+<pre class="r"><code>library(sparklyr.nested)</code></pre>
+<pre><code>## Warning: package &#39;sparklyr.nested&#39; was built under R version 3.6.2</code></pre>
+<pre class="r"><code>sparklyr.nested::sdf_nest(cars, hp) %&gt;%
+  group_by(cyl) %&gt;%
+  summarise(data = collect_list(data))</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 2]
+##     cyl data       
+##   &lt;dbl&gt; &lt;list&gt;     
+## 1     4 &lt;list [11]&gt;
+## 2     8 &lt;list [14]&gt;
+## 3     6 &lt;list [7]&gt;</code></pre>
 </div>
 <div id="streaming" class="section level2">
 <h2>Streaming</h2>
@@ -194,106 +206,106 @@ dir(&quot;output&quot;, pattern = &quot;.csv&quot;)</code></pre>
 <h2>Logs</h2>
 <p>Logging is definitely less interesting than real-time data processing; however, it’s a tool you should be or become familiar with. A log is just a text file to which Spark appends information relevant to the execution of tasks in the cluster. For local clusters, we can retrieve all the recent logs by running the following:</p>
 <pre class="r"><code>spark_log(sc, filter = &quot;sparklyr&quot;)</code></pre>
-<pre><code>## 19/12/31 13:57:23 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-7224b380-8424-49bd-b3b5-a01482c9fff3/userFiles-fd0cb511-daab-4daa-93a6-18560829619e/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7224b380-8424-49bd-b3b5-a01482c9fff3\userFiles-fd0cb511-daab-4daa-93a6-18560829619e\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7224b380-8424-49bd-b3b5-a01482c9fff3\userFiles-fd0cb511-daab-4daa-93a6-18560829619e\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7224b380-8424-49bd-b3b5-a01482c9fff3\userFiles-fd0cb511-daab-4daa-93a6-18560829619e\sparklyr-2.4-2.11.jar
-## 19/12/31 14:00:23 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:00:23 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53245/jars/sparklyr-2.4-2.11.jar with timestamp 1577822423868
-## 19/12/31 14:00:26 INFO Executor: Fetching spark://127.0.0.1:53245/jars/sparklyr-2.4-2.11.jar with timestamp 1577822423868
-## 19/12/31 14:00:26 INFO Utils: Fetching spark://127.0.0.1:53245/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\fetchFileTemp6194591104996789421.tmp
-## 19/12/31 14:00:27 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3/userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\sparklyr-2.4-2.11.jar
-## 19/12/31 14:03:18 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:03:18 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53638/jars/sparklyr-2.4-2.11.jar with timestamp 1577822598540
-## 19/12/31 14:03:21 INFO Executor: Fetching spark://127.0.0.1:53638/jars/sparklyr-2.4-2.11.jar with timestamp 1577822598540
-## 19/12/31 14:03:21 INFO Utils: Fetching spark://127.0.0.1:53638/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\fetchFileTemp2591738295483840318.tmp
-## 19/12/31 14:03:22 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1/userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\sparklyr-2.4-2.11.jar
-## 19/12/31 14:04:15 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:04:16 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53836/jars/sparklyr-2.4-2.11.jar with timestamp 1577822656148
-## 19/12/31 14:04:19 INFO Executor: Fetching spark://127.0.0.1:53836/jars/sparklyr-2.4-2.11.jar with timestamp 1577822656148
-## 19/12/31 14:04:19 INFO Utils: Fetching spark://127.0.0.1:53836/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\fetchFileTemp8626427112249317412.tmp
-## 19/12/31 14:04:19 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9/userFiles-3350efbb-e705-414c-adb8-9e85de170d29/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\sparklyr-2.4-2.11.jar
-## 19/12/31 14:05:03 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:05:04 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53997/jars/sparklyr-2.4-2.11.jar with timestamp 1577822704035
-## 19/12/31 14:05:07 INFO Executor: Fetching spark://127.0.0.1:53997/jars/sparklyr-2.4-2.11.jar with timestamp 1577822704035
-## 19/12/31 14:05:07 INFO Utils: Fetching spark://127.0.0.1:53997/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\fetchFileTemp7006437002198397392.tmp
-## 19/12/31 14:05:07 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff/userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\sparklyr-2.4-2.11.jar
-## 19/12/31 14:06:08 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:06:08 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54186/jars/sparklyr-2.4-2.11.jar with timestamp 1577822768778
-## 19/12/31 14:06:11 INFO Executor: Fetching spark://127.0.0.1:54186/jars/sparklyr-2.4-2.11.jar with timestamp 1577822768778
-## 19/12/31 14:06:12 INFO Utils: Fetching spark://127.0.0.1:54186/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\fetchFileTemp6075275392694734132.tmp
-## 19/12/31 14:06:12 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-33453244-1f9e-4312-9d74-26940fc3b024/userFiles-c3293554-5a0a-49ee-9688-197e417aeddd/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-827455da-1de3-4265-ba3d-5083f2d1bbc8\userFiles-d5869bae-257b-430d-a7eb-202e2398808b\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-827455da-1de3-4265-ba3d-5083f2d1bbc8\userFiles-d5869bae-257b-430d-a7eb-202e2398808b\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-827455da-1de3-4265-ba3d-5083f2d1bbc8\userFiles-d5869bae-257b-430d-a7eb-202e2398808b\sparklyr-2.4-2.11.jar
-## 19/12/31 14:07:29 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:07:29 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54403/jars/sparklyr-2.4-2.11.jar with timestamp 1577822849484
-## 19/12/31 14:07:32 INFO Executor: Fetching spark://127.0.0.1:54403/jars/sparklyr-2.4-2.11.jar with timestamp 1577822849484
-## 19/12/31 14:07:32 INFO Utils: Fetching spark://127.0.0.1:54403/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\fetchFileTemp3822659962971298275.tmp
-## 19/12/31 14:07:32 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23/userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\sparklyr-2.4-2.11.jar
-## 19/12/31 14:08:48 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:08:48 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54574/jars/sparklyr-2.4-2.11.jar with timestamp 1577822928939
-## 19/12/31 14:08:51 INFO Executor: Fetching spark://127.0.0.1:54574/jars/sparklyr-2.4-2.11.jar with timestamp 1577822928939
-## 19/12/31 14:08:51 INFO Utils: Fetching spark://127.0.0.1:54574/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\fetchFileTemp601964943272094138.tmp
-## 19/12/31 14:08:52 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c/userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\sparklyr-2.4-2.11.jar
-## 19/12/31 14:10:00 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:10:01 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54743/jars/sparklyr-2.4-2.11.jar with timestamp 1577823001213
-## 19/12/31 14:10:04 INFO Executor: Fetching spark://127.0.0.1:54743/jars/sparklyr-2.4-2.11.jar with timestamp 1577823001213
-## 19/12/31 14:10:04 INFO Utils: Fetching spark://127.0.0.1:54743/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\fetchFileTemp8009635045703148921.tmp
-## 19/12/31 14:10:04 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-c5facee6-5665-428f-8eb6-14af867f24ee/userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\sparklyr-2.4-2.11.jar
-## 19/12/31 14:10:29 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:10:29 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54889/jars/sparklyr-2.4-2.11.jar with timestamp 1577823029665
-## 19/12/31 14:10:32 INFO Executor: Fetching spark://127.0.0.1:54889/jars/sparklyr-2.4-2.11.jar with timestamp 1577823029665
-## 19/12/31 14:10:32 INFO Utils: Fetching spark://127.0.0.1:54889/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\fetchFileTemp2524431731128967405.tmp
-## 19/12/31 14:10:33 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-8d3d3a69-f5ed-4360-b749-1898fdb63290/userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\sparklyr-2.4-2.11.jar
-## 19/12/31 14:11:24 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:11:25 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:55043/jars/sparklyr-2.4-2.11.jar with timestamp 1577823085212
-## 19/12/31 14:11:28 INFO Executor: Fetching spark://127.0.0.1:55043/jars/sparklyr-2.4-2.11.jar with timestamp 1577823085212
-## 19/12/31 14:11:28 INFO Utils: Fetching spark://127.0.0.1:55043/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\fetchFileTemp5849883703950965897.tmp
-## 19/12/31 14:11:28 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-d18e928d-8ef3-4941-a034-9be4388336d9/userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\sparklyr-2.4-2.11.jar
-## 19/12/31 14:11:55 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:11:56 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:55181/jars/sparklyr-2.4-2.11.jar with timestamp 1577823116113
-## 19/12/31 14:11:59 INFO Executor: Fetching spark://127.0.0.1:55181/jars/sparklyr-2.4-2.11.jar with timestamp 1577823116113
-## 19/12/31 14:11:59 INFO Utils: Fetching spark://127.0.0.1:55181/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\fetchFileTemp1262174158548576491.tmp
-## 19/12/31 14:11:59 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-808d5587-d495-42af-8e7d-75d69042dac9/userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\sparklyr-2.4-2.11.jar
-## 19/12/31 14:12:27 INFO SparkContext: Submitted application: sparklyr
-## 19/12/31 14:12:27 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:55321/jars/sparklyr-2.4-2.11.jar with timestamp 1577823147511
-## 19/12/31 14:12:30 INFO Executor: Fetching spark://127.0.0.1:55321/jars/sparklyr-2.4-2.11.jar with timestamp 1577823147511
-## 19/12/31 14:12:30 INFO Utils: Fetching spark://127.0.0.1:55321/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-b7e6c67b-3e98-4adc-a42b-b88a67f93d21\userFiles-0d889768-1def-4592-ba86-2fdcdb3f64cb\fetchFileTemp2381555074970973957.tmp
-## 19/12/31 14:12:30 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-b7e6c67b-3e98-4adc-a42b-b88a67f93d21/userFiles-0d889768-1def-4592-ba86-2fdcdb3f64cb/sparklyr-2.4-2.11.jar to class loader</code></pre>
+<pre><code>## 19/12/31 17:14:42 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:51633/jars/sparklyr-2.4-2.11.jar with timestamp 1577834082009
+## 19/12/31 17:14:44 INFO Executor: Fetching spark://LAPTOP-QR96P989:51633/jars/sparklyr-2.4-2.11.jar with timestamp 1577834082009
+## 19/12/31 17:14:45 INFO Utils: Fetching spark://LAPTOP-QR96P989:51633/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0cf21b1f-438e-442c-ac3d-50ed12907037\userFiles-1c26c69b-a3f0-4535-a8cc-5fbd09212916\fetchFileTemp1181769067216763371.tmp
+## 19/12/31 17:14:45 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-0cf21b1f-438e-442c-ac3d-50ed12907037/userFiles-1c26c69b-a3f0-4535-a8cc-5fbd09212916/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0cf21b1f-438e-442c-ac3d-50ed12907037\userFiles-1c26c69b-a3f0-4535-a8cc-5fbd09212916\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0cf21b1f-438e-442c-ac3d-50ed12907037\userFiles-1c26c69b-a3f0-4535-a8cc-5fbd09212916\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0cf21b1f-438e-442c-ac3d-50ed12907037\userFiles-1c26c69b-a3f0-4535-a8cc-5fbd09212916\sparklyr-2.4-2.11.jar
+## 19/12/31 17:15:00 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 17:15:00 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:51743/jars/sparklyr-2.4-2.11.jar with timestamp 1577834100845
+## 19/12/31 17:15:03 INFO Executor: Fetching spark://LAPTOP-QR96P989:51743/jars/sparklyr-2.4-2.11.jar with timestamp 1577834100845
+## 19/12/31 17:15:03 INFO Utils: Fetching spark://LAPTOP-QR96P989:51743/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4601cc57-3305-402e-b68b-b36d056b08e4\userFiles-4499ae6d-6172-45c6-ba34-efa71773ec3b\fetchFileTemp6644995915930555685.tmp
+## 19/12/31 17:15:04 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-4601cc57-3305-402e-b68b-b36d056b08e4/userFiles-4499ae6d-6172-45c6-ba34-efa71773ec3b/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4601cc57-3305-402e-b68b-b36d056b08e4\userFiles-4499ae6d-6172-45c6-ba34-efa71773ec3b\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4601cc57-3305-402e-b68b-b36d056b08e4\userFiles-4499ae6d-6172-45c6-ba34-efa71773ec3b\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4601cc57-3305-402e-b68b-b36d056b08e4\userFiles-4499ae6d-6172-45c6-ba34-efa71773ec3b\sparklyr-2.4-2.11.jar
+## 19/12/31 17:15:19 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 17:15:19 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:51852/jars/sparklyr-2.4-2.11.jar with timestamp 1577834119873
+## 19/12/31 17:15:22 INFO Executor: Fetching spark://LAPTOP-QR96P989:51852/jars/sparklyr-2.4-2.11.jar with timestamp 1577834119873
+## 19/12/31 17:15:22 INFO Utils: Fetching spark://LAPTOP-QR96P989:51852/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3ce97897-8897-4d6d-a64f-ad88134e93d2\userFiles-66f13c3c-c010-4810-b643-19bbd7aee454\fetchFileTemp1715869656119984167.tmp
+## 19/12/31 17:15:23 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-3ce97897-8897-4d6d-a64f-ad88134e93d2/userFiles-66f13c3c-c010-4810-b643-19bbd7aee454/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3ce97897-8897-4d6d-a64f-ad88134e93d2\userFiles-66f13c3c-c010-4810-b643-19bbd7aee454\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3ce97897-8897-4d6d-a64f-ad88134e93d2\userFiles-66f13c3c-c010-4810-b643-19bbd7aee454\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3ce97897-8897-4d6d-a64f-ad88134e93d2\userFiles-66f13c3c-c010-4810-b643-19bbd7aee454\sparklyr-2.4-2.11.jar
+## 19/12/31 17:15:38 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 17:15:38 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:51958/jars/sparklyr-2.4-2.11.jar with timestamp 1577834138674
+## 19/12/31 17:15:41 INFO Executor: Fetching spark://LAPTOP-QR96P989:51958/jars/sparklyr-2.4-2.11.jar with timestamp 1577834138674
+## 19/12/31 17:15:41 INFO Utils: Fetching spark://LAPTOP-QR96P989:51958/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-9eb0c877-6079-4ffa-a36b-c8029689caf8\userFiles-86a4ec2c-b19b-46cf-b199-e5878fec623d\fetchFileTemp1680472361969009222.tmp
+## 19/12/31 17:15:41 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-9eb0c877-6079-4ffa-a36b-c8029689caf8/userFiles-86a4ec2c-b19b-46cf-b199-e5878fec623d/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-9eb0c877-6079-4ffa-a36b-c8029689caf8\userFiles-86a4ec2c-b19b-46cf-b199-e5878fec623d\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-9eb0c877-6079-4ffa-a36b-c8029689caf8\userFiles-86a4ec2c-b19b-46cf-b199-e5878fec623d\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-9eb0c877-6079-4ffa-a36b-c8029689caf8\userFiles-86a4ec2c-b19b-46cf-b199-e5878fec623d\sparklyr-2.4-2.11.jar
+## 19/12/31 17:15:57 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 17:15:57 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:52065/jars/sparklyr-2.4-2.11.jar with timestamp 1577834157828
+## 19/12/31 17:16:00 INFO Executor: Fetching spark://LAPTOP-QR96P989:52065/jars/sparklyr-2.4-2.11.jar with timestamp 1577834157828
+## 19/12/31 17:16:00 INFO Utils: Fetching spark://LAPTOP-QR96P989:52065/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-38434229-8948-48ee-8bde-c2588b6352a0\userFiles-f2d9f246-3c1e-4920-8b49-631d0c7c2f2c\fetchFileTemp1473000329120856739.tmp
+## 19/12/31 17:16:01 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-38434229-8948-48ee-8bde-c2588b6352a0/userFiles-f2d9f246-3c1e-4920-8b49-631d0c7c2f2c/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-38434229-8948-48ee-8bde-c2588b6352a0\userFiles-f2d9f246-3c1e-4920-8b49-631d0c7c2f2c\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-38434229-8948-48ee-8bde-c2588b6352a0\userFiles-f2d9f246-3c1e-4920-8b49-631d0c7c2f2c\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-38434229-8948-48ee-8bde-c2588b6352a0\userFiles-f2d9f246-3c1e-4920-8b49-631d0c7c2f2c\sparklyr-2.4-2.11.jar
+## 19/12/31 17:16:16 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 17:16:17 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:52175/jars/sparklyr-2.4-2.11.jar with timestamp 1577834177103
+## 19/12/31 17:16:20 INFO Executor: Fetching spark://LAPTOP-QR96P989:52175/jars/sparklyr-2.4-2.11.jar with timestamp 1577834177103
+## 19/12/31 17:16:20 INFO Utils: Fetching spark://LAPTOP-QR96P989:52175/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c4dd409b-6612-49c1-8a49-fc90220b010b\userFiles-e4947efe-1d67-4c78-81e4-c9ccc226fa69\fetchFileTemp2787019763963772957.tmp
+## 19/12/31 17:16:20 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-c4dd409b-6612-49c1-8a49-fc90220b010b/userFiles-e4947efe-1d67-4c78-81e4-c9ccc226fa69/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c4dd409b-6612-49c1-8a49-fc90220b010b\userFiles-e4947efe-1d67-4c78-81e4-c9ccc226fa69\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c4dd409b-6612-49c1-8a49-fc90220b010b\userFiles-e4947efe-1d67-4c78-81e4-c9ccc226fa69\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c4dd409b-6612-49c1-8a49-fc90220b010b\userFiles-e4947efe-1d67-4c78-81e4-c9ccc226fa69\sparklyr-2.4-2.11.jar
+## 19/12/31 17:16:35 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 17:16:36 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:52281/jars/sparklyr-2.4-2.11.jar with timestamp 1577834196024
+## 19/12/31 17:16:38 INFO Executor: Fetching spark://LAPTOP-QR96P989:52281/jars/sparklyr-2.4-2.11.jar with timestamp 1577834196024
+## 19/12/31 17:16:39 INFO Utils: Fetching spark://LAPTOP-QR96P989:52281/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-caa749fc-6033-4f57-b38d-a5fa80b2430e\userFiles-68a8669b-03aa-4a49-8076-7a07be2cb776\fetchFileTemp888169548913352610.tmp
+## 19/12/31 17:16:39 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-caa749fc-6033-4f57-b38d-a5fa80b2430e/userFiles-68a8669b-03aa-4a49-8076-7a07be2cb776/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-caa749fc-6033-4f57-b38d-a5fa80b2430e\userFiles-68a8669b-03aa-4a49-8076-7a07be2cb776\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-caa749fc-6033-4f57-b38d-a5fa80b2430e\userFiles-68a8669b-03aa-4a49-8076-7a07be2cb776\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-caa749fc-6033-4f57-b38d-a5fa80b2430e\userFiles-68a8669b-03aa-4a49-8076-7a07be2cb776\sparklyr-2.4-2.11.jar
+## 19/12/31 17:16:54 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 17:16:55 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://LAPTOP-QR96P989:52388/jars/sparklyr-2.4-2.11.jar with timestamp 1577834215102
+## 19/12/31 17:16:58 INFO Executor: Fetching spark://LAPTOP-QR96P989:52388/jars/sparklyr-2.4-2.11.jar with timestamp 1577834215102
+## 19/12/31 17:16:58 INFO Utils: Fetching spark://LAPTOP-QR96P989:52388/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-b114cb18-501f-4fb5-b6da-de9e6546e962\userFiles-6a8584b6-52b3-46c3-ad30-69b0c76c0f13\fetchFileTemp1800120780746444662.tmp
+## 19/12/31 17:16:58 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-b114cb18-501f-4fb5-b6da-de9e6546e962/userFiles-6a8584b6-52b3-46c3-ad30-69b0c76c0f13/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-b114cb18-501f-4fb5-b6da-de9e6546e962\userFiles-6a8584b6-52b3-46c3-ad30-69b0c76c0f13\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-b114cb18-501f-4fb5-b6da-de9e6546e962\userFiles-6a8584b6-52b3-46c3-ad30-69b0c76c0f13\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-b114cb18-501f-4fb5-b6da-de9e6546e962\userFiles-6a8584b6-52b3-46c3-ad30-69b0c76c0f13\sparklyr-2.4-2.11.jar
+## 19/12/31 20:58:23 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 20:58:23 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:56973/jars/sparklyr-2.4-2.11.jar with timestamp 1577847503648
+## 19/12/31 20:58:26 INFO Executor: Fetching spark://127.0.0.1:56973/jars/sparklyr-2.4-2.11.jar with timestamp 1577847503648
+## 19/12/31 20:58:26 INFO Utils: Fetching spark://127.0.0.1:56973/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7874c61c-8345-4911-a6df-bac7e1f265ce\userFiles-09872452-e8ed-4f70-bbcf-a707a22041bc\fetchFileTemp7794284407652876229.tmp
+## 19/12/31 20:58:27 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-7874c61c-8345-4911-a6df-bac7e1f265ce/userFiles-09872452-e8ed-4f70-bbcf-a707a22041bc/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7874c61c-8345-4911-a6df-bac7e1f265ce\userFiles-09872452-e8ed-4f70-bbcf-a707a22041bc\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7874c61c-8345-4911-a6df-bac7e1f265ce\userFiles-09872452-e8ed-4f70-bbcf-a707a22041bc\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7874c61c-8345-4911-a6df-bac7e1f265ce\userFiles-09872452-e8ed-4f70-bbcf-a707a22041bc\sparklyr-2.4-2.11.jar
+## 19/12/31 20:59:28 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 20:59:28 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:57125/jars/sparklyr-2.4-2.11.jar with timestamp 1577847568528
+## 19/12/31 20:59:31 INFO Executor: Fetching spark://127.0.0.1:57125/jars/sparklyr-2.4-2.11.jar with timestamp 1577847568528
+## 19/12/31 20:59:31 INFO Utils: Fetching spark://127.0.0.1:57125/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3da08736-f580-42a0-b68a-d01bf7667072\userFiles-927338ff-ed2d-4d71-ab64-9cbcf5905f7a\fetchFileTemp2108005382994014040.tmp
+## 19/12/31 20:59:31 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-3da08736-f580-42a0-b68a-d01bf7667072/userFiles-927338ff-ed2d-4d71-ab64-9cbcf5905f7a/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3da08736-f580-42a0-b68a-d01bf7667072\userFiles-927338ff-ed2d-4d71-ab64-9cbcf5905f7a\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3da08736-f580-42a0-b68a-d01bf7667072\userFiles-927338ff-ed2d-4d71-ab64-9cbcf5905f7a\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3da08736-f580-42a0-b68a-d01bf7667072\userFiles-927338ff-ed2d-4d71-ab64-9cbcf5905f7a\sparklyr-2.4-2.11.jar
+## 19/12/31 21:00:50 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 21:00:50 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:57276/jars/sparklyr-2.4-2.11.jar with timestamp 1577847650721
+## 19/12/31 21:00:53 INFO Executor: Fetching spark://127.0.0.1:57276/jars/sparklyr-2.4-2.11.jar with timestamp 1577847650721
+## 19/12/31 21:00:53 INFO Utils: Fetching spark://127.0.0.1:57276/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a66408b1-3e04-49e2-a681-12d107b75305\userFiles-da5bc36f-a779-4237-bafb-2cad999dff73\fetchFileTemp2210575634578859191.tmp
+## 19/12/31 21:00:53 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-a66408b1-3e04-49e2-a681-12d107b75305/userFiles-da5bc36f-a779-4237-bafb-2cad999dff73/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a66408b1-3e04-49e2-a681-12d107b75305\userFiles-da5bc36f-a779-4237-bafb-2cad999dff73\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a66408b1-3e04-49e2-a681-12d107b75305\userFiles-da5bc36f-a779-4237-bafb-2cad999dff73\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a66408b1-3e04-49e2-a681-12d107b75305\userFiles-da5bc36f-a779-4237-bafb-2cad999dff73\sparklyr-2.4-2.11.jar
+## 19/12/31 21:02:56 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 21:02:57 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:57556/jars/sparklyr-2.4-2.11.jar with timestamp 1577847777017
+## 19/12/31 21:03:00 INFO Executor: Fetching spark://127.0.0.1:57556/jars/sparklyr-2.4-2.11.jar with timestamp 1577847777017
+## 19/12/31 21:03:00 INFO Utils: Fetching spark://127.0.0.1:57556/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a1c543f8-fec8-4117-a026-4caa53155981\userFiles-80cd5151-d26b-4c83-810d-bf9650ee8bf6\fetchFileTemp862193367995263239.tmp
+## 19/12/31 21:03:00 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-a1c543f8-fec8-4117-a026-4caa53155981/userFiles-80cd5151-d26b-4c83-810d-bf9650ee8bf6/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a1c543f8-fec8-4117-a026-4caa53155981\userFiles-80cd5151-d26b-4c83-810d-bf9650ee8bf6\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a1c543f8-fec8-4117-a026-4caa53155981\userFiles-80cd5151-d26b-4c83-810d-bf9650ee8bf6\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a1c543f8-fec8-4117-a026-4caa53155981\userFiles-80cd5151-d26b-4c83-810d-bf9650ee8bf6\sparklyr-2.4-2.11.jar
+## 19/12/31 21:06:08 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 21:06:08 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:57904/jars/sparklyr-2.4-2.11.jar with timestamp 1577847968799
+## 19/12/31 21:06:12 INFO Executor: Fetching spark://127.0.0.1:57904/jars/sparklyr-2.4-2.11.jar with timestamp 1577847968799
+## 19/12/31 21:06:12 INFO Utils: Fetching spark://127.0.0.1:57904/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-995851e3-64d0-4949-b7b0-dec8439510eb\userFiles-09345f1a-1293-4c7e-9c8b-6d2a478f06a5\fetchFileTemp8549932230216023162.tmp
+## 19/12/31 21:06:12 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-995851e3-64d0-4949-b7b0-dec8439510eb/userFiles-09345f1a-1293-4c7e-9c8b-6d2a478f06a5/sparklyr-2.4-2.11.jar to class loader</code></pre>
 <p>Most of the time, you won’t need to worry about Spark logs, except in cases for which you need to troubleshoot a failed computation; in those cases, logs are an invaluable resource to be aware of. Now you know.</p>
 </div>
 <div id="disconnecting" class="section level2">

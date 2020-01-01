@@ -20,7 +20,7 @@ In a world where information is growing exponentially, leading tools like Apache
 
 In this book you will learn how to use Apache Spark with R. The book intends to take someone unfamiliar with Spark or R and help you become proficient by teaching you a set of tools, skills and practices applicable to large-scale data science.
 
-[![Mastering Spark with R](img/mastering-spark-with-r.png)](https://therinspark.com/)
+[![Mastering Spark with R](./mastering-spark-with-r.png)](https://therinspark.com/)
 
 Buy the book here:
 
@@ -34,7 +34,7 @@ Be aware that the Rstudio content is not intended to be read from start to finis
 
 Richie Cotton of DataCamp also offers an overview course:
 
-[![Introduction to Spark in R using sparklyr](img/shield_image_course_3309_20180726-12-1ek0ctx.png)]
+[![Introduction to Spark in R using sparklyr](./shield_image_course_3309_20180726-12-1ek0ctx.png)]
 (https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr)
 
 ---------------------
@@ -192,7 +192,7 @@ model %>%
 In the same way that R is known for its vibrant community of package authors, at a smaller scale, many extensions for Spark and R have been written and are available. For instance, the sparkly.nested extension is an R package that extends sparklyr to help you manage values that contain nested information. A common use case involves JSON files that contain nested lists that require preprocessing before you can do meaningful data analysis. To use this extension, we first need to install it as follows:
 
 ```{r extensions}
-install.packages("sparklyr.nested")
+# install.packages("sparklyr.nested")
 ```
 
 Then, we can use the sparklyr.nested extension to group all of the horsepower data points over the number of cylinders:
