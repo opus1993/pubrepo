@@ -20,7 +20,7 @@ In a world where information is growing exponentially, leading tools like Apache
 
 In this book you will learn how to use Apache Spark with R. The book intends to take someone unfamiliar with Spark or R and help you become proficient by teaching you a set of tools, skills and practices applicable to large-scale data science.
 
-[![Mastering Spark with R](./mastering-spark-with-r.png)](https://therinspark.com/)
+[![Mastering Spark with R](img/mastering-spark-with-r.png)](https://therinspark.com/)
 
 Buy the book here:
 
@@ -28,13 +28,13 @@ Buy the book here:
 
 Another excellent online resource for learning Apache Spark with R is
 
-[![sparklyr: R interface for Apache Spark](./sparklyr-v2.png)](https://spark.rstudio.com/)
+[![sparklyr: R interface for Apache Spark](img/sparklyr-v2.png)](https://spark.rstudio.com/)
 
 Be aware that the Rstudio content is not intended to be read from start to finish and assumes that you, the reader, have some knowledge of Apache Spark, R, and cluster computing.
 
 Richie Cotton of DataCamp also offers an overview course:
 
-[![Introduction to Spark in R using sparklyr](./shield_image_course_3309_20180726-12-1ek0ctx.png)]
+[![Introduction to Spark in R using sparklyr](img/shield_image_course_3309_20180726-12-1ek0ctx.png)]
 (https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr)
 
 ---------------------
