@@ -1,0 +1,795 @@
+---
+author: "Jim Gruman"
+output: html_document
+date: "12/31/2019"
+draft: false
+linktitle: Spark with R
+menu:
+  example:
+    parent: Topic
+    weight: 7
+title: Spark with R
+type: docs
+weight: 7
+---
+
+
+
+<p>In a world where information is growing exponentially, leading tools like Apache Spark provide support to solve many of the relvant problems we face today. From companies looking for ways to improve based on data-driven decisions, to research organizations solving problems in health-care, finance, education, and energy, Spark enables analyzing much more information faster and more reliably than ever before.</p>
+<p>In this book you will learn how to use Apache Spark with R. The book intends to take someone unfamiliar with Spark or R and help you become proficient by teaching you a set of tools, skills and practices applicable to large-scale data science.</p>
+<p><a href="https://therinspark.com/"><img src="mastering-spark-with-r.png" alt="Mastering Spark with R" /></a></p>
+<p>Buy the book here:</p>
+<p><a href="https://www.amazon.com/gp/product/149204637X/">Mastering Spark with R</a></p>
+<p>Another excellent online resource for learning Apache Spark with R is</p>
+<p><a href="https://spark.rstudio.com/"><img src="sparklyr-v2.png" alt="sparklyr: R interface for Apache Spark" /></a></p>
+<p>Be aware that the Rstudio content is not intended to be read from start to finish and assumes that you, the reader, have some knowledge of Apache Spark, R, and cluster computing.</p>
+<p>Richie Cotton of DataCamp also offers an overview course:</p>
+<p>[<img src="shield_image_course_3309_20180726-12-1ek0ctx.png" alt="Introduction to Spark in R using sparklyr" />]
+(<a href="https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr" class="uri">https://www.datacamp.com/courses/introduction-to-spark-in-r-using-sparklyr</a>)</p>
+<hr />
+<p>To help us understand a definition of Apache Spark, we break it down as follows:</p>
+<p><strong>Unified</strong></p>
+<blockquote>
+<p>Spark supports many libraries, cluster technologies, and storage systems.</p>
+</blockquote>
+<p><strong>Analytics</strong></p>
+<blockquote>
+<p>Analytics is the discovery and interpretation of data to produce and communicate information.</p>
+</blockquote>
+<p><strong>Engine</strong></p>
+<blockquote>
+<p>Spark is expected to be efficient and generic.</p>
+</blockquote>
+<p><strong>Large-Scale</strong></p>
+<blockquote>
+<p>You can interpret large-scale as cluster-scale, a set of connected computers working together.</p>
+</blockquote>
+<hr />
+<div id="sparklyr" class="section level1">
+<h1>Sparklyr</h1>
+<p>When thinking of who should use sparklyr, the following roles come to mind:</p>
+<p><strong>New Users</strong></p>
+<p>For new users, it is our belief that sparklyr provides the easiest way to get started with Spark. Our hope is that the early chapters of this book will get you up and running with ease and set you up for long-term success.</p>
+<p><strong>Data Scientists</strong></p>
+<p>For data scientists who already use and love R, sparklyr integrates with many other R practices and packages like dplyr, magrittr, broom, DBI, tibble, rlang, and many others, which will make you feel at home while working with Spark. For those new to R and Spark, the combination of high-level workflows available in sparklyr and low-level extensibility mechanisms make it a productive environment to match the needs and skills of every data scientist.</p>
+<p><strong>Expert Users</strong></p>
+<p>For those users who are already immersed in Spark and can write code natively in Scala, consider making your Spark libraries available as an R package to the R community, a diverse and skilled community that can put your contributions to good use while moving open science forward.</p>
+<p>sparklyr is the R package that brings together these communities, expectations, future directions, packages, and package extensions.</p>
+<hr />
+<p>Tip: When using Windows, avoid directories with spaces in their path. If running getwd() from R returns a path with spaces, consider switching to a path with no spaces using setwd(“path”) or by creating an RStudio project in a path with no spaces.</p>
+<p>Additionally, because Spark is built in the Scala programming language, which is run by the Java Virtual Machine (JVM), you also need to install Java 8 on your system. It is likely that your system already has Java installed, but you should still check the version and update or downgrade as described in Installing Java. You can use the following R command to check which version is installed on your system:</p>
+<pre class="r"><code>getwd()</code></pre>
+<pre><code>## [1] &quot;C:/Users/jimgr/OneDrive/Documents/R/pubrepo/content/courses/MachineLearning&quot;</code></pre>
+<pre class="r"><code>system(&quot;java -version&quot;)</code></pre>
+<pre><code>## [1] 0</code></pre>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<p>As with many other R packages, you can install sparklyr from CRAN as follows:</p>
+<p>Start by loading sparklyr:</p>
+<pre class="r"><code>library(sparklyr)</code></pre>
+<p>You can easily install Spark by running spark_install(). This downloads, installs, and configures the latest version of Spark locally on your computer.</p>
+<pre class="r"><code>spark_install()
+
+spark_available_versions()</code></pre>
+<pre><code>##   spark
+## 1   1.6
+## 2   2.0
+## 3   2.1
+## 4   2.2
+## 5   2.3
+## 6   2.4</code></pre>
+<p>Note: The default installation paths are ~/spark for macOS and Linux, and %LOCALAPPDATA%/spark for Windows. To customize the installation path, you can run options(spark.install.dir = “installation-path”) before spark_install() and spark_connect()</p>
+</div>
+<div id="connecting" class="section level2">
+<h2>Connecting</h2>
+<pre class="r"><code>sc &lt;- spark_connect(master = &quot;local&quot;, version = &quot;2.4&quot;)</code></pre>
+</div>
+<div id="using-spark" class="section level2">
+<h2>Using Spark</h2>
+<p>Now that you are connected, we can run a few simple commands. For instance, let’s start by copying the mtcars dataset into Apache Spark by using copy_to():</p>
+<pre class="r"><code>cars &lt;- copy_to(sc, mtcars)</code></pre>
+<p>The data was copied into Spark, but we can access it from R using the cars reference. To print its contents, we can simply type <em>cars</em>:</p>
+<pre class="r"><code>cars</code></pre>
+<pre><code>## # Source: spark&lt;mtcars&gt; [?? x 11]
+##      mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  21       6  160    110  3.9   2.62  16.5     0     1     4     4
+##  2  21       6  160    110  3.9   2.88  17.0     0     1     4     4
+##  3  22.8     4  108     93  3.85  2.32  18.6     1     1     4     1
+##  4  21.4     6  258    110  3.08  3.22  19.4     1     0     3     1
+##  5  18.7     8  360    175  3.15  3.44  17.0     0     0     3     2
+##  6  18.1     6  225    105  2.76  3.46  20.2     1     0     3     1
+##  7  14.3     8  360    245  3.21  3.57  15.8     0     0     3     4
+##  8  24.4     4  147.    62  3.69  3.19  20       1     0     4     2
+##  9  22.8     4  141.    95  3.92  3.15  22.9     1     0     4     2
+## 10  19.2     6  168.   123  3.92  3.44  18.3     1     0     4     4
+## # ... with more rows</code></pre>
+</div>
+<div id="web-interface" class="section level2">
+<h2>Web Interface</h2>
+<p>Most of the Spark commands are executed from the R console; however, monitoring and analyzing execution is done through Spark’s web interface. This interface is a web application provided by Spark that you can access by running:</p>
+<pre class="r"><code># spark_web(sc)</code></pre>
+</div>
+<div id="analysis" class="section level2">
+<h2>Analysis</h2>
+<p>When using Spark from R to analyze data, you can use SQL (Structured Query Language) or dplyr (a grammar of data manipulation). You can use SQL through the DBI package; for instance, to count how many records are available in our cars dataset, we can run the following:</p>
+<pre class="r"><code>library(DBI)
+dbGetQuery(sc, &quot;SELECT count(*) FROM mtcars&quot;)</code></pre>
+<pre><code>##   count(1)
+## 1       32</code></pre>
+<p>When using dplyr, you write less code, and it’s often much easier to write than SQL. This is precisely why we won’t make use of SQL in this book; however, if you are proficient in SQL, this is a viable option for you. For instance, counting records in dplyr is more compact and easier to understand:</p>
+<pre class="r"><code>library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>count(cars)</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 1]
+##       n
+##   &lt;dbl&gt;
+## 1    32</code></pre>
+<p>In general, we usually start by analyzing data in Spark with dplyr, followed by sampling rows and selecting a subset of the available columns. The last step is to collect data from Spark to perform further data processing in R, like data visualization. Let’s perform a very simple data analysis example by selecting, sampling, and plotting the cars dataset in Spark:</p>
+<pre class="r"><code>select(cars, hp, mpg) %&gt;%
+  sample_n(100) %&gt;%
+  collect() %&gt;%
+  plot()</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis%20with%20dplyr2-1.png" width="672" /></p>
+</div>
+<div id="modeling" class="section level2">
+<h2>Modeling</h2>
+<pre class="r"><code>model &lt;- ml_linear_regression(cars, mpg ~ hp)
+model</code></pre>
+<pre><code>## Formula: mpg ~ hp
+## 
+## Coefficients:
+## (Intercept)          hp 
+## 30.09886054 -0.06822828</code></pre>
+<p>Now we can use this model to predict values that are not in the original dataset. For instance, we can add entries for cars with horsepower beyond 250 and also visualize the predicted values</p>
+<pre class="r"><code>model %&gt;%
+  ml_predict(copy_to(sc, data.frame(hp = 250 + 10 * 1:10))) %&gt;%
+  transmute(hp = hp, mpg = prediction) %&gt;%
+  full_join(select(cars, hp, mpg)) %&gt;%
+  collect() %&gt;%
+  plot()</code></pre>
+<pre><code>## Joining, by = c(&quot;hp&quot;, &quot;mpg&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/modeling2-1.png" width="672" /></p>
+</div>
+<div id="extensions" class="section level2">
+<h2>Extensions</h2>
+<p>In the same way that R is known for its vibrant community of package authors, at a smaller scale, many extensions for Spark and R have been written and are available. For instance, the sparkly.nested extension is an R package that extends sparklyr to help you manage values that contain nested information. A common use case involves JSON files that contain nested lists that require preprocessing before you can do meaningful data analysis. To use this extension, we first need to install it as follows:</p>
+<p>Then, we can use the sparklyr.nested extension to group all of the horsepower data points over the number of cylinders:</p>
+</div>
+<div id="streaming" class="section level2">
+<h2>Streaming</h2>
+<p>While processing large static datasets is the most typical use case for Spark, processing dynamic datasets in real time is also possible and, for some applications, a requirement. You can think of a streaming dataset as a static data source with new data arriving continuously, like stock market quotes. Streaming data is usually read from Kafka (an open source stream-processing software platform) or from distributed storage that receives new data continuously.</p>
+<p>To try out streaming, let’s first create an input/ folder with some data that we will use as the input for this stream:</p>
+<pre class="r"><code>dir.create(&quot;input&quot;)</code></pre>
+<pre><code>## Warning in dir.create(&quot;input&quot;): &#39;input&#39; already exists</code></pre>
+<pre class="r"><code>write.csv(mtcars, &quot;input/cars_1.csv&quot;, row.names = F)</code></pre>
+<p>Then, we define a stream that processes incoming data from the input/ folder, performs a custom transformation in R, and pushes the output into an output/ folder:</p>
+<pre class="r"><code>stream &lt;- stream_read_csv(sc, &quot;input/&quot;) %&gt;%
+    select(mpg, cyl, disp) %&gt;%
+    stream_write_csv(&quot;output/&quot;)</code></pre>
+<p>As soon as the stream of real-time data starts, the input/ folder is processed and turned into a set of new files under the output/ folder containing the new transformed files. Since the input contained only one file, the output folder will also contain a single file resulting from applying the custom spark_apply() transformation.</p>
+<pre class="r"><code>dir(&quot;output&quot;, pattern = &quot;.csv&quot;)</code></pre>
+<pre><code>## [1] &quot;part-00000-c8f671aa-13ec-4174-94d2-45226dc3cd75-c000.csv&quot;
+## [2] &quot;part-00000-c9675c62-ad31-413d-9838-24a87996c176-c000.csv&quot;</code></pre>
+<p>Up to this point, this resembles static data processing; however, we can keep adding files to the input/ location, and Spark will parallelize and process data automatically. Let’s add one more file and validate that it’s automatically processed:</p>
+<pre class="r"><code># Write more data into the stream source
+write.csv(mtcars, &quot;input/cars_2.csv&quot;, row.names = F)</code></pre>
+<p>Wait a few seconds and validate that the data is processed by the Spark stream:</p>
+<pre class="r"><code># Check the contents of the stream destination
+dir(&quot;output&quot;, pattern = &quot;.csv&quot;)</code></pre>
+<pre><code>## [1] &quot;part-00000-c8f671aa-13ec-4174-94d2-45226dc3cd75-c000.csv&quot;
+## [2] &quot;part-00000-c9675c62-ad31-413d-9838-24a87996c176-c000.csv&quot;</code></pre>
+<p>You should then stop the stream:</p>
+<pre class="r"><code>stream_stop(stream)</code></pre>
+<p>You can use dplyr, SQL, Spark models, or distributed R to analyze streams in real time. In Chapter 12 we properly introduce you to all the interesting transformations you can perform to analyze real-time data.</p>
+</div>
+<div id="logs" class="section level2">
+<h2>Logs</h2>
+<p>Logging is definitely less interesting than real-time data processing; however, it’s a tool you should be or become familiar with. A log is just a text file to which Spark appends information relevant to the execution of tasks in the cluster. For local clusters, we can retrieve all the recent logs by running the following:</p>
+<pre class="r"><code>spark_log(sc, filter = &quot;sparklyr&quot;)</code></pre>
+<pre><code>## 19/12/31 13:57:23 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-7224b380-8424-49bd-b3b5-a01482c9fff3/userFiles-fd0cb511-daab-4daa-93a6-18560829619e/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7224b380-8424-49bd-b3b5-a01482c9fff3\userFiles-fd0cb511-daab-4daa-93a6-18560829619e\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7224b380-8424-49bd-b3b5-a01482c9fff3\userFiles-fd0cb511-daab-4daa-93a6-18560829619e\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-7224b380-8424-49bd-b3b5-a01482c9fff3\userFiles-fd0cb511-daab-4daa-93a6-18560829619e\sparklyr-2.4-2.11.jar
+## 19/12/31 14:00:23 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:00:23 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53245/jars/sparklyr-2.4-2.11.jar with timestamp 1577822423868
+## 19/12/31 14:00:26 INFO Executor: Fetching spark://127.0.0.1:53245/jars/sparklyr-2.4-2.11.jar with timestamp 1577822423868
+## 19/12/31 14:00:26 INFO Utils: Fetching spark://127.0.0.1:53245/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\fetchFileTemp6194591104996789421.tmp
+## 19/12/31 14:00:27 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3/userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-ea7fdc26-e1a3-4190-8dc9-d0290d7ff3c3\userFiles-de967dba-2f77-4d9f-a595-fdcff1a0d79f\sparklyr-2.4-2.11.jar
+## 19/12/31 14:03:18 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:03:18 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53638/jars/sparklyr-2.4-2.11.jar with timestamp 1577822598540
+## 19/12/31 14:03:21 INFO Executor: Fetching spark://127.0.0.1:53638/jars/sparklyr-2.4-2.11.jar with timestamp 1577822598540
+## 19/12/31 14:03:21 INFO Utils: Fetching spark://127.0.0.1:53638/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\fetchFileTemp2591738295483840318.tmp
+## 19/12/31 14:03:22 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1/userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0b1bb4e3-3871-4c71-8aef-148d8694eaa1\userFiles-33bf919b-3c2c-4c9b-a2b3-7d1ac45bbfee\sparklyr-2.4-2.11.jar
+## 19/12/31 14:04:15 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:04:16 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53836/jars/sparklyr-2.4-2.11.jar with timestamp 1577822656148
+## 19/12/31 14:04:19 INFO Executor: Fetching spark://127.0.0.1:53836/jars/sparklyr-2.4-2.11.jar with timestamp 1577822656148
+## 19/12/31 14:04:19 INFO Utils: Fetching spark://127.0.0.1:53836/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\fetchFileTemp8626427112249317412.tmp
+## 19/12/31 14:04:19 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9/userFiles-3350efbb-e705-414c-adb8-9e85de170d29/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-f6b4b6a2-96bf-46e2-9948-356b0ef20ee9\userFiles-3350efbb-e705-414c-adb8-9e85de170d29\sparklyr-2.4-2.11.jar
+## 19/12/31 14:05:03 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:05:04 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53997/jars/sparklyr-2.4-2.11.jar with timestamp 1577822704035
+## 19/12/31 14:05:07 INFO Executor: Fetching spark://127.0.0.1:53997/jars/sparklyr-2.4-2.11.jar with timestamp 1577822704035
+## 19/12/31 14:05:07 INFO Utils: Fetching spark://127.0.0.1:53997/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\fetchFileTemp7006437002198397392.tmp
+## 19/12/31 14:05:07 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff/userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-872972f7-400d-407d-bf13-7fd8c8d5a7ff\userFiles-2d64dae4-c9ed-431d-ba3a-59264e316022\sparklyr-2.4-2.11.jar
+## 19/12/31 14:06:08 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:06:08 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54186/jars/sparklyr-2.4-2.11.jar with timestamp 1577822768778
+## 19/12/31 14:06:11 INFO Executor: Fetching spark://127.0.0.1:54186/jars/sparklyr-2.4-2.11.jar with timestamp 1577822768778
+## 19/12/31 14:06:12 INFO Utils: Fetching spark://127.0.0.1:54186/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\fetchFileTemp6075275392694734132.tmp
+## 19/12/31 14:06:12 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-33453244-1f9e-4312-9d74-26940fc3b024/userFiles-c3293554-5a0a-49ee-9688-197e417aeddd/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-33453244-1f9e-4312-9d74-26940fc3b024\userFiles-c3293554-5a0a-49ee-9688-197e417aeddd\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-827455da-1de3-4265-ba3d-5083f2d1bbc8\userFiles-d5869bae-257b-430d-a7eb-202e2398808b\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-827455da-1de3-4265-ba3d-5083f2d1bbc8\userFiles-d5869bae-257b-430d-a7eb-202e2398808b\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-827455da-1de3-4265-ba3d-5083f2d1bbc8\userFiles-d5869bae-257b-430d-a7eb-202e2398808b\sparklyr-2.4-2.11.jar
+## 19/12/31 14:07:29 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:07:29 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54403/jars/sparklyr-2.4-2.11.jar with timestamp 1577822849484
+## 19/12/31 14:07:32 INFO Executor: Fetching spark://127.0.0.1:54403/jars/sparklyr-2.4-2.11.jar with timestamp 1577822849484
+## 19/12/31 14:07:32 INFO Utils: Fetching spark://127.0.0.1:54403/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\fetchFileTemp3822659962971298275.tmp
+## 19/12/31 14:07:32 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23/userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-3803f715-9bc3-4bcb-84b1-5cdf00634b23\userFiles-f9fbc79a-93c3-4bb1-9653-9a03d1bed870\sparklyr-2.4-2.11.jar
+## 19/12/31 14:08:48 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:08:48 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54574/jars/sparklyr-2.4-2.11.jar with timestamp 1577822928939
+## 19/12/31 14:08:51 INFO Executor: Fetching spark://127.0.0.1:54574/jars/sparklyr-2.4-2.11.jar with timestamp 1577822928939
+## 19/12/31 14:08:51 INFO Utils: Fetching spark://127.0.0.1:54574/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\fetchFileTemp601964943272094138.tmp
+## 19/12/31 14:08:52 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c/userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-a26b0ad9-9f99-4666-b6cf-c75df1f7da7c\userFiles-d173f919-bca3-49a4-9dfa-dfd6823b9612\sparklyr-2.4-2.11.jar
+## 19/12/31 14:10:00 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:10:01 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54743/jars/sparklyr-2.4-2.11.jar with timestamp 1577823001213
+## 19/12/31 14:10:04 INFO Executor: Fetching spark://127.0.0.1:54743/jars/sparklyr-2.4-2.11.jar with timestamp 1577823001213
+## 19/12/31 14:10:04 INFO Utils: Fetching spark://127.0.0.1:54743/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\fetchFileTemp8009635045703148921.tmp
+## 19/12/31 14:10:04 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-c5facee6-5665-428f-8eb6-14af867f24ee/userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c5facee6-5665-428f-8eb6-14af867f24ee\userFiles-b662eaa3-b930-47b0-be7d-7b6d0ecfd0ee\sparklyr-2.4-2.11.jar
+## 19/12/31 14:10:29 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:10:29 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:54889/jars/sparklyr-2.4-2.11.jar with timestamp 1577823029665
+## 19/12/31 14:10:32 INFO Executor: Fetching spark://127.0.0.1:54889/jars/sparklyr-2.4-2.11.jar with timestamp 1577823029665
+## 19/12/31 14:10:32 INFO Utils: Fetching spark://127.0.0.1:54889/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\fetchFileTemp2524431731128967405.tmp
+## 19/12/31 14:10:33 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-8d3d3a69-f5ed-4360-b749-1898fdb63290/userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-8d3d3a69-f5ed-4360-b749-1898fdb63290\userFiles-e8ef1ec1-e553-4436-9bee-2594bd612d71\sparklyr-2.4-2.11.jar
+## 19/12/31 14:11:24 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:11:25 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:55043/jars/sparklyr-2.4-2.11.jar with timestamp 1577823085212
+## 19/12/31 14:11:28 INFO Executor: Fetching spark://127.0.0.1:55043/jars/sparklyr-2.4-2.11.jar with timestamp 1577823085212
+## 19/12/31 14:11:28 INFO Utils: Fetching spark://127.0.0.1:55043/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\fetchFileTemp5849883703950965897.tmp
+## 19/12/31 14:11:28 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-d18e928d-8ef3-4941-a034-9be4388336d9/userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-d18e928d-8ef3-4941-a034-9be4388336d9\userFiles-4271bc70-48f5-4882-accc-16ec1fd238ab\sparklyr-2.4-2.11.jar
+## 19/12/31 14:11:55 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:11:56 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:55181/jars/sparklyr-2.4-2.11.jar with timestamp 1577823116113
+## 19/12/31 14:11:59 INFO Executor: Fetching spark://127.0.0.1:55181/jars/sparklyr-2.4-2.11.jar with timestamp 1577823116113
+## 19/12/31 14:11:59 INFO Utils: Fetching spark://127.0.0.1:55181/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\fetchFileTemp1262174158548576491.tmp
+## 19/12/31 14:11:59 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-808d5587-d495-42af-8e7d-75d69042dac9/userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-808d5587-d495-42af-8e7d-75d69042dac9\userFiles-64341fcd-873d-43d5-bf36-10da5a3cce7c\sparklyr-2.4-2.11.jar
+## 19/12/31 14:12:27 INFO SparkContext: Submitted application: sparklyr
+## 19/12/31 14:12:27 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:55321/jars/sparklyr-2.4-2.11.jar with timestamp 1577823147511
+## 19/12/31 14:12:30 INFO Executor: Fetching spark://127.0.0.1:55321/jars/sparklyr-2.4-2.11.jar with timestamp 1577823147511
+## 19/12/31 14:12:30 INFO Utils: Fetching spark://127.0.0.1:55321/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-b7e6c67b-3e98-4adc-a42b-b88a67f93d21\userFiles-0d889768-1def-4592-ba86-2fdcdb3f64cb\fetchFileTemp2381555074970973957.tmp
+## 19/12/31 14:12:30 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-b7e6c67b-3e98-4adc-a42b-b88a67f93d21/userFiles-0d889768-1def-4592-ba86-2fdcdb3f64cb/sparklyr-2.4-2.11.jar to class loader</code></pre>
+<p>Most of the time, you won’t need to worry about Spark logs, except in cases for which you need to troubleshoot a failed computation; in those cases, logs are an invaluable resource to be aware of. Now you know.</p>
+</div>
+<div id="disconnecting" class="section level2">
+<h2>Disconnecting</h2>
+<p>For local clusters (really, any cluster), after you are done processing data, you should disconnect by running the following:</p>
+<pre class="r"><code>spark_disconnect_all()</code></pre>
+<pre><code>## [1] 1</code></pre>
+<p>#datacamp Sparklyr class
+# Load sparklyr
+library(sparklyr)
+# Connect to your Spark cluster
+spark_conn &lt;- spark_connect(master = “local”)
+# Print the version of Spark
+spark_version(sc = spark_conn)
+# Disconnect from Spark
+spark_disconnect(sc = spark_conn)
+############################</p>
+</div>
+</div>
+<div id="sparklyr-has-some-functions-such-as-spark_read_csv-that-will-read-a-csv-file-into-spark" class="section level1">
+<h1>sparklyr has some functions such as spark_read_csv() that will read a CSV file into Spark</h1>
+</div>
+<div id="load-dplyr" class="section level1">
+<h1>Load dplyr</h1>
+<p>library(dplyr)
+# Explore track_metadata structure
+str(track_metadata)
+# Connect to your Spark cluster
+spark_conn &lt;- spark_connect(master = “local”)
+# Copy track_metadata to Spark
+track_metadata_tbl &lt;- copy_to(spark_conn, track_metadata, overwrite = TRUE)
+# List the data frames available in Spark
+src_tbls(spark_conn)
+# Disconnect from Spark
+spark_disconnect(sc = spark_conn)
+###################################
+# Link to the track_metadata table in Spark
+track_metadata_tbl &lt;- tbl(spark_conn, “track_metadata”)
+# See how big the dataset is
+dim(track_metadata_tbl)
+# See how small the tibble is ( from the r pryr package)
+object_size(track_metadata_tbl)
+################################
+# Print 5 rows, all columns
+print(track_metadata_tbl, n=5, width=Inf)
+# Examine structure of tibble
+str(track_metadata_tbl)
+# Examine structure of data
+glimpse(track_metadata_tbl)
+#############################################
+Before you try the exercise, take heed of two warnings. Firstly, don’t mistake dplyr’s filter() function with the stats package’s filter() function. Secondly, sparklyr converts your dplyr code into SQL database code before passing it to Spark. That means that only a limited number of filtering operations are currently supported. For example, you can’t filter character rows using regular expressions with code like
+a_tibble %&gt;%
+filter(grepl(“a regex”, x))
+The help page for translate_sql() describes the functionality that is available. You are OK to use comparison operators like &gt;, !=, and %in%; arithmetic operators like +, ^, and %%; and logical operators like &amp;, | and !. Many mathematical functions such as log(), abs(), round(), and sin() are also supported.
+As before, square bracket indexing does not currently work.
+######################################
+# track_metadata_tbl has been pre-defined
+track_metadata_tbl
+# Manipulate the track metadata
+track_metadata_tbl %&gt;%
+# Select columns
+select(title, duration) %&gt;%
+# Mutate columns
+mutate(duration_minutes = duration/60 )
+In case you hadnt got the message already that base-R functions dont work with Spark tibbles, you cant use within() or transform() for this purpose.
+##############################</p>
+</div>
+<div id="track_metadata_tbl-has-been-pre-defined" class="section level1">
+<h1>track_metadata_tbl has been pre-defined</h1>
+<p>track_metadata_tbl
+track_metadata_tbl %&gt;%
+# Select columns starting with artist
+select(starts_with(“artist”))
+track_metadata_tbl %&gt;%
+# Select columns ending with id
+select(ends_with(“id”))</p>
+<div id="section" class="section level21">
+<p></p>
+</div>
+</div>
+<div id="track_metadata_tbl-has-been-pre-defined-1" class="section level1">
+<h1>track_metadata_tbl has been pre-defined</h1>
+<p>track_metadata_tbl
+track_metadata_tbl %&gt;%
+# Select columns containing ti
+select(contains(“ti”))
+track_metadata_tbl %&gt;%
+# Select columns matching ti.?t
+select(matches(“ti.?t”))</p>
+<div id="section-1" class="section level41">
+<p></p>
+<p>#for factors, can use levels() function
+track_metadata_tbl %&gt;%
+# Only return rows with distinct artist_name
+distinct(artist_name)</p>
+</div>
+<div id="section-2" class="section level38">
+<p></p>
+</div>
+</div>
+<div id="table-is-not-supported-in-sparklyr" class="section level1">
+<h1>table is not supported in sparklyr</h1>
+</div>
+<div id="track_metadata_tbl-has-been-pre-defined-2" class="section level1">
+<h1>track_metadata_tbl has been pre-defined</h1>
+<p>track_metadata_tbl
+track_metadata_tbl %&gt;%
+# Count the artist_name values
+count(artist_name, sort = TRUE) %&gt;%
+# Restrict to top 20
+top_n(20)</p>
+<div id="section-3" class="section level26">
+<p></p>
+</div>
+</div>
+<div id="copy_to-moves-data-from-r-to-spark.-collect-moves-it-back" class="section level1">
+<h1>copy_to() moves data from R to spark. collect() moves it back</h1>
+</div>
+<div id="track_metadata_tbl-has-been-pre-defined-3" class="section level1">
+<h1>track_metadata_tbl has been pre-defined</h1>
+<p>track_metadata_tbl
+results &lt;- track_metadata_tbl %&gt;%
+# Filter where artist familiarity is greater than 0.9
+filter(artist_familiarity &gt; 0.9)
+# Examine the class of the results
+class(results)
+# Collect your results
+collected &lt;- results %&gt;%
+collect()
+# Examine the class of the collected results
+class(collected)</p>
+<div id="section-4" class="section level35">
+<p></p>
+</div>
+</div>
+<div id="use-compute-to-compute-the-calculation-but-store-the-results-in-a-temporary-data-frame-on-spark.-compute-takes-two-arguments-a-tibble-and-a-variable-name-for-the-spark-data-frame-that-will-store-the-results." class="section level1">
+<h1>use compute() to compute the calculation, but store the results in a temporary data frame on Spark. Compute takes two arguments: a tibble, and a variable name for the Spark data frame that will store the results.</h1>
+</div>
+<div id="track_metadata_tbl-has-been-pre-defined-4" class="section level1">
+<h1>track_metadata_tbl has been pre-defined</h1>
+<p>track_metadata_tbl
+computed &lt;- track_metadata_tbl %&gt;%
+# Filter where artist familiarity is greater than 0.8
+filter(artist_familiarity &gt; 0.8) %&gt;%
+# Compute the results
+compute(“familiar_artists”)
+# See the available datasets
+src_tbls(spark_conn)
+# Examine the class of the computed results
+class(computed)</p>
+<div id="section-5" class="section level30">
+<p></p>
+</div>
+</div>
+<div id="note-that-the-columns-passed-to-group_by-should-typically-be-categorical-variables.-for-example-if-you-wanted-to-calculate-the-average-weight-of-people-relative-to-their-height-it-doesnt-make-sense-to-group-by-height-since-everyones-height-is-unique.-you-could-however-use-cut-to-convert-the-heights-into-different-categories-and-calculate-the-mean-weight-for-each-category." class="section level1">
+<h1>Note that the columns passed to group_by() should typically be categorical variables. For example, if you wanted to calculate the average weight of people relative to their height, it doesn’t make sense to group by height, since everyone’s height is unique. You could, however, use cut() to convert the heights into different categories, and calculate the mean weight for each category.</h1>
+</div>
+<div id="track_metadata_tbl-has-been-pre-defined-5" class="section level1">
+<h1>track_metadata_tbl has been pre-defined</h1>
+<p>track_metadata_tbl
+duration_by_artist &lt;- track_metadata_tbl %&gt;%
+# Group by artist
+group_by(artist_name) %&gt;%
+# Calc mean duration
+summarize(mean_duration = mean(duration))
+duration_by_artist %&gt;%
+# Sort by ascending mean duration
+arrange(mean_duration)
+duration_by_artist %&gt;%
+# Sort by descending mean duration
+arrange(desc(mean_duration))</p>
+<div id="section-6" class="section level30">
+<p></p>
+</div>
+</div>
+<div id="track_metadata_tbl-has-been-pre-defined-6" class="section level1">
+<h1>track_metadata_tbl has been pre-defined</h1>
+<p>track_metadata_tbl
+track_metadata_tbl %&gt;%
+# Group by artist
+group_by(artist_name) %&gt;%
+# Calc time since first release
+mutate(time_since_first_release = year - min(year)) %&gt;%
+# Arrange by descending time since first release
+arrange(desc(time_since_first_release))</p>
+<div id="section-7" class="section level29">
+<p></p>
+<p>As previously mentioned, when you use the dplyr interface, sparklyr converts your code into SQL before passing it to Spark. Most of the time, this is what you want. However, you can also write raw SQL to accomplish the same task. Most of the time, this is a silly idea since the code is harder to write and harder to debug. However, if you want your code to be portable – that is, used outside of R as well – then it may be useful. For example, a fairly common workflow is to use sparklyr to experiment with data processing, then switch to raw SQL in a production environment. By writing raw SQL to begin with, you can just copy and paste your queries when you move to production.
+SQL queries are written as strings, and passed to dbGetQuery() from the DBI package. The pattern is as follows.
+query &lt;- “SELECT col1, col2 FROM some_data WHERE some_condition”
+a_data.frame &lt;- dbGetQuery(spark_conn, query)
+Note that unlike the dplyr code you’ve written, dbGetQuery() will always execute the query and return the results to R immediately. If you want to delay returning the data, you can use dbSendQuery() to execute the query, then dbFetch() to return the results. That’s more advanced usage, not covered here. Also note that DBI functions return data.frames rather than tibbles, since DBI is a lower-level package.</p>
+</div>
+</div>
+<div id="write-sql-query" class="section level1">
+<h1>Write SQL query</h1>
+<p>query &lt;- “SELECT * FROM track_metadata WHERE year &lt; 1935 AND duration &gt; 300”
+# Run the query
+(results &lt;- dbGetQuery(spark_conn, query))
+###################################
+# track_metadata_tbl and artist_terms_tbl have been pre-defined
+track_metadata_tbl
+artist_terms_tbl
+# Left join artist terms to track metadata by artist_id
+joined &lt;- left_join(track_metadata_tbl, artist_terms_tbl, by = “artist_id”)
+joined &lt;- semi_join(track_metadata_tbl, artist_terms_tbl, by = “artist_id”)
+anti_join</p>
+</div>
+<div id="how-many-rows-and-columns-are-in-the-joined-table" class="section level1">
+<h1>How many rows and columns are in the joined table?</h1>
+<p>dim(joined)</p>
+<div id="section-8" class="section level24">
+<p></p>
+<p>ft_ feature transformation functions ( cut, )
+ml_ machine learning transformations
+sdf_ spark dataframe api (sampling, partitioning )
+#######################
+The sparklyr way of converting a continuous variable into logical uses ft_binarizer(). The previous diabetes example can be rewritten as the following. Note that the threshold value should be a number, not a string refering to a column in the dataset.
+diabetes_data %&gt;%
+ft_binarizer(“plasma_glucose_concentration”, “has_diabetes”, threshold = threshold_mmol_per_l)
+In keeping with the Spark philosophy of using DoubleType everywhere, the output from ft_binarizer() isnt actually logical; it is numeric. This is the correct approach for letting you continue to work in Spark and perform other transformations, but if you want to process your data in R, you have to remember to explicitly convert the data to logical. The following is a common code pattern.
+a_tibble %&gt;%
+ft_binarizer(“x”, “is_x_big”, threshold = threshold) %&gt;%
+collect() %&gt;%
+mutate(is_x_big = as.logical(is_x_big))</p>
+<p>hotttnesss &lt;- track_metadata_tbl %&gt;%
+# Select artist_hotttnesss
+select(artist_hotttnesss) %&gt;%
+# Binarize to is_hottt_or_nottt
+ft_binarizer(“artist_hotttnesss”,“is_hottt_or_nottt”, threshold = 0.5) %&gt;%
+# Collect the result
+collect() %&gt;%
+# Convert is_hottt_or_nottt to logical
+mutate(is_hottt_or_nottt = as.logical(is_hottt_or_nottt))
+# Draw a barplot of is_hottt_or_nottt
+ggplot(hotttnesss, aes(is_hottt_or_nottt)) +
+geom_bar()
+####################################################################
+The sparklyr equivalent of this is to use ft_bucketizer(). The code takes a similar format to ft_binarizer(), but this time you must pass a vector of cut points to the splits argument. Here is the same example rewritten in sparklyr style.
+smoking_data %&gt;%
+ft_bucketizer(“cigarettes_per_day”, “smoking_status”, splits = c(0, 1, 10, 20, Inf))
+There are several important things to note. You may have spotted that the breaks argument from cut() is the same as the splits argument from ft_bucketizer(). There is a slight difference in how values on the boundary are handled. In cut(), by default, the upper (right-hand) boundary is included in each bucket, but not the left. ft_bucketizer() includes the lower (left-hand) boundary in each bucket, but not the right. This means that it is equivalent to calling cut() with the argument right = FALSE.
+One exception is that ft_bucketizer() includes values on both boundaries for the upper-most bucket. So ft_bucketizer() is also equivalent to setting include.lowest = TRUE when using cut().
+The final thing to note is that whereas cut() returns a factor, ft_bucketizer() returns a numeric vector, with values in the first bucket returned as zero, values in the second bucket returned as one, values in the third bucket returned as two, and so on. If you want to work on the results in R, you need to explicitly convert to a factor. This is a common code pattern:</p>
+<p>a_tibble %&gt;%
+ft_bucketizer(“x”, “x_buckets”, splits = splits) %&gt;%
+collect() %&gt;%
+mutate(x_buckets = factor(x_buckets, labels = labels)</p>
+<pre><code>     # track_metadata_tbl, decades, decade_labels have been pre-defined
+     track_metadata_tbl
+     decades
+     decade_labels
+     
+     hotttnesss_over_time &lt;- track_metadata_tbl %&gt;%
+       # Select artist_hotttnesss and year
+       select(artist_hotttnesss, year) %&gt;%
+       # Convert year to numeric
+       mutate(year = as.numeric(year)) %&gt;%
+       # Bucketize year to decade using decades vector
+       ft_bucketizer(&quot;year&quot;,&quot;decade&quot;,splits = decades) %&gt;%
+       # Collect the result
+       collect() %&gt;%
+       # Convert decade to factor using decade_labels
+       mutate(decade = factor(decade, labels = decade_labels))
+     
+     # Draw a boxplot of artist_hotttnesss by decade
+     ggplot(hotttnesss_over_time, aes(decade, artist_hotttnesss)) +
+       geom_boxplot()  
+     
+     
+     ###########################################
+     
+     
+     # track_metadata_tbl, duration_labels have been pre-defined
+     track_metadata_tbl
+     duration_labels
+     
+     familiarity_by_duration &lt;- track_metadata_tbl %&gt;%
+       # Select duration and artist_familiarity
+       select(duration, artist_familiarity) %&gt;%
+       # Bucketize duration
+       ft_quantile_discretizer(&quot;duration&quot;,&quot;duration_bin&quot;, n.buckets = 5) %&gt;%
+       # Collect the result
+       collect() %&gt;%
+       # Convert duration bin to factor
+       mutate(duration_bin = factor(duration_bin, labels = duration_labels))
+     
+     # Draw a boxplot of artist_familiarity by duration_bin
+     ggplot(familiarity_by_duration, aes(duration_bin, artist_familiarity)) +
+       geom_boxplot() 
+     
+     #############################################################
+     
+     
+     More than words: tokenization (1)
+     Common uses of text-mining include analyzing shopping reviews to ascertain purchasers feeling about the product, or analyzing financial news to predict the sentiment regarding stock prices. In order to analyze text data, common pre-processing steps are to convert the text to lower-case (see tolower()), and to split sentences into individual words.
+     ft_tokenizer() performs both these steps. Its usage takes the same pattern as the other transformations that you have seen, with no other arguments.
+     shop_reviews %&gt;%
+       ft_tokenizer(&quot;review_text&quot;, &quot;review_words&quot;)
+     Since the output can contain a different number of words in each row, output.col is a list column, where every element is a list of strings. To analyze text data, it is usually preferable to have one word per row in the data. The list-of-list-of-strings format can be transformed to a single character vector using unnest() from the tidyr package. There is currently no method for unnesting data on Spark, so for now, you have to collect it to R before transforming it. The code pattern to achieve this is as follows.
+     library(tidyr)
+     text_data %&gt;%
+       ft_tokenizer(&quot;sentences&quot;, &quot;word&quot;) %&gt;%
+       collect() %&gt;%
+       mutate(word = lapply(word, as.character)) %&gt;%
+       unnest(word)
+     # track_metadata_tbl has been pre-defined
+     track_metadata_tbl
+     title_text &lt;- track_metadata_tbl %&gt;%
+       # Select artist_name, title
+       select(artist_name, title) %&gt;%
+       # Tokenize title to words
+       ft_tokenizer(&quot;title&quot;, &quot;word&quot;) %&gt;%
+       # Collect the result
+       collect() %&gt;%
+       # Flatten the word column 
+       mutate(word = lapply(word, as.character)) %&gt;% 
+       # Unnest the list column
+       unnest(word)
+     #################################
+     More than words: tokenization (3)
+     ft_tokenizer() uses a simple technique to generate words by splitting text data on spaces. For more advanced usage, you can use regular expressions to split the text data. This is done via the ft_regex_tokenizer() function, which has the same usage as ft_tokenizer(), but with an extra pattern argument for the splitter.
+     a_tibble %&gt;%
+       ft_regex_tokenizer(&quot;x&quot;, &quot;y&quot;, pattern = regex_pattern)
+     The return value from ft_regex_tokenizer(), like ft_tokenizer(), is a list of lists of character vectors.
+     The dataset contains a field named artist_mbid that contains an ID for the artist on MusicBrainz, a music metadata encyclopedia website. The IDs take the form of hexadecimal numbers split by hyphens
+     
+     track_metadata_tbl %&gt;%
+       # Select artist_mbid column
+       select(artist_mbid) %&gt;%
+       # Split it by hyphens
+       ft_regex_tokenizer(&quot;artist_mbid&quot;, &quot;artist_mbid_chunks&quot;, pattern = &quot;-&quot;)
+     ##############################
+     # Compare timings of arrange() and sdf_sort()
+     microbenchmark(
+       arranged = track_metadata_tbl %&gt;%
+         # Arrange by year, then artist_name, then release, then title
+         arrange(year, artist_name, release, title) %&gt;%
+         # Collect the result
+         collect(),
+       sorted = track_metadata_tbl %&gt;%
+         # Sort by year, then artist_name, then release, then title
+         sdf_sort(c(&quot;year&quot;,&quot;artist_name&quot;,&quot;release&quot;,&quot;title&quot;)) %&gt;%
+         # Collect the result
+         collect(),
+       times = 5
+     )
+     ########################################
+     looking at the data types
+     # track_metadata_tbl has been pre-defined
+     track_metadata_tbl
+     # Get the schema
+     (schema &lt;- sdf_schema(track_metadata_tbl))
+     # ad way to Transform the schema into something more readable
+     schema %&gt;%
+       lapply(function(x) do.call(data_frame, x)) %&gt;%
+       bind_rows()
+     R type               Spark type
+     logical              boolean
+     numeric              doubletype
+     integer              integertype
+     character            stringtype
+     list                 arraytype
+     ##################################
+     Shrinking the data by sampling
+     When you are working with a big dataset, you typically dont really need to work with all of it all the time. Particularly at the start of your project, while you are experimenting wildly with what you want to do, you can often iterate more quickly by working on a smaller subset of the data. sdf_sample() provides a convenient way to do this. It takes a tibble, and the fraction of rows to return. In this case, you want to sample without replacement. To get a random sample of one tenth of your dataset, you would use the following code.
+     a_tibble %&gt;%
+       sdf_sample(fraction = 0.1, replacement = FALSE)
+     Since the results of the sampling are random, and you will likely want to reuse the shrunken dataset, it is common to use compute() to store the results as another Spark data frame. 
+     a_tibble %&gt;%
+       sdf_sample(&lt;some args&gt;) %&gt;%
+       compute(&quot;sample_dataset&quot;)
+     To make the results reproducible, you can also set a random number seed via the seed argument. Doing this means that you get the same random dataset every time you run your code. It doesnt matter which number you use for the seed; just choose your favorite positive integer.
+     ######################################
+     Training/testing partitions
+     Most of the time, when you run a predictive model, you need to fit the model on one subset of your data (the &quot;training&quot; set), then test the model predictions against the rest of your data (the &quot;testing&quot; set).
+     sdf_partition() provides a way of partitioning your data frame into training and testing sets. Its usage is as follows.
+     a_tibble %&gt;%
+       sdf_partition(training = 0.7, testing = 0.3)
+     There are two things to note about the usage. Firstly, if the partition values don&#39;t add up to one, they will be scaled so that they do. So if you passed training = 0.35 and testing = 0.15, you&#39;d get double what you asked for. Secondly, you can use any set names that you like, and partition the data into more than two sets. So the following is also valid.
+     a_tibble %&gt;%
+       sdf_partition(a = 0.1, b = 0.2, c = 0.3, d = 0.4)
+     The return value is a list of tibbles. you can access each one using the usual list indexing operators.
+     partitioned$a
+     partitioned[[&quot;b&quot;]]
+     partitioned &lt;- track_metadata_tbl %&gt;%
+       # Partition into training and testing sets
+       sdf_partition(training = 0.7, testing = 0.3)
+     # Get the dimensions of the training set
+     dim(partitioned$training)
+     # Get the dimensions of the testing set
+     dim(partitioned$testing)
+     #################################
+     Supported machine learning functions include linear regression and its variants, tree-based models (ml_decision_tree(), and a few others. You can see the list of all the machine learning functions using ls().
+                                                                                                         </code></pre>
+<p>ls(“package:sparklyr”, pattern = “^ml”)</p>
+<p>#########################################################
+Working with parquet files
+CSV files are great for saving the contents of rectangular data objects (like R data.frames and Spark DataFrames) to disk. The problem is that they are really slow to read and write, making them unusable for large datasets. Parquet files provide a higher performance alternative. As well as being used for Spark data, parquet files can be used with other tools in the Hadoop ecosystem, like Shark, Impala, Hive, and Pig.
+Technically speaking, parquet file is a misnomer. When you store data in parquet format, you actually get a whole directory worth of files. The data is split across multiple .parquet files, allowing it to be easily stored on multiple machines, and there are some metadata files too, describing the contents of each column.
+sparklyr can import parquet files using spark_read_parquet(). This function takes a Spark connection, a string naming the Spark DataFrame that should be created, and a path to the parquet directory. Note that this function will import the data directly into Spark, which is typically faster than importing the data into R, then using copy_to() to copy the data from R to Spark.
+spark_read_parquet(sc, “a_dataset”, “path/to/parquet/dir”)</p>
+<p># parquet_dir has been pre-defined
+parquet_dir
+# List the files in the parquet dir
+filenames &lt;- dir(parquet_dir, full.names = TRUE)
+# Show the filenames and their sizes
+data_frame(
+filename = basename(filenames),
+size_bytes = file.size(filenames)
+)
+# Import the data into Spark
+timbre_tbl &lt;- spark_read_parquet(spark_conn, “timbre”, parquet_dir)</p>
+<p>######################################</p>
+<p>Partitioning data with a group effect
+Before you can run any models, you need to partition your data into training and testing sets. There’s a complication with this dataset, which means you can’t just call sdf_partition(). The complication is that each track by a single artist ought to appear in the same set; your model will appear more accurate than it really is if tracks by an artist are used to train the model then appear in the testing set.
+The trick to dealing with this is to partition only the artist IDs, then inner join those partitioned IDs to the original dataset. Note that artist_id is more reliable than artist_name for partitioning, since some artists use variations on their name between tracks. For example, Duke Ellington sometimes has an artist name of “Duke Ellington”, but other times has an artist name of “Duke Ellington &amp; His Orchestra”, or one of several spelling variants.
+training_testing_artist_ids &lt;- track_data_tbl %&gt;%
+# Select the artist ID
+select(artist_id) %&gt;%
+# Get distinct rows
+distinct() %&gt;%
+# Partition into training/testing sets
+sdf_partition(training = 0.7, testing = 0.3)
+track_data_to_model_tbl &lt;- track_data_tbl %&gt;%
+# Inner join to training partition
+inner_join(training_testing_artist_ids<span class="math inline">\(training, by = &quot;artist_id&quot;)  track_data_to_predict_tbl &lt;- track_data_tbl %&gt;%  # Inner join to testing partition  inner_join(training_testing_artist_ids\)</span>testing, by = “artist_id”)
+#################################################
+An ML Gradient boosted tree model (all numeric features)</p>
+<p>feature_colnames &lt;- track_data_to_model_tbl %&gt;%
+# Get the column names
+colnames() %&gt;%
+# Limit to the timbre columns
+str_subset(fixed(“timbre”))
+gradient_boosted_trees_model &lt;- track_data_to_model_tbl %&gt;%
+# Run the gradient boosted trees model
+ml_gradient_boosted_trees(features = feature_colnames, response = “year”)
+#################################
+Predictions
+# training, testing sets &amp; model are pre-defined
+track_data_to_model_tbl
+track_data_to_predict_tbl
+gradient_boosted_trees_model
+responses &lt;- track_data_to_predict_tbl %&gt;%
+# Select the year column
+select(year) %&gt;%
+# Collect the results
+collect() %&gt;%
+# Add in the predictions
+mutate(
+predicted_year = predict(
+gradient_boosted_trees_model,
+track_data_to_predict_tbl
+)
+)</p>
+<p>###############################
+# plots to assess quality of model fit
+One slightly tricky thing here is that sparklyr doesnt yet support the residuals() function in all its machine learning models. Consequently, you have to calculate the residuals yourself (predicted responses minus actual responses).
+# Draw a scatterplot of predicted vs. actual
+ggplot(responses, aes(actual, predicted)) +
+# Add the points
+geom_point(alpha = 0.1) +
+# Add a line at actual = predicted
+geom_abline(intercept = 0, slope = 1)
+residuals &lt;- responses %&gt;%
+# Transmute response data to residuals
+transmute(residual = responses<span class="math inline">\(predicted-responses\)</span>actual)
+# Draw a density plot of residuals
+ggplot(residuals, aes(residual)) +
+# Add a density curve
+geom_density() +
+# Add a vertical line through zero
+geom_vline(xintercept = 0)</p>
+<p>##################################
+Random Forest: modeling
+Like gradient boosted trees, random forests are another form of ensemble model. That is, they use lots of simpler models (decision trees, again) and combine them to make a single better model. Rather than running the same model iteratively, random forests run lots of separate models in parallel, each on a randomly chosen subset of the data, with a randomly chosen subset of features. Then the final decision tree makes predictions by aggregating the results from the individual models.
+sparklyrs random forest function is called ml_random_forest(). Its usage is exactly the same as ml_gradient_boosted_trees() (see the first exercise of this chapter for a reminder on syntax).
+# Get the timbre columns
+feature_colnames &lt;- track_data_to_model_tbl %&gt;%
+colnames() %&gt;%
+str_subset(fixed(“timbre”))
+# Run the random forest model
+random_forest_model &lt;- track_data_to_model_tbl %&gt;%
+ml_random_forest(features = feature_colnames, response = “year”)
+################################################
+# Create a response vs. actual dataset
+responses &lt;- track_data_to_predict_tbl %&gt;%
+select(year) %&gt;%
+collect() %&gt;%
+mutate(predicted_year = predict(random_forest_model, track_data_to_predict_tbl))</p>
+<p>################################
+# Create a residual sum of squares dataset
+both_responses %&gt;%
+mutate(residual = both_responses<span class="math inline">\(predicted - both_responses\)</span>actual) %&gt;%
+group_by(model) %&gt;%
+summarise(rmse = sqrt(mean(residual * residual)))<br />
+######################################</p>
+</div>
+</div>
