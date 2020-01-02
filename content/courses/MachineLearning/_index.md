@@ -26,7 +26,7 @@ Before embarking on a study of Machine learning, invest some time in understandi
 
 [Everybody Lies, Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are, by Seth Stephens-Davidowitz](http://everybodyliesbook.com/) offers ground level revelations into ourselves, our lives, and the profound impacts that Machine Learning tools have. 
 
-![Everybody Lies]("http://assetlibrary.supadu.com/images/working2/p0/87429.png">)
+![Everybody Lies](http://assetlibrary.supadu.com/images/working2/p0/87429.png)
 
 Machine learning is built on a statistics foundation. There are excellent materials available from Coursera and even Khan Academy if you need a review. I keep this textbook handy: [![Statistics for Business and Economics by Anderson, Sweeney, Williams, Camm, and Cochran]("https://images-na.ssl-images-amazon.com/images/I/518wsxobmEL._SX342_QL70_.jpg")](https://www.amazon.com/Statistics-Business-Economics-Revised-Anderson-ebook/dp/B06X9B44C9)
 
