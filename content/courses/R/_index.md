@@ -44,7 +44,7 @@ Anyone doing serious graphics work in R will want *R Graphics by Paul Murrell (C
 
 [How Charts Lie](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569) and [Factfulness](https://www.gapminder.org/factfulness/) each speak to how numbers are very persuasive, and so are charts, because we associate them with science and reason. Charts can enlighten and enable conversations, allowing us to peek through the complexity of large amounts of data. Good charts make us smarter.
 
-[How Charts Lie, by Alberto Cairo]("http://albertocairo.com/wp-content/uploads/2019/07/How-Charts-Lie-cover_high.jpg")
+![How Charts Lie, by Alberto Cairo]("http://albertocairo.com/wp-content/uploads/2019/07/How-Charts-Lie-cover_high.jpg")
 
 The use of git and GitHub are important for team collaboration. Find Jenny Bryan’s web book [Happy Git and GitHub for the useR](http://happygitwithr.com/).
 
