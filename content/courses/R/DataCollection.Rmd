@@ -1,0 +1,45 @@
+---
+title: "R Data Collection"
+author: "Jim Gruman"
+output: html_document
+date: "2019-11-23T00:00:00+01:00"
+draft: false
+linktitle: Data Collection
+menu:
+  example:
+    parent: R Language Welcome
+    weight: 2
+type: docs
+weight: 2
+---
+
+## Data Collection
+
+### (Add content for read.table, base-R read.csv, and read.excel)
+
+Every project must start with a team-wide understanding of the client's pain points and the decisions that they face. What knowledge gives your client a competitive advantage? What is their naiive baseline?
+
+Given a firm grasp of the businesses expectations, start exploring available data resources.  Be cognisant of how the data was acquired, and any biases. This crucial work normally already has practitioners embedded within the team of domain experts.
+
+R offers packages for importing most sources of data, ranging from CSV text to databases to SAS. For basic formats, the most commonly used are the packages <span style="color:blue">readr</span>, <span style="color:blue">data.table</span>, and <span style="color:blue">readxl</span>
+
+All packages must first be installed to R, via <span style="color:red">install.packages(" ")</span>. At the beginning of the R script, it then is available for loading into session with
+```{r}
+library(readr)
+```
+
+As an example, we will read the *Used Cars* dataset from [notredame.analytics.data](https://s3.amazonaws.com/notredame.analytics.data/usedcars.csv)
+
+```{r read data, message=TRUE, warning=FALSE}
+usedcars <-
+  read_csv('./data/usedcars.csv')
+```
+Note the column specification assumed by the read_csv command. For data sets with more than 1000 lines, it is best to set <span style="color:red">col_types = </span> to a character vector to force the field types.  See <span style="color:red">?read_csv</span> for the help for the function.
+
+Let's take a look at what our data looks like.
+```{r}
+head(usedcars)
+```
+```{r}
+summary(usedcars)
+```

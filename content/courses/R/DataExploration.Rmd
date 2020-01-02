@@ -1,0 +1,169 @@
+---
+title: "R Data Exploration"
+author: "Jim Gruman"
+date: '2019-05-05T00:00:00+01:00'
+menu:
+  example:
+    parent: R Language Welcome
+    weight: 3
+linktitle: Data Exploration
+draft: no
+type: docs
+weight: 3
+---
+
+## Data Exploration
+
+This time we will load all of the packages in <span style="color:blue">tidyverse</span>.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+usedcars <-
+  read_csv('./usedcars.csv')
+```
+
+We can measure the spread of the features independently. For example, for the 'price' feature, we can get mean, min, max and range.
+
+```{r }
+usedcars %>% pull(price) %>% mean()
+```
+```{r}
+usedcars %>% pull(price) %>% min()
+```
+```{r}
+usedcars %>% pull(price) %>% max()
+```
+```{r}
+usedcars %>% pull(price) %>% range()
+```
+
+We can also get the difference of the range,...
+```{r}
+usedcars %>% pull(price) %>% range() %>% diff()
+```
+
+...and the inter-quartile range (Q3-Q1) using the <span style="color:red">IQR()</span> function. 
+```{r}
+usedcars %>% pull(price) %>% IQR()
+```
+
+We can also use the <span style="color:red">quantile()</span> function to calculate the five-number summary, ...
+```{r}
+usedcars %>% pull(price) %>% quantile()
+```
+
+... and the 1st and 99th percentiles for example.
+```{r}
+usedcars %>% pull(price) %>% quantile(probs = c(0.01, 0.99))
+```
+
+The <span style="color:red">var()</span> and <span style="color:red">sd()</span> functions give us the variance and standard deviation. 
+```{r}
+usedcars %>% pull(price) %>% var()
+usedcars %>% pull(price) %>% sd()
+```
+
+Remember that we can also get summary statistics on discrete features. 
+```{r}
+summary(usedcars$price)
+```
+
+Notice that 'model', 'color' and 'transmission' are treated as string values. To get better summaries, we need to convert them to factors. Let's also convert 'year' to a factor.
+```{r}
+usedcars <- mutate(usedcars, year = as.factor(year))
+usedcars <- mutate(usedcars, model = as.factor(model))
+usedcars <- mutate(usedcars, color = as.factor(color))
+usedcars <- mutate(usedcars, transmission = as.factor(transmission))
+```
+
+Notice the differences in the presentation of the factors in the summary
+```{r}
+summary(usedcars)
+```
+
+To see the full data distribution for a feature, we use the <span style="color:red">table()</span> function.
+```{r}
+usedcars %>% pull(year) %>% table()
+usedcars %>% pull(color) %>% table()
+```
+
+We can also compute the distribution proportions (rounded to 2 decimal places).
+```{r}
+usedcars %>% pull(model) %>% table()
+usedcars %>% pull(model) %>% table() %>% prop.table() %>% round(digits=4) * 100
+```
+
+Let's do some visual exploration against our data.
+
+Create a scatterplot of price vs. mileage.
+```{r}
+usedcars %>%
+ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price)) +
+  labs(title = "Scatterplot of Price vs. Mileage", 
+       x = "Used Car Odometer (mi.)", 
+       y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()
+```
+What can we infer from the scatterplot?
+ 
+What if we tried to group our plot by transmission? Do we learn anything new?
+```{r}
+usedcars %>%
+  ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price, color = transmission)) +
+  labs(title = "Scatterplot of Price vs. Mileage", 
+       x = "Used Car Odometer (mi.)", 
+       y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()+
+       theme(legend.position = "top")
+```
+
+What about grouping by model?
+```{r}
+usedcars %>%
+  ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price, color = model)) +
+  labs(title = "Scatterplot of Price vs. Mileage", 
+       x = "Used Car Odometer (mi.)", 
+       y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()+
+       theme(legend.position = "top")
+```
+
+And when you group by year, what do we see?
+```{r}
+usedcars %>%
+  ggplot() +
+  geom_point(mapping = aes(x = mileage, y = price, color = year)) +
+  labs(title = "Scatterplot of Price vs. Mileage", x = "Used Car Odometer (mi.)", y = "Used Car Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+theme_minimal()+
+       theme(legend.position = "left")
+```
+
+Using a box plot to show price by year reveals the expected.
+```{r}
+usedcars %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = year, y = price, fill = year)) +
+  labs(title = "Boxplot of Used Car Prices by Year", 
+       x = "Year", 
+       y = "Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+
+       theme_minimal()+
+       theme(legend.position = "")
+```
+
+What does the boxplot of price by model type tell us?
+```{r}
+usedcars %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = model, y = price, fill = model)) +
+  labs(title = "Boxplot of Used Car Prices by Model", 
+       x = "Model", 
+       y = "Price ($)",
+       caption = "Plot: Jim Gruman. Data: usedcars")+
+       theme_minimal()+
+       theme(legend.position = "")
+```

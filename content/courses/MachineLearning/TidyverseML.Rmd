@@ -6,11 +6,11 @@ draft: false
 linktitle: Tidyverse ML
 menu:
   example:
-    parent: Topic
-    weight: 5
+    parent: 102
+    weight: 15
 title: Machine Learning in R
 type: docs
-weight: 5
+weight: 15
 ---
 
 ## Machine Learning in the Tidyverse

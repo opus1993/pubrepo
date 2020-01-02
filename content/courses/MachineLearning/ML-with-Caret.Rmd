@@ -6,11 +6,11 @@ draft: false
 linktitle: ML with Caret
 menu:
   example:
-    parent: Topic
-    weight: 6
+    parent: 102
+    weight: 16
 title: Machine Learning with Caret
 type: docs
-weight: 6
+weight: 16
 ---
 
 ```{r s, include=FALSE}

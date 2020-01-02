@@ -6,11 +6,11 @@ draft: false
 linktitle: Spark with R
 menu:
   example:
-    parent: Topic
-    weight: 7
+    parent: 102
+    weight: 17
 title: Spark with R
 type: docs
-weight: 7
+weight: 17
 ---
 
 ```{r s, include=FALSE}

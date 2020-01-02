@@ -1,0 +1,706 @@
+---
+title: "Linear Regression"
+author: "Jim Gruman"
+date: '2020-01-01'
+menu:
+  example:
+    parent: R Language Welcome
+    weight: 3
+linktitle: Linear Regression
+draft: no
+type: docs
+weight: 1
+---
+
+In statistics, modeling is where we get down to business. Models quantify the relationships between our variables, and let us make predictions.
+
+A simple linear regression is the most basic model. It's just two variables and is modeled as a linear relationship with an error term:
+
+$$
+y_{i} = \beta_{0} + \beta_{1}x_{i} + \epsilon
+$$
+
+We are given the data for *x* and *y*. Our mission is to fit the model, which will give us the best estimates for $\beta_{0}$ and $\beta_{1}$
+
+This generalizes naturally to multiple linear regression, where we have multiple variables on the right hand side of the relationship:
+
+$$
+y_{i} = \beta_{0} + \beta_{1}u_{i} + \beta_{2}v_{i} + \beta_{3}w_{i} + \epsilon
+$$
+
+Statisticians call *u*, *v*, and *w* the *predictors* and *y* the *response*. Obviously, the model is only useful if there is a fairly linear relationship between the predictors and the response.
+
+The beauty of R is that anyone can build these linear models. The models are all built the the function *lm*, which returns a model object. From the model object, we get coefficients($\beta_{i}$) and regression statistics. Easy!
+
+The horror of R is that anyone can build these linear models. Nothing requires you to check that the model is reasonable, much less statistically significant. Before you blindly believe a model, check it! Most of the information you need is in the regression summary.
+
+------
+
+```{r setup, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(lmtest)
+library(patchwork)
+```
+
+## Simple Linear Regression
+
+The problem:  you have two vectors, *x* and *y*, that hold paired observations. You believe that there is a linear relationship between *x* and *y*.
+
+The solution: 
+
+```{r}
+## create dummy data
+set.seed(42)
+x <- rnorm(100)
+e <- rnorm(100, mean = 0, sd = 5)
+y <- 5 + 15 * x + e  ##
+
+lm(y ~ x)
+```
+
+In this case, the regression equation is 
+
+$$
+y_{i} = 4.558 + 15.136x_{i} + \epsilon
+$$
+
+More commonly, the data to be captured is inside of a data frame, in which case the regression is performed between two columns.
+
+```{r}
+df <- data.frame(x, y)
+head(df)
+```
+
+The *lm* function lets you specify a data frame by using a *data* parameter. If you do , the function will take the variables from the data frame and not from the workspace.
+
+```{r}
+lm(y ~ x, data = df)
+```
+
+## Multiple Linear Regression
+
+R uses the same *lm* function for both simple and multiple linear regression. You simply add more variables to the righthand side of the model formula.
+
+```{r}
+## create dummy data
+set.seed(42)
+u <- rnorm(100)
+v <- rnorm(100, mean = 3, sd = 2)
+w <- rnorm(100, mean = -3, sd =1)
+e <- rnorm(100, mean = 0, sd = 5)
+y <- 5 + 4 * u + 3 * v + 2 * w  + e  
+
+m<-lm(y ~ u + v + w)
+
+m
+```
+
+The results are pretty close to the equation originally created. The *data* parameter is especially valuable when the number of variables increases, since it's much easier to keep data in one data frame than in many separate variables. 
+
+## Getting Regression Statistics
+
+Assuming a regression model *m* from above
+
+The following functions provide information:
+
+`anova(m)`
+
+ANOVA table
+
+`coefficients(m)`
+
+Model coefficients
+
+`coef(m)`
+
+Same as coefficients()
+
+`confint(m)`
+
+Confidence intervals for the coefficients
+
+`deviance(m)`
+
+Residual sum of squares
+
+`effects(m)`
+
+Vector of orthogonal effects
+
+`fitted(m)`
+
+Vector of fitted *y* values
+
+`residuals(m)`
+
+Model residuals
+
+`resid(m)`
+
+Same as residuals
+
+`vcov(m)`
+
+Variance-covariance matric of main parameters
+
+
+```{r} 
+summary(m)
+```
+
+Key statistics, such as the *F* statistic and the residual standard error. Read this from bottom to top, The *F* statistic tells you whether the model overall is significant or not. Conventionally, a p-value of less than 0.05 indicates that the model is likely significant, whereas values exceeding 0.05 indicate that the model is not. The wise statistician starts here.
+
+A handy feature is that R flags the significant variables for quick identification. Did you notice the extremen righthand column containing triple asterisks (*)? Other values you might see in this column are double asterisks, a single asterisk, or a period. This column highlights the significant features. The line Signif. codes at the bottom gives a cryptic guide to the flags' meanings.
+
+------
+
+## Performing a Linear Regression without an Intercept
+
+lm(y ~ x + 0)
+
+Simply add a constant 0 to the formula
+
+## Regressing Only Variables that Highly Correlate with the Dependant Variable
+
+If you have a data frame with many variables, there are a number of approaches to build a multiple linear regression using only the variables that are highly correlated with the response variable.
+
+By combining mapping functions, we can create a recipe to remove low-correlation variables from a set of predictors and use the high-correlation predictors in a regression.
+
+We have an example data frame that contains six predictor variables named *pred1* through *pred6*. The response variable is named *resp*. Loading the data and dropping the resp variable is pretty straightforward. Look at the result of mapping the cor function:
+
+```{r}
+load("./data/pred.rdata")
+
+pred %>%
+  select(-resp) %>%
+  map_dbl(cor, y = pred$resp) 
+```
+
+The output is a named vector of values where the names are the variable names and the values are the pairwise correlations between each predictor variable and resp, the response variable. If we sort this vector, we get the correlations in decreasing order:
+
+```{r}
+pred %>%
+  select(-resp) %>%
+  map_dbl(cor, y = pred$resp) %>%
+  sort(decreasing = TRUE)
+```
+
+Using subsetting allows us to select the top four records. The . operator is a special operator that tells the pipe where to put the result of the prior step.
+
+```{r}
+pred %>%
+  select(-resp) %>%
+  map_dbl(cor, y = pred$resp) %>%
+  sort(decreasing = TRUE) %>%
+  .[1:4]
+```
+
+We then use the names function to extract the names from our vector. The names are the names of the columns we ultimately want to use as our independent variables:
+
+```{r}
+pred %>%
+  select(-resp) %>%
+  map_dbl(cor, y = pred$resp) %>%
+  sort(decreasing = TRUE) %>%
+  .[1:4] %>%
+  names
+```
+
+When we pass the vector of names into pred[.], the names are used to select columns from the pred data frame. We then use head to select only the top six rows for easier illustration:
+
+```{r}
+pred %>%
+  select(-resp) %>%
+  map_dbl(cor, y = pred$resp) %>%
+  sort(decreasing = TRUE) %>%
+  .[1:4] %>%
+  names %>%
+  pred[.] %>%
+  head
+```
+
+Now let’s bring it all together and pass the resulting data into the regression:
+
+```{r}
+best_pred <- pred %>%
+  select(-resp) %>%
+  map_dbl(cor, y = pred$resp) %>%
+  sort(decreasing = TRUE) %>%
+  .[1:4] %>%
+  names %>%
+  pred[.]
+
+mod <- lm(pred$resp ~ as.matrix(best_pred))
+
+summary(mod)
+```
+
+-----------
+
+## Performing Linear Regression with Interaction
+
+In regression, an interaction occurs when the product of two predictor variables is also a significant predictor (i.e., in addition to the predictor variables themselves). Suppose we have two predictors, u and v, and want to include their interaction in the regression. This is expressed by the following equation:
+
+$$
+y_{i} = \beta_{0} + \beta_{1}u_{i} + \beta_{2}v_{i} + \beta_{3}u_{i}v_{i} + \epsilon
+$$
+
+The R formula is simply y ~ u * v
+
+Likewise, if you have three predictors (u, v, and w) and want to include all their interactions, separate them by asterisks:   y ~ u * v * w
+
+This corresponds to the regression equation:
+
+$$
+y_{i} = \beta_{0} + \beta_{1}u_{i} + \beta_{2}v_{i} + \beta_{3}w_{i} + \beta_{4}u_{i}v_{i} + \beta_{5}v_{i}w_{i} + \beta_{6}u_{i}w_{i} + \beta_{7}u_{i}v_{i}w_{i} + \epsilon
+$$
+
+Now we have all the first-order interactions and a second-order interaction
+
+Sometimes, however, you may not want every possible interaction. You can explicitly specify a single product by using the colon operator (:). For example, u:v:w denotes the product term $\beta_{7}u_{i}v_{i}w_{i}$ but without all possible interactions. So the R formula:
+
+It might seem odd that colon (:) means pure multiplication while asterisk (*) means both multiplication and inclusion of constituent terms. Again, this is because we normally incorporate the constituents when we include their interaction, so making that approach the default for asterisk makes sense.
+
+There is some additional syntax for easily specifying many interactions:
+
+(u + v + ...)^2 Include all variables (u, v, …, w) and all their first-order interactions.
+
+(u + v + ...)^3 Include all variables (u, v, …, w) and all their second-order interactions.
+
+Both the asterisk (\*) and the colon (:) follow a “distributive law,” so the following notations are also allowed:  x\*(u + v + ...)  x:(u + v + ...)
+
+All this syntax gives you some flexibility in writing your formula. For example, these three formulas are equivalent:
+
+y ~ u \* v
+y ~ u + v + u:v
+y ~ (u + v) ^ 2
+
+## Selecting the Best Regression Variables
+
+The *step* function can perform stepwise regression, either forward or backward. Backward stepwise regression starts with many variables and removes the underperformers:
+
+```{r eval=FALSE}
+full.model <- lm(y ~ x1 + x2 + x3 + x4)
+
+reduced.model <- step(full.model, direction = "backward")
+```
+
+Forward stepwise regression starts with a few variables and adds new ones to improve the model until it cannot be improved further:
+
+```{r eval=FALSE}
+min.model <- lm(y ~ 1)
+fwd.model <-
+  step(min.model,
+       direction = "forward",
+       scope = (~ x1 + x2 + x3 + x4))
+```
+
+When you have many predictors, it can be quite difficult to choose the best subset. Adding and removing individual variables affects the overall mix, so the search for “the best” can become tedious.
+
+The step function automates that search. Backward stepwise regression is the easiest approach. Start with a model that includes all the predictors. We call that the full model. The model summary, shown here, indicates that not all predictors are statistically significant:
+
+```{r}
+set.seed(4)
+n <- 150
+x1 <- rnorm(n)
+x2 <- rnorm(n, 1, 2)
+x3 <- rnorm(n, 3, 1)
+x4 <- rnorm(n,-2, 2)
+e <- rnorm(n, 0, 3)
+y <- 4 + x1 + 5 * x3 + e
+
+full.model <- lm(y ~ x1 + x2 + x3 + x4)
+summary(full.model)
+```
+
+We want to eliminate the insignificant variables, so we use step to incrementally eliminate the underperformers. The result is called the reduced model:
+
+```{r}
+reduced.model <- step(full.model, direction="backward")
+```
+
+The output from step shows the sequence of models that it explored. In this case, step removed x2 and x4 and left only x1 and x3 in the final (reduced) model. The summary of the reduced model shows that it contains only significant predictors:
+
+```{r}
+summary(reduced.model)
+```
+
+Backward stepwise regression is easy, but sometimes it’s not feasible to start with “everything” because you have too many candidate variables. In that case use forward stepwise regression, which will start with nothing and incrementally add variables that improve the regression. It stops when no further improvement is possible.
+
+A model that “starts with nothing” may look odd at first:
+
+```{r}
+min.model <- lm(y ~ 1)
+```
+
+This is a model with a response variable (y) but no predictor variables. (All the fitted values for y are simply the mean of y, which is what you would guess if no predictors were available.)
+
+We must tell step which candidate variables are available for inclusion in the model. That is the purpose of the scope argument. scope is a formula with nothing on the lefthand side of the tilde (~) and candidate variables on the righthand side:
+
+```{r}
+fwd.model <- step(
+  min.model,
+  direction = "forward",
+  scope = (~ x1 + x2 + x3 + x4),
+  trace = 0
+)
+```
+
+Here we see that x1, x2, x3, and x4 are all candidates for inclusion. (We also included trace = 0 to inhibit the voluminous output from step.) The resulting model has two significant predictors and no insignificant predictors:
+
+```{r}
+summary(fwd.model)
+```
+
+The step-forward algorithm reached the same model as the step-backward model by including x1 and x3 but excluding x2 and x4. This is a toy example, so that is not surprising. In real applications, we suggest trying both the forward and the backward regression and then comparing the results. You might be surprised.
+
+Finally, don’t get carried away with stepwise regression. It is not a panacea, it cannot turn junk into gold, and it is definitely not a substitute for choosing predictors carefully and wisely. You might think: “Oh boy! I can generate every possible interaction term for my model, then let step choose the best ones! What a model I’ll get!” 
+
+-----
+
+## Using an Expression Inside a Regression Formula
+
+If you want to regress on the sum of u and v, then this is your regression equation:
+
+$$
+y_{i} = \beta_{0} + \beta_{1}(u_{i} + v_{i}) + \epsilon_{i}
+$$
+
+This will not work:  lm(y ~ u + v)  ## not quite right
+
+Here R will interpret u and v as two separate predictors, each with its own regression coefficient. Likewise, suppose your regression equation is:
+
+$$
+y_{i} = \beta_{0} + \beta_{1}u_{i} + \beta_{2}u_{i}^2 + \epsilon_{i}
+$$
+
+This will not work:  lm(y ~ u + u^2)  ## That's an interaction, not a quadtrac term
+
+The solution is to surround the expressions by the I(...) operator, which inhibits the expressions from being interpreted as a regression formula. Instead, it forces R to calculate the expression’s value and then incorporate that value directly into the regression. Thus, the first example becomes:
+
+```{r eval=FALSE}
+lm(y ~ I(u + v))
+```
+
+In response to that command, R computes u + v and then regresses y on the sum.
+
+For the second example we use:
+
+```{r eval=FALSE}
+lm(y ~ I(u ^ 2))
+```
+
+ere R computes the square of u and then regresses on the sum u + u2.
+All the basic binary operators (+, -, *, /, ^) have special meanings inside a regression formula. For this reason, you must use the I(...) operator whenever you incorporate calculated values into a regression.
+
+A beautiful aspect of these embedded transformations is that R remembers them and applies them when you make predictions from the model. Consider the quadratic model described by the second example. It uses u and u^2, but we supply the value of u only and R does the heavy lifting. We don’t need to calculate the square of u ourselves:
+
+```{r}
+load('./data/df_squared.rdata')
+m <- lm(y ~ u + I(u ^ 2), data = df_squared)
+
+predict(m, newdata = data.frame(u = 13.4))
+```
+
+## Regressing a Polynomial
+
+```{r eval=FALSE}
+m <- lm(y ~ poly(x, 3, raw = TRUE))
+```
+The raw = TRUE is necessary. Without it, the poly function computes orthogonal polynomials instead of simple polynomials.
+
+Beyond the convenience, a huge advantage is that R will calculate all those powers of x when you make predictions from the model. Without that, you are stuck calculating x2 and x3 yourself every time you employ the model.
+
+Here is another good reason to use poly. You cannot write your regression formula in this way:
+
+```{r eval=FALSE}
+lm(y ~ x + x^2 + x^3)     # Does not do what you think!
+```
+
+R will interpret x^2 and x^3 as interaction terms, not as powers of x. The resulting model is a one-term linear regression, completely unlike your expectation. 
+
+Just use poly.
+
+## Regressing on Transformed Data
+
+Problem: You want to build a regression model for x and y, but they do not have a linear relationship.
+
+A critical assumption behind the lm function for regression is that the variables have a linear relationship. To the extent this assumption is false, the resulting regression becomes meaningless.
+
+Fortunately, many datasets can be transformed into a linear relationship before applying lm.
+
+```{r obs-trans, fig.cap='Example of a data transform', echo=FALSE}
+load(file = './data/df_decay.rdata')
+
+g1 <- ggplot(df_decay) +
+  aes(time, z) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              linetype = "dashed") +
+  labs(title = "Observed",
+       x = "Time",
+       y = "z")
+
+g2 <- ggplot(df_decay) +
+  aes(time, log_z) +
+  geom_point() +
+  geom_smooth(method = "lm",
+              se = FALSE,
+              linetype = "dashed") +
+  labs(title = "Transformed",
+       x = "Time",
+       y = "log(z)")
+
+
+g1 + g2 + plot_layout(ncol = 2)
+
+```
+This figure shows an example of exponential decay. The left panel shows the original data, z. The dotted line shows a linear regression on the original data; clearly, it’s a lousy fit. If the data is really exponential, then a possible model is:
+
+*z* = exp[*β*~0~ + *β*~1~*t* + *ε*]
+
+where *t* is time and exp[] is the exponential function (*e*^*x*^).
+This is not linear, of course, but we can linearize it by taking
+logarithms:
+
+log(*z*) = *β*~0~ + *β*~1~*t* + *ε*
+
+In R, that regression is simple because we can embed the log transform
+directly into the regression formula:
+
+```{r}
+load(file = './data/df_decay.rdata')
+z <- df_decay$z
+t <- df_decay$time
+
+# transform and model
+m <- lm(log(z) ~ t)
+summary(m)
+```
+
+You can embed other functions inside your formula. If you thought the relationship was quadratic, you could use a square-root transformation:
+
+```{r eval=FALSE}
+lm(sqrt(y) ~ month)
+```
+
+You can apply transformations to variables on both sides of the formula, of course. This formula regresses y on the square root of x:
+
+```{r eval=FALSE}
+lm(y ~ sqrt(x))
+```
+
+This regression is for a log-log relationship between x and y:
+```{r eval=FALSE}
+lm(log(y) ~ log(x))
+```
+
+## Finding the best Power Transformation (Box-Cox Procedure)
+
+To improve a linear model that exhibits residuals that are not normally distributed, consider applying a power transformation to the response variable. By using the Box–Cox procedure, which is implemented by the `boxcox` function of the `MASS` package. The procedure will identify a power, *λ*, such that transforming *y* into *y*^*λ*^ will improve the fit of your model:
+
+``` {r, eval=FALSE}
+library(MASS)
+m <- lm(y ~ x)
+boxcox(m)
+```
+
+To illustrate the Box–Cox transformation, let’s create some artificial
+data using the equation *y*^–1.5^ = *x* + *ε*, where *ε* is an error
+term:
+
+``` {r}
+set.seed(9)
+x <- 10:100
+eps <- rnorm(length(x), sd = 5)
+y <- (x + eps) ^ (-1 / 1.5)
+```
+
+Then we will (mistakenly) model the data using a simple linear
+regression and derive an adjusted *R*^2^ of 0.637:
+
+``` {r}
+m <- lm(y ~ x)
+summary(m)
+```
+
+When plotting the residuals against the fitted values, we get a clue
+that something is wrong. We can get a `ggplot` residual plot using the `broom` library. The `augment` function from `broom` will put our residuals (and other things) into a data frame for easier plotting. Then we can use `ggplot` to plot:
+
+``` {r fitplot1, fig.cap='Fitted values versus residuals'}
+library(broom)
+augmented_m <- augment(m)
+
+ggplot(augmented_m, aes(x = .fitted, y = .resid)) + 
+  geom_point()
+```
+
+This plot has a clear parabolic shape. A possible fix is a power transformation on *y*, so we run the Box–Cox procedure:
+
+``` {r boxcox, fig.cap='Output of boxcox on the model (m)'}
+library(MASS)
+bc <- boxcox(m)
+```
+
+The `boxcox` function plots values of *λ* against the log-likelihood of the resulting model. We want to
+maximize that log-likelihood, so the function draws a line at the best
+value and also draws lines at the limits of its confidence interval. In
+this case, it looks like the best value is around –1.5, with a
+confidence interval of about (–1.75, –1.25).
+
+Oddly, the `boxcox` function does not return the best value of *λ*.
+Rather, it returns the (*x*, *y*) pairs displayed in the plot. It’s
+pretty easy to find the values of *λ* that yield the largest
+log-likelihood *y*. We use the `which.max` function:
+
+``` {r}
+which.max(bc$y)
+```
+
+Then this gives us the position of the corresponding *λ*:
+
+``` {r}
+lambda <- bc$x[which.max(bc$y)]
+lambda
+```
+
+The function reports that the best *λ* is –1.52. In an actual
+application, we would urge you to interpret this number and choose the
+power that makes sense to you—rather than blindly accepting this “best”
+value. Use the graph to assist you in that interpretation. Here, we’ll go
+with –1.52.
+
+We can apply the power transform to *y* and then fit the revised model;
+this gives a much better *R*^2^ of 0.967:
+
+``` {r}
+z <- y ^ lambda
+m2 <- lm(z ~ x)
+summary(m2)
+```
+
+For those who prefer one-liners, the transformation can be embedded
+right into the revised regression formula:
+
+``` {r}
+m2 <- lm(I(y ^ lambda) ~ x)
+```
+
+By default, `boxcox` searches for values of *λ* in the range –2 to +2.
+You can change that via the `lambda` argument; see the help page for
+details.
+
+Compare the transformed fit residuals with the original (no transformation).
+
+``` {r fitplot, fig.cap='Fitted values versus residuals: m2'}
+augmented_m2 <- augment(m2)
+
+ggplot(augmented_m2, aes(x = .fitted, y = .resid)) + 
+  geom_point()
+```
+
+## Diagnosing a Linear Regression
+
+Simply plotting the model object produces several useful diagnostic plots
+
+R fosters the impression that linear regression is easy: just use the lm function. Yet fitting the data is only the beginning. It’s your job to decide whether the fitted model actually works and works well.
+
+Before anything else, you must have a statistically significant model. Check the F statistic from the model summary and be sure that the p-value is small enough for your purposes. Conventionally, it should be less than 0.05 or else your model is likely not very meaningful.
+
+The series of graphs here show the diagnostics for a not-so-good regression:
+
+```{r }
+load(file = './data/bad.rdata')
+m <- lm(y2 ~ x3 + x4)
+par(mfrow = (c(2, 2)))      # this gives us a 2x2 plot
+plot(m)
+```
+
+Observe that the Residuals vs Fitted plot has a definite parabolic shape. This tells us that the model is incomplete: a quadratic factor is missing that could explain more variation in y. Other patterns in residuals would be suggestive of additional problems: a cone shape, for example, may indicate nonconstant variance in y. Interpreting those patterns is a bit of an art, so we suggest reviewing a good book on linear regression while evaluating the plot of residuals.
+
+There are other problems with these not-so-good diagnostics. The normal Q–Q plot has more points off the line than it does for the good regression. Both the Scale–Location and Residuals vs Leverage plots show points scattered away from the center, which suggests that some points have excessive leverage.
+
+Another pattern is that point number 28 sticks out in every plot. This warns us that something is odd with that observation. 
+
+## Identifying Influential Observations
+
+The title of this recipe could be “Identifying *Overly* Influential Observations,” but that would be redundant. All observations influence the regression model, even if only a little. When a statistician says that an observation is influential, it means that removing the observation would significantly change the fitted regression model. We want to identify those observations because they might be outliers that distort our model; we owe it to ourselves to investigate them.
+
+The `influence.measures` function reports several statistics: DFBETAS, DFFITS, covariance ratio, Cook’s distance, and hat matrix values. If any of these measures indicate that an observation is influential, the function flags that observation with an asterisk (`*`) along the righthand side:
+
+``` {r, output.lines=33}
+influence.measures(m)
+```
+
+This is the model from earlier where we suspected that observation 28 was an outlier. An asterisk is flagging that observation, confirming that it’s overly influential.
+
+This recipe can identify influential observations, but you shouldn’t reflexively delete them. Some judgment is required here. Are those observations improving your model or damaging it?
+
+## Testing for AutoCorrelation
+
+The Durbin–Watson test is often used in time series analysis, but it was originally created for diagnosing autocorrelation in regression residuals. Autocorrelation in the residuals is a scourge because it distorts the regression statistics, such as the F statistic and the t statistics for the regression coefficients. The presence of autocorrelation suggests that your model is missing a useful predictor variable or that it should include a time series component, such as a trend or a seasonal indicator.
+
+This first example builds a simple regression model and then tests the residuals for autocorrelation. The test returns a p-value well above zero, which indicates that there is no significant autocorrelation:
+
+``` {r}
+load(file = './data/ac.rdata')
+m <- lm(y1 ~ x)
+dwtest(m)
+```
+
+This second example exhibits autocorrelation in the residuals. The p-value is near zero, so the autocorrelation is likely positive:
+
+``` {r, eval=FALSE}
+m <- lm(y ~ x)           # Create a model object
+dwtest(m)                # Test the model residuals
+```
+
+The output includes a *p*-value. Conventionally, if *p* &lt; 0.05 then
+the residuals are significantly correlated, whereas *p* &gt; 0.05
+provides no evidence of correlation.
+
+You can perform a visual check for autocorrelation by graphing the
+*autocorrelation function* (ACF) of the residuals:
+
+``` {r, eval=FALSE}
+acf(m)                   # Plot the ACF of the model residuals
+```
+
+## Predicting New Values
+
+Once you have a linear model, making predictions is quite easy because
+the `predict` function does all the heavy lifting. The only annoyance is
+arranging for a data frame to contain your data.
+
+The `predict` function returns a vector of predicted values with one
+prediction for every row in the data. The example in the Solution
+contains one row, so `predict` returned one value.
+
+If your predictor data contains several rows, you get one prediction per
+row:
+
+``` {r}
+preds <- data.frame(
+  u = c(3.0, 3.1, 3.2, 3.3),
+  v = c(3.9, 4.0, 4.1, 4.2),
+  w = c(5.3, 5.5, 5.7, 5.9)
+)
+predict(m, newdata = preds)
+```
+
+In case it’s not obvious: the new data needn’t contain values for
+response variables, only predictor variables. After all, you are trying
+to *calculate* the response, so it would be unreasonable of R to expect
+you to supply it.
+
+## Forming Prediction Intervals
+
+Use the `predict` function and specify `interval = "prediction"`:
+
+``` {r, eval=FALSE}
+predict(m, newdata = preds, interval = "prediction")
+```
+
+
+

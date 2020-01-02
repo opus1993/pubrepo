@@ -5,28 +5,24 @@ lastmod: "2018-09-09T00:00:00Z"
 linktitle: Machine Learning in R
 menu:
   example:
-    name: Overview
-    weight: 1
+    name: 102
+    weight: 10
 summary: 
 title: Machine Learning in R
-toc: true
+toc: false
 type: docs
-weight: 1
+weight: 10
 ---
 
 ## Agenda
-
-### Data Collection
-
-### Data Exploration
-
-### Data Preparation
 
 ### Predictive Techniques
 
 ### Tidyverse ML
 
 ### Machine Learning with Caret
+
+### Machine Learning with Spark
 
 ### Model Evaluation
 
