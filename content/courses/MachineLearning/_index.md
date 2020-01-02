@@ -20,7 +20,7 @@ weight: 10
 
 Before embarking on a study of Machine learning, invest some time in understanding the drivers for **Data Science** and Data-Analytic thinking in our economy, in business, and in academia. Consider the ethical dimensions of data collection and building new decision tools. From analyzing drug trials to helping sports teams pick new draftees, data scientists utilize data to tackle many of the big questions today. But despite demand, high competition and big expectations make data science a challenging field for the unprepared to break into and navigate. Alongside their technical skills, the successful data scientist needs to be a master of understanding data projects, adapting to company needs, and managing stakeholders. 
 
-[Data Science for Business, What You Need to Know About Data Mining and Data-Analytic Thinking](http://data-science-for-biz.com/) presents a set of fundamental principles for extracting useful knowledge from data.  These principles are the basis of many algorithms for data mining and underlie methods for approaching business problems data-analytically.
+[Data Science for Business, What You Need to Know About Data Mining and Data-Analytic Thinking](http://shop.oreilly.com/product/0636920028918.do?cmp=af-strata-books-video-product-cj_auwidget313_0636920028918_7213599) presents a set of fundamental principles for extracting useful knowledge from data.  These principles are the basis of many algorithms for data mining and underlie methods for approaching business problems data-analytically.
 
 ![Data Science for Business](http://data-science-for-biz.com/images/home/cover@2x.png)
 
