@@ -16,7 +16,7 @@ weight: 10
 
 **Machine learning** (ML) is the scientific study of algorithms and statistical models that computer systems use to perform a specific task without using explicit instructions, relying on patterns and inference instead. Machine learning algorithms build a mathematical model based on sample data, known as "training data", in order to make predictions or decisions without being explicitly programmed to perform the task. Machine learning algorithms are used in a wide variety of applications, such as email filtering and computer vision, where it is difficult or infeasible to develop a conventional algorithm for effectively performing the task.
 
-![Photo by Zany Jadraque on Unsplash](https://unsplash.com/photos/g2xKEEyd-_I)
+![Photo by Zany Jadraque on Unsplash](https://unsplash.com/photos/g2xKEEyd-_I.jpg)
 
 Before embarking on a study of Machine learning, invest some time in understanding the drivers for **Data Science** and Data-Analytic thinking in our economy, in business, and in academia. Consider the ethical dimensions of data collection and building new decision tools. From analyzing drug trials to helping sports teams pick new draftees, data scientists utilize data to tackle many of the big questions today. But despite demand, high competition and big expectations make data science a challenging field for the unprepared to break into and navigate. Alongside their technical skills, the successful data scientist needs to be a master of understanding data projects, adapting to company needs, and managing stakeholders. 
 
