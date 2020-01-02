@@ -22,7 +22,7 @@ Before embarking on a study of Machine learning, invest some time in understandi
 
 [Data Science for Business, What You Need to Know About Data Mining and Data-Analytic Thinking](http://data-science-for-biz.com/) presents a set of fundamental principles for extracting useful knowledge from data.  These principles are the basis of many algorithms for data mining and underlie methods for approaching business problems data-analytically.
 
-[Data Science for Business](http://data-science-for-biz.com/images/home/cover@2x.png)
+![Data Science for Business](http://data-science-for-biz.com/images/home/cover@2x.png)
 
 [Everybody Lies, Big Data, New Data, and What the Internet Can Tell Us About Who We Really Are, by Seth Stephens-Davidowitz](http://everybodyliesbook.com/) offers ground level revelations into ourselves, our lives, and the profound impacts that Machine Learning tools have. 
 
