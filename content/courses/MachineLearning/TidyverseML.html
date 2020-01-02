@@ -6,7 +6,7 @@ draft: false
 linktitle: Tidyverse ML
 menu:
   example:
-    parent: 102
+    parent: Machine Learning in R
     weight: 15
 title: Machine Learning in R
 type: docs
@@ -246,10 +246,10 @@ cv_data &lt;- cv_split %&gt;%
 <p>Print the validate_mae column</p>
 <pre class="r"><code>cv_eval_lm$validate_mae</code></pre>
 <pre><code>##        1        2        3        4        5 
-## 1.484146 1.413805 1.450647 1.484254 1.420063</code></pre>
+## 1.512033 1.510129 1.437717 1.506097 1.532894</code></pre>
 <p>Calculate the mean of validate_mae column</p>
 <pre class="r"><code>mean(cv_eval_lm$validate_mae)</code></pre>
-<pre><code>## [1] 1.450583</code></pre>
+<pre><code>## [1] 1.499774</code></pre>
 <p>Build a random forest model for each fold</p>
 <pre class="r"><code>cv_models_rf &lt;- cv_data %&gt;% 
   mutate(model = map(train, ~ranger(formula = life_expectancy~., data = .x, num.trees = 100, seed = 42)))</code></pre>
@@ -263,10 +263,10 @@ cv_data &lt;- cv_split %&gt;%
 <p>Print the validate_mae column</p>
 <pre class="r"><code>cv_eval_rf$validate_mae</code></pre>
 <pre><code>##         1         2         3         4         5 
-## 0.9516028 0.9106160 0.9464246 0.9783396 0.9382075</code></pre>
+## 0.9466029 0.9541592 0.9620911 0.9413722 0.9589762</code></pre>
 <p>Calculate the mean of validate_mae column</p>
 <pre class="r"><code>mean(cv_eval_rf$validate_mae)</code></pre>
-<pre><code>## [1] 0.9450381</code></pre>
+<pre><code>## [1] 0.9526403</code></pre>
 <p>Prepare for tuning your cross validation folds by varying mtry</p>
 <pre class="r"><code>cv_tune&lt;- tidyr::expand_grid(cv_data, mtry = 2:5)
 
@@ -290,10 +290,10 @@ cv_data &lt;- cv_split %&gt;%
 <pre><code>## # A tibble: 4 x 2
 ##    mtry mean_mae
 ##   &lt;int&gt;    &lt;dbl&gt;
-## 1     2    0.945
-## 2     3    0.948
-## 3     4    0.963
-## 4     5    0.976</code></pre>
+## 1     2    0.953
+## 2     3    0.977
+## 3     4    0.985
+## 4     5    1.000</code></pre>
 <p>The best random forest model has the lowest MAE: mtry of 2 for 0.954</p>
 <p>Build the model using all training data and the best performing parameter</p>
 <pre class="r"><code>best_model &lt;- ranger(formula = life_expectancy~., data = training_data,
@@ -304,7 +304,7 @@ cv_data &lt;- cv_split %&gt;%
 <pre class="r"><code>test_predicted &lt;- predict(best_model, testing_data)$predictions</code></pre>
 <p>Calculate the test MAE</p>
 <pre class="r"><code>mae(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.879581</code></pre>
+<pre><code>## [1] 0.8095378</code></pre>
 <div id="section" class="section level51">
 <p></p>
 </div>
@@ -334,7 +334,6 @@ cv_data &lt;- cv_split %&gt;%
 <pre class="r"><code>cv_models_lr &lt;- cv_data %&gt;% 
   mutate(model = map(train, ~glm(formula = Attrition~., 
                                  data = .x, family = &quot;binomial&quot;)))</code></pre>
-<pre><code>## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
 <p>Extract the first model and validate</p>
 <pre class="r"><code>model &lt;- cv_models_lr$model[[1]]
 validate &lt;- cv_models_lr$validate[[1]]</code></pre>
@@ -348,17 +347,17 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <pre class="r"><code>table(validate_actual, validate_predicted)</code></pre>
 <pre><code>##                validate_predicted
 ## validate_actual FALSE TRUE
-##           FALSE   175    4
-##           TRUE     25   17</code></pre>
+##           FALSE   162   17
+##           TRUE     23   19</code></pre>
 <p>Calculate the accuracy</p>
 <pre class="r"><code>1-ce(validate_actual, validate_predicted)</code></pre>
-<pre><code>## [1] 0.8687783</code></pre>
+<pre><code>## [1] 0.8190045</code></pre>
 <p>Calculate the precision</p>
 <pre class="r"><code>precision(validate_actual, validate_predicted)</code></pre>
-<pre><code>## [1] 0.8095238</code></pre>
+<pre><code>## [1] 0.5277778</code></pre>
 <p>Calculate the recall</p>
 <pre class="r"><code>recall(validate_actual, validate_predicted)</code></pre>
-<pre><code>## [1] 0.4047619</code></pre>
+<pre><code>## [1] 0.452381</code></pre>
 <p>Prepare for cross-validated performance</p>
 <pre class="r"><code>cv_prep_lr &lt;- cv_models_lr %&gt;% 
   mutate(
@@ -374,10 +373,10 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <p>Print the validate_recall column</p>
 <pre class="r"><code>cv_perf_recall$validate_recall</code></pre>
 <pre><code>##         1         2         3         4         5 
-## 0.4047619 0.4545455 0.4062500 0.5454545 0.2777778</code></pre>
+## 0.4523810 0.3636364 0.2903226 0.3243243 0.3666667</code></pre>
 <p>Calculate the average of the validate_recall column</p>
 <pre class="r"><code>mean(cv_perf_recall$validate_recall)</code></pre>
-<pre><code>## [1] 0.4177579</code></pre>
+<pre><code>## [1] 0.3594662</code></pre>
 <div id="section-1" class="section level42">
 <p></p>
 <p>#With a random forest for classification</p>
@@ -406,21 +405,21 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <pre><code>## # A tibble: 15 x 2
 ##     mtry mean_recall
 ##    &lt;int&gt;       &lt;dbl&gt;
-##  1     2       0.124
-##  2     3       0.140
-##  3     4       0.144
-##  4     5       0.176
-##  5     6       0.209
-##  6     7       0.171
-##  7     8       0.169
-##  8     9       0.202
-##  9    10       0.204
-## 10    11       0.209
-## 11    12       0.192
-## 12    13       0.198
-## 13    14       0.200
-## 14    15       0.203
-## 15    16       0.214</code></pre>
+##  1     2      0.0669
+##  2     3      0.125 
+##  3     4      0.113 
+##  4     5      0.168 
+##  5     6      0.155 
+##  6     7      0.177 
+##  7     8      0.182 
+##  8     9      0.204 
+##  9    10      0.210 
+## 10    11      0.212 
+## 11    12      0.219 
+## 12    13      0.247 
+## 13    14      0.235 
+## 14    15      0.218 
+## 15    16      0.218</code></pre>
 <p>none of the random forest models here outperforms the recall of the logistic regression models</p>
 <p>Build out the final production model</p>
 <p>Build the logistic regression model using all training data</p>
@@ -434,16 +433,16 @@ validate &lt;- cv_models_lr$validate[[1]]</code></pre>
 <pre class="r"><code>table(test_actual, test_predicted)</code></pre>
 <pre><code>##            test_predicted
 ## test_actual FALSE TRUE
-##       FALSE   291   15
-##       TRUE     31   30</code></pre>
+##       FALSE   299   15
+##       TRUE     27   26</code></pre>
 <p>Calculate the test accuracy</p>
 <pre class="r"><code>1-ce(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.8746594</code></pre>
+<pre><code>## [1] 0.8855586</code></pre>
 <p>Calculate the test precision</p>
 <pre class="r"><code>precision(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.6666667</code></pre>
+<pre><code>## [1] 0.6341463</code></pre>
 <p>Calculate the test recall</p>
 <pre class="r"><code>recall(test_actual, test_predicted)</code></pre>
-<pre><code>## [1] 0.4918033</code></pre>
+<pre><code>## [1] 0.490566</code></pre>
 </div>
 </div>

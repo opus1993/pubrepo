@@ -6,7 +6,7 @@ draft: false
 linktitle: Spark with R
 menu:
   example:
-    parent: 102
+    parent: Machine Learning in R
     weight: 17
 title: Spark with R
 type: docs
@@ -83,17 +83,23 @@ Tip:  When using Windows, avoid directories with spaces in their path. If runnin
 
 Additionally, because Spark is built in the Scala programming language, which is run by the Java Virtual Machine (JVM), you also need to install Java 8 on your system. It is likely that your system already has Java installed, but you should still check the version and update or downgrade as described in Installing Java. You can use the following R command to check which version is installed on your system:
 
-```{r}
+```{r eval=FALSE}
 getwd()
 
 system("java -version")
 ```
 
+[1] "C:/Users/jimgr/Documents/R/pubrepo/content/courses/MachineLearning"
+java version "1.8.0_231"
+Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
+Java HotSpot(TM) Client VM (build 25.231-b11, mixed mode, sharing)
+[1] 0
+
 ## Installation
 
 As with many other R packages, you can install sparklyr from CRAN as follows:
 
-```{r install sparklyr, eval=FALSE, include=FALSE}
+```{r install sparklyr, eval=FALSE}
 install.packages("sparklyr")
 
 packageVersion("sparklyr")
@@ -107,7 +113,7 @@ library(sparklyr)
 
 You can easily install Spark by running spark_install(). This downloads, installs, and configures the latest version of Spark locally on your computer.
 
-```{r spark install}
+```{r spark install, eval=FALSE}
 spark_install()
 
 spark_available_versions()
@@ -140,8 +146,8 @@ cars
 
 Most of the Spark commands are executed from the R console; however, monitoring and analyzing execution is done through Spark’s web interface. This interface is a web application provided by Spark that you can access by running:
 
-```{r web interface, echo=TRUE}
-# spark_web(sc)
+```{r web interface, eval=FALSE}
+spark_web(sc)
 ```
 
 ## Analysis

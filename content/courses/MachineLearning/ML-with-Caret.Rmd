@@ -6,7 +6,7 @@ draft: false
 linktitle: ML with Caret
 menu:
   example:
-    parent: 102
+    parent: Machine Learning in R
     weight: 16
 title: Machine Learning with Caret
 type: docs

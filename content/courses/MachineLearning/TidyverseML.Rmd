@@ -6,7 +6,7 @@ draft: false
 linktitle: Tidyverse ML
 menu:
   example:
-    parent: 102
+    parent: Machine Learning in R
     weight: 15
 title: Machine Learning in R
 type: docs
