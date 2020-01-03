@@ -50,4 +50,5 @@ The use of git and GitHub are important for team collaboration. Find Jenny Bryan
 
 [R in a Nutshell, by Joseph Adler (O’Reilly)](http://oreilly.com/catalog/9780596801717), is another quick tutorial and reference you’ll keep by your side. Consider [Hands On Programming with R by Garrett Grolemund (O’Reilly) for an introduction, or The Art of R Programming by Normal Matloff (No Starch Press)](https://www.oreilly.com/library/view/hands-on-programming-with/9781449359089/). Hadley Wickham’s *Advanced R Programming* is available either as a printed book or free online and is a great deeper dive into advanced R topics. [Efficient R Programming, by Colin Gillespie and Robin Lovelace (O’Reilly)](http://shop.oreilly.com/product/0636920047995.do), is another good guide to learning the deeper concepts about R programming.
 
+### Did you find this page helpful? Consider sharing it 🙌
 

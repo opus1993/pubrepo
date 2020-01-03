@@ -19,9 +19,9 @@ source("r/render.R")
 library(ggplot2)
 library(corrr)
 library(dbplot)
-library("ggmosaic")
-library("forcats")
-library("FactoMineR")
+library(ggmosaic)
+library(forcats)
+library(FactoMineR)
 ```
 In a world where information is growing exponentially, tools like Apache Spark provide support to solve many of the relvant problems we face today. From companies looking for ways to improve based on data-driven decisions, to research organizations solving problems in health-care, finance, education, and energy, Spark enables analyzing much more information faster and more reliably than ever before.
 

@@ -17,7 +17,7 @@ tags:
 ---
 Brandon Rohrer of **iRobot** curates a "Teachable" collection of courses/blogs called [End-to-End Machine Learning](https://end-to-end-machine-learning.teachable.com/courses/) which include a number of free introductory sections, including:
 
-[Data Science Concepts](https://end-to-end-machine-learning.teachable.com/p/data-science-concepts), a pocket guide to building the things that data scientists build. It opens with a [49 minute video, Data Science for Absolutely Everyone](https://youtu.be/tKa0zDDDaQk) from his days building [these materials in 2016 with Microsoft](https://github.com/brohrer/public-hosting/raw/master/Rohrer_DS_for_everyone.pptx). As amazing as it is, there are only five questions that machine learning can answer:
+[Data Science Concepts](https://end-to-end-machine-learning.teachable.com/p/data-science-concepts), is a pocket guide to building the things that data scientists build. It opens with a [49 minute video, Data Science for Absolutely Everyone](https://youtu.be/tKa0zDDDaQk) from his days building [these materials in 2016 with Microsoft](https://github.com/brohrer/public-hosting/raw/master/Rohrer_DS_for_everyone.pptx). As amazing as it is, there are only five questions that machine learning can answer:
 
 1. Is this A or B?
 1. Is this weird?
