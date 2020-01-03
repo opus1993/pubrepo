@@ -39,5 +39,5 @@ user_groups:
 - Visitors
 ---
 
-I have extensive cross-functional team experience, strong quantitative analysis skills, and a passion for technology gained in roles in product development, strategic sourcing, and digital operations 
+I am an engineer with extensive cross-functional team experience, strong quantitative analysis skills, and a passion for technology gained in roles in product development, strategic sourcing, and digital operations. I am currently responsible for Digital Operations Projects at CNH Industrial in the Chicago area.
 
