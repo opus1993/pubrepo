@@ -16,7 +16,7 @@ tags:
   - Deep Learning
 ---
 
-Alison Hill recently shared a more or less comprehensive list of resources, organized roughly in the order they are most helpful for beginners. These were all written before the release of the R Tidymodels, Recipes, and Drake packages. Even so, they provide a very good foundation and they execute well on Microsoft's dated R Open distribution currently provided with the Azure DSVM and HDInsight.
+Alison Hill recently shared a valuable list of learning resources, organized roughly in the order they are most helpful for beginners. These were all written before the release of the R Tidymodels, Recipes, and Drake packages. Even so, they provide a very good foundation and they execute well on Microsoft's dated R Open distribution currently provided with the Azure DSVM and HDInsight.
 
 [Machine Learning for Everyone](https://vas3k.com/blog/machine_learning/)
 **In simple words. With real-world examples.** The biggest hurdle to getting started is sifting through both the hype and the math. This is a readable illustrated introduction to key concepts that will help you start building your own mental model of this space. For example, “the only goal of machine learning is to predict results based on incoming data. That’s it.” There you go! Start here.

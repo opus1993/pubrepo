@@ -18,8 +18,10 @@ weight: 17
 <p>In a world where information is growing exponentially, tools like Apache Spark provide support to solve many of the relvant problems we face today. From companies looking for ways to improve based on data-driven decisions, to research organizations solving problems in health-care, finance, education, and energy, Spark enables analyzing much more information faster and more reliably than ever before.</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In this book learn how to use Apache Spark with R. The book intends to take someone unfamiliar with Spark or R and help you become proficient by teaching you a set of tools, skills and practices applicable to large-scale data science.</p>
+<p>Javier Luraschi, Kevin Kuo, and Edgar Ruis have published a brand new book in 2020 on learning how to use Apache Spark with R. The book intends to take someone unfamiliar with Spark or R and help you become proficient by teaching you a set of tools, skills and practices applicable to large-scale data science.</p>
 <p><a href="https://therinspark.com/"><img src="mastering-spark-with-r.png" alt="Mastering Spark with R" /></a></p>
+<p><a href="https://github.com/r-spark/the-r-in-spark/">Mastering Spark with R Github</a></p>
+<p><a href="https://github.com/r-spark/the-r-in-spark/releases">Mastering Spark with R Code Examples</a></p>
 <p>Buy the book here:</p>
 <p><a href="https://www.amazon.com/gp/product/149204637X/">Mastering Spark with R</a></p>
 <p>Another excellent online resource for learning Apache Spark with R is</p>
@@ -48,9 +50,8 @@ weight: 17
 <p>You can interpret large-scale as cluster-scale, a set of connected computers working together.</p>
 </blockquote>
 <hr />
-</div>
-<div id="sparklyr" class="section level1">
-<h1>Sparklyr</h1>
+<div id="audience" class="section level2">
+<h2>Audience</h2>
 <p>When thinking of who should use sparklyr, the following roles come to mind:</p>
 <p><strong>New Users</strong></p>
 <p>For new users, it is our belief that sparklyr provides the easiest way to get started with Spark. Our hope is that the early chapters of this book will get you up and running with ease and set you up for long-term success.</p>
@@ -70,6 +71,7 @@ java version “1.8.0_231”
 Java(TM) SE Runtime Environment (build 1.8.0_231-b11)
 Java HotSpot(TM) Client VM (build 25.231-b11, mixed mode, sharing)
 [1] 0</p>
+</div>
 <div id="installation" class="section level2">
 <h2>Installation</h2>
 <p>As with many other R packages, you can install sparklyr from CRAN as follows:</p>
@@ -167,7 +169,7 @@ model</code></pre>
 <div id="extensions" class="section level2">
 <h2>Extensions</h2>
 <p>In the same way that R is known for its vibrant community of package authors, at a smaller scale, many extensions for Spark and R have been written and are available. For instance, the sparkly.nested extension is an R package that extends sparklyr to help you manage values that contain nested information. A common use case involves JSON files that contain nested lists that require preprocessing before you can do meaningful data analysis. To use this extension, we first need to install it as follows:</p>
-<pre class="r"><code># install.packages(&quot;sparklyr.nested&quot;)</code></pre>
+<pre class="r"><code>install.packages(&quot;sparklyr.nested&quot;)</code></pre>
 <p>Then, we can use the sparklyr.nested extension to group all of the horsepower data points over the number of cylinders:</p>
 <pre class="r"><code>library(sparklyr.nested)</code></pre>
 <pre><code>## Warning: package &#39;sparklyr.nested&#39; was built under R version 3.6.2</code></pre>
@@ -212,36 +214,7 @@ dir(&quot;output&quot;, pattern = &quot;.csv&quot;)</code></pre>
 <h2>Logs</h2>
 <p>Logging is definitely less interesting than real-time data processing; however, it’s a tool you should be or become familiar with. A log is just a text file to which Spark appends information relevant to the execution of tasks in the cluster. For local clusters, we can retrieve all the recent logs by running the following:</p>
 <pre class="r"><code>spark_log(sc, filter = &quot;sparklyr&quot;)</code></pre>
-<pre><code>## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c8edeb4e-982a-4ab5-8351-780f6306601a\userFiles-cf2e3a68-9c36-4b13-a52c-ec7601a4ca95\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c8edeb4e-982a-4ab5-8351-780f6306601a\userFiles-cf2e3a68-9c36-4b13-a52c-ec7601a4ca95\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-c8edeb4e-982a-4ab5-8351-780f6306601a\userFiles-cf2e3a68-9c36-4b13-a52c-ec7601a4ca95\sparklyr-2.4-2.11.jar
-## 20/01/02 13:15:04 INFO SparkContext: Submitted application: sparklyr
-## 20/01/02 13:15:04 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:56325/jars/sparklyr-2.4-2.11.jar with timestamp 1577992504789
-## 20/01/02 13:15:07 INFO Executor: Fetching spark://127.0.0.1:56325/jars/sparklyr-2.4-2.11.jar with timestamp 1577992504789
-## 20/01/02 13:15:07 INFO Utils: Fetching spark://127.0.0.1:56325/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-60eaefae-087d-4eba-b00c-18b5725bae9d\userFiles-86c917ba-b64f-4986-8693-1a99b582d8d3\fetchFileTemp8041001332254738160.tmp
-## 20/01/02 13:15:07 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-60eaefae-087d-4eba-b00c-18b5725bae9d/userFiles-86c917ba-b64f-4986-8693-1a99b582d8d3/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-60eaefae-087d-4eba-b00c-18b5725bae9d\userFiles-86c917ba-b64f-4986-8693-1a99b582d8d3\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-60eaefae-087d-4eba-b00c-18b5725bae9d\userFiles-86c917ba-b64f-4986-8693-1a99b582d8d3\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-60eaefae-087d-4eba-b00c-18b5725bae9d\userFiles-86c917ba-b64f-4986-8693-1a99b582d8d3\sparklyr-2.4-2.11.jar
-## 20/01/02 13:16:11 INFO SparkContext: Submitted application: sparklyr
-## 20/01/02 13:16:11 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:56489/jars/sparklyr-2.4-2.11.jar with timestamp 1577992571828
-## 20/01/02 13:16:15 INFO Executor: Fetching spark://127.0.0.1:56489/jars/sparklyr-2.4-2.11.jar with timestamp 1577992571828
-## 20/01/02 13:16:15 INFO Utils: Fetching spark://127.0.0.1:56489/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-6cf6136c-5c58-4821-905a-c94d13f869dd\userFiles-9102afcb-bf53-416e-b84d-07b6dd9fe9c3\fetchFileTemp6725957889264733235.tmp
-## 20/01/02 13:16:15 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-6cf6136c-5c58-4821-905a-c94d13f869dd/userFiles-9102afcb-bf53-416e-b84d-07b6dd9fe9c3/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-6cf6136c-5c58-4821-905a-c94d13f869dd\userFiles-9102afcb-bf53-416e-b84d-07b6dd9fe9c3\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-6cf6136c-5c58-4821-905a-c94d13f869dd\userFiles-9102afcb-bf53-416e-b84d-07b6dd9fe9c3\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-6cf6136c-5c58-4821-905a-c94d13f869dd\userFiles-9102afcb-bf53-416e-b84d-07b6dd9fe9c3\sparklyr-2.4-2.11.jar
-## 20/01/02 13:21:33 INFO SparkContext: Submitted application: sparklyr
-## 20/01/02 13:21:33 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:56971/jars/sparklyr-2.4-2.11.jar with timestamp 1577992893606
-## 20/01/02 13:21:36 INFO Executor: Fetching spark://127.0.0.1:56971/jars/sparklyr-2.4-2.11.jar with timestamp 1577992893606
-## 20/01/02 13:21:36 INFO Utils: Fetching spark://127.0.0.1:56971/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0fe1799e-a3df-4f5e-8005-7c56459192bd\userFiles-2d82bf53-bdf2-40a5-ad08-c86f7321f570\fetchFileTemp6671183596690738835.tmp
-## 20/01/02 13:21:36 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-0fe1799e-a3df-4f5e-8005-7c56459192bd/userFiles-2d82bf53-bdf2-40a5-ad08-c86f7321f570/sparklyr-2.4-2.11.jar to class loader
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0fe1799e-a3df-4f5e-8005-7c56459192bd\userFiles-2d82bf53-bdf2-40a5-ad08-c86f7321f570\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0fe1799e-a3df-4f5e-8005-7c56459192bd\userFiles-2d82bf53-bdf2-40a5-ad08-c86f7321f570\sparklyr-2.4-2.11.jar
-## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-0fe1799e-a3df-4f5e-8005-7c56459192bd\userFiles-2d82bf53-bdf2-40a5-ad08-c86f7321f570\sparklyr-2.4-2.11.jar
-## 20/01/02 13:22:21 INFO SparkContext: Submitted application: sparklyr
-## 20/01/02 13:22:21 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:57131/jars/sparklyr-2.4-2.11.jar with timestamp 1577992941402
-## 20/01/02 13:22:24 INFO Executor: Fetching spark://127.0.0.1:57131/jars/sparklyr-2.4-2.11.jar with timestamp 1577992941402
+<pre><code>## 20/01/02 13:22:24 INFO Executor: Fetching spark://127.0.0.1:57131/jars/sparklyr-2.4-2.11.jar with timestamp 1577992941402
 ## 20/01/02 13:22:24 INFO Utils: Fetching spark://127.0.0.1:57131/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-67df5fb9-6253-4140-aafb-7c0f83e7cdf7\userFiles-c58c46e4-1e10-4c89-b48c-6683358782c2\fetchFileTemp1519196420273040946.tmp
 ## 20/01/02 13:22:24 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-67df5fb9-6253-4140-aafb-7c0f83e7cdf7/userFiles-c58c46e4-1e10-4c89-b48c-6683358782c2/sparklyr-2.4-2.11.jar to class loader
 ## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-67df5fb9-6253-4140-aafb-7c0f83e7cdf7\userFiles-c58c46e4-1e10-4c89-b48c-6683358782c2\sparklyr-2.4-2.11.jar
@@ -311,7 +284,36 @@ dir(&quot;output&quot;, pattern = &quot;.csv&quot;)</code></pre>
 ## 20/01/02 13:51:47 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:60560/jars/sparklyr-2.4-2.11.jar with timestamp 1577994707995
 ## 20/01/02 13:51:50 INFO Executor: Fetching spark://127.0.0.1:60560/jars/sparklyr-2.4-2.11.jar with timestamp 1577994707995
 ## 20/01/02 13:51:50 INFO Utils: Fetching spark://127.0.0.1:60560/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4c25f5fb-99ce-493c-be13-ba6df9c72970\userFiles-b3311c6d-03f7-4354-b63d-955c56258b37\fetchFileTemp3023125751688504982.tmp
-## 20/01/02 13:51:51 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-4c25f5fb-99ce-493c-be13-ba6df9c72970/userFiles-b3311c6d-03f7-4354-b63d-955c56258b37/sparklyr-2.4-2.11.jar to class loader</code></pre>
+## 20/01/02 13:51:51 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-4c25f5fb-99ce-493c-be13-ba6df9c72970/userFiles-b3311c6d-03f7-4354-b63d-955c56258b37/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4c25f5fb-99ce-493c-be13-ba6df9c72970\userFiles-b3311c6d-03f7-4354-b63d-955c56258b37\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4c25f5fb-99ce-493c-be13-ba6df9c72970\userFiles-b3311c6d-03f7-4354-b63d-955c56258b37\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-4c25f5fb-99ce-493c-be13-ba6df9c72970\userFiles-b3311c6d-03f7-4354-b63d-955c56258b37\sparklyr-2.4-2.11.jar
+## 20/01/02 13:52:05 INFO SparkContext: Submitted application: sparklyr
+## 20/01/02 13:52:06 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:60684/jars/sparklyr-2.4-2.11.jar with timestamp 1577994726164
+## 20/01/02 13:52:12 INFO Executor: Fetching spark://127.0.0.1:60684/jars/sparklyr-2.4-2.11.jar with timestamp 1577994726164
+## 20/01/02 13:52:12 INFO Utils: Fetching spark://127.0.0.1:60684/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-13ae77ec-58c5-4e8d-9b43-2b06e0941494\userFiles-3fc8b98a-e387-4128-94b8-416032c80909\fetchFileTemp2563300702458924396.tmp
+## 20/01/02 13:52:12 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-13ae77ec-58c5-4e8d-9b43-2b06e0941494/userFiles-3fc8b98a-e387-4128-94b8-416032c80909/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-13ae77ec-58c5-4e8d-9b43-2b06e0941494\userFiles-3fc8b98a-e387-4128-94b8-416032c80909\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-13ae77ec-58c5-4e8d-9b43-2b06e0941494\userFiles-3fc8b98a-e387-4128-94b8-416032c80909\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-13ae77ec-58c5-4e8d-9b43-2b06e0941494\userFiles-3fc8b98a-e387-4128-94b8-416032c80909\sparklyr-2.4-2.11.jar
+## 20/01/02 13:54:12 INFO SparkContext: Submitted application: sparklyr
+## 20/01/02 13:54:13 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:61043/jars/sparklyr-2.4-2.11.jar with timestamp 1577994853113
+## 20/01/02 13:54:38 INFO Executor: Fetching spark://127.0.0.1:61043/jars/sparklyr-2.4-2.11.jar with timestamp 1577994853113
+## 20/01/02 13:54:38 INFO Utils: Fetching spark://127.0.0.1:61043/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-aa575115-2847-4d68-abe5-15f48f61bf99\userFiles-729a3869-ff7b-4fc5-a1b1-3a1646a6ec22\fetchFileTemp342951406623107309.tmp
+## 20/01/02 13:54:38 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-aa575115-2847-4d68-abe5-15f48f61bf99/userFiles-729a3869-ff7b-4fc5-a1b1-3a1646a6ec22/sparklyr-2.4-2.11.jar to class loader
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-aa575115-2847-4d68-abe5-15f48f61bf99\userFiles-729a3869-ff7b-4fc5-a1b1-3a1646a6ec22\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-aa575115-2847-4d68-abe5-15f48f61bf99\userFiles-729a3869-ff7b-4fc5-a1b1-3a1646a6ec22\sparklyr-2.4-2.11.jar
+## java.io.IOException: Failed to delete: C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-aa575115-2847-4d68-abe5-15f48f61bf99\userFiles-729a3869-ff7b-4fc5-a1b1-3a1646a6ec22\sparklyr-2.4-2.11.jar
+## 20/01/02 16:04:11 INFO SparkContext: Submitted application: sparklyr
+## 20/01/02 16:04:11 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:53349/jars/sparklyr-2.4-2.11.jar with timestamp 1578002651491
+## 20/01/02 16:04:15 INFO Executor: Fetching spark://127.0.0.1:53349/jars/sparklyr-2.4-2.11.jar with timestamp 1578002651491
+## 20/01/02 16:04:15 INFO Utils: Fetching spark://127.0.0.1:53349/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-b1d5947d-1e8d-4113-9b81-da75cba55021\userFiles-9ad894da-e841-4a2b-82fd-517d6ebbb5af\fetchFileTemp1257753856413346821.tmp
+## 20/01/02 16:04:15 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-b1d5947d-1e8d-4113-9b81-da75cba55021/userFiles-9ad894da-e841-4a2b-82fd-517d6ebbb5af/sparklyr-2.4-2.11.jar to class loader
+## 20/01/03 10:53:42 INFO SparkContext: Submitted application: sparklyr
+## 20/01/03 10:53:43 INFO SparkContext: Added JAR file:/C:/Users/jimgr/Documents/R/win-library/3.6/sparklyr/java/sparklyr-2.4-2.11.jar at spark://127.0.0.1:56059/jars/sparklyr-2.4-2.11.jar with timestamp 1578070423382
+## 20/01/03 10:53:46 INFO Executor: Fetching spark://127.0.0.1:56059/jars/sparklyr-2.4-2.11.jar with timestamp 1578070423382
+## 20/01/03 10:53:46 INFO Utils: Fetching spark://127.0.0.1:56059/jars/sparklyr-2.4-2.11.jar to C:\Users\jimgr\AppData\Local\spark\spark-2.4.3-bin-hadoop2.7\tmp\local\spark-52aec169-ffb9-41f1-adf8-73dca9486f0b\userFiles-b350b5ef-e684-40da-af05-6e25ee146a24\fetchFileTemp4580869859070593341.tmp
+## 20/01/03 10:53:46 INFO Executor: Adding file:/C:/Users/jimgr/AppData/Local/spark/spark-2.4.3-bin-hadoop2.7/tmp/local/spark-52aec169-ffb9-41f1-adf8-73dca9486f0b/userFiles-b350b5ef-e684-40da-af05-6e25ee146a24/sparklyr-2.4-2.11.jar to class loader</code></pre>
 <p>Most of the time, you won’t need to worry about Spark logs, except in cases for which you need to troubleshoot a failed computation; in those cases, logs are an invaluable resource to be aware of. Now you know.</p>
 </div>
 <div id="disconnecting" class="section level2">
@@ -349,6 +351,509 @@ Figure 1: Import Data to Spark not R
 <pre class="r"><code>cars &lt;- copy_to(sc, mtcars)</code></pre>
 <p><strong>Note:</strong> In an enterprise setting, <code>copy_to()</code> should only be used to transfer small tables from R, large data transfers should be performed with specialized data transfer tools.</p>
 <p>The data is now accessible to Spark and transformations can now be applied with ease; the next section will cover how to wrangle data by running transformations inside Spark, using <code>dplyr</code>.</p>
+<p>Data wrangling uses transformations to understand the data, it is often referred to as the process of transforming data from one “raw” data form into another format with the intent of making it more appropriate for data analysis.</p>
+<p>In the R environment, <em>cars</em> can be treated as if it is a local data frame, so <code>dplyr</code> verbs can be used. For instance, we can find out the mean of all columns as with <code>summarise_all()</code>:</p>
+<pre class="r"><code>summarize_all(cars, mean)</code></pre>
+<p>While this code is exactly the same as the code you would run when using <code>dplyr</code> without Spark, a lot is happening under the hood! The data is NOT being imported into R; instead,<code>dplyr</code> converts this task into SQL statements that are then sent to Spark. The <code>show_query()</code> command makes it possible to peer into the SQL statement that <code>sparklyr</code> and <code>dplyr</code> created and sent to Spark. We can also use this time to introduce the pipe (<code>%&gt;%</code>) operator, a custom operator from the <code>magrittr</code> package that takes pipes a computation into the first argument of the next function, making your data analysis much easier to read.</p>
+<pre class="r"><code>summarize_all(cars, mean) %&gt;%
+  show_query()</code></pre>
+<p>As it is evident, <code>dplyr</code> is much more concise than SQL; but rest assured, you will not have to see nor understand SQL when using <code>dplyr</code>. Your focus can remain on obtaining insights from the data, as opposed to figuring out how to express a given set of transformation in SQL. Here is another example that groups the cars dataset by “transmission” type.</p>
+<pre class="r"><code>cars %&gt;%
+  mutate(transmission = ifelse(am == 0, &quot;automatic&quot;, &quot;manual&quot;)) %&gt;%
+  group_by(transmission) %&gt;%
+  summarise_all(mean)</code></pre>
+<pre><code>## Warning: Missing values are always removed in SQL.
+## Use `mean(x, na.rm = TRUE)` to silence this warning
+## This warning is displayed only once per session.</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 12]
+##   transmission   mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 manual        24.4  5.08  144.  127.  4.05  2.41  17.4 0.538     1  4.38  2.92
+## 2 automatic     17.1  6.95  290.  160.  3.29  3.77  18.2 0.368     0  3.21  2.74</code></pre>
+<div id="built-in-functions" class="section level3">
+<h3>Built-in Functions</h3>
+<p>Spark SQL is based on Hive’s SQL conventions and functions and it is possible to call all these functions using <code>dplyr</code> as well. This means that we can use any Spark SQL functions to accomplish operations that may not be available via <code>dplyr</code>. The functions can be accessed by calling them as if they were R functions. Instead of failing, <code>dplyr</code> passes functions it does not recognize “as-is” to the query engine. This gives us a lot of flexibility on the function we can use!</p>
+<p>For instance, the <em>percentile</em> function returns the exact percentile of a column in a group. The function expects a column name, and either a single percentile value, or an array of multiple percentile values. We can use this Spark SQL function from <code>dplyr</code> as follows:</p>
+<pre class="r"><code>summarise(cars, mpg_percentile = percentile(mpg, 0.25))</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 1]
+##   mpg_percentile
+##            &lt;dbl&gt;
+## 1           15.4</code></pre>
+<p>There is no <code>percentile()</code> function in R, so <code>dplyr</code> passes the that portion of the code, “as-is”, to the resulting SQL query.</p>
+<pre class="r"><code>summarise(cars, mpg_percentile = percentile(mpg, 0.25)) %&gt;%
+  show_query()</code></pre>
+<pre><code>## &lt;SQL&gt;
+## SELECT percentile(`mpg`, 0.25) AS `mpg_percentile`
+## FROM `mtcars`</code></pre>
+</div>
+<div id="correlations" class="section level3">
+<h3>Correlations</h3>
+<p>A very common exploration technique is to calculate and visualize correlations, which we often calculate to find out what kind of statistical relationship exists between paired sets of variables. Spark provides functions to calculate correlations across the entire dataset and returns the results to R as a DataFrame object:</p>
+<pre class="r"><code>ml_corr(cars)</code></pre>
+<pre><code>## # A tibble: 11 x 11
+##       mpg    cyl   disp     hp    drat     wt    qsec     vs      am   gear
+##     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
+##  1  1     -0.852 -0.848 -0.776  0.681  -0.868  0.419   0.664  0.600   0.480
+##  2 -0.852  1      0.902  0.832 -0.700   0.782 -0.591  -0.811 -0.523  -0.493
+##  3 -0.848  0.902  1      0.791 -0.710   0.888 -0.434  -0.710 -0.591  -0.556
+##  4 -0.776  0.832  0.791  1     -0.449   0.659 -0.708  -0.723 -0.243  -0.126
+##  5  0.681 -0.700 -0.710 -0.449  1      -0.712  0.0912  0.440  0.713   0.700
+##  6 -0.868  0.782  0.888  0.659 -0.712   1     -0.175  -0.555 -0.692  -0.583
+##  7  0.419 -0.591 -0.434 -0.708  0.0912 -0.175  1       0.745 -0.230  -0.213
+##  8  0.664 -0.811 -0.710 -0.723  0.440  -0.555  0.745   1      0.168   0.206
+##  9  0.600 -0.523 -0.591 -0.243  0.713  -0.692 -0.230   0.168  1       0.794
+## 10  0.480 -0.493 -0.556 -0.126  0.700  -0.583 -0.213   0.206  0.794   1    
+## 11 -0.551  0.527  0.395  0.750 -0.0908  0.428 -0.656  -0.570  0.0575  0.274
+## # ... with 1 more variable: carb &lt;dbl&gt;</code></pre>
+<p>The corrr R package specializes in correlations. It contains friendly functions to prepare and visualize the results. Included inside the package is a backend for Spark, so when a Spark object is used in corrr, the actual computation also happens in Spark. In the background, the correlate() function runs sparklyr::ml_corr(), so there is no need to collect any data into R prior to running the command:</p>
+<pre class="r"><code>corrr::correlate(cars, use = &quot;pairwise.complete.obs&quot;, method = &quot;pearson&quot;)</code></pre>
+<pre><code>## 
+## Correlation method: &#39;pearson&#39;
+## Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
+<pre><code>## # A tibble: 11 x 12
+##    rowname    mpg    cyl   disp     hp    drat     wt    qsec     vs      am
+##    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1 mpg     NA     -0.852 -0.848 -0.776  0.681  -0.868  0.419   0.664  0.600 
+##  2 cyl     -0.852 NA      0.902  0.832 -0.700   0.782 -0.591  -0.811 -0.523 
+##  3 disp    -0.848  0.902 NA      0.791 -0.710   0.888 -0.434  -0.710 -0.591 
+##  4 hp      -0.776  0.832  0.791 NA     -0.449   0.659 -0.708  -0.723 -0.243 
+##  5 drat     0.681 -0.700 -0.710 -0.449 NA      -0.712  0.0912  0.440  0.713 
+##  6 wt      -0.868  0.782  0.888  0.659 -0.712  NA     -0.175  -0.555 -0.692 
+##  7 qsec     0.419 -0.591 -0.434 -0.708  0.0912 -0.175 NA       0.745 -0.230 
+##  8 vs       0.664 -0.811 -0.710 -0.723  0.440  -0.555  0.745  NA      0.168 
+##  9 am       0.600 -0.523 -0.591 -0.243  0.713  -0.692 -0.230   0.168 NA     
+## 10 gear     0.480 -0.493 -0.556 -0.126  0.700  -0.583 -0.213   0.206  0.794 
+## 11 carb    -0.551  0.527  0.395  0.750 -0.0908  0.428 -0.656  -0.570  0.0575
+## # ... with 2 more variables: gear &lt;dbl&gt;, carb &lt;dbl&gt;</code></pre>
+<p>We can pipe the results to other corrr functions. For example, the shave() function turns all of the duplicated results into NAs. Again, while this feels like standard R code using existing R packages, Spark is being used under the hood to perform the correlation.</p>
+<p>Additionally, as shown in Figure 3.6, the results can be easily visualized using the rplot() function, as shown here:</p>
+<pre class="r"><code>corrr::correlate(cars, use = &quot;pairwise.complete.obs&quot;, method = &quot;pearson&quot;) %&gt;%
+  corrr::shave() %&gt;%
+  corrr::rplot()</code></pre>
+<pre><code>## 
+## Correlation method: &#39;pearson&#39;
+## Missing treated using: &#39;pairwise.complete.obs&#39;</code></pre>
+<pre><code>## Don&#39;t know how to automatically pick scale for object of type noquote. Defaulting to continuous.</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis-corrr-show-1.png" width="672" /></p>
+</div>
+<div id="visualize" class="section level3">
+<h3>Visualize</h3>
+<p>R is great at data visualizations. Its capabilities for creating plots is extended by the many R packages that focus on this analysis step. Unfortunately, the vast majority of R functions that create plots depend on the data already being in local memory within R, so they fail when using a remote table inside Spark.</p>
+<p>It is possible to create visualizations in R from data source from Spark. To understand how to do this, let’s first break down how computer programs build plots: It takes the raw data and performs some sort of transformation. The transformed data is then mapped to a set of coordinates. Finally, the mapped values are drawn in a plot. Figure <a href="#fig:analysis-plot">2</a> summarizes each of the steps.</p>
+<div class="figure" style="text-align: center"><span id="fig:analysis-plot"></span>
+<img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis-plot-1.png" alt="Stages of an R plot" width="100%" height="100pt" />
+<p class="caption">
+Figure 2: Stages of an R plot
+</p>
+</div>
+<p>In essence, the approach for visualizing is the same as in wrangling, push the computation to Spark, and then collect the results in R for plotting. The heavy lifting of preparing the data, such as in aggregating the data by groups or bins, can be done inside Spark, and then collect the much smaller data set into R. Inside R, the plot becomes a more basic operation. For example, to plot a histogram, the bins are calculated in Spark, and then in R, use a simple column plot, as opposed to a histogram plot, because there is no need for R to re-calculate the bins.</p>
+<div class="figure" style="text-align: center"><span id="fig:analysis-spark-plot"></span>
+<img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis-spark-plot-1.png" alt="Plotting with Spark and R" width="100%" height="200pt" />
+<p class="caption">
+Figure 3: Plotting with Spark and R
+</p>
+</div>
+<p>Using this conceptual model, let’s apply this when using <code>ggplot2</code>.</p>
+</div>
+<div id="using-ggplot2" class="section level3">
+<h3>Using ggplot2</h3>
+<p>To create a bar plot using <code>ggplot2</code>, we simply call a function:</p>
+<pre class="r"><code>ggplot(aes(as.factor(cyl), mpg), data = mtcars) + geom_col()</code></pre>
+<div class="figure" style="text-align: center"><span id="fig:analysis-ggplot2-simple"></span>
+<img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis-ggplot2-simple-1.png" alt="Plotting inside R" width="500pt" height="400pt" />
+<p class="caption">
+Figure 4: Plotting inside R
+</p>
+</div>
+<p>In this case, the <code>mtcars</code> raw data was <em>automatically</em> transformed into three discrete aggregated numbers, then each result was mapped into an <code>x</code> and <code>y</code> plane, and then the plot was drawn. As R users, all of the stages of building the plot are conveniently abstracted for us.</p>
+<p>In Spark, there are a couple of key steps when codifying the “push compute, collect results” approach. First, ensure that the transformation operations happen inside Spark. In the example below, <code>group_by()</code> and <code>summarise()</code> will run as inside Spark. The second is to bring the results back into R after the data has been transformed. Make sure to transform and then collect, in that order; if <code>collect()</code> is run first, then R will try to ingest the entire data set from Spark. Depending on the size of the data, collecting all of the data will slow down or may even bring down your system.</p>
+<pre class="r"><code>car_group &lt;- cars %&gt;%
+  group_by(cyl) %&gt;%
+  summarise(mpg = sum(mpg, na.rm = TRUE)) %&gt;%
+  collect() %&gt;%
+  print()</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##     cyl   mpg
+##   &lt;dbl&gt; &lt;dbl&gt;
+## 1     4  293.
+## 2     8  211.
+## 3     6  138.</code></pre>
+<p>In this example, now that the data has been pre-aggregated and collected into R, only three records are passed to the plotting function.</p>
+<pre class="r"><code>ggplot(aes(as.factor(cyl), mpg), data = car_group) + 
+  geom_col(fill = &quot;#999999&quot;) + coord_flip()</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis-ggplot2-groups-1.png" width="672" /></p>
+</div>
+<div id="using-dbplot" class="section level3">
+<h3>Using dbplot</h3>
+<p>The <code>dbplot</code> package provides helper functions for plotting with remote data. The R code <code>dbplot</code> uses to transform the data is written so that it can be translated into Spark. It then uses those results to create a graph using the <code>ggplot2</code> package where data transformation and plotting are both triggered by a single function.</p>
+<p>The <code>dbplot_histogram()</code> function makes Spark calculate the bins and the count per bin and outputs a <code>ggplot</code> object which can be further refined by adding more steps to the plot object. <code>dbplot_histogram()</code> also accepts a <code>binwidth</code> argument to control the range used to compute the bins</p>
+<pre class="r"><code>library(dbplot)
+
+cars %&gt;%
+dbplot_histogram(mpg, binwidth = 3) +
+  coord_flip()+
+labs(title = &quot;MPG Distribution&quot;,
+     subtitle = &quot;Histogram over miles per gallon&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis-dbplot-simple-1.png" width="672" /></p>
+<p>Histograms provide a great way to analyze a single variable. To analyze two variables, a scatter or raster plot is commonly used.</p>
+<p>Scatter plots are used to compare the relationship between two continuous variables. For example, a scatter plot will display the relationship between the weight of a car and its gas consumption. The plot will show that the higher the weight, the higher the gas consumption because the dots clump together into almost a line that goes from the top left towards the bottom right. See Figure <a href="#fig:analysis-point"><strong>??</strong></a> for an example of the plot.</p>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/analysis-scatter-rendeer-1.png" width="672" /></p>
+<p>However, for scatter plots, no amount of “pushing the computation” to Spark will help with this problem because the data has to be plotted in individual dots.</p>
+<p>The best alternative is to find a plot type that represents the x/y relationship and concentration in a way that it is easy to perceive and to “physically” plot. The <em>raster</em> plot may be the best answer. It returns a grid of x/y positions and the results of a given aggregation usually represented by the color of the square.</p>
+<p>You can use <code>dbplot_raster()</code> to create a scatter-like plot in Spark, while only retrieving a small subset of the remote dataset:</p>
+<p><strong>Tip:</strong> You can also use <code>dbplot</code> to retrieve the raw data and visualize by other means; to retrieve the aggregates but not the plots use: <code>db_compute_bins()</code>, <code>db_compute_count()</code>, <code>db_compute_raster()</code> and <code>db_compute_boxplot()</code>.</p>
+</div>
+<div id="model" class="section level2">
+<h2>Model</h2>
+<p>First, an analysis project goes through as many transformations and models to find the answer. The ideal data analysis language enables you to quickly adjust over each wrangle-visualize-model iteration. Fortunately, this is the case when using Spark and R.</p>
+<p>To illustrate how easy it is to iterate over wrangling and modeling in Spark, consider the following example. We will start by performing a linear regression against all features and predict MPG:</p>
+<pre class="r"><code>cars %&gt;% 
+  ml_linear_regression(mpg ~ .) %&gt;%
+  summary()</code></pre>
+<p>It is also very easy to iterate with other kinds of models. The following one replaces the linear model with a generalized linear model:</p>
+<pre class="r"><code>cars %&gt;% 
+  ml_generalized_linear_regression(mpg ~ hp + cyl) %&gt;%
+  summary()</code></pre>
+<div id="caching" class="section level3">
+<h3>Caching</h3>
+<p>The examples in this chapter are built using a very small data set. In real-life scenarios, large amounts of data are used for models. If the data needs to be transformed first, the volume of the data could exact a heavy toll on the Spark session. Before fitting the models, it is a good idea to save the results of all the transformations in a new table inside Spark memory.</p>
+<p>The <code>compute()</code> command can take the end of a <code>dplyr</code> piped command set and save the results to Spark memory.</p>
+<pre class="r"><code>cached_cars &lt;- cars %&gt;% 
+  mutate(cyl = paste0(&quot;cyl_&quot;, cyl)) %&gt;%
+  compute(&quot;cached_cars&quot;)</code></pre>
+<pre class="r"><code>cached_cars %&gt;%
+  ml_linear_regression(mpg ~ .) %&gt;%
+  summary()</code></pre>
+<pre><code>## Deviance Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -3.47339 -1.37936 -0.06554  1.05105  4.39057 
+## 
+## Coefficients:
+## (Intercept) cyl_cyl_8.0 cyl_cyl_4.0        disp          hp        drat 
+## 16.15953652  3.29774653  1.66030673  0.01391241 -0.04612835  0.02635025 
+##          wt        qsec          vs          am        gear        carb 
+## -3.80624757  0.64695710  1.74738689  2.61726546  0.76402917  0.50935118 
+## 
+## R-Squared: 0.8816
+## Root Mean Squared Error: 2.041</code></pre>
+<p>As more insights are gained from the data, more questions may be raised. That is why we expect to iterate through data <em>wrangle</em>, <em>visualize</em>, and <em>model</em> multiple times. Each iteration should provide incremental insights of what the data is “telling us”. There will be a point where we reach a satisfactory level of understanding. It is at this point that we will be ready to share the results of the analysis, this is the topic of the next section.</p>
+</div>
+</div>
+<div id="communicate" class="section level2">
+<h2>Communicate</h2>
+<p>It is important to clearly communicate the analysis results – as important as the analysis work itself! The public, colleagues or stakeholders need to understand what you found out and how.</p>
+<p>To communicate effectively we need to use artifacts, such as reports and presentations; these are common output formats that we can create in R, using R Markdown.</p>
+<p>R Markdown documents allow weave narrative text and code together. The amount of output formats provides a very compelling reason to learn and use R Markdown. There are many available output formats like HTML, PDF, PowerPoint, Word, web slides, Websites, books and so on.</p>
+<p>Since an R Markdown document is self-contained and meant to be reproducible, before rendering documents we should first disconnect from Spark to free resources:</p>
+<pre class="r"><code>spark_disconnect(sc)</code></pre>
+<hr />
+</div>
+<div id="modeling-1" class="section level2">
+<h2>Modeling</h2>
+<p>The examples here will utilize the OkCupid dataset <span class="citation">[@kim2015okcupid]</span>, available at <a href="https://github.com/r-spark/okcupid">github.com/r-spark/okcupid</a>. The dataset consists of user profile data from an online dating site, and contains a diverse set of features, including biographical characteristics such as gender and profession, and free text fields related to personal interests. There are about 60,000 profiles in the dataset, which fits comfortably into memory on a modern laptop and wouldn’t be considered “big data”, so you can easily follow along running Spark local mode.</p>
+<p>Download this dataset as follows:</p>
+<pre class="r"><code>download.file(
+  &quot;https://github.com/r-spark/okcupid/raw/master/profiles.csv.zip&quot;,
+  &quot;okcupid.zip&quot;)
+
+unzip(&quot;okcupid.zip&quot;, exdir = &quot;data&quot;)
+unlink(&quot;okcupid.zip&quot;)</code></pre>
+<p>Consider the following problem:</p>
+<blockquote>
+<p>Predict whether someone is actively working, i.e. not retired, a student, or unemployed.</p>
+</blockquote>
+<p>Next up, we will explore this dataset.</p>
+</div>
+<div id="exploratory-data-analysis" class="section level2">
+<h2>Exploratory Data Analysis</h2>
+<p>Exploratory data analysis (EDA), in the context of predictive modeling, is the exercise of looking at excerpts and summaries of the data. The specific goals of the EDA stage is informed by the business problem, but here are some common objectives:</p>
+<ul>
+<li>Check for data quality — confirm meaning and prevalence of missing values and reconcile statistics against existing controls,</li>
+<li>Understand univariate relationships between variables, and</li>
+<li>Perform an initial assessment on what variables to include and what transformations need to be done on them.</li>
+</ul>
+<p>We’ll first connect to Spark, load libraries and read in the data.</p>
+<pre class="r"><code>library(sparklyr)
+library(ggplot2)
+library(dbplot)
+library(dplyr)
+
+sc &lt;- spark_connect(master = &quot;local&quot;, version = &quot;2.4&quot;)
+
+okc &lt;- spark_read_csv(
+  sc, 
+  &quot;d:/the-r-in-spark-1.0.0/profiles.csv&quot;,
+#  &quot;data/profiles.csv&quot;, 
+  escape = &quot;\&quot;&quot;, 
+  memory = FALSE,
+  options = list(multiline = TRUE)
+) %&gt;%
+  mutate(
+    height = as.numeric(height),
+    income = ifelse(income == &quot;-1&quot;, NA, as.numeric(income))
+  ) %&gt;%
+  mutate(sex = ifelse(is.na(sex), &quot;missing&quot;, sex)) %&gt;%
+  mutate(drinks = ifelse(is.na(drinks), &quot;missing&quot;, drinks)) %&gt;%
+  mutate(drugs = ifelse(is.na(drugs), &quot;missing&quot;, drugs)) %&gt;%
+  mutate(job = ifelse(is.na(job), &quot;missing&quot;, job))</code></pre>
+<p>We specify <code>escape = "\""</code> and <code>options = list(multiline = TRUE)</code> here to accommodate for embedded quote characters and newlines in the essay fields. We also convert the <code>height</code> and <code>income</code> columns to numeric types, and recode missing values in the string columns. Note that it may very well take a few tries of specifying different parameters to get the initial data ingest correct, and sometimes you may have to revisit this step after you learn more about the data during modeling.</p>
+<p>We can now take a quick look at our data with <code>glimpse()</code>:</p>
+<pre class="r"><code>glimpse(okc)</code></pre>
+<pre><code>## Observations: ??
+## Variables: 31
+## Database: spark_connection
+## $ age         &lt;int&gt; 22, 35, 38, 23, 29, 29, 32, 31, 24, 37, 35, 28, 24, 30,...
+## $ body_type   &lt;chr&gt; &quot;a little extra&quot;, &quot;average&quot;, &quot;thin&quot;, &quot;thin&quot;, &quot;athletic&quot;...
+## $ diet        &lt;chr&gt; &quot;strictly anything&quot;, &quot;mostly other&quot;, &quot;anything&quot;, &quot;veget...
+## $ drinks      &lt;chr&gt; &quot;socially&quot;, &quot;often&quot;, &quot;socially&quot;, &quot;socially&quot;, &quot;socially&quot;...
+## $ drugs       &lt;chr&gt; &quot;never&quot;, &quot;sometimes&quot;, &quot;missing&quot;, &quot;missing&quot;, &quot;never&quot;, &quot;m...
+## $ education   &lt;chr&gt; &quot;working on college/university&quot;, &quot;working on space camp...
+## $ essay0      &lt;chr&gt; &quot;about me:&lt;br /&gt;\n&lt;br /&gt;\ni would love to think that i ...
+## $ essay1      &lt;chr&gt; &quot;currently working as an international agent for a frei...
+## $ essay2      &lt;chr&gt; &quot;making people laugh.&lt;br /&gt;\nranting about a good salti...
+## $ essay3      &lt;chr&gt; &quot;the way i look. i am a six foot half asian, half cauca...
+## $ essay4      &lt;chr&gt; &quot;books:&lt;br /&gt;\nabsurdistan, the republic, of mice and m...
+## $ essay5      &lt;chr&gt; &quot;food.&lt;br /&gt;\nwater.&lt;br /&gt;\ncell phone.&lt;br /&gt;\nshelter....
+## $ essay6      &lt;chr&gt; &quot;duality and humorous things&quot;, NA, NA, &quot;cats and german...
+## $ essay7      &lt;chr&gt; &quot;trying to find someone to hang out with. i am down for...
+## $ essay8      &lt;chr&gt; &quot;i am new to california and looking for someone to wisp...
+## $ essay9      &lt;chr&gt; &quot;you want to be swept off your feet!&lt;br /&gt;\nyou are tir...
+## $ ethnicity   &lt;chr&gt; &quot;asian, white&quot;, &quot;white&quot;, NA, &quot;white&quot;, &quot;asian, black, ot...
+## $ height      &lt;dbl&gt; 75, 70, 68, 71, 66, 67, 65, 65, 67, 65, 70, 72, 72, 66,...
+## $ income      &lt;dbl&gt; NaN, 80000, NaN, 20000, NaN, NaN, NaN, NaN, NaN, NaN, N...
+## $ job         &lt;chr&gt; &quot;transportation&quot;, &quot;hospitality / travel&quot;, &quot;missing&quot;, &quot;s...
+## $ last_online &lt;chr&gt; &quot;2012-06-28-20-30&quot;, &quot;2012-06-29-21-41&quot;, &quot;2012-06-27-09-...
+## $ location    &lt;chr&gt; &quot;south san francisco, california&quot;, &quot;oakland, california...
+## $ offspring   &lt;chr&gt; &quot;doesn&amp;rsquo;t have kids, but might want them&quot;, &quot;doesn&amp;...
+## $ orientation &lt;chr&gt; &quot;straight&quot;, &quot;straight&quot;, &quot;straight&quot;, &quot;straight&quot;, &quot;straig...
+## $ pets        &lt;chr&gt; &quot;likes dogs and likes cats&quot;, &quot;likes dogs and likes cats...
+## $ religion    &lt;chr&gt; &quot;agnosticism and very serious about it&quot;, &quot;agnosticism b...
+## $ sex         &lt;chr&gt; &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;m&quot;, &quot;f&quot;, &quot;f&quot;, &quot;f&quot;, &quot;m&quot;, &quot;m&quot;, ...
+## $ sign        &lt;chr&gt; &quot;gemini&quot;, &quot;cancer&quot;, &quot;pisces but it doesn&amp;rsquo;t matter...
+## $ smokes      &lt;chr&gt; &quot;sometimes&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, &quot;no&quot;, NA, &quot;no&quot;, &quot;w...
+## $ speaks      &lt;chr&gt; &quot;english&quot;, &quot;english (fluently), spanish (poorly), frenc...
+## $ status      &lt;chr&gt; &quot;single&quot;, &quot;single&quot;, &quot;available&quot;, &quot;single&quot;, &quot;single&quot;, &quot;s...</code></pre>
+<p>Now we will add our response variable as a column in the dataset and look at its distribution</p>
+<pre class="r"><code>okc &lt;- okc %&gt;%
+  mutate(
+    not_working = ifelse(job %in% c(&quot;student&quot;, &quot;unemployed&quot;, &quot;retired&quot;), 1 , 0)
+  )
+
+okc %&gt;% 
+  group_by(not_working) %&gt;% 
+  tally()</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 2]
+##   not_working     n
+##         &lt;dbl&gt; &lt;dbl&gt;
+## 1           0 54541
+## 2           1  5405</code></pre>
+<p>Before we proceed further, let us perform an initial split of our data into a training set and a testing set and put away the latter. In practice, this is a crucial step because we would like to have a holdout set that we set aside at the end of the modeling process to evaluate model performance. If we were to include the entire dataset during EDA, information from the testing set could “leak” into the visualizations and summary statistics, and bias our model building process even though the data is not used directly in a learning algorithm. This would undermine the credibility of our performance metrics. Splitting the data can be done easily by using the <code>sdf_partition()</code> function:</p>
+<pre class="r"><code>data_splits &lt;- sdf_random_split(okc, training = 0.8, testing = 0.2, seed = 42)
+okc_train &lt;- data_splits$training
+okc_test &lt;- data_splits$testing</code></pre>
+<p>We can quickly look at the distribution of our response variable:</p>
+<pre class="r"><code>okc_train %&gt;%
+  group_by(not_working) %&gt;%
+  tally() %&gt;%
+  mutate(frac = n / sum(n))</code></pre>
+<pre><code>## Warning: Missing values are always removed in SQL.
+## Use `SUM(x, na.rm = TRUE)` to silence this warning
+## This warning is displayed only once per session.</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 3]
+##   not_working     n   frac
+##         &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+## 1           0 43789 0.910 
+## 2           1  4313 0.0897</code></pre>
+<p>Using the <code>sdf_describe()</code> function, we can obtain numerical summaries of specific columns:</p>
+<pre class="r"><code>sdf_describe(okc_train, cols = c(&quot;age&quot;, &quot;income&quot;))</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 3]
+##   summary age                income            
+##   &lt;chr&gt;   &lt;chr&gt;              &lt;chr&gt;             
+## 1 count   48102              9230              
+## 2 mean    32.336534863415245 105942.57854821235
+## 3 stddev  9.43908920033797   203550.81474192906
+## 4 min     18                 20000.0           
+## 5 max     110                1000000.0</code></pre>
+<p>Like we saw in the Analysis chapter, we can also utilize the dbplot package to plot distributions of these variables. For example, a histogram of the distribution of the <code>age</code> variable:</p>
+<pre class="r"><code>dbplot_histogram(okc_train, age) +
+  geom_hline(yintercept = 0, size = 1, colour = &quot;#333333&quot;) +
+  labs(title = &quot;Distribution of Age&quot;, subtitle = &quot;Age histogram in OKCupid dataset&quot;)</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/modeling-eda-hist-1.png" width="672" /></p>
+<p>A common EDA exercise is to look at the relationships between the response and the individual predictors. Often, you may have prior business knowledge on what these relationships should be, so this can serve as a data quality check. Also, unexpected trends can inform variable interactions you might want to include in the model. As an example, we can explore the <code>religion</code> variable:</p>
+<pre class="r"><code>prop_data &lt;- okc_train %&gt;%
+  mutate(religion = regexp_extract(religion, &quot;^\\\\w+&quot;, 0)) %&gt;% 
+  group_by(religion, not_working) %&gt;%
+  tally() %&gt;%
+  group_by(religion) %&gt;%
+  summarize(
+    count = sum(n),
+    prop = sum(not_working * n) / sum(n)
+  ) %&gt;%
+  mutate(se = sqrt(prop * (1 - prop) / count)) %&gt;%
+  collect()</code></pre>
+<pre><code>## Warning: Missing values are always removed in SQL.
+## Use `SUM(x, na.rm = TRUE)` to silence this warning
+## This warning is displayed only once per session.</code></pre>
+<pre class="r"><code>prop_data</code></pre>
+<pre><code>## # A tibble: 10 x 4
+##    religion     count   prop      se
+##    &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+##  1 christianity  4688 0.117  0.00469
+##  2 atheism       5615 0.117  0.00424
+##  3 judaism       2460 0.0793 0.00548
+##  4 other         6247 0.0839 0.00346
+##  5 hinduism       361 0.0942 0.0154 
+##  6 &lt;NA&gt;         16232 0.0711 0.002  
+##  7 agnosticism   7031 0.0996 0.00361
+##  8 catholicism   3815 0.0894 0.00458
+##  9 islam          114 0.184  0.0363 
+## 10 buddhism      1539 0.0897 0.00728</code></pre>
+<p>Note that <code>prop_data</code> is a small data frame that has been collected into memory in our R session, we can take advantage of ggplot2 to create an informative visualization.</p>
+<pre class="r"><code>prop_data %&gt;%
+  ggplot(aes(x = religion, y = prop)) + geom_point(size = 2) +
+  geom_errorbar(aes(ymin = prop - 1.96 * se, ymax = prop + 1.96 * se),
+                width = .1) +
+  geom_hline(yintercept = sum(prop_data$prop * prop_data$count) /
+                              sum(prop_data$count))</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/modeling-eda-prop-code-1.png" width="672" /></p>
+<p>Next, we take a look at the relationship between a couple of predictors: alcohol use and drug use. We would expect there to be some correlation between them. You can compute a contingency table via <code>sdf_crosstab()</code>:</p>
+<pre class="r"><code>contingency_tbl &lt;- okc_train %&gt;% 
+  sdf_crosstab(&quot;drinks&quot;, &quot;drugs&quot;) %&gt;%
+  collect()
+
+contingency_tbl</code></pre>
+<pre><code>## # A tibble: 7 x 5
+##   drinks_drugs missing never often sometimes
+##   &lt;chr&gt;          &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;
+## 1 very often        54   142    43       146
+## 2 socially        8245 21023   125      4132
+## 3 not at all       155  2351    16       105
+## 4 desperately       74    86    23        73
+## 5 often           1067  1723    64      1285
+## 6 missing         1074  1233    10        66
+## 7 rarely           612  3690    38       447</code></pre>
+<p>We can visualize this contingency table using a mosaic plot:</p>
+<pre class="r"><code>library(ggmosaic)
+library(forcats)
+library(tidyr)
+
+contingency_tbl %&gt;%
+  rename(drinks = drinks_drugs) %&gt;%
+  gather(&quot;drugs&quot;, &quot;count&quot;, missing:sometimes) %&gt;%
+  mutate(
+    drinks = as_factor(drinks) %&gt;% 
+      fct_relevel(&quot;missing&quot;, &quot;not at all&quot;, &quot;rarely&quot;, &quot;socially&quot;, 
+                  &quot;very often&quot;, &quot;desperately&quot;),
+    drugs = as_factor(drugs) %&gt;%
+      fct_relevel(&quot;missing&quot;, &quot;never&quot;, &quot;sometimes&quot;, &quot;often&quot;)
+  ) %&gt;%
+  ggplot() +
+  geom_mosaic(aes(x = product(drinks, drugs), fill = drinks, 
+                  weight = count))</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/modeling-eda-contingency-code-1.png" width="672" /></p>
+<p>To further explore the relationship between these two variables, we can perform correspondence analysis using the FactoMineR package. This technique enables us to summarize the relationship between the high dimensional factor levels by mapping each level to a point on the plane. We first obtain the mapping using <code>FactoMineR::CA()</code> as follows:</p>
+<pre class="r"><code>dd_obj &lt;- contingency_tbl %&gt;% 
+  tibble::column_to_rownames(var = &quot;drinks_drugs&quot;) %&gt;%
+  FactoMineR::CA(graph = FALSE)</code></pre>
+<p>We can then plot the results using ggplot:</p>
+<pre class="r"><code>dd_drugs &lt;-
+  dd_obj$row$coord %&gt;%
+  as.data.frame() %&gt;%
+  mutate(
+    label = gsub(&quot;_&quot;, &quot; &quot;, rownames(dd_obj$row$coord)),
+    Variable = &quot;Drugs&quot;
+  )
+
+dd_drinks &lt;-
+  dd_obj$col$coord %&gt;%
+  as.data.frame() %&gt;%
+  mutate(
+    label = gsub(&quot;_&quot;, &quot; &quot;, rownames(dd_obj$col$coord)),
+    Variable = &quot;Alcohol&quot;
+  )
+  
+ca_coord &lt;- rbind(dd_drugs, dd_drinks)
+  
+ggplot(ca_coord, aes(x = `Dim 1`, y = `Dim 2`, 
+                     col = Variable)) +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) +
+  geom_text(aes(label = label)) +
+  coord_equal()</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/modeling-eda-factominer-code-1.png" width="672" /></p>
+</div>
+<div id="feature-engineering" class="section level2">
+<h2>Feature Engineering</h2>
+<p>The feature engineering exercise comprises transforming the data to increase the performance of the model. This can include things like centering and scaling numerical values and performing string manipulation to extract meaningful variables. It also often includes variable selection — the process of selecting which predictors are used in the model.</p>
+<p>In the histogram, we see that the <code>age</code> variable has a range from 18 to over 60. Some algorithms, especially neural networks, train faster if we normalize our inputs so that they are of the same magnitude. Let’s now normalize the <code>age</code> variable by removing the mean and scaling to unit variance, beginning by calculating its mean and standard deviation:</p>
+<pre class="r"><code>scale_values &lt;- okc_train %&gt;%
+  summarize(
+    mean_age = mean(age),
+    sd_age = sd(age)
+  ) %&gt;%
+  collect()
+
+scale_values</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##   mean_age sd_age
+##      &lt;dbl&gt;  &lt;dbl&gt;
+## 1     32.3   9.44</code></pre>
+<p>We can then use these to transform the dataset:</p>
+<pre class="r"><code>okc_train &lt;- okc_train %&gt;%
+  mutate(scaled_age = (age - !!scale_values$mean_age) /
+           !!scale_values$sd_age)</code></pre>
+<pre class="r"><code>dbplot_histogram(okc_train, scaled_age)+
+  geom_hline(yintercept = 0, size = 1, colour = &quot;#333333&quot;) +
+  labs(title = &quot;Distribution of Scaled Age&quot;, subtitle = &quot;Scaled age histogram in OKCupid dataset&quot;) </code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/modeling-eda-scale-code-1.png" width="672" /></p>
+<p>Since some of the profile features are multiple-select, in other words, a person can choose to associate with multiple options for a variable, we need to process them before we can build meaningful models. If we take a look at the ethnicity column, for example, we see that there are many different combinations:</p>
+<pre class="r"><code>okc_train %&gt;%
+  group_by(ethnicity) %&gt;%
+  tally()</code></pre>
+<pre><code>## # Source: spark&lt;?&gt; [?? x 2]
+##    ethnicity                                           n
+##    &lt;chr&gt;                                           &lt;dbl&gt;
+##  1 hispanic / latin, white                          1044
+##  2 middle eastern, hispanic / latin                   31
+##  3 asian, indian, pacific islander                     5
+##  4 native american                                    56
+##  5 asian, black, native american, hispanic / latin     1
+##  6 asian, indian, white                                5
+##  7 native american, other                             11
+##  8 asian, black, pacific islander, white, other        1
+##  9 asian, native american                              2
+## 10 black, native american, pacific islander, white     1
+## # ... with more rows</code></pre>
+<p>One way to proceed would be to treat each combination of races as a separate level, but that would lead to a very large number of levels which becomes problematic in many algorithms. To better encode this information, we can create dummy variables for each race, as follows:</p>
+<pre class="r"><code>ethnicities &lt;- c(&quot;asian&quot;, &quot;middle eastern&quot;, &quot;black&quot;, &quot;native american&quot;, &quot;indian&quot;, 
+                 &quot;pacific islander&quot;, &quot;hispanic / latin&quot;, &quot;white&quot;, &quot;other&quot;)
+ethnicity_vars &lt;- ethnicities %&gt;% 
+  purrr::map(~ expr(ifelse(like(ethnicity, !!.x), 1, 0))) %&gt;%
+  purrr::set_names(paste0(&quot;ethnicity_&quot;, gsub(&quot;\\s|/&quot;, &quot;&quot;, ethnicities)))
+okc_train &lt;- mutate(okc_train, !!!ethnicity_vars)
+okc_train %&gt;% 
+  select(starts_with(&quot;ethnicity_&quot;)) %&gt;%
+  glimpse()</code></pre>
+<pre><code>## Observations: ??
+## Variables: 9
+## Database: spark_connection
+## $ ethnicity_asian           &lt;dbl&gt; 0, 0, NaN, NaN, 0, NaN, 1, 0, 0, 1, 0, 0,...
+## $ ethnicity_middleeastern   &lt;dbl&gt; 0, 0, NaN, NaN, 0, NaN, 0, 0, 0, 0, 0, 0,...
+## $ ethnicity_black           &lt;dbl&gt; 0, 0, NaN, NaN, 0, NaN, 0, 0, 0, 0, 0, 0,...
+## $ ethnicity_nativeamerican  &lt;dbl&gt; 0, 0, NaN, NaN, 0, NaN, 0, 0, 0, 0, 0, 0,...
+## $ ethnicity_indian          &lt;dbl&gt; 0, 1, NaN, NaN, 0, NaN, 0, 0, 0, 0, 0, 0,...
+## $ ethnicity_pacificislander &lt;dbl&gt; 0, 0, NaN, NaN, 0, NaN, 0, 0, 0, 0, 0, 0,...
+## $ ethnicity_hispaniclatin   &lt;dbl&gt; 1, 0, NaN, NaN, 0, NaN, 0, 0, 0, 0, 1, 0,...
+## $ ethnicity_white           &lt;dbl&gt; 0, 0, NaN, NaN, 0, NaN, 0, 1, 0, 0, 0, 1,...
+## $ ethnicity_other           &lt;dbl&gt; 0, 0, NaN, NaN, 0, NaN, 0, 0, 0, 0, 0, 0,...</code></pre>
+<p>For the free text fields, a straightforward way to extract features is counting the total number of characters. We will store the train dataset in Spark’s memory with <code>compute()</code> to speed up computation.</p>
+<pre class="r"><code>okc_train &lt;- okc_train %&gt;%
+  mutate(
+    essay_length = char_length(paste(!!!syms(paste0(&quot;essay&quot;, 0:9))))
+  ) %&gt;% compute()</code></pre>
+<pre class="r"><code>dbplot_histogram(okc_train, essay_length, bins = 100)</code></pre>
+<p><img src="/courses/MachineLearning/Spark-with-R_files/figure-html/modeling-eda-essay-render-1.png" width="672" /></p>
+</div>
 </div>
 <div id="sparklyr-has-some-functions-such-as-spark_read_csv-that-will-read-a-csv-file-into-spark" class="section level1">
 <h1>sparklyr has some functions such as spark_read_csv() that will read a CSV file into Spark</h1>
