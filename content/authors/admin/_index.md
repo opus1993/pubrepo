@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: Serving in enterprise digital transformation with innovators in mobile power, decision intelligence, and product management
+bio: Serving enterprise digital transformation efforts with innovators in mobile power, decision intelligence, and product management
 Education:
   Courses:
   - course: MS Business Analytics
@@ -39,5 +39,5 @@ user_groups:
 - Visitors
 ---
 
-I am an engineer with extensive cross-functional team experience, strong quantitative analysis skills, and a passion for technology gained in roles in product development, strategic sourcing, and digital operations. I am currently responsible for Digital Operations Projects at CNH Industrial in the Chicago area.
+I am an engineer with many years of cross-functional team experience, strong quantitative analysis skills, and a passion for technology gained in roles in product development, strategic sourcing, and digital operations. I am currently responsible for Digital Operations Projects at CNH Industrial in the Chicago area.
 
