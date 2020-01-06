@@ -39,7 +39,7 @@ Kevin Hartman of [Google, puts it this way](https://mendoza.nd.edu/news/google-i
 
 >“The way I teach analytics is informed by my business day job,” Hartman said. “That is also why I don’t want to just impart practical knowledge to them, because that practical knowledge has a very short half-life. Things are moving so quickly. If I teach you how to do something today, that might not be relevant in a week or a year.”
 
-Ultimately, the best analytics teams are balanced to iterate through this process going from problem to value efficiently, spending minimal time on modeling and maximum time at the ends of the spectrum:
+Ultimately, the best analytics teams are balanced to iterate through the process going from problem to value efficiently, spending minimal time on modeling and maximum time at the ends of the spectrum:
 
 - Beginning of Workflow: Critical Business Understanding, Domain Expert Engagement, Data Understanding, Data Quality, and Feature Engineering
 - End of Workflow: Communication with Project Stakeholders, Ensuring Product Delivery 

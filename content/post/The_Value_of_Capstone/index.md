@@ -41,6 +41,10 @@ Caitlin Malone and Ben Jaffe in their Linear Digressions podcast episode [Data S
 
 A classic example of metrics run amok is the Wells Fargo debacle, where employees opened 3.5 million deposit and credit card accounts without customers' consent in an effort to implement its now infamous "cross-selling" strategy. In addition to paying initial fines (`$185` million), reimbursing customers for fees (`$6.1` million), and eventually settling a class-action lawsuit to cover damages as far back as 2002 (`$142` million), Wells Fargo now faces headwinds in attracting new retail customers.  [Don't Let Metrics Undermine Your Business](https://hbr.org/2019/09/dont-let-metrics-undermine-your-business)
 
+Michael Berthold writes in [What Does It Take to be a Successful Data Scientist?](https://hdsr.mitpress.mit.edu/pub/5irjez4q)
+
+>"But is a theoretical education sufficient? My answer here is no. Data science is as much about knowing the tool as it is about having experience applying it to real-world problems, about having that ‘gut feeling’ that raises your eyebrows when the results are suspiciously positive (or just weird). I have seen this countless times with students in our data science classes. Early on, when aspiring data scientists start working on practical exercises, no matter how smart they are, they present results that are totally off. Once asked ‘Are you sure this makes sense?’ they realize and begin to question their results, but this is learned behavior."
+
 ![March 22, 2019; Kevin Hartman, director of analytics for Google, gives the ‘Ten Years Hence’ lecture. (Photo by Matt Cashore/University of Notre Dame)](https://mendoza.nd.edu/wp-content/uploads/2019/04/MC-3.22.19-Ten-Years-Hence-08-600x400.jpg)
 
 Analytics leaders create value by championing integrated, rigorous and ethical work, no matter the industry or the size of the team. They foster the tough conversations, asking the [sharp questions](https://brohrer.github.io/pocket_guide_data_science.html). Capstone projects create opportunities to collaborate to realise business value.
