@@ -52,8 +52,6 @@ Regardless of your computational platform, all professional analysts should mast
 
 [How Charts Lie](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569) and [Factfulness](https://www.gapminder.org/factfulness-book/) each speak to how numbers are very persuasive, especially when presented charts, because we associate them with science and reason. Follow sites like [Our World in Data](https://ourworldindata.org/). Charts can enlighten and enable conversations, allowing us to peek through the complexity of large amounts of data. Good charts make us smarter.
 
-[![How Charts Lie, by Alberto Cairo](http://albertocairo.com/wp-content/uploads/2019/07/How-Charts-Lie-cover_high.jpg)](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569)
-
 The use of git will be important for team collaboration. Find Jenny Bryan’s web book [Happy Git and GitHub for the useR](http://happygitwithr.com/) and Corey Schafer's YouTube series at [Git Tutorials](https://www.youtube.com/playlist?list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx).
 
 [R in a Nutshell, by Joseph Adler (O’Reilly)](http://oreilly.com/catalog/9780596801717), is another quick tutorial and reference you’ll keep by your side. Also consider [Hands On Programming with R by Garrett Grolemund (O’Reilly)](https://www.oreilly.com/library/view/hands-on-programming-with/9781449359089/). Hadley Wickham’s [Advanced R Programming](https://adv-r.hadley.nz/) is available either as a printed book or free online and is a great deeper dive into advanced R topics. [Efficient R Programming, by Colin Gillespie and Robin Lovelace (O’Reilly)](http://shop.oreilly.com/product/0636920047995.do), is another good guide to learning the deeper concepts about R programming.
