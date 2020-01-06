@@ -18,7 +18,8 @@ tags:
 The sheer volume of today’s data presents real challenges for businesses and opportunities for those who can analyze and explain it.  The department leading the charge, whether called Analytics or Operations Research or Data Science, must enable the rest of the organization to make better, data-driven decisions. 
 
 [Cassie Kosyrkov, talking about the employment marketplace:](https://www.wired.co.uk/article/google-chief-decision-scientist-cassie-kozyrkov)
-"The top trophy hire, the data science unicorn, is elusive, and it’s no surprise: a “full-stack” data scientist has mastery of machine learning, statistics, and analytics. When teams can’t get their hands on a three-in-one polymath, they set their sights on luring the most impressive prize among the single-origin specialists. Which of those skills gets the pedestal?"
+
+>"The top trophy hire, the data science unicorn, is elusive, and it’s no surprise: a “full-stack” data scientist has mastery of machine learning, statistics, and analytics. When teams can’t get their hands on a three-in-one polymath, they set their sights on luring the most impressive prize among the single-origin specialists. Which of those skills gets the pedestal?"
 
 [Brandon Rohrer defines 6 archetypes of Data Scientist Practitioner:](https://brohrer.github.io/data_science_archetypes.html) the Generalist, the Diva, the Detective, the Oracle, the Maker, and the Unicorn. 
 
@@ -29,13 +30,14 @@ What these archetypes have in common is that they provide high-effort solutions 
 1. The Oracle, a master of modeling, and
 1. The Maker, a master of engineering.
 
-Kozyrkov:  "But what the uninitiated rarely grasp is that the professions under the data science umbrella are completely different from one another. They may use some of the same methods and equations, but that’s where the similarity ends. Far from being a lesser version of the other data science breeds, good analysts are a prerequisite for effectiveness in your data endeavors."
+Kozyrkov:  
+>"But what the uninitiated rarely grasp is that the professions under the data science umbrella are completely different from one another. They may use some of the same methods and equations, but that’s where the similarity ends. Far from being a lesser version of the other data science breeds, good analysts are a prerequisite for effectiveness in your data endeavors."
 
 ![March 22, 2019; Kevin Hartman, director of analytics for Google, gives the ‘Ten Years Hence’ lecture. (Photo by Matt Cashore/University of Notre Dame)](https://mendoza.nd.edu/wp-content/uploads/2019/04/MC-3.22.19-Ten-Years-Hence-08-600x400.jpg)
 
 Kevin Hartman of [Google, puts it this way](https://mendoza.nd.edu/news/google-it-bringing-big-data-to-the-classroom/)
 
-“The way I teach analytics is informed by my business day job,” Hartman said. “That is also why I don’t want to just impart practical knowledge to them, because that practical knowledge has a very short half-life. Things are moving so quickly. If I teach you how to do something today, that might not be relevant in a week or a year.”
+>“The way I teach analytics is informed by my business day job,” Hartman said. “That is also why I don’t want to just impart practical knowledge to them, because that practical knowledge has a very short half-life. Things are moving so quickly. If I teach you how to do something today, that might not be relevant in a week or a year.”
 
 Ultimately, the best analytics teams are balanced to iterate through this process going from problem to value very efficiently, spending minimal time on modeling and maximum time at the ends of the spectrum:
 
