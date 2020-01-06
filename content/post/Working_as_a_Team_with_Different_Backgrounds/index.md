@@ -29,7 +29,7 @@ What these archetypes have in common is that they provide high-effort solutions 
 1. The Oracle, a master of modeling, and
 1. The Maker, a master of engineering.
 
-Kozyrkov:  "But what the uninitiated rarely grasp is that the professions under the data science umbrella are completely different from one another. They may use some of the same methods and equations, but that’s where the similarity ends. Far from being a lesser version of the other data science breeds, good analysts are a prerequisite for effectiveness in your data endeavors. "
+Kozyrkov:  "But what the uninitiated rarely grasp is that the professions under the data science umbrella are completely different from one another. They may use some of the same methods and equations, but that’s where the similarity ends. Far from being a lesser version of the other data science breeds, good analysts are a prerequisite for effectiveness in your data endeavors."
 
 ![March 22, 2019; Kevin Hartman, director of analytics for Google, gives the ‘Ten Years Hence’ lecture. (Photo by Matt Cashore/University of Notre Dame)](https://mendoza.nd.edu/wp-content/uploads/2019/04/MC-3.22.19-Ten-Years-Hence-08-600x400.jpg)
 
@@ -43,10 +43,6 @@ Ultimately, the best analytics teams are balanced to iterate through this proces
 - End of Workflow: Communication with Project Stakeholders, ensuring Product Delivery 
 
 Of the cast of characters mentioned here, the ones that every business needs are decision-makers and analysts. When in doubt, fill the team with analysts before other roles. Appreciate them and reward them. Encourage them to grow to the heights of their chosen career (and not someone else’s). 
-
-There are new Master's Degree Programs in the Chicago area built to fill these needs, including one with the Notre Dame Mendoza College of Business. It is designed for working professionals with at least two years of work experience. The cohort-based in-person learning environment in downtown Chicago fosters deeper conversation and understanding of data, and the power behind data to make decisions.
-
-[Univerisity of Notre Dame Mendoza College of Business](https://mendoza.nd.edu/graduate-programs/business-analytics-chicago-msba/)
 
 ### Did you find this page helpful? Consider sharing it 🙌
 
