@@ -27,7 +27,7 @@ Whether this group call themselves Analytics or Operations Research or Data Scie
 
 [Brandon Rohrer explores 6 archetypes of Data Scientist Practitioner:](https://brohrer.github.io/data_science_archetypes.html) the Generalist, the Diva, the Detective, the Oracle, the Maker, and the Unicorn. 
 
-What these archetypes have in common is that they provide high-effort solutions to specific problems. If the problems they tackle aren’t worth solving, you end up wasting company time and your money. A frequent lament among business leaders is, “Our data science group is useless.” And the problem usually lies in an absence of analytics expertise. 
+What these archetypes have in common is that they provide high-effort solutions to specific problems. If the problems they tackle aren’t worth solving, you end up wasting time and money. A frequent lament among business leaders is, “Our data science group is useless.” And the problem usually lies in an absence of analytics expertise. 
 
 Kozyrkov:  
 >"But what the uninitiated rarely grasp is that the professions under the data science umbrella are completely different from one another. They may use some of the same methods and equations, but that’s where the similarity ends. Far from being a lesser version of the other data science breeds, good analysts are a prerequisite for effectiveness in your data endeavors."
