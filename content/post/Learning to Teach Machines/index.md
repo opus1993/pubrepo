@@ -13,7 +13,7 @@ slug: learning-to-teach-machines
 categories:
   - R
 tags:
-  - Deep Learning
+  - Education
 ---
 
 Alison Hill recently shared a valuable list of learning resources, organized roughly in the order they are most helpful for students of Machine Learning. 
