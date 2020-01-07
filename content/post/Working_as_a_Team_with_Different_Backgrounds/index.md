@@ -21,7 +21,7 @@ Whether this group call themselves Analytics or Operations Research or Data Scie
 
 ![University of Notre Dame Mendoza College of Business](https://mendoza.nd.edu/wp-content/uploads/2018/12/msba_chi_highlight2-min-279x203.jpg)
 
-[Cassie Kozyrkov, talking about the talent marketplace in this space:](https://www.wired.co.uk/article/google-chief-decision-scientist-cassie-kozyrkov)
+Cassie Kozyrkov, talking about the talent marketplace in this space, in ["What Great Data Analysts Do — and Why Every Organization Needs Them"](https://hbr.org/2018/12/what-great-data-analysts-do-and-why-every-organization-needs-them):
 
 >"The top trophy hire, the data science unicorn, is elusive, and it’s no surprise: a “full-stack” data scientist has mastery of machine learning, statistics, and analytics. When teams can’t get their hands on a three-in-one polymath, they set their sights on luring the most impressive prize among the single-origin specialists. Which of those skills gets the pedestal?"
 
@@ -38,12 +38,12 @@ Kevin Hartman of [Google, puts it this way](https://mendoza.nd.edu/news/google-i
 
 >“The way I teach analytics is informed by my business day job,” Hartman said. “That is also why I don’t want to just impart practical knowledge to them, because that practical knowledge has a very short half-life. Things are moving so quickly. If I teach you how to do something today, that might not be relevant in a week or a year.”
 
-Collaborative teams harness the best of diverse skill sets. They learn from one another, and are much more likely to understand the big picture goals and break down barriers. Ultimately, the best analytics teams are balanced to iterate through the process going from problem to value efficiently, spending minimal time on modeling and maximum time at the ends of the spectrum:
+Collaborative teams harness the best of diverse skill sets. They learn from one another, and are much more likely to understand the big picture goals and break down barriers. Analysts, working close to the business, curate practical domain level connections. Ultimately, the best teams are balanced to iterate effectively through the process going from problem to delivery, spending minimal time on modeling and maximum time at the ends of the spectrum:
 
 - Beginning of Workflow: Critical Business Understanding, Domain Expert Engagement, Data Understanding, Data Quality, and Feature Engineering
 - End of Workflow: Communication with Project Stakeholders, Ensuring Product Delivery 
 
-Of the cast of characters mentioned here, the ones that every business needs are decision-makers and analysts. When in doubt, fill the team with analysts before other roles. Both functions — data science and strategic analytics — are tremendously important, have clear purposes, require different competencies, and offer rewarding career paths. Appreciate them and reward them. Encourage them to grow to the heights of their chosen career (and not someone else’s). 
+Of the cast of characters mentioned here, the ones that every business needs are decision-makers and analysts. When in doubt, fill the team with analysts before other roles. Both data science and strategic analytics are tremendously important, have clear purposes, require different competencies, and offer rewarding career paths. Appreciate them and reward them. Encourage them to grow to the heights of their chosen career (and not someone else’s). 
 
 ### Did you find this page helpful? Consider sharing it 🙌
 
