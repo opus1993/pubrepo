@@ -15,19 +15,21 @@ categories:
 tags:
   - Education
 ---
-Every day executives and business professionals see digital technologies that could benefit their organization, but the connection between business problem and realizing business value is not well understood.
+Every day business leaders envision digital technologies that could benefit their enterprise, but the path between business problem and realizing business value is not well understood.
 
-The reality today for most large enterprises is that they:
+![Photo by Nathan Dumlao on Unsplash](./nathan-dumlao-f6UmholR_I4-unsplash.jpg)
 
-- have diverse individual customers, globally, with growing brand expectations. 
+The reality today for most large enterprises is that they have:
 
-- offer ever more complex solutions - each with quality, lead time, conversion rate and dozens of other success metrics.
+- diverse individual customers, globally, with growing brand expectations. 
 
-- have growing complexity in managing the ethical and regulatory aspects of their digital offering.
+- ever more complex customer offerings - each with quality, lead time, conversion rate and dozens of other success metrics.
 
-- have many partner suppliers with their own individual contributions to overall success.
+- growing complexity in managing the ethical and regulatory aspects of their digital offering.
 
-- have lots of data...
+- many partner suppliers with their own individual contributions to overall success.
+
+- lots of data...
 
 The data has the potential to provide the fuel for the digital transformations to achieve sustainable competitive advantage.  The means of unlocking that value is not a so much role or set of skills (i.e. data scientist), but a way of working - a workflow.
 
@@ -47,7 +49,7 @@ Michael Berthold writes in [What Does It Take to be a Successful Data Scientist?
 
 ![March 22, 2019; Kevin Hartman, director of analytics for Google, gives the ‘Ten Years Hence’ lecture. (Photo by Matt Cashore/University of Notre Dame)](https://mendoza.nd.edu/wp-content/uploads/2019/04/MC-3.22.19-Ten-Years-Hence-08-600x400.jpg)
 
-Analytics leaders create value by championing integrated, rigorous and ethical work, no matter the industry or the size of the team. They foster the tough conversations, asking the [sharp questions](https://brohrer.github.io/pocket_guide_data_science.html). Capstone projects create opportunities to collaborate to realise business value.
+Analytics leaders create value by championing integrated, rigorous and ethical work, no matter the industry or the size of the team. They foster the tough conversations, asking the [sharp questions](https://brohrer.github.io/pocket_guide_data_science.html). Capstone projects create opportunities to collaborate to realize tangible business value in ways that coding class, bootcamps, and Kaggle cannot.
 
 ### Did you find this page helpful? Consider sharing it 🙌
 
