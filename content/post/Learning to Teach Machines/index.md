@@ -16,7 +16,7 @@ tags:
   - Deep Learning
 ---
 
-Alison Hill recently shared a valuable list of learning resources, organized roughly in the order they are most helpful for beginners. These were all written before the release of the R Tidymodels, Recipes, and Drake packages. Even so, they provide a very good foundation and they execute well on Microsoft's dated R Open distribution currently provided with the Azure DSVM and HDInsight.
+Alison Hill recently shared a valuable list of learning resources, organized roughly in the order they are most helpful for students of Machine Learning. 
 
 ----
 
