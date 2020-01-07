@@ -6,16 +6,16 @@ image:
   placment: 3
 markup: goldmark
 math: true
-title: Working as a Team
+title: Working as an Analytics Team
 author: Jim Gruman
 projects: []
-slug: Working as a Team
+slug: Working as an Analytics Team
 categories:
   - R
 tags:
   - Education
 ---
-The sheer volume of data available today presents real challenges for businesses and opportunities for those who can analyze and explain it.  The department leading the charge must enable and empower the rest of the organization with solutions to make better, data-driven decisions. 
+The sheer volume of data available today presents real challenges for businesses and opportunities for those who can analyze and explain it.  The department leading the charge must enable and empower the rest of the organization with solutions to make better, data-driven decisions. [Kim Larsen writes, "Fire Your BI Team"](https://towardsdatascience.com/fire-your-bi-team-c425f774bf6) in a recent appeal to shift the mandate and engagement model.
 
 Whether this group call themselves Analytics or Operations Research or Data Science, who are these people, and what are their roles in the organization?
 
@@ -43,7 +43,7 @@ Collaborative teams harness the best of diverse skill sets. They learn from one 
 - Beginning of Workflow: Critical Business Understanding, Domain Expert Engagement, Data Understanding, Data Quality, and Feature Engineering
 - End of Workflow: Communication with Project Stakeholders, Ensuring Product Delivery 
 
-Of the cast of characters mentioned here, the ones that every business needs are decision-makers and analysts. When in doubt, fill the team with analysts before other roles. Appreciate them and reward them. Encourage them to grow to the heights of their chosen career (and not someone else’s). 
+Of the cast of characters mentioned here, the ones that every business needs are decision-makers and analysts. When in doubt, fill the team with analysts before other roles. Both functions — data science and strategic analytics — are tremendously important, have clear purposes, require different competencies, and offer rewarding career paths. Appreciate them and reward them. Encourage them to grow to the heights of their chosen career (and not someone else’s). 
 
 ### Did you find this page helpful? Consider sharing it 🙌
 
