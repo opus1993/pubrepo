@@ -16,7 +16,7 @@ tags:
   - Education
 ---
 
-The sheer volume of today’s data presents real challenges for businesses and opportunities for those who can analyze and explain it. The entry point for most professionals is Microsoft Excel. At some point, though, project requirements and organizations require more. The breakdowns are typically:
+The entry point for most analytics professionals is Microsoft Excel. At some point, though, project requirements and organizations require more. The breakdowns are typically:
 
 1. We need to separate the data from the analysis, with storage, for a single source of truth
 
@@ -50,7 +50,7 @@ Anyone doing serious graphics work in R will want [R Graphics by Paul Murrell (C
 
 Regardless of your computational platform, all professional analysts should master the craft of data visualization.
 
-[How Charts Lie](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569) and [Factfulness](https://www.gapminder.org/factfulness-book/) each speak to how numbers are very persuasive, especially when presented charts, because we associate them with science and reason. Follow sites like [Our World in Data](https://ourworldindata.org/). Charts can enlighten and enable conversations, allowing us to peek through the complexity of large amounts of data. Good charts make us smarter.
+[How Charts Lie](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569) and [Factfulness](https://www.gapminder.org/factfulness-book/) each speak to how numbers are very persuasive, especially when presented as charts, because we associate them with science and reason. Follow sites like [Our World in Data](https://ourworldindata.org/). Charts can enlighten and enable conversations, allowing us to peek through the complexity of large amounts of data. Good charts make us smarter.
 
 The use of git will be important for team collaboration. Find Jenny Bryan’s web book [Happy Git and GitHub for the useR](http://happygitwithr.com/) and Corey Schafer's YouTube series at [Git Tutorials](https://www.youtube.com/playlist?list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx).
 
