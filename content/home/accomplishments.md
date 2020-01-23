@@ -38,6 +38,16 @@ date_format = "Jan 2006"
   date_end = "2019-11-06"
   description = ""
 
+[[item]]
+  organization = "DataCamp"
+  organization_url = "https://www.datacamp.com"
+  title = "Machine Learning Scientist with R"
+  url = ""
+  certificate_url = "https://www.datacamp.com/statement-of-accomplishment/track/1ca5f54d585e6cbae8ff3eb2e7d0f6ac447099b0"
+  date_start = "2019-11-07"
+  date_end = "2020-01-22"
+  description = ""
+
 +++
 
 
