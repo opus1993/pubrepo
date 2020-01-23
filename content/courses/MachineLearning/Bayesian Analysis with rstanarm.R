@@ -6,6 +6,7 @@
 # a review of frequentist method (basic regression)
 #
 #
+
 library(rstanarm)
 options(mc.cores = parallel::detectCores())
 data(kidiq)
@@ -115,6 +116,143 @@ prior_summary(stan_model)
 #          control = list(max_treedepth = 15)
 #
 #
+# using the Rsquared statistic (linear regression) - the coefficient of determination, the proportion of variance that can be explained, ranging between 0 and 1
+#
+# 
+ss_res <- var(residuals(stan_model))
+ss_total <- var(fitted(stan_model)) + var(residuals(stan_model))
+1-(ss_res/ss_total)
+
+# posterior prective model checks
+#
+# another way to investigate model fit
+#
+#    
+# returns a matrix of predicted IQ scores, which form a distribution
+predictions <- posterior_linpred(stan_model)
+
+iter1 <- predictions[1,]
+iter2 <- predictions[2,]
+
+summary(kidiq$kid_score)
+summary(iter1)
+summary(iter2)
+#   means look comparable, but the distribution ranges are not
+#also
+
+kidiq$kid_score[24]
+
+summary(predictions[,24])
+
+# the actual iq score compared to the distribution of the model
+
+kidiq$kid_score[185]
+
+summary(predictions[,185])
+#   THE MODEL DOES NOT DO A VERY GOOD JOB OF PREDICTING, FOR THIS STUDENT
+
+r2_posterior <- bayes_R2(stan_model)
+
+summary(r2_posterior)
+
+quantile(r2_posterior, probs = c(0.025, 0.975))
+
+hist(r2_posterior)
+
+# each distribution of predicted scores, along with the observed data
+pp_check(stan_model, "dens_overlay")
+
+#  the means of each replication and the mean from the observed data
+pp_check(stan_model, "stat")
+
+# the means and sd of each replication, versus the mean/sd from observed
+pp_check(stan_model, "stat_2d")
 
 
+#
+#
+#  what do we do for model comparison?
+#
+#   use the loo package for model comparisons (approximates cross validation)
+library(loo)
 
+model1 <- stan_glm(kid_score ~ mom_iq, data = kidiq)
+model2 <- stan_glm(kid_score ~ mom_iq * mom_hs, data = kidiq)
+
+loo1_pred <- loo(model1)
+loo2_pred <- loo(model2)
+
+loo_compare(loo1_pred, loo2_pred)
+# positive differences mean the second model is favored
+# the se standard error when small means that the model is meaningful
+
+# visualizing a bayesian model
+#
+#
+
+stan_model <- stan_glm(kid_score ~ mom_iq, data = kidiq)
+tidy_coef <-tidy(stan_model)
+
+model_intercept <- tidy_coef$estimate[1]
+model_slope <- tidy_coef$estimate[2]
+
+library(ggplot2)
+library(tidybayes)
+
+ggplot(kidiq, aes(x = mom_iq, y = kid_score))+
+  geom_point()+
+  geom_abline(intercept = model_intercept, slope = model_slope)
+
+draws <- spread_draws(stan_model, `(Intercept)`, mom_iq)
+
+ggplot(kidiq, aes(x = mom_iq, y = kid_score))+
+  geom_point()+
+  geom_abline(data = draws, aes(intercept = `(Intercept)`,
+                                slope = mom_iq),
+              size = 0.2, alpha = 0.1, color = "skyblue")+
+  geom_abline(intercept = model_intercept, slope = model_slope)
+
+## making predictions
+#
+#
+#
+#
+
+stan_model <- stan_glm(kid_score ~ mom_iq + mom_hs, data = kidiq)
+
+posteriors <- posterior_predict(stan_model)
+posteriors[1:10,1:5]
+
+# to make predictions for entirely new data
+
+predict_data <- data.frame(
+  mom_iq = 110,
+  mom_hs = c(0,1)
+)
+
+predict_data
+
+new_predictions <- posterior_predict(stan_model, newdata = predict_data)
+
+new_predictions[1:10,]
+
+summary(new_predictions[,1])
+summary(new_predictions[,2])
+
+## visualizing predictions
+#
+#
+#
+#
+
+new_predictions <- as.data.frame(new_predictions)
+
+colnames(new_predictions) <- c("No HS", "Completed HS")
+
+plot_posterior <- tidyr::gather(new_predictions, key = "HS", value = "predict")
+
+head(plot_posterior)
+
+ggplot(plot_posterior, aes(x=predict))+
+  facet_wrap(~ HS, ncol = 1)+
+  geom_density()
