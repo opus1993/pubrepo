@@ -1,0 +1,92 @@
+---
+title: "#CaseIH Twitter Activity"
+author: Jim Gruman
+date: 1/25/2020
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: vignette
+  code_download: TRUE
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lubridate)
+library(tidyverse)
+library(rtweet)
+library(keyring)
+theme_set(theme_light())
+```
+
+https://www.youtube.com/watch?v=KE9ItC3doEU&t=80s
+
+![](https://www.caseih.com/PublishingImages/layout/caseih-logo.png)
+
+The [rtweet package](https://rtweet.info) calls the Twitter API for the most recent tweet activity by @case_ih, including 3200 @Case_IH authored tweets, re-tweets of other authors, and favorites.
+
+<img src="https://rtweet.info/reference/figures/logo.png" width="200">
+
+```{r eval=FALSE, include=FALSE}
+create_token(
+  app = "IAPfeed",
+  consumer_key = key_get("twitter.consumer_key", username = "jim_gruman"),
+  consumer_secret = key_get("twitter.consumer_secret", username = "jim_gruman"),
+  access_token = key_get("twitter.access_token", username = "jim_gruman"),
+  access_secret = key_get("twitter.access_secret", username = "jim_gruman"))
+
+case_ih_timeline <- get_timeline("case_ih", n=3200)
+
+Sys.time()
+```
+
+```{r}
+case_ih_timeline %>%
+   mutate(hour=hour(with_tz(created_at, tz="America/Chicago")))  %>%
+   group_by(hour) %>%
+   summarize(n=n()) %>%
+   mutate(frequency=n/sum(n)) %>%
+   ggplot()+
+   geom_col(aes(x=hour, y=frequency), 
+             fill='red', alpha=0.5)+
+   labs(title = "@CaseIH Tweet Activity by Time of Day",
+     x = "Hour, CST", y = "Frequency",
+     caption = str_c("Jim Gruman, ", Sys.Date()))
+
+case_ih_timeline %>%
+  count(date = floor_date(created_at, "month")) %>%
+  ggplot(aes(date, n))+
+  geom_line()+
+  expand_limits(y = 0)+
+  labs(title = "@Case_IH Tweet Activity by Month",x = "Date",
+       y = "@Case_IH Tweets",
+       caption = str_c("Jim Gruman, ", Sys.Date()))
+```
+
+Which tweets get the most retweets, and thus the widest audience?
+
+```{r}
+case_ih_timeline%>%
+  select(screen_name, retweet_screen_name, retweet_count, status_id)%>%
+  arrange(desc(retweet_count))
+
+case_ih_timeline%>%
+  select(retweet_screen_name, retweet_count, favorite_count, status_id)%>%
+  mutate(ratio = (favorite_count + 1) / (retweet_count + 1)) %>%
+  arrange(ratio)
+
+```
+
+
+A look at the Twitter Screen Names of the most active users of the #CaseIH hashtags
+
+```{r}
+case_ih_timeline %>%
+  count(screen_name, sort = TRUE) %>%
+  head(12) %>%
+  mutate(screen_name = reorder(screen_name, n)) %>%
+  ggplot(aes(screen_name, n))+
+  geom_col() +
+  coord_flip()
+    
+```
+
