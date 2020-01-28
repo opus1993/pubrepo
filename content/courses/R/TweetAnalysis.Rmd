@@ -16,6 +16,11 @@ library(tidyverse)
 library(rtweet)
 library(keyring)
 theme_set(theme_light())
+
+# for use within the CNH network
+library(httr)
+set_config(use_proxy(url="http://proxyna.cnhind.com/proxycnhna.pac"))
+
 ```
 
 https://www.youtube.com/watch?v=KE9ItC3doEU&t=80s
@@ -33,6 +38,7 @@ create_token(
   consumer_secret = key_get("twitter.consumer_secret", username = "jim_gruman"),
   access_token = key_get("twitter.access_token", username = "jim_gruman"),
   access_secret = key_get("twitter.access_secret", username = "jim_gruman"))
+
 
 case_ih_timeline <- get_timeline("case_ih", n=3200)
 
