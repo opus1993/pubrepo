@@ -1,0 +1,228 @@
+---
+author: "Jim Gruman"
+author: "Jim Gruman"
+date: "1/27/2020"
+output: html_document
+draft: true
+linktitle: Predict Voting Behavior with Machine Learning
+menu:
+  example:
+    parent: Machine Learning in R
+    weight: 16
+title: Get Out The Vote
+type: docs
+weight: 17
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(skimr)
+library(viridis)
+library(broom)
+library(caret)
+library(yardstick)
+library(doParallel)
+library(janitor)
+doParallel::registerDoParallel(12)
+theme_set(theme_light())
+```
+
+## Get Out The Vote
+
+[Supervised ML Course](https://supervised-ml-course.netlify.com/chapter3)
+
+Objective: use data on attitudes and beliefs in the United States to predict the 2016 voter turnout. Apply your skills in dealing with imbalanced data and explore more resampling options.
+
+Data Source
+[Democracy Fund Voter Survey ](https://www.voterstudygroup.org/publication/2016-voter-survey)
+
+![Democracy Fund](https://www.voterstudygroup.org/assets/build/img/main-logo.svg)
+
+```{r}
+voters<-read_csv("D:/VoterData/dfvsg_2016_VOTER_Survey-csv/VOTER_Survey_December16_Release1.csv") %>% clean_names()
+
+cols<-c(12,62:79,95:180)
+
+voters<-voters[,cols]
+
+voters<-voters %>%
+  filter(!is.na(turnout16_2016)) %>%
+  mutate(turnout16_2016 = fct_recode(as_factor(turnout16_2016),
+                                       "Did not vote"="2",
+                                       "Voted"="1"))
+
+voters%>%
+  count(turnout16_2016)
+```
+
+Views captured in the survey included: 
+
+1. Life in America today for people like you compared to fifty years ago is better? about the same? worse?
+
+1. Was your vote primarily a vote in favor of your choice or was it mostly a vote against his/her opponent?
+
+1. How important are the following issues to you?
+
+- Crime
+- Immigration
+- The environment
+- Gay rights
+
+How do the reponses on the survey vary with voting behavior?
+
+```{r}
+voters %>%
+    group_by(turnout16_2016) %>%
+    summarise(`Elections don't matter` = mean(rigged_system_1_2016 <= 2, na.rm=TRUE),
+              `Economy is getting better` = mean(econtrend_2016 == 1, na.rm = TRUE),
+              `Crime is very important` = mean(imiss_a_2016 == 2, na.rm = TRUE))
+
+```
+
+```{r}
+library(ggplot2)
+
+voters %>%
+  ggplot(aes(econtrend_2016, ..density.., fill = turnout16_2016))+
+  geom_histogram(alpha = 0.5, position = "identity", binwidth = 1)+
+  labs(title= "Overall, is the economy getting better or worse?",
+       caption = str_c("Jim Gruman, ", Sys.Date()))+
+  theme(legend.position = "top")+
+  scale_fill_viridis(discrete = TRUE)
+
+```
+
+Check the data missing-ness
+
+```{r}
+Amelia::missmap(voters)
+```
+
+First fit a simple model, to take a quick look under the hood
+
+```{r}
+# Remove the case_indetifier column
+
+# Build a simple logistic regression model
+simple_glm <- glm(turnout16_2016 ~ .,
+                  family = "binomial", 
+                  data = voters)
+
+# Print a summary of significant features             
+
+tidy(simple_glm) %>%
+  filter(p.value < 0.05) %>%
+  arrange(desc(estimate))
+
+```
+
+Splitting training and testing data for modeling, at 80/20%, evenly on the response class turnout16_2016
+
+```{r}
+library(rsample)
+
+vote_split<- rsample::initial_split(voters, 0.8, strata = "turnout16_2016")
+
+vote_train <- training(vote_split)
+vote_test <- testing(vote_split)
+
+vote_train%>%
+  count(turnout16_2016)
+
+prop.table(table(vote_train$turnout16_2016))
+
+prop.table(table(vote_test$turnout16_2016))
+
+```
+
+Impute the missing features within the training set
+```{r}
+preProcValues <- preProcess(vote_train, method = c("knnImpute"))
+
+vote_train<-predict(preProcValues, vote_train)
+
+Amelia::missmap(vote_train)
+```
+
+Upsampling for unbalanced class distributions
+
+```{r}
+vote_glm <- train(turnout16_2016 ~ .,
+                  method = "glm",
+                  family = "binomial",
+                  data = vote_train,
+                  trControl = trainControl(method ="none",
+                                           sampling = "up"))
+vote_glm
+```
+
+A better re-sampling approach, with cross validation, for a glm logistic model
+
+```{r}
+vote_glm <- train(turnout16_2016 ~ ., 
+                  method = "glm", family = "binomial",
+                  data = vote_train,
+                  trControl = trainControl(method = "repeatedcv", 
+                         summaryFunction = twoClassSummary,
+                         repeats = 2,
+                         sampling = "up"))
+
+vote_glm
+
+```
+
+The same re-sampling approach, with cross validation, for a random forest model
+
+```{r}
+vote_rf <- train(turnout16_2016 ~ ., 
+                  method = "rf", 
+                  data = vote_train,
+                  trControl = trainControl(method = "repeatedcv",
+                                           repeats = 2, 
+                 summaryFunction = twoClassSummary,
+                 classProbs = TRUE,
+                 sampling = "up"))
+
+vote_rf
+
+plot(vote_rf)
+```
+
+```{r}
+vote_train %>%
+    mutate(`Logistic regression` = predict(vote_glm, vote_train)) %>%
+    conf_mat(truth = turnout16_2016, estimate = "Logistic regression")
+
+vote_train %>%
+    mutate(`Random forest` = predict(vote_rf, vote_train)) %>%
+    conf_mat(truth = turnout16_2016, estimate = "Random forest")
+
+preProcValues <- preProcess(vote_test, method = c("knnImpute"))
+
+vote_test<-predict(preProcValues, vote_test)
+
+vote_test %>%
+    mutate(`Logistic regression` = predict(vote_glm, vote_test)) %>%
+    conf_mat(truth = turnout16_2016, estimate = "Logistic regression")
+
+vote_test%>%
+    mutate(`Random forest` = predict(vote_rf, vote_test)) %>%
+    conf_mat(truth = turnout16_2016, estimate = "Random forest")
+
+```
+
+
+
+```{r}
+sens(vote_test, truth = turnout16_2016, estimate = `Logistic regression`)
+spec(testing_results, truth = turnout16_2016, estimate = `Logistic regression`)
+sens(testing_results, truth = turnout16_2016, estimate = `Random forest`)
+spec(testing_results, truth = turnout16_2016, estimate = `Random forest`)
+```
+
+Which model is best? Simplest?
+
+
+
+
