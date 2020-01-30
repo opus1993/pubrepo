@@ -24,23 +24,23 @@ library(caret)
 library(yardstick)
 library(doParallel)
 library(janitor)
-doParallel::registerDoParallel(12)
+cores<-parallel::detectCores()
+doParallel::registerDoParallel(cores)
 theme_set(theme_light())
 ```
 
-## Get Out The Vote
+## Get Out The Vote Case Study
 
-[Supervised ML Course](https://supervised-ml-course.netlify.com/chapter3)
+Adapted from the Julia Silge [Supervised ML Course](https://supervised-ml-course.netlify.com/chapter3)
 
 Objective: use data on attitudes and beliefs in the United States to predict the 2016 voter turnout. Apply your skills in dealing with imbalanced data and explore more resampling options.
 
-Data Source
-[Democracy Fund Voter Survey ](https://www.voterstudygroup.org/publication/2016-voter-survey)
+The Data Source is the [Democracy Fund Voter Survey ](https://www.voterstudygroup.org/publication/2016-voter-survey)
 
 ![Democracy Fund](https://www.voterstudygroup.org/assets/build/img/main-logo.svg)
 
 ```{r}
-voters<-read_csv("D:/VoterData/dfvsg_2016_VOTER_Survey-csv/VOTER_Survey_December16_Release1.csv") %>% clean_names()
+voters<-read_csv("/data/home/jimgruman/R/SampleData/VOTER_Survey_December16_Release1.csv") %>% clean_names()
 
 cols<-c(12,62:79,95:180)
 
@@ -49,7 +49,7 @@ voters<-voters[,cols]
 voters<-voters %>%
   filter(!is.na(turnout16_2016)) %>%
   mutate(turnout16_2016 = fct_recode(as_factor(turnout16_2016),
-                                       "Did not vote"="2",
+                                       "Did.not.vote"="2",
                                        "Voted"="1"))
 
 voters%>%
@@ -69,7 +69,7 @@ Views captured in the survey included:
 - The environment
 - Gay rights
 
-How do the reponses on the survey vary with voting behavior?
+How do the reponses on the survey vary with voting behavior, at least on three survey metrics?
 
 ```{r}
 voters %>%
@@ -80,7 +80,7 @@ voters %>%
 
 ```
 
-```{r}
+```{r warning=FALSE}
 library(ggplot2)
 
 voters %>%
@@ -93,10 +93,12 @@ voters %>%
 
 ```
 
-Check the data missing-ness
+Check the data missing-ness and find features with nearly zero variance
 
-```{r}
-Amelia::missmap(voters)
+```{r message=FALSE, warning=FALSE}
+nearZeroVar(voters, names = TRUE)
+
+Amelia::missmap(voters[,-1])
 ```
 
 First fit a simple model, to take a quick look under the hood
@@ -136,7 +138,8 @@ prop.table(table(vote_test$turnout16_2016))
 
 ```
 
-Impute the missing features within the training set
+Impute the missing feature values within the training set with k-nearest neighbors.
+
 ```{r}
 preProcValues <- preProcess(vote_train, method = c("knnImpute"))
 
@@ -145,24 +148,30 @@ vote_train<-predict(preProcValues, vote_train)
 Amelia::missmap(vote_train)
 ```
 
-Upsampling for unbalanced class distributions
+Model with upsampling to adjust for the unbalanced class distributions
 
 ```{r}
 vote_glm <- train(turnout16_2016 ~ .,
                   method = "glm",
                   family = "binomial",
                   data = vote_train,
+                  metric = "Kappa",
                   trControl = trainControl(method ="none",
-                                           sampling = "up"))
+                                           sampling = "up",
+                                           summaryFunction = twoClassSummary,
+                                           classProbs = TRUE
+                                           ))
 vote_glm
 ```
 
-A better re-sampling approach, with cross validation, for a glm logistic model
+A better re-sampling approach, with cross validation, for the glm logistic model
 
 ```{r}
 vote_glm <- train(turnout16_2016 ~ ., 
-                  method = "glm", family = "binomial",
+                  method = "glm", 
+                  family = "binomial",
                   data = vote_train,
+                  metric = "Kappa",
                   trControl = trainControl(method = "repeatedcv", 
                          summaryFunction = twoClassSummary,
                          repeats = 2,
@@ -175,8 +184,25 @@ vote_glm
 The same re-sampling approach, with cross validation, for a random forest model
 
 ```{r}
-vote_rf <- train(turnout16_2016 ~ ., 
+vote_randomf <- train(turnout16_2016 ~ ., 
                   method = "rf", 
+                  data = vote_train,
+                  preProcess()
+                  trControl = trainControl(method = "repeatedcv",
+                                           repeats = 2, 
+                 summaryFunction = twoClassSummary,
+                 classProbs = TRUE,
+                 sampling = "up"))
+
+vote_randomf
+
+plot(vote_randomf)
+```
+
+
+```{r}
+vote_rf <- train(turnout16_2016 ~ ., 
+                  method = "ranger", 
                   data = vote_train,
                   trControl = trainControl(method = "repeatedcv",
                                            repeats = 2, 
@@ -188,6 +214,8 @@ vote_rf
 
 plot(vote_rf)
 ```
+
+
 
 ```{r}
 vote_train %>%
@@ -222,6 +250,148 @@ spec(testing_results, truth = turnout16_2016, estimate = `Random forest`)
 ```
 
 Which model is best? Simplest?
+
+
+
+
+```{r}
+library(h2o)
+h2o.init()
+
+voters_hf <- as.h2o(voters)
+
+y<- "turnout16_2016"
+x <- setdiff(colnames(voters_hf),y)
+
+voters_hf[,y] <- as.factor(voters_hf[,y])
+
+sframe <- h2o.splitFrame(data  = voters_hf,
+                         ratios = c(0.7,0.15),
+                         seed = 42)
+
+train <- sframe[[1]]
+valid <- sframe[[2]]
+test <- sframe[[3]]
+
+h2o.describe(voters_hf)
+
+summary(train$turnout16_2016, exact_quantiles = TRUE)
+```
+
+
+```{r}
+# Train Gradient Boosted Model
+gbm_model <- h2o.gbm(x = x, 
+                     y = y,
+                     training_frame = train, 
+                     validation_frame = valid)
+
+perf <- h2o.performance(gbm_model, test)
+
+# Extract confusion matrix
+h2o.confusionMatrix(perf)
+
+# Extract logloss
+h2o.logloss(perf)
+```
+
+```{r}
+# Train random forest model
+rf_model <- h2o.randomForest(x = x,
+                             y = y,
+                             training_frame = train,
+                             validation_frame = valid)
+
+# Calculate model performance
+perf <- h2o.performance(rf_model, valid = TRUE)
+
+perf <- h2o.performance(gbm_model, test)
+
+h2o.confusionMatrix(perf)
+
+# Extract logloss
+h2o.logloss(perf)
+```
+
+```{r}
+
+stopping_params <- list(strategy = "RandomDiscrete",
+                        stopping_metric = "misclassification",
+                        stopping_rounds = 2,
+                        stopping_tolerance = 0.1,
+                        seed = 42)
+
+###
+###            AutoML
+###                     must have stop criteria
+
+automl_model <- h2o.automl(x=x, y=y,
+                           training_frame = train,
+                           nfolds = 6,
+                           # validation_frame = valid, field is ignored, automl assumes 5 nfolds cv
+                           max_runtime_secs = 1200,      ### pick something much longer than 60 seconds
+                           sort_metric = "logloss",
+                           seed = 42)
+
+lb<- automl_model@leaderboard
+
+lb
+
+model_ids <- as.data.frame(lb)$model_id
+
+aml_leader <-automl_model@leader
+
+summary(aml_leader)
+```
+
+
+
+```{r}
+
+# Run automatic machine learning
+automl_model <- h2o.automl(x = x, 
+                           y = y,
+                           training_frame = train,
+                           max_runtime_secs = 1200,
+                           sort_metric = "mean_per_class_error",
+                           nfolds = 5,
+                           validation_frame = valid,
+                           seed = 42)
+
+lb<- automl_model@leaderboard
+
+lb
+
+aml_leader <-automl_model@leader
+
+h2o.performance(aml_leader, test)
+
+summary(aml_leader)
+
+# Get model ids for all models in the AutoML Leaderboard
+
+model_ids <- as.data.frame(automl_model@leaderboard$model_id)[,1]
+
+# Get the "All Models" Stacked Ensemble model
+
+se <- h2o.getModel(grep("StackedEnsemble_AllModels", model_ids, value = TRUE)[1])
+
+# Get the Stacked Ensemble metalearner model
+
+metalearner <- h2o.getModel(se@model$metalearner$name)
+
+h2o.varimp(metalearner)
+
+h2o.varimp_plot(metalearner)
+
+# h2o.saveModel(aml@leader, path = "./")
+
+# h2o.download_mojo(aml@leader, path = "./")
+
+h2o.shutdown()
+
+
+```
 
 
 
