@@ -14,6 +14,11 @@ library(tidyverse)
 library(rtweet)
 library(keyring)
 theme_set(theme_light())
+
+# for use within the CNH network
+library(httr)
+set_config(use_proxy(url="http://proxyna.cnhind.com/proxycnhna.pac"))
+
 ```
 
 ![](https://www.caseih.com/PublishingImages/layout/caseih-logo.png)
@@ -27,10 +32,14 @@ create_token(
   access_secret = key_get("twitter.access_secret", username = "jim_gruman"))
 
 
+<<<<<<< HEAD
+case_ih_timeline <- get_timeline("case_ih", n=3200)
+=======
 case_ih_timeline <- get_timeline("case_ih", n=3200) %>%
     mutate(week = as.Date(floor_date(created_at, "week", week_start = 1)))
 
 write_rds(case_ih_timeline, "./ciht.rds")
+>>>>>>> f28a8ada7e7b2a503a3b9fe945cd17ceea802659
 
 Sys.time()
 ```
