@@ -1,5 +1,6 @@
 ---
 title: "Introduction to Machine Learning in the Tidyverse 01-Prediction"
+date: '`r format(Sys.Date())`'
 output: html_document
 ---
 [Predicting](https://pedantic-pike-efd356.netlify.com/day-1/slides/01-predicting#1)
