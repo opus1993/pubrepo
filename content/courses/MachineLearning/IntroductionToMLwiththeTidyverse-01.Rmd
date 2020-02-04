@@ -11,6 +11,8 @@ library(tidyverse)
 library(AmesHousing)
 library(tidymodels)
 library(tune)
+library(doParallel)
+registerDoParallel()
 
 ames <- make_ames() %>% 
   dplyr::select(-matches("Qu"))
