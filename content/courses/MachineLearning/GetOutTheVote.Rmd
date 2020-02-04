@@ -1,7 +1,6 @@
 ---
 author: "Jim Gruman"
-author: "Jim Gruman"
-date: "1/27/2020"
+date: '`r format(Sys.Date())`'
 output: html_document
 draft: true
 linktitle: Predict Voting Behavior with Machine Learning
@@ -39,9 +38,22 @@ The Data Source is the [Democracy Fund Voter Survey ](https://www.voterstudygrou
 
 ![Democracy Fund](https://www.voterstudygroup.org/assets/build/img/main-logo.svg)
 
-```{r}
-voters<-read_csv("/data/home/jimgruman/R/SampleData/VOTER_Survey_December16_Release1.csv") %>% clean_names()
+```{r Download, eval=FALSE, include=FALSE}
 
+url<-"https://www.voterstudygroup.org/download?lv=ISF17V%252Fsb6OLPogCy%252Be6vm0tp%252F1AEpeRqVfSlwcUnpjQrkJDj4Dypbf%252F5s7ZpHSo6p%252Blhk7VAE7zizmvIPAMo7UyGeF6VZ6D0gEhmWKuD6GYilvVbWuUMFBORZcoSkKVyR0UymC%252BNoYPDroyK1cFyjrJJbbKZo7hJBBIsi86pvucEAmrA1PEaSdVs7c1vYJo3f2NsuF1hT50SQFvyeCpUM%252BJAdUkaIFCYWodawzFqsCdClIfjeOX2PDe8enAF1t3XOZh7apP6tLxqRg3bIneO9Dgc3DqUvxn0IuqwoDAJx8%253D"
+
+download.file(url = url,
+              destfile = "./dfvsg_2016_VOTER_Survey-csv.zip",
+              mode = "wb")
+
+unzip("dfvsg_2016_VOTER_Survey-csv.zip", files = "VOTER_Survey_December16_Release1.csv")
+
+voters<-read_csv("./VOTER_Survey_December16_Release1.csv") %>% clean_names()
+
+file.remove(c("./VOTER_Survey_December16_Release1.csv","./dfvsg_2016_VOTER_Survey-csv.zip" ))
+```
+
+```{r}
 cols<-c(12,62:79,95:180)
 
 voters<-voters[,cols]
@@ -83,13 +95,31 @@ voters %>%
 ```{r warning=FALSE}
 library(ggplot2)
 
+t1<- grid::textGrob(
+             expression("Overall, is the economy getting better or worse, for those that" * phantom(bold("Voted")) *" and " * phantom(bold("Did not vote")) * " ?" ), gp = grid::gpar(col = "black"))
+                                                                                                                      
+t2<- grid::textGrob(
+             expression(phantom("Overall, is the economy getting better or worse, for those that") * (bold("Voted") *" and " * phantom(bold("Did not vote")) * " ?" ), gp = grid::gpar(col = "#440154FF")))
+
+t3<- grid::textGrob(
+             expression(phantom("Overall, is the economy getting better or worse, for those that") * phantom(bold("Voted") *" and " * bold("Did not vote") * " ?" ), gp = grid::gpar(col = "##FDE725FF")))
+                                                                                                                                       
+
+my_title<-expression(paste("A ", italic(bold("green")), " histogram"))
+
 voters %>%
   ggplot(aes(econtrend_2016, ..density.., fill = turnout16_2016))+
   geom_histogram(alpha = 0.5, position = "identity", binwidth = 1)+
-  labs(title= "Overall, is the economy getting better or worse?",
-       caption = str_c("Jim Gruman, ", Sys.Date()))+
-  theme(legend.position = "top")+
-  scale_fill_viridis(discrete = TRUE)
+  labs( caption = str_c("Jim Gruman, ", Sys.Date()))+
+  theme(legend.position = "top" # ,
+     #   plot.title.position = "plot"
+     )+     #tip from William R Chase at RStudio Conference 2020
+  scale_fill_viridis(discrete = TRUE)+
+  annotation_custom(grid::grobTree(t1,t2,t3))
+
+scales::show_col(viridis_pal()(2))
+
+grobTree
 
 ```
 
