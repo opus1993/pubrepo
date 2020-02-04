@@ -48,22 +48,21 @@ download.file(url = url,
 
 unzip("dfvsg_2016_VOTER_Survey-csv.zip", files = "VOTER_Survey_December16_Release1.csv")
 
+cols<-c(12,62:79,95:180)
+
 voters<-read_csv("./VOTER_Survey_December16_Release1.csv") %>% clean_names()
+
+voters<-voters[,cols]
 
 file.remove(c("./VOTER_Survey_December16_Release1.csv","./dfvsg_2016_VOTER_Survey-csv.zip" ))
 ```
 
 ```{r}
-cols<-c(12,62:79,95:180)
-
-voters<-voters[,cols]
-
 voters<-voters %>%
   filter(!is.na(turnout16_2016)) %>%
   mutate(turnout16_2016 = fct_recode(as_factor(turnout16_2016),
                                        "Did.not.vote"="2",
                                        "Voted"="1"))
-
 voters%>%
   count(turnout16_2016)
 ```
@@ -92,34 +91,20 @@ voters %>%
 
 ```
 
+<b style='color:#440154FF'>Voted</b>
+
 ```{r warning=FALSE}
 library(ggplot2)
-
-t1<- grid::textGrob(
-             expression("Overall, is the economy getting better or worse, for those that" * phantom(bold("Voted")) *" and " * phantom(bold("Did not vote")) * " ?" ), gp = grid::gpar(col = "black"))
-                                                                                                                      
-t2<- grid::textGrob(
-             expression(phantom("Overall, is the economy getting better or worse, for those that") * (bold("Voted") *" and " * phantom(bold("Did not vote")) * " ?" ), gp = grid::gpar(col = "#440154FF")))
-
-t3<- grid::textGrob(
-             expression(phantom("Overall, is the economy getting better or worse, for those that") * phantom(bold("Voted") *" and " * bold("Did not vote") * " ?" ), gp = grid::gpar(col = "##FDE725FF")))
-                                                                                                                                       
-
-my_title<-expression(paste("A ", italic(bold("green")), " histogram"))
+library(ggtext)
+scales::show_col(viridis_pal()(2))
 
 voters %>%
   ggplot(aes(econtrend_2016, ..density.., fill = turnout16_2016))+
   geom_histogram(alpha = 0.5, position = "identity", binwidth = 1)+
-  labs( caption = str_c("Jim Gruman, ", Sys.Date()))+
-  theme(legend.position = "top" # ,
-     #   plot.title.position = "plot"
-     )+     #tip from William R Chase at RStudio Conference 2020
-  scale_fill_viridis(discrete = TRUE)+
-  annotation_custom(grid::grobTree(t1,t2,t3))
-
-scales::show_col(viridis_pal()(2))
-
-grobTree
+  labs(title ="Overall, is the economy getting better or worse, \n for those that <b style='color:#440154FF'>Voted</b> and <b style='color:#FDE725FF'>Did not vote</b> ?", caption = str_c("Jim Gruman, ", Sys.Date())) +
+  theme(legend.position = "top"  ,
+        plot.title.position = "plot")+     #tip from William R Chase at RStudio Conference 2020
+  scale_fill_viridis(discrete = TRUE)
 
 ```
 
@@ -201,9 +186,10 @@ vote_glm <- train(turnout16_2016 ~ .,
                   method = "glm", 
                   family = "binomial",
                   data = vote_train,
-                  metric = "Kappa",
+                  metric = "ROC",
                   trControl = trainControl(method = "repeatedcv", 
                          summaryFunction = twoClassSummary,
+                         classProbs = TRUE,
                          repeats = 2,
                          sampling = "up"))
 
@@ -217,7 +203,6 @@ The same re-sampling approach, with cross validation, for a random forest model
 vote_randomf <- train(turnout16_2016 ~ ., 
                   method = "rf", 
                   data = vote_train,
-                  preProcess()
                   trControl = trainControl(method = "repeatedcv",
                                            repeats = 2, 
                  summaryFunction = twoClassSummary,
@@ -272,15 +257,8 @@ vote_test%>%
 
 
 
-```{r}
-sens(vote_test, truth = turnout16_2016, estimate = `Logistic regression`)
-spec(testing_results, truth = turnout16_2016, estimate = `Logistic regression`)
-sens(testing_results, truth = turnout16_2016, estimate = `Random forest`)
-spec(testing_results, truth = turnout16_2016, estimate = `Random forest`)
-```
-
 Which model is best? Simplest?
-
+Consider also calling sens() and spec()
 
 
 

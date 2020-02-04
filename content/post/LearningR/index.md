@@ -48,9 +48,17 @@ Among my recommendations, the [R Cookbook 2nd Edition](https://rc2e.com/index.ht
 
 Anyone doing serious graphics work in R will want [R Graphics by Paul Murrell (Chapman & Hall/CRC)](https://www.amazon.com/Graphics-Third-Chapman-Hall-CRC/dp/1498789056). The [R Graphics Cookbook, 2nd ed., by Winston Chang](http://shop.oreilly.com/product/0636920063704.do) is indispensible for creating graphics. The book [ggplot2: Elegant Graphics for Data Analysis by Hadley Wickham (Springer)](https://www.springer.com/us/book/9780387981413) is the definitive reference for the graphics package ggplot2.
 
+----
+
 Regardless of your computational platform, all professional analysts should master the craft of data visualization.
 
 [How Charts Lie](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569) and [Factfulness](https://www.gapminder.org/factfulness-book/) each speak to how numbers are very persuasive, especially when presented as charts, because we associate them with science and reason. Follow sites like [Our World in Data](https://ourworldindata.org/). Charts can enlighten and enable conversations, allowing us to peek through the complexity of large amounts of data. Good charts make us smarter.
+
+Kieran Healy teaches Data Visualization at Duke and makes his [Practial Introduction in R text available online](https://socviz.co/index.html#preface). The book is a hands-on introduction to the principles and practice of looking at and presenting data using R and ggplot.
+
+![Data Visualization](https://socviz.co/iassets/dv-cover-pupress.jpg)
+
+----
 
 The use of git will be important for team collaboration. Find Jenny Bryan’s web book [Happy Git and GitHub for the useR](http://happygitwithr.com/) and Corey Schafer's YouTube series at [Git Tutorials](https://www.youtube.com/playlist?list=PL-osiE80TeTuRUfjRe54Eea17-YfnOOAx).
 
