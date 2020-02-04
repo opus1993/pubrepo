@@ -55,9 +55,7 @@ voters<-read_csv("./VOTER_Survey_December16_Release1.csv") %>% clean_names()
 voters<-voters[,cols]
 
 file.remove(c("./VOTER_Survey_December16_Release1.csv","./dfvsg_2016_VOTER_Survey-csv.zip" ))
-```
 
-```{r}
 voters<-voters %>%
   filter(!is.na(turnout16_2016)) %>%
   mutate(turnout16_2016 = fct_recode(as_factor(turnout16_2016),
@@ -91,7 +89,10 @@ voters %>%
 
 ```
 
-<b style='color:#440154FF'>Voted</b>
+title = "Overall, is the economy getting *better* or *worse*",
+       subtitle = "for those that <b><span style='font-size:13pt'>Voted</span></b><br> and <b><span style='font-size:13pt'>Did not vote</span></b><br> ?"
+
+
 
 ```{r warning=FALSE}
 library(ggplot2)
@@ -101,9 +102,17 @@ scales::show_col(viridis_pal()(2))
 voters %>%
   ggplot(aes(econtrend_2016, ..density.., fill = turnout16_2016))+
   geom_histogram(alpha = 0.5, position = "identity", binwidth = 1)+
-  labs(title ="Overall, is the economy getting better or worse, \n for those that <b style='color:#440154FF'>Voted</b> and <b style='color:#FDE725FF'>Did not vote</b> ?", caption = str_c("Jim Gruman, ", Sys.Date())) +
-  theme(legend.position = "top"  ,
-        plot.title.position = "plot")+     #tip from William R Chase at RStudio Conference 2020
+  labs(title = "Overall, is the economy getting *better* or *worse* for those that <b><span style='color:#440154FF'>Voted</span></b><br> and those that <b><span style='color:#FDE725FF'>Did not vote</span></b>?", 
+       caption = str_c("Jim Gruman, ", Sys.Date()),
+       x = element_blank()) +
+  theme(legend.position = "none"  ,
+        plot.title.position = "plot",
+         plot.title = element_textbox_simple(
+      size = 10,
+      padding = margin(5.5, 5.5, 5.5, 5.5),
+      margin = margin(0, 0, 5.5, 0),
+      fill = "white"
+    ))+     #tip from William R Chase at RStudio Conference 2020
   scale_fill_viridis(discrete = TRUE)
 
 ```
@@ -134,7 +143,7 @@ tidy(simple_glm) %>%
 
 ```
 
-Splitting training and testing data for modeling, at 80/20%, evenly on the response class turnout16_2016
+Splitting training and testing data for modeling, at 80/20%, stratifying evenly on the response class turnout16_2016
 
 ```{r}
 library(rsample)
@@ -159,6 +168,10 @@ Impute the missing feature values within the training set with k-nearest neighbo
 preProcValues <- preProcess(vote_train, method = c("knnImpute"))
 
 vote_train<-predict(preProcValues, vote_train)
+
+preProcValues <- preProcess(vote_test, method = c("knnImpute"))
+
+vote_test<- predict(preProcValues, vote_test)
 
 Amelia::missmap(vote_train)
 ```
@@ -215,22 +228,6 @@ plot(vote_randomf)
 ```
 
 
-```{r}
-vote_rf <- train(turnout16_2016 ~ ., 
-                  method = "ranger", 
-                  data = vote_train,
-                  trControl = trainControl(method = "repeatedcv",
-                                           repeats = 2, 
-                 summaryFunction = twoClassSummary,
-                 classProbs = TRUE,
-                 sampling = "up"))
-
-vote_rf
-
-plot(vote_rf)
-```
-
-
 
 ```{r}
 vote_train %>%
@@ -238,28 +235,21 @@ vote_train %>%
     conf_mat(truth = turnout16_2016, estimate = "Logistic regression")
 
 vote_train %>%
-    mutate(`Random forest` = predict(vote_rf, vote_train)) %>%
+    mutate(`Random forest` = predict(vote_randomf, vote_train)) %>%
     conf_mat(truth = turnout16_2016, estimate = "Random forest")
-
-preProcValues <- preProcess(vote_test, method = c("knnImpute"))
-
-vote_test<-predict(preProcValues, vote_test)
 
 vote_test %>%
     mutate(`Logistic regression` = predict(vote_glm, vote_test)) %>%
     conf_mat(truth = turnout16_2016, estimate = "Logistic regression")
 
 vote_test%>%
-    mutate(`Random forest` = predict(vote_rf, vote_test)) %>%
+    mutate(`Random forest` = predict(vote_randomf, vote_test)) %>%
     conf_mat(truth = turnout16_2016, estimate = "Random forest")
 
 ```
 
-
-
 Which model is best? Simplest?
 Consider also calling sens() and spec()
-
 
 
 ```{r}
