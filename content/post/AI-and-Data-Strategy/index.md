@@ -16,13 +16,17 @@ tags:
   - Strategy, Education
 ---
 
-DataCamp, the on-line Python, SQL, and R coding school, is pivoting towards marketing more of their training services  to enterprises, rather than to individual students. In episode 1 of a monthly series, [How AI Can Improve Your Data Strategy](https://www.datacamp.com/resources/webinars/how-ai-can-improve-your-data-strategy), Dr. Hugo Bowne-Anderson recognizes that value is created only to the degree that meaningful business problems are solved. 
+DataCamp, the on-line Python, SQL, and R coding school, appears to be pivoting towards marketing their education services to business enterprises, rather than to individual students and universities. In episode 1 of what promises to become a monthly series, [How AI Can Improve Your Data Strategy](https://www.datacamp.com/resources/webinars/how-ai-can-improve-your-data-strategy), Dr. Hugo Bowne-Anderson recognizes that value in this field is created only to the degree that meaningful business problems are solved. 
 
-Employees at many levels need a degree of competence in the emerging fields of Data Science, Machine Learning, and Artificial Intelligence to understand when use the tools, when not to use them, and how to talk the talk with data professionals. They are becoming a central part of any decision maker’s toolkit. I've observed that business executives are particularly prone to demanding AI for everything, and that there is value in broadening these skill sets beyond analysts. 
+Employees at many levels need a degree of competence in the emerging fields of Data Science, Machine Learning, and Artificial Intelligence to understand when use the tools, when not to use them, and how to talk the talk with data professionals. As of 2020, they are becoming a central part of the decision maker’s toolkit. I've observed that some business executives are particularly prone to demanding AI for everything. There certainly is value in broadening these skill sets beyond analysts. 
 
-Everyone at any level, C-level to new employees, should be looking into data the same way that you were expected to start using e-mail 25 years ago. For example, DataCamp offers a 4-hour interactive video-based series [Data Science for Business](https://www.datacamp.com/courses/data-science-for-business) that is a good overview. Get ahead of the curve and learn the basics now.
+In [When Translation Problems Arise Between Data Scientists and Business Stakeholders, Revisit Your Metrics](https://hdsr.mitpress.mit.edu/pub/bfeyfx22), Katie Malone aptly remarks that 
 
-Many companies are organized with multiple business units reporting to the CEO. In one approach, with a digital AI unit, the company can matrix in AI talent to the different divisions to drive widespread education and cross-functional projects.
+> “the metrics which quantify outcomes are generally very different for data scientists and business stakeholders, making it likely that each side struggles to understand and speak in terms that are familiar to the other side.”
+
+A lack of data acumen is a central challenge faced by consumers of analytics. Undergraduate education for all majors in recent decades has certainly not kept up. Everyone at any level, C-level to new employees, should be looking into data the same way that you were expected to start using e-mail 25 years ago. 
+
+Recognizing the need, DataCamp offers a 4-hour interactive video-based series [Data Science for Business](https://www.datacamp.com/courses/data-science-for-business) that is a good overview. Get ahead of the curve and learn the basics now. In the mean time, many companies are organized with multiple business units reporting to the CEO. In one approach, with a digital AI unit, the company can matrix in AI talent to the different divisions to drive widespread education and cross-functional projects.
 
 ![AI hubs](https://d6hi0znd7umn4.cloudfront.net/content/uploads/2018/12/AITransformationPlaybook1-768x576.png)
 
@@ -39,7 +43,7 @@ Consultants come in, do their work, and document the new strategy in a PowerPoin
 
 Strategy is not just a top-down process. A successful strategy execution process is seldom a one-way trickle-down cascade of decisions.
 
-A robust, principled approach will make change the default. People’s habits in organizations are notoriously sticky and persistent. Habits certainly don’t change by telling people in a town hall meeting that they should act differently. People are often not even aware that they are doing things in a particular way and that there might be different ways to run the same process.
+A robust, principled approach will make **change** the default. People’s habits in organizations are notoriously sticky and persistent. Habits certainly don’t change by telling people in a town hall meeting that they should act differently. People are often not even aware that they are doing things in a particular way and that there might be different ways to run the same process.
 
 For a successful strategy implementation process, it is useful to put the default the other way around: Change it unless it is crystal clear that the old way is substantially better. Execution involves change. Embrace it.
 
