@@ -16,11 +16,11 @@ tags:
   - Strategy, Education
 ---
 
-Artificial Intelligence is a hot topic, as evidenced by the huge volume of corporate PR in circulation today, both within tech companies and outside of tech companies. 
+Artificial Intelligence is a hot topic, even outside of tech companies. 
 
 Against this backdrop, Dr. Hugo Bowne-Anderson hosts episode 1 of what promises to become a monthly series of webcasts titled: [How AI Can Improve Your Data Strategy](https://www.datacamp.com/resources/webinars/how-ai-can-improve-your-data-strategy) for DataCamp, the on-line Python, SQL, and R coding school. They appear to be pivoting their focus towards business enterprises, from individual students and universities. 
 
-Indeed, employees in many business roles need to realize a degree of competence in the emerging fields of Data Science, Machine Learning, and Artificial Intelligence to understand when to use the tools, when not to use them, and how to talk the talk with data professionals. As early as 1962, [Dr. John Tukey](https://en.wikipedia.org/wiki/John_Tukey), mathematician and inventor of the term "bit," called all of these roles "practitioners."  As of 2020, Data Science tools are now central to the decision maker’s toolkit. I've observed that some business executives are particularly prone to demanding AI for most everything. There certainly is value in broadening these skill sets across the enterprise.
+Indeed, employees in many business roles today need a degree of competence in the emerging fields of Data Science, Machine Learning, and Artificial Intelligence to understand when to use the tools, when not to use them, and how to talk the talk with data professionals. As early as 1962, [Dr. John Tukey](https://en.wikipedia.org/wiki/John_Tukey), mathematician and inventor of the term "bit," called all of these roles "practitioners."  As of 2020, Data Science tools are now central to the decision maker’s toolkit. Some business executives are particularly prone to demanding AI for most everything. There certainly is opportunity in broadening these skill sets across the enterprise.
 
 ----
 
@@ -30,7 +30,7 @@ In [When Translation Problems Arise Between Data Scientists and Business Stakeho
 
 A lack of data acumen across the business is a central challenge faced by consumers of analytics. Undergraduate education for all majors in recent decades has certainly not kept up. Everyone at any level, C-level to new employees, should be looking into data the same way that you were expected to start using e-mail 25 years ago. 
 
-Recognizing the need, DataCamp offers a 4-hour interactive video-based series [Data Science for Business](https://www.datacamp.com/courses/data-science-for-business) that is a good start. Get ahead of the curve and learn the basics now. In the mean time, many companies are organized with multiple business units reporting to the CEO, along with a standalone digital AI unit, where the company can matrix in AI talent to the different divisions to drive widespread education and cross-functional projects.
+Recognizing the need, DataCamp offers a 4-hour interactive video-based series [Data Science for Business](https://www.datacamp.com/courses/data-science-for-business) that is a good start. Get ahead of the curve and learn a few basics now. In addition, many companies are organizing with multiple business units reporting to the CEO, along with a standalone digital AI unit, where the company can matrix in AI talent to different divisions to drive widespread education and cross-functional projects.
 
 ![AI hubs](https://d6hi0znd7umn4.cloudfront.net/content/uploads/2018/12/AITransformationPlaybook1-768x576.png)
 
