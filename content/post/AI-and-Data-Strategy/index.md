@@ -18,7 +18,7 @@ tags:
 
 Artificial Intelligence is a hot topic, as evidenced by the huge volume of corporate PR in circulation today, both within tech companies and outside of tech companies. 
 
-Against this backddrop, Dr. Hugo Bowne-Anderson hosts episode 1 of what promises to become a monthly series of webcasts titled: [How AI Can Improve Your Data Strategy](https://www.datacamp.com/resources/webinars/how-ai-can-improve-your-data-strategy) for DataCamp, the on-line Python, SQL, and R coding school. They appear to be pivoting their focus towards business enterprises, from individual students and universities. 
+Against this backdrop, Dr. Hugo Bowne-Anderson hosts episode 1 of what promises to become a monthly series of webcasts titled: [How AI Can Improve Your Data Strategy](https://www.datacamp.com/resources/webinars/how-ai-can-improve-your-data-strategy) for DataCamp, the on-line Python, SQL, and R coding school. They appear to be pivoting their focus towards business enterprises, from individual students and universities. 
 
 Indeed, employees in many business roles need to realize a degree of competence in the emerging fields of Data Science, Machine Learning, and Artificial Intelligence to understand when to use the tools, when not to use them, and how to talk the talk with data professionals. As early as 1962, [Dr. John Tukey](https://en.wikipedia.org/wiki/John_Tukey), mathematician and inventor of the term "bit," called all of these roles "practitioners."  As of 2020, Data Science tools are now central to the decision maker’s toolkit. I've observed that some business executives are particularly prone to demanding AI for most everything. There certainly is value in broadening these skill sets across the enterprise.
 
