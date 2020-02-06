@@ -16,15 +16,11 @@ tags:
   - Strategy, Education
 ---
 
-Artificial Intelligence is a hot topic, as evidenced by the huge volume of corporate PR and consultancy marketing in circulation today. For example:
+Artificial Intelligence is a hot topic, as evidenced by the huge volume of corporate PR in circulation today, both within tech companies and outside of tech companies. 
 
-### [Global Artificial Intelligence Market for Automotive and Transportation Industry Anticipated to Reach $69.05 Billion by 2029](https://finance.yahoo.com/news/global-artificial-intelligence-market-automotive-113000515.html)
+Against this backddrop, Dr. Hugo Bowne-Anderson hosts episode 1 of what promises to become a monthly series of webcasts titled: [How AI Can Improve Your Data Strategy](https://www.datacamp.com/resources/webinars/how-ai-can-improve-your-data-strategy) for DataCamp, the on-line Python, SQL, and R coding school. They appear to be pivoting their focus towards business enterprises, from individual students and universities. 
 
-### [Artificial Intelligence Software Market to Witness Huge Growth by 2025](https://www.marketwatch.com/press-release/artificial-intelligence-software-market-to-witness-huge-growth-by-2025-2020-02-05)
-
-Against this backddrop, Dr. Hugo Bowne-Anderson hosts episode 1 of what promises to become a monthly series of webcasts titled: [How AI Can Improve Your Data Strategy](https://www.datacamp.com/resources/webinars/how-ai-can-improve-your-data-strategy) for DataCamp, the on-line Python, SQL, and R coding school. The firm appears to be pivoting their focus to business enterprises, rather than to individual students and universities. 
-
-Indeed, employees in many business roles need a degree of competence in the emerging fields of Data Science, Machine Learning, and Artificial Intelligence to understand when use the tools, when not to use them, and how to talk the talk with data professionals. As early as 1962, [Dr. John Tukey](https://en.wikipedia.org/wiki/John_Tukey), mathematician and inventor of the term "bit," called all of these roles "practitioners."  As of 2020, Data Science tools are now central to the decision maker’s toolkit. I've observed that some business executives are particularly prone to demanding AI for everything. There certainly is value in broadening these skill sets to other kinds of practitioners across the enterprise.
+Indeed, employees in many business roles need to realize a degree of competence in the emerging fields of Data Science, Machine Learning, and Artificial Intelligence to understand when to use the tools, when not to use them, and how to talk the talk with data professionals. As early as 1962, [Dr. John Tukey](https://en.wikipedia.org/wiki/John_Tukey), mathematician and inventor of the term "bit," called all of these roles "practitioners."  As of 2020, Data Science tools are now central to the decision maker’s toolkit. I've observed that some business executives are particularly prone to demanding AI for most everything. There certainly is value in broadening these skill sets across the enterprise.
 
 ----
 
@@ -61,13 +57,15 @@ For a successful strategy implementation process, put the default the other way 
 
 # Data Strategy is a Function of Business Strategy
 
+Two insights from [What's Your Data Strategy?](https://hbr.org/2017/05/whats-your-data-strategy)
+
 > More than 70% of employees have access to data they should not, and 80% of analysts’ time is spent simply discovering and preparing data. 
 
-> on average, less than half of an organization’s structured data is actively used in making decisions—and less than 1% of its unstructured data is analyzed or used at all. 
+> On average, less than half of an organization’s structured data is actively used in making decisions—and less than 1% of its unstructured data is analyzed or used at all. 
 
 Having a Chief Digital Officer and a data-management function is a start, but neither can be fully effective in the absence of coherent strategy for organizing, governing, analyzing, and deploying information assets throughout the enterprise. Though the "plumbing" work may not be as sexy as predictive models and dashboards, they are vital to achieving high performance decision making. 
 
-In [What's Your Data Strategy?](https://hbr.org/2017/05/whats-your-data-strategy), the authors present frameworks of defensive and offensive strategy elements. For example, tight security and a single source of truth are defensive objectives. Determining an organization’s current and desired positions on the spectrum force leaders to make trade-offs. 
+The authors present frameworks of defensive and offensive strategy elements. For example, tight security and a single source of truth are defensive objectives. Determining an organization’s current and desired positions on the spectrum force leaders to make trade-offs. 
 
 ![Data-Strategy Spectrum](https://hbr.org/resources/images/article_assets/2017/04/R1703G_DALLEMULE_SPECTRUM.png)
 
@@ -105,7 +103,7 @@ Narrow AI is built to achieve a specific task, like language translation. AGI is
 
 > Making discoveries and creating insights from data and communicating these insights and discoveries to non-technical stakeholders
 
-Christopher Berry writes in his blog [Insights Revisited](https://christopherberry.ca/insight-revisited/) that an insight is 
+Christopher Berry writes in his blog [Insights Revisited](https://christopherberry.ca/insight-revisited/) that to be an insight, it must always be: 
 
 - New information
 
@@ -115,17 +113,27 @@ Christopher Berry writes in his blog [Insights Revisited](https://christopherber
 
 - Profitable
 
-Or, more detailed, an insight is a piece of information that you didn’t know before, which can be feasibly executed, culturally acceptable and of a scale relevant to the firm, and causes a decision to be made that wouldn’t have been made otherwise, and results in profit or a sustainable competitive advantage.
+Succinctly, an insight is a piece of information that you didn’t know before, which can be feasibly executed, culturally acceptable and of a scale relevant to the firm, and causes a decision to be made that wouldn’t have been made otherwise, and results in profit or a sustainable competitive advantage.
 
 The measure of success for data science is the creation of insight.
 
 ----
 
-# What do Data Scientists and Analysts actually do?
+# [What Data Scientists Really Do, According to 35 Data Scientists](https://hbr.org/2018/08/what-data-scientists-really-do-according-to-35-data-scientists)
 
-[What Data Scientists Really Do, According to 35 Data Scientists](https://hbr.org/2018/08/what-data-scientists-really-do-according-to-35-data-scientists)
+Hugo Bowne-Anderson interviewed prominent data scientists across a wide array of industries and academic disciplines and asked them about what their jobs entail. They describe a wide range of work, including the massive online experimental frameworks for product development at booking.com and Etsy, the methods Buzzfeed uses to implement a multi-armed bandit solution for headline optimization, and the impact machine learning has on business decisions at Airbnb.
 
-Access to insights is not the same as access to raw data. The needs of the business are served when the collection, transformation, prediction, and deployment of analytics delivers insights. As a result, Data Science practitioners find themselves involved to ensure integrity all of the way through helping decision making.
+At least in the tech industry, data scientists lay a solid data foundation in order to perform robust analytics. Then they use online experiments, among other methods, to achieve sustainable growth. They build machine learning pipelines and personalized data products to better understand their business and customers and to make better decisions. In other words, in tech, data science is about infrastructure, testing, machine learning for decision making, and data products.
+
+Great strides are being made in industries other than tech. All understand that working practitioners make their daily bread and butter through data collection and data cleaning; building apps and dashboards; statistical inference; communicating results to key stakeholders; and convincing decision makers of their results.
+
+Many are skeptical not only of the fetishization of artificial general intelligence by mainstream media but also of the buzz around machine learning and deep learning.
+
+A recurring theme is that skills, so necessary today, are likely to change on a relatively short timescale. The key skills are not the abilities to build and use deep-learning infrastructures. Instead they are the abilities to learn on the fly and to communicate well in order to answer business questions, explaining complex results to nontechnical stakeholders. 
+
+We’re approaching a consensus that ethical standards need to come from within data science itself, as well as from legislators, grassroots movements, and other stakeholders. Part of this movement involves a reemphasis on interpretability in models, as opposed to black-box models. That is, we need to build models that can explain why they make the predictions they make. 
+
+Access to insights is not the same as access to raw data. The needs of the business are served when the work delivers insights. As a result, Data Science practitioners find themselves involved to ensure integrity all of the way from collection through to decision making.
 
 ![What Data Scientists Really Do](https://hbr.org/resources/images/article_assets/2018/08/aug18-15-137888421-burakpekakcan-768x432.jpg)
 
@@ -135,7 +143,7 @@ Access to insights is not the same as access to raw data. The needs of the busin
 
 > The science and art of giving computers the ability to learn from data without being explicitly programmed
 
-Examples are everywhere. They include your e-mail spam filter (supervised) and document clustering (unsupervised). They include Siri and Alexa and Facebook's image tagging, and thousands more. Each is given a general math model space, and the algorithm improves as more data arrives. 
+Examples are everywhere. They include your e-mail spam filter (supervised) and document clustering (unsupervised). They include Siri and Alexa and Facebook's image recognition. Each is given a general math model space, and the algorithm improves as more data arrives. 
 
 On machine learning, Dr. Tom Mitchell of Carnegie Mellon:
 
@@ -151,13 +159,13 @@ Across industry verticals, machine learning is widespread. It is used by quants 
 
 The impacts of AI decision tools can be both desirable and undesirable. More recent headlines:
 
-### [Amazon scraps secret AI recruiting tool that showed bias against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G)
+> [Amazon scraps secret AI recruiting tool that showed bias against women](https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G)
 
-### [The Algorithmic Colonization of Africa](https://reallifemag.com/the-algorithmic-colonization-of-africa/)
+> [The Algorithmic Colonization of Africa](https://reallifemag.com/the-algorithmic-colonization-of-africa/)
 
-### [Google Plans Not to Renew Its Contract for Project Maven, a Controversial Pentagon Drone AI Imaging Program](https://gizmodo.com/google-plans-not-to-renew-its-contract-for-project-mave-1826488620)
+> [Google Plans Not to Renew Its Contract for Project Maven, a Controversial Pentagon Drone AI Imaging Program](https://gizmodo.com/google-plans-not-to-renew-its-contract-for-project-mave-1826488620)
 
-Given the many ethical challenges that are possible, every enterprise with an AI strategy should also focus on widening the diversity of the pool of practitioners and include proper review.
+Given the many ethical challenges that are possible, every enterprise with an AI strategy should also focus on widening the diversity of the pool of practitioners and include proper review for ethics.
 
 ----
 
@@ -175,7 +183,7 @@ In a 2019 DataFramed Podcast [Taras Gorishnyy](https://www.datacamp.com/communit
 
 - Establish Impact of Analytics Early in the Process
 
-All 5 components must be orchestrated together. Business leaders often use AI to speak to one or all of them.
+All 5 components must be orchestrated together. 
 
 ----
 
@@ -183,6 +191,7 @@ All 5 components must be orchestrated together. Business leaders often use AI to
 
 There is a certainly huge bottleneck today in finding qualified practitioners through hiring. The best workaround in filling the data skills gap is that company culture has to embrace learning with the experienced professionals in place already to deliver the business results.
 
+Again, the tools are likely to change. The key skills are not the deep-learning algorithms. They are the abilities to learn on the fly and to communicate well in order to answer business questions, explaining complex results to nontechnical stakeholders. 
 
 ### Did you find this page helpful? Consider sharing it 🙌
 
