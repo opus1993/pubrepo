@@ -34,7 +34,7 @@ The mothership for all things R is the [R project](https://www.r-project.org/) s
 
 ![R-Studio Education: Beginners](https://education.rstudio.com/learn/beginner/feature-mtsalsa-750.jpg)
 
-See the University of British Columbia's [stat545.com](https://stat545.com/) for more content on on project organization, data preparation, and communication. These have a profound effect on the quality and credibility of an analysis.
+See the University of British Columbia's [stat545.com](https://stat545.com/) for more content on project organization, data preparation, and communication. These have a profound effect on the quality and credibility of an analysis.
 
 ![stat545.com](https://stat545.com/assets/stat545-logo.png)
 
