@@ -1,23 +1,23 @@
 ---
-date: "2016-04-27T00:00:00Z"
+date: "2020-03-04T00:00:00Z"
 external_link: ""
 image:
-  caption: Photo by rawpixel on Unsplash
+  caption: TidyTuesday
   focal_point: Smart
 links:
 - icon: twitter
   icon_pack: fab
   name: Follow
-  url: https://twitter.com/georgecushen
+  url: https://opus1993.github.io/myTidyTuesday/
 slides: example
-summary: An example of using the in-built project page.
+summary: my TidyTuesday
 tags:
-- Deep Learning
-title: Internal Project
+- Education
+title: TidyTuesday
 url_code: ""
 url_pdf: ""
 url_slides: ""
 url_video: ""
 ---
 
-TBD
+![tt](https://opus1993.github.io/myTidyTuesday/)
