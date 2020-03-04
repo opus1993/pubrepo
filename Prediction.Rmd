@@ -22,35 +22,39 @@ fit_split <- function(formula, model, split, ...) {
   wf <- workflows::add_model(workflows::add_formula(workflows::workflow(), formula, blueprint = hardhat::default_formula_blueprint(indicators = FALSE, allow_novel_levels = TRUE)), model)
   tune::last_fit(wf, split, ...)
 }
+
 ```
 
-# Your Turn 1
+The Ames real estate data is a set of 2930 home valuation attributes from Ames, Iowa. It is amoung the most widely used for demonstrating data science concepts. In this case, we will demonstrate the new Tidymodels framework for machine learning by using the data to predict home valuation.
 
-Write a pipe that creates a learner that uses `lm()` to fit a linear regression. Save it as `lm_spec` and look at the object. What does it return?
-  
-  ```{r}
+-----
+
+## Tidymodels
+
+[Tidymodels](https://github.com/tidymodels/tidymodels) is a "meta-package" for modeling and statistical analysis that share the underlying design philosophy, grammar, and data structures of the tidyverse.
+
+In this first example, we will fit a linear regression model via the Tidymodels framework:
+
+```{r}
 lm_spec<- linear_reg(mode = "regression")%>%
-  set_engine(engine ="lm") 
+          set_engine(engine ="lm") 
 lm_spec
 ```
 
-# Your Turn 2
-
-Double check. Does
+and via a conventional base R linear model: 
 
 ```{r}
 lm_fit <- fit_data(Sale_Price ~ Gr_Liv_Area, model = lm_spec, data = ames)
 lm_fit
 ```
 
-give the same results as
+Each yield the same result
 
 ```{r}
 lm(Sale_Price ~ Gr_Liv_Area, data = ames)
 ```
 
-
-# Your Turn 3
+-----
 
 Fill in the blanks. Use `predict()` to
 
@@ -96,7 +100,7 @@ Keep `set.seed(100)` at the start of your code.
 
 *Hint: Be sure to remove every `_` before running the code!*
   
-  ```{r}
+```{r}
 set.seed(100) # Important!
 
 ames_split  <- initial_split(ames, prop = 0.75)
@@ -172,7 +176,7 @@ Write *another* pipe to create a model that uses the kknn package to fit a K nea
 
 *Hint: you'll need https://tidymodels.github.io/parsnip/articles/articles/Models.html*
   
-  ```{r}
+```{r}
 set.seed(100) # Important!
 nn_spec <- 
   nearest_neighbor() %>%          
