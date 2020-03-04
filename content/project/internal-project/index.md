@@ -20,4 +20,4 @@ url_slides: ""
 url_video: ""
 ---
 
-![tt](https://opus1993.github.io/myTidyTuesday/)
+[my TidyTuesday DataViz Submissions](https://opus1993.github.io/myTidyTuesday/)
