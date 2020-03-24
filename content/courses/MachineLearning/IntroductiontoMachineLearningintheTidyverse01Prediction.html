@@ -1,0 +1,192 @@
+---
+title: "Introduction to Machine Learning in the Tidyverse 01Prediction"
+output: html_document
+---
+
+
+
+<div class="figure">
+<img src="https://pedantic-pike-efd356.netlify.com/day-1/slides/01-predicting#1" alt="Predicting" />
+<p class="caption">Predicting</p>
+</div>
+<div id="your-turn-1" class="section level1">
+<h1>Your Turn 1</h1>
+<p>Write a pipe that creates a learner that uses <code>lm()</code> to fit a linear regression. Save it as <code>lm_spec</code> and look at the object. What does it return?</p>
+<pre class="r"><code>lm_spec&lt;- linear_reg(mode = &quot;regression&quot;)%&gt;%
+  set_engine(engine =&quot;lm&quot;) 
+lm_spec</code></pre>
+<pre><code>## Linear Regression Model Specification (regression)
+## 
+## Computational engine: lm</code></pre>
+</div>
+<div id="your-turn-2" class="section level1">
+<h1>Your Turn 2</h1>
+<p>Double check. Does</p>
+<pre class="r"><code>lm_fit &lt;- fit_data(Sale_Price ~ Gr_Liv_Area, model = lm_spec, data = ames)
+lm_fit</code></pre>
+<pre><code>## == Workflow [trained] ===============================================================
+## Preprocessor: Formula
+## Model: linear_reg()
+## 
+## -- Preprocessor ---------------------------------------------------------------------
+## Sale_Price ~ Gr_Liv_Area
+## 
+## -- Model ----------------------------------------------------------------------------
+## 
+## Call:
+## stats::lm(formula = formula, data = data)
+## 
+## Coefficients:
+## (Intercept)  Gr_Liv_Area  
+##     13289.6        111.7</code></pre>
+<p>give the same results as</p>
+<pre class="r"><code>lm(Sale_Price ~ Gr_Liv_Area, data = ames)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Sale_Price ~ Gr_Liv_Area, data = ames)
+## 
+## Coefficients:
+## (Intercept)  Gr_Liv_Area  
+##     13289.6        111.7</code></pre>
+</div>
+<div id="your-turn-3" class="section level1">
+<h1>Your Turn 3</h1>
+<p>Fill in the blanks. Use <code>predict()</code> to</p>
+<ol style="list-style-type: decimal">
+<li>Use your linear model to predict sale prices; save the tibble as <code>price_pred</code><br />
+</li>
+<li>Add a pipe and use <code>mutate()</code> to add a column with the observed sale prices; name it <code>truth</code></li>
+</ol>
+<pre class="r"><code>lm_fit &lt;- fit_data(Sale_Price ~ Gr_Liv_Area, 
+                   model = lm_spec, 
+                   data = ames)
+
+price_pred &lt;- lm_fit %&gt;% 
+  predict(new_data = ames) %&gt;% 
+  mutate(truth = ames$Sale_Price)
+
+price_pred</code></pre>
+<pre><code>## # A tibble: 2,930 x 2
+##      .pred  truth
+##      &lt;dbl&gt;  &lt;int&gt;
+##  1 198255. 215000
+##  2 113367. 105000
+##  3 161731. 172000
+##  4 248964. 244000
+##  5 195239. 189900
+##  6 192447. 195500
+##  7 162736. 213500
+##  8 156258. 191500
+##  9 193787. 236500
+## 10 214786. 189000
+## # ... with 2,920 more rows</code></pre>
+<pre class="r"><code>rmse(price_pred, truth = truth, estimate = .pred)</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard      56505.</code></pre>
+</div>
+<div id="your-turn-4" class="section level1">
+<h1>Your Turn 4</h1>
+<p>In your teams, decide which model:</p>
+<ol style="list-style-type: decimal">
+<li>Has the smallest residuals<br />
+</li>
+<li>Will have lower prediction error. Why?</li>
+</ol>
+</div>
+<div id="your-turn-5" class="section level1">
+<h1>Your Turn 5</h1>
+<p>Fill in the blanks.</p>
+<p>Use <code>initial_split()</code>, <code>training()</code>, <code>testing()</code>, <code>lm()</code> and <code>rmse()</code> to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Split <strong>ames</strong> into training and test sets. Save the rsplit!</p></li>
+<li><p>Extract the training data. Fit a linear model to it. Save the model!</p></li>
+<li><p>Measure the RMSE of your linear model with your test set.</p></li>
+</ol>
+<p>Keep <code>set.seed(100)</code> at the start of your code.</p>
+<p><em>Hint: Be sure to remove every <code>_</code> before running the code!</em></p>
+<pre class="r"><code>set.seed(100) # Important!
+
+ames_split  &lt;- initial_split(ames, prop = 0.75)
+ames_train  &lt;- training(ames_split)
+ames_test   &lt;- testing(ames_split)
+
+lm_fit      &lt;- fit_data(Sale_Price ~ Gr_Liv_Area, 
+                        model = lm_spec, 
+                        data = ames_train)
+
+price_pred  &lt;- lm_fit %&gt;% 
+  predict(new_data = ames_test) %&gt;% 
+  mutate(price_truth = ames_test$Sale_Price)
+
+rmse_test&lt;-rmse(price_pred, truth = price_truth, estimate = .pred)</code></pre>
+</div>
+<div id="your-turn-6" class="section level1">
+<h1>Your Turn 6</h1>
+<p>Rewrite the code from the previous exercise to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Split <strong>ames</strong> into training and test sets. Save the rsplit!</p></li>
+<li><p>Fit a linear model to the training set, then use the model to predict new observations from the test set.</p></li>
+<li><p>Extract the rmse- is it the same as what we just calculated in our previous exercise 5.388510^{4}?</p></li>
+</ol>
+<p>Keep <code>set.seed(100)</code> at the start of your code.</p>
+<pre class="r"><code># solution from previous exercise below...
+set.seed(100) # Important!
+
+ames_split  &lt;- initial_split(ames)
+ames_train  &lt;- training(ames_split)
+ames_test   &lt;- testing(ames_split)
+
+lm_split   &lt;- fit_split(Sale_Price ~ Gr_Liv_Area, 
+                        model = lm_spec, 
+                        split = ames_split)
+
+lm_split %&gt;% 
+  collect_metrics()</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard   53885.   
+## 2 rsq     standard       0.568</code></pre>
+</div>
+<div id="your-turn-7" class="section level1">
+<h1>Your Turn 7</h1>
+<p>Write a pipe to create a model that uses the rpart package to fit a regression tree. Use <code>fit_split()</code> and <code>collect_metrics()</code> to compare the RMSE here to one using the linear model for the same formula- which is better?</p>
+<p><em>Hint: you’ll need <a href="https://tidymodels.github.io/parsnip/articles/articles/Models.html" class="uri">https://tidymodels.github.io/parsnip/articles/articles/Models.html</a></em></p>
+<pre class="r"><code>set.seed(100) # Important!
+rt_spec &lt;- 
+  decision_tree() %&gt;%          
+  set_engine(engine = &quot;rpart&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)
+
+fit_split(Sale_Price ~ Gr_Liv_Area, 
+          model = rt_spec, 
+          split = ames_split) %&gt;% 
+   collect_metrics()</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard   56055.   
+## 2 rsq     standard       0.529</code></pre>
+</div>
+<div id="your-turn-11" class="section level1">
+<h1>Your Turn 11</h1>
+<p>Write <em>another</em> pipe to create a model that uses the kknn package to fit a K nearest neighbors model. Use <code>fit_split()</code> and <code>collect_metrics()</code> to compare the RMSE here to our other models with the same formula- which is better?</p>
+<p><em>Hint: you’ll need <a href="https://tidymodels.github.io/parsnip/articles/articles/Models.html" class="uri">https://tidymodels.github.io/parsnip/articles/articles/Models.html</a></em></p>
+<pre class="r"><code>set.seed(100) # Important!
+nn_spec &lt;- 
+  nearest_neighbor() %&gt;%          
+  set_engine(engine = &quot;kknn&quot;) %&gt;% 
+  set_mode(&quot;regression&quot;)
+
+fit_split(Sale_Price ~ Gr_Liv_Area, 
+          model = nn_spec, 
+          split = ames_split,
+          metrics = metric_set(rmse)) %&gt;% 
+  collect_metrics()</code></pre>
+<pre><code>## # A tibble: 1 x 3
+##   .metric .estimator .estimate
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
+## 1 rmse    standard      59074.</code></pre>
+</div>

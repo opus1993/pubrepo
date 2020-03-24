@@ -1,7 +1,9 @@
 ---
-title: "Introduction to Machine Learning in the Tidyverse 01-Prediction"
+title: "Introduction to Machine Learning in the Tidyverse 01Prediction"
 output: html_document
 ---
+
+  
 ![Predicting](https://pedantic-pike-efd356.netlify.com/day-1/slides/01-predicting#1)
   
 ```{r setup, include=FALSE}
@@ -28,7 +30,7 @@ fit_split <- function(formula, model, split, ...) {
 
 Write a pipe that creates a learner that uses `lm()` to fit a linear regression. Save it as `lm_spec` and look at the object. What does it return?
   
-  ```{r}
+```{r}
 lm_spec<- linear_reg(mode = "regression")%>%
   set_engine(engine ="lm") 
 lm_spec
@@ -48,7 +50,6 @@ give the same results as
 ```{r}
 lm(Sale_Price ~ Gr_Liv_Area, data = ames)
 ```
-
 
 # Your Turn 3
 
@@ -80,7 +81,7 @@ In your teams, decide which model:
 2. Will have lower prediction error. Why?  
   
   
-  # Your Turn 5
+# Your Turn 5
   
   Fill in the blanks. 
 
@@ -96,7 +97,7 @@ Keep `set.seed(100)` at the start of your code.
 
 *Hint: Be sure to remove every `_` before running the code!*
   
-  ```{r}
+```{r}
 set.seed(100) # Important!
 
 ames_split  <- initial_split(ames, prop = 0.75)
@@ -111,21 +112,20 @@ price_pred  <- lm_fit %>%
   predict(new_data = ames_test) %>% 
   mutate(price_truth = ames_test$Sale_Price)
 
-rmse(price_pred, truth = price_truth, estimate = .pred)
+rmse_test<-rmse(price_pred, truth = price_truth, estimate = .pred)
 ```
-
 
 # Your Turn 6
 
-Rewrite your code from the previous exercise using `fit_split()` and `collect_metrics()` to:
+Rewrite the  code from the previous exercise to:
   
-  1. Split **ames** into training and test sets. Save the rsplit!
-  
-  2. Fit a linear model to the training set, then use the model to predict new observations from the test set.
+1. Split **ames** into training and test sets. Save the rsplit!
 
-3. Extract the rmse- is it the same as what we just calculated in our previous exercise `r round(rmse_test, 0)`?
+2. Fit a linear model to the training set, then use the model to predict new observations from the test set.
+
+3. Extract the rmse- is it the same as what we just calculated in our previous exercise `r round(rmse_test$.estimate, 0)`?
   
-  Keep `set.seed(100)` at the start of your code.
+Keep `set.seed(100)` at the start of your code.
 
 ```{r}
 # solution from previous exercise below...
@@ -172,7 +172,7 @@ Write *another* pipe to create a model that uses the kknn package to fit a K nea
 
 *Hint: you'll need https://tidymodels.github.io/parsnip/articles/articles/Models.html*
   
-  ```{r}
+```{r}
 set.seed(100) # Important!
 nn_spec <- 
   nearest_neighbor() %>%          
