@@ -72,7 +72,7 @@ Consider also that companies rely on software support. Getting proprietary softw
 
 In the open source world, especially in terms of enterprise applications, there are ample support companies willing to help. And if a project doesn't, often you can find a separate company that provides paid support for most open source applications. Many times these separate companies are part of a certification process for that particular open source software. Examples include `Linux` certifications.
 
-`GitHub` Cofounder Tom Preston-Werner lays out some additional arguments in his 2011 post [Open Source (Almost) Everything](https://tom.preston-werner.com/2011/11/22/open-source-everything.html)
+### `GitHub` Cofounder Tom Preston-Werner lays out additional arguments in his 2011 post [Open Source (Almost) Everything](https://tom.preston-werner.com/2011/11/22/open-source-everything.html):
 
 **Force multiplication:** Open source is a force multiplier for developers. This happens in three ways: First, when communities form around shared challenges, the diversity of ideas that naturally emerges surfaces better solutions than if the marketplace of ideas was limited to just your organization, meaning developers are working smarter. Second, exposing the problem space to other interested organizations provides additional human capital to tackle the challenge, meaning the solution has more developer hours thrown at it, at no additional cost. Finally, "more users means more use cases being explored, which means more robust code."
 
