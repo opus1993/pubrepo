@@ -68,7 +68,7 @@ Another significant reason to use open source software is to prevent vendor lock
 
 Consider also that companies rely on software support. Getting proprietary software support means getting it from the original software vendor. If that company goes under or stops supporting the application, you're out of luck. But even if they still support your software, perhaps you have had lousy experience with the software provider's customer service. And why should they care – if you want support, you're forced to come to them.
 
-In the open source world, especially in terms of enterprise applications, there are ample support companies willing to help. And if a project doesn't, often you can find a separate company that provides paid support for most open source applications. Many times these separate companies are part of a certification process for that particular open source software. Examples include `Linux` certifications.
+In the open source world, especially in terms of enterprise applications, there are diverse support providers willing to help. In many cases these separate companies are part of a certification process for that particular open source project. Examples include the `Linux` certifications.
 
 ### `GitHub` Cofounder Tom Preston-Werner lays out additional arguments in his 2011 post [Open Source (Almost) Everything](https://tom.preston-werner.com/2011/11/22/open-source-everything.html):
 
