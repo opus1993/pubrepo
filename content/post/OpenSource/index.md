@@ -23,15 +23,15 @@ Inspired by:
 
 > Tina Amirtha's [Why The R Programming Language Is Good For Business](https://www.fastcompany.com/3030063/why-the-r-programming-language-is-good-for-business)
 
-With many organizations embracing open source software like `Linux`, `Spark`, `Python`, `GeoMesa`, and `R`, it's becoming increasingly clear that price is not the only advantage. If it were, companies that adopted open source solutions during the Great Recession of 2008 would have switched back to the expensive proprietary stuff as soon as conditions began to be eased, and that's clearly not the case. 
+Businesses large and small are embracing open source solutions like `Linux`, `Spark`, `Python`, `GeoMesa`, and `R` for more and more of their software functions. Over time it has become increasingly clear that price is not the only advantage. If it were, companies that adopted open source solutions during the Great Recession of 2008 would have switched back to the expensive proprietary stuff as soon as conditions began to be eased, and that's clearly not the case. 
 
-Whether the enterprise is a corporation, a small business, a non-profit, academia, or a government agency, the vast array of open source software solutions available is huge. As software has become a critical component of modern economies, open source communities have sprung up to fill the needs. Open source software is increasingly transforming everyday life, from womb to grave. 
+Whether the enterprise is a corporation, a non-profit, academia, or a government agency, the vast array of open source software solutions available is huge. As software has become a critical component of modern economies, open source communities have sprung up to fill the needs. Open source software is increasingly transforming everyday life, from womb to grave. 
 
 One example: With petabytes of data at hand, enterprises are trying to figure out the best way to understand their customers and themselves. But using Excel pivot tables to analyze massive quantities of information is absurd, so in the recent past companies would invest in a commercially available, proprietary, tools like `SAS` to harvest business intelligence.
 
 But `SAS` is no match for the open-source tools that pioneering data scientists use in academia, built largely on `R`. The `R` programming language environment is at the cutting edge of data science, supported by a very large, global community, advancing the very latest in analysis tools. And the rapid evolution of `R` and a wide variety of other open source tools is driven in large part by community-driven open source development advantages. 
 
-An outline of open source advantages:
+An outline of several open source advantages:
 
 ## Microeconomic motivations
 
@@ -66,7 +66,7 @@ Taking the matter of software updates further, when a proprietary application st
 
 Another significant reason to use open source software is to prevent vendor lock-in. For example, let's say the company is using a proprietary publishing application. One day, the company releases a new version and explains that going forward, older file versions for the application won't be supported by the new version. This means if you have an older version of one PC, and the latest version on the second PC, they can't exchange files due to compatibility issues. The company's motivation is for you to run the latest version of the software on BOTH computers.
 
-Consider also that companies rely on software support. Getting proprietary software support means getting it from the original software vendor. If that company goes under or stops supporting the application, you're out of luck. But even if they still support your software, perhaps you have had lousy experience with the software provider's customer service. And why should they care – if you want support, you're forced to come to them.
+Consider also that companies rely on software support. Getting proprietary software support means getting it from the original software vendor. If that company goes under or stops supporting the application, you're out of luck. But even if they still support the software, perhaps you have had lousy experience with the provider's customer service. And why should they care – if you want support, you're forced to come to them.
 
 In the open source world, especially in terms of enterprise applications, there are diverse support providers willing to help. In many cases these separate companies are part of a certification process for that particular open source project. Examples include the `Linux` certifications.
 
