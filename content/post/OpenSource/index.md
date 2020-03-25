@@ -25,7 +25,7 @@ Inspired by:
 
 Businesses large and small are embracing open source solutions like `Linux`, `Spark`, `Python`, `GeoMesa`, and `R` for more and more of their software functions. Over time it has become increasingly clear that price is not the only advantage. If it were, companies that adopted open source solutions during the Great Recession of 2008 would have switched back to the expensive proprietary stuff as soon as conditions began to be eased, and that's clearly not the case. 
 
-Whether the enterprise is a corporation, a non-profit, academia, or a government agency, the vast array of open source software solutions available is huge. As software has become a critical component of modern economies, open source communities have sprung up to fill the needs. Open source software is increasingly transforming everyday life, from womb to grave. 
+The array of open source software solutions available is huge and relevant to all enterprises - corporations, non-profits, academia, and government agencies. As software has become a critical component of modern economies, open source communities have sprung up to fill the needs. Open source software is increasingly transforming everyday life, from womb to grave. 
 
 One example: With petabytes of data at hand, businesses are trying to figure out the best way to understand their customers and themselves. But using Excel pivot tables to analyze massive quantities of information is absurd, so in the recent past companies would invest in a commercially available, proprietary, tools like `SAS` to harvest business intelligence.
 
