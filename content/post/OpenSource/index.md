@@ -25,7 +25,7 @@ Inspired by:
 
 With many organizations embracing open source software like `Linux`, `Spark`, `Python`, `GeoMesa`, and `R`, it's becoming increasingly clear that price is not the only advantage. If it were, companies that adopted open source solutions during the Great Recession of 2008 would have switched back to the expensive proprietary stuff as soon as conditions began to be eased, and that's clearly not the case. 
 
-Whether the enterprise is a corporation, a small business, a non-profit, academia, or a government agency, that vast array of open source products is awesome. Software is a critical component of modern economies. It touches every part of every life in the developed world, and is increasingly transforming everyday life, from womb to grave. There are many reasons to understand the role of open source in consuming, publishing, collaborating on, and supporting software. 
+Whether the enterprise is a corporation, a small business, a non-profit, academia, or a government agency, the vast array of open source products is incredible. Software is a critical component of modern economies. It touches every part of every life in the developed world, and is increasingly transforming everyday life, from womb to grave. There are many reasons to understand the role of open source in consuming, publishing, collaborating on, and supporting software. 
 
 One example: With petabytes of data at hand, enterprises are trying to figure out the best way to understand their customers and themselves. But using Excel pivot tables to analyze massive quantities of information is absurd, so in the recent past companies would invest in a commercially available, proprietary, tool like `SAS` to harvest business intelligence.
 
