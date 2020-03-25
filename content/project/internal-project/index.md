@@ -12,7 +12,7 @@ links:
 slides: example
 summary: my TidyTuesday
 tags:
-- Education
+- DataScience
 title: TidyTuesday
 url_code: ""
 url_pdf: ""
