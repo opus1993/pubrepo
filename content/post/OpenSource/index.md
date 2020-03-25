@@ -25,13 +25,13 @@ Inspired by:
 
 With many organizations embracing open source software like `Linux`, `Spark`, `Python`, `GeoMesa`, and `R`, it's becoming increasingly clear that price is not the only advantage. If it were, companies that adopted open source solutions during the Great Recession of 2008 would have switched back to the expensive proprietary stuff as soon as conditions began to be eased, and that's clearly not the case. 
 
-Whether the enterprise is a corporation, a small business, a non-profit, academia, or a government agency, the vast array of open source products is incredible. Software is a critical component of modern economies. It touches every part of every life in the developed world, and is increasingly transforming everyday life, from womb to grave. There are many reasons to understand the role of open source in consuming, publishing, collaborating on, and supporting software. 
+Whether the enterprise is a corporation, a small business, a non-profit, academia, or a government agency, the vast array of open source software solutions available is huge. As software has become a critical component of modern economies, open source communities have sprung up to fill the needs. Open source software is increasingly transforming everyday life, from womb to grave. 
 
-One example: With petabytes of data at hand, enterprises are trying to figure out the best way to understand their customers and themselves. But using Excel pivot tables to analyze massive quantities of information is absurd, so in the recent past companies would invest in a commercially available, proprietary, tool like `SAS` to harvest business intelligence.
+One example: With petabytes of data at hand, enterprises are trying to figure out the best way to understand their customers and themselves. But using Excel pivot tables to analyze massive quantities of information is absurd, so in the recent past companies would invest in a commercially available, proprietary, tools like `SAS` to harvest business intelligence.
 
-But `SAS` is no match for the open-source tools that pioneering data scientists use in academia, built largely on `R`. The `R` programming language environment is at the cutting edge of data science, giving businesses the latest in analysis tools. And the rapid evolution of `R` and a wide variety of other open source tools is driven in large part by community-driven open source development advantages.
+But `SAS` is no match for the open-source tools that pioneering data scientists use in academia, built largely on `R`. The `R` programming language environment is at the cutting edge of data science, supported by a very large, global community, advancing the very latest in analysis tools. And the rapid evolution of `R` and a wide variety of other open source tools is driven in large part by community-driven open source development advantages. 
 
-Here are a few of them:
+An outline of open source advantages:
 
 ## Microeconomic motivations
 
@@ -58,7 +58,7 @@ Here are a few of them:
 
 **Interoperability:** Open source software is much better at adhering to open standards than proprietary software is. If interoperability with other businesses, computers, and users has a high value, and B2B parties don't want to be limited by proprietary data formats, open source software is definitely the way to go.
 
-**Auditability:** With closed source software, there is little but the vendor's claims assuring that they're keeping the software secure and adhering to standards, for example. It's basically a leap of faith. The visibility of the code behind open source software, however, means all developers can monitor compliance and be confident.
+**Auditability:** With closed source software, there is little but the vendor's claims assuring that they're keeping the software secure and adhering to standards. It's basically a leap of faith. The visibility of the code behind open source software, however, means all developers can monitor compliance and be confident.
 
 Finally, **Shifting development from low-value work to high-value work:** In open source communities we often hear that all the easy problems have already been solved. Blogging, content management, and operating systems are all problems with established (and mainstream) open source solutions, to name a few. While your developers could spend their time reinventing wheels that the open source community have already perfected, it's far preferable to use the worlds best wheel, especially when that wheel comes at no cost to you. This frees developers up to work on yet-unsolved challenges, the types of challenges that are unique to and add value to your organization's mission. Why not stand on the shoulders of technology giants?
 
