@@ -39,5 +39,7 @@ user_groups:
 - Visitors
 ---
 
-I am an engineer with many years of cross-functional team experience, strong quantitative analysis skills, and a passion for technology gained in roles in product development, strategic sourcing, and digital operations. I am currently responsible for Digital Operations Projects at CNH Industrial in the Chicago area.
+I have been an engineer and team manager in various roles for more than 20 years. My undergraduate degree was originally in Mechanical Engineering, and I do still enjoy working with the agricultural product design and validation communities. My studies subsequently have been in business, first at the University of Wisconsin-Parkside and most recently at the University of Notre Dame Mendoza College of Business.
+
+I am currently responsible for Digital Operations Projects at CNH Industrial in the Chicago area.
 
