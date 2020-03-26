@@ -108,6 +108,7 @@ A list of useful free courses, books, tutorials, and expert blogs
 ## Machine Learning
 - [`tidymodels`](https://www.tidyverse.org/blog/2018/08/tidymodels-0-0-1/) by [Max Kuhn](https://twitter.com/topepos)
 - [`mlr`](https://mlr.mlr-org.com/articles/tutorial/task.html) by [Patrick Schratz](https://twitter.com/pjs_228)
+- [Introduction to Machine Learning with `mlr`](https://compstat-lmu.github.io/lecture_i2ml/articles/content.html)
 - [R interface to keras](https://keras.rstudio.com/)
 - [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
 - [Julia Silge's blog](https://juliasilge.com/)
