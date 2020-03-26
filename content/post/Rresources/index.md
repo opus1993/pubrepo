@@ -48,7 +48,7 @@ A list of useful free courses, books, tutorials, and expert blogs
 - [A Language, not a Letter: Learning Statistics in R](https://ademos.people.uic.edu/index.html)
 ----
 ## Online Courses
-- [swirl](https://swirlstats.com/students.html)
+- [`swirl`](https://swirlstats.com/students.html)
 - **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** by [R4DS](https://twitter.com/rstats4ds)
 - **[STAT545](https://stat545.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
 - [R Programming](https://www.coursera.org/learn/r-programming) by [Roger Peng](https://twitter.com/rdpeng)
@@ -110,7 +110,7 @@ A list of useful free courses, books, tutorials, and expert blogs
 - [`mlr`](https://mlr.mlr-org.com/articles/tutorial/task.html) by [Patrick Schratz](https://twitter.com/pjs_228)
 - [R interface to keras](https://keras.rstudio.com/)
 - [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
-- [Julia Silke's blog](https://juliasilge.com/)
+- [Julia Silge's blog](https://juliasilge.com/)
 ----
 ## Geospatial
 - [Making Maps with R](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
