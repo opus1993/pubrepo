@@ -127,6 +127,7 @@ A list of useful free courses, books, tutorials, and expert blogs
 - [Julia Silge](https://juliasilge.com/blog/)
 - [Alison Hill](https://alison.rbind.io/) by [Alison Hill](https://twitter.com/apreshill)
 - [Jenny Bryan](https://jennybryan.org/teach/)
+- [Tyler Morgan-Wall](https://www.tylermw.com/posts/) by [Tyler Morgan-Wall](https://twitter.com/tylermorganwall)
 - [Nicholas Tierney](http://njtierney.github.io/)
 - [Tyler Rinker](https://trinkerrstuff.wordpress.com)
 - [Steve Pittard](https://rollingyours.wordpress.com)
