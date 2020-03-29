@@ -14,7 +14,7 @@ tags:
   - R
 ---
 
-I was inspired by inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some work-related Twitter handles and ended up discovering a bug and a workaround for windows users. 
+I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some work-related Twitter handles and ended up discovering a bug and a workaround for windows users. 
 
 {{< youtube KE9ItC3doEU >}}
 
@@ -31,7 +31,7 @@ The `rtweet` [Obtaining and using access tokens](http://rtweet.info/articles/aut
 >  access_token = access_token,
 >  access_secret = access_token_secret)
 
-Unfortunately, the process currently works properly in linux environments, but not in Windows. Closely inspect the token created:
+Unfortunately, the process currently works properly in Linux environments, but not in Windows. Closely inspect the token created:
 
 > token<-rtweet::get_token()
 
