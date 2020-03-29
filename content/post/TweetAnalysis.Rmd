@@ -1,52 +1,38 @@
 ---
-title: "#CaseIH Twitter Activity"
-author: Jim Gruman
-date: 1/25/2020
-output: 
+title: "null"
+author: "Jim Gruman"
+date: "`Sys.Date()`"
+output:
   html_document:
-    code_download: true
+    code_download: yes
+  pdf_document: default
+menu:
+  example:
+    parent: Machine Learning in R
+    weight: 17
+linktitle: '#CaseIH Twitter Activity'
+type: docs
+weight: 16
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(include = FALSE)
 library(lubridate)
 library(tidyverse)
 library(rtweet)
-library(keyring)
 theme_set(theme_light())
-
-# for use within the CNH network
-library(httr)
-set_config(use_proxy(url="http://proxyna.cnhind.com/proxycnhna.pac"))
-
+token<-get_tokens()
 ```
 
 ![](https://www.caseih.com/PublishingImages/layout/caseih-logo.png)
 
-```{r eval=FALSE, include=FALSE}
-create_token(
-  app = "IAPfeed",
-  consumer_key = key_get("twitter.consumer_key", username = "jim_gruman"),
-  consumer_secret = key_get("twitter.consumer_secret", username = "jim_gruman"),
-  access_token = key_get("twitter.access_token", username = "jim_gruman"),
-  access_secret = key_get("twitter.access_secret", username = "jim_gruman"))
-
-
-<<<<<<< HEAD
-case_ih_timeline <- get_timeline("case_ih", n=3200)
-=======
-case_ih_timeline <- get_timeline("case_ih", n=3200) %>%
+```{r }
+case_ih_timeline <- get_timeline("case_ih", n=3200, token = token) %>%
     mutate(week = as.Date(floor_date(created_at, "week", week_start = 1)))
-
-write_rds(case_ih_timeline, "./ciht.rds")
->>>>>>> f28a8ada7e7b2a503a3b9fe945cd17ceea802659
-
-Sys.time()
 ```
 
 ```{r}
-case_ih_timeline<-read_rds("./ciht.rds")
-
 case_ih_timeline %>%
    mutate(hour=hour(with_tz(created_at, tz="America/Chicago")))  %>%
    group_by(hour) %>%
@@ -56,34 +42,45 @@ case_ih_timeline %>%
    geom_col(aes(x=hour, y=frequency), 
              fill='red', alpha=0.5)+
    labs(title = "@CaseIH Tweet Activity by Time of Day",
+     subtitle = "source: Twitter API",             
      x = "Hour, CST", y = "Frequency",
-     caption = str_c("Jim Gruman, ", Sys.Date()))
+     caption = str_c("Jim Gruman, ", Sys.Date()))+
+     theme(plot.title.position = "plot")  
 
 week_summary<- case_ih_timeline %>%
   group_by(week) %>%
   summarize(tweets = n(),
             avg_retweets =  exp(mean(log(retweet_count + 1))) -1)
+# remove last week from summary calc
+
+week_summary<- week_summary[-(nrow(week_summary)),]
 
 week_summary %>%
   ggplot(aes(week, tweets))+
   geom_line()+
   expand_limits(y = 0)+
-  labs(title = "@Case_IH Tweet Activity by Week",x = "Date",
+  labs(title = "@Case_IH Tweet Activity by Week",
+       subtitle = "source: Twitter API",       
+       x = "Date",
        y = "@Case_IH Tweets",
-       caption = str_c("Jim Gruman, ", Sys.Date()))
+       caption = str_c("Jim Gruman, ", Sys.Date())) +
+    theme(plot.title.position = "plot") 
 
 week_summary %>%
   ggplot(aes(week, avg_retweets))+
   geom_line()+
   expand_limits(y = 0)+
-  labs(title = "@Case_IH Tweet Popularity by Week",x = "Date",
+  labs(title = "@Case_IH Tweet Popularity in Retweets by Week",
+       subtitle = "source: Twitter API",
+       x = "Date",
        y = "@Case_IH Average (Geometric Mean) Retweets",
-       caption = str_c("Jim Gruman, ", Sys.Date()))
+       caption = str_c("Jim Gruman, ", Sys.Date())) +
+  theme(plot.title.position = "plot") 
 ```
 
 Which tweets get the most retweets, and thus the widest audience?
 
-```{r eval=FALSE, include=FALSE}
+```{r }
 case_ih_timeline%>%
   select(screen_name, retweet_screen_name, retweet_count, status_id)%>%
   arrange(desc(retweet_count))
@@ -95,19 +92,10 @@ case_ih_timeline%>%
 
 ```
 
+[National Farmer's Day](https://twitter.com/Case_IH/status/918453719418667008)
 
-```{r eval=FALSE, include=FALSE}
-# A look at the Twitter Screen Names of the most active users of the #CaseIH hashtags
+[RT @USDA: In 2017, 98% of U.S. farms were family farms, and they accounted for 87% of farm production](https://twitter.com/Case_IH/status/1106313301275955201)
 
-case_ih_timeline %>%
-  count(screen_name, sort = TRUE) %>%
-  head(12) %>%
-  mutate(screen_name = reorder(screen_name, n)) %>%
-  ggplot(aes(screen_name, n))+
-  geom_col() +
-  coord_flip()
-    
-```
 
 ```{r}
 library(tidytext)
@@ -115,7 +103,7 @@ tweet_words<-case_ih_timeline %>%
   select(screen_name, text, retweet_count, favorite_count, created_at, week, status_id) %>%
   unnest_tokens(word, text, token = "tweets") %>%
   anti_join(stop_words, by = "word") %>%
-  filter(!word %in% c("#caseih", "@caseih", "37pm", "youll"),
+  filter(!word %in% c("#caseih", "@caseih", "37pm", "youll", "rt", "amp", "blog", "mt"),
          str_detect(word, "[a-z]"),
          !str_detect(word, "http")) 
 
@@ -126,8 +114,9 @@ tweet_words %>%
   ggplot(aes(word, n))+
   geom_col() +
   coord_flip() +
-  labs(title = "Most Common Words in @CaseIH Tweets",
-       y = "Frequency of Words")
+  theme(plot.title.position = "plot") +
+  labs(title = "Most Common Words in @Case_IH Tweets", subtitle = "source: Twitter API",
+       y = "Frequency of Words", caption = paste0("Jim Gruman ", Sys.Date()))
     
 ```
 
@@ -172,7 +161,8 @@ week_summary %>%
   expand_limits(y = 0)+
   labs(title = "@Case_IH's Tweets and Topics by Week",x = "Date",
        y = "@Case_IH Tweets", subtitle = "Word is each week's most specific by TF-IDF",
-       caption = str_c("Jim Gruman, ", Sys.Date()))
+       caption = str_c("Jim Gruman, ", Sys.Date()))+
+    theme(plot.title.position = "plot") 
 
 
 week_summary %>%
@@ -185,9 +175,50 @@ week_summary %>%
   expand_limits(y = 0)+
   labs(title = "@Case_IH Twitter Popularity and Topics by Week",x = "Date",
        y = "@Case_IH Retweets",subtitle = "Word is each week's most specific by TF-IDF",
-       caption = str_c("Jim Gruman, ", Sys.Date()))
+       caption = str_c("Jim Gruman, ", Sys.Date()))+
+    theme(plot.title.position = "plot") 
 
 ```
+
+
+```{r}
+library(UpSetR)
+
+rstaters<- c("Case_IH", "Birkeys", "HooberInc", "StoltzSales","ScottSupply", "hragripower",
+             "JennerCompanies", "TitanAg", "RMEHQ")
+followers_upset <- map_df(rstaters, ~ get_followers(
+  .x, retryonratelimit = TRUE, token = token) %>% mutate(account = .x))
+aRdent_followers <- unique(followers_upset$user_id)
+binaries <- rstaters %>%
+  map_dfc(~ ifelse(aRdent_followers %in% filter(
+    followers_upset, account == .x)$user_id, 1, 0) %>% as.data.frame)
+
+names(binaries) <- rstaters
+
+upset(binaries,
+      nsets = 9,
+      main.bar.color = "SteelBlue",
+     sets.bar.color = "DarkCyan",
+      sets.x.label = "Follower Count",
+      text.scale = c(rep(1.4, 5), 1),
+      order.by = "freq")
+```
+
+```{r}
+searches<-search_tweets(
+  "#caseih", geocode = lookup_coords("usa"), n = 10000)
+searches<- lat_lng(searches)
+
+## plot state boundaries
+par(mar = c(0, 0, 0, 0))
+maps::map("state", lwd = .25)
+
+## plot lat and lng points onto state map
+with(searches, points(lng, lat, pch = 20, cex = 3, col = rgb(0, .3, .7, .75)))
+
+```
+
+
 
 ----
 
