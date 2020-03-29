@@ -1,2 +1,2 @@
 # pubrepo
-Public Repository for glamour pages
+Repository for glamour pages
