@@ -1,0 +1,45 @@
+---
+title: "rtweet"
+author: "Jim Gruman"
+output: html_document
+date: '2020-03-29'
+draft: false
+linktitle: rtweet
+menu:
+  example:
+    parent: R Language Welcome
+    weight: 6
+type: docs
+weight: 6
+---
+
+
+
+<p>I set out to work with <code>rtweet</code> on some work-related Twitter handles and ended up discovering a bug and a workaround for windows users.</p>
+<p>The <code>rtweet</code> <a href="http://rtweet.info/articles/auth.html">Obtaining and using access tokens</a> vignette provides instructions for creating tokens and writing them to <code>.Renviron</code>, one-time only, as:</p>
+<p>Unfortunately, the process currently works properly in linux environments, but not in Windows. Closely inspect the token created as follows:</p>
+<p>You have found the bug when the token returned does not match the keys created above.</p>
+<p>The solution to the problem is to edit your local <code>.Renviron</code> file. In the console, type</p>
+<p><code>usethis::edit_r_environ</code></p>
+<p>Find the <strong>TWITTER_PAT</strong> parameter and change every back slash <code>\</code> and forward slash <code>/</code> to double backslashes <code>\\</code> to the rds file address. It will resemble</p>
+<p><code>"C:\\Users\\&lt;youruser&gt;\\Documents\\.rtweet_token.rds"</code></p>
+<p>Save the <code>.Renviron</code> file. Then Restart R (Ctrl+Shift+F10). Closely inspect the token again:</p>
+<p><code>token&lt;-rtweet::get_token()</code>
+<code>token</code></p>
+<hr />
+<div id="caseih-twitter-handle-timeline" class="section level1">
+<h1>CaseIH Twitter handle timeline</h1>
+<p>caseIH is the global and US/Canada twitter handle of one of the agriculture brand handles for CNHIndustrial. Their most recent 3200 tweets can be pulled from the API as</p>
+<p>Plots describing some measures of activity:</p>
+<p>Which tweets get the most retweets, and thus the widest audience?</p>
+<p>Some measures of tweet word content:</p>
+</div>
+<div id="what-topics-are-each-week-most-about" class="section level1">
+<h1>What topics are each week most about?</h1>
+<p>And some measures of the interactions between the global Case_IH twitter handle and some of the most active Case_IH dealer stores:</p>
+<p>Finally, a map of recent #CaseIH hashtag activity in the US:</p>
+<hr />
+<p>Inspired by:
+<a href="https://www.youtube.com/watch?v=KE9ItC3doEU&amp;t=80s">Dave Robinson R tutorial</a></p>
+<p>It turns out that <a href="https://github.com/ropensci/rtweet/issues/380">Jon Harmon has also made a report of the issue at the package repo</a></p>
+</div>

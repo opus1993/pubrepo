@@ -1,20 +1,19 @@
 ---
-title: "null"
+title: "rtweet"
 author: "Jim Gruman"
-date: "`Sys.Date()`"
-output:
-  html_document:
-    code_download: yes
-  pdf_document: default
+output: html_document
+date: '2020-03-29'
+draft: false
+linktitle: rtweet
 menu:
   example:
-    parent: Machine Learning in R
-    weight: 17
-linktitle: '#CaseIH Twitter Activity'
+    parent: R Language Welcome
+    weight: 6
 type: docs
-weight: 16
+weight: 6
 ---
 
+I set out to work with `rtweet` on some work-related Twitter handles and ended up discovering a bug and a workaround for windows users. 
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(include = FALSE)
@@ -22,15 +21,59 @@ library(lubridate)
 library(tidyverse)
 library(rtweet)
 theme_set(theme_light())
-token<-get_tokens()
+token<-rtweet::get_token()
 ```
 
-![](https://www.caseih.com/PublishingImages/layout/caseih-logo.png)
+The `rtweet` [Obtaining and using access tokens](http://rtweet.info/articles/auth.html) vignette provides instructions for creating tokens and writing them to `.Renviron`, one-time only, as:
+
+```{r eval=FALSE}
+api_key <- "onthetwitterdeveloperpage"
+api_secret_key <- "onthetwitterdeveloperpage"
+access_token <- "onthetwitterdeveloperpage"
+access_token_secret <- "onthetwitterdeveloperpage"
+
+## authenticate via web browser
+token <- create_token(
+  app = "mytwitterapp_NDMSBA",
+  consumer_key = api_key,
+  consumer_secret = api_secret_key,
+  access_token = access_token,
+  access_secret = access_token_secret)
+```
+
+Unfortunately, the process currently works properly in linux environments, but not in Windows. Closely inspect the token created as follows:
+
+```{r eval=FALSE}
+token<-rtweet::get_token()
+token
+```
+
+You have found the bug when the token returned does not match the keys created above.
+
+The solution to the problem is to edit your local `.Renviron` file. In the console, type
+
+`usethis::edit_r_environ`
+
+Find the **TWITTER_PAT** parameter and change every back slash `\` and forward slash `/` to double backslashes `\\` to the rds file address.  It will resemble
+
+`"C:\\Users\\<youruser>\\Documents\\.rtweet_token.rds"`
+
+Save the `.Renviron` file.  Then Restart R (Ctrl+Shift+F10). Closely inspect the token again:
+
+`token<-rtweet::get_token()`
+`token`
+
+----
+
+# CaseIH Twitter handle timeline
+
+caseIH is the global and US/Canada twitter handle of one of the agriculture brand handles for CNHIndustrial. Their most recent 3200 tweets can be pulled from the API as
 
 ```{r }
 case_ih_timeline <- get_timeline("case_ih", n=3200, token = token) %>%
     mutate(week = as.Date(floor_date(created_at, "week", week_start = 1)))
 ```
+Plots describing some measures of activity:
 
 ```{r}
 case_ih_timeline %>%
@@ -83,19 +126,30 @@ Which tweets get the most retweets, and thus the widest audience?
 ```{r }
 case_ih_timeline%>%
   select(screen_name, retweet_screen_name, retweet_count, status_id)%>%
-  arrange(desc(retweet_count))
+  arrange(desc(retweet_count)) %>%
+  head()%>%
+  knitr::kable()
+```
 
+```{r echo=FALSE}
+blogdown::shortcode('tweet', '918453719418667008')
+```
+
+```{r}
 case_ih_timeline%>%
   select(retweet_screen_name, retweet_count, favorite_count, status_id)%>%
   mutate(ratio = (favorite_count + 1) / (retweet_count + 1)) %>%
-  arrange(ratio)
+  arrange(ratio) %>%
+  head()%>%
+  knitr::kable()
 
 ```
 
-[National Farmer's Day](https://twitter.com/Case_IH/status/918453719418667008)
+```{r echo=FALSE}
+blogdown::shortcode('tweet', '1106313301275955201')
+```
 
-[RT @USDA: In 2017, 98% of U.S. farms were family farms, and they accounted for 87% of farm production](https://twitter.com/Case_IH/status/1106313301275955201)
-
+Some measures of tweet word content:
 
 ```{r}
 library(tidytext)
@@ -117,7 +171,6 @@ tweet_words %>%
   theme(plot.title.position = "plot") +
   labs(title = "Most Common Words in @Case_IH Tweets", subtitle = "source: Twitter API",
        y = "Frequency of Words", caption = paste0("Jim Gruman ", Sys.Date()))
-    
 ```
 
 ```{r}
@@ -180,6 +233,7 @@ week_summary %>%
 
 ```
 
+And some measures of the interactions between the global Case_IH twitter handle and some of the most active Case_IH dealer stores:
 
 ```{r}
 library(UpSetR)
@@ -203,6 +257,7 @@ upset(binaries,
       text.scale = c(rep(1.4, 5), 1),
       order.by = "freq")
 ```
+Finally, a map of recent #CaseIH hashtag activity in the US:
 
 ```{r}
 searches<-search_tweets(
@@ -218,13 +273,9 @@ with(searches, points(lng, lat, pch = 20, cex = 3, col = rgb(0, .3, .7, .75)))
 
 ```
 
-
-
 ----
 
-The [rtweet package](https://rtweet.info) calls the Twitter API for the most recent tweet activity by @case_ih, including 3200 @Case_IH authored tweets, re-tweets of other authors, and favorites.
-
-<img src="https://rtweet.info/reference/figures/logo.png" width="200">
-
+Inspired by:
 [Dave Robinson R tutorial](https://www.youtube.com/watch?v=KE9ItC3doEU&t=80s)
 
+It turns out that [Jon Harmon has also made a report of the issue at the package repo](https://github.com/ropensci/rtweet/issues/380)
