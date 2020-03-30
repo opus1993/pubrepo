@@ -19,7 +19,7 @@ tags:
 Inspired by:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
 
-A list of useful free courses, books, tutorials, and expert blogs
+My list of useful free courses, books, tutorials, and expert blogs
 
 ## Introductory Books
 - **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
@@ -49,7 +49,6 @@ A list of useful free courses, books, tutorials, and expert blogs
 ----
 ## Online Courses
 - [`swirl`](https://swirlstats.com/students.html)
-- **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** by [R4DS](https://twitter.com/rstats4ds)
 - **[STAT545](https://stat545.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
 - [R Programming](https://www.coursera.org/learn/r-programming) by [Roger Peng](https://twitter.com/rdpeng)
 - [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)
@@ -64,9 +63,9 @@ A list of useful free courses, books, tutorials, and expert blogs
 - [Intermediate R](https://github.com/uc-r/Intermediate-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 ----
 ## Style Guides
-- [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
 - [Hadley Wickham's Style Guide](https://style.tidyverse.org/)
 - [Hadley Wickham's Advanced R Style Guide](http://adv-r.had.co.nz/Style.html)
+- [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
 ----
 ## Advanced Books
 - [Advanced R (Wickham, 2018)](https://adv-r.hadley.nz/introduction.html) by [Hadley Wickham](https://twitter.com/hadleywickham)
@@ -117,11 +116,13 @@ A list of useful free courses, books, tutorials, and expert blogs
 - [Making Maps with R](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
 - [Spatial Data Science](https://spatialanalysis.github.io/tutorials/) by [Angela Li](https://twitter.com/CivicAngela) at [Center for Spatial Data Science at the University of Chicago](https://twitter.com/GeoDaCenter)
 - [The GDSL Big List of Teaching Links](https://github.com/GDSL-UL/Teaching_Links)
+- [Geocomputation with R](https://geocompr.robinlovelace.net/) by [Robin Lovelace](https://twitter.com/robinlovelace)
 ----
 ## Meetups, Blogs, and User Groups
 - [Chicago R Users Group](https://chicago-r-user-group.github.io/)
 - [Chicago R Collaborative](https://chircollab.github.io/)
 - [The R User Conference](https://user2020.r-project.org/)
+- **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** by [R4DS](https://twitter.com/rstats4ds)
 - [Business Science](https://www.business-science.io/) by 
 [Matt Dancho](https://twitter.com/mdancho84)
 - [Julia Silge](https://juliasilge.com/blog/)
