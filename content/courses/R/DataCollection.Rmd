@@ -15,7 +15,7 @@ weight: 2
 
 ## Data Collection
 
-### (Add content for read.table, base-R read.csv, and read.excel)
+### (Add content for read.table fread, base-R read.csv, and read.excel)
 
 Every project must start with a team-wide understanding of the client's pain points and the decisions that they face. What knowledge gives your client a competitive advantage? What is their naiive baseline?
 

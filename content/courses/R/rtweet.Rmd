@@ -1,19 +1,18 @@
 ---
 title: "rtweet"
 author: "Jim Gruman"
-output: html_document
 date: '2020-03-29'
-draft: false
-linktitle: rtweet
 menu:
   example:
     parent: R Language Welcome
     weight: 6
+linktitle: rtweet
+draft: no
 type: docs
 weight: 6
 ---
 
-I set out to work with `rtweet` on some work-related Twitter handles and ended up discovering a bug and a workaround for windows users. 
+I set out to work with `rtweet` on some work-related Twitter handles and ended up discovering a bug and [a workaround for windows users](https://jimgruman.netlify.com/post/rtweet-on-windows/).
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(include = FALSE)
@@ -41,7 +40,7 @@ token <- create_token(
   access_secret = access_token_secret)
 ```
 
-Unfortunately, the process currently works properly in linux environments, but not in Windows. Closely inspect the token created as follows:
+Unfortunately, the process currently works properly in linux environments, but not in Windows. To prove the point, closely inspect the token created as follows:
 
 ```{r eval=FALSE}
 token<-rtweet::get_token()
