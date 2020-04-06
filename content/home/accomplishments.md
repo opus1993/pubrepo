@@ -48,6 +48,16 @@ date_format = "Jan 2006"
   date_end = "2020-01-22"
   description = ""
 
+[[item]]
+  organization = "DataCamp"
+  organization_url = "https://www.datacamp.com"
+  title = "Data Manipulation with R Track"
+  url = ""
+  certificate_url = "https://www.datacamp.com/statement-of-accomplishment/track/c022772c159f33fd2ba3837ae449472979479061"
+  date_start = "2020-01-23"
+  date_end = "2020-04-05"
+  description = ""
+
 +++
 
 
