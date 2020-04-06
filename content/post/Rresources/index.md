@@ -130,6 +130,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Jenny Bryan](https://jennybryan.org/teach/)
 - [Tyler Morgan-Wall](https://www.tylermw.com/posts/) by [Tyler Morgan-Wall](https://twitter.com/tylermorganwall)
 - [Thomas Neitmann](https://thomas-neitmann.netlify.com/posts/)
+- [Edward Visel](https://alistaire.rbind.io/) by [Edward Visel](https://twitter.com/alistaire)
 - [Nicholas Tierney](http://njtierney.github.io/)
 - [Tyler Rinker](https://trinkerrstuff.wordpress.com)
 - [Steve Pittard](https://rollingyours.wordpress.com)
