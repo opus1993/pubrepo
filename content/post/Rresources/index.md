@@ -50,6 +50,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 ## Online Courses
 - [`swirl`](https://swirlstats.com/students.html)
 - **[STAT545](https://stat545.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
+- [Dublin City University R Tutorials](https://dcu-r-tutorials.netlify.com/)
 - [R Programming](https://www.coursera.org/learn/r-programming) by [Roger Peng](https://twitter.com/rdpeng)
 - [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)
 - **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
