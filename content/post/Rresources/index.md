@@ -63,11 +63,6 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Intro to R](https://github.com/uc-r/Intro-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 - [Intermediate R](https://github.com/uc-r/Intermediate-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 ----
-## Style Guides
-- [Hadley Wickham's Style Guide](https://style.tidyverse.org/)
-- [Hadley Wickham's Advanced R Style Guide](http://adv-r.had.co.nz/Style.html)
-- [Google's R Style Guide](https://google.github.io/styleguide/Rguide.html)
-----
 ## Advanced Books
 - [Advanced R (Wickham, 2018)](https://adv-r.hadley.nz/introduction.html) by [Hadley Wickham](https://twitter.com/hadleywickham)
 - [Efficient R programming](https://csgillespie.github.io/efficientR/) by [Colin Gillespie](https://twitter.com/csgillespie) and [Robin Lovelace](https://twitter.com/robinlovelace)
@@ -91,7 +86,8 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Wes Anderson color palettes](https://github.com/karthik/wesanderson)
 - [How to standardize group colors in data visualizations in R](https://paulvanderlaken.com/2020/03/20/how-to-standardize-group-colors-in-data-visualizations-in-r/) by [Paul van der Laken](https://twitter.com/paulvanderlaken)
 ----
-## Smart Interactive Extensions and Widgets
+## Smart Interactive Visualization Extensions and Widgets
+- [ggplot2 Extensions Gallery](https://exts.ggplot2.tidyverse.org/gallery/)
 - [htmlwidgets for R](https://www.htmlwidgets.org) 
 - [Discover RStudio addins](https://github.com/daattali/addinslist) by [Dean Attali](https://twitter.com/daattali)
 - [Shiny Tutorial](zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/)
@@ -132,6 +128,10 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Tyler Morgan-Wall](https://www.tylermw.com/posts/) by [Tyler Morgan-Wall](https://twitter.com/tylermorganwall)
 - [Thomas Neitmann](https://thomas-neitmann.netlify.com/posts/)
 - [Edward Visel](https://alistaire.rbind.io/) by [Edward Visel](https://twitter.com/alistaire)
+- [Plant out of Place](https://plantoutofplace.com/) by [Andrew Kniss](https://twitter.com/WyoWeeds)
+- [Pdiff](http://pdiff.weebly.com/) by [Bill Price](https://twitter.com/pdiff1)
+- [Harvard Data Science Review](https://review.datascience.harvard.edu/)
+- [Dean of Big Data](https://deanofbigdata.com/) by [Bill Schmarzo](https://twitter.com/schmarzo)
 - [Nicholas Tierney](http://njtierney.github.io/)
 - [Tyler Rinker](https://trinkerrstuff.wordpress.com)
 - [Steve Pittard](https://rollingyours.wordpress.com)
