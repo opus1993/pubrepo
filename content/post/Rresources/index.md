@@ -72,6 +72,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 ## Data Visualization
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
 - [MPA 635: Data Visualization](https://datavizf18.classes.andrewheiss.com/) by [Andrew Heiss](https://twitter.com/andrewheiss)
+- [How to Create BBC Style Graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)
 - [R Graph Gallery](https://www.r-graph-gallery.com/)
 - **[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/index.html)** by [Claus Wilke](https://twitter.com/ClausWilke)
 - [Exploratory Data Analysis & Visualization](https://edav.info/index.html) by [Zach Bogart](https://twitter.com/zachbogart) and [Joyce Robbins](https://twitter.com/jtrnyc)
