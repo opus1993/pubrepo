@@ -1,7 +1,7 @@
 ---
 authors:
 - admin
-bio: Serving enterprise digital transformation efforts with innovators in mobile power, decision intelligence, and product management
+bio: Engineer and analyst
 Education:
   Courses:
   - course: MS Business Analytics
