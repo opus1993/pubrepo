@@ -23,13 +23,13 @@ This weekend was my first ever Open Source R hackathon. This post covers my obse
 ## What we set out to do
 
 The [Chicago R Collaborative](https://chircollab.github.io/#page-top
-) is an annual activity funded with an [R Consortium](https://www.r-consortium.org/projects/awarded-projects)-funded grant that supports community-led, locally-organized R development events around the world.
+) is an annual activity funded with an [R Consortium](https://www.r-consortium.org/projects/awarded-projects) grant that supports community-led, locally-organized R development events around the world.
 
 The challenge this weekend was to team up with other R users to contribute to open source packages, work on data tools, pursue projects we wish we had time for in our day-to-day work, and learn from others in our local R community. Collaboratives all over the world are dedicated to inspiring those new to open source to contribute to the R community. 
 
 The event hosts marketed the event through social media channels about 3 months in advance. We each applied for an invitation after committing to the [code of conduct](https://chircollab.github.io/coc/). When invitations were sent, the event hosts solicited input on projects at a [Github Issues](https://github.com/chircollab) repository. 39 issues were submitted by 16 authors on a wide range of topics. For topics with a higher level of interest, slack channels were created on the topics themselves, as well as for #Announcements and #Community forums. 
 
-The event originally was planned to be held on-campus at the University of Chicago. With the pandemic, the organizers regrouped and put together this remote hackathon. We convened via Zoom starting on Saturday at 10am.
+The event was planned originally to be held on-campus at the University of Chicago. With the pandemic, the organizers regrouped and put together this remote hackathon. We convened via Zoom starting on Saturday at 10am.
 
 ----
 
@@ -53,7 +53,9 @@ After introductions, we had icebreaker discussions on topics including:
 
 1. What are challenges you face (cultural or technical) using R professionally and how do you handle these?
 
-A takeaway: My challenges are in no way unique. After the preliminaries, the rest of the day was broken into time blocks of asynchronous work time and reservable tutorials, with three discrete zoom facilities and lots of Slack.
+A takeaway: My challenges are in no way unique. 
+
+After the preliminaries, the rest of the day was broken into time blocks of asynchronous work time and reservable tutorials, with three discrete zoom facilities and lots of Slack.
 
 ----
 
