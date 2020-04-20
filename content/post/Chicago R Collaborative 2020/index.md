@@ -111,7 +111,7 @@ As of mid-afternoon on Sunday, 90 changes to 29 repositories were pushed via 16 
 
 Other accomplishments include an updated R interface package for the Google Civic API, numerous fixes to improve http behavior, a general xaringan template for other R Collaborative events, and `takehomecarpetries` take home tutorials.
 
-Special thanks to Angela Li for all her efforts in orchestrating this event.
+Special thanks to [Angela Li](https://twitter.com/CivicAngela), [Emily Riederer](https://twitter.com/EmilyRiederer), [Will Bonnell](https://twitter.com/_willdebras), and [Sydney Purdue](https://twitter.com/Sydney_NotAUS) for all of the effort in orchestrating this event.
 {{< tweet 1251994675281563651 >}}
 
 ----
