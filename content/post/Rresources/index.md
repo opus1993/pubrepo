@@ -132,6 +132,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Plant out of Place](https://plantoutofplace.com/) by [Andrew Kniss](https://twitter.com/WyoWeeds)
 - [Pdiff](http://pdiff.weebly.com/) by [Bill Price](https://twitter.com/pdiff1)
 - [Harvard Data Science Review](https://review.datascience.harvard.edu/)
+- [Data Meets Narrative](http://www.rebeccabarter.com/blog/)
 - [Dean of Big Data](https://deanofbigdata.com/) by [Bill Schmarzo](https://twitter.com/schmarzo)
 - [Nicholas Tierney](http://njtierney.github.io/)
 - [Tyler Rinker](https://trinkerrstuff.wordpress.com)
