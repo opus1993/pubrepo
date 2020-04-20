@@ -27,7 +27,7 @@ The [Chicago R Collaborative](https://chircollab.github.io/#page-top
 
 The challenge this weekend was to team up with other R users to contribute to open source packages, work on data tools, pursue projects we wish we had time for in our day-to-day work, and learn from others in our local R community. Collaboratives all over the world are dedicated to inspiring those new to open source to contribute to the R community. 
 
-The event hosts marketed the event through social media channels about 3 months in advance. We each applied for an invitation after committing to the [code of conduct](https://chircollab.github.io/coc/). When invitations were sent, the event hosts solicited input on projects at an [Github Issues](https://github.com/chircollab) repository. 39 issues were submitted by 16 authors on a wide range of topics. For topics with a higher level of interest, slack channels were created on the topics themselves, as well as for #Announcements and #Community forums. 
+The event hosts marketed the event through social media channels about 3 months in advance. We each applied for an invitation after committing to the [code of conduct](https://chircollab.github.io/coc/). When invitations were sent, the event hosts solicited input on projects at a [Github Issues](https://github.com/chircollab) repository. 39 issues were submitted by 16 authors on a wide range of topics. For topics with a higher level of interest, slack channels were created on the topics themselves, as well as for #Announcements and #Community forums. 
 
 The event originally was planned to be held on-campus at the University of Chicago. With the pandemic, the organizers regrouped and put together this remote hackathon. We convened via Zoom starting on Saturday at 10am.
 
