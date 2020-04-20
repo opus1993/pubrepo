@@ -63,7 +63,7 @@ In addition to networking, I took a lot of notes on the topics most relevant to 
 
 ### GitHub Therapy
 
-[John Blishak](https://twitter.com/jdblischak) and [Mauro Lepore](https://twitter.com/mauro_lepore) led an excellent tutorial on GitHub for Open Source community development. The video here is actually their practice run. In the live demo, we each forked their GitHub repo, pulled the upstream remote, modified an example file, committed it, pushed it back, and made a pull request for review. We also previewed new [`usethis`](https://usethis.r-lib.org/reference/index.html) R package functionality for setting up and managing from the R IDE. Continuous integration features was left out of this tutorial, but I'd like to follow up at a later time on their view of the differences between GitHub Actions and Travis.
+[John Blishak](https://twitter.com/jdblischak) and [Mauro Lepore](https://twitter.com/mauro_lepore) led an excellent tutorial on GitHub for Open Source community development. The video here is actually their practice run. In the live demo, we each forked their GitHub repo, pulled the upstream remote, modified an example file, committed it, pushed it back, and made a pull request for review. We also previewed new [`usethis`](https://usethis.r-lib.org/reference/index.html) R package functionality for setting up and managing from the R IDE. Continuous integration features were left out of this specific tutorial, but I'd like to follow up at a later time to learn about their view of the differences between GitHub Actions and Travis.
 
 {{< youtube y8lOGz1yAj4 >}}
 
