@@ -2,7 +2,7 @@
 title: Chicago R Collaborative 2020
 author: Jim Gruman
 date: '2020-04-19'
-slug: chicago-r-collaborative-2020
+slug: Chicago-r-collaborative-2020
 categories:
   - Open Source
 markup: mmark
@@ -16,18 +16,22 @@ image:
   preview_only: no
 ---
 
-This weekend was my first ever Open Source R hackathon. This post covers my thoughts about what we set out to do, who I met, what I learned, and what we accomplished.
+This weekend was my first ever Open Source R hackathon. This post covers my observations about what we set out to do, who I met, what I learned, and what we accomplished.
+
+----
 
 ## What we set out to do
 
 The [Chicago R Collaborative](https://chircollab.github.io/#page-top
 ) is an annual activity funded with an [R Consortium](https://www.r-consortium.org/projects/awarded-projects)-funded grant that supports community-led, locally-organized R development events around the world.
 
-The challenge this weekend was to team up with other R users to contribute to open source packages, work on data tools, pursue projects we wish we had time for in our day-to-day work, and learn from others in our local R community. 
+The challenge this weekend was to team up with other R users to contribute to open source packages, work on data tools, pursue projects we wish we had time for in our day-to-day work, and learn from others in our local R community. Collaboratives all over the world are dedicated to inspiring those new to open source to contribute to the R community. 
 
-Collaboratives all over the world are dedicated to inspiring beginners and those new to open source to contribute to the R community. Each of us, working in industry and academia alike, believe that open source is at its best when it draws from diverse contributors.
+After applying for an invitation and committing to the [code of conduct](https://chircollab.github.io/coc/), the event hosts solicited a wide range of topics at an [Github Issues](https://github.com/chircollab) repository. 39 issues were submitted by 16 authors. For topics with a higher level of interest, slack channels were created on the topics themselves, as well as for #Announcements and #Community forums. 
 
-After applying for an invitation and commiting to the [code of conduct](https://chircollab.github.io/coc/), the event hosts solicited a wide range of topics at an [Github Issues](https://github.com/chircollab) repository. 39 issues were submitted by 16 authors. For topics with a higher level of interest, slack channels were created on the topics themselves, as well as for #Announcements and #Community forums. We convened via Zoom starting on Saturday at 10am.
+The event originally was planned to be held on-campus at the University of Chicago. With the pandemic, the organizers regrouped and put together this remote hackathon. We convened via Zoom starting on Saturday at 10am.
+
+----
 
 ## Who was involved
 
@@ -51,11 +55,15 @@ After introductions, we had icebreaker discussions on topics including:
 
 A takeaway: My challenges are in no way unique. After the preliminaries, the rest of the day was broken into time blocks of asynchronous work time and reservable tutorials, with three discrete zoom facilities and lots of Slack.
 
+----
+
 ## What I learned
 
-### Github Therapy
+In addition to networking, I took a lot of notes on the topics most relevant to me. They included GitHub Therapy, Communities of Practices, Learning Resources.
 
-[John Blishak](https://twitter.com/jdblischak) and [Mauro Lepore](https://twitter.com/mauro_lepore) led an excellent tutorial on Github for Open Source community development. The video here is actually their practice run. In the live demo, we each forked their Github repo, pulled the upstream remote, modified an example file, committed it, pushed it back, and made a pull request for review. We also previewed new [`usethis`](https://usethis.r-lib.org/reference/index.html) R package functionality for setting up and managing from the R IDE. Continuous integration features was left out of this tutorial, but I'd like to follow up at a later time on their view of the differences between Github Actions and Travis.
+### GitHub Therapy
+
+[John Blishak](https://twitter.com/jdblischak) and [Mauro Lepore](https://twitter.com/mauro_lepore) led an excellent tutorial on GitHub for Open Source community development. The video here is actually their practice run. In the live demo, we each forked their GitHub repo, pulled the upstream remote, modified an example file, committed it, pushed it back, and made a pull request for review. We also previewed new [`usethis`](https://usethis.r-lib.org/reference/index.html) R package functionality for setting up and managing from the R IDE. Continuous integration features was left out of this tutorial, but I'd like to follow up at a later time on their view of the differences between GitHub Actions and Travis.
 
 {{< youtube y8lOGz1yAj4 >}}
 
@@ -94,15 +102,17 @@ A takeaway: My challenges are in no way unique. After the preliminaries, the res
 Prior to the event, [Sharla Gelfand](https://twitter.com/sharlagelfand) had prepared an empty bookdown framework for a new [kableExtra Cookbook](https://sharlagelfand.github.io/kableExtra-cookbook/index.html)
  reference for the `kableExtra` R package. The package is widely used to make tables pretty in Rmarkdown document creation, and the package authors have prepared good detailed technical vignettes. However, for most of us, a cookbook-style desk-side reference with native real-world examples can often be more handy and inspirational. As a team, our mission was to create page content examples from available datasets.
 
-[Brooke Anderson](https://twitter.com/gbwanderson) did a lot of the work, and I was fortunate to have had the opportunity to follow along. If you look closely, Sharla was kind and added my name as an author, so I now feel obligated to come back and live up to that standing by providing more work beyond my meagre submissions so far.
+[Brooke Anderson](https://twitter.com/gbwanderson) did a lot of the work, and I was fortunate to have had the opportunity to follow along. If you look closely, Sharla was kind and added my name as an author, so I now feel obligated to come back and live up to that standing by providing more work beyond my meager submissions so far.
+
+----
 
 ## What we accomplished
 
 As of mid-afternoon on Sunday, 90 changes to 29 repositories were pushed via 16 contributors. Many of the changes are expected to be accepted by package maintainers.
 
-The accomplishments include an R interface package for the Google Civic API, numerous fixes to improve http behavior, a general xaringan template for other R Collaborative events, and `takehomecarpetries` take home tutorials.
+The accomplishments include an updated R interface package for the Google Civic API, numerous fixes to improve http behavior, a general xaringan template for other R Collaborative events, and `takehomecarpetries` take home tutorials.
 
-Special thanks to Angeli Li for all her efforts in orchestrating this event.
+Special thanks to Angela Li for all her efforts in orchestrating this event.
 {{< tweet 1251994675281563651 >}}
 
 ----
