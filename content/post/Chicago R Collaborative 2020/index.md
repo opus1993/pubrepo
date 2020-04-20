@@ -71,25 +71,25 @@ In addition to networking, I took a lot of notes on the topics most relevant to 
 
 [Adam Austin](https://twitter.com/just_add_data) hosted an open conversation on enterprise communities of practice. Some of the high points:
 
->How do you motivate yourself and your peers to learn more and keep up with development? **Find an accountability buddy!** to keep on track and draw from their expertise
+>How do you motivate yourself and your peers to learn more and keep up with development? **Find an accountability buddy** to keep on track and draw from their expertise
 
->Advocacy and teaching go together. Make your business partners look like heroes
+>**Advocacy and teaching** go together. Make your business partners look like heroes
 
 >Save $$$ by reducing dependencies on legacy/licensed software
 
->Foster inclusivity. Welcome newcomers and beginners to empower them, and provide resources for learning
+>Foster **inclusivity**. Welcome newcomers and beginners to empower them, and provide resources for learning
 
->Encourage development of junior staff on general topics, like how do you give an effective presentation. Note that even engaged audience members won't look super enthusiastic -- ignore the gloomy stares and focus on your message. Engage the audience early and often
+>Encourage development of junior staff on general topics, like how to give an effective presentation. Even engaged audience members won't look super enthusiastic. Ignore the gloomy stares and focus on your message. **Engage the audience early and often**
 
->The bar for meaningful contributions is lower than you think it is. Imposter syndrome might intimidate you, but you surely have something valuable that someone needs to hear, no matter how trivial it feels to you
+>The bar for meaningful contributions is lower than you think it is. **Imposter syndrome** might intimidate you, but you surely have something valuable that someone needs to hear, no matter how trivial it feels to you
 
->Encourage people to pay it forward. When they learn something new and exciting, ask them to mentor others around them. This scales knowledge and solidifies the mentors' understanding of what they know
+>Encourage people to **pay it forward**. When they learn something new and exciting, ask them to mentor others around them. This scales knowledge and solidifies the mentors' understanding of what they know
 
 >**Be accessible**. Have a resource for asking and answering questions, such as slack, teams, etc. Build a network of experts who can help new users troubleshoot and resolve problems
 
 >Be sensitive that newcomers will have to learn on their free time. They still have to produce "real work" while learning on the side. They'll need a lot of support!
 
->How do you KEEP people engaged? They have to see the value.  Learning any new tool is HARD and that's okay, but people will need motivation to keep them going when it seems too hard. They have to have a powerful end goal to keep them going
+>How do you KEEP people engaged? They have to see the value. **Learning any new tool is HARD** and that's okay, but people will need motivation to keep going when it seems too hard. They have to have powerful end goals to keep them going
 
 **Book Recommendation:**
 [Cultivating Communities of Practice](https://www.amazon.com/Cultivating-Communities-Practice-Etienne-Wenger/dp/1578513308)
@@ -99,8 +99,7 @@ In addition to networking, I took a lot of notes on the topics most relevant to 
 
 ### Learning resources
 
-Prior to the event, [Sharla Gelfand](https://twitter.com/sharlagelfand) had prepared an empty bookdown framework for a new [kableExtra Cookbook](https://sharlagelfand.github.io/kableExtra-cookbook/index.html)
- reference for the `kableExtra` R package. The package is widely used to make tables pretty in Rmarkdown document creation, and the package authors have prepared good detailed technical vignettes. However, for most of us, a cookbook-style desk-side reference with native real-world examples can often be more handy and inspirational. As a team, our mission was to create page content examples from available datasets.
+Prior to the event, [Sharla Gelfand](https://twitter.com/sharlagelfand) had prepared an empty bookdown framework to build a new [kableExtra Cookbook](https://sharlagelfand.github.io/kableExtra-cookbook/index.html) reference for the `kableExtra` R package. The package is widely used to make tables pretty in Rmarkdown document publication, and the package authors have already prepared good detailed technical vignettes. However, for most of us, a cookbook-style desk-side reference with native real-world examples can often be more handy and inspirational. As a team, our mission was to create page content examples from available datasets.
 
 [Brooke Anderson](https://twitter.com/gbwanderson) did a lot of the work, and I was fortunate to have had the opportunity to follow along. If you look closely, Sharla was kind and added my name as an author, so I now feel obligated to come back and live up to that standing by providing more work beyond my meager submissions so far.
 
@@ -108,9 +107,9 @@ Prior to the event, [Sharla Gelfand](https://twitter.com/sharlagelfand) had prep
 
 ## What we accomplished
 
-As of mid-afternoon on Sunday, 90 changes to 29 repositories were pushed via 16 contributors. Many of the changes are expected to be accepted by package maintainers.
+As of mid-afternoon on Sunday, 90 changes to 29 repositories were pushed via 16 contributors. Many of the improvements are very likely to be accepted by package maintainers.
 
-The accomplishments include an updated R interface package for the Google Civic API, numerous fixes to improve http behavior, a general xaringan template for other R Collaborative events, and `takehomecarpetries` take home tutorials.
+Other accomplishments include an updated R interface package for the Google Civic API, numerous fixes to improve http behavior, a general xaringan template for other R Collaborative events, and `takehomecarpetries` take home tutorials.
 
 Special thanks to Angela Li for all her efforts in orchestrating this event.
 {{< tweet 1251994675281563651 >}}
