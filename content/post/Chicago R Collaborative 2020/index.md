@@ -59,7 +59,7 @@ A takeaway: My challenges are in no way unique. After the preliminaries, the res
 
 ## What I learned
 
-In addition to networking, I took a lot of notes on the topics most relevant to me. They included GitHub Therapy, Communities of Practices, Learning Resources.
+In addition to networking, I took a lot of notes on the topics most relevant to me. They included GitHub Therapy, Communities of Practices, and Learning Resources.
 
 ### GitHub Therapy
 
