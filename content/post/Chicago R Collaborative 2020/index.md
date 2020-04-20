@@ -35,7 +35,7 @@ The event originally was planned to be held on-campus at the University of Chica
 
 ## Who was involved
 
-The four event organizers arranged for 13 mentors and ultimately 37 participants arranged in [teams](https://chircollab.github.io/#team) to be fully engaged for two days. Our backgrounds varied, including academia, consulting, several industries, and all levels of experience. 
+The four event organizers arranged for 13 mentors and ultimately [37 participants](https://chircollab.github.io/#team) for two days. Our backgrounds varied, including academia, consulting, several industries, and all levels of experience. 
 
 After introductions, we had icebreaker discussions on topics including: 
 
