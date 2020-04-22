@@ -1,0 +1,205 @@
+---
+date: "2020-04-22"
+diagram: true
+image: 
+  caption: ''
+  placment: 3
+title: Scikit Learn in R
+author: Jim Gruman
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [Python, Data Science, R]
+description: "Setup to Run Python in RStudio" 
+---
+
+
+
+<blockquote>
+<p>Inspired by <a href="https://www.business-science.io/learn-r/2020/04/20/setup-python-in-r-with-rmarkdown.html">Matt Dancho’s Business-Science Learning Series post</a></p>
+</blockquote>
+<p>The 2 most popular data science languages - <code>Python</code> and <code>R</code> - are often characterized as rivals. This couldn’t be further from the truth. Data scientists use the strengths of each language environment. For Example:</p>
+<ul>
+<li><p><strong>Machine Learning</strong>: They can switch to Python to leverage Scikit Learn and PyTorch.</p></li>
+<li><p><strong>Data Wrangling, Visualization, Apps &amp; Reporting</strong>: They can quickly change to R to use <code>tidyverse</code>, <code>shiny</code> and <code>rmarkdown</code>.</p></li>
+</ul>
+<p>The bottom line is that knowing both R and Python makes teams much more productive.</p>
+<p>This post is a quick demonstration of the setup and creation of an environment to use Python from within the RStudio IDE using the <code>reticulate</code> package.</p>
+<p>Step 1: Install the Anaconda distribution</p>
+<p>Step 2: Install the <code>reticulate</code> R package</p>
+<pre class="r"><code>library(tidyverse)
+library(reticulate)</code></pre>
+<p>As of today, Anaconda still ships with python 3.7.</p>
+<p>To update to python 3.8, run the following code at the anaconda prompt:</p>
+<blockquote>
+<p><code>conda install -c anaconda python=3.8</code></p>
+</blockquote>
+<blockquote>
+<p><code>conda update --all</code></p>
+</blockquote>
+<blockquote>
+<p><code>conda create -n py3.8 python=3.8 scikit-learn pandas numpy matplotlib</code></p>
+</blockquote>
+<blockquote>
+<p><code>conda activate py3.8</code></p>
+</blockquote>
+<blockquote>
+<p><code>python --version</code></p>
+</blockquote>
+<p>List your Conda Environments, from RStudio:</p>
+<pre class="r"><code>reticulate::conda_list()</code></pre>
+<pre><code>##        name                                               python
+## 1 anaconda3              C:\\Users\\jimgr\\anaconda3\\python.exe
+## 2     py3.8 C:\\Users\\jimgr\\anaconda3\\envs\\py3.8\\python.exe</code></pre>
+<p>Set Your Conda Environment, and double check that reticulate is actually using the new conda env.</p>
+<pre class="r"><code>reticulate::use_condaenv(&quot;py3.8&quot;, required = TRUE)
+
+py_config()</code></pre>
+<pre><code>## python:         C:/Users/jimgr/anaconda3/envs/py3.8/python.exe
+## libpython:      C:/Users/jimgr/anaconda3/envs/py3.8/python38.dll
+## pythonhome:     C:/Users/jimgr/anaconda3/envs/py3.8
+## version:        3.8.2 (default, Apr 14 2020, 19:01:40) [MSC v.1916 64 bit (AMD64)]
+## Architecture:   64bit
+## numpy:          C:/Users/jimgr/anaconda3/envs/py3.8/Lib/site-packages/numpy
+## numpy_version:  1.18.1
+## 
+## NOTE: Python version was forced by use_python function</code></pre>
+<pre class="r"><code># Another setup approach -
+#reticulate::conda_install(packages = c(&quot;scikit-learn&quot;, &quot;pandas&quot;, &quot;numpy&quot;, &quot;matplotlib&quot;))
+#.
+#at installation, watch for a message to launch an Anaconda Prompt to update conda by typing &quot;conda update -n base -c defaults conda&quot;</code></pre>
+<div id="python-tests" class="section level2">
+<h2>Python tests</h2>
+<p>Is python working?</p>
+<pre class="python"><code>1 + 1</code></pre>
+<pre><code>## 2</code></pre>
+<p>Sourcing an existing python script is as easy as calling <code>reticulate::source_python()</code>. For example, if you have the following Python script <em>flights.py</em></p>
+<pre class="python"><code>import pandas
+def read_flights(file):
+  flights = pandas.read_csv(file)
+  flights = flights[flights[&#39;dest&#39;] == &quot;ORD&quot;]
+  flights = flights[[&#39;carrier&#39;, &#39;dep_delay&#39;, &#39;arr_delay&#39;]]
+  flights = flights.dropna()
+  return flights</code></pre>
+<p>Then you can source the script and call the <code>read_flights()</code> function as follows:</p>
+<pre class="r"><code>source_python(&quot;flights.py&quot;)
+flights &lt;- read_flights(&quot;flights.csv&quot;)
+
+library(ggplot2)
+ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()</code></pre>
+<p>Import numpy and pandas using the import shorthand <code>np</code> and <code>pd</code> respectively.</p>
+<ul>
+<li>numpy: Math Calculations</li>
+<li>pandas: Data Wrangling</li>
+</ul>
+<pre class="python"><code>import numpy as np
+import pandas as pd
+import os
+os.environ[&#39;QT_QPA_PLATFORM_PLUGIN_PATH&#39;] = &#39;C:\\Users\\jimgr\\Anaconda3\\Library\\plugins\\platforms&#39;</code></pre>
+<div id="testing-numpy" class="section level3">
+<h3>Testing numpy</h3>
+<pre class="python"><code>np.arange(1, 10)</code></pre>
+<pre><code>## array([1, 2, 3, 4, 5, 6, 7, 8, 9])</code></pre>
+</div>
+<div id="testing-pandas" class="section level3">
+<h3>Testing pandas</h3>
+<pre class="python"><code># Make a sequence in a data frame using dict format
+df = pd.DataFrame(data = {&quot;sequence&quot;:np.arange(1,20,.01)})
+
+# Use assign (mutate) equivalent to calculate the np.sin() of the series
+df = df.assign(value=np.sin(df[&quot;sequence&quot;]))
+
+df</code></pre>
+<pre><code>##       sequence     value
+## 0         1.00  0.841471
+## 1         1.01  0.846832
+## 2         1.02  0.852108
+## 3         1.03  0.857299
+## 4         1.04  0.862404
+## ...        ...       ...
+## 1895     19.95  0.891409
+## 1896     19.96  0.895896
+## 1897     19.97  0.900294
+## 1898     19.98  0.904602
+## 1899     19.99  0.908819
+## 
+## [1900 rows x 2 columns]</code></pre>
+</div>
+<div id="test-matplotlib" class="section level3">
+<h3>Test Matplotlib</h3>
+<pre class="python"><code>import matplotlib.pyplot as plt
+
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2*np.pi*t)
+plt.plot(t, s)
+plt.xlabel(&#39;time(s)&#39;)
+plt.ylabel(&#39;voltage(mV)&#39;)
+plt.grid(True)
+plt.savefig(&quot;Matplotlibtest.png&quot;)
+plt.show()</code></pre>
+<p><img src="/post/ScikitLearnInR/ScikitLearninR_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+</div>
+<div id="test-scikit-learn" class="section level3">
+<h3>Test Scikit Learn</h3>
+<pre class="python"><code>from sklearn.ensemble import RandomForestClassifier
+
+clf = RandomForestClassifier(random_state=0)
+
+X = [[ 1,  2,  3],  # 2 samples, 3 features
+     [11, 12, 13]]
+
+y = [0, 1]  # classes of each sample
+
+clf.fit(X, y)</code></pre>
+<pre><code>## RandomForestClassifier(bootstrap=True, ccp_alpha=0.0, class_weight=None,
+##                        criterion=&#39;gini&#39;, max_depth=None, max_features=&#39;auto&#39;,
+##                        max_leaf_nodes=None, max_samples=None,
+##                        min_impurity_decrease=0.0, min_impurity_split=None,
+##                        min_samples_leaf=1, min_samples_split=2,
+##                        min_weight_fraction_leaf=0.0, n_estimators=100,
+##                        n_jobs=None, oob_score=False, random_state=0, verbose=0,
+##                        warm_start=False)</code></pre>
+<pre class="python"><code>clf.predict(X)  # predict classes of the training data</code></pre>
+<pre><code>## array([0, 1])</code></pre>
+<pre class="python"><code>from sklearn.cluster import AffinityPropagation
+from sklearn.datasets import make_blobs
+
+# Generate sample data
+centers = [[1, 1], [-1, -1], [1, -1]]
+X, labels_true = make_blobs(n_samples=300, centers=centers, cluster_std=0.5,
+                            random_state=0)
+
+# Compute Affinity Propagation
+af = AffinityPropagation(preference=-50).fit(X)
+cluster_centers_indices = af.cluster_centers_indices_
+labels = af.labels_
+
+n_clusters_ = len(cluster_centers_indices)
+
+# Plot result
+import matplotlib.pyplot as plt
+from itertools import cycle
+
+plt.close(&#39;all&#39;)
+plt.figure(1)
+plt.clf()
+
+colors = cycle(&#39;bgrcmykbgrcmykbgrcmykbgrcmyk&#39;)
+for k, col in zip(range(n_clusters_), colors):
+    class_members = labels == k
+    cluster_center = X[cluster_centers_indices[k]]
+    plt.plot(X[class_members, 0], X[class_members, 1], col + &#39;.&#39;)
+    plt.plot(cluster_center[0], cluster_center[1], &#39;o&#39;, markerfacecolor=col,
+             markeredgecolor=&#39;k&#39;, markersize=14)
+    for x in X[class_members]:
+        plt.plot([cluster_center[0], x[0]], [cluster_center[1], x[1]], col)
+
+plt.title(&#39;Estimated number of clusters: %d&#39; % n_clusters_)
+plt.show()</code></pre>
+<p><img src="/post/ScikitLearnInR/ScikitLearninR_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<hr />
+</div>
+<div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
+<h3>Did you find this page helpful? Consider sharing it 🙌</h3>
+</div>
+</div>
