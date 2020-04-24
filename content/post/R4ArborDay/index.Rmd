@@ -46,6 +46,11 @@ install.packages(ip[,1])
 
 On my windows system, I am going to start fresh. It will be interesting to come back in a month to compare what I need with what I had previously.
 
+Inspired by:
+```{r, echo = FALSE} 
+blogdown::shortcode("tweet", "1253506170372980737")
+```
+
 ----
 
 ### Did you find this page helpful? Consider sharing it 🙌
