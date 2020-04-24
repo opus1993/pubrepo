@@ -53,13 +53,13 @@ theme_set(theme_minimal())
 
 Run the following code at the anaconda prompt:
 
->`conda update --all`
+> conda update --all
 
->`conda create -n py3.7 python=3.7 scikit-learn pandas numpy matplotlib`
+> conda create -n py3.7 python=3.7 scikit-learn pandas numpy matplotlib
 
->`conda activate py3.7`
+> conda activate py3.7
 
->`python --version`
+> python --version
 
 List your Conda Environments, from RStudio:
 
@@ -117,6 +117,8 @@ Import numpy and pandas using the import shorthand `np` and `pd` respectively.
 ```{python}
 import numpy as np
 import pandas as pd
+import os
+os.environ['QT_QPA_PLATFORM_PLUGIN_PATH'] = 'C:/Users/jimgr/Anaconda3/envs/py3.7/Library/plugins/platforms'
 ```
 
 ### Testing numpy
@@ -135,6 +137,21 @@ df = pd.DataFrame(data = {"sequence":np.arange(1,20,.01)})
 df = df.assign(value=np.sin(df["sequence"]))
 
 df
+```
+
+### Test Matplotlib
+
+```{python}
+import matplotlib.pyplot as plt
+
+t = np.arange(0.0, 2.0, 0.01)
+s = 1 + np.sin(2*np.pi*t)
+plt.plot(t, s)
+plt.xlabel('time(s)')
+plt.ylabel('voltage(mV)')
+plt.grid(True)
+plt.savefig("Matplotlibtest.png")
+plt.show()
 ```
 
 ### Test Scikit Learn
@@ -170,6 +187,28 @@ cluster_centers_indices = af.cluster_centers_indices_
 labels = af.labels_
 
 n_clusters_ = len(cluster_centers_indices)
+# #############################################################################
+# Plot result
+import matplotlib.pyplot as plt
+from itertools import cycle
+
+plt.close('all')
+plt.figure(1)
+plt.clf()
+
+colors = cycle('bgrcmykbgrcmykbgrcmykbgrcmyk')
+for k, col in zip(range(n_clusters_), colors):
+    class_members = labels == k
+    cluster_center = X[cluster_centers_indices[k]]
+    plt.plot(X[class_members, 0], X[class_members, 1], col + '.')
+    plt.plot(cluster_center[0], cluster_center[1], 'o', markerfacecolor=col,
+             markeredgecolor='k', markersize=14)
+    for x in X[class_members]:
+        plt.plot([cluster_center[0], x[0]], [cluster_center[1], x[1]], col)
+
+plt.title('Estimated number of clusters: %d' % n_clusters_)
+plt.savefig('AffinityClusters.png')
+plt.show()
 ```
 
 # Human Resources Employee Clustering
