@@ -1,0 +1,41 @@
+---
+title: 'R 4.0.0 Arbor Day'
+author: "Jim Gruman"
+date: "2020-04-23"
+diagram: true
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [R]
+description: "Significant User-Visible Changes are Coming" 
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image: 
+  caption: ''
+  focal_point: "TopRight"
+  preview_only: false
+featured: false
+draft: false
+---
+
+
+
+<p>R 4.0.0 is expected to be released to CRAN on Friday April 24th</p>
+<p>At that time, all packages will need to be (re-)installed.</p>
+<p>Here’s a short script to keep a list of your current R packages and how to reinstall them after updating:</p>
+<pre class="r"><code># Before the update, save current packages and their versions to ip
+ip &lt;- installed.packages()
+ip
+
+saveRDS(ip, &quot;~/CurrentPackages.rds&quot;)</code></pre>
+<pre class="r"><code># After updating base R, load the file in reverse
+
+ip &lt;- readRDS(&quot;~/CurrentPackages.rds&quot;)
+ 
+install.packages(ip[,1])</code></pre>
+<p><a href="https://stat.ethz.ch/R-manual/R-devel/doc/html/NEWS.html">The list of R 4.0.0 Features, Utilities, and Bug Fixes</a></p>
+<hr />
+<div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
+<h3>Did you find this page helpful? Consider sharing it 🙌</h3>
+</div>
