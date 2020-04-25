@@ -236,7 +236,7 @@ nytcovcounty %>%
   facet_wrap(~ state, ncol = 5) +
   labs(title = "COVID-19 Cumulative Recorded Cases by US County",
        subtitle = paste("New York is bundled into a single area in this data.\nData as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first case", y = "Count of Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -267,7 +267,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Illinois COVID-19 Cumulative Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first case", y = "Count of Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -301,7 +301,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Illinois COVID-19 New Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "New Cases",
+       x = "Days since first case", y = "New Cases",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -332,7 +332,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Illinois COVID-19 Cumulative Recorded Deaths by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "Count of Deaths (log 10 scale)",
+       x = "Days since first case", y = "Count of Deaths (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -363,7 +363,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Iowa COVID-19 Cumulative Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first case", y = "Count of Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -396,7 +396,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Iowa COVID-19 New Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "New Cases (log 10 scale)",
+       x = "Days since first case", y = "New Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -427,7 +427,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Iowa COVID-19 Cumulative Recorded Deaths by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "Count of Deaths (log 10 scale)",
+       x = "Days since first case", y = "Count of Deaths (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -458,7 +458,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "South Dakota COVID-19 Cumulative Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first case", y = "Count of Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -485,7 +485,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "South Dakota COVID-19 Cumulative Recorded Deaths by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first US case", y = "Count of Deaths (log 10 scale)",
+       x = "Days since first case", y = "Count of Deaths (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
