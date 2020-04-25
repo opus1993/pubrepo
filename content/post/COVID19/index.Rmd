@@ -1,7 +1,7 @@
 ---
 title: "Coronavirus By County"
 author: "Jim Gruman"
-date: "2020-04-22" 
+date: "2020-04-25" 
 diagram: true
 output: 
  blogdown::html_page:
@@ -66,7 +66,7 @@ covnat %>%
    as_tibble() %>%
    dplyr::filter( date == end_date)%>%
    select(Country = cname, `New Cases` = cases, `New Deaths` = deaths, `Cumulative Cases` = cu_cases, `Cumulative Deaths` = cu_deaths) %>%
-   slice_max(order_by = `Cumulative Deaths`, n=10) %>%
+   top_n(wt = `Cumulative Deaths`, n=10) %>%
    gt() %>%
    tab_header(
      title = "Country Level Data from ECDC (Sample)",
@@ -95,7 +95,7 @@ focus_cn <- c("CHN", "DEU", "GBR", "USA", "IRN", "JPN",
 ## Colors
 cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
 
-CasesByCountry<-covnat %>%
+covnat %>%
   filter(cu_cases > 99) %>%
   mutate(days_elapsed = date - min(date),
         end_label = ifelse(date == max(date), cname, NA),
@@ -114,7 +114,7 @@ CasesByCountry<-covnat %>%
   ggplot(mapping = aes(x = days_elapsed, y = cu_cases,
          color = cgroup, label = end_label,
          group = cname)) +
-  geom_line(aes(text = cname), size = 0.5) +
+  geom_line(size = 0.5) +
   geom_text_repel(nudge_x = 0.75,
                   segment.color = NA) +
   guides(color = FALSE) +
@@ -129,7 +129,6 @@ CasesByCountry<-covnat %>%
        caption = "Jim Gruman | Data: https://www.ecdc.europa.eu/") +
   theme(plot.title.position = "plot")
 
-ggplotly(CasesByCountry, tooltip = c("text","cu_cases"))
 ```
 
 ## State-Level Data from the COVID Tracking Project
@@ -168,7 +167,7 @@ top_n_states <- function(data, n = 8, measure = c("positive", "death")) {
 state_cols <- c("gray70",
                 prismatic::clr_darken(paletteer_d("ggsci::category20_d3"), 0.2))
 
-CumulativeUSCovidStates<-covus %>%
+covus %>%
   group_by(state) %>%
   mutate(core = case_when(state %nin% top_n_states(covus) ~ "",
                           TRUE ~ state),
@@ -177,7 +176,7 @@ CumulativeUSCovidStates<-covus %>%
   filter(measure == "positive", date > "2020-03-09", 
          !state %in% c("GU","MP","VI")) %>%
   ggplot(aes(x = date, y = count, group = state, color = core, label = end_label)) +
-  geom_line(aes(text = state),size = 0.5) +
+  geom_line(size = 0.5) +
   geom_text_repel(segment.color = NA, nudge_x = 0.2, nudge_y = 0.1) +
   scale_color_manual(values = state_cols) +
   scale_x_date(date_breaks = "3 days", date_labels = "%b %e" ) +
@@ -192,7 +191,6 @@ CumulativeUSCovidStates<-covus %>%
        caption = "@jim_gruman | Data: COVID Tracking Project, http://covidtracking.com")+
   theme(plot.title.position = "plot")
 
-ggplotly(CumulativeUSCovidStates, tooltip = c("state","count"))
 ```
 
 ## State-Level and County-Level (Cumulative) Data from the *New York Times*
@@ -238,7 +236,7 @@ nytcovcounty %>%
   facet_wrap(~ state, ncol = 5) +
   labs(title = "COVID-19 Cumulative Recorded Cases by US County",
        subtitle = paste("New York is bundled into a single area in this data.\nData as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -269,7 +267,41 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Illinois COVID-19 Cumulative Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
+       caption = "@jim_gruman | Data: The New York Times")+
+  theme(plot.title.position = "plot")
+```
+
+
+### Graph of incremental new Illinois cases by county
+
+```{r IllinoisCasesByCountyNew}
+## Counties to highlight
+focus_ct <- c("Cook", "DuPage", "Lake", "Will", "Kane")
+
+## Colors
+cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
+
+nytcovcounty %>%
+  filter(state == "Illinois") %>%
+  group_by(county) %>%
+  mutate(core = case_when(county %nin% focus_ct ~ "",
+                          TRUE ~ county),
+         end_label = ifelse(date == max(date), core, NA), 
+         days_elapsed = date - min(date),
+         NewCases = cases - lag(cases)) %>% 
+  filter(!is.na(NewCases), NewCases != 0) %>%
+  ggplot(aes(x = days_elapsed, y = NewCases, group = county, color = core, label = end_label)) +
+  geom_line(size = 0.25) +
+  geom_text_repel(nudge_x = 0.75,
+                  segment.color = NA) +
+  guides(color = FALSE) +
+  scale_color_manual(values = cgroup_cols) +
+  scale_y_log10(labels = scales::label_number_auto()) +
+  guides(color = FALSE) +
+  labs(title = "Illinois COVID-19 New Recorded Cases by County",
+       subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
+       x = "Days since first US case", y = "New Cases",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -300,7 +332,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Illinois COVID-19 Cumulative Recorded Deaths by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "Count of Deaths (log 10 scale)",
+       x = "Days since first US case", y = "Count of Deaths (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -331,7 +363,40 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Iowa COVID-19 Cumulative Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
+       caption = "@jim_gruman | Data: The New York Times")+
+  theme(plot.title.position = "plot")
+```
+
+### Graph of incremental Iowa cases by county
+
+```{r IowaCasesByCountyNew}
+## Counties to highlight
+focus_ct <- c("Johnson", "Dallas", "Linn", "Polk", "Scott", "Tama", "Washington")
+
+## Colors
+cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
+
+nytcovcounty %>%
+  filter(state == "Iowa") %>%
+  group_by(county) %>%
+  mutate(core = case_when(county %nin% focus_ct ~ "",
+                          TRUE ~ county),
+         end_label = ifelse(date == max(date), core, NA), 
+         days_elapsed = date - min(date),
+         NewCases = cases - lag(cases)) %>% 
+  filter(!is.na(NewCases), NewCases != 0) %>%
+  ggplot(aes(x = days_elapsed, y = NewCases, group = county, color = core, label = end_label)) +
+  geom_line(size = 0.25) +
+  geom_text_repel(nudge_x = 0.75,
+                  segment.color = NA) +
+  guides(color = FALSE) +
+  scale_color_manual(values = cgroup_cols) +
+  scale_y_log10(labels = scales::label_number_si()) +
+  guides(color = FALSE) +
+  labs(title = "Iowa COVID-19 New Recorded Cases by County",
+       subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
+       x = "Days since first US case", y = "New Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -362,7 +427,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "Iowa COVID-19 Cumulative Recorded Deaths by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "Count of Deaths (log 10 scale)",
+       x = "Days since first US case", y = "Count of Deaths (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -393,7 +458,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "South Dakota COVID-19 Cumulative Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "Count of Cases (log 10 scale)",
+       x = "Days since first US case", y = "Count of Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -420,7 +485,7 @@ nytcovcounty %>%
   guides(color = FALSE) +
   labs(title = "South Dakota COVID-19 Cumulative Recorded Deaths by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "Count of Deaths (log 10 scale)",
+       x = "Days since first US case", y = "Count of Deaths (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
@@ -478,6 +543,10 @@ apple_mobility %>%
                               subtitle = "Apple Data. Indexed to 100 for each city's usage on January 13th 2020",
        caption = paste("@jim_gruman, Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y"))) +
   theme_minimal()
+```
+
+```{r, echo = FALSE} 
+blogdown::shortcode("tweet", "1254085357714448385")
 ```
 
 ## Google Mobility Reports
