@@ -44,8 +44,6 @@ Anyone doing serious graphics work in R will want *R Graphics by Paul Murrell (C
 
 [How Charts Lie](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569) and [Factfulness](https://www.gapminder.org/factfulness/) each speak to how numbers are very persuasive, and so are charts, because we associate them with science and reason. Charts can enlighten and enable conversations, allowing us to peek through the complexity of large amounts of data. Good charts make us smarter.
 
-![How Charts Lie, by Alberto Cairo](http://albertocairo.com/wp-content/uploads/2019/07/How-Charts-Lie-cover_high.jpg)
-
 The use of git and GitHub are important for team collaboration. Find Jenny Bryan’s web book [Happy Git and GitHub for the useR](http://happygitwithr.com/).
 
 [R in a Nutshell, by Joseph Adler (O’Reilly)](http://oreilly.com/catalog/9780596801717), is another quick tutorial and reference you’ll keep by your side. Consider [Hands On Programming with R by Garrett Grolemund (O’Reilly) for an introduction, or The Art of R Programming by Normal Matloff (No Starch Press)](https://www.oreilly.com/library/view/hands-on-programming-with/9781449359089/). Hadley Wickham’s *Advanced R Programming* is available either as a printed book or free online and is a great deeper dive into advanced R topics. [Efficient R Programming, by Colin Gillespie and Robin Lovelace (O’Reilly)](http://shop.oreilly.com/product/0636920047995.do), is another good guide to learning the deeper concepts about R programming.
