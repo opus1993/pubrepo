@@ -21,7 +21,7 @@ projects: []
 
 The one pager is a beautiful tool.
 
-It’s one page. Enought for opening a conversation, bringing an idea to a persons’ mind. It contains a limited amount of language – 300 words or less if there is a chart or a handful of bullet points. Most people can read it in around 90 seconds. These are the constraints.
+It’s one page. Enough for opening a conversation, bringing an idea to a persons’ mind. It contains a limited amount of language – 300 words or less if there is a chart or a handful of bullet points. Most people can read it in around 90 seconds. These are the constraints.
 
 The one pager is simply a tool used to achieve goals. Let's start there, dive into each one, and conclude with a few experiences.
 
@@ -83,7 +83,7 @@ Engaging in such is often slower than pure declaration and pure persuasion. But 
 
 ### Observations
 
-One-pagers are great tools. They don’t even come close to powerpoint as a communication vehicle. They’re accessible. They’re brief. They get the job done efficiently because they reduce the surface area for discourse to the most important area. You don’t need to engage debating about what colours or photos to use, or if the kerning on the letter T looks off to you. You know when the one-pager is going to be over because you can see the bottom of the page right there. The whole one-pager is basically a progress bar. They’re easier to machine translate into other languages. They’re about as close to pure linguistic content as you can get. They’re very flexible.
+One-pagers are great tools. They don’t even come close to powerpoint as a communication vehicle. They’re accessible. They’re brief. They get the job done efficiently because they reduce the surface area for discourse to the most important area. You don’t need to engage debating about what colors or photos to use, or if the kerning on the letter T looks off to you. You know when the one-pager is going to be over because you can see the bottom of the page right there. The whole one-pager is basically a progress bar. They’re easier to machine translate into other languages. They’re about as close to pure linguistic content as you can get. They’re very flexible.
 
 In my years, I have met divergent thinkers that chafe at the imposed constraints of one-pagers. The longer an engagement goes on, the odds that the divergent thinker declares that 300 words is not enough to capture all of these ideas approaches 1. Often they will not buy in. Be open. Be patient. Constraints aren’t fun, but they are essential. Sometimes it takes time to organize the feelings before facts can be organized.
 
@@ -95,7 +95,7 @@ If the audience are divergent thinkers, leading with what, then what is changing
 
 If the audience are connectors, a tremendous amount of mileage can be gained with sourcing prior art. Acknowledge artifacts with tiny font at the bottom of the one-pager. Meeting connectors where they’re most comfortable and talking through the ripples can open new perspectives on the present.
 
-Many audiences are heterogenous, made of up of a mix of those types of people, and others. Always give credit to those that participated in the creation of the one-pager.
+Many audiences are heterogeneous, made of up of a mix of those types of people, and others. Always give credit to those that participated in the creation of the one-pager.
 
 A lot can happen to your mind in 60 to 90 seconds. 
 
