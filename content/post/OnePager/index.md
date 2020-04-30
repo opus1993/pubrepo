@@ -103,6 +103,8 @@ A one-pager holds the promise that a lot can change.
 
 Isn’t that useful and beautiful?
 
+> Adapted from [The One Pager](https://christopherberry.ca/the-one-pager/) by [Christopher Berry](https://twitter.com/cjpberry)
+
 ----
 
 ### Did you find this page helpful? Consider sharing it 🙌
