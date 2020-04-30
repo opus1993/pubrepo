@@ -21,9 +21,9 @@ projects: []
 
 The one pager is a beautiful tool.
 
-It’s one page. Enough for opening a conversation, bringing an idea to a person's mind. It contains a limited amount of language – 300 words or less if there is a chart or a handful of bullet points. Most people can read it in around 90 seconds. These are the constraints.
+It’s one page. Enough for opening a conversation, bringing an idea to mind. It contains a limited amount of language – 300 words or less if there is a chart or a handful of bullet points. Most people can read it in around 90 seconds. These are the constraints.
 
-The one pager is simply a tool used to achieve goals. Let's start there, dive into each one, and conclude with a few experiences.
+The one pager is simply a tool. Let's start with goals, explore them further, and conclude with a few experiences.
 
 ### Goals
 
@@ -33,7 +33,7 @@ Persuasion is often about convincing oneself, another, or a group to form a beli
 
 Declaration is often about sharing or proclaiming a decision, fact, opinion, problem, solution, situation, or belief.
 
-Engagement may be to learn, collect, aggregate, or decide.
+Engagement is most often to learn, collect, aggregate, or decide.
 
 ### Persuasion
 
