@@ -21,7 +21,7 @@ projects: []
 
 The one pager is a beautiful tool.
 
-It’s one page. Enough for opening a conversation, bringing an idea to a persons’ mind. It contains a limited amount of language – 300 words or less if there is a chart or a handful of bullet points. Most people can read it in around 90 seconds. These are the constraints.
+It’s one page. Enough for opening a conversation, bringing an idea to a person's mind. It contains a limited amount of language – 300 words or less if there is a chart or a handful of bullet points. Most people can read it in around 90 seconds. These are the constraints.
 
 The one pager is simply a tool used to achieve goals. Let's start there, dive into each one, and conclude with a few experiences.
 
