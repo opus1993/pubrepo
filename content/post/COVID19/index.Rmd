@@ -1,7 +1,7 @@
 ---
 title: "Coronavirus By County"
 author: "Jim Gruman"
-date: "2020-04-25" 
+date: "2020-05-02" 
 diagram: true
 output: 
  blogdown::html_page:
@@ -22,8 +22,13 @@ featured: false
 > Inspired by Kieran Healy's R package [`covdata`](https://kjhealy.github.io/covdata/)
 
 
-```{r setup, message=FALSE}
-knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```{r setup, echo=FALSE, message=FALSE, warning = FALSE}
+knitr::opts_chunk$set(
+	echo = FALSE,
+	message = FALSE,
+	warning = FALSE,
+	include = TRUE
+)
 library(tidyverse)
 library(lubridate)
 
@@ -82,7 +87,7 @@ covnat %>%
   
 ```
 
-### Graph of cumulative reported cases by country
+### Cumulative reported cases by country
 
 ```{r CasesByCountry, fig.width=6}
 ## Convenince "Not in" operator
@@ -151,7 +156,7 @@ covus %>%
 
 ```
 
-### Graph of cumulative reported US cases
+### Cumulative reported US cases
 
 ```{r CumulativeUSCovidStates, fig.width=8}
 ## Which n states are leading the count of positive cases or deaths?
@@ -224,7 +229,7 @@ nytcovcounty %>%
 
 ```
 
-### Graph of cumulative US cases by county
+### Cumulative US cases, all counties
 
 ```{r CumulativeUSEveryStatebyCounty, fig.height= 18 }
 nytcovcounty %>%
@@ -243,7 +248,7 @@ nytcovcounty %>%
   theme(plot.title.position = "plot")
 ```
 
-### Graph of cumulative Illinois cases by county
+### Illinois Counties
 
 ```{r IllinoisCasesByCounty}
 ## Counties to highlight
@@ -274,15 +279,15 @@ nytcovcounty %>%
   theme(plot.title.position = "plot")
 ```
 
-
-### Graph of incremental new Illinois cases by county
-
 ```{r IllinoisCasesByCountyNew}
 ## Counties to highlight
 focus_ct <- c("Cook", "DuPage", "Lake", "Will", "Kane")
 
 ## Colors
 cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
+
+## Timespan
+lims <- c(lubridate::today()-45, lubridate::today())
 
 nytcovcounty %>%
   filter(state == "Illinois", county %in% focus_ct) %>%
@@ -293,8 +298,8 @@ nytcovcounty %>%
          days_elapsed = date - min(date),
          NewCases = cases - lag(cases)) %>% 
   filter(!is.na(NewCases), NewCases != 0) %>%
-  ggplot(aes(x = days_elapsed, y = NewCases, group = county, color = core, label = end_label)) +
-  geom_point(size = 0.25) +
+  ggplot(aes(x = date, y = NewCases, group = county, color = core, label = end_label)) +
+  geom_point(size = 2, shape =1) +
   geom_smooth(size = 0.5, se = FALSE , method = "loess")+
   geom_text_repel(nudge_x = 0.75,
                   segment.color = NA) +
@@ -302,15 +307,15 @@ nytcovcounty %>%
   scale_color_manual(values = cgroup_cols) +
   scale_y_log10(labels = scales::label_number_auto(),
                 limits = c(1,1500)) +
+  scale_x_date(breaks = "week", labels = scales::date_format("%B-%d"),
+               limits = lims)+
   guides(color = FALSE) +
-  labs(title = "Illinois COVID-19 New Recorded Cases by County",
+  labs(title = "Illinois COVID-19 Daily New Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "New Cases",
+       x = "Date", y = "New Cases",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
-
-### Graph of cumulative Illinois deaths by county
 
 ```{r IllinoisDeathsByCounty}
 ## Counties to highlight
@@ -341,7 +346,7 @@ nytcovcounty %>%
   theme(plot.title.position = "plot")
 ```
 
-### Graph of cumulative Iowa cases by county
+### Iowa Counties
 
 ```{r IowaCasesByCounty}
 ## Counties to highlight
@@ -372,14 +377,15 @@ nytcovcounty %>%
   theme(plot.title.position = "plot")
 ```
 
-### Graph of incremental Iowa cases by county
-
 ```{r IowaCasesByCountyNew}
 ## Counties to highlight
-focus_ct <- c("Johnson", "Dallas", "Linn", "Polk", "Scott", "Tama", "Washington")
+focus_ct <- c("Johnson", "Dallas", "Linn", "Polk", "Scott", "Tama", "Washington", "Muscatine","Scott", "Louisa", "Marshall", "Jasper","Woodbury", "Black Hawk")
 
 ## Colors
 cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
+
+## Timespan
+lims <- c(lubridate::today()-45, lubridate::today())
 
 nytcovcounty %>%
   filter(state == "Iowa", county %in% focus_ct) %>%
@@ -390,8 +396,8 @@ nytcovcounty %>%
          days_elapsed = date - min(date),
          NewCases = cases - lag(cases)) %>% 
   filter(!is.na(NewCases), NewCases != 0) %>%
-  ggplot(aes(x = days_elapsed, y = NewCases, group = county, color = core, label = end_label)) +
-  geom_point(size = 0.25) +
+  ggplot(aes(x = date, y = NewCases, group = county, color = core, label = end_label)) +
+  geom_point(size = 2, shape =1) +
   geom_smooth(size = 0.5, se = FALSE , method = "loess")+
   geom_text_repel(nudge_x = 0.75,
                   segment.color = NA) +
@@ -399,15 +405,15 @@ nytcovcounty %>%
   scale_color_manual(values = cgroup_cols) +
   scale_y_log10(labels = scales::label_number_auto(),
                 limits = c(1,100)) +
+  scale_x_date(breaks = "week", labels = scales::date_format("%B-%d"),
+               limits = lims)+
   guides(color = FALSE) +
-  labs(title = "Iowa COVID-19 New Recorded Cases by County",
+  labs(title = "Iowa COVID-19 New Daily Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Days since first case", y = "New Cases (log 10 scale)",
+       x = "Date", y = "New Cases (log 10 scale)",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
-
-### Graph of cumulative Iowa deaths by county
 
 ```{r IowaDeathsByCounty}
 ## Counties to highlight
@@ -438,7 +444,7 @@ nytcovcounty %>%
   theme(plot.title.position = "plot")
 ```
 
-### Graph of cumulative South Dakota cases by county
+### South Dakota Counties
 
 ```{r SDCasesByCounty}
 ## Counties to highlight
@@ -468,8 +474,6 @@ nytcovcounty %>%
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
 ```
-
-### Graph of cumulative South Dakota deaths by county
 
 ```{r SDDeathsByCounty}
 ## Counties to highlight
