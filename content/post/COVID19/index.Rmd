@@ -560,9 +560,6 @@ apple_mobility %>%
   theme_minimal()
 ```
 
-```{r, echo = FALSE} 
-blogdown::shortcode("tweet", "1254085357714448385")
-```
 
 ## Google Mobility Reports
 
