@@ -287,8 +287,9 @@ focus_ct <- c("Cook", "DuPage", "Lake", "Will", "Kane")
 cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
 
 ## Timespan
-lims <- c(lubridate::today()-45, lubridate::today())
+lims <- c(max(nytcovcounty$date)-45, max(nytcovcounty$date))
 
+IllinoisCounty<-
 nytcovcounty %>%
   filter(state == "Illinois", county %in% focus_ct) %>%
   group_by(county) %>%
@@ -297,16 +298,15 @@ nytcovcounty %>%
          end_label = ifelse(date == max(date), core, NA), 
          days_elapsed = date - min(date),
          NewCases = cases - lag(cases)) %>% 
-  filter(!is.na(NewCases), NewCases != 0) %>%
+  filter(!is.na(NewCases), NewCases != 0) 
+
+IllinoisCountyPlot<-IllinoisCounty %>%
   ggplot(aes(x = date, y = NewCases, group = county, color = core, label = end_label)) +
   geom_point(size = 2, shape =1) +
   geom_smooth(size = 0.5, se = FALSE , method = "loess")+
-  geom_text_repel(nudge_x = 0.75,
-                  segment.color = NA) +
   guides(color = FALSE) +
   scale_color_manual(values = cgroup_cols) +
-  scale_y_log10(labels = scales::label_number_auto(),
-                limits = c(1,1500)) +
+  scale_y_continuous(labels = scales::label_number_auto()) +
   scale_x_date(breaks = "week", labels = scales::date_format("%B-%d"),
                limits = lims)+
   guides(color = FALSE) +
@@ -315,6 +315,26 @@ nytcovcounty %>%
        x = "Date", y = "New Cases",
        caption = "@jim_gruman | Data: The New York Times")+
   theme(plot.title.position = "plot")
+
+direct_labels <- IllinoisCounty %>%
+  summarize(y.label = last(NewCases, order_by = date)) %>%
+  top_n(3)
+
+direct_labels_axis <- cowplot::axis_canvas(IllinoisCountyPlot, axis = "y")+
+  geom_text(
+    data = direct_labels,
+    aes(y = y.label, label = county, color = county),
+    x = -.1,
+    hjust = 0,
+    size = 4
+  )+
+  scale_color_manual(values = cgroup_cols) 
+
+IllinoisCountyplotLabeled<-cowplot::insert_yaxis_grob(IllinoisCountyPlot, direct_labels_axis, position = "right")
+
+cowplot::ggdraw(IllinoisCountyplotLabeled)
+
+
 ```
 
 ```{r IllinoisDeathsByCounty}
@@ -382,12 +402,12 @@ nytcovcounty %>%
 focus_ct <- c("Johnson", "Dallas", "Linn", "Polk", "Scott", "Tama", "Washington", "Muscatine","Scott", "Louisa", "Marshall", "Jasper","Woodbury", "Black Hawk")
 
 ## Colors
-cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
+cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_ct)], "gray70")
 
 ## Timespan
-lims <- c(lubridate::today()-45, lubridate::today())
+lims <- c(max(nytcovcounty$date)-45, max(nytcovcounty$date))
 
-nytcovcounty %>%
+IowaCounty<-nytcovcounty %>%
   filter(state == "Iowa", county %in% focus_ct) %>%
   group_by(county) %>%
   mutate(core = case_when(county %nin% focus_ct ~ "",
@@ -395,24 +415,45 @@ nytcovcounty %>%
          end_label = ifelse(date == max(date), core, NA), 
          days_elapsed = date - min(date),
          NewCases = cases - lag(cases)) %>% 
-  filter(!is.na(NewCases), NewCases != 0) %>%
-  ggplot(aes(x = date, y = NewCases, group = county, color = core, label = end_label)) +
+  filter(!is.na(NewCases), NewCases != 0)
+
+IowaCountyplot<-IowaCounty %>%
+  ggplot(aes(x = date, y = NewCases, group = county, color = core)) +
   geom_point(size = 2, shape =1) +
   geom_smooth(size = 0.5, se = FALSE , method = "loess")+
-  geom_text_repel(nudge_x = 0.75,
-                  segment.color = NA) +
+#  geom_text_repel(nudge_x = 0.75,
+#                  segment.color = NA) +
   guides(color = FALSE) +
   scale_color_manual(values = cgroup_cols) +
-  scale_y_log10(labels = scales::label_number_auto(),
-                limits = c(1,100)) +
+  scale_y_continuous(labels = scales::label_number_auto()) +
   scale_x_date(breaks = "week", labels = scales::date_format("%B-%d"),
                limits = lims)+
   guides(color = FALSE) +
   labs(title = "Iowa COVID-19 New Daily Recorded Cases by County",
        subtitle = paste("Data as of", format(max(nytcovcounty$date), "%A, %B %e, %Y")),
-       x = "Date", y = "New Cases (log 10 scale)",
+       x = "Date", y = "New Cases",
        caption = "@jim_gruman | Data: The New York Times")+
-  theme(plot.title.position = "plot")
+  theme(plot.title.position = "plot",
+        legend.position = "none")
+
+direct_labels <- IowaCounty %>%
+  summarize(y.label = last(NewCases, order_by = date)) %>%
+  top_n(5)
+
+direct_labels_axis <- cowplot::axis_canvas(IowaCountyplot, axis = "y")+
+  geom_text(
+    data = direct_labels,
+    aes(y = y.label, label = county, color = county),
+    x = -.1,
+    hjust = 0,
+    size = 3
+  )+
+  scale_color_manual(values = cgroup_cols) 
+
+IowaCountyplotLabeled<-cowplot::insert_yaxis_grob(IowaCountyplot, direct_labels_axis, position = "right")
+
+cowplot::ggdraw(IowaCountyplotLabeled)
+
 ```
 
 ```{r IowaDeathsByCounty}
@@ -463,6 +504,7 @@ nytcovcounty %>%
   ggplot(aes(x = days_elapsed, y = cases, group = county, color = core, label = end_label)) +
   geom_line(size = 0.25) +
   geom_text_repel(nudge_x = 0.75,
+                  nudge_y = 0.25,
                   segment.color = NA) +
   guides(color = FALSE) +
   scale_color_manual(values = cgroup_cols) +
