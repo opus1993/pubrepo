@@ -80,6 +80,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [flowingdata.com](https://flowingdata.com/)
 - [`patchwork`](https://patchwork.data-imaginist.com/)
 - [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)
+- [`ggbump`](https://github.com/davidsjoberg/ggbump)
 ----
 ## Colors
 - [`colourpicker`](https://github.com/daattali/colourpicker/) Rstudio widget by [Dean Attali](https://twitter.com/daattali)
