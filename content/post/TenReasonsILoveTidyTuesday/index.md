@@ -19,7 +19,7 @@ image:
 projects: []
 ---
 
-It’s cliche, but doesn’t make it any less true: **practice makes perfect**. The R for Data Science online learning community (R4DS) hosts a wonderful program each week to practice data visualisation skills in R: [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday). Simply make your plots based on the data provided, and then share them on Twitter along with the code and the hashtag #TidyTuesday. Here are ten reasons to dive in: 
+The R for Data Science online learning community (R4DS) hosts a wonderful program each week to practice data visualisation skills in R: [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday). Simply make your plots based on the data provided, and then share them on Twitter along with the code and the hashtag #TidyTuesday. Here are ten reasons to dive in: 
 
     1. Be inspired by the creativity of others 
 I love to see the variety of visualizations coming from the same data sets. On most weeks there is at least one Tidy Tuesday plot that is an approach that I would not have thought of. Fortunately, most authors share their code. This is an easy way to learn cool new tricks. 
