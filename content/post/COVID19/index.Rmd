@@ -1,7 +1,7 @@
 ---
 title: "Coronavirus By County"
 author: "Jim Gruman"
-date: "2020-05-02" 
+date: "2020-05-08" 
 diagram: true
 output: 
  blogdown::html_page:
@@ -21,7 +21,6 @@ featured: false
 
 > Inspired by Kieran Healy's R package [`covdata`](https://kjhealy.github.io/covdata/)
 
-
 ```{r setup, echo=FALSE, message=FALSE, warning = FALSE}
 knitr::opts_chunk$set(
 	echo = FALSE,
@@ -32,7 +31,6 @@ knitr::opts_chunk$set(
 library(tidyverse)
 library(lubridate)
 
-update.packages("covdata")
 library(covdata)          # By Kieran Healy https://kjhealy.github.io/covdata/
 
 library(ggplot2)
@@ -65,31 +63,10 @@ The `covdata` package provides updated COVID-19 related data from the following 
 
 ## Country-Level Data from ECDC
 
-```{r}
-
-end_date <- max(covnat$date)
-
-covnat %>%
-   as_tibble() %>%
-   dplyr::filter( date == end_date)%>%
-   select(Country = cname, `New Cases` = cases, `New Deaths` = deaths, `Cumulative Cases` = cu_cases, `Cumulative Deaths` = cu_deaths) %>%
-   top_n(wt = `Cumulative Deaths`, n=10) %>%
-   gt() %>%
-   tab_header(
-     title = "Country Level Data from ECDC (Sample)",
-     subtitle = glue::glue("As of {end_date}")
-   ) %>%
-  fmt_number(
-    columns = vars(`New Cases`, `New Deaths`, `Cumulative Cases`, `Cumulative Deaths`),
-    decimals = 0,
-    suffixing = TRUE
-  ) 
-  
-```
-
 ### Cumulative reported cases by country
 
 ```{r CasesByCountry, fig.width=6}
+data("covnat")
 ## Convenince "Not in" operator
 "%nin%" <- function(x, y) {
   return( !(x %in% y) )
@@ -140,25 +117,11 @@ covnat %>%
 
 ## State-Level Data from the COVID Tracking Project
 
-```{r StateLevelCovidTracking, fig.width= 6}
-
-end_date <- max(covus$date)
-
-covus %>%
-   as_tibble() %>%
-   dplyr::filter( date == end_date, state == "IL")%>%
-   select(-date, -state, -fips) %>%
-   gt() %>%
-   tab_header(
-     title = "State Level Data from COVID Tracking Project",
-     subtitle = glue::glue("Snapshot of Illinois As of {end_date}")
-   ) 
-
-```
-
 ### Cumulative reported US cases
 
 ```{r CumulativeUSCovidStates, fig.width=8}
+data("covus")
+
 ## Which n states are leading the count of positive cases or deaths?
 top_n_states <- function(data, n = 8, measure = c("positive", "death")) {
   meas <- match.arg(measure)
@@ -174,6 +137,8 @@ top_n_states <- function(data, n = 8, measure = c("positive", "death")) {
 state_cols <- c("gray70",
                 prismatic::clr_darken(paletteer_d("ggsci::category20_d3"), 0.2))
 
+lims <- c(max(covus$date)-30, max(covus$date))
+
 covus %>%
   group_by(state) %>%
   mutate(core = case_when(state %nin% top_n_states(covus) ~ "",
@@ -186,7 +151,8 @@ covus %>%
   geom_line(size = 0.5) +
   geom_text_repel(segment.color = NA, nudge_x = 0.2, nudge_y = 0.1) +
   scale_color_manual(values = state_cols) +
-  scale_x_date(date_breaks = "3 days", date_labels = "%b %e" ) +
+  scale_x_date(date_breaks = "3 days", date_labels = "%b %e" ,
+               limits = lims) +
   scale_y_continuous(trans = "log2",
                      labels = scales::comma_format(accuracy = 1),
                      breaks = 2^c(seq(1, 17, 1))) +
@@ -200,32 +166,14 @@ covus %>%
 
 ```
 
-## State-Level and County-Level (Cumulative) Data from the *New York Times*
+## County-Level Data from the *New York Times*
 
 ```{r NYTdatasets}
 data("nytcovstate")
 end_date <- max(nytcovstate$date)
 
-nytcovstate %>%
-  as_tibble()%>%
-  head() %>%
-  gt() %>%
-   tab_header(
-     title = "State Level Data from New York Times",
-     subtitle = glue::glue("Sample Snapshot of NYT State Data Available As of {end_date}")
-   ) 
-
 data("nytcovcounty")
 end_date <- max(nytcovcounty$date)
-
-nytcovcounty %>%
-    as_tibble()%>%
-    head()%>%
-    gt() %>%
-   tab_header(
-     title = "County Level Data from New York Times",
-     subtitle = glue::glue("Sample Snapshot of NYT County Data Available As of {end_date}")
-   ) 
 
 ```
 
@@ -645,6 +593,7 @@ Citations:
 Kieran Healy. 2020. covdata: COVID-19 Case and Mortality Time Series. R package version 0.1.0,
 <http://kjhealy.github.io/covdata>.
 
+### Did you find this page helpful? Consider sharing it 🙌
 
 
 
