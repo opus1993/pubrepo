@@ -1,7 +1,7 @@
 ---
 title: "Coronavirus By County"
 author: "Jim Gruman"
-date: "2020-05-08" 
+date: "2020-05-12" 
 diagram: true
 output: 
  blogdown::html_page:
@@ -151,18 +151,20 @@ covus %>%
   geom_line(size = 0.5) +
   geom_text_repel(segment.color = NA, nudge_x = 0.2, nudge_y = 0.1) +
   scale_color_manual(values = state_cols) +
-  scale_x_date(date_breaks = "3 days", date_labels = "%b %e" ,
+  scale_x_date(date_breaks = "1 week", date_labels = "%b %e" ,
                limits = lims) +
   scale_y_continuous(trans = "log2",
                      labels = scales::comma_format(accuracy = 1),
-                     breaks = 2^c(seq(1, 17, 1))) +
+                     breaks = 2^c(seq(5, 18, 1)),
+                     limits = c(256,2^19)) +
   guides(color = FALSE) +
   coord_equal() +
   labs(title = "COVID-19 Cumulative Recorded Cases by US State",
        subtitle = paste("Data as of", format(max(covus$date), "%A, %B %e, %Y")),
        x = "Date", y = "Count of Cases (log 2 scale)",
        caption = "@jim_gruman | Data: COVID Tracking Project, http://covidtracking.com")+
-  theme(plot.title.position = "plot")
+  theme(plot.title.position = "plot",
+        plot.margin = unit(c(c(0.5, 0.5, 0.5, 0.5)), units="cm"))
 
 ```
 
@@ -318,7 +320,7 @@ nytcovcounty %>%
 
 ```{r IowaCasesByCounty}
 ## Counties to highlight
-focus_ct <- c("Johnson", "Dallas", "Linn", "Polk", "Scott", "Tama", "Washington")
+focus_ct <- c("Johnson", "Woodbury", "Linn", "Polk", "Black Hawk", "Marshall", "Muscatine")
 
 ## Colors
 cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
@@ -347,7 +349,7 @@ nytcovcounty %>%
 
 ```{r IowaCasesByCountyNew}
 ## Counties to highlight
-focus_ct <- c("Johnson", "Dallas", "Linn", "Polk", "Scott", "Tama", "Washington", "Muscatine","Scott", "Louisa", "Marshall", "Jasper","Woodbury", "Black Hawk")
+focus_ct <- c("Johnson", "Woodbury", "Linn", "Polk", "Black Hawk", "Marshall", "Muscatine")
 
 ## Colors
 cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_ct)], "gray70")
@@ -369,8 +371,6 @@ IowaCountyplot<-IowaCounty %>%
   ggplot(aes(x = date, y = NewCases, group = county, color = core)) +
   geom_point(size = 2, shape =1) +
   geom_smooth(size = 0.5, se = FALSE , method = "loess")+
-#  geom_text_repel(nudge_x = 0.75,
-#                  segment.color = NA) +
   guides(color = FALSE) +
   scale_color_manual(values = cgroup_cols) +
   scale_y_continuous(labels = scales::label_number_auto()) +
@@ -386,7 +386,7 @@ IowaCountyplot<-IowaCounty %>%
 
 direct_labels <- IowaCounty %>%
   summarize(y.label = last(NewCases, order_by = date)) %>%
-  top_n(5)
+  top_n(7)
 
 direct_labels_axis <- cowplot::axis_canvas(IowaCountyplot, axis = "y")+
   geom_text(
@@ -406,7 +406,7 @@ cowplot::ggdraw(IowaCountyplotLabeled)
 
 ```{r IowaDeathsByCounty}
 ## Counties to highlight
-focus_ct <- c("Johnson", "Dallas", "Linn", "Polk", "Scott", "Tama", "Washington")
+focus_ct <- c("Johnson", "Woodbury", "Linn", "Polk", "Black Hawk", "Marshall", "Muscatine")
 
 ## Colors
 cgroup_cols <- c(clr_darken(paletteer_d("ggsci::category20_d3"), 0.2)[1:length(focus_cn)], "gray70")
