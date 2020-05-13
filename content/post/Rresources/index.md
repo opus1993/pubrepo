@@ -1,5 +1,5 @@
 ---
-date: "2020-03-26"
+date: "2020-05-13"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -20,6 +20,24 @@ Inspired by:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
 
 My list of useful free courses, books, tutorials, and expert blogs
+
+## Online Courses
+- [`swirl`](https://swirlstats.com/students.html)
+- **[STAT545](https://stat545.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
+- [Dublin City University R Tutorials](https://dcu-r-tutorials.netlify.com/)
+- [R Programming](https://www.coursera.org/learn/r-programming) by [Roger Peng](https://twitter.com/rdpeng)
+- [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)
+- **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
+- [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
+- [Introduction to R by DataCamp](https://www.datacamp.com/courses/free-introduction-to-r)
+- [YaRrr! The Pirate’s Guide to R (Video)](https://www.youtube.com/playlist?list=PL9tt3I41HFS9gmeZFEuNrnu_7V_NFngfJ) by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
+- [Chromebook Data Science (CBDS)](http://jhudatascience.org/chromebookdatascience/cbds.html)
+- [Data Science: R Basics](https://www.edx.org/course/data-science-r-basics)
+- [Introduction to R for Data Science](https://www.edx.org/course/introduction-to-r-for-data-science-2)
+- [Intro to R](https://github.com/uc-r/Intro-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
+- [Intermediate R](https://github.com/uc-r/Intermediate-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
+- [R-studio Education](https://github.com/rstudio-education/rstats-ed)
+----
 
 ## Introductory Books
 - **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
@@ -47,22 +65,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/) by [Martin Monkman](https://twitter.com/monkmanmh)
 - [A Language, not a Letter: Learning Statistics in R](https://ademos.people.uic.edu/index.html)
 ----
-## Online Courses
-- [`swirl`](https://swirlstats.com/students.html)
-- **[STAT545](https://stat545.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
-- [Dublin City University R Tutorials](https://dcu-r-tutorials.netlify.com/)
-- [R Programming](https://www.coursera.org/learn/r-programming) by [Roger Peng](https://twitter.com/rdpeng)
-- [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)
-- **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
-- [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
-- [Introduction to R by DataCamp](https://www.datacamp.com/courses/free-introduction-to-r)
-- [YaRrr! The Pirate’s Guide to R (Video)](https://www.youtube.com/playlist?list=PL9tt3I41HFS9gmeZFEuNrnu_7V_NFngfJ) by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
-- [Chromebook Data Science (CBDS)](http://jhudatascience.org/chromebookdatascience/cbds.html)
-- [Data Science: R Basics](https://www.edx.org/course/data-science-r-basics)
-- [Introduction to R for Data Science](https://www.edx.org/course/introduction-to-r-for-data-science-2)
-- [Intro to R](https://github.com/uc-r/Intro-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
-- [Intermediate R](https://github.com/uc-r/Intermediate-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
-----
+
 ## Advanced Books
 - [Advanced R (Wickham, 2018)](https://adv-r.hadley.nz/introduction.html) by [Hadley Wickham](https://twitter.com/hadleywickham)
 - [Efficient R programming](https://csgillespie.github.io/efficientR/) by [Colin Gillespie](https://twitter.com/csgillespie) and [Robin Lovelace](https://twitter.com/robinlovelace)
