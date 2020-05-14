@@ -1,0 +1,142 @@
+---
+title: "Volcanic Eruptions"
+author: "Jim Gruman"
+date: "2020-05-14" 
+diagram: true
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [R]
+description: "#TidyTuesday" 
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image: 
+  caption: ''
+  focal_point: "Bottom"
+  preview_only: true
+draft: false
+featured: false
+---
+
+Three approaches for generating maps.
+
+----
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, 
+                      message = FALSE, 
+                      warning = FALSE)
+```
+
+
+```{r setup-and-import}
+library(tidyverse)
+library(lubridate)
+library(gganimate)
+library(gifski)
+library(ggtext)
+library(ggthemes)
+library(rnaturalearth)
+
+volcano <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-12/volcano.csv') %>%
+    mutate(last_eruption_year = as.numeric(last_eruption_year))
+eruptions <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-05-12/eruptions.csv')
+```
+
+`ggthemes`
+
+```{r featured}
+volcano %>%
+  mutate(primary_volcano_type = str_remove(primary_volcano_type, "\\(.*\\)"),
+         primary_volcano_type = fct_lump(primary_volcano_type, 8)) %>%
+  ggplot(aes(longitude, latitude)) +
+  geom_point(aes(color = primary_volcano_type)) +
+  borders(colour = "grey90", fill = "grey94") +
+  theme_map() +
+  labs(color = "Type", 
+       title = "Volcanos of the World",
+       caption = "Source: Nature | Visualization: @jim_gruman | #TidyTuesday")+
+  theme(
+    plot.title = element_text(size = 22),
+    plot.caption = element_text(size = 12),
+    legend.key.height = unit(.2, "cm")
+  )
+
+ggsave("featured.png")
+```
+
+----
+
+`leaflet`
+
+```{r Leaflet, fig.cap="Leaflet"}
+library(leaflet)
+
+volcano %>%
+  mutate(primary_volcano_type = str_remove(primary_volcano_type, "\\(.*\\)"),
+         transformed_pop = log2(population_within_5_km +1),
+         pop_color = colorNumeric(c("blue","red"), transformed_pop)(transformed_pop)) %>%
+  gather(key, value, volcano_name, 
+         primary_volcano_type, 
+         last_eruption_year, 
+         tectonic_settings, 
+         population_within_5_km) %>%
+  mutate(key = str_to_title(str_replace_all(key, "_"," ")),
+         key = paste0("<b>", key,"</b>")) %>%
+  replace_na(list(value = "Unknown")) %>%
+  nest(data = c(key, value)) %>%
+  mutate(html = map(data, knitr::kable, 
+                    format = "html", escape = FALSE,
+                    col.names = c("", ""))) %>%
+    leaflet()%>%
+    addTiles()%>%
+    addCircleMarkers(lat = ~latitude, 
+                     lng = ~longitude,
+                     popup = ~ html,
+                     radius = 3,
+                     color = ~ pop_color) %>%
+    setView(-93.65, 42.0285, zoom = 4) 
+
+```
+
+----
+
+`gganimate`
+
+```{r ggthemes, fig.show = 'animate', ffmpeg.format = 'gif', dev='jpeg' }
+anim_eruptions<- eruptions %>%
+  filter(start_year >= 1900,
+         eruption_category != "Discredited Eruption",
+         !is.na(vei))%>%
+  mutate(volume = 0.00001 * 10 ^ vei) %>%
+  ggplot(aes(longitude, latitude)) +
+  borders(color = "grey90", fill = "grey94")+
+  theme_map()+
+  geom_point(aes(size = volume,
+                 color = volume), show.legend = FALSE)+
+  enter_grow() +
+  exit_fade() +
+  scale_size_continuous(range = c(1,11))+
+  scale_color_gradient2(low ="blue", high ="red", 
+                        midpoint = log10(.01),
+                        trans = "log10", guide = FALSE)+
+  transition_time(start_year)+
+  labs(size = "km^3", 
+       title = "Volcanic Eruptions: { round(frame_time) }",
+       caption = "Source: Nature | Visualization: @jim_gruman | #TidyTuesday")+  
+  theme(
+    legend.position = "none",
+    plot.title = element_textbox_simple(size = 22),
+    plot.subtitle = element_textbox_simple(size = 18),
+    plot.caption = element_text(size = 12)
+  )
+
+anim <- animate(anim_eruptions, fps = 6, nframes = 10 * 30, start_pause = 8, end_pause = 25, width = 800, height = 500, renderer = gifski_renderer("volcano-eruptions-1900-2020.gif"))
+
+```
+![](volcano-eruptions-1900-2020.gif)
+
+### Did you find this page helpful? Consider sharing it 🙌
+
+
