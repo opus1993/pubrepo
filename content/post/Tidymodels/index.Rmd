@@ -1,0 +1,532 @@
+---
+title: 'Tidymodels: tidy machine learning in R'
+author: "Jim Gruman"
+date: "`r Sys.Date()`"
+diagram: true
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [Data Science, R, machine learning, tidymodels]
+description: "The tidyverse's take on machine learning." 
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image: 
+  caption: 'by Allison Horst'
+  focal_point: "Smart"
+  preview_only: true
+featured: false
+draft: false
+---
+
+The tidyverse's form of machine learning is finally here. `Tidymodels` forms the basis of tidy machine learning, and this post provides a tour.
+
+----
+
+There’s a new modeling pipeline, replacing `caret`:  `tidymodels`. Over the past few years, `tidymodels` has emerged as the tidyverse’s machine learning toolkit.
+
+Why `tidymodels`? It turns out that R can have consistency problems. Since everything was made by different people and using different principles, the interfaces are all different, and trying to keep everything in line can be frustrating. Several years ago, [Max Kuhn](https://twitter.com/topepos) developed the `caret` package to create a uniform interface for the massive array of machine learning models. `caret` was great in a lot of ways, but also limited in others. 
+
+That said, `caret` was a starting point, so **RStudio** hired Max Kuhn to work on a tidy version of `caret`, and his team has developed what has become `tidymodels`. 
+
+Great resources available to learn `tidymodels` today include
+
+- [tidymodels.org](https://www.tidymodels.org/)
+
+- Alison Hill’s slides from **Introduction to Machine Learning with the Tidyverse**, which contains the slides for the course she prepared with [Garrett Grolemund](https://twitter.com/StatGarrett) for [RStudio::conf(2020)](https://resources.rstudio.com/rstudio-conf-2020), 
+
+- Edgar Ruiz’s [Gentle introduction to tidymodels](https://rviews.rstudio.com/2019/06/19/a-gentle-intro-to-tidymodels/) on the RStudio website
+
+- [Julia Silge's blog](https://juliasilge.com/), and
+
+- [Rebecca Barter's blog](http://www.rebeccabarter.com/blog/2020-03-25_machine_learning/) upon which this post is inspired.
+
+## What is the `tidymodels` meta-package?
+
+As the `tidyverse` metapackage consists of many packages, like `ggplot2` and `dplyr`, `tidymodels` also consists of several packages, including
+
+- `rsample`: for sample splitting (e.g. train/test or cross-validation)
+
+- `recipes`: for pre-processing
+
+- `parsnip`: for specifying the model
+
+- `broom`: for tidying messy output into convenient data frames
+
+- `yardstick`: for evaluating the model
+
+- `infer`: for statistical inference measures
+
+- `dials`: for managing the values of tuning parameters
+
+- `corrr`: for exploring numeric correlations
+
+- `tune`: for parameter tuning procedure
+
+- `workflows`: for putting everything together
+
+- `baguette`: wrappers for bagging ensemble models
+
+- `poissonreg`: extensions for models where the outcome is a count
+
+Load the entire `tidymodels` suite of packages by typing `library(tidymodels)`.
+
+## Getting set up
+
+First we need to load the collections of meta-libraries: `tidymodels` and `tidyverse`. We will also be using the `workflows` and `tune` packages that should eventually become part of CRAN’s `tidymodels` package bundle, but need to be loaded separately for now. 
+
+```{r setup, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE)
+# load the  tidymodels libraries
+library(tidymodels)
+library(tidyverse)
+library(workflows)
+library(tune)
+
+library(AmesHousing)
+
+theme_set(theme_minimal())
+```
+
+For this demonstration, we will apply the widely used 2017 update to the Dean De Cock Ames, Iowa housing dataset in the library `AmesHousing`. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, this exercise challenges ML students every spring and fall around the world to predict the final price of each home.
+
+```{r}
+ames <- AmesHousing::make_ames()
+```
+
+
+### Exploration of Numeric Variables
+
+The data set includes 36 numerical features, of the following types:
+
+- Square footage: Indicates the square footage of certain features, i.e. 1stFlrSF (First floor square footage) and GarageArea (Size of garage in square feet).
+
+- Time: Time related variables like when the home was built or sold.
+
+- Room and amenties: data that represent amenties like “How many bathrooms?”
+
+- Condition and quality: Subjective variables rated from 1–10.
+
+Most of the variables that deal with the actual physical space of the apartment are postively skewed — intuitively, as people tend to live in smaller homes/apartments apart from the extremely wealthy.
+
+
+```{r, fig.height=8, messages = FALSE, message=FALSE}
+ames %>%
+  keep(is.numeric) %>%
+  gather() %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x=value,fill=key), color="black") +
+  facet_wrap(~ key, scales = "free") +
+  theme(legend.position = "")
+
+```
+
+There appear to be null values in the data (looking at the 'vertical bars' at 0 along the x-axis). Many of the numeric variables are actually discrete and not continuous. As mentioned earlier in the histograms, dimension-related variables seem to follow a similar pattern as the Sale Price and might be good indicators. Other features do not have a strong relationship with Sale Price, like 'Year Sold'. 
+
+Another data vizualization showing the relationships between the numeric features and sale price:
+
+```{r fig.width=8, fig.height=20}
+ames_fctrs<-c("Bsmt_Full_Bath",
+              "Bsmt_Half_Bath",
+              "BsmtFin_SF_1",
+              "Fireplaces",
+              "Full_Bath",
+              "Garage_Cars",
+              "Half_Bath",
+              "Kitchen_AbvGr")
+ames_clean <- ames %>% mutate_at(.vars = ames_fctrs, .funs = as.factor)
+
+ames_clean %>%
+  keep(is.numeric) %>%
+  pivot_longer(-Sale_Price, names_to = "Feature", values_to = "Value") %>%
+  ggplot() +
+  geom_point(mapping=aes(x = Value, y = Sale_Price, color = Feature)) + 
+  scale_y_continuous(labels = scales::comma)+
+  facet_wrap(~ Feature, scales = "free", ncol = 4) +
+  theme(legend.position = "")+labs(x = "Numeric Feature Value")
+
+```
+
+A few variables, like overall quality and lot square footage, are highly correlated with Sale Price.  Other views of correlation from the new  tidymodels `corrr` package and the `DataExplorer` package:
+
+```{r, fig.height=8}
+
+ames_clean %>%
+  keep(is.numeric) %>%
+  corrr::correlate() %>%
+  corrr::rearrange() %>%
+  corrr::shave() %>%
+  corrr::rplot(shape = 15, colours = c("darkorange","white","darkcyan"))
+
+ames_clean %>%
+  keep(is.numeric) %>%
+  corrr::correlate() %>%
+  corrr::network_plot(min_cor = 0.2)
+
+DataExplorer::plot_correlation(na.omit(ames_clean), maxcat = 5L)
+
+```
+
+### Exploration of Categorical Variables
+
+As with the numeric features, there is also a wide range of categorical features. While many look like the sale price varies with category, there are some that don’t. Examples include the presence or absence of central air, the neighborhood, the external quality, and the zoning. There are also features that don’t drive Sale price much among different levels, including the roof style and land slope.
+
+```{r, fig.width=8, fig.height=20}
+ames_factors<-ames_clean %>% keep(is.factor) %>% colnames()
+
+chart <- c(ames_factors,"Sale_Price")
+
+ames_clean %>%
+  select_at(vars(chart)) %>%
+  pivot_longer(-Sale_Price, names_to = "Factor", values_to = "Level") %>%
+  ggplot() +
+  geom_boxplot(mapping=aes(x = Level, y = Sale_Price, fill = Factor)) + 
+  scale_y_continuous(labels = scales::comma)+
+  facet_wrap(~ Factor, scales = "free", ncol = 4) +
+  theme(legend.position = "")
+```
+
+### Other Exploratory Data Analysis Views
+
+```{r}
+DataExplorer::plot_intro(ames_clean)
+
+```
+
+### Missingness
+
+Every feature has an observation in this incarnation of the Ames data set. No imputation will be required in these recipes. 
+
+```{r, message=FALSE}
+
+DataExplorer::plot_missing(ames_clean)
+```
+
+## Split the data into Training/Testing
+
+First, let’s split our dataset into training and testing sets. The training data will be used to fit our model and tune its parameters, while the testing data will be used to evaluate our final model’s performance.
+
+This split can be done automatically using the `inital_split()` function from `rsample` which creates a special “split” object.
+
+```{r}
+ames_split<-initial_split(ames_clean)
+
+ames_split
+
+ames_train <- training(ames_split)
+ames_test <- testing(ames_split)
+
+```
+
+At some point we’re going to want to do some parameter tuning, so we’re going to use cross-validation. We can create a cross-validated version of the training set in preparation for that moment using `vfold_cv()`.
+
+```{r}
+ames_cv <- vfold_cv(ames_train, v = 10, strata = "Sale_Price")
+```
+
+a simple linear model can be fit against the treated data as a check:
+
+```{r}
+ameslm <- lm(Sale_Price ~ ., data = ames_train)
+
+glance(ameslm)
+```
+
+The simple linear model explains 94% of the variance (adj.r.squared) in the training data.
+
+As another over-simplified example, the sale price of a house could be modeled as a function of its geo-location. These predictors appear to have nonlinear relationships with the outcome:
+
+```{r geo-plots}
+
+ames_train %>% 
+  dplyr::select(Sale_Price, Longitude, Latitude) %>% 
+  tidyr::pivot_longer(cols = c(Longitude, Latitude), 
+                      names_to = "predictor", values_to = "value") %>% 
+  ggplot(aes(x = value, Sale_Price)) + 
+  geom_point(alpha = .2) + 
+  geom_smooth(se = FALSE) + 
+  scale_y_log10() +
+  facet_wrap(~ predictor, scales = "free_x")
+
+```
+
+These two geospatial predictors could be modeled using [natural splines](https://towardsdatascience.com/numerical-interpolation-natural-cubic-spline-52c1157b98ac) in conjunction with a linear model. The amount of "wiggliness" in these splines is determined by the degrees of freedom. An appropriate value of this parameter cannot be analytically determined from the data, so it is a _tuning parameter_ . A common approach is to use resampling to estimate model performance over different values of these parameters and use these results to set reasonable values. We will come back to resampling and hyperparameter tuning later.
+
+## Define a recipe
+
+Recipes allow us to specify the role of each variable as an outcome or predictor variable, using a “formula”, and pre-processing steps like normalization, imputation, and PCA.
+
+Creating a recipe has two parts (layered on top of one another using pipes %>%):
+
+- The formula (recipe()): specify the outcome variable and predictor variables
+- The pre-processing steps (step_zzz()): define the pre-processing steps, such as imputation, creating dummy variables, scaling, and more
+
+For instance, the following includes the creation of categorical dummy variables, a geo-distance feature, normalizing, removing zero-variance features, and principle components analysis.
+
+(Oddly, this recipe threshold is not stopping at 80%, in spite of the `recipes` parameter. We will re-visit the use of PCA for this use case later.)
+
+```{r}
+ames_rec <-  recipe(Sale_Price ~ ., data = ames_train) %>%
+  step_dummy(all_nominal()) %>%
+  step_geodist(lat = Latitude, lon = Longitude, ref_lat = 
+mean(ames$Latitude) , ref_lon = 
+mean(ames$Longitude) ) %>%
+  step_rm(Latitude, Longitude)%>%
+  step_normalize(all_predictors()) %>%
+  step_nzv(all_predictors())  %>%
+  step_pca(all_predictors(), threshold = 0.8)
+
+ames_prep <- prep(ames_rec) 
+```
+
+If you want to create a pre-processed data, you can first `prep()` the recipe for a specific dataset and `juice()` the prepped recipe to extract the pre-processed data. It turns out that extracting the pre-processed data isn’t actually necessary for the pipeline (but sometimes it’s useful anyway), since this will be done under the hood when the model is fit.
+
+In this case, let's explore the impact of principal components analysis.
+
+```{r, fig.height=12}
+tidied_pca <- tidy(ames_prep, 6)
+
+tidied_pca %>%
+  mutate(component = fct_inorder(component)) %>%
+  filter(component %in% c("PC1","PC2")) %>%  # show the first 2 components
+  ggplot(aes(value, terms, fill = terms)) +
+  geom_col(show.legend = FALSE)+
+  facet_wrap(~ component)+
+  labs(y=NULL)
+```
+
+The most significant feature values (positive and negative) of the first six principal components are shown here:
+
+```{r, fig.width=9}
+tidied_pca %>%
+  filter(component %in% c("PC1","PC2","PC3", "PC4", "PC5", "PC6")) %>%
+  group_by(component) %>%
+  top_n(6, abs(value)) %>%
+  ungroup() %>%
+  mutate(terms = tidytext::reorder_within(terms, abs(value), component)) %>%
+  ggplot(aes(abs(value), terms, fill = value > 0))+
+  geom_col() +
+  facet_wrap(~ component, scales = "free_y", ncol = 2)+
+  tidytext::scale_y_reordered()+
+  labs(x = "Absolute Value of the contribution", y = NULL, fill = "Positive?")
+
+```
+
+A visual of the relationship between PC1 and PC2, and Sale Price:
+
+```{r}
+pal <- RColorBrewer::brewer.pal('Set2',n=4)
+
+juice(ames_prep) %>%
+  ggplot(aes(PC01, PC02, color = Sale_Price)) +
+  geom_point(alpha = 0.9) +
+  scale_colour_gradient('Sale Price \nDollars',
+                         low = pal[1], high=pal[4])
+```
+
+A visual of the relationship between PC1 and PC3, and Sale Price:
+
+```{r}
+juice(ames_prep) %>%
+  ggplot(aes(PC01, PC03, color = Sale_Price)) +
+  geom_point(alpha = 0.9) +
+  scale_colour_gradient('Sale Price \nDollars',
+                                   low = pal[1], high=pal[4])
+```
+
+How much of the variation is being captured for each component?
+
+```{r}
+sdev<-ames_prep$steps[[6]]$res$sdev
+
+percent_variation <-sdev ^2 / sum(sdev^2)
+
+tibble(component = unique(tidied_pca$component),
+       percent_var = cumsum(percent_variation)) %>%
+  mutate(top75 = if_else(percent_var<0.75, TRUE, FALSE))%>%
+  mutate(component = fct_inorder(component)) %>%
+  ggplot(aes(component, percent_var, fill = top75)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent_format())+
+  labs(title = "Accumulation of Variance in Sale Price Explained by PCs",
+       subtitle = "Ames Housing, PCA only")+
+  theme(plot.title.position = "plot")
+
+```
+
+Here, again, a simple linear model can be fit against the treated data as a check:
+
+```{r}
+pca_lm <- juice(ames_prep) %>%
+  lm(Sale_Price ~ ., data = .)
+
+glance(pca_lm)
+```
+
+In this case, the pca linear model does not resemble the legacy linear model as much as I would like to see. We are going to back up and refine the recipe, and apply a random forest technique.
+
+```{r}
+ames_rec <-  recipe(Sale_Price ~ ., data = ames_train) %>%
+  step_dummy(all_nominal()) %>%
+  step_geodist(lat = Latitude, lon = Longitude, ref_lat = 
+mean(ames$Latitude) , ref_lon = 
+mean(ames$Longitude) ) %>%
+  step_rm(Latitude, Longitude)%>%
+  step_normalize(all_predictors()) %>%
+  step_nzv(all_predictors())  
+
+ames_prep <- prep(ames_rec) 
+```
+
+The power of `tidymodels` becomes more apparent as we move forward into more sophisticated machine learning techniques.
+
+## Specify the model
+
+So far we’ve split the data into training/testing, and we’ve specified pre-processing steps using a recipe. The next step is to specify our model using the `parsnip` package.
+
+`Parsnip` offers a unified interface for the massive variety of machine learning models that exist in R. This means, you only have to learn one way of specifying a model, and then you can use this specification and have it generate a linear model, a random forest model, a support vector machine model and more with a single line of code.
+
+There are a few main components for the model specification
+
+1. The model type: what kind of model to fit, set using a different function depending on the model, such as `rand_forest()` for random forest, `logistic_reg()` for logistic regression, `svm_poly()` for a polynomial SVM model etc. The full list of models available via `parsnip` can be found [here](https://tidymodels.github.io/parsnip/articles/articles/Models.html).
+
+1. The arguments: the model parameter values, now consistently named across different models, set using `set_args()`.
+
+1. The engine: the underlying package the model should come from (e.g. “ranger” for the ranger implementation of Random Forest), set using `set_engine()`.
+
+1. The mode: the type of prediction - since several packages can do both classification (binary/categorical prediction) and regression (continuous prediction), set using `set_mode()`.
+
+For instance, if we want to fit a random forest model as implemented by the `ranger` package for the purpose of regression and we want to tune the *mtry* parameter (the number of randomly selected variables to be considered at each split in the trees), then we would build the following model specification:
+
+```{r}
+rf_model <- 
+  # specify that the model is a random forest
+  rand_forest()%>%
+  # specify that the `mtry` parameter needs to be tuned
+  set_args(mtry = tune()) %>%
+  # select the engine/package that underlies the model
+  set_engine("ranger") %>%
+  # choose either the continuous regression or binary classification mode
+  set_mode("regression")
+```
+
+Note that this code doesn’t actually fit the model. Like the recipe, it just outlines a description of the model. Moreover, setting a parameter to `tune()` means that it will be tuned later in the tune stage of the pipeline (i.e. the value of the parameter that yields the best performance will be chosen). You could also just specify a particular value of the parameter if you don’t want to tune it by using `set_args(mtry = 4)`.
+
+Nothing about this model specification is specific to the **ames_housing** dataset.
+
+### Put it all together in a workflow
+
+We’re now ready to put the model and recipes together into a workflow. You initiate a workflow using `workflow()` (from the workflows package) and then add a recipe and add a model to it.
+
+```{r}
+# set the workflow
+rf_workflow <- workflow() %>%
+  # add the recipe
+add_recipe(ames_rec) %>%
+  # add the model
+add_model(rf_model)
+```
+
+Note that we still haven’t yet implemented the pre-processing steps in the recipe nor have we fit the model. We’ve just written the framework. It is only when we tune the parameters or fit the model that the recipe and model frameworks are actually implemented.
+
+### Tune the parameters
+
+Since we had a parameter that we designated to be tuned (mtry), we need to tune it (i.e. choose the value that leads to the best performance) before fitting our model. If you don’t have any parameters to tune, you can skip this step.
+
+Note that we will do our tuning using the cross-validation object (ames_cv). To do this, we specify the range of mtry values we want to try, and then we add a tuning layer to our workflow using `tune_grid()` (from the tune package). Note that we focus on two metrics: accuracy and roc_auc (from the `yardstick` package).
+
+```{r}
+# specify which values eant to try  
+rf_grid <- expand.grid(mtry = c(3, 10, 20, 30))
+# extract results
+rf_tune_results <- rf_workflow %>%
+  tune_grid(resamples = ames_cv, #CV object
+            grid = rf_grid, # grid of values to try
+            metrics = metric_set(rmse) # metrics we care about
+            )
+```
+
+You can tune multiple parameters at once by providing multiple parameters to the `expand.grid()` function, e.g. `expand.grid(mtry = c(3, 4, 5), trees = c(100, 500))`.
+
+It’s always a good idea to explore the results of the cross-validation. `collect_metrics()` is a handy function that can be used in a variety of circumstances to extract any metrics that have been calculated within the object it’s being used on. In this case, the metrics come from the cross-validation performance across different values of mtry parameters.
+
+```{r}
+rf_tune_results %>%
+  collect_metrics()
+```
+
+## Finalize the workflow
+
+We want to add a layer to our workflow that corresponds to the tuned parameter, i.e. sets `mtry` to be the value that yielded the best results. If you didn’t tune any parameters, you can skip this step.
+
+We can extract the best value for the accuracy metric by applying the `select_best()` function to the tune object.
+
+```{r}
+param_final <- rf_tune_results %>%
+  select_best(metric = "rmse", maximize = TRUE)
+
+param_final
+```
+
+Then we can add this parameter to the workflow using the `finalize_workflow()` function.
+
+```{r}
+rf_workflow <- rf_workflow %>%
+    finalize_workflow(param_final)
+```
+
+# Fit the final model
+
+Now we’ve defined our recipe, our model, and tuned the model’s parameters, we’re ready to actually fit the final model. Since all of this information is contained within the workflow object, we will apply the `last_fit()` function to our workflow and our train/test split object. This will automatically train the model specified by the workflow using the training data, and produce evaluations based on the test set.
+
+```{r}
+rf_fit <- rf_workflow %>%
+  # fit on entire training set and evaluate on test set
+  last_fit(ames_split)
+
+```
+
+Note that the fit object that is created is a data-frame-like object; specifically, it is a tibble with list columns.
+
+```{r}
+rf_fit
+```
+
+This is a really nice feature of `tidymodels` (and is what makes it work so nicely with the tidyverse) since you can do all of your tidyverse operations to the model object. While truly taking advantage of this flexibility requires proficiency with `purrr`, if you don’t want to deal with `purrr` and list-columns, there are functions that can extract the relevant information from the fit object that remove the need for purrr as we will see below.
+
+# Evaluate the model on the test set
+
+Since we supplied the train/test object when we fit the workflow, the metrics are evaluated on the test set. Now when we use the `collect_metrics()` function (recall we used this when tuning our parameters), it extracts the performance of the final model (since rf_fit now consists of a single final model) applied to the test set.
+
+```{r}
+test_performance <- rf_fit %>% collect_metrics()
+test_performance
+```
+
+```{r}
+# generate predictions from the test set
+test_predictions <- rf_fit %>% collect_predictions()
+test_predictions
+```
+
+
+```{r}
+test_predictions %>%
+  ggplot(aes(Sale_Price, .pred))+
+  geom_point()+
+  scale_x_continuous(labels = scales::dollar_format())+
+  scale_y_continuous(labels = scales::dollar_format())+
+  geom_abline(intercept = 0, slope =1, color = "blue")+
+  labs(title = "Ames Housing Sale Price Actual versus Prediction",
+       subtitle = "Expecting a linear line with slope of 1")+
+  theme(plot.title.position = "plot")
+  
+```
+
+
+
+----
+
+### Did you find this page helpful? Consider sharing it 🙌
+
+
