@@ -1,7 +1,7 @@
 ---
 title: "rtweet"
 author: "Jim Gruman"
-date: "2020-05-26"
+date: "2020-05-27"
 diagram: true
 output: 
  blogdown::html_page:
@@ -19,7 +19,7 @@ draft: false
 
 
 <p>I was inspired by David Robinson’s Tidy Tuesday screencast to work with <code>rtweet</code> on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users.</p>
-<p>{<code>rtweet</code>} is an amazing way of having a little productive procrastination while demostrating R skills</p>
+<p><code>rtweet</code> is an amazing way of having a little productive procrastination while honing R skills</p>
 {{% youtube "KE9ItC3doEU" %}}
 <p>As with any other project, loading the appropriate libraries.</p>
 <pre class="r"><code>library(tidyverse)   # tidy data manipulation, including dplyr and ggplot
@@ -52,16 +52,12 @@ token</code></pre>
 <hr />
 <p>Let’s have a look at the accounts that I favorite (or <strong>like</strong>) the most:</p>
 <pre class="r"><code># there is a rate limit at Twitter at approximately 18000 each 15 minutes
-df_likes &lt;- rtweet::get_favorites(&quot;jim_gruman&quot;, n = 3000)
-
-users_favorite&lt;-df_likes %&gt;% 
+df_likes &lt;- rtweet::get_favorites(&quot;jim_gruman&quot;, n = 3000)</code></pre>
+<pre class="r"><code>users_favorite&lt;-df_likes %&gt;% 
     group_by(screen_name, user_id) %&gt;%
     summarise(
         quant_fav= n()
     )
-
-start &lt;- as.Date(min(df_likes$created_at), tz = &quot;America/Chicago&quot;)
-end &lt;- as.Date(max(df_likes$created_at), tz = &quot;America/Chicago&quot;)
 
 users_favorite %&gt;%
     ungroup() %&gt;%
@@ -73,36 +69,35 @@ users_favorite %&gt;%
           text = element_text(hrbrthemes::font_rc, size = 16))+
     labs(
         title = &quot;Top 15 Twitter accounts I like the most often&quot;,
-        subtitle = paste0(&quot;Within the past 3000 Tweets, &quot;,start, &quot; to &quot;,end),
+        subtitle = paste0(&quot;Within the past 3000 Tweets, since &quot;,min(as_date(df_likes$created_at,  tz =&quot;America/Chicago&quot;))),
         y = &quot;@ user names&quot;,
         x= &quot;# of tweets liked&quot;,
         caption = paste0(&quot;@jim_gruman | &quot;, Sys.Date())
     )</code></pre>
-<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggsave(&quot;my-twitter-likes-users.png&quot;, width = 7, height = 5, type = &quot;cairo&quot;)</code></pre>
+<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>And let’s break down my activity by week day</p>
-<pre class="r"><code>df_likes %&gt;% 
+<pre class="r"><code>tw_activity&lt;- df_likes %&gt;% 
     transmute(
-        created_at,
-        hour = created_at %&gt;% hour(),
-        year = created_at %&gt;% year(), 
-        month = created_at %&gt;% month(label = T), 
-        weekday = created_at %&gt;% wday(label = T, abbr = T, week_start = 1)
+              tw_hour = hour(as_datetime(created_at, tz =&quot;America/Chicago&quot;)),
+              tw_day = as_date(created_at, tz =&quot;America/Chicago&quot;),
+              tw_weekday = wday(tw_day,label = T, abbr = T, week_start = 1)
     ) %&gt;%
-    group_by(weekday, hour) %&gt;%
+    group_by(tw_weekday, tw_hour) %&gt;%
     summarise(
         quant_fav= n()
     ) %&gt;% 
     ungroup() %&gt;% 
-    group_by(weekday) %&gt;% 
+    group_by(tw_weekday) %&gt;% 
     mutate(prop = quant_fav / sum(quant_fav)) %&gt;% 
-    ungroup() %&gt;%
-    ggplot(aes(x = hour, y = prop, fill = prop)) + 
+    ungroup()
+  
+tw_activity %&gt;%
+    ggplot(aes(x = tw_hour, y = prop, fill = prop)) + 
     geom_col(position = position_nudge(x = .5),
              show.legend = FALSE) +
     scale_x_continuous(breaks = c(6, 12, 18))+
     hrbrthemes::scale_y_percent()+
-    facet_wrap(~weekday, ncol = 5)+
+    facet_wrap(~tw_weekday, ncol = 5)+
     theme(text = element_text(hrbrthemes::font_rc, size = 16),
     panel.grid.minor = element_blank(),
     plot.title.position = &quot;plot&quot;,
@@ -110,13 +105,36 @@ users_favorite %&gt;%
       )+
     labs(
         title = &quot;My recent liking activity on Twitter&quot;,
-        subtitle = paste0(&quot;Within the past 3000 Tweets, &quot;,start, &quot; to &quot;,end),
+        subtitle = paste0(&quot;Within the past 3000 Tweets, since &quot;,min(as.Date(df_likes$created_at, tz = &quot;America/Chicago&quot;))),
         x = &quot;hour of the day&quot;,
         y = &quot;&quot;,
         caption = paste0(&quot;@jim_gruman | &quot;, Sys.Date())
     )</code></pre>
-<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
-<pre class="r"><code>ggsave(&quot;my-twitter-likes-by-hour-weekday.png&quot;, width = 7, height = 5, type = &quot;cairo&quot;)</code></pre>
+<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Some may prefer the <code>ggridges</code> version of the same data visualization</p>
+<pre class="r"><code>library(ggridges)
+
+tw_activity %&gt;%
+  mutate(tw_weekday = fct_rev(tw_weekday))%&gt;%
+ggplot(aes(x = tw_hour, , y = tw_weekday, height = prop, fill = stat(x)))+
+ggridges::geom_ridgeline_gradient(scale = 10, show.legend = FALSE)+
+  scale_fill_gradient2(low = &quot;blue&quot;,
+                        mid = &quot;grey50&quot;,
+                        high = &quot;blue&quot;,
+                        midpoint = 12L)+
+    theme(text = element_text(hrbrthemes::font_rc, size = 16),
+    panel.grid.minor = element_blank(),
+    plot.title.position = &quot;plot&quot;,
+    plot.margin = margin(0.25,0.5,0.25,0.5,&quot;in&quot;)
+      )+
+    labs(
+        title = &quot;My recent liking activity on Twitter&quot;,
+        subtitle = paste0(&quot;Within the past 3000 Tweets, since &quot;,min(as.Date(df_likes$created_at, tz = &quot;America/Chicago&quot;))),
+        x = &quot;hour of the day&quot;,
+        y = &quot;Proportion of Tweet Likes&quot;,
+        caption = paste0(&quot;@jim_gruman | &quot;, Sys.Date())
+    )</code></pre>
+<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
 <div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
 <h3>Did you find this page helpful? Consider sharing it 🙌</h3>

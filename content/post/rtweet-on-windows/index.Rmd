@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. 
 
-{`rtweet`} is an amazing way of having a little productive procrastination while demostrating R skills
+`rtweet` is an amazing way of having a little productive procrastination while honing R skills
 
 ```{r echo=FALSE}
 blogdown::shortcode('youtube', 'KE9ItC3doEU')
@@ -83,18 +83,17 @@ It turns out that [Jon Harmon has also reported of the issue at the package Gith
 
 Let's have a look at the accounts that I favorite (or **like**) the most:
 
-```{r warning=FALSE, fig.align='center'}
+```{r }
 # there is a rate limit at Twitter at approximately 18000 each 15 minutes
 df_likes <- rtweet::get_favorites("jim_gruman", n = 3000)
+```
 
+```{r warning=FALSE, fig.align='center', fig.width=7, fig.height=5}
 users_favorite<-df_likes %>% 
     group_by(screen_name, user_id) %>%
     summarise(
         quant_fav= n()
     )
-
-start <- as.Date(min(df_likes$created_at), tz = "America/Chicago")
-end <- as.Date(max(df_likes$created_at), tz = "America/Chicago")
 
 users_favorite %>%
     ungroup() %>%
@@ -106,40 +105,39 @@ users_favorite %>%
           text = element_text(hrbrthemes::font_rc, size = 16))+
     labs(
         title = "Top 15 Twitter accounts I like the most often",
-        subtitle = paste0("Within the past 3000 Tweets, ",start, " to ",end),
+        subtitle = paste0("Within the past 3000 Tweets, since ",min(as_date(df_likes$created_at,  tz ="America/Chicago"))),
         y = "@ user names",
         x= "# of tweets liked",
         caption = paste0("@jim_gruman | ", Sys.Date())
     )
 
-ggsave("my-twitter-likes-users.png", width = 7, height = 5, type = "cairo")
 ```
 
 And let's break down my activity by week day
 
 ```{r warning=FALSE, fig.align='center', fig.width=7, fig.height=5}
-df_likes %>% 
+tw_activity<- df_likes %>% 
     transmute(
-        created_at,
-        hour = created_at %>% hour(),
-        year = created_at %>% year(), 
-        month = created_at %>% month(label = T), 
-        weekday = created_at %>% wday(label = T, abbr = T, week_start = 1)
+              tw_hour = hour(as_datetime(created_at, tz ="America/Chicago")),
+              tw_day = as_date(created_at, tz ="America/Chicago"),
+              tw_weekday = wday(tw_day,label = T, abbr = T, week_start = 1)
     ) %>%
-    group_by(weekday, hour) %>%
+    group_by(tw_weekday, tw_hour) %>%
     summarise(
         quant_fav= n()
     ) %>% 
     ungroup() %>% 
-    group_by(weekday) %>% 
+    group_by(tw_weekday) %>% 
     mutate(prop = quant_fav / sum(quant_fav)) %>% 
-    ungroup() %>%
-    ggplot(aes(x = hour, y = prop, fill = prop)) + 
+    ungroup()
+  
+tw_activity %>%
+    ggplot(aes(x = tw_hour, y = prop, fill = prop)) + 
     geom_col(position = position_nudge(x = .5),
              show.legend = FALSE) +
     scale_x_continuous(breaks = c(6, 12, 18))+
     hrbrthemes::scale_y_percent()+
-    facet_wrap(~weekday, ncol = 5)+
+    facet_wrap(~tw_weekday, ncol = 5)+
     theme(text = element_text(hrbrthemes::font_rc, size = 16),
     panel.grid.minor = element_blank(),
     plot.title.position = "plot",
@@ -147,13 +145,39 @@ df_likes %>%
       )+
     labs(
         title = "My recent liking activity on Twitter",
-        subtitle = paste0("Within the past 3000 Tweets, ",start, " to ",end),
+        subtitle = paste0("Within the past 3000 Tweets, since ",min(as.Date(df_likes$created_at, tz = "America/Chicago"))),
         x = "hour of the day",
         y = "",
         caption = paste0("@jim_gruman | ", Sys.Date())
     )
 
-ggsave("my-twitter-likes-by-hour-weekday.png", width = 7, height = 5, type = "cairo")
+```
+
+Some may prefer the `ggridges` version of the same data visualization
+
+```{r warning=FALSE, fig.align='center', fig.width=7, fig.height=5}
+library(ggridges)
+
+tw_activity %>%
+  mutate(tw_weekday = fct_rev(tw_weekday))%>%
+ggplot(aes(x = tw_hour, , y = tw_weekday, height = prop, fill = stat(x)))+
+ggridges::geom_ridgeline_gradient(scale = 10, show.legend = FALSE)+
+  scale_fill_gradient2(low = "blue",
+                        mid = "grey50",
+                        high = "blue",
+                        midpoint = 12L)+
+    theme(text = element_text(hrbrthemes::font_rc, size = 16),
+    panel.grid.minor = element_blank(),
+    plot.title.position = "plot",
+    plot.margin = margin(0.25,0.5,0.25,0.5,"in")
+      )+
+    labs(
+        title = "My recent liking activity on Twitter",
+        subtitle = paste0("Within the past 3000 Tweets, since ",min(as.Date(df_likes$created_at, tz = "America/Chicago"))),
+        x = "hour of the day",
+        y = "Proportion of Tweet Likes",
+        caption = paste0("@jim_gruman | ", Sys.Date())
+    )
 
 ```
 
