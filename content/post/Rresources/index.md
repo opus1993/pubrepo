@@ -108,6 +108,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 ----
 ## Machine Learning
 - [`tidymodels`](https://www.tidyverse.org/blog/2018/08/tidymodels-0-0-1/) by [Max Kuhn](https://twitter.com/topepos)
+- [Machine Learning with R, the tidyverse, and mlr](https://www.manning.com/books/machine-learning-with-r-the-tidyverse-and-mlr) by [Hefin Rhys](https://twitter.com/HRJ21)
 - [`mlr`](https://mlr.mlr-org.com/articles/tutorial/task.html) by [Patrick Schratz](https://twitter.com/pjs_228)
 - [Introduction to Machine Learning with `mlr`](https://compstat-lmu.github.io/lecture_i2ml/articles/content.html)
 - [R interface to keras](https://keras.rstudio.com/)
@@ -137,7 +138,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Pdiff](http://pdiff.weebly.com/) by [Bill Price](https://twitter.com/pdiff1)
 - [Harvard Data Science Review](https://review.datascience.harvard.edu/)
 - [Data Meets Narrative](http://www.rebeccabarter.com/blog/)
-- [A Kaplan on less well-known regression types: censored, logit-normal, beta, ordered logistic](https://github.com/kaplanas/nonstandard-regression)
+- [A Kaplan on less well-known regression types: censored, logit-normal, beta, ordered and logistic](https://github.com/kaplanas/nonstandard-regression)
 - [Dean of Big Data](https://deanofbigdata.com/) by [Bill Schmarzo](https://twitter.com/schmarzo)
 - [Nicholas Tierney](http://njtierney.github.io/)
 - [Tyler Rinker](https://trinkerrstuff.wordpress.com)
