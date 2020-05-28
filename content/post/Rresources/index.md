@@ -1,5 +1,5 @@
 ---
-date: "2020-05-13"
+date: "2020-05-28"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -137,6 +137,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Pdiff](http://pdiff.weebly.com/) by [Bill Price](https://twitter.com/pdiff1)
 - [Harvard Data Science Review](https://review.datascience.harvard.edu/)
 - [Data Meets Narrative](http://www.rebeccabarter.com/blog/)
+- [A Kaplan on less well-known regression types: censored, logit-normal, beta, ordered logistic](https://github.com/kaplanas/nonstandard-regression)
 - [Dean of Big Data](https://deanofbigdata.com/) by [Bill Schmarzo](https://twitter.com/schmarzo)
 - [Nicholas Tierney](http://njtierney.github.io/)
 - [Tyler Rinker](https://trinkerrstuff.wordpress.com)
