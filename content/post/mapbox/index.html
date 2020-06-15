@@ -1,0 +1,122 @@
+---
+title: "mapboxapi"
+author: "Jim Gruman"
+date: '2020-06-14'
+output: 
+ blogdown::html_page:
+  toc: false
+diagram: true
+image:
+  caption: ''
+  focal_point: Smart
+  preview_only: true
+categories: R
+description: 'Mapbox web services APIs for #rspatial data science projects'
+featured: false
+draft: false
+---
+
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/jquery/jquery.min.js"></script>
+<link href="/rmarkdown-libs/leaflet/leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet/leaflet.js"></script>
+<link href="/rmarkdown-libs/leafletfix/leafletfix.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4-compressed.js"></script>
+<script src="/rmarkdown-libs/Proj4Leaflet/proj4leaflet.js"></script>
+<link href="/rmarkdown-libs/rstudio_leaflet/rstudio_leaflet.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/leaflet-binding/leaflet.js"></script>
+
+
+<p><strong>Mapbox</strong> is a developer platform used to create custom geospatial application solutions. Their analysis tools are building blocks for web and mobile map-making. <a href="https://twitter.com/kyle_e_walker">Kyle Walker</a> has built an interface to the Mapbox APIs, including 18 functions to facilitate the use of Mapbox web services for spatial data science in R. The package is currently hosted on github at <a href="https://github.com/walkerke/mapboxapi">walkerke /mapboxapi</a></p>
+<p>To get started, <a href="https://docs.mapbox.com/api/">sign up for a Mapbox account</a> and generate an access token. Set your public or secret token for use in the package with <code>mb_access_token()</code>.</p>
+<pre class="r"><code>knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+library(mapboxapi)
+library(sf)
+library(leaflet)
+library(tigris)
+library(mapdeck)
+options(tigris_use_cache = TRUE)</code></pre>
+<div id="interactive-mapping-with-mapbox-styles" class="section level2">
+<h2>Interactive mapping with Mapbox styles</h2>
+<p>Assume that you’ve designed a custom map style in <a href="https://www.mapbox.com/mapbox-studio/">Mapbox Studio</a> that you’d like to incorporate into your R projects. We can retrieve the style ID from the Mapbox account directly, or use the <code>list_styles()</code> function in <code>mapboxapi</code> to get the ID. With the style ID and username, the <code>addMapboxTiles()</code> function allows for direct incorporation of this style in an R <code>Leaflet</code> project.</p>
+<pre class="r"><code>leaflet() %&gt;%
+  addMapboxTiles(style_id = &quot;ckbflscq349ty1ioe3j6z1hzr&quot;,
+                 username = &quot;opus1993&quot;) %&gt;%
+  setView(lng = -87.62,
+          lat = 41.87,
+          zoom = 13)</code></pre>
+<div id="htmlwidget-1" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://api.mapbox.com/styles/v1/opus1993/ckbflscq349ty1ioe3j6z1hzr/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib3B1czE5OTMiLCJhIjoiY2o1d3FjMnJ5MGZyZzJ3bmMwYWFyYXBpZCJ9.MHxLQUURLZoGlbT1RqTFGA",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://www.mapbox.com/about/maps/\">Mapbox<\/a> &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap<\/a> <strong><a href=\"https://www.mapbox.com/map-feedback/\" target=\"_blank\">Improve this map<\/a><\/strong>"}]}],"setView":[[41.87,-87.62],13,[]]},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="traveltime-matrices" class="section level2">
+<h2>TravelTime Matrices</h2>
+<p><code>Mapbox</code> navigation services can be called from #rstats to return routes, isochrones, and travel-time matrices as objects ready for spatial analysis.</p>
+<p>In this example, the walkable region around CNH Burr Ridge is illustrated.</p>
+<pre class="r"><code>walk_15min &lt;- mb_isochrone(&quot;6900 Veterans Boulevard, Burr Ridge, IL 60527&quot;,
+                           profile = &quot;walking&quot;,
+                           time = 15)
+
+leaflet(walk_15min) %&gt;%
+  addMapboxTiles(style_id = &quot;ckbflscq349ty1ioe3j6z1hzr&quot;,
+                 username = &quot;opus1993&quot;) %&gt;%
+  addPolygons()</code></pre>
+<div id="htmlwidget-2" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["https://api.mapbox.com/styles/v1/opus1993/ckbflscq349ty1ioe3j6z1hzr/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoib3B1czE5OTMiLCJhIjoiY2o1d3FjMnJ5MGZyZzJ3bmMwYWFyYXBpZCJ9.MHxLQUURLZoGlbT1RqTFGA",null,null,{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"attribution":"&copy; <a href=\"https://www.mapbox.com/about/maps/\">Mapbox<\/a> &copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap<\/a> <strong><a href=\"https://www.mapbox.com/map-feedback/\" target=\"_blank\">Improve this map<\/a><\/strong>"}]},{"method":"addPolygons","args":[[[[{"lng":[-87.934891,-87.933022,-87.932129,-87.931122,-87.930573,-87.929871,-87.925957,-87.925323,-87.924118,-87.919701,-87.920906,-87.920998,-87.922119,-87.923111,-87.925125,-87.925415,-87.927124,-87.927292,-87.928436,-87.927605,-87.928154,-87.930122,-87.929123,-87.928154,-87.928123,-87.927422,-87.92543,-87.928673,-87.929123,-87.930122,-87.930702,-87.934212,-87.93412,-87.932121,-87.930283,-87.933464,-87.93412,-87.934738,-87.936119,-87.937126,-87.93811,-87.940125,-87.942215,-87.942429,-87.944305,-87.944275,-87.945,-87.944122,-87.943413,-87.942963,-87.942894,-87.94397,-87.942123,-87.940323,-87.940239,-87.939133,-87.938797,-87.938026,-87.937851,-87.938118,-87.939445,-87.939514,-87.938667,-87.935974,-87.935379,-87.934891],"lat":[41.759602,41.758472,41.755848,41.757145,41.756924,41.755116,41.755207,41.756569,41.757439,41.755371,41.755157,41.754253,41.754051,41.752922,41.752655,41.751663,41.751381,41.750542,41.75037,41.749371,41.748402,41.748451,41.74641,41.747372,41.748001,41.746071,41.745373,41.74292,41.742794,41.743866,41.742958,41.742462,41.742157,41.742008,41.741367,41.739719,41.738243,41.738758,41.739006,41.741859,41.740711,41.742615,41.741371,41.742371,41.744179,41.747372,41.748371,41.749683,41.749077,41.749214,41.75037,41.752373,41.75391,41.752171,41.751255,41.751255,41.752045,41.752285,41.754635,41.755066,41.755371,41.756371,41.756912,41.757229,41.759632,41.759602]}]]],null,null,{"interactive":true,"className":"","stroke":true,"color":"#03F","weight":5,"opacity":0.5,"fill":true,"fillColor":"#03F","fillOpacity":0.2,"smoothFactor":1,"noClip":false},null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[41.738243,41.759632],"lng":[-87.945,-87.919701]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="isochrones" class="section level2">
+<h2>Isochrones</h2>
+<p>The US Census defines small, relatively permanent geographic entities within counties delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts were to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions.</p>
+<p>The <code>tracts</code> function gathers shapefile polygons. <code>mb_geocode</code> runs a reverse geocode to provide a latitude/longitude from an address.</p>
+<p>The Mapbox Isochrone API returns polygons representing isochrones, or areas reachable within a given travel time, around a given location. Travel-time matrices are available in the <code>mb_matrix()</code> function.</p>
+<p>This map illustrates places that are walkable within 4, 8, and 12 minutes from Wrigley Field.</p>
+<pre class="r"><code>isochrones &lt;- mb_isochrone(&quot;Wrigley Field, Chicago IL&quot;,
+                           time = c(4, 8, 12),
+                           profile = &quot;walking&quot;)
+
+mapdeck(style = mapdeck_style(&quot;streets&quot;), zoom = 8,
+        min_zoom = 4, max_zoom = 10) %&gt;%
+  add_polygon(data = isochrones,
+              fill_colour = &quot;time&quot;,
+              fill_opacity = 0.3,
+              legend = TRUE, 
+              legend_format = list( fill_colour = as.integer )) </code></pre>
+<div class="figure">
+<img src="isochrones1.png" alt="" />
+<p class="caption">Walking Distance from Wrigley Field</p>
+</div>
+<p>This map illustrates commute times within Dupage County to Naper Settlement.</p>
+<pre class="r"><code>dupage_tracts &lt;- tracts(state =&quot;IL&quot;,
+                        county = &quot;Dupage&quot;,
+                        cb = TRUE, class = &quot;sf&quot;)
+
+downtown_naperville &lt;- mb_geocode(&quot;Naper Settlement, Naperville IL&quot;)
+
+time_to_downtown &lt;- mb_matrix(dupage_tracts, downtown_naperville)
+
+dupage_tracts$time &lt;- time_to_downtown
+
+mapdeck(style = mapdeck_style(&quot;light&quot;), zoom = 8,
+        min_zoom = 4, max_zoom = 10) %&gt;%
+  add_polygon(data = dupage_tracts,
+              fill_colour = &quot;time&quot;,
+              fill_opacity = 0.6,
+              legend = TRUE, 
+              legend_format = list( fill_colour = as.integer )) </code></pre>
+<div class="figure">
+<img src="isochrones2.png" alt="" />
+<p class="caption">Driving time to Naper Settlement within Dupage County</p>
+</div>
+<blockquote>
+<p>Inspired by <a href="https://walker-data.com/mapboxapi/">Kyle Walker’s walker-data.com</a> post. There’s more at</p>
+</blockquote>
+</div>
+<div class="section level2">
+<h2>{{% twitter "1271157392760324098" %}}</h2>
+<div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
+<h3>Did you find this page helpful? Consider sharing it 🙌</h3>
+</div>
+</div>
