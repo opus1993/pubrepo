@@ -66,9 +66,9 @@ leaflet(walk_15min) %>%
 
 ## Isochrones 
 
-The US Census defines small, relatively permanent geographic entities within counties delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts were to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions.  
+The US Census defines tracts as small, relatively permanent geographic entities within counties delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts were to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions.  
 
-The `tracts` function gathers shapefile polygons. `mb_geocode` runs a reverse geocode to provide a latitude/longitude from an address.
+The `tracts` function gathers shapefile polygons of US Census tracts. `mb_geocode` runs a reverse geocode to provide a latitude/longitude from an address.
 
 The Mapbox Isochrone API returns polygons representing isochrones, or areas reachable within a given travel time, around a given location. Travel-time matrices are available in the `mb_matrix()` function.
 
