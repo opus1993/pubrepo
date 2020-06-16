@@ -135,7 +135,7 @@ gen_pops %>% sample_n(7)  %>%
 
 The figure below summarizes the US population by generation. These numbers will vary some depending on the data source. Millenials constitute the plurality of Americans, recently overtaking a Boomer generation that is on the wane.
 
-```{r}
+```{r fig.height=5}
 gen_pops %>%
   group_by(gen, rank) %>%
   summarize(pop = sum(pop)) %>%
@@ -171,7 +171,7 @@ gg <- gen_pops %>%
 
 The figure below illustrates the US population by single year of age, ranging from the population aged less than a year to the population over 100 (as of December 2018). Generation membership per single year of age is specified by color.
 
-```{r}
+```{r fig.height=7}
 gen_pops %>%
   ggplot(aes(x = AGE, 
              y = pop, 
@@ -204,7 +204,7 @@ gen_pops %>%
 ```
 Next, let's crosscut the single year of age counts presented above by race & ethnicity.
 
-```{r, fig.width=6}
+```{r, fig.height=7}
 gen_pops %>%
   ggplot(aes(x = AGE, 
              y = pop, 
@@ -218,22 +218,25 @@ gen_pops %>%
            x = gg$AGE - 4.5, 
            y = gg$tot + 100000, 
            label = gg$gen,
-           size = 3.25) +
+           size = 3.5) +
   xlab('Age')+ ylab('') +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(ncol = 4, keyheight = 0.75))+
+  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = "bottom"))+
   theme(legend.position="bottom",
+        legend.justification = "center",
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         panel.grid.minor.y=element_blank(),
         plot.title.position = "plot",
-        legend.key.width = unit(0.5, "cm")) +
+        legend.key.width = unit(5, "line")) +
   scale_x_reverse(breaks = rev(gg$AGE) )+
   scale_y_continuous(labels = scales::comma_format())+
   labs(title ='US Population by Age, Race & Generation',
        caption = 'SOURCE: US Census, Monthly Postcensal Resident Population \nplus Armed Forces Overseas, December 2018.')
-  
+
 ```
+
+
 
 ```{r}
 white_label <- gen_pops %>% 
@@ -249,7 +252,7 @@ white_label <- gen_pops %>%
 
 The last figure illustrates a **proportional perspective of race & ethnicity in America** by single year of age. Per figure, generational differences (at a single point in time) can shed light on (the direction of) potential changes in the overall composition of a given populace, as well as a view of what that populace may have looked like in the past.
 
-```{r}
+```{r fig.height=7}
 gen_pops %>%
   group_by(gen, AGE) %>%
   mutate(per = pop/sum(pop)) %>%
@@ -270,20 +273,22 @@ gen_pops %>%
            x = gg$AGE-4.5, 
            y = white_label$per - .05, 
            label = gg$gen,
-           size = 3.25,
+           size = 3.5,
            color = "black") +
   xlab('Age')+ ylab('') +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(ncol = 4, keyheight = 0.75))+
+  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = "bottom"))+
   theme(legend.position="bottom",
+        legend.justification = "center",
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         plot.title.position = "plot",
-        legend.key.width = unit(0.5, "cm")) +
+        legend.key.width = unit(5, "line")) +
   scale_y_continuous(labels = scales::percent_format())+
   scale_x_reverse(breaks = rev(gg$AGE)) +
   labs(title = 'American Population by Age, Race & Generation',
        fill = "")
+
 ```
 
 ### American generations in (apparent) time & space
@@ -419,7 +424,7 @@ which2 <- which1 %>%
 
 So, while `Gen X` is most representative of America in the aggregate, per the map below, the demographics of America’s youngest & eldest generations are most prevalent at the county-level. `Post-Z` in the West, and the `Greatest` in the East & Midwest. New & Old Americas, perhaps.
 
-```{r}
+```{r fig.height=6}
 us_counties %>%
   left_join(which2, by = 'GEOID') %>%
   ggplot() + 
@@ -429,18 +434,17 @@ us_counties %>%
           show.legend = F, 
           color="darkgray", 
           lwd=.5) +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(ncol = 4, keyheight = 0.75))+
+  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = "bottom", ncol = 7, keywidth = 5))+
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         legend.position = 'bottom',
+        legend.justification = "center",
         plot.title.position = "plot",
         legend.key.width = unit(0.5, "cm")) +
   labs(title = "Counties & Generations in America",
        fill = "")
-
-ggsave("featured.png", device = "png", height = unit(4,"cm") , type = "cairo")
 ```
 
 ### Conclusion

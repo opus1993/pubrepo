@@ -458,21 +458,22 @@ Next, let’s crosscut the single year of age counts presented above by race &am
            x = gg$AGE - 4.5, 
            y = gg$tot + 100000, 
            label = gg$gen,
-           size = 3.25) +
+           size = 3.5) +
   xlab(&#39;Age&#39;)+ ylab(&#39;&#39;) +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(ncol = 4, keyheight = 0.75))+
+  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = &quot;bottom&quot;))+
   theme(legend.position=&quot;bottom&quot;,
+        legend.justification = &quot;center&quot;,
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         panel.grid.minor.y=element_blank(),
         plot.title.position = &quot;plot&quot;,
-        legend.key.width = unit(0.5, &quot;cm&quot;)) +
+        legend.key.width = unit(5, &quot;line&quot;)) +
   scale_x_reverse(breaks = rev(gg$AGE) )+
   scale_y_continuous(labels = scales::comma_format())+
   labs(title =&#39;US Population by Age, Race &amp; Generation&#39;,
        caption = &#39;SOURCE: US Census, Monthly Postcensal Resident Population \nplus Armed Forces Overseas, December 2018.&#39;)</code></pre>
-<p><img src="/post/american-generations/index_files/figure-html/unnamed-chunk-8-1.png" width="576" /></p>
+<p><img src="/post/american-generations/index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>white_label &lt;- gen_pops %&gt;% 
   group_by(gen, AGE) %&gt;%
   mutate(per = pop/sum(pop))%&gt;%
@@ -503,16 +504,17 @@ Next, let’s crosscut the single year of age counts presented above by race &am
            x = gg$AGE-4.5, 
            y = white_label$per - .05, 
            label = gg$gen,
-           size = 3.25,
+           size = 3.5,
            color = &quot;black&quot;) +
   xlab(&#39;Age&#39;)+ ylab(&#39;&#39;) +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(ncol = 4, keyheight = 0.75))+
+  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = &quot;bottom&quot;))+
   theme(legend.position=&quot;bottom&quot;,
+        legend.justification = &quot;center&quot;,
         legend.title = element_blank(),
         panel.grid.major.x=element_blank(),
         panel.grid.minor.x=element_blank(),
         plot.title.position = &quot;plot&quot;,
-        legend.key.width = unit(0.5, &quot;cm&quot;)) +
+        legend.key.width = unit(5, &quot;line&quot;)) +
   scale_y_continuous(labels = scales::percent_format())+
   scale_x_reverse(breaks = rev(gg$AGE)) +
   labs(title = &#39;American Population by Age, Race &amp; Generation&#39;,
@@ -1099,18 +1101,18 @@ Silent
           show.legend = F, 
           color=&quot;darkgray&quot;, 
           lwd=.5) +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(ncol = 4, keyheight = 0.75))+
+  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = &quot;bottom&quot;, ncol = 7, keywidth = 5))+
   theme(axis.title.x=element_blank(),
         axis.text.x=element_blank(),
         axis.title.y=element_blank(),
         axis.text.y=element_blank(),
         legend.position = &#39;bottom&#39;,
+        legend.justification = &quot;center&quot;,
         plot.title.position = &quot;plot&quot;,
         legend.key.width = unit(0.5, &quot;cm&quot;)) +
   labs(title = &quot;Counties &amp; Generations in America&quot;,
        fill = &quot;&quot;)</code></pre>
 <p><img src="/post/american-generations/index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<pre class="r"><code>ggsave(&quot;featured.png&quot;, device = &quot;png&quot;, height = unit(4,&quot;cm&quot;) , type = &quot;cairo&quot;)</code></pre>
 </div>
 <div id="conclusion" class="section level3">
 <h3>Conclusion</h3>
