@@ -27,7 +27,7 @@ draft: false
 <script src="/rmarkdown-libs/leaflet-binding/leaflet.js"></script>
 
 
-<p><strong>Mapbox</strong> is a developer platform used to create custom geospatial application solutions. Their analysis tools are building blocks for web and mobile map-making. <a href="https://twitter.com/kyle_e_walker">Kyle Walker</a> has built an interface to the Mapbox APIs, including 18 functions to facilitate the use of Mapbox web services for spatial data science in R. The package is currently hosted on github at <a href="https://github.com/walkerke/mapboxapi">walkerke /mapboxapi</a></p>
+<p><strong>Mapbox</strong> is a developer platform used to create custom geospatial applications. Their analysis tools are building blocks for web and mobile map-making. <a href="https://twitter.com/kyle_e_walker">Kyle Walker</a> has built an interface to the Mapbox APIs, including 18 functions to facilitate the use of Mapbox web services for spatial data science in R. The package is currently hosted on github at <a href="https://github.com/walkerke/mapboxapi">walkerke /mapboxapi</a></p>
 <p>To get started, <a href="https://docs.mapbox.com/api/">sign up for a Mapbox account</a> and generate an access token. Set your public or secret token for use in the package with <code>mb_access_token()</code>.</p>
 <pre class="r"><code>knitr::opts_chunk$set(
   echo = TRUE,
@@ -69,8 +69,8 @@ leaflet(walk_15min) %&gt;%
 </div>
 <div id="isochrones" class="section level2">
 <h2>Isochrones</h2>
-<p>The US Census defines small, relatively permanent geographic entities within counties delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts were to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions.</p>
-<p>The <code>tracts</code> function gathers shapefile polygons. <code>mb_geocode</code> runs a reverse geocode to provide a latitude/longitude from an address.</p>
+<p>The US Census defines tracts as small, relatively permanent geographic entities within counties delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts were to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions.</p>
+<p>The <code>tracts</code> function gathers shapefile polygons of US Census tracts. <code>mb_geocode</code> runs a reverse geocode to provide a latitude/longitude from an address.</p>
 <p>The Mapbox Isochrone API returns polygons representing isochrones, or areas reachable within a given travel time, around a given location. Travel-time matrices are available in the <code>mb_matrix()</code> function.</p>
 <p>This map illustrates places that are walkable within 4, 8, and 12 minutes from Wrigley Field.</p>
 <pre class="r"><code>isochrones &lt;- mb_isochrone(&quot;Wrigley Field, Chicago IL&quot;,

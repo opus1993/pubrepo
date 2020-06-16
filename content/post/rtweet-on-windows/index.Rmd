@@ -21,17 +21,20 @@ knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE)
 ```
 
-I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. 
+I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. `rtweet` is an amazing way of having a little productive procrastination while honing R skills. David's video is here:
 
-`rtweet` is an amazing way of having a little productive procrastination while honing R skills
-
-```{r echo=FALSE}
+```{r, echo=FALSE}
 blogdown::shortcode('youtube', 'KE9ItC3doEU')
 ```
 
-As with any other project, loading the appropriate libraries.
+As with any other project, start with loading the appropriate libraries.
 
-```{r}
+```{r, echo=TRUE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
 library(tidyverse)   # tidy data manipulation, including dplyr and ggplot
 library(rtweet)      # the R Twitter API
 theme_set(hrbrthemes::theme_ft_rc())   # Set a ggplot color, font theme
@@ -153,7 +156,7 @@ tw_activity %>%
 
 ```
 
-Some may prefer the `ggridges` version of the same data visualization
+Some may prefer the `ggridges` version of the same data, visualized a bit differently.
 
 ```{r warning=FALSE, fig.align='center', fig.width=7, fig.height=5}
 library(ggridges)

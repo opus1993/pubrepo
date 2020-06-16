@@ -41,7 +41,7 @@ user_groups:
 
 I have worked on teams as an engineer and leader in industry for more than 20 years. My undergraduate degree was originally in Mechanical Engineering, and I still enjoy working with agricultural product design and validation communities all over the world. 
 
-This web site includes infrequent posts on learning, communicating, and building communities of practice.
+This web site includes infrequent posts on learning, communicating, and building communities of practice with analytics.
 
 I am currently responsible for Digital Operations Projects at CNH Industrial in the Chicago area.
 

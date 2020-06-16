@@ -16,7 +16,7 @@ featured: false
 draft: false
 ---
 
-**Mapbox** is a developer platform used to create custom geospatial application solutions. Their analysis tools are building blocks for web and mobile map-making. [Kyle Walker](https://twitter.com/kyle_e_walker) has built an interface to the Mapbox APIs, including 18 functions to facilitate the use of Mapbox web services for spatial data science in R. The package is currently hosted on github at [walkerke /mapboxapi](https://github.com/walkerke/mapboxapi)
+**Mapbox** is a developer platform used to create custom geospatial applications. Their analysis tools are building blocks for web and mobile map-making. [Kyle Walker](https://twitter.com/kyle_e_walker) has built an interface to the Mapbox APIs, including 18 functions to facilitate the use of Mapbox web services for spatial data science in R. The package is currently hosted on github at [walkerke /mapboxapi](https://github.com/walkerke/mapboxapi)
 
 To get started, [sign up for a Mapbox account](https://docs.mapbox.com/api/) and generate an access token. Set your public or secret token for use in the package with `mb_access_token()`. 
 

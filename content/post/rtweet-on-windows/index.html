@@ -1,7 +1,7 @@
 ---
 title: "rtweet"
 author: "Jim Gruman"
-date: "2020-05-27"
+date: "2020-06-15"
 diagram: true
 output: 
  blogdown::html_page:
@@ -18,11 +18,15 @@ draft: false
 
 
 
-<p>I was inspired by David Robinson’s Tidy Tuesday screencast to work with <code>rtweet</code> on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users.</p>
-<p><code>rtweet</code> is an amazing way of having a little productive procrastination while honing R skills</p>
+<p>I was inspired by David Robinson’s Tidy Tuesday screencast to work with <code>rtweet</code> on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. <code>rtweet</code> is an amazing way of having a little productive procrastination while honing R skills. David’s video is here:</p>
 {{% youtube "KE9ItC3doEU" %}}
-<p>As with any other project, loading the appropriate libraries.</p>
-<pre class="r"><code>library(tidyverse)   # tidy data manipulation, including dplyr and ggplot
+<p>As with any other project, start with loading the appropriate libraries.</p>
+<pre class="r"><code>knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+library(tidyverse)   # tidy data manipulation, including dplyr and ggplot
 library(rtweet)      # the R Twitter API
 theme_set(hrbrthemes::theme_ft_rc())   # Set a ggplot color, font theme
 library(showtext)   
@@ -111,7 +115,7 @@ tw_activity %&gt;%
         caption = paste0(&quot;@jim_gruman | &quot;, Sys.Date())
     )</code></pre>
 <p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Some may prefer the <code>ggridges</code> version of the same data visualization</p>
+<p>Some may prefer the <code>ggridges</code> version of the same data, visualized a bit differently.</p>
 <pre class="r"><code>library(ggridges)
 
 tw_activity %&gt;%
