@@ -440,7 +440,7 @@ us_counties %>%
   labs(title = "Counties & Generations in America",
        fill = "")
 
-ggsave("featured.png", device = "png", width = unit(4,"cm"), type = "cairo")
+ggsave("featured.png", device = "png", height = unit(4,"cm") , type = "cairo")
 ```
 
 ### Conclusion
