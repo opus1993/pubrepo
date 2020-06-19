@@ -21,11 +21,13 @@ knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE)
 ```
 
-I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. `rtweet` is an amazing way of having a little productive procrastination while honing R skills. David's video is here:
+I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. `rtweet` is an amazing way of having a little productive procrastination while honing R skills. 
 
-```{r, echo=FALSE}
-blogdown::shortcode('youtube', 'KE9ItC3doEU')
-```
+In this post, we will look at the accounts that I engage most often, the time of day for my Twitter activity, and build a `reactable` interactive table to sort and filter on the hashtag #TheDayTheFarmChanged. 
+
+----
+
+
 
 As with any other project, start with loading the appropriate libraries.
 
@@ -41,6 +43,7 @@ theme_set(hrbrthemes::theme_ft_rc())   # Set a ggplot color, font theme
 library(showtext)   
 library(lubridate)   # date manipulation tools
 showtext_auto()
+library(reactable)   # A Formatted Sortable Interactive Table 
 ```
 
 The `rtweet` [Obtaining and using access tokens](http://rtweet.info/articles/auth.html) vignette gives instructions for creating tokens and writing them to `.Renviron`, one-time only, as:
@@ -182,6 +185,65 @@ ggridges::geom_ridgeline_gradient(scale = 10, show.legend = FALSE)+
         caption = paste0("@jim_gruman | ", Sys.Date())
     )
 
+```
+
+----
+
+Finally, let's build a `reactable` table to sort and search for individual tweets for the #TheDayTheFarmChanged hastag.
+
+```{r}
+# the URL column returns a list that has to be unlisted. This is a helper function
+make_url_html <- function(url) {
+  if(length(url) >2) {
+    if(!is.na(url)) {
+      as.character(glue::glue("<a title = {url} target = '_new' href = '{url}'>{url}</a>") )
+    } else {
+        ""
+      }
+  } else {
+    paste0(purrr::map_chr(url, ~ paste0("<a title = '", .x, "' target = '_new' href = '", .x, "</a>", collapse = ", ")), collapse = ", ")
+  }
+}
+
+## Search returns tweets from the past 6-9 days
+
+tweet_search_data <-search_tweets("#TheDayTheFarmChanged", n = 200, include_rts = FALSE)  %>%
+  select(user_id, status_id, created_at, screen_name, text, favorite_count, retweet_count, urls_expanded_url) %>%
+  mutate(
+    Tweet = glue::glue("{text} <a href='https://twitter.com/{screen_name}/status/{status_id}'>>> </a>") 
+    )%>%
+  select(DateTime = created_at, User = screen_name, Tweet, Likes = favorite_count, RTs = retweet_count, URLs = urls_expanded_url)
+
+# Convert the URLs from the list column into HTML links
+tweet_search_data$URLs <- purrr::map_chr(tweet_search_data$URLs, make_url_html)
+
+reactable(tweet_search_data,
+            filterable = TRUE,
+            searchable = TRUE,
+            bordered = TRUE,
+            striped = TRUE,
+            highlight = TRUE,
+            defaultPageSize = 25, 
+            showPageSizeOptions = TRUE,
+            showSortable = TRUE,
+            pageSizeOptions = c(25,50,100),
+            defaultSortOrder = "desc",
+            columns = list(
+              DateTime = colDef(defaultSortOrder = "asc"),
+              User = colDef(defaultSortOrder = "asc"),
+              Tweet = colDef(html = TRUE, minWidth = 190, resizable = TRUE),
+              Likes = colDef(filterable = FALSE),
+              RTs = colDef(filterable = FALSE),
+              URLs = colDef(html = TRUE)
+            )
+)
+
+```
+
+David's video is here:
+
+```{r, echo=FALSE}
+blogdown::shortcode('youtube', 'KE9ItC3doEU')
 ```
 
 ----

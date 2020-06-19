@@ -1,7 +1,7 @@
 ---
 title: "rtweet"
 author: "Jim Gruman"
-date: "2020-06-15"
+date: "2020-06-19"
 diagram: true
 output: 
  blogdown::html_page:
@@ -16,10 +16,17 @@ featured: false
 draft: false
 ---
 
+<script src="/rmarkdown-libs/core-js/shim.min.js"></script>
+<script src="/rmarkdown-libs/react/react.min.js"></script>
+<script src="/rmarkdown-libs/react/react-dom.min.js"></script>
+<script src="/rmarkdown-libs/reactwidget/react-tools.js"></script>
+<script src="/rmarkdown-libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="/rmarkdown-libs/reactable-binding/reactable.js"></script>
 
 
-<p>I was inspired by David Robinson’s Tidy Tuesday screencast to work with <code>rtweet</code> on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. <code>rtweet</code> is an amazing way of having a little productive procrastination while honing R skills. David’s video is here:</p>
-{{% youtube "KE9ItC3doEU" %}}
+<p>I was inspired by David Robinson’s Tidy Tuesday screencast to work with <code>rtweet</code> on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. <code>rtweet</code> is an amazing way of having a little productive procrastination while honing R skills.</p>
+<p>In this post, we will look at the accounts that I engage most often, the time of day for my Twitter activity, and build a <code>reactable</code> interactive table to sort and filter on the hashtag #TheDayTheFarmChanged.</p>
+<hr />
 <p>As with any other project, start with loading the appropriate libraries.</p>
 <pre class="r"><code>knitr::opts_chunk$set(
   echo = TRUE,
@@ -31,7 +38,8 @@ library(rtweet)      # the R Twitter API
 theme_set(hrbrthemes::theme_ft_rc())   # Set a ggplot color, font theme
 library(showtext)   
 library(lubridate)   # date manipulation tools
-showtext_auto()</code></pre>
+showtext_auto()
+library(reactable)   # A Formatted Sortable Interactive Table </code></pre>
 <p>The <code>rtweet</code> <a href="http://rtweet.info/articles/auth.html">Obtaining and using access tokens</a> vignette gives instructions for creating tokens and writing them to <code>.Renviron</code>, one-time only, as:</p>
 <pre class="r"><code>token &lt;- create_token(
   app = &quot;mytwitterapp_NDMSBA&quot;,
@@ -78,7 +86,7 @@ users_favorite %&gt;%
         x= &quot;# of tweets liked&quot;,
         caption = paste0(&quot;@jim_gruman | &quot;, Sys.Date())
     )</code></pre>
-<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>And let’s break down my activity by week day</p>
 <pre class="r"><code>tw_activity&lt;- df_likes %&gt;% 
     transmute(
@@ -114,7 +122,7 @@ tw_activity %&gt;%
         y = &quot;&quot;,
         caption = paste0(&quot;@jim_gruman | &quot;, Sys.Date())
     )</code></pre>
-<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Some may prefer the <code>ggridges</code> version of the same data, visualized a bit differently.</p>
 <pre class="r"><code>library(ggridges)
 
@@ -138,8 +146,57 @@ ggridges::geom_ridgeline_gradient(scale = 10, show.legend = FALSE)+
         y = &quot;Proportion of Tweet Likes&quot;,
         caption = paste0(&quot;@jim_gruman | &quot;, Sys.Date())
     )</code></pre>
-<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/rtweet-on-windows/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <hr />
+<p>Finally, let’s build a <code>reactable</code> table to sort and search for individual tweets for the #TheDayTheFarmChanged hastag.</p>
+<pre class="r"><code># the URL column returns a list that has to be unlisted. This is a helper function
+make_url_html &lt;- function(url) {
+  if(length(url) &gt;2) {
+    if(!is.na(url)) {
+      as.character(glue::glue(&quot;&lt;a title = {url} target = &#39;_new&#39; href = &#39;{url}&#39;&gt;{url}&lt;/a&gt;&quot;) )
+    } else {
+        &quot;&quot;
+      }
+  } else {
+    paste0(purrr::map_chr(url, ~ paste0(&quot;&lt;a title = &#39;&quot;, .x, &quot;&#39; target = &#39;_new&#39; href = &#39;&quot;, .x, &quot;&lt;/a&gt;&quot;, collapse = &quot;, &quot;)), collapse = &quot;, &quot;)
+  }
+}
+
+## Search returns tweets from the past 6-9 days
+
+tweet_search_data &lt;-search_tweets(&quot;#TheDayTheFarmChanged&quot;, n = 200, include_rts = FALSE)  %&gt;%
+  select(user_id, status_id, created_at, screen_name, text, favorite_count, retweet_count, urls_expanded_url) %&gt;%
+  mutate(
+    Tweet = glue::glue(&quot;{text} &lt;a href=&#39;https://twitter.com/{screen_name}/status/{status_id}&#39;&gt;&gt;&gt; &lt;/a&gt;&quot;) 
+    )%&gt;%
+  select(DateTime = created_at, User = screen_name, Tweet, Likes = favorite_count, RTs = retweet_count, URLs = urls_expanded_url)
+
+# Convert the URLs from the list column into HTML links
+tweet_search_data$URLs &lt;- purrr::map_chr(tweet_search_data$URLs, make_url_html)
+
+reactable(tweet_search_data,
+            filterable = TRUE,
+            searchable = TRUE,
+            bordered = TRUE,
+            striped = TRUE,
+            highlight = TRUE,
+            defaultPageSize = 25, 
+            showPageSizeOptions = TRUE,
+            showSortable = TRUE,
+            pageSizeOptions = c(25,50,100),
+            defaultSortOrder = &quot;desc&quot;,
+            columns = list(
+              DateTime = colDef(defaultSortOrder = &quot;asc&quot;),
+              User = colDef(defaultSortOrder = &quot;asc&quot;),
+              Tweet = colDef(html = TRUE, minWidth = 190, resizable = TRUE),
+              Likes = colDef(filterable = FALSE),
+              RTs = colDef(filterable = FALSE),
+              URLs = colDef(html = TRUE)
+            )
+)</code></pre>
+<p><div id="htmlwidget-1" class="reactable html-widget" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-1">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"DateTime":["2020-06-16T15:19:24","2020-06-12T22:06:48"],"User":["jim_gruman","jim_gruman"],"Tweet":["https://t.co/8UWayVm6Ps \nJoin us in BurrRidge\n#TheDayTheFarmChanged https://t.co/Mu9m38t7FL <a href='https://twitter.com/jim_gruman/status/1272911662002196484'>>> <\/a>","@thomas_mock @CMastication 🚜#TheDayTheFarmChanged \n\n🙄: \"You are proficient with query languages (SQL/Postgres) and maybe even dream in SQL\" <a href='https://twitter.com/jim_gruman/status/1271564638396841985'>>> <\/a>"],"Likes":[0,3],"RTs":[0,0],"URLs":["<a title = 'https://social.icims.com/viewjob/pt15923205344913ebfa' target = '_new' href = 'https://social.icims.com/viewjob/pt15923205344913ebfa<\/a>","<a title = 'NA' target = '_new' href = 'NA<\/a>"]},"columns":[{"accessor":"DateTime","name":"DateTime","type":"Date","defaultSortDesc":false},{"accessor":"User","name":"User","type":"character","defaultSortDesc":false},{"accessor":"Tweet","name":"Tweet","type":["glue","character"],"resizable":true,"html":true,"minWidth":190},{"accessor":"Likes","name":"Likes","type":"numeric","filterable":false},{"accessor":"RTs","name":"RTs","type":"numeric","filterable":false},{"accessor":"URLs","name":"URLs","type":"character","html":true}],"filterable":true,"searchable":true,"defaultSortDesc":true,"defaultPageSize":25,"showPageSizeOptions":true,"pageSizeOptions":[25,50,100],"paginationType":"numbers","showPageInfo":true,"minRows":1,"highlight":true,"bordered":true,"striped":true,"showSortable":true,"dataKey":"0fc68d0db75ec03aa3ab34c8954d40b2"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script><!David’s video is here:</p>
+<p>&lt;!% youtube "KE9ItC3doEU" %}}<!—-</p>
 <div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
 <h3>Did you find this page helpful? Consider sharing it 🙌</h3>
 </div>
