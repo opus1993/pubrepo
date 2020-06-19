@@ -240,12 +240,6 @@ reactable(tweet_search_data,
 
 ```
 
-David's video is here:
-
-```{r, echo=FALSE}
-blogdown::shortcode('youtube', 'KE9ItC3doEU')
-```
-
 ----
 
 ### Did you find this page helpful? Consider sharing it 🙌
