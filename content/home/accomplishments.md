@@ -57,5 +57,15 @@ date_format = "Jan 2006"
   date_start = "2020-01-23"
   date_end = "2020-04-05"
   description = ""
+  
+[[item]]
+  organization = "DataCamp"
+  organization_url = "https://www.datacamp.com"
+  title = "R Programmer Track"
+  url = ""
+  certificate_url = "https://www.datacamp.com/statement-of-accomplishment/track/7600e0058e0cb9fb18e1ba1c95d654a354a62d2d"
+  date_start = "2020-04-06"
+  date_end = "2020-06-19"
+  description = ""
 
 +++
