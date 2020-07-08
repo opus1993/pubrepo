@@ -1,7 +1,7 @@
 ---
 title: 'Tidymodels: tidy machine learning in R'
 author: "Jim Gruman"
-date: "2020-05-19"
+date: "2020-07-08"
 diagram: true
 output: 
  blogdown::html_page:
@@ -58,8 +58,10 @@ draft: false
 <p>First we need to load the collections of meta-libraries: <code>tidymodels</code> and <code>tidyverse</code>. We will also be using the <code>workflows</code> and <code>tune</code> packages that should eventually become part of CRAN’s <code>tidymodels</code> package bundle, but need to be loaded separately for now.</p>
 <pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 # load the  tidymodels libraries
-library(tidymodels)
-library(tidyverse)
+library(tidymodels)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.2</code></pre>
+<pre><code>## Warning: package &#39;parsnip&#39; was built under R version 4.0.2</code></pre>
+<pre class="r"><code>library(tidyverse)
 library(workflows)
 library(tune)
 
@@ -67,7 +69,8 @@ library(AmesHousing)
 
 theme_set(theme_minimal())</code></pre>
 <p>For this demonstration, we will apply the widely used 2017 update to the Dean De Cock Ames, Iowa housing dataset in the library <code>AmesHousing</code>. With 79 explanatory variables describing (almost) every aspect of residential homes in Ames, Iowa, this exercise challenges ML students every spring and fall around the world to predict the final price of each home.</p>
-<pre class="r"><code>ames &lt;- AmesHousing::make_ames()</code></pre>
+<pre class="r"><code>ames &lt;- AmesHousing::make_ames() %&gt;%
+        mutate(Id = row_number())</code></pre>
 <div id="exploration-of-numeric-variables" class="section level3">
 <h3>Exploration of Numeric Variables</h3>
 <p>The data set includes 36 numerical features, of the following types:</p>
@@ -79,12 +82,16 @@ theme_set(theme_minimal())</code></pre>
 </ul>
 <p>Most of the variables that deal with the actual physical space of the apartment are postively skewed — intuitively, as people tend to live in smaller homes/apartments apart from the extremely wealthy.</p>
 <pre class="r"><code>ames %&gt;%
+  select(-Id)%&gt;%
   keep(is.numeric) %&gt;%
   gather() %&gt;%
   ggplot() +
   geom_histogram(mapping = aes(x=value,fill=key), color=&quot;black&quot;) +
   facet_wrap(~ key, scales = &quot;free&quot;) +
-  theme(legend.position = &quot;&quot;)</code></pre>
+  scale_x_continuous(n.breaks = 2)+
+  theme(legend.position = &quot;&quot;,
+        plot.title.position = &quot;plot&quot;)+
+  labs(title = &quot;Ames Housing Numeric Variable Data Count Histogram Distributions&quot;)</code></pre>
 <p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>There appear to be null values in the data (looking at the ‘vertical bars’ at 0 along the x-axis). Many of the numeric variables are actually discrete and not continuous. As mentioned earlier in the histograms, dimension-related variables seem to follow a similar pattern as the Sale Price and might be good indicators. Other features do not have a strong relationship with Sale Price, like ‘Year Sold’.</p>
 <p>Another data vizualization showing the relationships between the numeric features and sale price:</p>
@@ -93,22 +100,29 @@ theme_set(theme_minimal())</code></pre>
               &quot;BsmtFin_SF_1&quot;,
               &quot;Fireplaces&quot;,
               &quot;Full_Bath&quot;,
-              &quot;Garage_Cars&quot;,
               &quot;Half_Bath&quot;,
-              &quot;Kitchen_AbvGr&quot;)
+              &quot;Kitchen_AbvGr&quot;,
+              &quot;Year_Sold&quot;,
+              &quot;Mo_Sold&quot;)
 ames_clean &lt;- ames %&gt;% mutate_at(.vars = ames_fctrs, .funs = as.factor)
 
 ames_clean %&gt;%
+  select(-Id) %&gt;%
   keep(is.numeric) %&gt;%
   pivot_longer(-Sale_Price, names_to = &quot;Feature&quot;, values_to = &quot;Value&quot;) %&gt;%
   ggplot() +
   geom_point(mapping=aes(x = Value, y = Sale_Price, color = Feature)) + 
   scale_y_continuous(labels = scales::comma)+
   facet_wrap(~ Feature, scales = &quot;free&quot;, ncol = 4) +
-  theme(legend.position = &quot;&quot;)+labs(x = &quot;Numeric Feature Value&quot;)</code></pre>
+  scale_x_continuous(n.breaks = 2)+
+  theme(legend.position = &quot;&quot;,
+        plot.title.position = &quot;plot&quot;)+
+  labs(x = &quot;Numeric Feature Value&quot;,
+       title = &quot;Ames Housing Numeric Variable versus Sale Price&quot;)</code></pre>
 <p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
 <p>A few variables, like overall quality and lot square footage, are highly correlated with Sale Price. Other views of correlation from the new tidymodels <code>corrr</code> package and the <code>DataExplorer</code> package:</p>
 <pre class="r"><code>ames_clean %&gt;%
+  select(-Id)%&gt;%
   keep(is.numeric) %&gt;%
   corrr::correlate() %&gt;%
   corrr::rearrange() %&gt;%
@@ -116,12 +130,11 @@ ames_clean %&gt;%
   corrr::rplot(shape = 15, colours = c(&quot;darkorange&quot;,&quot;white&quot;,&quot;darkcyan&quot;))</code></pre>
 <p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>ames_clean %&gt;%
+  select(-Id)%&gt;%
   keep(is.numeric) %&gt;%
   corrr::correlate() %&gt;%
   corrr::network_plot(min_cor = 0.2)</code></pre>
 <p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<pre class="r"><code>DataExplorer::plot_correlation(na.omit(ames_clean), maxcat = 5L)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 </div>
 <div id="exploration-of-categorical-variables" class="section level3">
 <h3>Exploration of Categorical Variables</h3>
@@ -131,52 +144,35 @@ ames_clean %&gt;%
 chart &lt;- c(ames_factors,&quot;Sale_Price&quot;)
 
 ames_clean %&gt;%
+  select(-Id)%&gt;%
   select_at(vars(chart)) %&gt;%
   pivot_longer(-Sale_Price, names_to = &quot;Factor&quot;, values_to = &quot;Level&quot;) %&gt;%
   ggplot() +
   geom_boxplot(mapping=aes(x = Level, y = Sale_Price, fill = Factor)) + 
   scale_y_continuous(labels = scales::comma)+
   facet_wrap(~ Factor, scales = &quot;free&quot;, ncol = 4) +
-  theme(legend.position = &quot;&quot;)</code></pre>
+  theme(legend.position = &quot;&quot;,
+        plot.title.position = &quot;plot&quot;)+
+  labs(x = &quot;Categorical Feature Value&quot;,
+       title = &quot;Ames Housing Categorical Variable versus Sale Price&quot;)</code></pre>
 <p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
-</div>
-<div id="other-exploratory-data-analysis-views" class="section level3">
-<h3>Other Exploratory Data Analysis Views</h3>
-<pre class="r"><code>DataExplorer::plot_intro(ames_clean)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-</div>
-<div id="missingness" class="section level3">
-<h3>Missingness</h3>
-<p>Every feature has an observation in this incarnation of the Ames data set. No imputation will be required in these recipes.</p>
-<pre class="r"><code>DataExplorer::plot_missing(ames_clean)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 </div>
 </div>
 <div id="split-the-data-into-trainingtesting" class="section level2">
 <h2>Split the data into Training/Testing</h2>
 <p>First, let’s split our dataset into training and testing sets. The training data will be used to fit our model and tune its parameters, while the testing data will be used to evaluate our final model’s performance.</p>
 <p>This split can be done automatically using the <code>inital_split()</code> function from <code>rsample</code> which creates a special “split” object.</p>
-<pre class="r"><code>ames_split&lt;-initial_split(ames_clean)
+<pre class="r"><code>ames_split&lt;-initial_split(ames)
 
 ames_split</code></pre>
-<pre><code>## &lt;Training/Validation/Total&gt;
+<pre><code>## &lt;Analysis/Assess/Total&gt;
 ## &lt;2198/732/2930&gt;</code></pre>
 <pre class="r"><code>ames_train &lt;- training(ames_split)
 ames_test &lt;- testing(ames_split)</code></pre>
 <p>At some point we’re going to want to do some parameter tuning, so we’re going to use cross-validation. We can create a cross-validated version of the training set in preparation for that moment using <code>vfold_cv()</code>.</p>
 <pre class="r"><code>ames_cv &lt;- vfold_cv(ames_train, v = 10, strata = &quot;Sale_Price&quot;)</code></pre>
-<p>a simple linear model can be fit against the treated data as a check:</p>
-<pre class="r"><code>ameslm &lt;- lm(Sale_Price ~ ., data = ames_train)
-
-glance(ameslm)</code></pre>
-<pre><code>## # A tibble: 1 x 11
-##   r.squared adj.r.squared  sigma statistic p.value    df  logLik    AIC    BIC
-##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     0.943         0.934 20409.      101.       0   310 -24764. 50150. 51922.
-## # ... with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
-<p>The simple linear model explains 94% of the variance (adj.r.squared) in the training data.</p>
-<p>As another over-simplified example, the sale price of a house could be modeled as a function of its geo-location. These predictors appear to have nonlinear relationships with the outcome:</p>
-<pre class="r"><code>ames_train %&gt;% 
+<p>Expect that the modeling technique has to deal with all sorts of problems with collinearity and residuals. As another simplified example, the sale price of a house could be described as a function of its geo-location. These predictors certainly have nonlinear relationships with the outcome:</p>
+<pre class="r"><code>ames %&gt;% 
   dplyr::select(Sale_Price, Longitude, Latitude) %&gt;% 
   tidyr::pivot_longer(cols = c(Longitude, Latitude), 
                       names_to = &quot;predictor&quot;, values_to = &quot;value&quot;) %&gt;% 
@@ -198,96 +194,149 @@ glance(ameslm)</code></pre>
 </ul>
 <p>For instance, the following includes the creation of categorical dummy variables, a geo-distance feature, normalizing, removing zero-variance features, and principle components analysis.</p>
 <p>(Oddly, this recipe threshold is not stopping at 80%, in spite of the <code>recipes</code> parameter. We will re-visit the use of PCA for this use case later.)</p>
-<pre class="r"><code>ames_rec &lt;-  recipe(Sale_Price ~ ., data = ames_train) %&gt;%
-  step_dummy(all_nominal()) %&gt;%
-  step_geodist(lat = Latitude, lon = Longitude, ref_lat = 
+<pre class="r"><code># feature engineering 1
+step_part1 &lt;- function(recipe) {
+    recipe %&gt;%
+        update_role(Id, new_role = &quot;id_variable&quot;) %&gt;% 
+        step_mutate(age         = as.integer(as.character(Year_Sold)) - Year_Remod_Add,
+                    age2        = as.integer(as.character(Year_Sold)) - Year_Built,
+                    TotBath     = Full_Bath + Half_Bath/2 + Bsmt_Full_Bath + Bsmt_Half_Bath/2,
+                    RemodAdd    = factor(ifelse(Year_Built == Year_Remod_Add, 0, 1)),
+                    TotalSF     = Gr_Liv_Area + Total_Bsmt_SF,
+                    avgRoomSF   = Gr_Liv_Area / TotRms_AbvGrd,
+                    PorchSF     = Enclosed_Porch + Three_season_porch + Screen_Porch + Open_Porch_SF,
+#                    Porch       = factor(PorchSF &gt; 0),
+                    HasFirePl   = factor(Fireplaces &gt; 0),
+                    Pool        = factor(Pool_Area &gt; 0),
+                    BsmtBath    = factor((Bsmt_Half_Bath + Bsmt_Full_Bath) &gt; 0),
+                    GrgCrsXCond = scale(as.numeric(Garage_Cars))*scale(as.numeric(Garage_Qual))
+        ) %&gt;%
+        step_mutate_at(all_nominal(), fn = ~forcats::fct_infreq(.)) %&gt;%
+        step_rm(Year_Remod_Add, Full_Bath, Half_Bath, Bsmt_Full_Bath, Bsmt_Half_Bath)
+}
+
+# recipe part 2: collapsing categories ------------------------------------
+
+step_part2 &lt;- function(recipe) {
+    recipe %&gt;%
+        update_role(Id, new_role = &quot;id_variable&quot;) %&gt;% 
+        step_mutate(
+            Functional = forcats::fct_collapse(
+                Functional,
+                Maj3 = c(&quot;Maj2&quot;, &quot;Sev&quot;)),
+            Heating = forcats::fct_collapse(
+                Heating,
+                g1 = c(&quot;Wall&quot;, &quot;Floor&quot;)),
+            HouseStyleUnf = forcats::fct_collapse(
+                House_Style,
+                Unf = c(&quot;One_and_Half_Unf&quot;, &quot;Two_and_Half_Unf&quot;)),
+            CondFeedr  = factor(((Condition_1 == &quot;Feedr&quot;)  | (Condition_2 == &quot;Feedr&quot;))),
+            CondArtery = factor(((Condition_1 == &quot;Artery&quot;) | (Condition_2 == &quot;Artery&quot;))),
+            CondPos = factor((grepl(&quot;^Pos&quot;, Condition_1) | grepl(&quot;^Pos&quot;, Condition_2))),
+            CondRRA = factor((grepl(&quot;^RRA&quot;, Condition_1) | grepl(&quot;^RRA&quot;, Condition_2))),
+            CondRRN = factor((grepl(&quot;^RRN&quot;, Condition_1) | grepl(&quot;^RRN&quot;, Condition_2))),
+            SaleCondition = forcats::fct_collapse(
+                Sale_Condition,
+                Normal = c(&quot;Normal&quot;, &quot;AdjLand&quot;)),
+        )
+}
+
+step_part3 &lt;- function(recipe) {
+    # Interaction of SaleCondition (factor) and LotArea
+    recipe %&gt;%
+        # SaleCondition: effect coding (i.e., -1 +1)
+        step_mutate(SaleCndOth = -1 + 2*(Sale_Condition != &quot;Normal&quot;),
+                    LotAreaTr = Lot_Area) %&gt;% 
+        step_YeoJohnson(LotAreaTr) %&gt;% 
+        step_normalize(LotAreaTr) %&gt;%
+        step_interact(terms = ~LotAreaTr:SaleCndOth) %&gt;% 
+        step_rm(SaleCndOth, LotAreaTr)
+}
+
+ames_rec&lt;- recipe(Sale_Price ~ ., data = ames_train) %&gt;%
+    update_role(Id, new_role = &quot;id_variable&quot;) %&gt;% 
+    step_part1() %&gt;%
+    step_part2() %&gt;%
+    step_part3() %&gt;%
+    step_dummy(all_nominal())%&gt;%
+    step_geodist(lat = Latitude, lon = Longitude, ref_lat = 
 mean(ames$Latitude) , ref_lon = 
 mean(ames$Longitude) ) %&gt;%
   step_rm(Latitude, Longitude)%&gt;%
-  step_normalize(all_predictors()) %&gt;%
-  step_nzv(all_predictors())  %&gt;%
-  step_pca(all_predictors(), threshold = 0.8)
+    step_zv(all_predictors())%&gt;%
+    step_YeoJohnson(all_predictors(), -all_nominal()) %&gt;% 
+    step_normalize(all_predictors(), -all_nominal()) %&gt;%
+    step_poly(age, age2, degree = 2) 
 
-ames_prep &lt;- prep(ames_rec) </code></pre>
+ames_prep &lt;- prep(ames_rec) 
+
+ames_prep %&gt;% juice()</code></pre>
+<pre><code>## # A tibble: 2,198 x 326
+##    Lot_Frontage Lot_Area Year_Built Mas_Vnr_Area BsmtFin_SF_1 BsmtFin_SF_2
+##           &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
+##  1        2.10     2.58      -0.408        1.11        -0.928       -0.376
+##  2        0.674    0.485     -0.375       -0.819        0.872        2.65 
+##  3        0.699    0.895     -0.476        1.10        -1.57        -0.376
+##  4        0.993    0.405     -0.139       -0.819       -1.57        -0.376
+##  5        0.523    0.832      0.836       -0.819       -0.396       -0.376
+##  6       -0.369   -1.14       0.971       -0.819       -0.396       -0.376
+##  7       -0.311   -1.11       0.668       -0.819       -1.57        -0.376
+##  8       -0.427   -0.973      0.769       -0.819       -0.396       -0.376
+##  9        0.158   -0.360      0.903       -0.819        1.23        -0.376
+## 10        0.798    0.225      0.601       -0.819       -0.396       -0.376
+## # ... with 2,188 more rows, and 320 more variables: Bsmt_Unf_SF &lt;dbl&gt;,
+## #   Total_Bsmt_SF &lt;dbl&gt;, First_Flr_SF &lt;dbl&gt;, Second_Flr_SF &lt;dbl&gt;,
+## #   Low_Qual_Fin_SF &lt;dbl&gt;, Gr_Liv_Area &lt;dbl&gt;, Bedroom_AbvGr &lt;dbl&gt;,
+## #   Kitchen_AbvGr &lt;dbl&gt;, TotRms_AbvGrd &lt;dbl&gt;, Fireplaces &lt;dbl&gt;,
+## #   Garage_Cars &lt;dbl&gt;, Garage_Area &lt;dbl&gt;, Wood_Deck_SF &lt;dbl&gt;,
+## #   Open_Porch_SF &lt;dbl&gt;, Enclosed_Porch &lt;dbl&gt;, Three_season_porch &lt;dbl&gt;,
+## #   Screen_Porch &lt;dbl&gt;, Pool_Area &lt;dbl&gt;, Misc_Val &lt;dbl&gt;, Mo_Sold &lt;dbl&gt;,
+## #   Year_Sold &lt;dbl&gt;, Id &lt;int&gt;, Sale_Price &lt;int&gt;, TotBath &lt;dbl&gt;, TotalSF &lt;dbl&gt;,
+## #   avgRoomSF &lt;dbl&gt;, PorchSF &lt;dbl&gt;, GrgCrsXCond &lt;dbl&gt;,
+## #   LotAreaTr_x_SaleCndOth &lt;dbl&gt;, MS_SubClass_Two_Story_1946_and_Newer &lt;dbl&gt;,
+## #   MS_SubClass_One_and_Half_Story_Finished_All_Ages &lt;dbl&gt;,
+## #   MS_SubClass_One_Story_PUD_1946_and_Newer &lt;dbl&gt;,
+## #   MS_SubClass_Two_Story_PUD_1946_and_Newer &lt;dbl&gt;,
+## #   MS_SubClass_One_Story_1945_and_Older &lt;dbl&gt;,
+## #   MS_SubClass_Duplex_All_Styles_and_Ages &lt;dbl&gt;,
+## #   MS_SubClass_Split_or_Multilevel &lt;dbl&gt;,
+## #   MS_SubClass_Two_Story_1945_and_Older &lt;dbl&gt;,
+## #   MS_SubClass_Two_Family_conversion_All_Styles_and_Ages &lt;dbl&gt;,
+## #   MS_SubClass_Split_Foyer &lt;dbl&gt;,
+## #   MS_SubClass_Two_and_Half_Story_All_Ages &lt;dbl&gt;,
+## #   MS_SubClass_One_and_Half_Story_Unfinished_All_Ages &lt;dbl&gt;,
+## #   MS_SubClass_PUD_Multilevel_Split_Level_Foyer &lt;dbl&gt;,
+## #   MS_SubClass_One_Story_with_Finished_Attic_All_Ages &lt;dbl&gt;,
+## #   MS_SubClass_One_and_Half_Story_PUD_All_Ages &lt;dbl&gt;,
+## #   MS_Zoning_Residential_Medium_Density &lt;dbl&gt;,
+## #   MS_Zoning_Floating_Village_Residential &lt;dbl&gt;,
+## #   MS_Zoning_Residential_High_Density &lt;dbl&gt;, MS_Zoning_C_all &lt;dbl&gt;,
+## #   MS_Zoning_A_agr &lt;dbl&gt;, MS_Zoning_I_all &lt;dbl&gt;, Street_Grvl &lt;dbl&gt;,
+## #   Alley_Gravel &lt;dbl&gt;, Alley_Paved &lt;dbl&gt;, Lot_Shape_Slightly_Irregular &lt;dbl&gt;,
+## #   Lot_Shape_Moderately_Irregular &lt;dbl&gt;, Lot_Shape_Irregular &lt;dbl&gt;,
+## #   Land_Contour_HLS &lt;dbl&gt;, Land_Contour_Bnk &lt;dbl&gt;, Land_Contour_Low &lt;dbl&gt;,
+## #   Utilities_NoSewr &lt;dbl&gt;, Utilities_NoSeWa &lt;dbl&gt;, Lot_Config_Corner &lt;dbl&gt;,
+## #   Lot_Config_CulDSac &lt;dbl&gt;, Lot_Config_FR2 &lt;dbl&gt;, Lot_Config_FR3 &lt;dbl&gt;,
+## #   Land_Slope_Mod &lt;dbl&gt;, Land_Slope_Sev &lt;dbl&gt;,
+## #   Neighborhood_College_Creek &lt;dbl&gt;, Neighborhood_Old_Town &lt;dbl&gt;,
+## #   Neighborhood_Edwards &lt;dbl&gt;, Neighborhood_Somerset &lt;dbl&gt;,
+## #   Neighborhood_Northridge_Heights &lt;dbl&gt;, Neighborhood_Sawyer &lt;dbl&gt;,
+## #   Neighborhood_Gilbert &lt;dbl&gt;, Neighborhood_Northwest_Ames &lt;dbl&gt;,
+## #   Neighborhood_Sawyer_West &lt;dbl&gt;, Neighborhood_Mitchell &lt;dbl&gt;,
+## #   Neighborhood_Crawford &lt;dbl&gt;, Neighborhood_Brookside &lt;dbl&gt;,
+## #   Neighborhood_Iowa_DOT_and_Rail_Road &lt;dbl&gt;, Neighborhood_Northridge &lt;dbl&gt;,
+## #   Neighborhood_Timberland &lt;dbl&gt;, Neighborhood_Stone_Brook &lt;dbl&gt;,
+## #   Neighborhood_South_and_West_of_Iowa_State_University &lt;dbl&gt;,
+## #   Neighborhood_Clear_Creek &lt;dbl&gt;, Neighborhood_Meadow_Village &lt;dbl&gt;,
+## #   Neighborhood_Bloomington_Heights &lt;dbl&gt;, Neighborhood_Briardale &lt;dbl&gt;,
+## #   Neighborhood_Veenker &lt;dbl&gt;, Neighborhood_Northpark_Villa &lt;dbl&gt;,
+## #   Neighborhood_Blueste &lt;dbl&gt;, Neighborhood_Greens &lt;dbl&gt;,
+## #   Neighborhood_Green_Hills &lt;dbl&gt;, Neighborhood_Landmark &lt;dbl&gt;,
+## #   Condition_1_Feedr &lt;dbl&gt;, Condition_1_Artery &lt;dbl&gt;, Condition_1_RRAn &lt;dbl&gt;,
+## #   Condition_1_PosN &lt;dbl&gt;, Condition_1_RRAe &lt;dbl&gt;, Condition_1_PosA &lt;dbl&gt;, ...</code></pre>
 <p>If you want to create a pre-processed data, you can first <code>prep()</code> the recipe for a specific dataset and <code>juice()</code> the prepped recipe to extract the pre-processed data. It turns out that extracting the pre-processed data isn’t actually necessary for the pipeline (but sometimes it’s useful anyway), since this will be done under the hood when the model is fit.</p>
-<p>In this case, let’s explore the impact of principal components analysis.</p>
-<pre class="r"><code>tidied_pca &lt;- tidy(ames_prep, 6)
-
-tidied_pca %&gt;%
-  mutate(component = fct_inorder(component)) %&gt;%
-  filter(component %in% c(&quot;PC1&quot;,&quot;PC2&quot;)) %&gt;%  # show the first 2 components
-  ggplot(aes(value, terms, fill = terms)) +
-  geom_col(show.legend = FALSE)+
-  facet_wrap(~ component)+
-  labs(y=NULL)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>The most significant feature values (positive and negative) of the first six principal components are shown here:</p>
-<pre class="r"><code>tidied_pca %&gt;%
-  filter(component %in% c(&quot;PC1&quot;,&quot;PC2&quot;,&quot;PC3&quot;, &quot;PC4&quot;, &quot;PC5&quot;, &quot;PC6&quot;)) %&gt;%
-  group_by(component) %&gt;%
-  top_n(6, abs(value)) %&gt;%
-  ungroup() %&gt;%
-  mutate(terms = tidytext::reorder_within(terms, abs(value), component)) %&gt;%
-  ggplot(aes(abs(value), terms, fill = value &gt; 0))+
-  geom_col() +
-  facet_wrap(~ component, scales = &quot;free_y&quot;, ncol = 2)+
-  tidytext::scale_y_reordered()+
-  labs(x = &quot;Absolute Value of the contribution&quot;, y = NULL, fill = &quot;Positive?&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-13-1.png" width="864" /></p>
-<p>A visual of the relationship between PC1 and PC2, and Sale Price:</p>
-<pre class="r"><code>pal &lt;- RColorBrewer::brewer.pal(&#39;Set2&#39;,n=4)
-
-juice(ames_prep) %&gt;%
-  ggplot(aes(PC01, PC02, color = Sale_Price)) +
-  geom_point(alpha = 0.9) +
-  scale_colour_gradient(&#39;Sale Price \nDollars&#39;,
-                         low = pal[1], high=pal[4])</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
-<p>A visual of the relationship between PC1 and PC3, and Sale Price:</p>
-<pre class="r"><code>juice(ames_prep) %&gt;%
-  ggplot(aes(PC01, PC03, color = Sale_Price)) +
-  geom_point(alpha = 0.9) +
-  scale_colour_gradient(&#39;Sale Price \nDollars&#39;,
-                                   low = pal[1], high=pal[4])</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
-<p>How much of the variation is being captured for each component?</p>
-<pre class="r"><code>sdev&lt;-ames_prep$steps[[6]]$res$sdev
-
-percent_variation &lt;-sdev ^2 / sum(sdev^2)
-
-tibble(component = unique(tidied_pca$component),
-       percent_var = cumsum(percent_variation)) %&gt;%
-  mutate(top75 = if_else(percent_var&lt;0.75, TRUE, FALSE))%&gt;%
-  mutate(component = fct_inorder(component)) %&gt;%
-  ggplot(aes(component, percent_var, fill = top75)) +
-  geom_col() +
-  scale_y_continuous(labels = scales::percent_format())+
-  labs(title = &quot;Accumulation of Variance in Sale Price Explained by PCs&quot;,
-       subtitle = &quot;Ames Housing, PCA only&quot;)+
-  theme(plot.title.position = &quot;plot&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
-<p>Here, again, a simple linear model can be fit against the treated data as a check:</p>
-<pre class="r"><code>pca_lm &lt;- juice(ames_prep) %&gt;%
-  lm(Sale_Price ~ ., data = .)
-
-glance(pca_lm)</code></pre>
-<pre><code>## # A tibble: 1 x 11
-##   r.squared adj.r.squared  sigma statistic p.value    df  logLik    AIC    BIC
-##       &lt;dbl&gt;         &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-## 1     0.822         0.818 33855.      225.       0    45 -26021. 52134. 52396.
-## # ... with 2 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;</code></pre>
-<p>In this case, the pca linear model does not resemble the legacy linear model as much as I would like to see. We are going to back up and refine the recipe, and apply a random forest technique.</p>
-<pre class="r"><code>ames_rec &lt;-  recipe(Sale_Price ~ ., data = ames_train) %&gt;%
-  step_dummy(all_nominal()) %&gt;%
-  step_geodist(lat = Latitude, lon = Longitude, ref_lat = 
-mean(ames$Latitude) , ref_lon = 
-mean(ames$Longitude) ) %&gt;%
-  step_rm(Latitude, Longitude)%&gt;%
-  step_normalize(all_predictors()) %&gt;%
-  step_nzv(all_predictors())  
-
-ames_prep &lt;- prep(ames_rec) </code></pre>
-<p>The power of <code>tidymodels</code> becomes more apparent as we move forward into more sophisticated machine learning techniques.</p>
+<p>The power of <code>tidymodels</code> becomes more apparent as we move forward into sophisticated machine learning techniques.</p>
+<pre class="r"><code>rm(ames, ames_clean)</code></pre>
 </div>
 <div id="specify-the-model" class="section level2">
 <h2>Specify the model</h2>
@@ -328,7 +377,7 @@ add_model(rf_model)</code></pre>
 <p>Since we had a parameter that we designated to be tuned (mtry), we need to tune it (i.e. choose the value that leads to the best performance) before fitting our model. If you don’t have any parameters to tune, you can skip this step.</p>
 <p>Note that we will do our tuning using the cross-validation object (ames_cv). To do this, we specify the range of mtry values we want to try, and then we add a tuning layer to our workflow using <code>tune_grid()</code> (from the tune package). Note that we focus on two metrics: accuracy and roc_auc (from the <code>yardstick</code> package).</p>
 <pre class="r"><code># specify which values eant to try  
-rf_grid &lt;- expand.grid(mtry = c(3, 10, 20, 30))
+rf_grid &lt;- expand.grid(mtry = c(20, 30, 50, 80))
 # extract results
 rf_tune_results &lt;- rf_workflow %&gt;%
   tune_grid(resamples = ames_cv, #CV object
@@ -342,10 +391,10 @@ rf_tune_results &lt;- rf_workflow %&gt;%
 <pre><code>## # A tibble: 4 x 6
 ##    mtry .metric .estimator   mean     n std_err
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
-## 1     3 rmse    standard   31499.    10   1464.
-## 2    10 rmse    standard   27137.    10   1203.
-## 3    20 rmse    standard   26372.    10   1177.
-## 4    30 rmse    standard   26106.    10   1117.</code></pre>
+## 1    20 rmse    standard   27248.    10   1538.
+## 2    30 rmse    standard   26933.    10   1477.
+## 3    50 rmse    standard   26769.    10   1451.
+## 4    80 rmse    standard   26925.    10   1505.</code></pre>
 </div>
 </div>
 <div id="finalize-the-workflow" class="section level2">
@@ -353,13 +402,13 @@ rf_tune_results &lt;- rf_workflow %&gt;%
 <p>We want to add a layer to our workflow that corresponds to the tuned parameter, i.e. sets <code>mtry</code> to be the value that yielded the best results. If you didn’t tune any parameters, you can skip this step.</p>
 <p>We can extract the best value for the accuracy metric by applying the <code>select_best()</code> function to the tune object.</p>
 <pre class="r"><code>param_final &lt;- rf_tune_results %&gt;%
-  select_best(metric = &quot;rmse&quot;, maximize = TRUE)</code></pre>
-<pre><code>## Warning: The `maximize` argument is no longer needed. This value was ignored.</code></pre>
-<pre class="r"><code>param_final</code></pre>
+  select_best(metric = &quot;rmse&quot;)
+
+param_final</code></pre>
 <pre><code>## # A tibble: 1 x 1
 ##    mtry
 ##   &lt;dbl&gt;
-## 1    30</code></pre>
+## 1    50</code></pre>
 <p>Then we can add this parameter to the workflow using the <code>finalize_workflow()</code> function.</p>
 <pre class="r"><code>rf_workflow &lt;- rf_workflow %&gt;%
     finalize_workflow(param_final)</code></pre>
@@ -387,24 +436,24 @@ test_performance</code></pre>
 <pre><code>## # A tibble: 2 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard   28365.   
-## 2 rsq     standard       0.887</code></pre>
+## 1 rmse    standard   23661.   
+## 2 rsq     standard       0.912</code></pre>
 <pre class="r"><code># generate predictions from the test set
 test_predictions &lt;- rf_fit %&gt;% collect_predictions()
 test_predictions</code></pre>
 <pre><code>## # A tibble: 732 x 4
 ##    id                 .pred  .row Sale_Price
 ##    &lt;chr&gt;              &lt;dbl&gt; &lt;int&gt;      &lt;int&gt;
-##  1 train/test split 125487.     2     105000
-##  2 train/test split 241768.     4     244000
-##  3 train/test split 186196.     5     189900
-##  4 train/test split 192475.     6     195500
-##  5 train/test split 180287.     8     191500
-##  6 train/test split 222542.    20     210000
-##  7 train/test split 167088.    22     170000
-##  8 train/test split 146749.    24     149000
-##  9 train/test split 323575.    43     259000
-## 10 train/test split 489205.    47     500000
+##  1 train/test split 189504.     6     195500
+##  2 train/test split 180860.    11     175900
+##  3 train/test split 171303.    12     185000
+##  4 train/test split 176650.    13     180400
+##  5 train/test split 217099.    15     212000
+##  6 train/test split 340117.    18     394432
+##  7 train/test split 226565.    20     210000
+##  8 train/test split 202824.    23     216000
+##  9 train/test split 153210.    25     149900
+## 10 train/test split 135056.    26     142000
 ## # ... with 722 more rows</code></pre>
 <pre class="r"><code>test_predictions %&gt;%
   ggplot(aes(Sale_Price, .pred))+
@@ -415,7 +464,7 @@ test_predictions</code></pre>
   labs(title = &quot;Ames Housing Sale Price Actual versus Prediction&quot;,
        subtitle = &quot;Expecting a linear line with slope of 1&quot;)+
   theme(plot.title.position = &quot;plot&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <hr />
 <div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
 <h3>Did you find this page helpful? Consider sharing it 🙌</h3>
