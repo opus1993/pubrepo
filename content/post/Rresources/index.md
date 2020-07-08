@@ -116,7 +116,8 @@ My list of useful free courses, books, tutorials, and expert blogs
 
 ----
 ## Machine Learning
-- [`tidymodels`](https://www.tidyverse.org/blog/2018/08/tidymodels-0-0-1/) by [Max Kuhn](https://twitter.com/topepos)
+- [`tidymodels`](https://www.tidymodels.org/) by [Max Kuhn](https://twitter.com/topepos)
+- [Jared Lander](https://www.jaredlander.com/talks/)
 
 {{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
 
