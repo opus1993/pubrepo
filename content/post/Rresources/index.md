@@ -1,5 +1,5 @@
 ---
-date: "2020-05-28"
+date: "2020-07-06"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -19,6 +19,7 @@ tags:
 Inspired by:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
 
+----
 My list of useful free courses, books, tutorials, and expert blogs
 
 ## Online Courses
@@ -29,7 +30,6 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)
 - **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
 - [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
-- [Introduction to R by DataCamp](https://www.datacamp.com/courses/free-introduction-to-r)
 - [YaRrr! The Pirate’s Guide to R (Video)](https://www.youtube.com/playlist?list=PL9tt3I41HFS9gmeZFEuNrnu_7V_NFngfJ) by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
 - [Chromebook Data Science (CBDS)](http://jhudatascience.org/chromebookdatascience/cbds.html)
 - [Data Science: R Basics](https://www.edx.org/course/data-science-r-basics)
@@ -41,6 +41,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 
 ## Introductory Books
 - **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
+- [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)
 - **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** by [Garrett Grolemund](https://twitter.com/StatGarrett)
 - **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
 - **[R for Data Science](https://r4ds.had.co.nz/) by [Hadley Wickham](https://twitter.com/hadleywickham)** and [Garrett Grolemund](https://twitter.com/StatGarrett)
@@ -72,8 +73,12 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Advanced R](https://github.com/uc-r/Advanced-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 - [A data.table and dplyr tour](https://atrebas.github.io/post/2019-03-03-datatable-dplyr/)
 ----
+
 ## Data Visualization
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
+
+{{< youtube id="h29g21z0a68" autoplay="false" >}}
+
 - [MPA 635: Data Visualization](https://datavizf18.classes.andrewheiss.com/) by [Andrew Heiss](https://twitter.com/andrewheiss)
 - [How to Create BBC Style Graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)
 - [R Graph Gallery](https://www.r-graph-gallery.com/)
@@ -84,6 +89,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [`patchwork`](https://patchwork.data-imaginist.com/)
 - [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)
 - [`ggbump`](https://github.com/davidsjoberg/ggbump)
+
 ----
 ## Colors
 - [`colourpicker`](https://github.com/daattali/colourpicker/) Rstudio widget by [Dean Attali](https://twitter.com/daattali)
@@ -91,6 +97,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Wes Anderson color palettes](https://github.com/karthik/wesanderson)
 - [How to standardize group colors in data visualizations in R](https://paulvanderlaken.com/2020/03/20/how-to-standardize-group-colors-in-data-visualizations-in-r/) by [Paul van der Laken](https://twitter.com/paulvanderlaken)
 ----
+
 ## Smart Interactive Visualization Extensions and Widgets
 - [ggplot2 Extensions Gallery](https://exts.ggplot2.tidyverse.org/gallery/)
 - [htmlwidgets for R](https://www.htmlwidgets.org) 
@@ -99,15 +106,20 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [R Views Enterprise-ready dashboards with Shiny and Databases](https://rviews.rstudio.com/2017/09/20/dashboards-with-r-and-databases/)
 - [R Shiny upgrade packages](http://enhancedatascience.com/2017/07/10/the-packages-you-need-for-your-r-shiny-application/)
 - [Advanced Shiny Tips and Tricks](https://github.com/daattali/advanced-shiny#readme) by [Dean Attali](https://twitter.com/daattali)
+
 ----
 ## Markdown and Blogdown
 - [Rmarkdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by [Yihui Xie](https://twitter.com/xieyihui), [JJ Allaire](https://twitter.com/fly_upside_down), and [Garrett Grolemund](https://twitter.com/StatGarrett)
 - [RMarkdown Tips and Tricks](https://www.richardshanna.com/tutorial/rmarkdown_tutorial_1/) by [Richard Hanna](https://twitter.com/Richard_S_Hanna)
 - [Introduction to `xaringan`](https://slides.yihui.org/xaringan/#1) by [Yihui Xie](https://twitter.com/xieyihui)
 - [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)
+
 ----
 ## Machine Learning
 - [`tidymodels`](https://www.tidyverse.org/blog/2018/08/tidymodels-0-0-1/) by [Max Kuhn](https://twitter.com/topepos)
+
+{{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
+
 - [Machine Learning with R, the tidyverse, and mlr](https://www.manning.com/books/machine-learning-with-r-the-tidyverse-and-mlr) by [Hefin Rhys](https://twitter.com/HRJ21)
 - [`mlr`](https://mlr.mlr-org.com/articles/tutorial/task.html) by [Patrick Schratz](https://twitter.com/pjs_228)
 - [Introduction to Machine Learning with `mlr`](https://compstat-lmu.github.io/lecture_i2ml/articles/content.html)
@@ -121,6 +133,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [The GDSL Big List of Teaching Links](https://github.com/GDSL-UL/Teaching_Links)
 - [Geocomputation with R](https://geocompr.robinlovelace.net/) by [Robin Lovelace](https://twitter.com/robinlovelace)
 ----
+
 ## Meetups, Blogs, and User Groups
 - [Chicago R Users Group](https://chicago-r-user-group.github.io/)
 - [Chicago R Collaborative](https://chircollab.github.io/)
@@ -129,6 +142,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Business Science](https://www.business-science.io/) by 
 [Matt Dancho](https://twitter.com/mdancho84)
 - [Julia Silge](https://juliasilge.com/blog/)
+- [Data Imaginist](https://www.data-imaginist.com/) by [Thomas Lin Pederson](https://twitter.com/thomasp85)
 - [Alison Hill](https://alison.rbind.io/) by [Alison Hill](https://twitter.com/apreshill)
 - [Jenny Bryan](https://jennybryan.org/teach/)
 - [Tyler Morgan-Wall](https://www.tylermw.com/posts/) by [Tyler Morgan-Wall](https://twitter.com/tylermorganwall)
