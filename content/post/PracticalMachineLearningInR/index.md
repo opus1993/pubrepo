@@ -1,7 +1,7 @@
 ---
 title: Practical Machine Learning in R
 author: Jim Gruman
-date: '2020-06-15'
+date: '2020-07-08'
 slug: practical-machine-learning-in-r
 categories:
   - Education, R
@@ -10,7 +10,7 @@ tags:
 subtitle: ''
 summary: ''
 authors: []
-lastmod: '2020-06-15T15:07:07-05:00'
+lastmod: '2020-07-08T15:07:07-05:00'
 featured: no
 image:
   caption: ''
@@ -47,18 +47,19 @@ Unlike other books, *Practical Machine Learning in R* covers both a conceptual a
 
 Business savvy readers might ask where drag and drop Graphical User Interface AutoML (Automatic Machine Learning) tools fit, and why invest time in R?
 
-One cannot introduce AutoML without mentioning the machine learning project’s life cycle, which includes data preparation, feature selection, model selection, parameter 
-optimization, model validation, and communication. As advanced as technology has become, data science projects still remain time-consuming and repetitive.
+One cannot introduce AutoML without mentioning the machine learning project’s life cycle, which includes data preparation, feature selection, model selection, parameter optimization, model validation, and communication. As advanced as technology has become, data science projects still remain time-consuming and repetitive.
 
-Though AutoMLs can be efficient at building models from prepared datasets, they are still not capable of performing the time consuming parts. We still need analysts and data scientists to engage the business. We still need engineers to apply domain knowledge to generate more useful features. At it's best, AutoML still can only deal with limited types of problems. Most importantly, we still need data scientists to draw actionable insights from the data.
+Though AutoMLs can be efficient at building models from prepared datasets, they are still not capable of performing the time consuming parts. We still need analysts and data scientists to engage the business. We still need engineers to apply domain knowledge to generate useful features. At it's best, AutoML still can only deal with limited types of problems. Most importantly, we still need data scientists to draw actionable insights from the data.
 
 ----
 
 ### What's missing?
 
-Readers should look elsewhere for detailed instruction on crucial skills in statistics, SQL, data visualization, and computing architectures. Time series forecasting and geospatial topics warrant their own books as well.
+Readers should look elsewhere for detailed instruction on crucial skills in statistics, SQL, data visualization, and computing architectures. Time series forecasting and geospatial topics warrant their own books as well. The new [`glmnet`](https://glmnet.stanford.edu/articles/glmnet.html) methodology offers another robust technique for fitting a generalized linear model, and offers solutions to overfitting and p-hacking that often plague stepwise regression in practice.
 
-*Practical Machine Learning in R* demonstrates machine learning using R libraries that are mature, stable, and widely available, including the `tidyverse` and `caret`. In the near future, the [`tidymodels`](https://www.tidymodels.org/) and [`mlr3`](https://mlr3book.mlr-org.com/) packages in development could eventually emerge as the professional tools of choice.
+*Practical Machine Learning in R* demonstrates machine learning using R libraries that are mature, stable, and widely available, including the `tidyverse` and a little bit of `caret`. In the near future, the [`tidymodels`](https://www.tidymodels.org/) and [`mlr3`](https://mlr3book.mlr-org.com/) packages in development will likely eventually emerge as the professional tools of choice.
+
+Data science is evolving so quickly that a second edition is likely in the works already.
 
 ----
 
