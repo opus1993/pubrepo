@@ -1,7 +1,7 @@
 ---
 title: 'Tidymodels: tidy machine learning in R'
 author: "Jim Gruman"
-date: "2020-07-08"
+date: "2020-07-07"
 diagram: true
 output: 
  blogdown::html_page:
@@ -271,20 +271,20 @@ mean(ames$Longitude) ) %&gt;%
 ames_prep &lt;- prep(ames_rec) 
 
 ames_prep %&gt;% juice()</code></pre>
-<pre><code>## # A tibble: 2,198 x 326
+<pre><code>## # A tibble: 2,198 x 323
 ##    Lot_Frontage Lot_Area Year_Built Mas_Vnr_Area BsmtFin_SF_1 BsmtFin_SF_2
 ##           &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-##  1        2.10     2.58      -0.408        1.11        -0.928       -0.376
-##  2        0.674    0.485     -0.375       -0.819        0.872        2.65 
-##  3        0.699    0.895     -0.476        1.10        -1.57        -0.376
-##  4        0.993    0.405     -0.139       -0.819       -1.57        -0.376
-##  5        0.523    0.832      0.836       -0.819       -0.396       -0.376
-##  6       -0.369   -1.14       0.971       -0.819       -0.396       -0.376
-##  7       -0.311   -1.11       0.668       -0.819       -1.57        -0.376
-##  8       -0.427   -0.973      0.769       -0.819       -0.396       -0.376
-##  9        0.158   -0.360      0.903       -0.819        1.23        -0.376
-## 10        0.798    0.225      0.601       -0.819       -0.396       -0.376
-## # ... with 2,188 more rows, and 320 more variables: Bsmt_Unf_SF &lt;dbl&gt;,
+##  1        2.08     2.69      -0.380        1.15        -0.949       -0.380
+##  2        0.682    0.526     -0.346       -0.805        0.846        2.63 
+##  3        0.707    0.948     -0.446        1.14        -1.57        -0.380
+##  4        0.997    0.444     -0.113       -0.805       -1.57        -0.380
+##  5        0.633    0.219      0.885        0.707       -0.424       -0.380
+##  6       -0.351   -1.14       0.985       -0.805       -0.424       -0.380
+##  7        0.173   -0.341      0.918       -0.805        1.21        -0.380
+##  8       -1.85    -0.221      0.685       -0.805       -1.57        -0.380
+##  9        0.805    0.259      0.619       -0.805       -0.424       -0.380
+## 10       -1.85    -0.524      0.452       -0.805       -0.424        2.64 
+## # ... with 2,188 more rows, and 317 more variables: Bsmt_Unf_SF &lt;dbl&gt;,
 ## #   Total_Bsmt_SF &lt;dbl&gt;, First_Flr_SF &lt;dbl&gt;, Second_Flr_SF &lt;dbl&gt;,
 ## #   Low_Qual_Fin_SF &lt;dbl&gt;, Gr_Liv_Area &lt;dbl&gt;, Bedroom_AbvGr &lt;dbl&gt;,
 ## #   Kitchen_AbvGr &lt;dbl&gt;, TotRms_AbvGrd &lt;dbl&gt;, Fireplaces &lt;dbl&gt;,
@@ -296,11 +296,11 @@ ames_prep %&gt;% juice()</code></pre>
 ## #   LotAreaTr_x_SaleCndOth &lt;dbl&gt;, MS_SubClass_Two_Story_1946_and_Newer &lt;dbl&gt;,
 ## #   MS_SubClass_One_and_Half_Story_Finished_All_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_One_Story_PUD_1946_and_Newer &lt;dbl&gt;,
-## #   MS_SubClass_Two_Story_PUD_1946_and_Newer &lt;dbl&gt;,
 ## #   MS_SubClass_One_Story_1945_and_Older &lt;dbl&gt;,
-## #   MS_SubClass_Duplex_All_Styles_and_Ages &lt;dbl&gt;,
-## #   MS_SubClass_Split_or_Multilevel &lt;dbl&gt;,
+## #   MS_SubClass_Two_Story_PUD_1946_and_Newer &lt;dbl&gt;,
 ## #   MS_SubClass_Two_Story_1945_and_Older &lt;dbl&gt;,
+## #   MS_SubClass_Split_or_Multilevel &lt;dbl&gt;,
+## #   MS_SubClass_Duplex_All_Styles_and_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_Two_Family_conversion_All_Styles_and_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_Split_Foyer &lt;dbl&gt;,
 ## #   MS_SubClass_Two_and_Half_Story_All_Ages &lt;dbl&gt;,
@@ -309,31 +309,31 @@ ames_prep %&gt;% juice()</code></pre>
 ## #   MS_SubClass_One_Story_with_Finished_Attic_All_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_One_and_Half_Story_PUD_All_Ages &lt;dbl&gt;,
 ## #   MS_Zoning_Residential_Medium_Density &lt;dbl&gt;,
-## #   MS_Zoning_Floating_Village_Residential &lt;dbl&gt;,
-## #   MS_Zoning_Residential_High_Density &lt;dbl&gt;, MS_Zoning_C_all &lt;dbl&gt;,
-## #   MS_Zoning_A_agr &lt;dbl&gt;, MS_Zoning_I_all &lt;dbl&gt;, Street_Grvl &lt;dbl&gt;,
-## #   Alley_Gravel &lt;dbl&gt;, Alley_Paved &lt;dbl&gt;, Lot_Shape_Slightly_Irregular &lt;dbl&gt;,
+## #   MS_Zoning_Floating_Village_Residential &lt;dbl&gt;, MS_Zoning_C_all &lt;dbl&gt;,
+## #   MS_Zoning_Residential_High_Density &lt;dbl&gt;, MS_Zoning_A_agr &lt;dbl&gt;,
+## #   MS_Zoning_I_all &lt;dbl&gt;, Street_Grvl &lt;dbl&gt;, Alley_Gravel &lt;dbl&gt;,
+## #   Alley_Paved &lt;dbl&gt;, Lot_Shape_Slightly_Irregular &lt;dbl&gt;,
 ## #   Lot_Shape_Moderately_Irregular &lt;dbl&gt;, Lot_Shape_Irregular &lt;dbl&gt;,
 ## #   Land_Contour_HLS &lt;dbl&gt;, Land_Contour_Bnk &lt;dbl&gt;, Land_Contour_Low &lt;dbl&gt;,
-## #   Utilities_NoSewr &lt;dbl&gt;, Utilities_NoSeWa &lt;dbl&gt;, Lot_Config_Corner &lt;dbl&gt;,
-## #   Lot_Config_CulDSac &lt;dbl&gt;, Lot_Config_FR2 &lt;dbl&gt;, Lot_Config_FR3 &lt;dbl&gt;,
-## #   Land_Slope_Mod &lt;dbl&gt;, Land_Slope_Sev &lt;dbl&gt;,
-## #   Neighborhood_College_Creek &lt;dbl&gt;, Neighborhood_Old_Town &lt;dbl&gt;,
-## #   Neighborhood_Edwards &lt;dbl&gt;, Neighborhood_Somerset &lt;dbl&gt;,
-## #   Neighborhood_Northridge_Heights &lt;dbl&gt;, Neighborhood_Sawyer &lt;dbl&gt;,
-## #   Neighborhood_Gilbert &lt;dbl&gt;, Neighborhood_Northwest_Ames &lt;dbl&gt;,
-## #   Neighborhood_Sawyer_West &lt;dbl&gt;, Neighborhood_Mitchell &lt;dbl&gt;,
-## #   Neighborhood_Crawford &lt;dbl&gt;, Neighborhood_Brookside &lt;dbl&gt;,
-## #   Neighborhood_Iowa_DOT_and_Rail_Road &lt;dbl&gt;, Neighborhood_Northridge &lt;dbl&gt;,
-## #   Neighborhood_Timberland &lt;dbl&gt;, Neighborhood_Stone_Brook &lt;dbl&gt;,
+## #   Utilities_NoSewr &lt;dbl&gt;, Lot_Config_Corner &lt;dbl&gt;, Lot_Config_CulDSac &lt;dbl&gt;,
+## #   Lot_Config_FR2 &lt;dbl&gt;, Lot_Config_FR3 &lt;dbl&gt;, Land_Slope_Mod &lt;dbl&gt;,
+## #   Land_Slope_Sev &lt;dbl&gt;, Neighborhood_College_Creek &lt;dbl&gt;,
+## #   Neighborhood_Old_Town &lt;dbl&gt;, Neighborhood_Edwards &lt;dbl&gt;,
+## #   Neighborhood_Somerset &lt;dbl&gt;, Neighborhood_Northridge_Heights &lt;dbl&gt;,
+## #   Neighborhood_Gilbert &lt;dbl&gt;, Neighborhood_Sawyer &lt;dbl&gt;,
+## #   Neighborhood_Northwest_Ames &lt;dbl&gt;, Neighborhood_Sawyer_West &lt;dbl&gt;,
+## #   Neighborhood_Mitchell &lt;dbl&gt;, Neighborhood_Brookside &lt;dbl&gt;,
+## #   Neighborhood_Crawford &lt;dbl&gt;, Neighborhood_Iowa_DOT_and_Rail_Road &lt;dbl&gt;,
+## #   Neighborhood_Timberland &lt;dbl&gt;, Neighborhood_Northridge &lt;dbl&gt;,
 ## #   Neighborhood_South_and_West_of_Iowa_State_University &lt;dbl&gt;,
-## #   Neighborhood_Clear_Creek &lt;dbl&gt;, Neighborhood_Meadow_Village &lt;dbl&gt;,
-## #   Neighborhood_Bloomington_Heights &lt;dbl&gt;, Neighborhood_Briardale &lt;dbl&gt;,
-## #   Neighborhood_Veenker &lt;dbl&gt;, Neighborhood_Northpark_Villa &lt;dbl&gt;,
-## #   Neighborhood_Blueste &lt;dbl&gt;, Neighborhood_Greens &lt;dbl&gt;,
-## #   Neighborhood_Green_Hills &lt;dbl&gt;, Neighborhood_Landmark &lt;dbl&gt;,
+## #   Neighborhood_Stone_Brook &lt;dbl&gt;, Neighborhood_Clear_Creek &lt;dbl&gt;,
+## #   Neighborhood_Meadow_Village &lt;dbl&gt;, Neighborhood_Bloomington_Heights &lt;dbl&gt;,
+## #   Neighborhood_Briardale &lt;dbl&gt;, Neighborhood_Northpark_Villa &lt;dbl&gt;,
+## #   Neighborhood_Veenker &lt;dbl&gt;, Neighborhood_Blueste &lt;dbl&gt;,
+## #   Neighborhood_Greens &lt;dbl&gt;, Neighborhood_Green_Hills &lt;dbl&gt;,
 ## #   Condition_1_Feedr &lt;dbl&gt;, Condition_1_Artery &lt;dbl&gt;, Condition_1_RRAn &lt;dbl&gt;,
-## #   Condition_1_PosN &lt;dbl&gt;, Condition_1_RRAe &lt;dbl&gt;, Condition_1_PosA &lt;dbl&gt;, ...</code></pre>
+## #   Condition_1_PosN &lt;dbl&gt;, Condition_1_RRAe &lt;dbl&gt;, Condition_1_PosA &lt;dbl&gt;,
+## #   Condition_1_RRNn &lt;dbl&gt;, Condition_1_RRNe &lt;dbl&gt;, ...</code></pre>
 <p>If you want to create a pre-processed data, you can first <code>prep()</code> the recipe for a specific dataset and <code>juice()</code> the prepped recipe to extract the pre-processed data. It turns out that extracting the pre-processed data isn’t actually necessary for the pipeline (but sometimes it’s useful anyway), since this will be done under the hood when the model is fit.</p>
 <p>The power of <code>tidymodels</code> becomes more apparent as we move forward into sophisticated machine learning techniques.</p>
 <pre class="r"><code>rm(ames, ames_clean)</code></pre>
@@ -363,7 +363,7 @@ ames_prep %&gt;% juice()</code></pre>
 <p>Nothing about this model specification is specific to the <strong>ames_housing</strong> dataset.</p>
 <div id="put-it-all-together-in-a-workflow" class="section level3">
 <h3>Put it all together in a workflow</h3>
-<p>We’re now ready to put the model and recipes together into a workflow. You initiate a workflow using <code>workflow()</code> (from the workflows package) and then add a recipe and add a model to it.</p>
+<p>We’re now ready to put the model and recipes together into a workflow. You initiate a workflow using <code>workflow()</code> and then add a recipe and add a model to it.</p>
 <pre class="r"><code># set the workflow
 rf_workflow &lt;- workflow() %&gt;%
   # add the recipe
@@ -375,7 +375,7 @@ add_model(rf_model)</code></pre>
 <div id="tune-the-parameters" class="section level3">
 <h3>Tune the parameters</h3>
 <p>Since we had a parameter that we designated to be tuned (mtry), we need to tune it (i.e. choose the value that leads to the best performance) before fitting our model. If you don’t have any parameters to tune, you can skip this step.</p>
-<p>Note that we will do our tuning using the cross-validation object (ames_cv). To do this, we specify the range of mtry values we want to try, and then we add a tuning layer to our workflow using <code>tune_grid()</code> (from the tune package). Note that we focus on two metrics: accuracy and roc_auc (from the <code>yardstick</code> package).</p>
+<p>Note that we will do our tuning using the cross-validation object (ames_cv). To do this, we specify the range of mtry values we want to try, and then we add a tuning layer to our workflow using <code>tune_grid()</code> (from the tune package). Note that we focus on the rmse metrics (from the <code>yardstick</code> package).</p>
 <pre class="r"><code># specify which values eant to try  
 rf_grid &lt;- expand.grid(mtry = c(20, 30, 50, 80))
 # extract results
@@ -391,10 +391,10 @@ rf_tune_results &lt;- rf_workflow %&gt;%
 <pre><code>## # A tibble: 4 x 6
 ##    mtry .metric .estimator   mean     n std_err
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
-## 1    20 rmse    standard   27248.    10   1538.
-## 2    30 rmse    standard   26933.    10   1477.
-## 3    50 rmse    standard   26769.    10   1451.
-## 4    80 rmse    standard   26925.    10   1505.</code></pre>
+## 1    20 rmse    standard   26265.    10   1480.
+## 2    30 rmse    standard   25809.    10   1483.
+## 3    50 rmse    standard   25515.    10   1458.
+## 4    80 rmse    standard   25553.    10   1460.</code></pre>
 </div>
 </div>
 <div id="finalize-the-workflow" class="section level2">
@@ -436,24 +436,24 @@ test_performance</code></pre>
 <pre><code>## # A tibble: 2 x 3
 ##   .metric .estimator .estimate
 ##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard   23661.   
-## 2 rsq     standard       0.912</code></pre>
+## 1 rmse    standard   24907.   
+## 2 rsq     standard       0.913</code></pre>
 <pre class="r"><code># generate predictions from the test set
 test_predictions &lt;- rf_fit %&gt;% collect_predictions()
 test_predictions</code></pre>
 <pre><code>## # A tibble: 732 x 4
 ##    id                 .pred  .row Sale_Price
 ##    &lt;chr&gt;              &lt;dbl&gt; &lt;int&gt;      &lt;int&gt;
-##  1 train/test split 189504.     6     195500
-##  2 train/test split 180860.    11     175900
-##  3 train/test split 171303.    12     185000
-##  4 train/test split 176650.    13     180400
-##  5 train/test split 217099.    15     212000
-##  6 train/test split 340117.    18     394432
-##  7 train/test split 226565.    20     210000
-##  8 train/test split 202824.    23     216000
-##  9 train/test split 153210.    25     149900
-## 10 train/test split 135056.    26     142000
+##  1 train/test split 191051.     5     189900
+##  2 train/test split 183804.     8     191500
+##  3 train/test split 247533.     9     236500
+##  4 train/test split 180040.    11     175900
+##  5 train/test split 177724.    13     180400
+##  6 train/test split 161634.    22     170000
+##  7 train/test split 156986.    25     149900
+##  8 train/test split 230560.    41     220000
+##  9 train/test split 308963.    43     259000
+## 10 train/test split 210193.    44     214000
 ## # ... with 722 more rows</code></pre>
 <pre class="r"><code>test_predictions %&gt;%
   ggplot(aes(Sale_Price, .pred))+

@@ -1,7 +1,7 @@
 ---
 title: 'Tidymodels: tidy machine learning in R'
 author: "Jim Gruman"
-date: "`r Sys.Date()`"
+date: "2020-07-07"
 diagram: true
 output: 
  blogdown::html_page:
@@ -377,7 +377,7 @@ Nothing about this model specification is specific to the **ames_housing** datas
 
 ### Put it all together in a workflow
 
-We’re now ready to put the model and recipes together into a workflow. You initiate a workflow using `workflow()` (from the workflows package) and then add a recipe and add a model to it.
+We’re now ready to put the model and recipes together into a workflow. You initiate a workflow using `workflow()` and then add a recipe and add a model to it.
 
 ```{r}
 # set the workflow
@@ -394,7 +394,7 @@ Note that we still haven’t yet implemented the pre-processing steps in the rec
 
 Since we had a parameter that we designated to be tuned (mtry), we need to tune it (i.e. choose the value that leads to the best performance) before fitting our model. If you don’t have any parameters to tune, you can skip this step.
 
-Note that we will do our tuning using the cross-validation object (ames_cv). To do this, we specify the range of mtry values we want to try, and then we add a tuning layer to our workflow using `tune_grid()` (from the tune package). Note that we focus on two metrics: accuracy and roc_auc (from the `yardstick` package).
+Note that we will do our tuning using the cross-validation object (ames_cv). To do this, we specify the range of mtry values we want to try, and then we add a tuning layer to our workflow using `tune_grid()` (from the tune package). Note that we focus on the rmse metrics (from the `yardstick` package).
 
 ```{r}
 # specify which values eant to try  
