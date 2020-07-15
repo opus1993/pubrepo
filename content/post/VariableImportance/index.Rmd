@@ -1,7 +1,7 @@
 ---
 title: "The Palmer Penguins"
 author: "Jim Gruman"
-date: "2020-07-14"
+date: "2020-07-15"
 diagram: true
 output: 
  blogdown::html_page:
@@ -88,8 +88,6 @@ mpg_modified <- mpg %>% mutate(
   ) %>% 
   select(-class, -model, -manufacturer, -fl)
 
-theme_set(hrbrthemes::theme_ipsum())
-
 .seed <- 42L
 .engines_valid <- c('glm', 'glmnet', 'xgboost', 'ranger')
 engines_named <- .engines_valid %>% setNames(., .)
@@ -118,7 +116,6 @@ penguins_c_rnks <-
       pluck('result'),
     .id = 'engine'
   )
-penguins_c_rnks
 
 lab_title <- 'Variable Importance Ranking'
 lab_subtitle_penguins_c <- '<span style = "color:#4E79A7"><b>Continuous</b></span> Target Variable for Model Prediction of <span style = "color:#E15759"><b>penguins</b></span> Data'
@@ -153,13 +150,12 @@ penguins_d_rnks <-
       pluck('result'),
     .id = 'engine'
   )
-penguins_d_rnks
 
 lab_subtitle_penguins_d <- lab_subtitle_penguins_c %>%
                           str_replace('^.*\\sTarget', '<span style                                       "color:#F28E2B;"><b>Discrete</b></span> Target')
 viz_penguins_d_rnks <- 
   penguins_d_rnks %>% 
-  plot_rnks(option = 'C') +
+  plot_rnks(option = 'A') +
   labs(
     title = lab_title,
     subtitle = lab_subtitle_penguins_d
@@ -183,12 +179,11 @@ mpg_c_rnks <-
       pluck('result'),
     .id = 'engine'
 )
-mpg_c_rnks
 
 lab_subtitle_mpg_c <- lab_subtitle_penguins_c %>% str_replace('of.*Data', 'of <span style = "color:#B07AA1"><b>mpg</b></span> Data')
 viz_mpg_c_rnks <- 
   mpg_c_rnks %>% 
-  plot_rnks(option = 'B') +
+  plot_rnks(option = 'A') +
   labs(
     title = lab_title,
     subtitle = lab_subtitle_mpg_c
@@ -211,12 +206,11 @@ mpg_d_rnks <-
       pluck('result'),
     .id = 'engine'
   )
-mpg_d_rnks
 
 lab_subtitle_mpg_d <- lab_subtitle_mpg_c %>% str_replace('^.*\\sTarget', '<span style = "color:#F28E2B;"><b>Discrete</b></span> Target')
 viz_mpg_d_rnks <- 
   mpg_d_rnks %>% 
-  plot_rnks(option = 'D') +
+  plot_rnks(option = 'A') +
   labs(
     title = lab_title,
     subtitle = lab_subtitle_mpg_d
@@ -246,14 +240,12 @@ cor_by_set_engine <-
   ) %>% 
   unnest(data) %>% 
   rename(cor = correlation)
-cor_by_set_engine
 
 cor_by_engine <-
   cor_by_set_engine %>% 
   group_by(engine, item1, item2) %>% 
   summarize_at(vars(cor), mean) %>% 
   ungroup()
-cor_by_engine
 
 viz_cor_by_engine <-
   cor_by_engine %>% 
@@ -265,7 +257,7 @@ viz_cor_by_engine <-
   aes(x = item1, y = item2) +
   geom_tile(aes(fill = cor), alpha = 0.5, show.legend = FALSE) +
   geom_text(aes(label = lab)) +
-  scale_fill_viridis_c(option = 'E', na.value = 'white') +
+  scale_fill_viridis_c(option = 'A', na.value = 'white') +
   theme_minimal(base_family = '') +
   facet_wrap(~engine) +
   theme(
@@ -285,7 +277,7 @@ viz_cor_by_engine
 
 ```
 
-The plot above shows the pairwise correlations among the variable importance ranks computed for each package-function combo, averaged over the two data sets and over the models for the two types of target variables—continuous and discrete. While nothing immediately jumps out from this plot, I think the most notable thing is that the `ranger` and `xgboost` scores seem to vary the most across the different variable importance methodologies, bottoming out at ~58% for the correlation between the SHAP (vip_shap) and model-specific (vip_model) methodologies. On the other hand, `glm` seems to have the most “agreement” and least variance in its scores.
+The plot above shows the pairwise correlations among the variable importance ranks computed for each package-function combo, averaged over the two data sets and over the models for the two types of target variables—continuous and discrete. While nothing immediately jumps out from this plot, I think the most notable thing is that the `ranger` and `xgboost` scores seem to vary the most across the different variable importance methodologies, bottoming out at ~47% for the correlation between the dalex and model-specific (vip_model) methodologies. On the other hand, `glm` seems to have the most “agreement” and least variance in its scores.
 
 # Conclusion
 

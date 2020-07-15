@@ -1,7 +1,7 @@
 ---
 title: "The Palmer Penguins"
 author: "Jim Gruman"
-date: "2020-07-14"
+date: "2020-07-15"
 diagram: true
 output: 
  blogdown::html_page:
@@ -73,22 +73,8 @@ draft: false
       pluck(&#39;result&#39;),
     .id = &#39;engine&#39;
   )
-penguins_c_rnks</code></pre>
-<pre><code>## # A tibble: 128 x 7
-##    engine src         var                   imp imp_abs imp_abs_norm   rnk
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;               &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
-##  1 glm    vip_model   sex_male            7.56    7.56        0.273      1
-##  2 glm    vip_model   species_Gentoo      5.94    5.94        0.214      2
-##  3 glm    vip_model   flipper_length_mm   4.58    4.58        0.165      3
-##  4 glm    vip_model   bill_depth_mm       2.86    2.86        0.103      4
-##  5 glm    vip_model   species_Chinstrap  -2.40    2.40        0.0865     5
-##  6 glm    vip_model   bill_length_mm      2.12    2.12        0.0764     6
-##  7 glm    vip_model   island_Torgersen   -1.85    1.85        0.0667     7
-##  8 glm    vip_model   island_Dream       -0.420   0.420       0.0152     8
-##  9 glm    vip_permute species_Gentoo    443.    443.          0.545      1
-## 10 glm    vip_permute flipper_length_mm 124.    124.          0.152      2
-## # ... with 118 more rows</code></pre>
-<pre class="r"><code>lab_title &lt;- &#39;Variable Importance Ranking&#39;
+
+lab_title &lt;- &#39;Variable Importance Ranking&#39;
 lab_subtitle_penguins_c &lt;- &#39;&lt;span style = &quot;color:#4E79A7&quot;&gt;&lt;b&gt;Continuous&lt;/b&gt;&lt;/span&gt; Target Variable for Model Prediction of &lt;span style = &quot;color:#E15759&quot;&gt;&lt;b&gt;penguins&lt;/b&gt;&lt;/span&gt; Data&#39;
 
 viz_penguins_c_rnks &lt;- 
@@ -115,26 +101,12 @@ viz_penguins_c_rnks</code></pre>
       pluck(&#39;result&#39;),
     .id = &#39;engine&#39;
   )
-penguins_d_rnks</code></pre>
-<pre><code>## # A tibble: 125 x 7
-##    engine src         var                    imp  imp_abs imp_abs_norm   rnk
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;                &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
-##  1 glm    vip_model   bill_depth_mm        4.40     4.40        0.207      1
-##  2 glm    vip_model   body_mass_g          4.37     4.37        0.206      2
-##  3 glm    vip_model   bill_length_mm       4.11     4.11        0.194      3
-##  4 glm    vip_model   species_Chinstrap   -4.06     4.06        0.191      4
-##  5 glm    vip_model   species_Gentoo      -2.62     2.62        0.123      5
-##  6 glm    vip_model   island_Torgersen    -0.606    0.606       0.0286     6
-##  7 glm    vip_model   flipper_length_mm    0.558    0.558       0.0263     7
-##  8 glm    vip_model   island_Dream         0.492    0.492       0.0232     8
-##  9 glm    vip_permute species_Gentoo    7669.    7669.          0.390      1
-## 10 glm    vip_permute species_Chinstrap 4708.    4708.          0.240      2
-## # ... with 115 more rows</code></pre>
-<pre class="r"><code>lab_subtitle_penguins_d &lt;- lab_subtitle_penguins_c %&gt;%
+
+lab_subtitle_penguins_d &lt;- lab_subtitle_penguins_c %&gt;%
                           str_replace(&#39;^.*\\sTarget&#39;, &#39;&lt;span style                                       &quot;color:#F28E2B;&quot;&gt;&lt;b&gt;Discrete&lt;/b&gt;&lt;/span&gt; Target&#39;)
 viz_penguins_d_rnks &lt;- 
   penguins_d_rnks %&gt;% 
-  plot_rnks(option = &#39;C&#39;) +
+  plot_rnks(option = &#39;A&#39;) +
   labs(
     title = lab_title,
     subtitle = lab_subtitle_penguins_d
@@ -154,25 +126,11 @@ viz_penguins_d_rnks</code></pre>
       pluck(&#39;result&#39;),
     .id = &#39;engine&#39;
 )
-mpg_c_rnks</code></pre>
-<pre><code>## # A tibble: 112 x 7
-##    engine src         var              imp imp_abs imp_abs_norm   rnk
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;          &lt;dbl&gt;   &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
-##  1 glm    vip_model   cyl          16.1    16.1          0.584      1
-##  2 glm    vip_model   drv_r         4.58    4.58         0.166      2
-##  3 glm    vip_model   drv_f        -2.47    2.47         0.0892     3
-##  4 glm    vip_model   year          1.72    1.72         0.0622     4
-##  5 glm    vip_model   hwy          -1.40    1.40         0.0508     5
-##  6 glm    vip_model   trans_manual -0.961   0.961        0.0348     6
-##  7 glm    vip_model   cty           0.380   0.380        0.0138     7
-##  8 glm    vip_permute cyl           0.967   0.967        0.831      1
-##  9 glm    vip_permute drv_r         0.0675  0.0675       0.0580     2
-## 10 glm    vip_permute hwy           0.0562  0.0562       0.0483     3
-## # ... with 102 more rows</code></pre>
-<pre class="r"><code>lab_subtitle_mpg_c &lt;- lab_subtitle_penguins_c %&gt;% str_replace(&#39;of.*Data&#39;, &#39;of &lt;span style = &quot;color:#B07AA1&quot;&gt;&lt;b&gt;mpg&lt;/b&gt;&lt;/span&gt; Data&#39;)
+
+lab_subtitle_mpg_c &lt;- lab_subtitle_penguins_c %&gt;% str_replace(&#39;of.*Data&#39;, &#39;of &lt;span style = &quot;color:#B07AA1&quot;&gt;&lt;b&gt;mpg&lt;/b&gt;&lt;/span&gt; Data&#39;)
 viz_mpg_c_rnks &lt;- 
   mpg_c_rnks %&gt;% 
-  plot_rnks(option = &#39;B&#39;) +
+  plot_rnks(option = &#39;A&#39;) +
   labs(
     title = lab_title,
     subtitle = lab_subtitle_mpg_c
@@ -192,25 +150,11 @@ There is consensus on what the most important variable is—<strong>cyl</strong>
       pluck(&#39;result&#39;),
     .id = &#39;engine&#39;
   )
-mpg_d_rnks</code></pre>
-<pre><code>## # A tibble: 128 x 7
-##    engine src         var                imp   imp_abs imp_abs_norm   rnk
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;            &lt;dbl&gt;     &lt;dbl&gt;        &lt;dbl&gt; &lt;int&gt;
-##  1 glm    vip_model   hwy             -2.42      2.42        0.270      1
-##  2 glm    vip_model   cyl             -1.53      1.53        0.171      2
-##  3 glm    vip_model   displ            1.40      1.40        0.156      3
-##  4 glm    vip_model   drv_r           -1.34      1.34        0.150      4
-##  5 glm    vip_model   trans_manual    -1.13      1.13        0.127      5
-##  6 glm    vip_model   drv_f            0.630     0.630       0.0703     6
-##  7 glm    vip_model   cty             -0.268     0.268       0.0299     7
-##  8 glm    vip_model   year             0.229     0.229       0.0256     8
-##  9 glm    vip_permute cyl          62093.    62093.          0.582      1
-## 10 glm    vip_permute drv_r         6545.     6545.          0.0614     4
-## # ... with 118 more rows</code></pre>
-<pre class="r"><code>lab_subtitle_mpg_d &lt;- lab_subtitle_mpg_c %&gt;% str_replace(&#39;^.*\\sTarget&#39;, &#39;&lt;span style = &quot;color:#F28E2B;&quot;&gt;&lt;b&gt;Discrete&lt;/b&gt;&lt;/span&gt; Target&#39;)
+
+lab_subtitle_mpg_d &lt;- lab_subtitle_mpg_c %&gt;% str_replace(&#39;^.*\\sTarget&#39;, &#39;&lt;span style = &quot;color:#F28E2B;&quot;&gt;&lt;b&gt;Discrete&lt;/b&gt;&lt;/span&gt; Target&#39;)
 viz_mpg_d_rnks &lt;- 
   mpg_d_rnks %&gt;% 
-  plot_rnks(option = &#39;D&#39;) +
+  plot_rnks(option = &#39;A&#39;) +
   labs(
     title = lab_title,
     subtitle = lab_subtitle_mpg_d
@@ -236,42 +180,14 @@ viz_mpg_d_rnks</code></pre>
   ) %&gt;% 
   unnest(data) %&gt;% 
   rename(cor = correlation)
-cor_by_set_engine</code></pre>
-<pre><code>## # A tibble: 192 x 5
-##    set        engine item1       item2         cor
-##    &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;
-##  1 penguins_c glm    vip_permute vip_model   0.929
-##  2 penguins_c glm    vip_shap    vip_model   0.976
-##  3 penguins_c glm    dalex       vip_model   0.929
-##  4 penguins_c glm    vip_model   vip_permute 0.929
-##  5 penguins_c glm    vip_shap    vip_permute 0.976
-##  6 penguins_c glm    dalex       vip_permute 1.   
-##  7 penguins_c glm    vip_model   vip_shap    0.976
-##  8 penguins_c glm    vip_permute vip_shap    0.976
-##  9 penguins_c glm    dalex       vip_shap    0.976
-## 10 penguins_c glm    vip_model   dalex       0.929
-## # ... with 182 more rows</code></pre>
-<pre class="r"><code>cor_by_engine &lt;-
+
+cor_by_engine &lt;-
   cor_by_set_engine %&gt;% 
   group_by(engine, item1, item2) %&gt;% 
   summarize_at(vars(cor), mean) %&gt;% 
   ungroup()
-cor_by_engine</code></pre>
-<pre><code>## # A tibble: 48 x 4
-##    engine item1       item2         cor
-##    &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;       &lt;dbl&gt;
-##  1 glm    dalex       vip_model   0.872
-##  2 glm    dalex       vip_permute 0.815
-##  3 glm    dalex       vip_shap    0.943
-##  4 glm    vip_model   dalex       0.872
-##  5 glm    vip_model   vip_permute 0.723
-##  6 glm    vip_model   vip_shap    0.827
-##  7 glm    vip_permute dalex       0.815
-##  8 glm    vip_permute vip_model   0.723
-##  9 glm    vip_permute vip_shap    0.833
-## 10 glm    vip_shap    dalex       0.943
-## # ... with 38 more rows</code></pre>
-<pre class="r"><code>viz_cor_by_engine &lt;-
+
+viz_cor_by_engine &lt;-
   cor_by_engine %&gt;% 
   prettify_engine_col() %&gt;% 
   mutate_at(vars(item1, item2), factor_src) %&gt;% 
@@ -281,7 +197,7 @@ cor_by_engine</code></pre>
   aes(x = item1, y = item2) +
   geom_tile(aes(fill = cor), alpha = 0.5, show.legend = FALSE) +
   geom_text(aes(label = lab)) +
-  scale_fill_viridis_c(option = &#39;E&#39;, na.value = &#39;white&#39;) +
+  scale_fill_viridis_c(option = &#39;A&#39;, na.value = &#39;white&#39;) +
   theme_minimal(base_family = &#39;&#39;) +
   facet_wrap(~engine) +
   theme(
@@ -299,7 +215,7 @@ cor_by_engine</code></pre>
   )
 viz_cor_by_engine</code></pre>
 <p><img src="/post/VariableImportance/index_files/figure-html/unnamed-chunk-1-1.jpeg" width="100%" /></p>
-<p>The plot above shows the pairwise correlations among the variable importance ranks computed for each package-function combo, averaged over the two data sets and over the models for the two types of target variables—continuous and discrete. While nothing immediately jumps out from this plot, I think the most notable thing is that the <code>ranger</code> and <code>xgboost</code> scores seem to vary the most across the different variable importance methodologies, bottoming out at ~58% for the correlation between the SHAP (vip_shap) and model-specific (vip_model) methodologies. On the other hand, <code>glm</code> seems to have the most “agreement” and least variance in its scores.</p>
+<p>The plot above shows the pairwise correlations among the variable importance ranks computed for each package-function combo, averaged over the two data sets and over the models for the two types of target variables—continuous and discrete. While nothing immediately jumps out from this plot, I think the most notable thing is that the <code>ranger</code> and <code>xgboost</code> scores seem to vary the most across the different variable importance methodologies, bottoming out at ~47% for the correlation between the dalex and model-specific (vip_model) methodologies. On the other hand, <code>glm</code> seems to have the most “agreement” and least variance in its scores.</p>
 </div>
 <div id="conclusion" class="section level1">
 <h1>Conclusion</h1>
