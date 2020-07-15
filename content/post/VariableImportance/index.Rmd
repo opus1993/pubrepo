@@ -1,0 +1,305 @@
+---
+title: "The Palmer Penguins"
+author: "Jim Gruman"
+date: "2020-07-14"
+diagram: true
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [Data Science, R, machine learning]
+description: "Interpretable Machine Learning" 
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image: 
+  caption: 'by Allison Horst'
+  focal_point: "Smart"
+  preview_only: false
+featured: false
+draft: false
+---
+
+One thing that keeps popping up in my machine learning work is the need to explain the models and their components. There are a couple of ways to go about explaining model features, and probably the most common approach is to use feature importance scores. Unfortunately, computing importance scores isn’t as straightforward as one might hope, with several methodologies. In this post, let's explore the question “How similar are the feature importance scores calculated using different methodologies?” It’s important to know if the different methods will lead to drastically different results. If so, then the choice of method is a source of bias in model interpretation.
+
+This post isn’t intended to be a deep-dive into model interpretability, but some concepts should be highlighted before attempting to answer the question. Feature importance can be categorized as either being [“model-specific”](https://topepo.github.io/caret/variable-importance.html) or [“model-agnostic”](https://christophm.github.io/interpretable-ml-book/agnostic.html). Both depend upon some kind of loss function, e.g. root mean squared error (RMSE), classification error, etc. The loss function for a model-specific approach will generally be “fixed” by the software and package that are used, while model-agnostic approaches tend to give the user flexibility in choosing a loss function. Finally, within model-agnostic approaches, there are different methods, e.g. permutation and [SHAP (Shapley Additive Explanations)](https://christophm.github.io/interpretable-ml-book/shap.html).
+
+So, to summarize, variable importance methodologies can be broken down in several ways:
+
+1. model-specific vs. model-agnostic approach
+1. loss function
+1. model agnostic method (given a model agnostic approach)
+
+I’m going to attempt to address (1) and (3), leaving (2) out because (a) the feature rankings won’t differ too much when using different loss functions and (b) for the sake of simplicity, we will keep the post short. 
+
+I also want to evaluate how variable importance scores differ across more than one of each of the following:
+
+1. model type (e.g. linear regression, decision trees, etc.)
+1. type of target variables (continuous or discrete)
+1. data set
+
+While evaluating the sensitivity of variable importance scores to different methodologies is the focus of this analysis, it’s important to test how the findings hold up when (1) varying model types, (2) varying target variables, and (3) varying the data itself. This should help us highlight the bias in the results due to choice of model type and type of target variable. Put another way, it should help us quantify the robustness the conclusions that are drawn. If we find that the scores are similar under variation, then we can be more confident that the findings can be generalized.
+
+Additionally, I’m going to use more than one package for computing variable importance scores. As with varying model types, outcome variables, and data, the purpose is to highlight and quantify possible bias due to choices in this analysis—in this case, the choice of package. Are the results of a permutation-based variable importance calculation the same when using different packages?
+
+Specifically, I’ll be using the [`vip`](https://cran.r-project.org/web/packages/vip/index.html) and [`DALEX`](https://cran.r-project.org/web/packages/DALEX/index.html) packages. The `vip` package is capable of doing both types of calculations, model-specific and model-agnostic for a variety of model types. `DALEX` specializes in model-agnostic model interpretability and can do a lot more than just variable importance calculations.
+
+# Setup
+
+For data, I’m going to be using the new `palmerpenguins` and the famous `mpg`.
+
+For model types, I’m going to use:
+
+1. generalized linear model (linear and logistic regression) with `stats::lm()` and `stats::glm()` respectively
+1. generalized linear model with regularization using the `glmnet` package
+1. bagged tree (random forest) using the `ranger` package
+1. boosted tree (extreme gradient boosting) using the `xgboost` package
+
+With `glmnet::glmnet()`, I’m actually not going to use a penalty, so it should return the same results as `lm()/glm()`. For `ranger` and `xgboost`, I’m going to be using defaults for all parameters. 
+
+1. `vip`’s model-specific scores with (`vip::vip(method = 'model')`)
+1. `vip`’s permutation-based scores (with `vip::vip(method = 'permute')`)
+1. `vip`’s SHAP-based values (with vip::vip(method = 'shap')1)
+1. `DALEX`’s permutation-based scores (with `DALEX::variable_importance()`)
+
+Note that the model-specific vs. model-agnostic concern is addressed in comparing method (1) vs. methods (2)-(4). I’ll be consistent with the loss function in variable importance computations for the model-agnostic methods–minimization of RMSE for a continuous target variable and sum of squared errors (SSE) for a discrete target variable. 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      cache=TRUE, 
+                      dev = 'jpeg',
+                      fig.width = 12,
+                      fig.height = 8,
+                      out.width = '100%')
+
+library(tidyverse)
+library(palmerpenguins)
+penguins <-palmerpenguins::penguins %>% na.omit()
+
+library(ggplot2)
+mpg_modified <- mpg %>% mutate(
+    grp = case_when(
+        class %in% c('2seater', 'compact', 'subcompact', 'midsize') ~ '1. Small',
+        TRUE ~ '2. Big'),
+    trans = case_when(
+      stringr::str_detect(trans, "auto")~ "auto",
+      TRUE ~ "manual"
+    )
+  ) %>% 
+  select(-class, -model, -manufacturer, -fl)
+
+theme_set(hrbrthemes::theme_ipsum())
+
+.seed <- 42L
+.engines_valid <- c('glm', 'glmnet', 'xgboost', 'ranger')
+engines_named <- .engines_valid %>% setNames(., .)
+.modes_valid <- c('regression', 'classification')
+
+source(paste0(here::here("content","post","VariableImportance","code", "functions.R")))
+
+compare_and_rank_vip_q <- quietly(compare_and_rank_vip)
+```
+
+# Results
+
+The following handful of plots illustrate normalized variable importance scores and ranks derived from the scores by data set and type of target variable.
+
+First up is the results for the `penguins` data set with a **continuous** target variable.
+
+```{r penguins_c}
+penguins_c_rnks <-
+  engines_named %>%
+  map_dfr( 
+    ~compare_and_rank_vip_q(
+      penguins ,
+      col_y = 'body_mass_g', 
+      engine = .x
+    ) %>% 
+      pluck('result'),
+    .id = 'engine'
+  )
+penguins_c_rnks
+
+lab_title <- 'Variable Importance Ranking'
+lab_subtitle_penguins_c <- '<span style = "color:#4E79A7"><b>Continuous</b></span> Target Variable for Model Prediction of <span style = "color:#E15759"><b>penguins</b></span> Data'
+
+viz_penguins_c_rnks <- 
+  penguins_c_rnks %>% 
+  plot_rnks(option = 'A') +
+  labs(
+    title = lab_title,
+    subtitle = lab_subtitle_penguins_c
+  )
+viz_penguins_c_rnks
+```
+
+One thing really stand out to me: the model-specific scores differ relatively strongly from the rest of the scores given a specific model type. (See the numbers in the parentheses in the first column in each facet labeled vip_model compared to those in the other columns of each facet. For example, the model-specific variable importance score for the species_Gentoo feature for the `glm` model type is 21%, while the same score for the SHAP variable importance method (vip_shap) is 39%. To be honest, this is not too surprising. The model-specific methods are exactly that—specific to the model type—which suggests that they may strongly dissimilar to the model-agnostic approaches. Nonetheless, despite the scores themselves having some notable variance, the top 3 rankings derived from the scores are relatively similar across a given model type and, arguably, across all model types.
+
+As a second observation, there is some disagreement between the `glm` and `glmnet` model types and the `ranger` and `xgboost` model types about which feature is the most important: the former two identify species_Gentoo as being the most important, while the latter two prioritize flipper_length_mm.
+
+Thirdly–and lastly for this plot—it’s nice to see that the vip_permute and dalex methods produce similar results for each model type, with the exception of `glmnet`. Notably, I built the explain() function for `glmnet` myself since the `DALEX` package does not export one, so that is probably the reason for the discrepancy.
+
+Now let’s look at the the results when predicting a **discrete** target variable with the same data set.
+
+```{r penguins_d}
+penguins_d_rnks <-
+  engines_named %>% 
+  map_dfr(
+    ~compare_and_rank_vip_q(
+      penguins,
+      col_y = 'sex', 
+      engine = .x,
+    ) %>% 
+      pluck('result'),
+    .id = 'engine'
+  )
+penguins_d_rnks
+
+lab_subtitle_penguins_d <- lab_subtitle_penguins_c %>%
+                          str_replace('^.*\\sTarget', '<span style                                       "color:#F28E2B;"><b>Discrete</b></span> Target')
+viz_penguins_d_rnks <- 
+  penguins_d_rnks %>% 
+  plot_rnks(option = 'C') +
+  labs(
+    title = lab_title,
+    subtitle = lab_subtitle_penguins_d
+  )
+viz_penguins_d_rnks
+```
+
+Compared to the results for a continuous target variable, we see greater variation across the model types. Additionally, we observe that the scores for our two permutation implementations— vip_permute and dalex—are very different. This might something to do with how I’ve chosen to normalize scores (i.e. using absolute value to convert negative scores to positive ones prior to 0-1 normalization) or something I’ve over-looked that is specific to classification settings. If something that can be attributed to me (and not the underlying methods) is really the source of discrepancies, then we should be less concerned with the variation in scores and ranks since it seems most strongly associated with the vip_permute-dalex differences.
+
+Before we can begin to generalize any deductions (possibly biased by our single data set), let’s take a look at the results for the second data set, mpg. First is the results for the continuous target variable.
+
+```{r mpg_c}
+mpg_c_rnks <-
+  engines_named %>%
+  map_dfr( 
+    ~compare_and_rank_vip_q(
+      mpg_modified %>% select(-grp),
+      col_y = 'displ', 
+      engine = .x
+    ) %>% 
+      pluck('result'),
+    .id = 'engine'
+)
+mpg_c_rnks
+
+lab_subtitle_mpg_c <- lab_subtitle_penguins_c %>% str_replace('of.*Data', 'of <span style = "color:#B07AA1"><b>mpg</b></span> Data')
+viz_mpg_c_rnks <- 
+  mpg_c_rnks %>% 
+  plot_rnks(option = 'B') +
+  labs(
+    title = lab_title,
+    subtitle = lab_subtitle_mpg_c
+  )
+viz_mpg_c_rnks
+```
+There is consensus on what the most important variable is—**cyl**—but beyond that, the results are somewhat varied across the board. One might argue that there is going to be lack of agreement among methods (and model types), it’s preferable that the discrepancies occur among lower ranks, as seen here. On the other hand, we’d surely like to see more consensus among variables ranked among the top half or so.
+
+And now for the results when ranking with models targeting a discrete variable.
+
+```{r mpg_d}
+mpg_d_rnks <-
+  engines_named %>% 
+  map_dfr(
+    ~compare_and_rank_vip_q(
+      mpg_modified,
+      col_y = 'grp', 
+      engine = .x,
+    ) %>% 
+      pluck('result'),
+    .id = 'engine'
+  )
+mpg_d_rnks
+
+lab_subtitle_mpg_d <- lab_subtitle_mpg_c %>% str_replace('^.*\\sTarget', '<span style = "color:#F28E2B;"><b>Discrete</b></span> Target')
+viz_mpg_d_rnks <- 
+  mpg_d_rnks %>% 
+  plot_rnks(option = 'D') +
+  labs(
+    title = lab_title,
+    subtitle = lab_subtitle_mpg_d
+  )
+viz_mpg_d_rnks
+```
+
+There is some pretty strong variation in the `ranger` results. Also, there are discrepancies between the two permutation methods (vip_permute and dalex), which we also noted in the discrete results for diamonds as well. Again, the issue may be due to something in the normalization chosen. Aside from these, the results within each model type are pretty coherent.
+
+Even without performing any kind of similarity evaluation, we can argue that, in general, the rankings computed by the different methods are relatively similar across the two data sets (penguins and mpg) and the two types of target variables (continuous and discrete). But why stop there? After all, we can quantify the similarities between ranks.
+
+```{r}
+cor_by_set_engine <-
+  list(
+    penguins_c = penguins_c_rnks,
+    penguins_d = penguins_d_rnks,
+    mpg_c = mpg_c_rnks,
+    mpg_d = mpg_d_rnks
+  ) %>% 
+  map_dfr(bind_rows, .id = 'set') %>% 
+  group_by(set, engine) %>% 
+  nest() %>% 
+  ungroup() %>% 
+  mutate(
+    data = 
+      map(data, ~widyr::pairwise_cor(.x, item = src, feature = var, value = rnk))
+  ) %>% 
+  unnest(data) %>% 
+  rename(cor = correlation)
+cor_by_set_engine
+
+cor_by_engine <-
+  cor_by_set_engine %>% 
+  group_by(engine, item1, item2) %>% 
+  summarize_at(vars(cor), mean) %>% 
+  ungroup()
+cor_by_engine
+
+viz_cor_by_engine <-
+  cor_by_engine %>% 
+  prettify_engine_col() %>% 
+  mutate_at(vars(item1, item2), factor_src) %>% 
+  mutate(lab = scales::percent(cor, accuracy = 1, width = 3, justify = 'right')) %>% 
+  filter(item1 < item2) %>% 
+  ggplot() +
+  aes(x = item1, y = item2) +
+  geom_tile(aes(fill = cor), alpha = 0.5, show.legend = FALSE) +
+  geom_text(aes(label = lab)) +
+  scale_fill_viridis_c(option = 'E', na.value = 'white') +
+  theme_minimal(base_family = '') +
+  facet_wrap(~engine) +
+  theme(
+    plot.title.position = 'plot',
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank(),
+    plot.title = element_text(face = 'bold'),
+    plot.subtitle = ggtext::element_markdown(),
+  ) +
+  labs(
+    title = 'Variable Importance Rank Pairwise Correlations',
+    subtitle = 'Averaged Over <span style = "color:#E15759"><b>diamonds</b></span> and <span style = "color:#B07AA1"><b>mpg</b></span> Data and Over <span style = "color:#4E79A7"><b>Continuous</b></span> and <span style = "color:#F28E2B;"><b>Discrete</b></span> Target Variables',
+    x = NULL, 
+    y = NULL
+  )
+viz_cor_by_engine
+
+```
+
+The plot above shows the pairwise correlations among the variable importance ranks computed for each package-function combo, averaged over the two data sets and over the models for the two types of target variables—continuous and discrete. While nothing immediately jumps out from this plot, I think the most notable thing is that the `ranger` and `xgboost` scores seem to vary the most across the different variable importance methodologies, bottoming out at ~58% for the correlation between the SHAP (vip_shap) and model-specific (vip_model) methodologies. On the other hand, `glm` seems to have the most “agreement” and least variance in its scores.
+
+# Conclusion
+
+Overall, we might say that rankings of variable importance based on normalized variable importance scores in this analysis showed that differences will arise when evaluating different methodologies, but the differences may not be strong enough to change any deductions that one might draw. Of course, this will depend on the domain. 
+
+Do not go so far as to say that these insights can be generalized. Among other things, I would need to evaluate a much larger variety of data sets. However, it’s good to be conscious how much the results can vary. It’s ultimately up to the user whether the differences are significant.
+
+> Inspired by Tony ElHabr's post [here](https://tonyelhabr.rbind.io/post/variable-importance-compare/)
+
+----
+
+### Did you find this page helpful? Consider sharing it 🙌
+
+
+
+
+
