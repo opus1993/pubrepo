@@ -121,6 +121,8 @@ My list of useful free courses, books, tutorials, and expert blogs
 
 {{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
 
+- [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
+- [DALEX moDel Agnostic Language for Exploration and eXplanation](https://modeloriented.github.io/DALEX/)
 - [Machine Learning with R, the tidyverse, and mlr](https://www.manning.com/books/machine-learning-with-r-the-tidyverse-and-mlr) by [Hefin Rhys](https://twitter.com/HRJ21)
 - [`mlr`](https://mlr.mlr-org.com/articles/tutorial/task.html) by [Patrick Schratz](https://twitter.com/pjs_228)
 - [Introduction to Machine Learning with `mlr`](https://compstat-lmu.github.io/lecture_i2ml/articles/content.html)
