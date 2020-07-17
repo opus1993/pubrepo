@@ -1,5 +1,5 @@
 ---
-date: "2020-07-06"
+date: "2020-07-17"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -76,10 +76,12 @@ My list of useful free courses, books, tutorials, and expert blogs
 
 ## Data Visualization
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
+-[Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows)
 
 {{< youtube id="h29g21z0a68" autoplay="false" >}}
 
 - [MPA 635: Data Visualization](https://datavizf18.classes.andrewheiss.com/) by [Andrew Heiss](https://twitter.com/andrewheiss)
+- [Working with R, Cairo graphics, custom fonts, and ggplot](https://www.andrewheiss.com/blog/2017/09/27/working-with-r-cairo-graphics-custom-fonts-and-ggplot/)
 - [How to Create BBC Style Graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)
 - [R Graph Gallery](https://www.r-graph-gallery.com/)
 - **[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/index.html)** by [Claus Wilke](https://twitter.com/ClausWilke)
