@@ -76,7 +76,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 
 ## Data Visualization
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
--[Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows)
+- [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows)
 
 {{< youtube id="h29g21z0a68" autoplay="false" >}}
 
