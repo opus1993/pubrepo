@@ -51,11 +51,13 @@ In his [new book](https://www.amazon.com/gp/product/B08C76CV5Y/ref=dbs_a_def_rwt
 
 As an example, a team at Dell Software created a system to predict which patients had a higher probability of developing sepsis after surgery. Post-surgical complications are a serious occurrence. In fact, they are the most common reason for unplanned readmissions to the hospital in the United States. The advanced analytics team there worked with the University of Iowa Hospitals and Clinics to develop an analytics system that predicted which patients were at greater risk of suffering an infection from a surgical wound. The system used a variety of data, including details of the surgery itself, such as the patient's vital signs, and information from the person's medical records—whether, for example, he or she has diabetes or hypertension. By analyzing an ensemble of data, the system could predict the likelihood of infection while the patient was still on the operating table. For patients who were at higher risk, doctors could then use a different technique of closing or treating the wound, or prescribe a more effective regimen of post-surgery medication. The results of this sophisticated analytic environment have been impressive, [with the rate of infections for patients following colon surgery plummeting by more than 75 percent over a three-year period](https://www.tibco.com/customers/university-iowa-hospitals-and-clinics). This is an example of an augmented intelligence-based approach to surgery. 
 
-**Call to action**: UofI did not and does not talk about this as a human surgical team augmented by a robot, though some people have described the system in those terms. We see it as the augmentation of the intelligence of the surgical team with an AI based system that provides guidance in a non-intrusive, supportive manner in a timeframe that can improve surgical outcomes for the surgical team, the hospital, and most importantly, the patients. 
+UofI did not and does not talk about this as a human surgical team augmented by a robot, though some people have described the system in those terms. We see it as the augmentation of the intelligence of the surgical team with an AI based system that provides guidance in a non-intrusive, supportive manner in a timeframe that can improve surgical outcomes for the surgical team, the hospital, and most importantly, the patients. 
+
+**Call to action**: Always empower the domain experts with augmented decision support tools that help make what they do for the business, better.
 
 On a positive note, all the necessary building blocks are in place and generally available to all corporations and a significant portion of the general population to leverage advanced analytics: hardware, software, high-speed networks, a proliferation of detailed real-time data, powerful data management, far-reaching data integration, an increasing level of digital literacy skills, and a growing awareness of the need for and value of advanced analytics and AI.
 
-{{< figure src="./pratham-gupta-DksFlwoPLAA-unsplash.jpg" title="Pratham Gupta" lightbox="true" >}}
+{{< figure src="./pratham-gupta-DksFIwoPLAA-unsplash.jpg" title="Pratham Gupta" lightbox="true" >}}
 
 ## Organizational culture
 
@@ -187,7 +189,7 @@ Today we have moved well beyond the obvious. To be clear, we still do the obviou
 
 Why should you care about this fact? The more people who are involved in the process, the more explaining, teaching and approving that is required. The more departments and managers that are involved, the bigger the need them to budget for the acquisition of expensive data sources from commercial suppliers. Government and academic sources involve much less overhead and can generally be obtained and used without many, if any, restrictions. An operational consideration, and one that analytics teams continually overlook, is that if you are utilizing a dataset once, it is highly likely that you and your team will use it multiple times. More than once in a single analytical application on a refresh basis and possibly for multiple analytical applications. In nearly every case, it makes sense to build the data acquisition, transfer, loading, and integration logic in a modular reusable manner. Building the software, scripts, and utilities in may take a little longer, but you will have an asset that the team can reuse for years. It is worth the incremental time and effort.
 
-{{< figure src="./connor-coyne-_JLcXBc6jf0-unsplash.jpg" title="Connor Coyne" lightbox="true" >}}
+{{< figure src="./lars-bo-nielsen-YLqW4jNrKiI-unsplash.jpg" title="Lars Bo Nielsen" lightbox="true" >}}
 
 ## Introductory projects
 
@@ -272,6 +274,8 @@ The first project you do with a new functional area that you do not have an exis
 During the early stages of analytics process, do not try to limit the scope of investigation too narrowly. Iterative cycles, trial and error, and a bit of patience is required.
 
 These issues can only be overcome in collaboration with the functional sponsors that you and your team are engaged with. You may need only their agreement. You may need their agreement and active sponsorship. You may need all of those previous elements and budgetary support too. No matter what level of support you require, it will only come from fully engaging.
+
+----
 
 Numerous links are provided in this post and a great deal of credit is owed to the following authors and their recent books:
 
