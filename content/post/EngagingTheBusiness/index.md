@@ -13,15 +13,15 @@ authors: []
 lastmod: '2020-07-17T16:07:32-05:00'
 featured: no
 image:
-  caption: ''
-  focal_point: ''
-  preview_only: no
+  caption: 'New Holland'
+  focal_point: 'Smart'
+  preview_only: false
 projects: []
 ---
 
-Most business clients have a genuine interest in the uses of data, yet do not know how to achieve their goals. The analyst's job is to help them understand how to navigate the journey successfully. The organization's mid-level functional managers are given latitude to immediately stop, delay, or move work forward. A handful of causes explain most of the issues with analytics in this interface. Let's look at the variety of areas in which you will need to be armed with expertise to convince stakeholders that these roadblocks need to be overcome and to help everyone better understand the potential of analytics.
+Most business clients have a genuine interest in the uses of data yet do not know how to achieve their goals. The analyst's job is to help them understand how to navigate the journey successfully. The organization's mid-level functional managers are given latitude to immediately stop, delay, or move work forward. A handful of causes explain most of the issues with analytics in this interface. Let's look at the variety of areas in which you will need to be armed with expertise to convince stakeholders that these roadblocks need to be overcome and to help everyone better understand the potential of analytics.
 
-So many C-suite executives have already committed to entering the race to building artificial intelligence into the business. Often they will put the responsibility under the CIO or the CFO. I have witnessed how this is can be the first step towards failure. The installation of Salesforce or SAP is a well-known linear building process. Advanced analytics projects are not anything like information technology projects.
+Many C-suite executives have already committed to entering the race to build artificial intelligence into the business. Often they will put the responsibility under the CIO or the CFO. I have witnessed how this is the first step towards failure. The installation of Salesforce or SAP is a well-known linear building process. Advanced analytics projects are not, and thus are not like information technology projects.
 
 The interfaces between advanced analytics and other functional groups in the business deserves much more attention than it currently receives. Advanced analytics is focused on disruption, creativity, and innovation. Functional groups must have processes that move along structured process paths. There are far too many opportunities for misunderstandings in the handoff.
 
@@ -33,7 +33,7 @@ Without a public C-suite commitment and institutional transparency, the analytic
 
 **Call to action**:In this post we will examine examples of roadblocks, keeping in mind that we are describing each so that you can formulate your own views on how you, your analytics team, and the broader organization can surmount each obstacle. Let's lay out the case for how we can engage even the most intractable parts of organizations to move them in a direction where we can build systems that will drive positive change.
 
-![](https://unsplash.com/photos/K2b7UDed6uQ)
+{{< figure src="./anisur-rahman-K2b7UDed6uQ-unsplash.jpg" title="Anisur Rahman" lightbox="true" >}}
 
 ## Overcoming Roadblocks to Analytics Adoption
 
@@ -55,7 +55,7 @@ As an example, a team at Dell Software created a system to predict which patient
 
 On a positive note, all the necessary building blocks are in place and generally available to all corporations and a significant portion of the general population to leverage advanced analytics: hardware, software, high-speed networks, a proliferation of detailed real-time data, powerful data management, far-reaching data integration, an increasing level of digital literacy skills, and a growing awareness of the need for and value of advanced analytics and AI.
 
-![](https://unsplash.com/photos/DksFIwoPLAA)
+{{< figure src="./pratham-gupta-DksFlwoPLAA-unsplash.jpg" title="Pratham Gupta" lightbox="true" >}}
 
 ## Organizational culture
 
@@ -75,7 +75,7 @@ There exist executives who believe that all data and analytics projects can be o
 
 **Call to action**: Engaging the data science team itself to drive change is may be a waste of talent, time, and money. The organization needs to have another group, like a project management or change management group, that is chartered with driving the process and operational changes required to realize the value of the intelligence generated. The project management team is, in all likelihood, not part of the advanced analytics and AI team, but they are the team or group that the analytics team can hand off change management processes to. Most people find change hard. The processes that the advanced analytics team changes with data and analytics might represent especially hard changes for an organization. The analytics team needs to consider the reticence of the organization and plan for how to overcome the tendency to the status quo.
 
-![](https://unsplash.com/photos/_WRwaR7_fG4)
+{{< figure src="./ian-_WRwaR7_fG4-unsplash.jpg" title="" lightbox="true" >}}
 
 ## Data or Algorithms - The Knee of the Curve
 
@@ -101,7 +101,7 @@ Never before in history have we had the combination of math, volumes of diverse 
 
 **Call to action**: The main point is that it is not data *or* algorithms, it is data *and* algorithms. They each reinforce the value of the other and amplify their impacts in an evolving and dynamic manner. Don't let people simplify the equation or need for investment and focus to one or the other—both are required for success and successful change.
 
-![](https://unsplash.com/photos/gZB-i-dA6ns)
+{{< figure src="./andreas-klassen-gZB-i-dA6ns-unsplash.jpg" title="Andreas Klassen" lightbox="true" >}}
 
 ## A Managerial Mindset
 
@@ -123,7 +123,7 @@ How could the analytics team have been more effective in encouraging greater ado
 
 **Call to action**: Do not underestimate the lack of awareness in existing middle managers of the need for changes in processes, training, job content, and performance management to fully utilize data and analytics.
 
-![](https://unsplash.com/photos/yctiRnbY7w4)
+{{< figure src="./brandon-mowinkel-yctiRnbY7w4-unsplash.jpg" title="Brandon Mowinkel" lightbox="true" >}}
 
 ## The skills gap
 
@@ -147,7 +147,7 @@ Make it widely known that principal and senior analysts are expected to manage a
 
 And if growth in data and statistical skill sets is really is one of our long-term goals, then we should be working with our local elementary schools, middle schools, high schools, colleges, and universities to ensure that they are all teaching data literacy and analytical competence.
 
-![](https://unsplash.com/photos/l3N9Q27zULw)
+{{< figure src="./jess-bailey-l3N9Q27zULw-unsplash.jpg" title="Jess Bailey" lightbox="true" >}}
 
 ## Linear and non-linear thinking
 
@@ -161,7 +161,7 @@ Well-adjusted linear thinkers know that they are experts and they may still be i
 
 **Call to action**: Don't expect linear thinkers to change or open their viewpoints. If you are a non-linear thinker, you can see ways to approaches that linear thinkers cannot see and cannot even conceive of as being possible or practical. They are like fish—water, what water? They are so enveloped by their view of reality, they cannot even see it. Perhaps you can help them by leveraging their single-minded focus and disciplined thinking. Help them find the new groove and they can accelerate that line through their complete focus to not get sidetracked. Set them in flight to come back with new ideas on a periodic basis that they can digest.
 
-![](https://unsplash.com/photos/djb1whucfBY)
+{{< figure src="./stellrweb-djb1whucfBY-unsplash.jpg" title="Stellr Web" lightbox="true" >}}
 
 ## Do you Really Need a Budget?
 
@@ -173,7 +173,7 @@ Budgets are always tight. Actually, I am having a hard time recalling where budg
 
 **Call to action**: Budgets are a roadblock to success. The budgeting process is divisive. Budgets can take a great deal of your time, especially when you are politicking to gain more money or to take money from someone else. Budgets can be contentious and they can be a problem. Or, budgets could be no big deal; that is how I choose to deal with them. Set up your team, hire the right people, and put the budgeting cycle on autopilot. This approach saves you time, money, and anguish. Who doesn't like that? No one.
 
-![](https://unsplash.com/photos/1Uj0HmqQFGk)
+{{< figure src="./clay-banks-1Uj0HmqQFGk-unsplash.jpg" title="Clay Banks" lightbox="true" >}}
 
 ## Not big data but Lots of Small Data
 
@@ -187,7 +187,7 @@ Today we have moved well beyond the obvious. To be clear, we still do the obviou
 
 Why should you care about this fact? The more people who are involved in the process, the more explaining, teaching and approving that is required. The more departments and managers that are involved, the bigger the need them to budget for the acquisition of expensive data sources from commercial suppliers. Government and academic sources involve much less overhead and can generally be obtained and used without many, if any, restrictions. An operational consideration, and one that analytics teams continually overlook, is that if you are utilizing a dataset once, it is highly likely that you and your team will use it multiple times. More than once in a single analytical application on a refresh basis and possibly for multiple analytical applications. In nearly every case, it makes sense to build the data acquisition, transfer, loading, and integration logic in a modular reusable manner. Building the software, scripts, and utilities in may take a little longer, but you will have an asset that the team can reuse for years. It is worth the incremental time and effort.
 
-![](https://unsplash.com/photos/_JLcXBc6jf0)
+{{< figure src="./connor-coyne-_JLcXBc6jf0-unsplash.jpg" title="Connor Coyne" lightbox="true" >}}
 
 ## Introductory projects
 
@@ -197,7 +197,7 @@ It is often unclear if the sponsoring stakeholders & subject matter experts are 
 
 Not short as in small in ambition or scope—you can definitely take on a significant issue or challenge for the company or cause—but you should break down the initial stage of the project into a piece of work that can be completed with compelling results in 2 to 4 months. End users cannot see or envision the results that they will be expected to work with, and they are even less capable of understanding the cascade of changes that will need to be enacted to realize the full benefits of a data and analytics-based approach. No doubt stakeholders will be impressed that your team are committing to deliver results so quickly. They will have no knowledge that you are doing this for your benefit more than theirs. What happens in many cases is that you and your team will illustrate an interesting insight or find a result that is not intuitive. You can use this finding to open the discussion regarding planning the phase of the work, where the predictive models become part of the newly re-engineered production process. Most managers will not act surprised, but they will be and may resist implementing the changes. You need to gently persist in the belief that the data, insights, and analyses are leading to an improvement in pricing, operations, marketing, or whatever functional business unit you are analyzing. The organization did not invest in an analytics team to have results be ignored. You may have numerous conversations and you may have to escalate the process to your management, but if the results are not used to benefit the company, you do not want to be the person who did not push for full value realization. I am not a fan of this kind of maneuvering, but in this case it is unavoidable.
 
-![](https://unsplash.com/photos/JW6r_0CPYec)
+{{< figure src="./neonbrand-JW6r_0CPYec-unsplash.jpg" title="" lightbox="true" >}}
 
 ## Value realization
 
@@ -215,7 +215,7 @@ In most cases, there is no shortage of project work for the analytics team to un
 
 With each successful project comes a growing set of analytical applications and models that need to be maintained, extended, and refreshed. Your team will need to keep in mind that all analytical applications should be built in a way that means the functional teams can accept responsibility for interacting with and using the analytical applications in their regular operations. If the advanced analytics team needs to run every application, the bandwidth and productivity of your team will grind to a halt quickly.
 
-![](https://unsplash.com/photos/YK8Mvocj6yE)
+{{< figure src="./cristofer-jeschke-YK8Mvocj6yE-unsplash.jpg" title="Cristofer Jeschke" lightbox="true" >}}
 
 ## Discovery
 
