@@ -1,9 +1,11 @@
 ---
-date: "2020-01-03"
+date: "2020-07-20"
 diagram: true
 image: 
   caption: 'Image credit: [R-Project](https://www.r-project.org/logo/Rlogo.png)'
   placment: 3
+  focal_point: 'Smart'
+  preview_only: false
 markup: goldmark
 math: true
 title: Resources for Learning R
@@ -16,19 +18,37 @@ tags:
   - Education
 ---
 
-The entry point for most analytics professionals is Microsoft Excel. At some point, though, project requirements and organizations require more. The breakdowns are typically:
+The entry point for most of us into analytics is our experience with Microsoft Excel. At some point though, projects and organizations require more. The breakdowns are typically:
 
-1. We need to separate the data from the analysis, with storage, for a single source of truth
+1. We need to separate the data from the analysis, with storage, for a single source of truth.
 
-1. We need to be able to automate the analysis
+1. We need to be able to automate the analysis.
 
-1. We need the analysis to be reproducible
+1. We need the analysis to be reproducible.
 
 1. We should not pay a third party obscene amounts of money for something as basic as arithmetic. The budget is better allocated towards innovation and staff education.
 
-There are a number of solutions on the market that address these needs in various ways. Some are platforms, like Amazon Web Services or Microsoft Azure. Others are suites of software tools, like SAS or Matlab. One of the most widely used tool stacks for analysts is built on the R language.
+There are a number of solutions on the market that address these needs to varying degrees. Some are suites of software tools, like SAS or Matlab. One of the most widely used tool stacks for analysts is built on the R programming language. 
 
-The mothership for all things R is the [R project](https://www.r-project.org/) site. From there an analyst can download R for your platform, discover add-on packages, documentation, and source code as well as research other resources. There are many books available about learning and using R. The R project site itself contains an extensive bibliography of books related to R. My short list includes:
+**Why R?**
+
+In a nutshell, 
+
+- R is free. 
+- R is popular. 
+- R is versatile.
+- R is powerful.
+- R is well supported.
+
+Related posts:
+
+> [Open Source is Good for Business](https://jimgruman.netlify.app/post/open-source/)
+
+> [Why I Use R](https://blog.shotwell.ca/posts/why_i_use_r/)
+
+The mothership for all things R is the [R project](https://www.r-project.org/) web site. From there an analyst can download R for your platform, discover add-on packages, documentation, and source code and find other resources. The second stop for most is downloading the free  [Rstudio](https://rstudio.com/products/rstudio/) Integrated Development Environment (IDE). 
+
+Many books are available for new users. The R project site itself contains an extensive bibliography related to R. My short list includes:
 
 [R-Studio Education: Beginners](https://education.rstudio.com/learn/beginner/) is an approachable video instruction with cloud exercises to get started quickly.
 
@@ -54,7 +74,11 @@ The [R Cookbook 2nd Edition](https://rc2e.com/index.html#other-resources) by J.D
 
 ----
 
-Regardless of your platform, all analysts should master the craft of data visualization.
+> [My complete list of useful free courses, books, tutorials, and expert blogs](https://jimgruman.netlify.app/post/education-r/)
+
+----
+
+Regardless of your platform, all analysts should take a deep dive into the craft of data visualization.
 
 For great examples, [How Charts Lie](https://www.amazon.com/How-Charts-Lie-Getting-Information/dp/1324001569) and [Factfulness](https://www.gapminder.org/factfulness-book/) each speak to how numbers are persuasive, especially when presented as charts, because we associate them with science and reason. [Our World in Data](https://ourworldindata.org/) is an open access project with a goal of making knowledge on big global problems accessible and understandable. Charts can enlighten and enable conversations, allowing us to peek through the complexity of large amounts of data. Good charts make us smarter.
 
@@ -75,6 +99,8 @@ The use of git will be important for team collaboration. Look for Jenny Bryan’
 [R-Studio Education: Expert](https://education.rstudio.com/learn/expert/) covers building your own packages, the Keras deep learning interface, and R-Markdown extensions.
 
 ![R-Studio Education: Expert](https://education.rstudio.com/learn/expert/feature-scuba-750.jpg)
+
+----
 
 ### Did you find this page helpful? Consider sharing it 🙌
 
