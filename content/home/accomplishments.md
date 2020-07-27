@@ -68,4 +68,13 @@ date_format = "Jan 2006"
   date_end = "2020-06-19"
   description = ""
 
+[[item]]
+  organization = "DataCamp"
+  organization_url = "https://www.datacamp.com"
+  title = "Spatial Data with R Track"
+  url = ""
+  certificate_url = "https://www.datacamp.com/statement-of-accomplishment/track/545f759487fc90c08aa410770a7f0fe0fc766589"
+  date_start = "2020-07-26"
+  date_end = "2020-07-27"
+  description = ""
 +++
