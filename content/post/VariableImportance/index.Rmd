@@ -7,7 +7,7 @@ output:
  blogdown::html_page:
   toc: false
 categories: [Data Science, R, machine learning]
-description: "Interpretable Machine Learning" 
+description: "Variable Importance in Machine Learning" 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
@@ -19,7 +19,246 @@ featured: false
 draft: false
 ---
 
-One thing that keeps popping up in my machine learning work is the need to explain the models and their components. There are a couple of ways to go about explaining model features, and probably the most common approach is to use feature importance scores. Unfortunately, computing importance scores isn’t as straightforward as one might hope, with several methodologies. In this post, let's explore the question “How similar are the feature importance scores calculated using different methodologies?” It’s important to know if the different methods will lead to drastically different results. If so, then the choice of method is a source of bias in model interpretation.
+This week's `#TidyTuesday` subject is a study of 342 observations of Antarctic penguins on the Palmer Archipelago. 
+Our goal here is first to predict the sex feature missing from several of the penguins in the dataset using a classification model, driven by what is known in other observations in the dataset.
+
+Then, we will take a closer look at an expert data visualization crafted by Cedric Scherer.
+
+And finally, we will close with a discussion of several methods of assessing variable importance. 
+
+Read more about how this dataset came to be at [this post on the RStudio Education blog](https://education.rstudio.com/blog/2020/07/palmerpenguins-cran/). 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning = FALSE, 
+                      cache=TRUE, 
+                      dev = 'jpeg',
+                      fig.width = 12,
+                      fig.height = 8,
+                      out.width = '100%')
+
+library(tidyverse)
+library(palmerpenguins)
+penguins <-palmerpenguins::penguins  %>%
+           filter(!is.na(bill_length_mm))
+
+```
+
+If you try building a classification model for species, you will  find an almost perfect fit, because these kinds of observations are actually what distinguish different species. Sex, on the other hand, is a little messier.  9 are missing from the dataset.
+
+```{r}
+penguins %>%
+  count(sex) 
+
+penguins %>%
+  ggplot(aes(flipper_length_mm, bill_length_mm, size = body_mass_g)) +
+  geom_point(aes(color = sex), alpha = 0.5, show.legend = FALSE) +
+  geom_text(aes(label = if_else(is.na(sex),"X","")), size = 12)+
+  viridis::scale_color_viridis(discrete = TRUE, direction = -1, option = "D", na.value = 'black')+
+  facet_wrap(~species) +
+  theme_bw()+
+  theme(plot.title.position = "plot")+
+  labs(title = "Palmer Penguins with those Missing Gender as X")
+
+```
+
+It looks like female penguins are smaller with different bills, but let’s get ready for modeling to find out more! We will not use the island or year information in our model. And for modeling, we will include all of the observations that have the sex noted.
+
+```{r}
+penguins_df <- penguins %>%
+  filter(!is.na(sex)) %>%
+  select(-year, -island)
+```
+
+# Build a good predictive model
+
+We start here by loading the `tidymodels` metapackage, and splitting our data into training and testing sets. In this case, the training set is 250 observations, and the testing set held in reserve is 83 observations.
+
+```{r warning=FALSE}
+library(tidymodels)
+penguin_split <- initial_split(penguins_df, strata = sex)
+penguin_train <- training(penguin_split)
+penguin_test <- testing(penguin_split)
+```
+
+Next, let’s create bootstrap resamples of the training data, to evaluate training models.
+
+```{r}
+penguin_boot <- bootstraps(penguin_train)
+penguin_boot
+```
+
+Let’s compare two different modeling techniques, a logistic regression model and a random forest model. Both are computationally simple and work well for tabular data. We start by creating the model specifications.
+
+```{r}
+glm_spec <- logistic_reg() %>%
+  set_engine("glm")
+
+glm_spec
+```
+ 
+```{r}
+rf_spec <- rand_forest() %>%
+  set_mode("classification") %>%
+  set_engine("ranger")
+
+rf_spec
+```
+
+Next let’s start putting together a tidymodels` workflow()`, a helper object to help manage modeling pipelines with pieces that fit together like Lego blocks. Notice that there is no model yet.
+
+```{r}
+penguin_wf <- workflow() %>%
+  add_formula(sex ~ .)
+
+penguin_wf
+```
+
+Now we can add a model, and the fit to each of the resamples. First, we can fit the logistic regression model.
+
+```{r}
+glm_rs <- penguin_wf %>%
+  add_model(glm_spec) %>%
+  fit_resamples(
+    resamples = penguin_boot,
+    control = control_resamples(save_pred = TRUE)
+  )
+
+glm_rs
+```
+
+Second, we can fit the random forest model.
+
+```{r}
+rf_rs <- penguin_wf %>%
+  add_model(rf_spec) %>%
+  fit_resamples(
+    resamples = penguin_boot,
+    control = control_resamples(save_pred = TRUE)
+  )
+
+rf_rs
+```
+
+We have fit each of two candidate models to our resampled training set.
+
+## Evaluate each model
+
+Now let’s check out how we did. First, the random forest:
+
+```{r}
+collect_metrics(rf_rs)
+```
+Pretty nice! The function `collect_metrics()` extracts and formats the `.metrics` column from resampling results like the ones we have here.  Next, the glm:
+
+```{r}
+collect_metrics(glm_rs)
+```
+
+So… also great! If I am in a situation where a more complex model like a random forest performs the same as a simpler model like logistic regression, then I will choose the simpler model. Let’s dig deeper into how it is doing. For example, how is the glm model predicting the two classes?
+
+```{r}
+glm_rs %>%
+  conf_mat_resampled()
+```
+
+About the same, which is good. We can also make an ROC curve for the glm model.
+
+```{r}
+glm_rs %>%
+  collect_predictions() %>%
+  group_by(id) %>%
+  roc_curve(sex, .pred_female) %>%
+  ggplot(aes(1 - specificity, sensitivity, color = id)) +
+  geom_abline(lty = 2, color = "gray80", size = 1.5) +
+  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +
+  coord_equal()+
+  theme(plot.title.position = "plot")+
+  labs(title = "GLM Model Receiver Operating Characteristic Curve")
+```
+
+This ROC curve is more jagged than others you may have seen because the dataset is small.
+
+It is finally time for us to return to the testing set. Notice that we have not used the testing set yet during this whole analysis; the testing set is precious and can only be used to estimate performance on new data. Let’s fit one more time to the training data and evaluate on the testing data using the function `last_fit()`.
+
+```{r}
+penguin_final <- penguin_wf %>%
+  add_model(glm_spec) %>%
+  last_fit(penguin_split)
+
+penguin_final
+```
+
+The metrics and predictions here are on the *testing* data.
+
+```{r}
+collect_metrics(penguin_final)
+```
+
+```{r}
+collect_predictions(penguin_final) %>%
+  conf_mat(sex, .pred_class)
+```
+
+The coefficients (which we can get out using `tidy()`) have been estimated using the training data. If we use `exponentiate = TRUE`, we have odds ratios.
+
+```{r}
+penguin_final$.workflow[[1]] %>%
+  tidy(exponentiate = TRUE) 
+```
+
+- The largest odds ratio is for bill depth, with the second largest for bill length. An increase of 1 mm in bill depth corresponds to almost 4x higher odds of being male. The characteristics of a penguin’s bill must be associated with their sex.
+
+- We don’t have strong evidence that flipper length is different between male and female penguins, controlling for the other measures; maybe we should explore that by changing that first plot!
+
+Let's make our predictions:
+
+```{r}
+.pred_class<-(penguin_wf %>%
+   add_model(glm_spec) %>%
+   fit(penguin_train) %>%
+   predict(new_data = penguins))
+
+penguins<-bind_cols(penguins, .pred_class)
+
+penguins <- penguins %>%
+  mutate(sex = if_else(is.na(sex),
+                       .pred_class,
+                       sex)) %>%
+  select(-.pred_class)
+```
+
+And a new plot along the most important penguin features:
+
+```{r}
+penguins %>%
+  ggplot(aes(bill_depth_mm, bill_length_mm, size = body_mass_g)) +
+  geom_point(aes(color = sex), alpha = 0.5, show.legend = TRUE) +
+  geom_text(aes(label = if_else(is.na(sex),"X","")), size = 12)+
+  viridis::scale_color_viridis(discrete = TRUE, direction = -1, option = "D", na.value = 'black')+
+  facet_wrap(~species) +
+  theme_bw()+
+  theme(plot.title.position = "plot",
+        legend.position = "top")+
+  labs(title = "Palmer Penguins",
+       size = "Body Mass",
+       x = "Bill Depth in mm",
+       y = "Bill Length in mm")
+```
+
+----
+
+# Data Visualization
+
+Cedric Scherer crafts stunning visualizations weekly for #TidyTuesday and posts them publicly. He has identified an engineered feature, called **bill ratio**, that provides very good separation between the three species. Note the use of annotations and the raincloud elements below the density plots.
+
+![](2020_31_PalmerPenguins.png){width=80%}
+
+----
+
+# Variable Importance
+
+One thing that keeps popping up in machine learning work is the need to explain the models and their components. There are a couple of ways to go about explaining model features, and probably the most common approach is to use feature importance scores. Unfortunately, computing importance scores isn’t as straightforward as one might hope, with several methodologies. In this post, let's explore the question “How similar are the feature importance scores calculated using different methodologies?” It’s important to know if the different methods will lead to drastically different results. If so, then the choice of method is a source of bias in model interpretation.
 
 This post isn’t intended to be a deep-dive into model interpretability, but some concepts should be highlighted before attempting to answer the question. Feature importance can be categorized as either being [“model-specific”](https://topepo.github.io/caret/variable-importance.html) or [“model-agnostic”](https://christophm.github.io/interpretable-ml-book/agnostic.html). Both depend upon some kind of loss function, e.g. root mean squared error (RMSE), classification error, etc. The loss function for a model-specific approach will generally be “fixed” by the software and package that are used, while model-agnostic approaches tend to give the user flexibility in choosing a loss function. Finally, within model-agnostic approaches, there are different methods, e.g. permutation and [SHAP (Shapley Additive Explanations)](https://christophm.github.io/interpretable-ml-book/shap.html).
 
@@ -43,7 +282,7 @@ Additionally, I’m going to use more than one package for computing variable im
 
 Specifically, I’ll be using the [`vip`](https://cran.r-project.org/web/packages/vip/index.html) and [`DALEX`](https://cran.r-project.org/web/packages/DALEX/index.html) packages. The `vip` package is capable of doing both types of calculations, model-specific and model-agnostic for a variety of model types. `DALEX` specializes in model-agnostic model interpretability and can do a lot more than just variable importance calculations.
 
-# Setup
+## Setup
 
 For data, I’m going to be using the new `palmerpenguins` and the famous `mpg`.
 
@@ -63,20 +302,7 @@ With `glmnet::glmnet()`, I’m actually not going to use a penalty, so it should
 
 Note that the model-specific vs. model-agnostic concern is addressed in comparing method (1) vs. methods (2)-(4). I’ll be consistent with the loss function in variable importance computations for the model-agnostic methods–minimization of RMSE for a continuous target variable and sum of squared errors (SSE) for a discrete target variable. 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, 
-                      warning = FALSE, 
-                      cache=TRUE, 
-                      dev = 'jpeg',
-                      fig.width = 12,
-                      fig.height = 8,
-                      out.width = '100%')
-
-library(tidyverse)
-library(palmerpenguins)
-penguins <-palmerpenguins::penguins %>% na.omit()
-
-library(ggplot2)
+```{r}
 mpg_modified <- mpg %>% mutate(
     grp = case_when(
         class %in% c('2seater', 'compact', 'subcompact', 'midsize') ~ '1. Small',
@@ -98,7 +324,7 @@ source(paste0(here::here("content","post","VariableImportance","code", "function
 compare_and_rank_vip_q <- quietly(compare_and_rank_vip)
 ```
 
-# Results
+## Results
 
 The following handful of plots illustrate normalized variable importance scores and ranks derived from the scores by data set and type of target variable.
 
@@ -279,7 +505,7 @@ viz_cor_by_engine
 
 The plot above shows the pairwise correlations among the variable importance ranks computed for each package-function combo, averaged over the two data sets and over the models for the two types of target variables—continuous and discrete. While nothing immediately jumps out from this plot, I think the most notable thing is that the `ranger` and `xgboost` scores seem to vary the most across the different variable importance methodologies, bottoming out at ~47% for the correlation between the dalex and model-specific (vip_model) methodologies. On the other hand, `glm` seems to have the most “agreement” and least variance in its scores.
 
-# Conclusion
+## Conclusion
 
 Overall, we might say that rankings of variable importance based on normalized variable importance scores in this analysis showed that differences will arise when evaluating different methodologies, but the differences may not be strong enough to change any deductions that one might draw. Of course, this will depend on the domain. 
 

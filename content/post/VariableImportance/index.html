@@ -7,7 +7,7 @@ output:
  blogdown::html_page:
   toc: false
 categories: [Data Science, R, machine learning]
-description: "Interpretable Machine Learning" 
+description: "Variable Importance in Machine Learning" 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
@@ -21,7 +21,271 @@ draft: false
 
 
 
-<p>One thing that keeps popping up in my machine learning work is the need to explain the models and their components. There are a couple of ways to go about explaining model features, and probably the most common approach is to use feature importance scores. Unfortunately, computing importance scores isn’t as straightforward as one might hope, with several methodologies. In this post, let’s explore the question “How similar are the feature importance scores calculated using different methodologies?” It’s important to know if the different methods will lead to drastically different results. If so, then the choice of method is a source of bias in model interpretation.</p>
+<p>This week’s <code>#TidyTuesday</code> subject is a study of 342 observations of Antarctic penguins on the Palmer Archipelago.
+Our goal here is first to predict the sex feature missing from several of the penguins in the dataset using a classification model, driven by what is known in other observations in the dataset.</p>
+<p>Then, we will take a closer look at an expert data visualization crafted by Cedric Scherer.</p>
+<p>And finally, we will close with a discussion of several methods of assessing variable importance.</p>
+<p>Read more about how this dataset came to be at <a href="https://education.rstudio.com/blog/2020/07/palmerpenguins-cran/">this post on the RStudio Education blog</a>.</p>
+<p>If you try building a classification model for species, you will find an almost perfect fit, because these kinds of observations are actually what distinguish different species. Sex, on the other hand, is a little messier. 9 are missing from the dataset.</p>
+<pre class="r"><code>penguins %&gt;%
+  count(sex) </code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   sex        n
+##   &lt;fct&gt;  &lt;int&gt;
+## 1 female   165
+## 2 male     168
+## 3 &lt;NA&gt;       9</code></pre>
+<pre class="r"><code>penguins %&gt;%
+  ggplot(aes(flipper_length_mm, bill_length_mm, size = body_mass_g)) +
+  geom_point(aes(color = sex), alpha = 0.5, show.legend = FALSE) +
+  geom_text(aes(label = if_else(is.na(sex),&quot;X&quot;,&quot;&quot;)), size = 12)+
+  viridis::scale_color_viridis(discrete = TRUE, direction = -1, option = &quot;D&quot;, na.value = &#39;black&#39;)+
+  facet_wrap(~species) +
+  theme_bw()+
+  theme(plot.title.position = &quot;plot&quot;)+
+  labs(title = &quot;Palmer Penguins with those Missing Gender as X&quot;)</code></pre>
+<p><img src="/post/VariableImportance/index_files/figure-html/unnamed-chunk-1-1.jpeg" width="100%" /></p>
+<p>It looks like female penguins are smaller with different bills, but let’s get ready for modeling to find out more! We will not use the island or year information in our model. And for modeling, we will include all of the observations that have the sex noted.</p>
+<pre class="r"><code>penguins_df &lt;- penguins %&gt;%
+  filter(!is.na(sex)) %&gt;%
+  select(-year, -island)</code></pre>
+<div id="build-a-good-predictive-model" class="section level1">
+<h1>Build a good predictive model</h1>
+<p>We start here by loading the <code>tidymodels</code> metapackage, and splitting our data into training and testing sets. In this case, the training set is 250 observations, and the testing set held in reserve is 83 observations.</p>
+<pre class="r"><code>library(tidymodels)</code></pre>
+<pre><code>## -- Attaching packages ------------------------------ tidymodels 0.1.1 --</code></pre>
+<pre><code>## v broom     0.7.0      v recipes   0.1.13
+## v dials     0.0.8      v rsample   0.0.7 
+## v infer     0.5.3      v tune      0.1.1 
+## v modeldata 0.0.2      v workflows 0.1.2 
+## v parsnip   0.1.2      v yardstick 0.0.7</code></pre>
+<pre><code>## -- Conflicts --------------------------------- tidymodels_conflicts() --
+## x scales::discard() masks purrr::discard()
+## x dplyr::filter()   masks stats::filter()
+## x recipes::fixed()  masks stringr::fixed()
+## x dplyr::lag()      masks stats::lag()
+## x yardstick::spec() masks readr::spec()
+## x recipes::step()   masks stats::step()</code></pre>
+<pre class="r"><code>penguin_split &lt;- initial_split(penguins_df, strata = sex)
+penguin_train &lt;- training(penguin_split)
+penguin_test &lt;- testing(penguin_split)</code></pre>
+<p>Next, let’s create bootstrap resamples of the training data, to evaluate training models.</p>
+<pre class="r"><code>penguin_boot &lt;- bootstraps(penguin_train)
+penguin_boot</code></pre>
+<pre><code>## # Bootstrap sampling 
+## # A tibble: 25 x 2
+##    splits           id         
+##    &lt;list&gt;           &lt;chr&gt;      
+##  1 &lt;split [250/91]&gt; Bootstrap01
+##  2 &lt;split [250/89]&gt; Bootstrap02
+##  3 &lt;split [250/96]&gt; Bootstrap03
+##  4 &lt;split [250/88]&gt; Bootstrap04
+##  5 &lt;split [250/82]&gt; Bootstrap05
+##  6 &lt;split [250/99]&gt; Bootstrap06
+##  7 &lt;split [250/98]&gt; Bootstrap07
+##  8 &lt;split [250/95]&gt; Bootstrap08
+##  9 &lt;split [250/89]&gt; Bootstrap09
+## 10 &lt;split [250/84]&gt; Bootstrap10
+## # ... with 15 more rows</code></pre>
+<p>Let’s compare two different modeling techniques, a logistic regression model and a random forest model. Both are computationally simple and work well for tabular data. We start by creating the model specifications.</p>
+<pre class="r"><code>glm_spec &lt;- logistic_reg() %&gt;%
+  set_engine(&quot;glm&quot;)
+
+glm_spec</code></pre>
+<pre><code>## Logistic Regression Model Specification (classification)
+## 
+## Computational engine: glm</code></pre>
+<pre class="r"><code>rf_spec &lt;- rand_forest() %&gt;%
+  set_mode(&quot;classification&quot;) %&gt;%
+  set_engine(&quot;ranger&quot;)
+
+rf_spec</code></pre>
+<pre><code>## Random Forest Model Specification (classification)
+## 
+## Computational engine: ranger</code></pre>
+<p>Next let’s start putting together a tidymodels<code>workflow()</code>, a helper object to help manage modeling pipelines with pieces that fit together like Lego blocks. Notice that there is no model yet.</p>
+<pre class="r"><code>penguin_wf &lt;- workflow() %&gt;%
+  add_formula(sex ~ .)
+
+penguin_wf</code></pre>
+<pre><code>## == Workflow ============================================================
+## Preprocessor: Formula
+## Model: None
+## 
+## -- Preprocessor --------------------------------------------------------
+## sex ~ .</code></pre>
+<p>Now we can add a model, and the fit to each of the resamples. First, we can fit the logistic regression model.</p>
+<pre class="r"><code>glm_rs &lt;- penguin_wf %&gt;%
+  add_model(glm_spec) %&gt;%
+  fit_resamples(
+    resamples = penguin_boot,
+    control = control_resamples(save_pred = TRUE)
+  )
+
+glm_rs</code></pre>
+<pre><code>## # Resampling results
+## # Bootstrap sampling 
+## # A tibble: 25 x 5
+##    splits           id          .metrics        .notes          .predictions    
+##    &lt;list&gt;           &lt;chr&gt;       &lt;list&gt;          &lt;list&gt;          &lt;list&gt;          
+##  1 &lt;split [250/91]&gt; Bootstrap01 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [91 x 5~
+##  2 &lt;split [250/89]&gt; Bootstrap02 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [89 x 5~
+##  3 &lt;split [250/96]&gt; Bootstrap03 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [96 x 5~
+##  4 &lt;split [250/88]&gt; Bootstrap04 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [88 x 5~
+##  5 &lt;split [250/82]&gt; Bootstrap05 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [82 x 5~
+##  6 &lt;split [250/99]&gt; Bootstrap06 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [99 x 5~
+##  7 &lt;split [250/98]&gt; Bootstrap07 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [98 x 5~
+##  8 &lt;split [250/95]&gt; Bootstrap08 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [95 x 5~
+##  9 &lt;split [250/89]&gt; Bootstrap09 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [89 x 5~
+## 10 &lt;split [250/84]&gt; Bootstrap10 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [84 x 5~
+## # ... with 15 more rows</code></pre>
+<p>Second, we can fit the random forest model.</p>
+<pre class="r"><code>rf_rs &lt;- penguin_wf %&gt;%
+  add_model(rf_spec) %&gt;%
+  fit_resamples(
+    resamples = penguin_boot,
+    control = control_resamples(save_pred = TRUE)
+  )
+
+rf_rs</code></pre>
+<pre><code>## # Resampling results
+## # Bootstrap sampling 
+## # A tibble: 25 x 5
+##    splits           id          .metrics        .notes          .predictions    
+##    &lt;list&gt;           &lt;chr&gt;       &lt;list&gt;          &lt;list&gt;          &lt;list&gt;          
+##  1 &lt;split [250/91]&gt; Bootstrap01 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [91 x 5~
+##  2 &lt;split [250/89]&gt; Bootstrap02 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [89 x 5~
+##  3 &lt;split [250/96]&gt; Bootstrap03 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [96 x 5~
+##  4 &lt;split [250/88]&gt; Bootstrap04 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [88 x 5~
+##  5 &lt;split [250/82]&gt; Bootstrap05 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [82 x 5~
+##  6 &lt;split [250/99]&gt; Bootstrap06 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [99 x 5~
+##  7 &lt;split [250/98]&gt; Bootstrap07 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [98 x 5~
+##  8 &lt;split [250/95]&gt; Bootstrap08 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [95 x 5~
+##  9 &lt;split [250/89]&gt; Bootstrap09 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [89 x 5~
+## 10 &lt;split [250/84]&gt; Bootstrap10 &lt;tibble [2 x 3~ &lt;tibble [0 x 1~ &lt;tibble [84 x 5~
+## # ... with 15 more rows</code></pre>
+<p>We have fit each of two candidate models to our resampled training set.</p>
+<div id="evaluate-each-model" class="section level2">
+<h2>Evaluate each model</h2>
+<p>Now let’s check out how we did. First, the random forest:</p>
+<pre class="r"><code>collect_metrics(rf_rs)</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   .metric  .estimator  mean     n std_err
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1 accuracy binary     0.890    25 0.00638
+## 2 roc_auc  binary     0.955    25 0.00259</code></pre>
+<p>Pretty nice! The function <code>collect_metrics()</code> extracts and formats the <code>.metrics</code> column from resampling results like the ones we have here. Next, the glm:</p>
+<pre class="r"><code>collect_metrics(glm_rs)</code></pre>
+<pre><code>## # A tibble: 2 x 5
+##   .metric  .estimator  mean     n std_err
+##   &lt;chr&gt;    &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
+## 1 accuracy binary     0.909    25 0.00546
+## 2 roc_auc  binary     0.968    25 0.00273</code></pre>
+<p>So… also great! If I am in a situation where a more complex model like a random forest performs the same as a simpler model like logistic regression, then I will choose the simpler model. Let’s dig deeper into how it is doing. For example, how is the glm model predicting the two classes?</p>
+<pre class="r"><code>glm_rs %&gt;%
+  conf_mat_resampled()</code></pre>
+<pre><code>## # A tibble: 4 x 3
+##   Prediction Truth   Freq
+##   &lt;fct&gt;      &lt;fct&gt;  &lt;dbl&gt;
+## 1 female     female 41.5 
+## 2 female     male    4.2 
+## 3 male       female  4.32
+## 4 male       male   42.8</code></pre>
+<p>About the same, which is good. We can also make an ROC curve for the glm model.</p>
+<pre class="r"><code>glm_rs %&gt;%
+  collect_predictions() %&gt;%
+  group_by(id) %&gt;%
+  roc_curve(sex, .pred_female) %&gt;%
+  ggplot(aes(1 - specificity, sensitivity, color = id)) +
+  geom_abline(lty = 2, color = &quot;gray80&quot;, size = 1.5) +
+  geom_path(show.legend = FALSE, alpha = 0.6, size = 1.2) +
+  coord_equal()+
+  theme(plot.title.position = &quot;plot&quot;)+
+  labs(title = &quot;GLM Model Receiver Operating Characteristic Curve&quot;)</code></pre>
+<p><img src="/post/VariableImportance/index_files/figure-html/unnamed-chunk-13-1.jpeg" width="100%" /></p>
+<p>This ROC curve is more jagged than others you may have seen because the dataset is small.</p>
+<p>It is finally time for us to return to the testing set. Notice that we have not used the testing set yet during this whole analysis; the testing set is precious and can only be used to estimate performance on new data. Let’s fit one more time to the training data and evaluate on the testing data using the function <code>last_fit()</code>.</p>
+<pre class="r"><code>penguin_final &lt;- penguin_wf %&gt;%
+  add_model(glm_spec) %&gt;%
+  last_fit(penguin_split)
+
+penguin_final</code></pre>
+<pre><code>## # Resampling results
+## # Monte Carlo cross-validation (0.75/0.25) with 1 resamples  
+## # A tibble: 1 x 6
+##   splits       id           .metrics      .notes       .predictions    .workflow
+##   &lt;list&gt;       &lt;chr&gt;        &lt;list&gt;        &lt;list&gt;       &lt;list&gt;          &lt;list&gt;   
+## 1 &lt;split [250~ train/test ~ &lt;tibble [2 x~ &lt;tibble [0 ~ &lt;tibble [83 x ~ &lt;workflo~</code></pre>
+<p>The metrics and predictions here are on the <em>testing</em> data.</p>
+<pre class="r"><code>collect_metrics(penguin_final)</code></pre>
+<pre><code>## # A tibble: 2 x 3
+##   .metric  .estimator .estimate
+##   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
+## 1 accuracy binary         0.928
+## 2 roc_auc  binary         0.981</code></pre>
+<pre class="r"><code>collect_predictions(penguin_final) %&gt;%
+  conf_mat(sex, .pred_class)</code></pre>
+<pre><code>##           Truth
+## Prediction female male
+##     female     37    2
+##     male        4   40</code></pre>
+<p>The coefficients (which we can get out using <code>tidy()</code>) have been estimated using the training data. If we use <code>exponentiate = TRUE</code>, we have odds ratios.</p>
+<pre class="r"><code>penguin_final$.workflow[[1]] %&gt;%
+  tidy(exponentiate = TRUE) </code></pre>
+<pre><code>## # A tibble: 7 x 5
+##   term              estimate std.error statistic       p.value
+##   &lt;chr&gt;                &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;
+## 1 (Intercept)       2.05e-34  13.5        -5.76  0.00000000840
+## 2 speciesChinstrap  1.95e- 3   1.68       -3.72  0.000202     
+## 3 speciesGentoo     7.55e- 4   2.79       -2.58  0.00995      
+## 4 bill_length_mm    1.74e+ 0   0.138       4.02  0.0000591    
+## 5 bill_depth_mm     5.41e+ 0   0.386       4.37  0.0000125    
+## 6 flipper_length_mm 1.03e+ 0   0.0528      0.545 0.586        
+## 7 body_mass_g       1.01e+ 0   0.00119     4.52  0.00000614</code></pre>
+<ul>
+<li><p>The largest odds ratio is for bill depth, with the second largest for bill length. An increase of 1 mm in bill depth corresponds to almost 4x higher odds of being male. The characteristics of a penguin’s bill must be associated with their sex.</p></li>
+<li><p>We don’t have strong evidence that flipper length is different between male and female penguins, controlling for the other measures; maybe we should explore that by changing that first plot!</p></li>
+</ul>
+<p>Let’s make our predictions:</p>
+<pre class="r"><code>.pred_class&lt;-(penguin_wf %&gt;%
+   add_model(glm_spec) %&gt;%
+   fit(penguin_train) %&gt;%
+   predict(new_data = penguins))
+
+penguins&lt;-bind_cols(penguins, .pred_class)
+
+penguins &lt;- penguins %&gt;%
+  mutate(sex = if_else(is.na(sex),
+                       .pred_class,
+                       sex)) %&gt;%
+  select(-.pred_class)</code></pre>
+<p>And a new plot along the most important penguin features:</p>
+<pre class="r"><code>penguins %&gt;%
+  ggplot(aes(bill_depth_mm, bill_length_mm, size = body_mass_g)) +
+  geom_point(aes(color = sex), alpha = 0.5, show.legend = TRUE) +
+  geom_text(aes(label = if_else(is.na(sex),&quot;X&quot;,&quot;&quot;)), size = 12)+
+  viridis::scale_color_viridis(discrete = TRUE, direction = -1, option = &quot;D&quot;, na.value = &#39;black&#39;)+
+  facet_wrap(~species) +
+  theme_bw()+
+  theme(plot.title.position = &quot;plot&quot;,
+        legend.position = &quot;top&quot;)+
+  labs(title = &quot;Palmer Penguins&quot;,
+       size = &quot;Body Mass&quot;,
+       x = &quot;Bill Depth in mm&quot;,
+       y = &quot;Bill Length in mm&quot;)</code></pre>
+<p><img src="/post/VariableImportance/index_files/figure-html/unnamed-chunk-19-1.jpeg" width="100%" /></p>
+<hr />
+</div>
+</div>
+<div id="data-visualization" class="section level1">
+<h1>Data Visualization</h1>
+<p>Cedric Scherer crafts stunning visualizations weekly for #TidyTuesday and posts them publicly. He has identified an engineered feature, called <strong>bill ratio</strong>, that provides very good separation between the three species. Note the use of annotations and the raincloud elements below the density plots.</p>
+<p><img src="2020_31_PalmerPenguins.png" style="width:80.0%" /></p>
+<hr />
+</div>
+<div id="variable-importance" class="section level1">
+<h1>Variable Importance</h1>
+<p>One thing that keeps popping up in machine learning work is the need to explain the models and their components. There are a couple of ways to go about explaining model features, and probably the most common approach is to use feature importance scores. Unfortunately, computing importance scores isn’t as straightforward as one might hope, with several methodologies. In this post, let’s explore the question “How similar are the feature importance scores calculated using different methodologies?” It’s important to know if the different methods will lead to drastically different results. If so, then the choice of method is a source of bias in model interpretation.</p>
 <p>This post isn’t intended to be a deep-dive into model interpretability, but some concepts should be highlighted before attempting to answer the question. Feature importance can be categorized as either being <a href="https://topepo.github.io/caret/variable-importance.html">“model-specific”</a> or <a href="https://christophm.github.io/interpretable-ml-book/agnostic.html">“model-agnostic”</a>. Both depend upon some kind of loss function, e.g. root mean squared error (RMSE), classification error, etc. The loss function for a model-specific approach will generally be “fixed” by the software and package that are used, while model-agnostic approaches tend to give the user flexibility in choosing a loss function. Finally, within model-agnostic approaches, there are different methods, e.g. permutation and <a href="https://christophm.github.io/interpretable-ml-book/shap.html">SHAP (Shapley Additive Explanations)</a>.</p>
 <p>So, to summarize, variable importance methodologies can be broken down in several ways:</p>
 <ol style="list-style-type: decimal">
@@ -39,8 +303,8 @@ draft: false
 <p>While evaluating the sensitivity of variable importance scores to different methodologies is the focus of this analysis, it’s important to test how the findings hold up when (1) varying model types, (2) varying target variables, and (3) varying the data itself. This should help us highlight the bias in the results due to choice of model type and type of target variable. Put another way, it should help us quantify the robustness the conclusions that are drawn. If we find that the scores are similar under variation, then we can be more confident that the findings can be generalized.</p>
 <p>Additionally, I’m going to use more than one package for computing variable importance scores. As with varying model types, outcome variables, and data, the purpose is to highlight and quantify possible bias due to choices in this analysis—in this case, the choice of package. Are the results of a permutation-based variable importance calculation the same when using different packages?</p>
 <p>Specifically, I’ll be using the <a href="https://cran.r-project.org/web/packages/vip/index.html"><code>vip</code></a> and <a href="https://cran.r-project.org/web/packages/DALEX/index.html"><code>DALEX</code></a> packages. The <code>vip</code> package is capable of doing both types of calculations, model-specific and model-agnostic for a variety of model types. <code>DALEX</code> specializes in model-agnostic model interpretability and can do a lot more than just variable importance calculations.</p>
-<div id="setup" class="section level1">
-<h1>Setup</h1>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
 <p>For data, I’m going to be using the new <code>palmerpenguins</code> and the famous <code>mpg</code>.</p>
 <p>For model types, I’m going to use:</p>
 <ol style="list-style-type: decimal">
@@ -57,9 +321,28 @@ draft: false
 <li><code>DALEX</code>’s permutation-based scores (with <code>DALEX::variable_importance()</code>)</li>
 </ol>
 <p>Note that the model-specific vs. model-agnostic concern is addressed in comparing method (1) vs. methods (2)-(4). I’ll be consistent with the loss function in variable importance computations for the model-agnostic methods–minimization of RMSE for a continuous target variable and sum of squared errors (SSE) for a discrete target variable.</p>
+<pre class="r"><code>mpg_modified &lt;- mpg %&gt;% mutate(
+    grp = case_when(
+        class %in% c(&#39;2seater&#39;, &#39;compact&#39;, &#39;subcompact&#39;, &#39;midsize&#39;) ~ &#39;1. Small&#39;,
+        TRUE ~ &#39;2. Big&#39;),
+    trans = case_when(
+      stringr::str_detect(trans, &quot;auto&quot;)~ &quot;auto&quot;,
+      TRUE ~ &quot;manual&quot;
+    )
+  ) %&gt;% 
+  select(-class, -model, -manufacturer, -fl)
+
+.seed &lt;- 42L
+.engines_valid &lt;- c(&#39;glm&#39;, &#39;glmnet&#39;, &#39;xgboost&#39;, &#39;ranger&#39;)
+engines_named &lt;- .engines_valid %&gt;% setNames(., .)
+.modes_valid &lt;- c(&#39;regression&#39;, &#39;classification&#39;)
+
+source(paste0(here::here(&quot;content&quot;,&quot;post&quot;,&quot;VariableImportance&quot;,&quot;code&quot;, &quot;functions.R&quot;)))
+
+compare_and_rank_vip_q &lt;- quietly(compare_and_rank_vip)</code></pre>
 </div>
-<div id="results" class="section level1">
-<h1>Results</h1>
+<div id="results" class="section level2">
+<h2>Results</h2>
 <p>The following handful of plots illustrate normalized variable importance scores and ranks derived from the scores by data set and type of target variable.</p>
 <p>First up is the results for the <code>penguins</code> data set with a <strong>continuous</strong> target variable.</p>
 <pre class="r"><code>penguins_c_rnks &lt;-
@@ -214,11 +497,11 @@ viz_cor_by_engine &lt;-
     y = NULL
   )
 viz_cor_by_engine</code></pre>
-<p><img src="/post/VariableImportance/index_files/figure-html/unnamed-chunk-1-1.jpeg" width="100%" /></p>
+<p><img src="/post/VariableImportance/index_files/figure-html/unnamed-chunk-21-1.jpeg" width="100%" /></p>
 <p>The plot above shows the pairwise correlations among the variable importance ranks computed for each package-function combo, averaged over the two data sets and over the models for the two types of target variables—continuous and discrete. While nothing immediately jumps out from this plot, I think the most notable thing is that the <code>ranger</code> and <code>xgboost</code> scores seem to vary the most across the different variable importance methodologies, bottoming out at ~47% for the correlation between the dalex and model-specific (vip_model) methodologies. On the other hand, <code>glm</code> seems to have the most “agreement” and least variance in its scores.</p>
 </div>
-<div id="conclusion" class="section level1">
-<h1>Conclusion</h1>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
 <p>Overall, we might say that rankings of variable importance based on normalized variable importance scores in this analysis showed that differences will arise when evaluating different methodologies, but the differences may not be strong enough to change any deductions that one might draw. Of course, this will depend on the domain.</p>
 <p>Do not go so far as to say that these insights can be generalized. Among other things, I would need to evaluate a much larger variety of data sets. However, it’s good to be conscious how much the results can vary. It’s ultimately up to the user whether the differences are significant.</p>
 <blockquote>
@@ -227,5 +510,6 @@ viz_cor_by_engine</code></pre>
 <hr />
 <div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
 <h3>Did you find this page helpful? Consider sharing it 🙌</h3>
+</div>
 </div>
 </div>
