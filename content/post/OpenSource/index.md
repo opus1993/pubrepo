@@ -23,6 +23,12 @@ Inspired by:
 
 > Tina Amirtha's [Why The R Programming Language Is Good For Business](https://www.fastcompany.com/3030063/why-the-r-programming-language-is-good-for-business)
 
+(August 2020 update) Recommended Reading:
+
+> Nadia Edhbal's [Working in Public, the Making and Maintenance of Open Source Software](https://a.co/hAhGgvA)
+
+----
+
 Businesses large and small are embracing open source solutions like `Linux`, `Spark`, `Python`, `GeoMesa`, and `R` for more and more of their software functions. Over time it has become increasingly clear that price is not the only advantage. If it were, companies that adopted open source solutions during the Great Recession of 2008 would have switched back to the expensive proprietary stuff as soon as conditions began to be eased, and that's clearly not the case. 
 
 The array of open source software solutions available is huge and relevant to all enterprises - corporations, non-profits, academia, and government agencies. As software has become a critical component of modern economies, open source communities have sprung up to fill the needs. Open source software is increasingly transforming everyday life, from womb to grave. 
