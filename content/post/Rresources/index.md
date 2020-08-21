@@ -20,7 +20,26 @@ Inspired by:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
 
 ----
-My list of useful free courses, books, tutorials, and expert blogs
+My list of useful free books, courses, tutorials, and expert blogs. Where possible, look for materials that integrate your subject area of interest. 
+
+## Introductory Books
+- **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** by [Garrett Grolemund](https://twitter.com/StatGarrett)
+- **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
+- **[R for Data Science](https://r4ds.had.co.nz/) by [Hadley Wickham](https://twitter.com/hadleywickham)** and [Garrett Grolemund](https://twitter.com/StatGarrett)
+- **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication) and [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
+- **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
+- [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)
+- [R in a Nutshell](https://paulvanderlaken.files.wordpress.com/2017/08/r_in_a_nutshell.pdf) by [Joseph Adler](https://twitter.com/jadler)
+- [Learning Statistics with R](https://learningstatisticswithr.com/) by [Danielle Navarro](https://twitter.com/djnavarro)
+- [Getting used to R, RStudio, and R Markdown](https://bookdown.org/chesterismay/rbasics/) by [Chester Ismay](https://twitter.com/old_man_chester)
+- [Functional programming and unit testing for data munging with R](https://b-rodrigues.github.io/fput/) by [Bruno Rodrigues](https://twitter.com/brodriguesco)
+- [Statistical Inference via Data Science (2018)](https://moderndive.com/2-viz.html) by [Chester Ismay](https://twitter.com/old_man_chester) and [Albert Y. Kim](https://twitter.com/rudeboybert)
+- [Answering questions with data](https://crumplab.github.io/statistics/) by [Matt Crump](https://twitter.com/MattCrump_)
+- [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/) by [Russ Poldrack](https://twitter.com/russpoldrack)
+- [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/) by [Martin Monkman](https://twitter.com/monkmanmh)
+- [A Language, not a Letter: Learning Statistics in R](https://ademos.people.uic.edu/index.html)
+----
+
 
 ## Online Courses
 - [`swirl`](https://swirlstats.com/students.html)
@@ -37,35 +56,6 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Introduction to R for Data Science](https://www.edx.org/course/introduction-to-r-for-data-science-2)
 - [Intro to R](https://github.com/uc-r/Intro-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 - [Intermediate R](https://github.com/uc-r/Intermediate-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
-- [R-studio Education](https://github.com/rstudio-education/rstats-ed)
-----
-
-## Introductory Books
-- **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
-- [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)
-- **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** by [Garrett Grolemund](https://twitter.com/StatGarrett)
-- **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
-- **[R for Data Science](https://r4ds.had.co.nz/) by [Hadley Wickham](https://twitter.com/hadleywickham)** and [Garrett Grolemund](https://twitter.com/StatGarrett)
-- **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication) and [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
-- [Introduction to R (R Core Team, 1999)](https://cran.r-project.org/doc/manuals/R-intro.html)
-- [R Language Definition (Manual) (R Core Team, 2000)](https://cran.r-project.org/doc/manuals/r-release/R-lang.html)
-- [The Art of R Programming (Matloff, 2009)](http://heather.cs.ucdavis.edu/~matloff/132/NSPpart.pdf)
-- [R in a Nutshell](https://paulvanderlaken.files.wordpress.com/2017/08/r_in_a_nutshell.pdf) by [Joseph Adler](https://twitter.com/jadler)
-- [The R Inferno (Burns, 2011)](http://www.burns-stat.com/pages/Tutor/R_inferno.pdf) 
-- [The R Book (Crawley, 2013)](https://www.cs.upc.edu/~robert/teaching/estadistica/TheRBook.pdf) 
-- [Introduction to Statistical Thought (Lavine, 2013)](https://people.math.umass.edu/~lavine/Book/book.pdf)
-- [Learning Statistics with R](https://learningstatisticswithr.com/) by [Danielle Navarro](https://twitter.com/djnavarro)
-- [Introduction to Probability and Statistics Using R](https://www.nongnu.org/ipsur/)
-- [Getting used to R, RStudio, and R Markdown](https://bookdown.org/chesterismay/rbasics/) by [Chester Ismay](https://twitter.com/old_man_chester)
-- [An Introduction to R ](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) 
-- [Functional programming and unit testing for data munging with R](https://b-rodrigues.github.io/fput/) by [Bruno Rodrigues](https://twitter.com/brodriguesco)
-- [Statistical Inference via Data Science (2018)](https://moderndive.com/2-viz.html) by [Chester Ismay](https://twitter.com/old_man_chester) and [Albert Y. Kim](https://twitter.com/rudeboybert)
-- [Answering questions with data](https://crumplab.github.io/statistics/) by [Matt Crump](https://twitter.com/MattCrump_)
-- [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/) by [Russ Poldrack](https://twitter.com/russpoldrack)
-- [R Graphics Cookbook](https://r-graphics.org/) by [Winston Chang](https://twitter.com/winston_chang)
-- [Introduction to Open Data Science](http://ohi-science.org/data-science-training/)
-- [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/) by [Martin Monkman](https://twitter.com/monkmanmh)
-- [A Language, not a Letter: Learning Statistics in R](https://ademos.people.uic.edu/index.html)
 ----
 
 ## Advanced Books
@@ -77,6 +67,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 
 ## Data Visualization
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
+- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) the online version of work-in-progress 3rd edition
 - [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows)
 
 {{< youtube id="h29g21z0a68" autoplay="false" >}}
@@ -85,7 +76,7 @@ My list of useful free courses, books, tutorials, and expert blogs
 - [Working with R, Cairo graphics, custom fonts, and ggplot](https://www.andrewheiss.com/blog/2017/09/27/working-with-r-cairo-graphics-custom-fonts-and-ggplot/)
 - [How to Create BBC Style Graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)
 - [R Graph Gallery](https://www.r-graph-gallery.com/)
-- **[Fundamentals of Data Visualization](https://serialmentor.com/dataviz/index.html)** by [Claus Wilke](https://twitter.com/ClausWilke)
+- **[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)** by [Claus Wilke](https://twitter.com/ClausWilke)
 - [Exploratory Data Analysis & Visualization](https://edav.info/index.html) by [Zach Bogart](https://twitter.com/zachbogart) and [Joyce Robbins](https://twitter.com/jtrnyc)
 - [The Complete ggplot2 Tutorial](http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html)
 - [flowingdata.com](https://flowingdata.com/)
@@ -120,18 +111,19 @@ My list of useful free courses, books, tutorials, and expert blogs
 ----
 ## Machine Learning
 - [`tidymodels`](https://www.tidymodels.org/) by [Max Kuhn](https://twitter.com/topepos)
+- [Julia Silge's blog](https://juliasilge.com/)
 - [Jared Lander](https://www.jaredlander.com/talks/)
 
 {{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
 
+- [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha)
+- [R developer's guide to Azure](https://docs.microsoft.com/en-us/azure/architecture/data-guide/technology-choices/r-developers-guide)
+- [Javier Lurachi's mlverse videos](https://www.youtube.com/c/mlverse/videos)
 - [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
 - [DALEX moDel Agnostic Language for Exploration and eXplanation](https://modeloriented.github.io/DALEX/)
-- [Machine Learning with R, the tidyverse, and mlr](https://www.manning.com/books/machine-learning-with-r-the-tidyverse-and-mlr) by [Hefin Rhys](https://twitter.com/HRJ21)
-- [`mlr`](https://mlr.mlr-org.com/articles/tutorial/task.html) by [Patrick Schratz](https://twitter.com/pjs_228)
-- [Introduction to Machine Learning with `mlr`](https://compstat-lmu.github.io/lecture_i2ml/articles/content.html)
 - [R interface to keras](https://keras.rstudio.com/)
 - [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
-- [Julia Silge's blog](https://juliasilge.com/)
+
 ----
 ## Geospatial
 - [Making Maps with R](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
@@ -141,18 +133,18 @@ My list of useful free courses, books, tutorials, and expert blogs
 ----
 
 ## Meetups, Blogs, and User Groups
+- [R for Data Science Online Learning Community](https://www.rfordatasci.com/)
+Join the R4DS community Slack channels for news, book clubs, meetup events, and tips & tricks  
 - [Chicago R Users Group](https://chicago-r-user-group.github.io/)
 - [Chicago R Collaborative](https://chircollab.github.io/)
-- [The R User Conference](https://user2020.r-project.org/)
 - **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** by [R4DS](https://twitter.com/rstats4ds)
+- [David Smith's RevolutionAnalytics](https://blog.revolutionanalytics.com/)
 - [Business Science](https://www.business-science.io/) by 
 [Matt Dancho](https://twitter.com/mdancho84)
 - [Julia Silge](https://juliasilge.com/blog/)
 - [Data Imaginist](https://www.data-imaginist.com/) by [Thomas Lin Pederson](https://twitter.com/thomasp85)
 - [Alison Hill](https://alison.rbind.io/) by [Alison Hill](https://twitter.com/apreshill)
-- [Jenny Bryan](https://jennybryan.org/teach/)
-- [Tyler Morgan-Wall](https://www.tylermw.com/posts/) by [Tyler Morgan-Wall](https://twitter.com/tylermorganwall)
-- [Thomas Neitmann](https://thomas-neitmann.netlify.com/posts/)
+- [Thomas Neitmann](https://thomasadventure.blog/posts/)
 - [Edward Visel](https://alistaire.rbind.io/) by [Edward Visel](https://twitter.com/alistaire)
 - [Plant out of Place](https://plantoutofplace.com/) by [Andrew Kniss](https://twitter.com/WyoWeeds)
 - [Pdiff](http://pdiff.weebly.com/) by [Bill Price](https://twitter.com/pdiff1)
