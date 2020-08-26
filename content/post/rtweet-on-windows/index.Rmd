@@ -23,6 +23,8 @@ knitr::opts_chunk$set(echo = TRUE,
 
 I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. `rtweet` is an amazing way of having a little productive procrastination while honing R skills. 
 
+[Oscar Baruffa](https://twitter.com/OscarBaruffa) and [Veerle van Son](https://twitter.com/veerlevanson) have written a `bookdown` pamphlet [Twitter for R Programmers](https://www.t4rstats.com/) as an excellent guide for people new to the R community on Twitter.
+
 In this post, we will look at the accounts that I engage most often, the time of day for my Twitter activity, and build a `reactable` interactive table to sort and filter on the hashtag #TheDayTheFarmChanged. 
 
 ----
@@ -31,19 +33,21 @@ In this post, we will look at the accounts that I engage most often, the time of
 
 As with any other project, start with loading the appropriate libraries.
 
-```{r, echo=TRUE}
+```{r, echo=TRUE, warning = FALSE}
 knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE,
   warning = FALSE
 )
-library(tidyverse)   # tidy data manipulation, including dplyr and ggplot
-library(rtweet)      # the R Twitter API
-theme_set(hrbrthemes::theme_ft_rc())   # Set a ggplot color, font theme
-library(showtext)   
-library(lubridate)   # date manipulation tools
-showtext_auto()
+
+library(tidyverse)   ## tidy data manipulation, including dplyr and ggplot
+library(rtweet)     # the R Twitter API
+library(showtext) 
+library(lubridate)  # date manipulation tools
 library(reactable)   # A Formatted Sortable Interactive Table 
+
+theme_set(hrbrthemes::theme_ft_rc())   # Set a ggplot color, font theme
+showtext_auto()
 ```
 
 The `rtweet` [Obtaining and using access tokens](http://rtweet.info/articles/auth.html) vignette gives instructions for creating tokens and writing them to `.Renviron`, one-time only, as:
@@ -94,7 +98,7 @@ Let's have a look at the accounts that I favorite (or **like**) the most:
 df_likes <- rtweet::get_favorites("jim_gruman", n = 3000)
 ```
 
-```{r warning=FALSE, fig.align='center', fig.width=7, fig.height=5}
+```{r warning=FALSE, fig.align='center', fig.width=9, fig.height=5}
 users_favorite<-df_likes %>% 
     group_by(screen_name, user_id) %>%
     summarise(
@@ -121,7 +125,7 @@ users_favorite %>%
 
 And let's break down my activity by week day
 
-```{r warning=FALSE, fig.align='center', fig.width=7, fig.height=5}
+```{r warning=FALSE, fig.align='center', fig.width=9, fig.height=5}
 tw_activity<- df_likes %>% 
     transmute(
               tw_hour = hour(as_datetime(created_at, tz ="America/Chicago")),
@@ -161,7 +165,7 @@ tw_activity %>%
 
 Some may prefer the `ggridges` version of the same data, visualized a bit differently.
 
-```{r warning=FALSE, fig.align='center', fig.width=7, fig.height=5}
+```{r warning=FALSE, fig.align='center', fig.width=9, fig.height=5}
 library(ggridges)
 
 tw_activity %>%
