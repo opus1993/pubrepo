@@ -22,6 +22,13 @@ Alison Hill recently shared a valuable list of learning resources, organized rou
 
 ----
 
+[A Visual Introduction to Machine Learning by r2d3](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/). This is a wonderfuly simpl two-part series:
+
+[Part I: A Decision Tree](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+[Part II: Model Tuning and the Bias-Variance Tradeoff](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/)
+
+----
+
 [Supervised Machine Learning by Julia Silege](https://supervised-ml-course.netlify.com/)
 Taught with R and the caret package, this is a solid next step in your machine learning journey as you’ll start doing ML right away in your browser using an innovative course delivery platform. You’ll also get to play with data that is not iris, titanic, or AmesHousing. 
 
