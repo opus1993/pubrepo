@@ -18,11 +18,6 @@ tags:
 
 Alison Hill recently shared a valuable list of learning resources, organized roughly in the order they are most helpful for students of Machine Learning. 
 
-----
-
-[Machine Learning for Everyone](https://vas3k.com/blog/machine_learning/)
-**In simple words. With real-world examples.** The biggest hurdle to getting started is sifting through both the hype and the math. This is a readable illustrated introduction to key concepts that will help you start building your own mental model of this space. For example, “the only goal of machine learning is to predict results based on incoming data. That’s it.” There you go! Start here.
-
 {{< figure src="./7w1.jpg" title="" lightbox="true" >}}
 
 ----
