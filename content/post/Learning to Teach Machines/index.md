@@ -22,9 +22,10 @@ Alison Hill recently shared a valuable list of learning resources, organized rou
 
 ----
 
-[A Visual Introduction to Machine Learning by r2d3](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/). This is a wonderfuly simpl two-part series:
+[A Visual Introduction to Machine Learning by r2d3](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/). This is a wonderfuly simple two-part series:
 
 [Part I: A Decision Tree](http://www.r2d3.us/visual-intro-to-machine-learning-part-1/)
+
 [Part II: Model Tuning and the Bias-Variance Tradeoff](http://www.r2d3.us/visual-intro-to-machine-learning-part-2/)
 
 ----
