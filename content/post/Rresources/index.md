@@ -28,6 +28,8 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 - **[R for Data Science](https://r4ds.had.co.nz/) by [Hadley Wickham](https://twitter.com/hadleywickham)** and [Garrett Grolemund](https://twitter.com/StatGarrett)
 - **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication) and [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
 - **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
+- [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/)
+
 - [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)
 - [R in a Nutshell](https://paulvanderlaken.files.wordpress.com/2017/08/r_in_a_nutshell.pdf) by [Joseph Adler](https://twitter.com/jadler)
 - [Learning Statistics with R](https://learningstatisticswithr.com/) by [Danielle Navarro](https://twitter.com/djnavarro)
@@ -40,8 +42,8 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 - [A Language, not a Letter: Learning Statistics in R](https://ademos.people.uic.edu/index.html)
 ----
 
-
 ## Online Courses
+- [learnr4free.com](https://www.learnr4free.com/en/index.html)
 - [`swirl`](https://swirlstats.com/students.html)
 - **[STAT545](https://stat545.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
 - [Dublin City University R Tutorials](https://dcu-r-tutorials.netlify.com/)
@@ -86,6 +88,7 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 
 ----
 ## Colors
+- [Color Extractor](https://github.com/zumbov2/colorfindr)
 - [`colourpicker`](https://github.com/daattali/colourpicker/) Rstudio widget by [Dean Attali](https://twitter.com/daattali)
 - [`paletteer`](https://emilhvitfeldt.github.io/paletteer/) a comprehensive metacollection of color palettes
 - [Wes Anderson color palettes](https://github.com/karthik/wesanderson)
