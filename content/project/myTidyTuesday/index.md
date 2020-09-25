@@ -6,7 +6,7 @@ image:
   focal_point: Smart
 summary: Data Visualizations
 tags:
-- R
+- Data Science
 title: my #TidyTuesday
 
 ---
