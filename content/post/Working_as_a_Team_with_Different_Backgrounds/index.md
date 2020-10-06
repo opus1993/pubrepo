@@ -11,9 +11,9 @@ author: Jim Gruman
 projects: []
 slug: Working as an Analytics Team
 categories:
-  - R
+  - Business
 tags:
-  - Education
+  - Business
 ---
 The sheer volume of data available today presents real challenges for businesses and opportunities for those who can analyze and explain it.  The department leading the charge must enable and empower the rest of the organization with solutions to make better, data-driven decisions. [Kim Larsen writes, "Fire Your BI Team"](https://towardsdatascience.com/fire-your-bi-team-c425f774bf6) in a recent appeal to shift the mandate and engagement model.
 
