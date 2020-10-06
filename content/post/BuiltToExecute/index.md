@@ -94,8 +94,11 @@ This is where having the right kinds of talent comes in. Machine Learning Scient
 Typically, the Principal Machine Learning Scientist sits in on strategy planning meetings. They understand the business problems and the goals for growth. What makes them different is their ability to hear a goal and say, “Machine learning could be part of the solution.” The strategy team can prioritize goals for project evaluation. Here’s where roadmap planning starts.
 
 The Principal Machine Learning Scientist research falls under each of these gates:
+
 •  The Problem Space: “Is this even a machine learning problem?”
+
 •  The Solution Space: “Does the team have the capabilities needed to implement this approach?”
+
 •  The Data: “Does the business have enough/the right data to support the approach? What additional data needs to be gathered?”
 
 In reality, there is still an unstructured component to machine learning projects. Putting it into the planning phase prevents it from causing chaos in timelines. This also puts control of green lighting each phase in the hands of senior leadership. 
