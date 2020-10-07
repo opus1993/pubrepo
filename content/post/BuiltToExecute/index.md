@@ -17,21 +17,21 @@ image:
 projects: []
 ---
 
-### [More and more top level business strategies expect to exploit artificial intelligence.](https://fortune.com/packages/special-report-artificial-intelligence/) Companies are investing vast sums into these data-hungry systems in the belief that they will profoundly transform the business landscape. Revenue projections are increasingly dependent on delivering on complex projects. Let’s explore the attributes of better AI teams and how they are built to execute.
+### [More and more top level enterprises have strategies that expect to exploit artificial intelligence.](https://fortune.com/packages/special-report-artificial-intelligence/) Companies are investing vast sums into these data-hungry systems in the belief that they will profoundly transform the business landscape. Revenue projections are increasingly dependent on delivering on complex projects. Let’s explore the attributes of better AI teams and how they are built to execute.
 
 ----
 
 
 
-Every business comes into machine learning and AI expecting the technology to grow the bottom line. An optimal machine learning team creates the processes, relationships, and infrastructure to more than meet the need. 
+Every business comes into machine learning and AI expecting the technology to grow the bottom line. The machine learning team is challenged then to create processes, build relationships, and deploy infrastructure to more than meet the need. 
 
-As hard as building the team sounds, the hardest part in a non-[FAANG](https://www.investopedia.com/terms/f/faang-stocks.asp) enterprise is building the case for the expense and effort. Clearly there must be obvious and significant value delivered to the business. **Obvious** is the most important part. The cost and effort can only be supported by belief in the need and the technology. What does it take for a retail, agricultural, construction, manufacturing, or medical company to decide to adopt a **machine learning first** business model? Consider what it took for Walmart to shift their business model to become a machine learning focused technology company.  We could probably assume that competing with Amazon drove the shift. 
+As hard as building the team sounds, the hardest part in a non-[FAANG](https://www.investopedia.com/terms/f/faang-stocks.asp) enterprise is building the case for the expense and effort. Clearly there must be obvious and significant value delivered to the business. **Obvious** is the most important part. The cost and effort can only be supported by belief in the need and the technology. What does it take for a retail, agricultural, manufacturing, or medical company to decide to adopt a **machine learning first** business model? Consider what it took for Walmart to shift their business model to become a machine learning focused technology company.  By now it is fair to say that competing with Amazon drove the shift. 
 
-Not every business has an obvious threat to their continued operations from a **machine learning first** competitor, today. Likely though, every business will eventually have a threat from a **machine learning first** competitor. 
+Not every business has an obvious threat to their continued operations from a **machine learning first** competitor, today. Likely though, every business will eventually have a threat from a **machine learning first** competitor. Companies often find it difficult to make the transition from thinking about advanced analytics as a *source of innovation* to a *critical source of business value.* 
 
 Simply having a machine learning team does not mean the business can list machine learning as a strength. Building a better machine learning team begins an evolution of moving the technology into the strength box. Having a machine learning team does not automatically mean the business is able to exploit every opportunity. 
 
-This post explores three key areas of focus to make the team better:
+Why are so many businesses still struggling to realize the full value of their machine learning projects? [The answer appears to lie in the gap between applying it in pockets versus applying it at scale.](https://www.accenture.com/_acnmedia/PDF-122/Accenture-Ready-Set-Scale.pdf) This post explores three key areas of focus to make the team better:
 
 **1.	Relationships**
 
@@ -59,7 +59,7 @@ There is always a reluctance for business units to talk with senior leadership a
 
 Building a better machine learning team starts with maintaining neglected relationships. Rebuilding broken prototypes. Listening to business needs and how the first project came up short. The next machine learning project usually involves cleaning up the first one.
 
-Core competencies like communications, collaboration, business acumen, relationship building, requirements gathering, may be missing in the early versions. The first data scientists are always brought in for strong technical skills. Soft skills were thought to be a nice to have and not core to the team’s mission.
+Core competencies like communications, collaboration, business acumen, relationship building, and requirements gathering may be missing in the early versions. The first data scientists are always brought in for strong technical skills. Soft skills were thought to be a nice to have and not core to the team’s mission.
 
 The business intelligence analysts embedded in the functional group are certainly part of the solution. They have relationships, the business acumen and solid technical skills. They should be expected to be the connection between stakeholders and the machine learning team. No company today has enough in-house ML talent. A smart Chief Learning Officer (CLO) knows that the job is to *curate*, rather than to *create* content, and then to establish processes to ensure that employees have opportunities and incentives to grow.
 
@@ -139,9 +139,13 @@ Sources:
 
 [Special Report: Artificial Intelligence](https://fortune.com/packages/special-report-artificial-intelligence/)
 
+[Accenture: READY. SET. SCALE. A practical primer on scaling AI for business value](https://www.accenture.com/_acnmedia/PDF-122/Accenture-Ready-Set-Scale.pdf)
+
 [Building a Better Machine Learning Team](https://themlrebellion.com/blog/Better-ML-Team/) by Vin Vashishta
 
 [Building Analytics Teams: Engaging the Business](https://jimgruman.netlify.app/post/building-analytics-teams-engaging-the-business/)
+
+[AI and Data Strategy](https://jimgruman.netlify.app/post/ai-and-data-strategy/)
 
 ----
 
