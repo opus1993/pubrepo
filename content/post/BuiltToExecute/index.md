@@ -17,7 +17,7 @@ image:
 projects: []
 ---
 
-### [More and more top level enterprises have strategies that expect to exploit artificial intelligence.](https://fortune.com/packages/special-report-artificial-intelligence/) Companies are investing vast sums into these data-hungry systems in the belief that they will profoundly transform the business landscape. Revenue projections are increasingly dependent on delivering on complex projects. Let’s explore the attributes of better AI teams and how they are built to execute.
+### [More and more top level enterprises have strategies that expect to exploit artificial intelligence.](https://fortune.com/packages/special-report-artificial-intelligence/) Companies are investing vast sums into data-hungry systems in the belief that they will profoundly transform the business landscape. Revenue projections are increasingly dependent on delivering on complex projects. Let’s explore the attributes of better AI teams and how they are built to execute.
 
 ----
 
@@ -31,7 +31,7 @@ Not every business has an obvious threat to their continued operations from a **
 
 Simply having a machine learning team does not mean the business can list machine learning as a strength. Building a better machine learning team begins an evolution of moving the technology into the strength box. Having a machine learning team does not automatically mean the business is able to exploit every opportunity. 
 
-Why are so many businesses still struggling to realize the full value of their machine learning projects? [The answer appears to lie in the gap between applying it in pockets versus applying it at scale.](https://www.accenture.com/_acnmedia/PDF-122/Accenture-Ready-Set-Scale.pdf) This post explores three key areas of focus to make the team better:
+Why do so many businesses struggle to realize the full value of their machine learning projects? [The answer appears to lie in the gap between applying it in pockets versus applying it at scale.](https://www.accenture.com/_acnmedia/PDF-122/Accenture-Ready-Set-Scale.pdf) This post explores three key areas of focus of the better teams:
 
 **1.	Relationships**
 
@@ -109,7 +109,7 @@ Once all three gates have been met, the project gets put on the machine learning
 
 The path to production for a proof of concept will always be a combined best effort. When the machine learning team does the forensics and investigates why the product did not work, they often find it was not implemented as designed. Sometimes the model was not deployed at all or there is a battery of static triggers where the ML model should be.
 
-The machine learning development lifecycle and path to production are connected. Infrastructure must support each phase. Building a better machine learning team adds people with deeper technical skills. 
+The machine learning development lifecycle and path to production are connected. Infrastructure must support each phase. While building a better machine learning team, leaders will eventually find that people with deeper technical skills are needed. 
 
 I am going to go out on a limb and suggest that in 2020 the MLOps umbrella term is often a buzzword sales pitch. A professional Machine Learning Architect and Machine Learning Scientist have unique skills to stand up projects properly. They work closely together, and both have a complete view of what it takes to build, deploy, and maintain ML models. The Principal Machine Learning Scientist defines the infrastructure requirements. The Machine Learning Architect creates the architecture to support those requirements.
 
