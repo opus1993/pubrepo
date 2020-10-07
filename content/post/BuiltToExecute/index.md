@@ -107,13 +107,13 @@ Once all three gates have been met, the project gets put on the machine learning
 
 **3. Infrastructure**
 
-The path to production for a proof of concept will always be a combined best effort. When the machine learning team does the forensics and investigates why the product did not work, they often find it was not implemented as designed. Sometimes the model was not deployed at all or there is a battery of static triggers where the ML model should be.
+The path to production for a proof of concept will always be a combined best effort. When the machine learning team does the forensics and investigates why the product did not work, they often find it was not implemented as designed. Sometimes the model was not deployed at all or it was replaced with a battery of static triggers where the ML model was.
 
 The machine learning development lifecycle and path to production are connected. Infrastructure must support each phase. While building a better machine learning team, leaders will eventually find that people with deeper technical skills are needed. 
 
-I am going to go out on a limb and suggest that in 2020 the MLOps umbrella term is often a buzzword sales pitch. A professional Machine Learning Architect and Machine Learning Scientist have unique skills to stand up projects properly. They work closely together, and both have a complete view of what it takes to build, deploy, and maintain ML models. The Principal Machine Learning Scientist defines the infrastructure requirements. The Machine Learning Architect creates the architecture to support those requirements.
+I am going to go out on a limb and suggest that in 2020 the MLOps software umbrella is largely a buzzword sales pitch. The professional Machine Learning Architect and the Machine Learning Scientist have unique skills to stand up projects properly. They work closely together, and both have a complete view of what it takes to build, deploy, and maintain ML models. The Principal Machine Learning Scientist defines the infrastructure requirements. The Machine Learning Architect creates the architecture to support those requirements.
 
-Machine learning products never exist in a vacuum. There are multiple points of integration with the business. The machine learning architecture includes development, production and user environments. Integration extends to usability. Requirements from outside of the machine learning team must be supported.
+Machine learning products never exist in a vacuum. There are multiple points of integration with the business. The machine learning architecture encompasses development, production and user environments. Integration extends to usability. Many requirements from outside of the machine learning environment must be supported.
 
 Architecture can sprawl to the point of becoming heavy, expensive, and disruptive to other groups. Simplification is the skill of a master Machine Learning Architect.
 
