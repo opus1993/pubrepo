@@ -77,4 +77,25 @@ date_format = "Jan 2006"
   date_start = "2020-07-26"
   date_end = "2020-07-27"
   description = ""
+  
+[[item]]
+  organization = "Databricks"
+  organization_url = "https://databricks.com"
+  title = "Academy Accreditation - Delta Lake Essentials"
+  url = ""
+  certificate_url = "https://credentials.databricks.com/c9e06bd4-e80e-4b25-8f62-cce9dadc27b8"
+  date_start = "2020-07-12"
+  date_end = "2020-07-12"
+  description = "Earners of the Delta Lake accreditation have demonstrated the understanding of fundamental concepts related to Delta Lake."
+  
+[[item]]
+  organization = "Databricks"
+  organization_url = "https://databricks.com"
+  title = "Academy Accreditation - Unified Data Analytics Essentials"
+  url = ""
+  certificate_url = "https://credentials.databricks.com/eafa4768-656d-4322-87b4-4583924d5e6a"
+  date_start = "2020-07-11"
+  date_end = "2020-07-11"
+  description = "Earners of the Unified Data Analytics have demonstrated the understanding of fundamental concepts related to achieving a Unified Data Analytics approach with Databricks."
+
 +++

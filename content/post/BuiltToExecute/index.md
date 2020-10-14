@@ -29,7 +29,7 @@ As hard as building the team sounds, the hardest part in a non-[FAANG](https://w
 
 Not every business has an obvious threat to their continued operations from a **machine learning first** competitor, today. Likely though, every business will eventually have a threat from a **machine learning first** competitor. Companies often find it difficult to make the transition from thinking about advanced analytics as a *source of innovation* to a *critical source of business value.* 
 
-Simply having a machine learning team does not mean the business can list machine learning as a strength. Building a better machine learning team begins an evolution of moving the technology into the strength box. Having a machine learning team does not automatically mean the business is able to exploit every opportunity. 
+Simply having a machine learning team does not mean the business can list machine learning as a strength. Building a better machine learning team begins an evolution of moving the technology into the strength box. Having a machine learning team by itself does not automatically mean the business is able to exploit every opportunity. 
 
 Why do so many businesses struggle to realize the full value of their machine learning projects? [The answer appears to lie in the gap between applying it in pockets versus applying it at scale.](https://www.accenture.com/_acnmedia/PDF-122/Accenture-Ready-Set-Scale.pdf) This post explores three key areas of focus of the better teams:
 
