@@ -21,6 +21,8 @@ draft: false
 
 There is no doubt that the `tidyverse` opinionated collection of R packages offers attractive, intuitive ways of wrangling data for data science. In earlier versions of `tidyverse` some elements of user control were sacrificed in favor of simplifying functions that could be picked up and easily used by rookies. In the 2020 updates to `dplyr` and `tidyr` there has been progress to restoring some finer control.
 
+> Inspired by Keith McNulty's post  [here](https://towardsdatascience.com/ten-up-to-date-ways-to-do-common-data-tasks-in-r-4f15e56c92d)
+
 This means that there are new methods available in the `tidyverse` that some may not be aware of. The methods allow you to better transform your data directly to the way you want and to perform operations more flexibly. They also provide new ways to perform common tasks like nesting, modeling and graphing in ways where the code is more readable. Often users are only just scratching the surface of what can be done with the latest updates to this important set of packages.
 
 It’s incumbent on any analyst to stay up to date with new methods. This post covers ten examples of approaches to common data tasks that are better served by the latest `tidyverse` updates. We will use the new Palmer Penguins dataset, a great all round dataset for illustrating data wrangling.
@@ -227,8 +229,6 @@ p_all /
 (p_1 | p_2 | p_3) +
   plot_annotation(caption = "{palmerpenguins} dataset")
 ```
-
-> Inspired by Keith McNulty's post  [here](https://towardsdatascience.com/ten-up-to-date-ways-to-do-common-data-tasks-in-r-4f15e56c92d)
 
 ----
 

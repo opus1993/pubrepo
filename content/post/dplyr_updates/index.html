@@ -22,6 +22,9 @@ draft: false
 
 
 <p>There is no doubt that the <code>tidyverse</code> opinionated collection of R packages offers attractive, intuitive ways of wrangling data for data science. In earlier versions of <code>tidyverse</code> some elements of user control were sacrificed in favor of simplifying functions that could be picked up and easily used by rookies. In the 2020 updates to <code>dplyr</code> and <code>tidyr</code> there has been progress to restoring some finer control.</p>
+<blockquote>
+<p>Inspired by Keith McNulty’s post <a href="https://towardsdatascience.com/ten-up-to-date-ways-to-do-common-data-tasks-in-r-4f15e56c92d">here</a></p>
+</blockquote>
 <p>This means that there are new methods available in the <code>tidyverse</code> that some may not be aware of. The methods allow you to better transform your data directly to the way you want and to perform operations more flexibly. They also provide new ways to perform common tasks like nesting, modeling and graphing in ways where the code is more readable. Often users are only just scratching the surface of what can be done with the latest updates to this important set of packages.</p>
 <p>It’s incumbent on any analyst to stay up to date with new methods. This post covers ten examples of approaches to common data tasks that are better served by the latest <code>tidyverse</code> updates. We will use the new Palmer Penguins dataset, a great all round dataset for illustrating data wrangling.</p>
 <p>First let’s load our <code>tidyverse</code> packages and the Palmer Penguins dataset and take a quick look at it. Please be sure to install the latest versions of these packages before trying to replicate the work here.</p>
@@ -302,10 +305,7 @@ for (i in 1:3) {
 p_all /
 (p_1 | p_2 | p_3) +
   plot_annotation(caption = &quot;{palmerpenguins} dataset&quot;)</code></pre>
-<p><img src="/post/dplyr_updates/index_files/figure-html/unnamed-chunk-13-1.jpeg" width="100%" /></p>
-<blockquote>
-<p>Inspired by Keith McNulty’s post <a href="https://towardsdatascience.com/ten-up-to-date-ways-to-do-common-data-tasks-in-r-4f15e56c92d">here</a></p>
-</blockquote>
+<p><img src="index_files/figure-html/unnamed-chunk-13-1.jpeg" width="100%" /></p>
 <hr />
 <div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
 <h3>Did you find this page helpful? Consider sharing it 🙌</h3>
