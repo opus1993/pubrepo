@@ -41,20 +41,6 @@ Six months, sometimes longer, after the first project, machine learning will lik
 
 Often there is a sense of, “I thought we already went through this. Why do it again?”
 
-The interactions go like this:
-
-*ML team:* We are going to build this for you.
-
-*Functional Business Unit:* Why?
-
-*ML Team:* It will improve things just like the first project did.
-
-*Functional Business Unit:* We stopped using that. It stopped working.
-
-*ML Team:* Why is this the first time we are hearing this?
-
-*Functional Business Unit:* You didn’t ask. You had already moved on to the next project. 
-
 There is always a reluctance for business units to talk with senior leadership about failures. Who wants to be the one to tell the CTO that their shiny new project flopped? Messengers are told to adapt.
 
 Building a better machine learning team starts with maintaining neglected relationships and rebuilding the broken prototypes. Listen to the business' needs and how the first project came up short. The next machine learning project usually involves cleaning up the first one.
@@ -72,22 +58,6 @@ At the same time, members of the business team should talk about their roles in 
 For successful, long term relationships, the machine learning team needs to execute. Machine learning products need to meet the same standards as any other product. The label does not exempt the team from on time, on budget, and as functionally specified projects.
 
 Second phase machine learning projects are more complex. The first phase will not normally require much of a framework or cadence. The attitude is, “Let’s see if this works and go from there.” It is hard to manage a project when the machine learning team is running agile but no one outside the team understands the tasks.
-
-The project team holds a kickoff meeting:
-
-*Project team:* We need you to build... Here is the use case.
-
-*ML team:* OK. We will look this over and get back to you.
-
-2 weeks later:
-
-*Project team:* Did you get a chance to look it over?
-
-*ML team:* Yes. We can get started on it next sprint.
-
-*Project team:* Great. Can you give me a deliverable list and timeline?
-
-*ML team:* A what? We really won’t know until we get into it.
 
 This is where having the right kinds of talent comes in. Machine Learning Scientists can take a project from problem statement to production. That does not mean they do all the work. Their efforts are focused on steps that happen while building the machine learning product roadmap.
 
