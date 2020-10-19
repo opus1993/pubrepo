@@ -55,11 +55,11 @@ The interactions go like this:
 
 *Functional Business Unit:* You didn’t ask. You had already moved on to the next project. 
 
-There is always a reluctance for business units to talk with senior leadership about failures. Who wants to be the one to tell the CTO that their shiny new project flopped? Messengers get shot. They get called dinosaurs and told to adapt or die.
+There is always a reluctance for business units to talk with senior leadership about failures. Who wants to be the one to tell the CTO that their shiny new project flopped? Messengers are told to adapt.
 
-Building a better machine learning team starts with maintaining neglected relationships. Rebuilding broken prototypes. Listening to business needs and how the first project came up short. The next machine learning project usually involves cleaning up the first one.
+Building a better machine learning team starts with maintaining neglected relationships and rebuilding the broken prototypes. Listen to the business' needs and how the first project came up short. The next machine learning project usually involves cleaning up the first one.
 
-Core competencies like communications, collaboration, business acumen, relationship building, and requirements gathering may be missing in the early versions. The first data scientists are always brought in for strong technical skills. Soft skills were thought to be a nice to have and not core to the team’s mission.
+Core competencies like communications, collaboration, business acumen, relationship building, and requirements gathering may be missing in the early versions. The first data scientists at an enterprise are always brought in for strong technical skills. Soft skills were thought to be a nice to have and not core to the team’s mission.
 
 The business intelligence analysts embedded in the functional group are certainly part of the solution. They have relationships, the business acumen and solid technical skills. They should be expected to be the connection between stakeholders and the machine learning team. No company today has enough in-house ML talent. A smart Chief Learning Officer (CLO) knows that the job is to *curate*, rather than to *create* content, and then to establish processes to ensure that employees have opportunities and incentives to grow.
 
@@ -69,7 +69,7 @@ At the same time, members of the business team should talk about their roles in 
 
 **2.	Roadmap**
 
-This is the beginning of relationship building and repair. For successful, long term relationships, the machine learning team needs to execute. Machine learning products need to meet the same standards as any other product. The label does not exempt the team from on time, on budget, and as functionally specified projects.
+For successful, long term relationships, the machine learning team needs to execute. Machine learning products need to meet the same standards as any other product. The label does not exempt the team from on time, on budget, and as functionally specified projects.
 
 Second phase machine learning projects are more complex. The first phase will not normally require much of a framework or cadence. The attitude is, “Let’s see if this works and go from there.” It is hard to manage a project when the machine learning team is running agile but no one outside the team understands the tasks.
 
@@ -107,25 +107,25 @@ Once all three gates have been met, the project gets put on the machine learning
 
 **3. Infrastructure**
 
-The path to production for a proof of concept will always be a combined best effort. When the machine learning team does the forensics and investigates why the product did not work, they often find it was not implemented as designed. Sometimes the model was not deployed at all or it was replaced with a battery of static triggers where the ML model was.
+The path to production will always be a combined best effort. When the machine learning team does the forensics and investigates why the product did not work, they often find it was not implemented as designed. Sometimes the model was not deployed at all or it was replaced with a battery of static triggers where the ML model was.
 
-The machine learning development lifecycle and path to production are connected. Infrastructure must support each phase. While building a better machine learning team, leaders will eventually find that people with deeper technical skills are needed. 
+A machine learning development lifecycle and the path to production are connected, on infrastructure. While building a better machine learning team, leaders will eventually find that people with deeper technical skills are needed. 
 
-I am going to go out on a limb and suggest that in 2020 the MLOps software umbrella is largely a buzzword sales pitch. The professional Machine Learning Architect and the Machine Learning Scientist have unique skills to stand up projects properly. They work closely together, and both have a complete view of what it takes to build, deploy, and maintain ML models. The Principal Machine Learning Scientist defines the infrastructure requirements. The Machine Learning Architect creates the architecture to support those requirements.
+I am going to go out on a limb and suggest that in 2020 the MLOps software umbrella is largely a buzzword sales pitch. The professional Machine Learning Architect and the Machine Learning Scientist have unique skills to stand up projects properly. Working closely together, both have a complete view of what it takes to build, deploy, and maintain ML models. The Principal Machine Learning Scientist defines the infrastructure requirements. The Machine Learning Architect creates the architecture to support those requirements.
 
-Machine learning products never exist in a vacuum. There are multiple points of integration with the business. The machine learning architecture encompasses development, production and user environments. Integration extends to usability. Many requirements from outside of the machine learning environment must be supported.
+Machine learning products never exist in a vacuum with many points of integration into the business. The machine learning architecture encompasses development, production and user environments. Integration extends to usability. Many requirements from outside of the machine learning environment must be supported.
 
 Architecture can sprawl to the point of becoming heavy, expensive, and disruptive to other groups. Simplification is the skill of a master Machine Learning Architect.
 
 The Machine Learning Architect’s first job is clean up. Through experimentation in notebooks, Machine learning teams have a tendency to apply the worst in software practices. Prototype and proof of concept projects are completed using each data scientist’s tool kit of choice. The Machine Learning Architect customizes their technology stack without having to build everything from the ground up.
 
-Custom model development leads to environment customizations. Connecting the machine learning tools environment with development and user environments requires further customization. [Open source](https://jimgruman.netlify.app/post/open-source/) tools allow the machine learning team to add features supporting specific development needs, driving companies to contribute to open source projects and sometimes even launching their own projects. The benefit here ultimately comes from the open source community adding features and improvements.
+Custom model development requires environment customizations. [Open source](https://jimgruman.netlify.app/post/open-source/) tools allow the machine learning team to add features supporting specific development needs, driving companies to contribute to open source projects and sometimes even launching their own projects. The benefit here ultimately comes from the open source community adding features and improvements.
 
 The Machine Learning Engineer is responsible for implementation, starting with data gathering, so their role supports the Principal Machine Learning Scientist. On the other side of the machine learning development lifecycle, they work with Machine Learning Scientists to build optimization libraries for the team to use. These reduce model development, training, and validation times.
 
-The Machine Learning Engineer takes a completed model and integrates it with the development or user environment. After deployment, they work with Machine Learning Scientists to maintain and improve models.
+The Machine Learning Engineer takes a completed model and integrates it with the user environment. After deployment, they work with Machine Learning Scientists to maintain and improve models.
 
-The scope of capabilities required to build the infrastructure and move machine learning products through the development lifecycle is broad. A single Machine Learning Engineer is rarely tasked with every step. As architectures become more complex, a diverse set of Machine Learning Engineer skill sets are needed.
+The broad scope of capabilities required to build the infrastructure and move machine learning products through the development lifecycle is not immediately apparent to most businesses. As architectures become more complex, a more diverse set of Machine Learning Engineer skill sets are needed.
 
 ### Conclusion
 
