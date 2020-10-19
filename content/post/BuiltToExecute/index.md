@@ -47,6 +47,8 @@ Building a better machine learning team starts with maintaining neglected relati
 
 Core competencies like communications, collaboration, business acumen, relationship building, and requirements gathering may be missing in the early versions. The first data scientists at an enterprise are always brought in for strong technical skills. Soft skills were thought to be a nice to have and not core to the team’s mission.
 
+Often the work involved in building trust, or even culture, doesn't start neatly with a clearly defined end state. It is messy, with organic bottom up efforts combining with top down efforts over a period of change that's driven as much by external forces as by any single decision to begin. This means that measuring success happens while the work is being done.
+
 The business intelligence analysts embedded in the functional group are certainly part of the solution. They have relationships, the business acumen and solid technical skills. They should be expected to be the connection between stakeholders and the machine learning team. No company today has enough in-house ML talent. A smart Chief Learning Officer (CLO) knows that the job is to *curate*, rather than to *create* content, and then to establish processes to ensure that employees have opportunities and incentives to grow.
 
 Leaders need to build ongoing structured forums for communication. Machine Learning Scientists should talk about how the technology is evolving with all business units. The goal is to explain what kinds of problems could be addressed. That understanding will often lead to the business unit proposing projects, with more clearly articulated needs.
