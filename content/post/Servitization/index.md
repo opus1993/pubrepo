@@ -17,11 +17,11 @@ image:
 projects: []
 ---
 
-A new wave of changes is upon us that is fueling major shifts in the global economy and wider society. These changes, or megatrends, are enormous in their impact. 
+Beyond our immediate concerns about SARS-CoV-19 in 2020, there are changes that are fueling major shifts in the global economy and wider society. These changes, or megatrends, will be enormous in their impact. 
 
 ----
 
-The megatrends include:
+Four megatrends include:
 
 1. __Digitalization__
 
@@ -33,13 +33,13 @@ The megatrends include:
 
 All of the major heavy equipment companies have been working on strategic initiatives to navigate in the context of these megatrends, through internal projects, partnerships and acquisitions, new product launches and the presentation of innovative technology concepts.
 
-__Digitalization__, a critical enabler for automation and autonomous vehicles, and __connectivity__, are both now expected by off highway customers globally. __Servitization__ and the services around the products have become increasingly important in creating new business models that will revolutionize the aftermarket components and service business models. And the growing concern about climate change has underscored the importance of work on alternative propulsion systems and efforts to become carbon neutral.
+__Digitalization__, the critical enabler for automation and autonomous vehicles, and __connectivity__, are both now obvious and expected by off highway customers globally. __Servitization__ will become increasingly important in creating new business models that will shake up aftermarket components and service business models. And the growing concern about climate change has underscored the importance of work on alternative propulsion systems and efforts to become carbon neutral.
 
 ----
 
 ## What then is Servitization?
 
-Servitization refers to new business models that leverage legacy products to sell “outcome as a service” rather than a one-off sale. Netflix, AirBnB, and Uber are some of the most well-known examples today. Consider that Neflix today delivers media on demand as a service, rather than customers buying the DVDs that produce those outcomes. 
+Servitization refers to new business models that leverage legacy products to sell “outcome as a service” rather than a one-off sale. Netflix and Uber are some of the most well-known examples today. Consider that Neflix today delivers media on demand as a service, rather than customers buying the DVDs that produce those outcomes. 
 
 The term servitization was first introduced in 1988 by Sandra Vandermerwe and Juan Rada, who argued that manufacturers needed a way to set themselves apart from competitors, and more importantly to retain their customer base and increase levels of differentiation. However, the concept of servitization can actually be traced back to the 1960s, to Bristol Siddeley aircraft engines providing “Power By The Hour.” It was a complete engine and accessory replacement service charged at a set fee per flying hour. Rather than buying the engine, the airline bought the power it provided, allowing operators greater forecasting accuracy and relieving them of the capital costs of carrying spare parts.
 
@@ -65,9 +65,9 @@ What makes for a successful servitization strategy?
 
 If manufacturers are to become service providers then it is their responsibility to keep the service up and running. Servitization is only a continuous and reliable revenue source for as long as the service is continuous and reliable. The Internet of Things and machine embedded sensors play a huge role. Sensors within equipment feed data back about the condition of parts and the overall product which should mean that maintenance issues can be resolved before the problem occurs. Or, should anything break unexpectedly, the manufacturer will be notified automatically.
 
-For another example, John Deere bundles a precision farming package where participating customers and their supplying dealers record a tractor’s actual fuel consumption at the end of a one-year operating period. This is then compared to the target fuel consumption. This value depends on the average engine load and varies from light to heavy loads; every tractor model also has its own specific fuel target. If the total fuel consumption has exceeded John Deere’s target level, customers will be refunded by the company. The package also includes the initial basic set-up of the online monitoring portal, seasonal telephone support and other options.
+As another example, John Deere bundles a precision farming package where participating customers and their supplying dealers record a tractor’s actual fuel consumption at the end of a one-year operating period. This is then compared to the target fuel consumption. This value depends on the average engine load and varies from light to heavy loads; every tractor model also has its own specific fuel target. If the total fuel consumption has exceeded John Deere’s target level, customers will be refunded by the company. The package also includes the initial basic set-up of the online monitoring portal, seasonal telephone support and other options.
 
-In 2019, CNH Industrial acquired AgDNA, which forms a significant component of their long-term roadmap to extend their precision farming offering. AgDNA is a leading Farm Management Information System that automatically collects and analyzes data from heavy equipment. The cloud-based platform analyzes machine, agronomic and environmental data to deliver actionable insights directly to the producer’s smartphones and tablets to help them maximize the performance of their CNH Industrial and other equipment and increase farm profitability.
+In 2019, CNH Industrial acquired AgDNA, which forms a significant component of their long-term roadmap to extend their precision farming offering. AgDNA is a leading Farm Management Information System that automatically collects and analyzes data from heavy equipment. The cloud-based platform analyzes machine, agronomic and environmental data to deliver actionable insights directly to the producer’s smartphones and tablets to help them maximize the performance of CNH Industrial brands and other equipment to increase farm profitability.
 
 > “Industry boundaries are being redefined. You start with a truck, but it becomes a smart truck. Why? Because it’s been networked with CAN bus, which you can then use to collect data with a smart connection, typically cellular. This smart product can then be integrated into fleet management systems; so instead of being in the business of selling trucks, you’re moving towards providing fleet management.” - Dr. Howard Lightfoot
 
@@ -82,9 +82,6 @@ With a servitised business model, a customer pays only for the value it receives
 When a business makes the decision to adopt a servitization model, there are specific channel management challenges, essentially because a service culture is different to a ‘push’ through a dealership network culture. The design of services is different than the design of products, requiring a shift in the channel network mind-set to make the implementation successful.
 
 A further challenge for businesses implementing a servitization model is the uncertainty of profitability. The key warning to heed here is that servitization takes time to develop. Channel management and product management are both critical for execution with complex portfolios.
-
-
-
 
 ----
 
