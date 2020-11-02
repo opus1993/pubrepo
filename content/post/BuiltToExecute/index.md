@@ -47,7 +47,7 @@ Not every business has an obvious threat to their continued operations from a **
 
 Simply having a machine learning team does not mean the business can list machine learning as a strength. Building a better machine learning team begins an transformation that gradually moves the technology towards the strength box. Having a machine learning team by itself does not automatically mean the business is able to exploit every opportunity well. 
 
-Why do so many businesses struggle to realize the full value of their machine learning projects? [The answer appears to lie in the gap between applying it in pockets versus applying it at scale.](https://www.accenture.com/_acnmedia/PDF-122/Accenture-Ready-Set-Scale.pdf) This post explores three key areas of focus of the better teams:
+Why do so many businesses struggle to realize the full value of their machine learning projects? [The answer appears to lie in the gap between applying it in pockets versus applying it at scale.](https://www.accenture.com/_acnmedia/PDF-122/Accenture-Ready-Set-Scale.pdf) There are three key areas of focus that distinguish the better teams:
 
 **1.	Relationships**
 
@@ -111,7 +111,7 @@ The path to production will always be a combined best effort. When the machine l
 
 A machine learning development lifecycle and the path to production are connected, on infrastructure. While building a better machine learning team, leaders will eventually find that people with deeper technical skills are needed. 
 
-I am going to go out on a limb and suggest that in 2020 the MLOps software umbrella is largely a buzzword sales pitch. The professional Machine Learning Architect and the Machine Learning scientist have unique skills to stand up projects properly. Working closely together, both have a complete view of what it takes to build, deploy, and maintain ML models. The Principal Machine Learning scientist defines the infrastructure requirements. The Machine Learning Architect creates the architecture to support those requirements.
+I am going to go out on a limb and suggest that as of 2020 MLOps software is still largely a buzzword sales pitch. The professional Machine Learning Architect and the Machine Learning scientist have unique skills to stand up projects properly. Working closely together, both have a complete view of what it takes to build, deploy, and maintain ML models. The Principal Machine Learning scientist defines the infrastructure requirements. The Machine Learning Architect creates the architecture to support those requirements.
 
 Machine learning products never exist in a vacuum with many points of integration into the business. The machine learning architecture encompasses development, production and user environments. Integration extends to usability. Many requirements from outside of the machine learning environment must be supported.
 
