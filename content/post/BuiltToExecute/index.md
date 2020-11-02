@@ -25,7 +25,23 @@ projects: []
 
 Every business comes into machine learning and AI expecting the technology to grow the bottom line. The machine learning team is challenged then to create processes, build relationships, and deploy infrastructure to more than meet the need. Leaders that are new to the fields pour over whitepapers from Gartner and others to become familiar with the jargon.
 
-As hard as building the team sounds, the hardest part in a non-[FAANG](https://www.investopedia.com/terms/f/faang-stocks.asp) enterprise is building the case for the expense and effort. Clearly there has to be obvious and significant value delivered to the business. **Obvious** is the most important part. The cost and effort can only be supported by a belief in the need. What does it take for a retail, agricultural, manufacturing, or medical company to decide to adopt a **machine learning first** business model? Consider what it took for Walmart to shift their business model to become a machine learning focused technology company.  By now it is fair to say that competing with Amazon drove the shift. 
+INFORMs has published a [comprehensive guide](https://www.informs.org/Explore/Building-Successful-O.R.-and-Analytics-Teams) for leaders who want to get started with or enhance analytics implementation in their organizations. It provides frameworks and tools to answer questions like:
+
+**•** What is the analytic maturity of the organization?
+
+**•** What goals should be set for your analytics effort to create positive impact aligned with the organization’s strategy and objectives?
+
+**•** Should the organization have a centralized or a decentralized analytics team?
+
+**•** What funding is required?
+
+**•** How can we identify, hire and develop the best talent for your analytics team(s)?
+
+**•** What are best practices for structuring managing analytics projects?
+
+**•** How can you enable your analytics effort to sustain and grow over time? 
+
+The content presented in this post draws further on my own experiences in a large company. As hard as building the team sounds, the hardest part in a non-[FAANG](https://www.investopedia.com/terms/f/faang-stocks.asp) enterprise is building the case for the expense and effort. Clearly there has to be obvious and significant value delivered to the business. **Obvious** is the most important part. The cost and effort can only be supported by a belief in the need. What does it take for a retail, agricultural, manufacturing, or medical company to decide to adopt a **machine learning first** business model? Consider what it took for Walmart to shift their business model to become a machine learning focused technology company.  By now it is fair to say that competing with Amazon drove the shift. 
 
 Not every business has an obvious threat to their continued operations from a **machine learning first** competitor, today. Likely though, every business will eventually have a threat from a **machine learning first** competitor. Companies often find it difficult to make the transition from thinking about advanced analytics as a *source of innovation* to a *critical source of business value.* 
 
@@ -53,13 +69,25 @@ Leaders need to build ongoing structured forums for communication. Machine Learn
 
 At the same time, members of the business team should talk about their roles in the business, along with challenges and low skill, repetitive tasks. The goal here is knowledge transfer on how the unit operates and how value is delivered. The machine learning team must measure their solutions with an understanding of real-world operations, and start building for the user instead of themselves.
 
+{{< figure src="./create-the-processes-that-your-analytics-team-will-use.jpg" title="INFORMS Processes for the Analytics Team" lightbox="true" >}}
+
 **2.	Roadmap**
 
-The machine learning team needs to build a track record, satisfying the same standards as any other product offering. The label does not exempt the team from the dimensions of on time, on budget, and of functionally for any other projects.
+The machine learning team needs to build a track record, satisfying the same standards as any other product offering. The label does not exempt the team from the dimensions of on time, on budget, and of functionally for any other projects. The organizational expects clarity in articulating goals for a positive business impact.
 
 Second phase machine learning projects are often more complex than the first pass. The first phase will not normally require much of a framework or cadence. The attitude is, “Let’s see if this works and go from there.” Consider what happens with a project when the machine learning team is running agile but no one outside the team understands the tasks.
 
 This is where having the right kinds of talent comes in. Machine Learning scientists can take a project from problem statement to production. That does not mean they do all the work. Their efforts are focused on steps that happen while building the machine learning product roadmap.
+
+Sources of stakeholder involvement that must be understood in building the roadmap:
+
+**Analytics Producers**: those who do the work of analyzing data and developing decision support systems that leverage analytics techniques for making better decisions.
+
+**Analytics Consumers**: the members of the organization that will be responsible for executing the results of the analytical work.
+
+**Analytics Champions**: the leaders in the organization that act as sponsors of projects. They typically lead a component of the organization that will benefit from the application of analytics.
+
+**Analytics Enablers**: the supporting parts of an organization, such as information technology, data stewards, and graphical user interface designers, who provide supporting functions for successful analytics projects.
 
 Typically, the Principal Machine Learning Scientist sits in on strategy planning meetings. They understand the business problems and the goals for growth. What makes them different is their ability to hear a goal and say, “Machine learning could be part of the solution.” The strategy team can prioritize goals for project evaluation. Here’s where roadmap planning starts.
 
@@ -74,6 +102,8 @@ The Principal Machine Learning scientist's research falls under each of these ga
 In reality, there is always an unstructured, unknown component to machine learning projects. Putting it into the planning phase prevents it from causing chaos in deployment timelines. This also puts control of green lighting each delivery phase in the hands of senior leadership. 
 
 Once all three gates have been met, the project gets put on the machine learning product roadmap. The Principal Machine Learning scientist can provide the team with detailed guidance on how to complete the project. This framework makes the machine learning development lifecycle a managed process. The lifecycle phases and implementation follow a structured framework with customizations for each team and business.
+
+Given the significant relationship between change management and analytics goals, the role of executive champions and sponsors becomes extremely important. For larger initiatives, steering committees that bring multiple stakeholders with multiple perspectives into the same conversation also becomes very important. Analytics tools and models often clarify and expose critical tradeoffs that may negatively impact one business function to achieve a net positive result for the larger organization. Executive sponsorship and forum for these critical discussions help to validate goal alignment. There is no short cut to the roadmapping process. 
 
 **3. Infrastructure**
 
@@ -106,6 +136,8 @@ For many businesses, building a better machine learning team is central to achie
 ----
 
 Sources:
+
+[Building Successful O.R. and Analytics Teams](https://www.informs.org/Explore/Building-Successful-O.R.-and-Analytics-Teams)
 
 [Special Report: Artificial Intelligence](https://fortune.com/packages/special-report-artificial-intelligence/)
 
