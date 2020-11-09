@@ -29,12 +29,10 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 - **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication) and [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
 - **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
 - [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/)
-
 - [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)
 - [R in a Nutshell](https://paulvanderlaken.files.wordpress.com/2017/08/r_in_a_nutshell.pdf) by [Joseph Adler](https://twitter.com/jadler)
 - [Learning Statistics with R](https://learningstatisticswithr.com/) by [Danielle Navarro](https://twitter.com/djnavarro)
 - [Getting used to R, RStudio, and R Markdown](https://bookdown.org/chesterismay/rbasics/) by [Chester Ismay](https://twitter.com/old_man_chester)
-- [Functional programming and unit testing for data munging with R](https://b-rodrigues.github.io/fput/) by [Bruno Rodrigues](https://twitter.com/brodriguesco)
 - [Statistical Inference via Data Science (2018)](https://moderndive.com/2-viz.html) by [Chester Ismay](https://twitter.com/old_man_chester) and [Albert Y. Kim](https://twitter.com/rudeboybert)
 - [Answering questions with data](https://crumplab.github.io/statistics/) by [Matt Crump](https://twitter.com/MattCrump_)
 - [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/) by [Russ Poldrack](https://twitter.com/russpoldrack)
@@ -69,7 +67,7 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 
 ## Data Visualization
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
-- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) the online version of work-in-progress 3rd edition
+- [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) the online version of work-in-progress 3rd edition by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen
 - [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows)
 
 {{< youtube id="h29g21z0a68" autoplay="false" >}}
@@ -126,8 +124,8 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 - [DALEX moDel Agnostic Language for Exploration and eXplanation](https://modeloriented.github.io/DALEX/)
 - [R interface to keras](https://keras.rstudio.com/)
 - [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
-
 ----
+
 ## Geospatial
 - [Making Maps with R](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
 - [Spatial Data Science](https://spatialanalysis.github.io/tutorials/) by [Angela Li](https://twitter.com/CivicAngela) at [Center for Spatial Data Science at the University of Chicago](https://twitter.com/GeoDaCenter)
@@ -141,6 +139,7 @@ Join the R4DS community Slack channels for news, book clubs, meetup events, and 
 - [Chicago R Users Group](https://chicago-r-user-group.github.io/)
 - [Chicago R Collaborative](https://chircollab.github.io/)
 - **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** by [R4DS](https://twitter.com/rstats4ds)
+- [WhyR Foundation](http://whyr.pl/foundation/webinars)
 - [David Smith's RevolutionAnalytics](https://blog.revolutionanalytics.com/)
 - [Business Science](https://www.business-science.io/) by 
 [Matt Dancho](https://twitter.com/mdancho84)
@@ -153,7 +152,7 @@ Join the R4DS community Slack channels for news, book clubs, meetup events, and 
 - [Pdiff](http://pdiff.weebly.com/) by [Bill Price](https://twitter.com/pdiff1)
 - [Harvard Data Science Review](https://review.datascience.harvard.edu/)
 - [Data Meets Narrative](http://www.rebeccabarter.com/blog/)
-- [A Kaplan on less well-known regression types: censored, logit-normal, beta, ordered and logistic](https://github.com/kaplanas/nonstandard-regression)
+- [A. Kaplan on less well-known regression types: censored, logit-normal, beta, ordered and logistic](https://github.com/kaplanas/nonstandard-regression)
 - [Dean of Big Data](https://deanofbigdata.com/) by [Bill Schmarzo](https://twitter.com/schmarzo)
 - [Nicholas Tierney](http://njtierney.github.io/)
 - [Tyler Rinker](https://trinkerrstuff.wordpress.com)
