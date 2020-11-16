@@ -1,5 +1,5 @@
 ---
-date: "2020-07-17"
+date: "2020-11-16"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -20,13 +20,16 @@ Inspired by:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
 
 ----
-My list of useful free books, courses, tutorials, and expert blogs. Where possible, look for materials that integrate your subject area of interest. 
+My short list of useful free books, courses, tutorials, and expert blogs. These are all possible departure points for your own learning journey. Where possible, look for materials that integrate your subject area of interest. 
 
 ## Introductory Books
+**R for Data Science** and the **R Cookbook** were primary resources, at least for me, in the Notre Dame Analytics program. 
+- **[R for Data Science](https://r4ds.had.co.nz/) by [Hadley Wickham](https://twitter.com/hadleywickham)** and [Garrett Grolemund](https://twitter.com/StatGarrett) is excellent. [Vebash](https://twitter.com/sciencificity) has assembled a nice [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html)
+- **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication) and [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
+
+Other great learning resources for those starting from Excel and basic statistics:
 - **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** by [Garrett Grolemund](https://twitter.com/StatGarrett)
 - **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
-- **[R for Data Science](https://r4ds.had.co.nz/) by [Hadley Wickham](https://twitter.com/hadleywickham)** and [Garrett Grolemund](https://twitter.com/StatGarrett)
-- **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication) and [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
 - **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
 - [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/)
 - [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)
@@ -58,14 +61,8 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 - [Intermediate R](https://github.com/uc-r/Intermediate-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 ----
 
-## Advanced Books
-- [Advanced R (Wickham, 2018)](https://adv-r.hadley.nz/introduction.html) by [Hadley Wickham](https://twitter.com/hadleywickham)
-- [Efficient R programming](https://csgillespie.github.io/efficientR/) by [Colin Gillespie](https://twitter.com/csgillespie) and [Robin Lovelace](https://twitter.com/robinlovelace)
-- [Advanced R](https://github.com/uc-r/Advanced-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
-- [A data.table and dplyr tour](https://atrebas.github.io/post/2019-03-03-datatable-dplyr/)
-----
-
 ## Data Visualization
+If your toolkit has been limited to Powerpoint and Excel, you may not even know that there is so much more to effective visual communication. In addition to the learning resources listed here, look for the recent books by Hans Rosling and Alberto Cairo at your local library.
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
 - [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) the online version of work-in-progress 3rd edition by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen
 - [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows)
@@ -108,8 +105,15 @@ My list of useful free books, courses, tutorials, and expert blogs. Where possib
 - [RMarkdown Tips and Tricks](https://www.richardshanna.com/tutorial/rmarkdown_tutorial_1/) by [Richard Hanna](https://twitter.com/Richard_S_Hanna)
 - [Introduction to `xaringan`](https://slides.yihui.org/xaringan/#1) by [Yihui Xie](https://twitter.com/xieyihui)
 - [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)
-
 ----
+
+## More Advanced Books
+- [Advanced R (Wickham, 2018)](https://adv-r.hadley.nz/introduction.html) by [Hadley Wickham](https://twitter.com/hadleywickham)
+- [Efficient R programming](https://csgillespie.github.io/efficientR/) by [Colin Gillespie](https://twitter.com/csgillespie) and [Robin Lovelace](https://twitter.com/robinlovelace)
+- [Advanced R](https://github.com/uc-r/Advanced-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
+- [A data.table and dplyr tour](https://atrebas.github.io/post/2019-03-03-datatable-dplyr/)
+----
+
 ## Machine Learning
 - [`tidymodels`](https://www.tidymodels.org/) by [Max Kuhn](https://twitter.com/topepos)
 - [Julia Silge's blog](https://juliasilge.com/)
