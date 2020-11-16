@@ -95,6 +95,7 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 - [htmlwidgets for R](https://www.htmlwidgets.org) 
 - [Discover RStudio addins](https://github.com/daattali/addinslist) by [Dean Attali](https://twitter.com/daattali)
 - [Shiny Tutorial](zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/)
+- [Engineering Production-Grad Shiny Apps](https://engineering-shiny.org/index.html) Colin Fay, Sébastien Rochette, Vincent Guyader, Cervan Girard on the {golem} package
 - [R Views Enterprise-ready dashboards with Shiny and Databases](https://rviews.rstudio.com/2017/09/20/dashboards-with-r-and-databases/)
 - [R Shiny upgrade packages](http://enhancedatascience.com/2017/07/10/the-packages-you-need-for-your-r-shiny-application/)
 - [Advanced Shiny Tips and Tricks](https://github.com/daattali/advanced-shiny#readme) by [Dean Attali](https://twitter.com/daattali)
@@ -107,22 +108,35 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 - [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)
 ----
 
+## Text Mining
+- [Text mining](https://www.tidytextmining.com/) by Julia Silge and David Robinson
+----
+
 ## More Advanced Books
 - [Advanced R (Wickham, 2018)](https://adv-r.hadley.nz/introduction.html) by [Hadley Wickham](https://twitter.com/hadleywickham)
+- [R Packages](https://r-pkgs.org/) by Hadley Wickham and Jenny Bryan
 - [Efficient R programming](https://csgillespie.github.io/efficientR/) by [Colin Gillespie](https://twitter.com/csgillespie) and [Robin Lovelace](https://twitter.com/robinlovelace)
 - [Advanced R](https://github.com/uc-r/Advanced-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 - [A data.table and dplyr tour](https://atrebas.github.io/post/2019-03-03-datatable-dplyr/)
 ----
 
 ## Machine Learning
-- [`tidymodels`](https://www.tidymodels.org/) by [Max Kuhn](https://twitter.com/topepos)
+The wide array of Machine Learning techniques for prediction and inference in real business contexts require a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We're smart. Just wing it, right? A bad idea.
+
+There is a running joke on Twitter that most resumes that list Natural Language Processing as a skill are *at-best* indicating the use of regular expressions.  To be blunt, the free materials available at this point are not sufficient to provide a proper foundation in the many risks and trade-offs, particularly with respect to each knowledge domain. For example, consider SARs COVID-19 and all of the epidemiological models and ramifications for policy decisions. Further, the leading edge of thinking in many ML areas is changing rapidly.
+
+Though it is not free, find a copy of Provost and Fawcett's **Data Science for Business** published by O'Reilly. Nwanganga and Chapple's **Practical Machine Learning in R** [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/) is another approachable book. Gelman, Hill, and Vehtari's **Regression and Other Stories, Analytical Methods for Social Research** is an applied statistics text that provides real-world lessons for quantitative researchers applying ML techniques. Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself.
+
+Machine learning modeling frameworks do offer somewhat more streamlined solutions for pre-processing, scoring, and publishing ML models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning, neural-net, frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages.
+
+For a free glimpse into the R environment ML frameworks, consider these resources:
+- [Tidy Modeling with R](https://www.tmwr.org/) by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)
 - [Julia Silge's blog](https://juliasilge.com/)
 - [Jared Lander](https://www.jaredlander.com/talks/)
 
 {{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
 
 - [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha)
-- [R developer's guide to Azure](https://docs.microsoft.com/en-us/azure/architecture/data-guide/technology-choices/r-developers-guide)
 - [Javier Lurachi's mlverse videos](https://www.youtube.com/c/mlverse/videos)
 - [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
 - [DALEX moDel Agnostic Language for Exploration and eXplanation](https://modeloriented.github.io/DALEX/)
@@ -139,11 +153,19 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 
 ## Meetups, Blogs, and User Groups
 - [R for Data Science Online Learning Community](https://www.rfordatasci.com/)
-Join the R4DS community Slack channels for news, book clubs, meetup events, and tips & tricks  
+Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, and wins and feedback  
 - [Chicago R Users Group](https://chicago-r-user-group.github.io/)
 - [Chicago R Collaborative](https://chircollab.github.io/)
 - **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** by [R4DS](https://twitter.com/rstats4ds)
 - [WhyR Foundation](http://whyr.pl/foundation/webinars)
+- [Salt Lake City R Users Group](https://www.meetup.com/slc-rug/)
+- [Seattle useR Group](https://www.meetup.com/Seattle-useR/)   
+- [Bay Area useR Group](https://www.meetup.com/R-Users/)
+- [IndyUseR Group](https://www.meetup.com/Indy-useR-Group/)
+- [Greater Boston useR Group](https://www.meetup.com/Boston-useR/)
+- [R Users & R-Ladies Warsaw](https://www.meetup.com/Spotkania-Entuzjastow-R-Warsaw-R-Users-Group-Meetup/)
+- [New York Open Statistical Programming Meetup](https://www.meetup.com/nyhackr/)
+- [Win Vector blog](https://win-vector.com/blog-2/)
 - [David Smith's RevolutionAnalytics](https://blog.revolutionanalytics.com/)
 - [Business Science](https://www.business-science.io/) by 
 [Matt Dancho](https://twitter.com/mdancho84)
@@ -172,7 +194,7 @@ Join the R4DS community Slack channels for news, book clubs, meetup events, and 
 - [Rob Kabacoff](https://www.statmethods.net/)
 - [Bruno Rodrigues](http://www.brodrigues.co/)
 - [Abdul Majed](https://www.programmingwithr.com/) by [Abdul Majed](https://twitter.com/1littlecoder)
-
+----
 
 ### Did you find this page helpful? Consider sharing it 🙌
 
