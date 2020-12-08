@@ -199,7 +199,7 @@ df <- tibble(
 
 df %>%
   kbl() %>%
-  kable_material_dark()
+  kable_minimal()
 ```
 
 A single channel audio signal of the word `moja` (Swahili word for digit one) sampled at 8 kHz was recorded using a Raspberry Pi and stored as a `.wav` file. The recording can also be done using a laptop or mobile phone too.
