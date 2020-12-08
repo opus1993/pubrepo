@@ -11,14 +11,14 @@ description: "**A gentle introduction: R in Digital Signal Processing**"
 image: 
   caption: 'Photo by Gritte on Unsplash'
   focal_point: "Smart"
-  preview_only: true
+  preview_only: false
 featured: false
 draft: false
 ---
 
 Signals are everywhere around the world today. Audio communications are more critical than ever. Airplanes use signals in the air to obtain important information to ensure safety on a flight. Cell phones are pretty much a single small high performance digital signal processing device. They process our speech when we talk by removing background noise and echos that would distort the clarity. They obtain wifi signals to allow for web searches. They send SMS text messages using signals. They use digital image processing to capture excellent photos and video. 
 
-Having a basic understanding of DSP and it’s concepts can be helpful in so many modern occupations.
+Having a basic understanding of DSP and it’s concepts can be helpful in many modern contexts.
 
 Digital signal processing (DSP) is concerned with the representation, transformation and manipulation of signals and information they contain. DSP applications include audio and speech processing, sonar, radar and other sensor array processing, spectral density estimation, statistical signal processing, digital image processing, data compression, video coding, audio coding, image compression, signal processing for telecommunications, control systems, biomedical engineering, and seismology, among others.
 
@@ -27,6 +27,8 @@ When doing digital signal processing, `R` has not often been the first computer 
 The functions in the R's `signal` package retain the look and feel of MatLab originals. Working with these functions should make it easy for anyone familiar with MatLab to make the transition.
 
 In addition to the basics, R contains some very nice implementations of signal processing algorithms that have applications in statistical analysis. For starters, R’s time series capabilities are second to none. Neither Matlab nor the legacy statistical software package SAS can match the scope and depth of the time series tools listed in R’s [Time Series Task View](https://cran.r-project.org/web/views/TimeSeries.html#:~:text=CRAN%20Task%20View%3A%20Time%20Series%20Analysis%20Base%20R,those%20in%20the%20Econometrics%20and%20Finance%20task%20views.).
+
+Let's setup several of them and walk through a demonstration.
 
 ```{r, echo=TRUE, warning = FALSE}
 knitr::opts_chunk$set(
@@ -63,7 +65,7 @@ pal <- wesanderson::wes_palette("Zissou1", 21, type = "continuous")
 
 ## **Background:** Putting it in very simple terms
 
-There are two main types of signals: continuous time signals and discrete time signals. Continuous Time Signals, as you might suspect, are continuous. They are defined at all instances of time over a given period. These types of signals are commonly referred to as analog signals. An example of an analog signal would be a simple sine curve plotted in 14.1. Notice that the sine curve is defined for every value on the interval from 0 to 2 
+There are two main types of signals: continuous time signals and discrete time signals. Continuous Time Signals, as you might suspect, are continuous. They are defined at all instances of time over a given period. These types of signals are commonly referred to as analog signals. An example of an analog signal would be a simple sine curve plotted below. Notice that the sine curve is defined for every value on the interval from 0 to 2 
 $\pi$. This is an analog signal.
 
 ```{r, warning = FALSE}
@@ -71,7 +73,7 @@ t <- seq(0, 1, len = 100)
 sig <- sin(2 * pi * t)
 
 ggplot(mapping = aes(t, sig)) +
-  geom_line() +
+  geom_line(size = 3) +
   labs(title = "An Analogue, or Continuous, Signal",
        x = NULL, y = NULL)
 ```
@@ -82,14 +84,12 @@ x <- seq(0, 1, len = 10)
 y <- sin(2 * pi * x)
 
 ggplot(mapping = aes(x, y)) +
-  geom_point(size = 2) +
+  geom_point(size = 3) +
   labs(title = "A Discrete, or Digital, Signal",
        x = NULL, y = NULL)
 ```
 
-Notice the differences between the two graphs. The second graph is not defined at every point and is only defined at the points where a data point exists. 
-
-Discrete-time signal processing is the rapid processing of numeric sequences indexed on integer variables. In DSP, signals are represented by sequences of finite precision numbers and processing is implemented using digital computation. Most applications involve the use of discrete-time technology for processing signals that originate as continuous-time signals. In this case, a continuous-time (analogue) signal is typically converted into a sequence of samples. After discrete-time processing, the output sequence is validated by converting back to a continuous-time signal.
+Discrete-time signal processing is the rapid processing of numeric sequences indexed on integer variables. Most applications involve the use of discrete-time technology for processing signals that originate as continuous-time phenomena. In this case, a continuous-time (analogue) signal is typically converted into a sequence of samples. 
 
 Now that we have a general understanding of what a signal is and it’s properties, let’s now focus on some of the important concepts in digital signal processing, and implementing them in R. Three of the most central topics to DSP include:
 
@@ -105,7 +105,8 @@ It is not likely that when obtaining a real-world signal you would get a perfect
 noisySig <- sin(2 * pi * t) + 0.25 * rnorm(length(t))
 
 ggplot() + 
-  geom_line(aes(t, noisySig), color = "red")
+  geom_line(aes(t, noisySig), size = 2) +
+  labs(title = "Noisy Signal")
 ```
 
 We add noise to the function by adding a random value `(0.25*rnorm(length(t))` to each value in the signal. This is typical of a real-world signal, in that it is somewhat distorted as a result of noise. The `signal` package provides a long list of functions for filtering out noise. Here we will use the `butter` function to remove the noise from this signal in an attempt to obtain our original signal. This function generates a variable containing the Butterworth filter polynomial coefficients. The Butterworth filter is a good all-around filter that is often used in radio frequency filter applications. 
@@ -121,7 +122,8 @@ ggplot(allSignals, aes(t)) +
   geom_line(aes(y = sig, color = "Original")) + 
   geom_line(aes(y = noisySig, color = "Noisy")) + 
   geom_line(aes(y = recoveredSig, color = "Recovered")) + 
-  labs(x = "Time", y = "Signal")
+  labs(x = "Time", y = "Signal") +
+  labs(title = "Butterworth Filtering")
 ```
 
 The recovered signal is not perfect, as there is still some noise in the signal, and the timing of the peaks in the signal is not exactly matched up with the original. But it removed a large portion of the noise from the noisy signal. Adjust the argument values in the `butter()` function in the above code. There are a wide variety of filter functions available in the `signal` package by exploring the package documentation.
@@ -138,7 +140,8 @@ noise <- 50 * 1/12 * sin(t * 4 * pi/length(t) * 12)
 originalSignal <- cleanSignal + noise
 
 ggplot() + 
-  geom_line(aes(t, originalSignal))
+  geom_line(aes(t, originalSignal), size = 2) +
+  labs(title = "Another Noisy Signal")
 ```
 
 Perhaps we are interested in where the noise is coming from and want to analyze the structure of the noise to figure this out. Thus, unlike the previous example, we want to extract the noise from the signal and not simply eliminate it. To do this we can again use the Butterworth filter.
@@ -156,7 +159,8 @@ ggplot(signals, aes(t)) +
   geom_line(aes(y = originalSignal, color = "Original")) + 
   geom_line(aes(y = low, color = "Signal")) + 
   geom_line(aes(y = high, color = "Noise")) + 
-  labs(x = "Time", y = "Signal")
+  labs(x = "Time", y = "Signal",
+       title = "Butterworth Filtering")
 ```
 
 ----
@@ -282,16 +286,15 @@ N <- 32e-3*Fs
 ggspectro(y, Fs, wl = N, wn = "hamming", ovlp = 50, fftw = TRUE) + 
   geom_tile(aes(fill = amplitude)) +
   scale_fill_gradientn(colors = pal,
-                       aesthetics = c("color","fill")) +
+                       aesthetics = c("fill")) +
   labs(title = "Audio Spectrogram, Moja Speech Waveform",
        subtitle = "32e-3 Window size")
 
 ```
 
-The spectrogram appears as a heatmap with the various colors representing
-power in decibels. It is evident that the digit was spoken in the interval between **0.4s** and **1s** where there are high values of frequency.
+The spectrogram appears as a heatmap with the various colors representing power in decibels. It is evident that the digit was spoken in the interval between **0.4s** and **1s** where there are high values of frequency.
 
-Now, let's divide the speech signal into 64ms segments, take the FFT of each segment, and build a spectrogram. 
+Now, let's divide the speech signal into 64ms segments, take the FFT of each segment, and build another spectrogram. 
 
 ```{r message=FALSE, warning=FALSE}
 # defining the window size (number of samples in a 32ms long segment)
@@ -300,7 +303,7 @@ N_2 <- 64e-3*Fs
 ggspectro(y, Fs, wl = N_2, wn = "hamming", ovlp = 50, fftw = TRUE) +
   geom_tile(aes(fill = amplitude)) +
   scale_fill_gradientn(colors = pal,
-                       aesthetics = c("color","fill")) +
+                       aesthetics = c("fill")) +
   labs(title = "Audio Spectrogram, Moja Speech Waveform",
        subtitle = "64e-3 Window size")
 
@@ -312,8 +315,7 @@ Increasing the segment length to `64ms` consequently increases the `window lengt
 
 To answer this question, we will have to come up with a magnitude spectrum of the speech waveform which shows the magnitude of the signal at a particular frequency. This means we will have to convert the signal from the time domain to a representation in the `frequency domain` by computing the `Discrete Fourier Transform` (using a FFT algorithm). 
 
-Due to mathematical convenience, the arrangement of the FFT output has
-positive and negative frequencies side by side in a slightly non-intuitive order (the frequency increases from 0 until N/2 and then it decreases for negative frequencies). As the positive and negative frequency magnitudes are identical for a real signal it is common just to plot the positive frequencies from `0 to Fs/2` (in our case `0 to 4000 Hz`).
+Due to mathematical convenience, the arrangement of the FFT output has positive and negative frequencies side by side in a slightly non-intuitive order (the frequency increases from 0 until N/2 and then it decreases for negative frequencies). As the positive and negative frequency magnitudes are identical for a real signal it is common just to plot the positive frequencies from `0 to Fs/2` (in our case `0 to 4000 Hz`).
 
 ```{r warning=FALSE}
 # Discrete Fourier transform of data (DFT)
@@ -337,7 +339,7 @@ subtitle = "Entire speech sequence")
 
 ```
 
-From the magnitude spectrum of the Discrete Fourier Transform, we can observe that most of the energy is concentrated in the frequency range **0** to **10 KHz**.
+From the magnitude spectrum of the Discrete Fourier Transform, we can observe that most of the energy is concentrated in the frequency range **1** to **10 KHz**.
 
 ### **Time domain, Frequency domain and Energy comparison of a segment containing speech and one without**
 
