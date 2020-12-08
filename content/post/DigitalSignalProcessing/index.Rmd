@@ -339,7 +339,7 @@ subtitle = "Entire speech sequence")
 
 ```
 
-From the magnitude spectrum of the Discrete Fourier Transform, we can observe that most of the energy is concentrated in the frequency range **1** to **10 KHz**.
+From the magnitude spectrum of the Discrete Fourier Transform, we can observe that most of the energy is concentrated in the frequency range **1** to **10 Hz**.
 
 ### **Time domain, Frequency domain and Energy comparison of a segment containing speech and one without**
 
