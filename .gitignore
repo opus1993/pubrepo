@@ -6,3 +6,6 @@ blogdown
 public/
 Thumbs.db
 content/post/GLMnet/data
+geospatial/
+data/*.wav
+data/*.csv

@@ -1,0 +1,489 @@
+---
+title: "Digital Signal Processing"
+author: "Jim Gruman"
+date: "2020-12-07"
+diagram: true
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [R]
+description: "**A gentle introduction: R in Digital Signal Processing**" 
+image: 
+  caption: 'Photo by Gritte on Unsplash'
+  focal_point: "Smart"
+  preview_only: true
+featured: false
+draft: false
+---
+
+<script src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/header-attrs/header-attrs.js"></script>
+<link href="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/anchor-sections/anchor-sections.js"></script>
+<script src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/kePrint/kePrint.js"></script>
+<link href="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/lightable/lightable.css" rel="stylesheet" />
+
+
+<p>Signals are everywhere around the world today. Audio communications are more critical than ever. Airplanes use signals in the air to obtain important information to ensure safety on a flight. Cell phones are pretty much a single small high performance digital signal processing device. They process our speech when we talk by removing background noise and echos that would distort the clarity. They obtain wifi signals to allow for web searches. They send SMS text messages using signals. They use digital image processing to capture excellent photos and video.</p>
+<p>Having a basic understanding of DSP and it’s concepts can be helpful in so many modern occupations.</p>
+<p>Digital signal processing (DSP) is concerned with the representation, transformation and manipulation of signals and information they contain. DSP applications include audio and speech processing, sonar, radar and other sensor array processing, spectral density estimation, statistical signal processing, digital image processing, data compression, video coding, audio coding, image compression, signal processing for telecommunications, control systems, biomedical engineering, and seismology, among others.</p>
+<p>When doing digital signal processing, <code>R</code> has not often been the first computer language that engineers work with. For decades, DSP work has been done in environments in <code>MATLAB</code>, <code>Python</code> and even <code>C++</code>. Even so, because of the nature of <a href="https://jimgruman.netlify.app/post/open-source/">open source development</a> and association with research, there are now several tools available today in R’s ecosystem. The bulk of R’s basic signal processing capability comes from the <code>signal</code> package which was ported over from the open source project Octave. Today it’s safe to say that it has never been easier to adopt R in almost any domain as demonstrated by <a href="https://jaredlander.com/content/2020/06/ApplyingRAtWork.html#1">Jared Lander’s talk</a> at <a href="https://2020.erum.io/">e-Rum 2020</a>.</p>
+<p>The functions in the R’s <code>signal</code> package retain the look and feel of MatLab originals. Working with these functions should make it easy for anyone familiar with MatLab to make the transition.</p>
+<p>In addition to the basics, R contains some very nice implementations of signal processing algorithms that have applications in statistical analysis. For starters, R’s time series capabilities are second to none. Neither Matlab nor the legacy statistical software package SAS can match the scope and depth of the time series tools listed in R’s <a href="https://cran.r-project.org/web/views/TimeSeries.html#:~:text=CRAN%20Task%20View%3A%20Time%20Series%20Analysis%20Base%20R,those%20in%20the%20Econometrics%20and%20Finance%20task%20views.">Time Series Task View</a>.</p>
+<pre class="r"><code>knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.height = 7.402,
+    fig.width = 12
+)
+suppressMessages({
+
+library(tidyverse) 
+
+library(here)
+library(kableExtra)
+
+library(seewave)
+library(signal)
+library(tuneR)
+library(audio)
+library(fftw)
+library(cowplot)
+library(EnsembleML)
+})
+
+extrafont::loadfonts(quiet = TRUE)
+
+theme_set(hrbrthemes::theme_ft_rc() +
+            theme(plot.title.position = &quot;plot&quot;))
+
+pal &lt;- wesanderson::wes_palette(&quot;Zissou1&quot;, 21, type = &quot;continuous&quot;)</code></pre>
+<div id="background-putting-it-in-very-simple-terms" class="section level2">
+<h2><strong>Background:</strong> Putting it in very simple terms</h2>
+<p>There are two main types of signals: continuous time signals and discrete time signals. Continuous Time Signals, as you might suspect, are continuous. They are defined at all instances of time over a given period. These types of signals are commonly referred to as analog signals. An example of an analog signal would be a simple sine curve plotted in 14.1. Notice that the sine curve is defined for every value on the interval from 0 to 2
+<span class="math inline">\(\pi\)</span>. This is an analog signal.</p>
+<pre class="r"><code>t &lt;- seq(0, 1, len = 100)
+sig &lt;- sin(2 * pi * t)
+
+ggplot(mapping = aes(t, sig)) +
+  geom_line() +
+  labs(title = &quot;An Analogue, or Continuous, Signal&quot;,
+       x = NULL, y = NULL)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-2-1.png" width="1152" />
+Discrete Time Signals are not continuous. They are defined only at discrete times, and thus they are represented as a sequence of numbers. This is an example of the exact same sine curve, but in a discrete form. Notice how there are only values at specific points, and anywhere besides those points the signal is not defined. In a real-world application, these points would correspond to measurements of the signal.</p>
+<pre class="r"><code>x &lt;- seq(0, 1, len = 10)
+y &lt;- sin(2 * pi * x)
+
+ggplot(mapping = aes(x, y)) +
+  geom_point(size = 2) +
+  labs(title = &quot;A Discrete, or Digital, Signal&quot;,
+       x = NULL, y = NULL)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-3-1.png" width="1152" /></p>
+<p>Notice the differences between the two graphs. The second graph is not defined at every point and is only defined at the points where a data point exists.</p>
+<p>Discrete-time signal processing is the rapid processing of numeric sequences indexed on integer variables. In DSP, signals are represented by sequences of finite precision numbers and processing is implemented using digital computation. Most applications involve the use of discrete-time technology for processing signals that originate as continuous-time signals. In this case, a continuous-time (analogue) signal is typically converted into a sequence of samples. After discrete-time processing, the output sequence is validated by converting back to a continuous-time signal.</p>
+<p>Now that we have a general understanding of what a signal is and it’s properties, let’s now focus on some of the important concepts in digital signal processing, and implementing them in R. Three of the most central topics to DSP include:</p>
+<ul>
+<li><p><em>Fourier Transforms</em>: signal processing involves looking at the frequency representation of signals for both insight and computations.</p></li>
+<li><p><em>Noise</em>: defined as any signal that is not desired. A huge part of signal processing is understanding how noise is affecting the data and efficient ways of removing it.</p></li>
+<li><p><em>Filters</em>: remove specific portions of a signal at once</p></li>
+</ul>
+<p>It is not likely that when obtaining a real-world signal you would get a perfect sinusoid without any noise. As a illustration, let’s take the sine and add some noise to it.</p>
+<pre class="r"><code>noisySig &lt;- sin(2 * pi * t) + 0.25 * rnorm(length(t))
+
+ggplot() + 
+  geom_line(aes(t, noisySig), color = &quot;red&quot;)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-4-1.png" width="1152" /></p>
+<p>We add noise to the function by adding a random value <code>(0.25*rnorm(length(t))</code> to each value in the signal. This is typical of a real-world signal, in that it is somewhat distorted as a result of noise. The <code>signal</code> package provides a long list of functions for filtering out noise. Here we will use the <code>butter</code> function to remove the noise from this signal in an attempt to obtain our original signal. This function generates a variable containing the Butterworth filter polynomial coefficients. The Butterworth filter is a good all-around filter that is often used in radio frequency filter applications.</p>
+<pre class="r"><code>butterFilter &lt;- butter(3, 0.1)
+
+recoveredSig &lt;- signal::filter(butterFilter, noisySig)
+
+allSignals &lt;- data.frame(t, sig, noisySig, recoveredSig)
+
+ggplot(allSignals, aes(t)) + 
+  geom_line(aes(y = sig, color = &quot;Original&quot;)) + 
+  geom_line(aes(y = noisySig, color = &quot;Noisy&quot;)) + 
+  geom_line(aes(y = recoveredSig, color = &quot;Recovered&quot;)) + 
+  labs(x = &quot;Time&quot;, y = &quot;Signal&quot;)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-5-1.png" width="1152" /></p>
+<p>The recovered signal is not perfect, as there is still some noise in the signal, and the timing of the peaks in the signal is not exactly matched up with the original. But it removed a large portion of the noise from the noisy signal. Adjust the argument values in the <code>butter()</code> function in the above code. There are a wide variety of filter functions available in the <code>signal</code> package by exploring the package documentation.</p>
+<p>For a second example, suppose we are interested in not only the signal, but also the noise. We will extract the low and high frequencies from a sample signal. Let’s start with a noisy signal</p>
+<pre class="r"><code>t &lt;- 1:500
+
+cleanSignal &lt;- 50 * sin(t * 4 * pi/length(t))
+
+noise &lt;- 50 * 1/12 * sin(t * 4 * pi/length(t) * 12)
+
+originalSignal &lt;- cleanSignal + noise
+
+ggplot() + 
+  geom_line(aes(t, originalSignal))</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-6-1.png" width="1152" /></p>
+<p>Perhaps we are interested in where the noise is coming from and want to analyze the structure of the noise to figure this out. Thus, unlike the previous example, we want to extract the noise from the signal and not simply eliminate it. To do this we can again use the Butterworth filter.</p>
+<pre class="r"><code>lowButter &lt;- butter(2, 1/50, type = &quot;low&quot;)
+low &lt;- signal::filter(lowButter, originalSignal)
+
+highButter &lt;- butter(2, 1/25, type = &quot;high&quot;)
+high &lt;- signal::filter(highButter, originalSignal)
+
+signals &lt;- data.frame(originalSignal, low, high)
+
+ggplot(signals, aes(t)) + 
+  geom_line(aes(y = originalSignal, color = &quot;Original&quot;)) + 
+  geom_line(aes(y = low, color = &quot;Signal&quot;)) + 
+  geom_line(aes(y = high, color = &quot;Noise&quot;)) + 
+  labs(x = &quot;Time&quot;, y = &quot;Signal&quot;)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-7-1.png" width="1152" /></p>
+<hr />
+</div>
+<div id="fourier-transforms-and-spectrograms" class="section level1">
+<h1>Fourier Transforms and Spectrograms</h1>
+<p>When working with signals the data can always be depicted in both the time domain and the frequency domain. The most popular way to explore signals in the frequency domain is to use Fourier Transforms. A Fourier Transform is a reversible mathematical algorithm developed by Joseph Fourier in the early 1800s. The transform breaks apart a time series into a sum of finite series of sine &amp; cosine functions.</p>
+<p>The Discrete Fourier Transform (DFT) is a specific form of the Fourier Transform applied to a time domain wave. The DFT rebuilds the original time domain continuous wave using frequency and amplitude attributes of the original time series wave form. Fourier Transforms require a window size parameter. Increasing the window size will increase frequency resolution, but this will also make the transform less accurate in terms of time as more signal will be selected for the transform. Thus there is a constant level of uncertainty between the time of the signal and the frequency of the signal. Different windows can be used in a DFT depending on the application. There are numerous windows available that we will explore within the <code>seewave</code> package .</p>
+<p>Computing a fourier transform on a whole sound file or a single segment of the sound may not be enough information. Most applications compute the DFT on successive sections along the entire sound signal. A window is “slided” along the signal and a DFT is computed at each of these slides. This process is called a Short-Time Fourier Transform, or STFT.</p>
+<p>We can plot the results of an STFT in what is called a spectrogram. The successive DFT are plotted against time with the relative amplitude of each sine function of each DFT represented by some color scale. In other words, the spectrogram has an x-axis of time, a y-axis of frequency, and the amplitude represented by the color scheme used inside the plot. Let’s look at an example:</p>
+<div id="speech-in-the-time-and-frequency-domain-lab" class="section level2">
+<h2><strong>Speech in the time and frequency domain lab:</strong></h2>
+<p>In his recent blog post, <a href="https://twitter.com/ericntay">Eric NTay</a> analyzed a speech signal in the time and frequency domain. The objectives were:</p>
+<ol style="list-style-type: lower-alpha">
+<li>To create a two second recording of one of the 10 digits in Swahili.</li>
+<li>To compute a spectrogram of the recorded speech signal.</li>
+<li>To obtain a segment 32ms long from a region with speech and another segment of the same duration from a segment without speech, and then plot and analyze them in the time domain.</li>
+<li>To compute the Discrete Fourier, Transform of both signals in (c) above.</li>
+</ol>
+<p>The Discrete Fourier Transform (DFT) is considered as the frequency domain representation of the original input sequence. The DFT is itself a sequence rather than a function of a continuous variable, and it corresponds to samples, equally spaced by frequency. A continuous time signal <code>x(t)</code> is first sampled to form the discrete time signal <code>x[n]</code> of length <code>N</code> samples. The transformed signal within the frequency domain is of finite extent but discrete and of the same length as the original signal. The DFT then decomposes a time domain signal defined over a finite range into a sum of weighted complex sinusoids as:</p>
+<p><span class="math inline">\(X(k) =\sum_{n=0}^{N-1} x[n] {e^{-j\frac{2\pi}Nkn}}\)</span></p>
+<p>This operation is useful in many fields but computing it directly from the definition is often too slow to be practical. The fast Fourier transform (FFT) is the algorithm that computes the discrete Fourier Transform of a sequence or its inverse.</p>
+</div>
+<div id="data-analysis-in-r" class="section level2">
+<h2><strong>Data Analysis in R</strong></h2>
+<p>Let’s now take a look at how we can analyze the speech signal in the time and frequency domain. The following table lists common feature quantities used in signal processing to characterize and interpret signal properties. They will be quite useful in our analysis:</p>
+<table class=" lightable-material-dark" style="font-family: &quot;Source Sans Pro&quot;, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Quantity
+</th>
+<th style="text-align:left;">
+Description
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+y
+</td>
+<td style="text-align:left;">
+Sampled data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+N &lt;- length(y)
+</td>
+<td style="text-align:left;">
+Number of samples
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fs
+</td>
+<td style="text-align:left;">
+Sample frequency (samples per unit time or space)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dt &lt;- 1/Fs
+</td>
+<td style="text-align:left;">
+Time or space increment per sample
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+t &lt;- (seq_len(n) - 1)/Fs
+</td>
+<td style="text-align:left;">
+Time or space range for data
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+dft &lt;- fft(y)
+</td>
+<td style="text-align:left;">
+Discrete Fourier transform of data (DFT)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+abs(dft)
+</td>
+<td style="text-align:left;">
+Amplitude of the DFT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+(abs(dft)^2)/N
+</td>
+<td style="text-align:left;">
+Power of the DFT
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Fs/N
+</td>
+<td style="text-align:left;">
+Frequency increment/Frequency resolution
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+f &lt;- (seq_len(n) - 1)*(Fs/N)
+</td>
+<td style="text-align:left;">
+Frequency range
+</td>
+</tr>
+</tbody>
+</table>
+<p>A single channel audio signal of the word <code>moja</code> (Swahili word for digit one) sampled at 8 kHz was recorded using a Raspberry Pi and stored as a <code>.wav</code> file. The recording can also be done using a laptop or mobile phone too.</p>
+<p>If you would like to follow along using the audio file Eric used in his analysis, download it from here: <a href="https://stdntpartners-my.sharepoint.com/:u:/g/personal/eric_wanjau_studentambassadors_com/EXpE2v0Mi8lLrLRBXCHBZtsBGjOYTwlWil5vYs1pR9RR_Q?e=sZfvpd">moja wav</a></p>
+<div id="loading-the-audio-data-and-some-pre-processing" class="section level3">
+<h3><strong>Loading the audio data and some pre-processing</strong></h3>
+<p>Let’s begin by loading the speech signal recorded, reading it and then rescaling the amplitude of the waveform to a canonical interval [-1,1].</p>
+<pre class="r"><code>one = here(&#39;content/post/DigitalSignalProcessing/moja.wav&#39;) 
+
+moja_wave &lt;- tuneR::readWave(one) %&gt;%
+  tuneR::normalize(unit = c(&quot;1&quot;), center = FALSE, rescale = FALSE)</code></pre>
+<p>The audio signal was recorded for 2 seconds and then reduced to a discrete time signal by sampling at 8 kHz to obtain 16000 samples as below:</p>
+<p><span class="math inline">\(sampling \, period \, (T_s) =\, \frac{1}{sampling\,frequency \, (F_s)} \, =\, \frac{1}{8000}\)</span></p>
+<p><span class="math inline">\(T_s \, = \,0.125\, _{ms} \, (time\,difference\,between\,samples)\)</span></p>
+<p><span class="math inline">\(Number\,of\,samples\, = segment\,length(sec) \times sampling\,frequency \,\)</span></p>
+<p><span class="math inline">\(Number\,of\,samples\, = \,16000\)</span></p>
+<p>All these summaries of the Wave-object can be obtained as:</p>
+<pre class="r"><code>summary(moja_wave)</code></pre>
+<pre><code>## 
+## Wave Object
+##  Number of Samples:      16000
+##  Duration (seconds):     2
+##  Samplingrate (Hertz):   8000
+##  Channels (Mono/Stereo): Mono
+##  PCM (integer format):   TRUE
+##  Bit (8/16/24/32/64):    32
+## 
+## Summary statistics for channel(s):
+## 
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## -0.5783 -0.0275  0.0031 -0.0010  0.0297  0.7630</code></pre>
+</div>
+<div id="plotting-the-audio-data" class="section level3">
+<h3><strong>Plotting the audio data</strong></h3>
+<p>Let’s make a plot of the signal’s <code>amplitude</code> vs the corresponding <code>sample number</code>.</p>
+<pre class="r"><code># extracting sampled data, y
+y = moja_wave@left
+
+# extracting the sample rate, Fs
+Fs = moja_wave@samp.rate
+
+# getting our ggplot on
+ggplot(mapping = aes(x = seq_len(length(y)), y = y)) +
+  geom_line(color = &#39;blue&#39;) +
+  labs(x = &quot;Sample Number&quot;, y = &quot;Amplitude&quot;, title = &quot;Speech waveform&quot;)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-11-1.png" width="1152" />
+Take a moment and listen to the audio:</p>
+<pre class="r"><code>audio::play.audioSample(y, Fs)</code></pre>
+<p>From the Speech waveform plot, one can easily identify the segments that contain speech and those without (very faint speech).</p>
+<p>We’ll need these segments for some later analysis, so let’s define sample numbers that contain speech and those without.</p>
+<pre class="r"><code># sample index of segments with speech and those without
+speech_start &lt;- 5100
+silence_start &lt;- 9850</code></pre>
+</div>
+<div id="computing-a-spectrogram-of-the-signal" class="section level3">
+<h3><strong>Computing a spectrogram of the signal</strong></h3>
+<p>A spectrogram is a visual representation of the spectrum of frequencies of a signal as it varies with time. It is usually depicted as a heat map with intensity being shown by varying the color or brightness.</p>
+<p>We will compute the spectrogram by dividing the speech signal into segments 32ms long (256 samples at 8kHz) with 50% overlap between neighboring segments and taking the FFT of each segment.</p>
+<p>We will then plot the magnitude of this FFT for all the segments as a 2-dimensional image showing how the frequency varies with time. <code>ggspectro {seewave}</code> (an alternative to <code>spectro {seewave}</code>) allows us to draw a spectrogram with the package <code>ggplot2</code>. Note is that a <a href="https://en.wikipedia.org/wiki/Window_function">Fourier Transform window</a> is specified and that the <a href="https://en.wikipedia.org/wiki/Fast_Fourier_transform">Fast Fourier Transform</a> (by setting fftw = TRUE) is used to speed up the process.</p>
+<pre class="r"><code># defining the window size (number of samples in a 32ms long segment)
+N &lt;- 32e-3*Fs
+
+ggspectro(y, Fs, wl = N, wn = &quot;hamming&quot;, ovlp = 50, fftw = TRUE) + 
+  geom_tile(aes(fill = amplitude)) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c(&quot;color&quot;,&quot;fill&quot;)) +
+  labs(title = &quot;Audio Spectrogram, Moja Speech Waveform&quot;,
+       subtitle = &quot;32e-3 Window size&quot;)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-14-1.png" width="1152" /></p>
+<p>The spectrogram appears as a heatmap with the various colors representing
+power in decibels. It is evident that the digit was spoken in the interval between <strong>0.4s</strong> and <strong>1s</strong> where there are high values of frequency.</p>
+<p>Now, let’s divide the speech signal into 64ms segments, take the FFT of each segment, and build a spectrogram.</p>
+<pre class="r"><code># defining the window size (number of samples in a 32ms long segment)
+N_2 &lt;- 64e-3*Fs
+
+ggspectro(y, Fs, wl = N_2, wn = &quot;hamming&quot;, ovlp = 50, fftw = TRUE) +
+  geom_tile(aes(fill = amplitude)) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c(&quot;color&quot;,&quot;fill&quot;)) +
+  labs(title = &quot;Audio Spectrogram, Moja Speech Waveform&quot;,
+       subtitle = &quot;64e-3 Window size&quot;)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-15-1.png" width="1152" /></p>
+<p>Increasing the segment length to <code>64ms</code> consequently increases the <code>window length</code> to <code>512 samples</code>. This effect of this is that the <code>frequency resolution</code> increases. The frequency resolution is obtained by the ratio <code>Fs/N</code>. So, for a given sampling frequency (Fs), the more samples (N) in the signal, the smaller the frequency increment between successive DFT data points. Since more points are being sampled, the spectral resolution increases.</p>
+</div>
+<div id="in-what-frequency-range-is-most-of-the-energy-of-the-signal" class="section level3">
+<h3><strong>In what frequency range is most of the energy of the signal?</strong></h3>
+<p>To answer this question, we will have to come up with a magnitude spectrum of the speech waveform which shows the magnitude of the signal at a particular frequency. This means we will have to convert the signal from the time domain to a representation in the <code>frequency domain</code> by computing the <code>Discrete Fourier Transform</code> (using a FFT algorithm).</p>
+<p>Due to mathematical convenience, the arrangement of the FFT output has
+positive and negative frequencies side by side in a slightly non-intuitive order (the frequency increases from 0 until N/2 and then it decreases for negative frequencies). As the positive and negative frequency magnitudes are identical for a real signal it is common just to plot the positive frequencies from <code>0 to Fs/2</code> (in our case <code>0 to 4000 Hz</code>).</p>
+<pre class="r"><code># Discrete Fourier transform of data (DFT)
+dft_speech &lt;- fftw::FFT(y)
+
+# amplitude of DFT
+dft_amp &lt;- abs(dft_speech) # DFT is a sequence of complex sinusoids 
+
+# number of samples
+n &lt;- length(y)
+
+# frequency range
+f &lt;- (seq_len(n) - 1)*Fs/n
+
+ggplot(mapping = aes(x = f[1:Fs], y = dft_amp[1:Fs])) +
+  geom_line(color = &#39;blue&#39;) +
+  scale_x_log10() +
+  labs(x = &quot;Frequency (Hz)&quot;, y = &quot;Magnitude&quot;,
+title = &quot;Frequency domain representation&quot;,
+subtitle = &quot;Entire speech sequence&quot;) </code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-16-1.png" width="1152" /></p>
+<p>From the magnitude spectrum of the Discrete Fourier Transform, we can observe that most of the energy is concentrated in the frequency range <strong>0</strong> to <strong>10 KHz</strong>.</p>
+</div>
+<div id="time-domain-frequency-domain-and-energy-comparison-of-a-segment-containing-speech-and-one-without" class="section level3">
+<h3><strong>Time domain, Frequency domain and Energy comparison of a segment containing speech and one without</strong></h3>
+<p>The time domain representation of a speech signal shows how the sound changes in intensity over time</p>
+<p>Earlier on in this analysis, we defined some sample numbers in regions containing speech and those without. First, we’ll obtain a segment <code>32ms</code> long from a region with speech and another segment of the same duration from a segment without speech and plot these time domain signals side
+by side with time in seconds as the x-axis. A <code>32ms</code> long segment corresponds to <code>256 samples</code>:</p>
+<p><span class="math inline">\(Number\,of\,samples\, = \,segment\,length(sec) \times sampling\,frequency \,\)</span></p>
+<p><span class="math inline">\(= 0.032 \times 8000 = 256\)</span></p>
+<pre class="r"><code># sample length
+sample_len = 32e-3*Fs
+
+# obtaining a 32ms long segment/256 samples without speech
+moja_sl &lt;- y[silence_start:(silence_start + sample_len - 1)]
+
+# obtaining a 32ms long segment/256 samples with speech
+moja_sp &lt;- y[speech_start:(speech_start + sample_len - 1)]
+
+# corresponding time-length of the sample (32ms long)
+t &lt;- (seq_len(sample_len) - 1) * 1/Fs
+
+# plotting the waveform of the silent segment
+wvfm_sl &lt;- ggplot(mapping = aes(x = t, y = moja_sl)) +
+  geom_line(color = &#39;blue&#39;, lwd = 1.1) +
+  labs(x = &quot;Time (s)&quot;, y = &quot;Amplitude&quot;,
+       title = &quot;Silent Segment&quot;,
+       subtitle = &quot;Time Domain&quot;) +
+  scale_y_continuous(limits = c(-0.25, 0.25))
+
+# plotting the waveform of the segment with speech
+wvfm_sp &lt;- ggplot(mapping = aes(x = t, y = moja_sp)) +
+  geom_line(color = &#39;blue&#39;, lwd = 1.1) +
+  labs(x = &quot;Time (s)&quot;, y = &quot;Amplitude&quot;,
+       title = &quot;Speech Segment&quot;,
+       subtitle = &quot;Time Domain&quot;) +
+  scale_y_continuous(limits = c(-0.25, 0.25))
+
+cowplot::plot_grid(wvfm_sl, wvfm_sp)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-17-1.png" width="1152" /></p>
+<p>From the above plots above, the time domain plot of the segment containing speech has higher intensity (amplitude ranging from -0.27 to 0.24) than that without speech/faint speech due to noise (amplitude ranging from -0.02 to 0.06).</p>
+<p>The time domain plot of the segment containing speech is also more erratic due to more fluctuations in amplitude of sound.</p>
+<p>One common metric that can be easily computed from the sample values is a <code>signal's energy</code>.</p>
+<p>The energy of a discrete time signal is defined as the sum of the square of the sampled signal values:
+<span class="math inline">\(E(y) =\sum_{n=-\infty}^{\infty} y^2\)</span></p>
+<pre class="r"><code># Energy of silent segment
+E_sl &lt;- sum(moja_sl^2)
+E_sl</code></pre>
+<pre><code>## [1] 0.1733</code></pre>
+<pre class="r"><code># Energy of segment with speech
+E_sp &lt;- sum(moja_sp^2)
+E_sp</code></pre>
+<pre><code>## [1] 3.441</code></pre>
+<p>The silent segment has an energy of <strong>0.1733</strong> whereas the segment containing speech has an energy of <strong>3.4409</strong>. Due to higher intensities of sound in the region containing speech, the sample values in this region have higher amplitude values which in turn account for the higher energy. The energy in the silent segment could be attributed to noise and can be filtered out using an appropriate filter.</p>
+<p>The time domain analysis can also be done in the frequency domain by computing the <code>Discrete Fourier Transform</code> (using a FFT algorithm) of the two segments.</p>
+<pre class="r"><code># DFT of silent segment
+dft_sl &lt;- fftw::FFT(moja_sl)
+
+# DFT of speech segment
+dft_sp &lt;- fftw::FFT(moja_sp)
+
+# frequency range
+fs &lt;- (seq_len(sample_len) - 1)*Fs/sample_len
+
+# plotting the waveform of the silent segment in freq domain
+freqd_sl &lt;- ggplot(mapping = aes(x = fs[1:(sample_len)/2],
+  y = abs(dft_sl[1:(sample_len)/2]))) +
+  geom_line(color = &#39;blue&#39;, lwd = 1.1) +
+  labs(x = &quot;Frequency (Hz)&quot;, y = &quot;Amplitude&quot;,
+       title = &quot;Silent Segment&quot;,
+       subtitle = &quot;Frequency Domain&quot;) +
+  scale_x_log10()
+
+# plotting the waveform of the speech segment in freq domain
+freqd_sp &lt;- ggplot(mapping = aes(x = fs[1:(sample_len)/2], 
+  y = abs(dft_sp[1:(sample_len)/2]))) +
+  geom_line(color = &#39;blue&#39;, lwd = 1.1) +
+  labs(x = &quot;Frequency (Hz)&quot;, y = &quot;Amplitude&quot;,
+       title = &quot;Speech segment&quot;,
+       subtitle = &quot;Frequency Domain&quot;) +
+  scale_x_log10()
+
+cowplot::plot_grid(freqd_sl, freqd_sp)</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-19-1.png" width="1152" /></p>
+<p>When the two segments are converted from the time domain to a representation in the frequency domain the same inferences made earlier still hold. The segment containing speech has higher magnitude than that without speech at various frequencies.</p>
+<p><code>Signal power</code> as a function of frequency is another common metric used in signal processing. Power is the squared magnitude of a signal’s Fourier transform, normalized by the number of frequency samples:</p>
+<p><span class="math inline">\(P_{dft}\, =\, [\mid {(dft)}\mid^2]/N\)</span></p>
+<p>A power spectrum of the segment containing speech:</p>
+<pre class="r"><code># power of the dft
+power &lt;-  ((abs(dft_sp))^2)/sample_len
+
+# frequency range
+fp &lt;- (seq_len(sample_len) - 1)*Fs/sample_len
+
+ggplot(mapping = aes(x = fp[1:(sample_len)/2],
+  y = power[1:(sample_len)/2])) +
+  geom_line(color = &#39;blue&#39;, lwd = 1.1) +
+  labs(x = &quot;Frequency (Hz)&quot;, y = &quot;Power&quot;,
+       title = &quot;Power Spectrum of speech segment&quot;) +
+  scale_x_log10()</code></pre>
+<p><img src="{{< relref "post/DigitalSignalProcessing/index.html" >}}index_files/figure-html/unnamed-chunk-20-1.png" width="1152" /></p>
+<p>The plot indicates that the speech segment consists of a fundamental frequency around 156.25 Hz and a sequence of harmonics, where the third harmonic is emphasized.</p>
+<hr />
+<p><a href="https://github.com/nagdevAmruthnath/EnsembleML"><code>EnsembleML</code></a> is an R package for performing feature creation in time series and frequency series, building multiple regression and classification models and combining those models to be an ensemble. Features can be created both in time domain and frequency domain.</p>
+<pre class="r"><code># Features of the moja_wave 
+featureCreationF(y)</code></pre>
+<pre><code>##    F_mean  F_sd F_median F_trimmed  F_mad    F_min F_max F_range F_skew F_kurtosis
+## X1  2.669 8.454   0.5853     1.129 0.7326 0.001252 233.5   233.5  10.81      176.7
+##       F_se F_iqr F_nZero F_nUnique F_lowerBound F_upperBound   F_X1.   F_X5. F_X25.
+## X1 0.09451 1.931       0      8000       -2.699        5.026 0.01723 0.03317 0.1982
+##    F_X50. F_X75. F_X95. F_X99.
+## X1 0.5853  2.129  10.54  36.04</code></pre>
+<p>The standard features include mean, sd, median, trimmed, mad, min, max, range, skew, kurtosis, se, iqr, nZero, nUnique, lowerBound, upperBound, and quantiles. Others could be defined.</p>
+<hr />
+<p>Other Resources:</p>
+<p>The <code>fftw</code> package provides a wrapper around the fast, award winning FFTW library of C subroutines developed at MIT. The <code>dlm</code> package for fitting Maximum Likelihood and Bayesian dynamic linear models includes <code>dlmFilter()</code>, a flexible function based on singular value decompositions for Kalman filtering. The vignette for the <code>dlm</code> package provides a brief introduction to the underlying theory which is further developed in the Springer book <strong>Dynamic Linear Models with R</strong> by Campagnoli, Petrone and Petris.</p>
+<ul>
+<li><p><a href="https://blog.revolutionanalytics.com/2013/10/r-and-signal-processing.html">R and Signal Processing</a></p></li>
+<li><p><a href="https://www.jeffdoser.com/files/for875/_book/digital-signal-processing.html">R Programming for Data Sciences</a></p></li>
+<li><p><a href="https://twitter.com/ericntay">Eric NTay</a>’s blog post at <a href="https://rpubs.com/eR_ic/dspr">A gentle introduction: R in Digital Signal Processing</a></p></li>
+<li><p><a href="https://www.iamnagdev.com/">Nagdev Amruthnath</a>’s <a href="https://www.youtube.com/watch?v=NXXEEbvB0qU">talk</a> at Big Data Ignite 2020 on his {<code>EnsembleML</code>} package</p></li>
+<li><p><a href="https://marce10.github.io/warbleR/articles/warbleR_workflow_03.html#:~:text=The%20warbleR%20and%20Rraven%20packages%20leverage%20the%20flexibility,your%20own%20research%20or%20open-access%20databases%20like%20xeno-canto">Bioacoustics in R with <code>warbleR</code></a></p></li>
+</ul>
+<hr />
+</div>
+<div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
+<h3>Did you find this page helpful? Consider sharing it 🙌</h3>
+</div>
+</div>
+</div>
