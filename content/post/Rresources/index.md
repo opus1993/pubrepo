@@ -29,6 +29,7 @@ My short list of useful free books, courses, tutorials, and expert blogs. These 
 
 Other great learning resources for those starting from Excel and basic statistics:
 - **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** by [Garrett Grolemund](https://twitter.com/StatGarrett)
+- [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger Peng
 - **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
 - **[A (very) short introduction to R](https://cran.r-project.org/doc/contrib/Torfs+Brauer-Short-R-Intro.pdf)** 
 - [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/)
