@@ -53,6 +53,7 @@ Other great learning resources for those starting from Excel and basic statistic
 - [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)
 - [R Coder](https://r-coder.com/learn-r/)
 - **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
+- [Contribute to an open-source project on GitHub](https://docs.microsoft.com/en-us/learn/modules/contribute-open-source/?WT.mc_id=opensource-0000-davidsmi)
 - [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
 - [YaRrr! The Pirate’s Guide to R (Video)](https://www.youtube.com/playlist?list=PL9tt3I41HFS9gmeZFEuNrnu_7V_NFngfJ) by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
 - [Chromebook Data Science (CBDS)](http://jhudatascience.org/chromebookdatascience/cbds.html)
@@ -159,6 +160,7 @@ Join the Slack channels (button in the upper right hand corner) for community ne
 - [Chicago R Collaborative](https://chircollab.github.io/)
 - **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** by [R4DS](https://twitter.com/rstats4ds)
 - [WhyR Foundation](http://whyr.pl/foundation/webinars)
+- [Simply Statistics](https://simplystatistics.org/) by Rafa Irizarry, Roger Peng, and Jeff Leek
 - [Salt Lake City R Users Group](https://www.meetup.com/slc-rug/)
 - [Seattle useR Group](https://www.meetup.com/Seattle-useR/)   
 - [Bay Area useR Group](https://www.meetup.com/R-Users/)
