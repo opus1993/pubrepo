@@ -1,7 +1,7 @@
 ---
 title: "rtweet"
 author: "Jim Gruman"
-date: "`r Sys.Date()`"
+date: "2020-12-11"
 diagram: true
 output: 
  blogdown::html_page:
@@ -11,25 +11,18 @@ description: "Analyze Twitter data"
 image: 
   caption: ''
   focal_point: "Smart"
-  preview_only: true
+  preview_only: false
 featured: false
 draft: false
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      message = FALSE)
-```
+I was inspired by [David Robinson](https://twitter.com/drob)'s Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles. `rtweet` is an amazing way of having a little productive procrastination while honing R skills. 
 
-I was inspired by David Robinson's Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles and ended up discovering a bug and a workaround for windows users. `rtweet` is an amazing way of having a little productive procrastination while honing R skills. 
+The package creator and owner, [Mike Kearney](https://mikewk.com/), has hosted data journalism [workshops](https://rtweet-workshop.mikewk.com/#1) covering a wide range of uses for this kind of data. They include text sentiment, geospatial networks, time series, disinformation, and even bot detection. [Oscar Baruffa](https://twitter.com/OscarBaruffa) and [Veerle van Son](https://twitter.com/veerlevanson) have written a `bookdown` pamphlet called [Twitter for R Programmers](https://www.t4rstats.com/) as a starter guide for people new to the R community on Twitter. Colin Fay has a nice [blog post](https://colinfay.me/collect-rtweet/) on his exploration with the {`rtweet`} package. And on his `#30daysmapchallenge`, [David Hood](https://twitter.com/Thoughtfulnz) put together a super non-geographic map at [A map of my Twitter readers](https://github.com/thoughtfulbloke/november19_maps/tree/master/nov29).
 
-[Oscar Baruffa](https://twitter.com/OscarBaruffa) and [Veerle van Son](https://twitter.com/veerlevanson) have written a `bookdown` pamphlet [Twitter for R Programmers](https://www.t4rstats.com/) as an excellent guide for people new to the R community on Twitter.
-
-In this post, we will look at the accounts that I engage most often, the time of day for my Twitter activity, and build a `reactable` interactive table to sort and filter on the hashtag #TheDayTheFarmChanged. 
+In this post we will look at the accounts that I engage most often, explore the time of day for my Twitter activity, probe for the presence of bots, and close by building an affinity map visualization of my Twitter following network.
 
 ----
-
-
 
 As with any other project, start with loading the appropriate libraries.
 
@@ -37,106 +30,92 @@ As with any other project, start with loading the appropriate libraries.
 knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE,
-  warning = FALSE
+  warning = FALSE,
+  fig.height = 7.402,
+	fig.width = 12,
+  fig.align = "center"
 )
 
+suppressPackageStartupMessages({
+
 library(tidyverse)   ## tidy data manipulation, including dplyr and ggplot
-library(rtweet)     # the R Twitter API
-library(showtext) 
+library(rtweet)     # the R Twitter API 
+library(tweetbotornot)  #ML to classify Twitter accounts as bots or not bots. 
 library(lubridate)  # date manipulation tools
 library(reactable)   # A Formatted Sortable Interactive Table 
+library(ggrepel) # adding labels that don't overlap
+library(hexbin) # used for map background
+library(umap) # umap dimension reduction
+library(here) # helper for directory locations
+})
+extrafont::loadfonts(quiet = TRUE)
 
-theme_set(hrbrthemes::theme_ft_rc())   # Set a ggplot color, font theme
-showtext_auto()
+theme_set(hrbrthemes::theme_ft_rc() +
+            theme(plot.title.position = "plot"))
+
+pal <- wesanderson::wes_palette("Zissou1", 21, type = "continuous")
+
 ```
 
-The `rtweet` [Obtaining and using access tokens](http://rtweet.info/articles/auth.html) vignette gives instructions for creating tokens and writing them to `.Renviron`, one-time only, as:
-
-```{r eval=FALSE}
-token <- create_token(
-  app = "mytwitterapp_NDMSBA",
-  consumer_key = api_key,
-  consumer_secret = api_secret_key,
-  access_token = access_token,
-  access_secret = access_token_secret)
-```
-Unfortunately, the process currently works properly in Linux environments, but not in Windows. Closely inspect the token created:
-
-```{r eval=FALSE}
- token<-rtweet::get_token()
-
- token
-```
-
-You have found the bug when the token returned does not match the keys created previously.
-
-The solution to the problem is to edit your local `.Renviron` file manually. In the console, type
-
-```{r eval=FALSE}
-usethis::edit_r_environ()
-```
-
-Find the **TWITTER_PAT** parameter and change every back slash `\` and forward slash `/` to double backslashes `\\` to the rds file address.  It will resemble
-
-`"C:\\Users\\<youruser>\\Documents\\.rtweet_token.rds"`
-
-Save the `.Renviron` file.  Then Restart R (Ctrl+Shift+F10). Closely inspect the token again:
-
-```{r eval=FALSE}
-token<-rtweet::get_token()
-
-token
-```
-It turns out that [Jon Harmon has also reported of the issue at the package Github repository.](https://github.com/ropensci/rtweet/issues/380). 
+The `rtweet` [Obtaining and using access tokens](http://rtweet.info/articles/auth.html) vignette provides instructions for creating API tokens and writing them to a location on `.Renviron`. This only needs to be done one time.
 
 ----
 
 Let's have a look at the accounts that I favorite (or **like**) the most:
 
-```{r }
+```{r eval=FALSE}
 # there is a rate limit at Twitter at approximately 18000 each 15 minutes
 df_likes <- rtweet::get_favorites("jim_gruman", n = 3000)
 ```
 
-```{r warning=FALSE, fig.align='center', fig.width=9, fig.height=5}
-users_favorite<-df_likes %>% 
+```{r get_favorites, include=FALSE}
+if (file.exists(here("content/post/rtweet-on-windows/df_likes.rds"))) {
+df_likes <- read_rds(here("content/post/rtweet-on-windows/df_likes.rds"))
+} else {
+df_likes <- rtweet::get_favorites("jim_gruman", n = 3000) 
+write_rds(df_likes, file = here("content/post/rtweet-on-windows/df_likes.rds"))
+}
+```
+
+```{r warning=FALSE}
+users_favorite <- df_likes %>% 
     group_by(screen_name, user_id) %>%
     summarise(
-        quant_fav= n()
-    )
+        quant_fav = n(), .groups = "drop"
+    ) %>% 
+  arrange(desc(quant_fav))
 
 users_favorite %>%
-    ungroup() %>%
-    top_n(15,quant_fav) %>%
+    slice_max(n = 15, order_by = quant_fav) %>% 
     mutate(screen_name = reorder(screen_name,quant_fav)) %>%
     ggplot(aes(y = screen_name, x = quant_fav, fill = quant_fav)) + 
     geom_col(show.legend = FALSE) +
-    theme(plot.title.position = "plot",
-          text = element_text(hrbrthemes::font_rc, size = 16))+
+    theme(text = element_text(hrbrthemes::font_rc, size = 16)) +
     labs(
-        title = "Top 15 Twitter accounts I like the most often",
-        subtitle = paste0("Within the past 3000 Tweets, since ",min(as_date(df_likes$created_at,  tz ="America/Chicago"))),
+        title = "The 15 Twitter accounts I 'like' the most often",
+        subtitle = paste0("Within the past 3000 Tweets, since ",min(as_date(df_likes$created_at,  tz = "America/Chicago"))),
         y = "@ user names",
-        x= "# of tweets liked",
-        caption = paste0("@jim_gruman | ", Sys.Date())
-    )
+        x = "# of tweets liked",
+        caption = paste0(format(Sys.Date(), "%b %d, %Y"), "|  @jim_gruman")) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c("color","fill"),
+                       limits = c(10,48))
 
 ```
 
 And let's break down my activity by week day
 
-```{r warning=FALSE, fig.align='center', fig.width=9, fig.height=5}
-tw_activity<- df_likes %>% 
+```{r warning=FALSE}
+tw_activity <- df_likes %>% 
     transmute(
-              tw_hour = hour(as_datetime(created_at, tz ="America/Chicago")),
-              tw_day = as_date(created_at, tz ="America/Chicago"),
+              tw_hour = hour(as_datetime(created_at, tz = "America/Chicago")),
+              tw_day = as_date(created_at, tz = "America/Chicago"),
               tw_weekday = wday(tw_day,label = T, abbr = T, week_start = 1)
     ) %>%
     group_by(tw_weekday, tw_hour) %>%
     summarise(
-        quant_fav= n()
+        quant_fav = n(), .groups = "drop",
     ) %>% 
-    ungroup() %>% 
     group_by(tw_weekday) %>% 
     mutate(prop = quant_fav / sum(quant_fav)) %>% 
     ungroup()
@@ -145,104 +124,401 @@ tw_activity %>%
     ggplot(aes(x = tw_hour, y = prop, fill = prop)) + 
     geom_col(position = position_nudge(x = .5),
              show.legend = FALSE) +
-    scale_x_continuous(breaks = c(6, 12, 18))+
-    hrbrthemes::scale_y_percent()+
-    facet_wrap(~tw_weekday, ncol = 5)+
+    scale_x_continuous(breaks = c(6, 12, 18)) +
+    hrbrthemes::scale_y_percent() +
+    facet_wrap(~tw_weekday, ncol = 5) +
     theme(text = element_text(hrbrthemes::font_rc, size = 16),
     panel.grid.minor = element_blank(),
-    plot.title.position = "plot",
     plot.margin = margin(0.25,0.5,0.25,0.5,"in")
-      )+
+      ) +
     labs(
-        title = "My recent liking activity on Twitter",
+        title = "My recent `liking` activity on Twitter",
         subtitle = paste0("Within the past 3000 Tweets, since ",min(as.Date(df_likes$created_at, tz = "America/Chicago"))),
         x = "hour of the day",
         y = "",
-        caption = paste0("@jim_gruman | ", Sys.Date())
-    )
-
-```
-
-Some may prefer the `ggridges` version of the same data, visualized a bit differently.
-
-```{r warning=FALSE, fig.align='center', fig.width=9, fig.height=5}
-library(ggridges)
-
-tw_activity %>%
-  mutate(tw_weekday = fct_rev(tw_weekday))%>%
-ggplot(aes(x = tw_hour, , y = tw_weekday, height = prop, fill = stat(x)))+
-ggridges::geom_ridgeline_gradient(scale = 10, show.legend = FALSE)+
-  scale_fill_gradient2(low = "blue",
-                        mid = "grey50",
-                        high = "blue",
-                        midpoint = 12L)+
-    theme(text = element_text(hrbrthemes::font_rc, size = 16),
-    panel.grid.minor = element_blank(),
-    plot.title.position = "plot",
-    plot.margin = margin(0.25,0.5,0.25,0.5,"in")
-      )+
-    labs(
-        title = "My recent liking activity on Twitter",
-        subtitle = paste0("Within the past 3000 Tweets, since ",min(as.Date(df_likes$created_at, tz = "America/Chicago"))),
-        x = "hour of the day",
-        y = "Proportion of Tweet Likes",
-        caption = paste0("@jim_gruman | ", Sys.Date())
-    )
+        caption = paste0(format(Sys.Date(), "%b %d, %Y"), "|  @jim_gruman")) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c("color","fill"),
+                       limits = c(0.01,0.10))
 
 ```
 
 ----
 
-Finally, let's build a `reactable` table to sort and search for individual tweets for the #TheDayTheFarmChanged hastag.
+To build the map characterizing my social media reach, let's start by gathering my followers and their details into a dataframe:
 
-```{r}
-# the URL column returns a list that has to be unlisted. This is a helper function
-make_url_html <- function(url) {
-  if(length(url) >2) {
-    if(!is.na(url)) {
-      as.character(glue::glue("<a title = {url} target = '_new' href = '{url}'>{url}</a>") )
-    } else {
-        ""
-      }
-  } else {
-    paste0(purrr::map_chr(url, ~ paste0("<a title = '", .x, "' target = '_new' href = '", .x, "</a>", collapse = ", ")), collapse = ", ")
-  }
+```{r eval = FALSE}
+tn <- get_followers("jim_gruman") # get my followers
+usrs <- lookup_users(tn$user_id) # get my followers full details
+```
+
+```{r include = FALSE}
+if (file.exists(here("content/post/rtweet-on-windows/tn.rds"))) {
+tn <- read_rds(here("content/post/rtweet-on-windows/tn.rds"))
+} else {
+tn <- get_followers("jim_gruman") # get my followers
+write_rds(tn, file = here("content/post/rtweet-on-windows/tn.rds"))
 }
 
-## Search returns tweets from the past 6-9 days
+if (file.exists(here("content/post/rtweet-on-windows/usrs.rds"))) {
+usrs <- read_rds(here("content/post/rtweet-on-windows/usrs.rds"))
+} else {
+usrs <- lookup_users(tn$user_id)
+write_rds(usrs, file = here("content/post/rtweet-on-windows/usrs.rds"))
+}
+```
 
-tweet_search_data <-search_tweets("#TheDayTheFarmChanged", n = 200, include_rts = FALSE)  %>%
-  select(user_id, status_id, created_at, screen_name, text, favorite_count, retweet_count, urls_expanded_url) %>%
-  mutate(
-    Tweet = glue::glue("{text} <a href='https://twitter.com/{screen_name}/status/{status_id}'>>> </a>") 
-    )%>%
-  select(DateTime = created_at, User = screen_name, Tweet, Likes = favorite_count, RTs = retweet_count, URLs = urls_expanded_url)
+Twitter makes a distinction between **followers** and **friends**.  My **followers** are accounts that choose to follow my tag, *@jim_gruman*, and see my activity in their news feed (unless muted). At present, it is a list of `r nrow(tn)` user IDs, or "handles."  To capture more information on my followers, my list must be fed into `lookup_users()`.  
 
-# Convert the URLs from the list column into HTML links
-tweet_search_data$URLs <- purrr::map_chr(tweet_search_data$URLs, make_url_html)
+We will parse my followers list down somewhat by choosing for accounts in the top 90% of the distribution of counts of both followers and friends. We will also limit the list to those that have posted a tweet, retweet, or favorite at some point in time during the year 2020.
 
-reactable(tweet_search_data,
-            filterable = TRUE,
-            searchable = TRUE,
-            bordered = TRUE,
-            striped = TRUE,
-            highlight = TRUE,
-            defaultPageSize = 25, 
-            showPageSizeOptions = TRUE,
-            showSortable = TRUE,
-            pageSizeOptions = c(25,50,100),
-            defaultSortOrder = "desc",
-            columns = list(
-              DateTime = colDef(defaultSortOrder = "asc"),
-              User = colDef(defaultSortOrder = "asc"),
-              Tweet = colDef(html = TRUE, minWidth = 190, resizable = TRUE),
-              Likes = colDef(filterable = FALSE),
-              RTs = colDef(filterable = FALSE),
-              URLs = colDef(html = TRUE)
-            )
-)
+```{r}
+top_usrs <- usrs %>% 
+  filter(followers_count > 
+           quantile(usrs$followers_count, 
+                    probs = 0.1, na.rm = TRUE),
+         friends_count > 
+           quantile(usrs$friends_count, 
+                    probs = 0.1, na.rm = TRUE),
+         as_date(created_at) > dmy("01-01-2020"))
+
+rm(usrs)
+```
+
+The list drops to `r nrow(top_usrs)` handles to study. My friends in total have `r sum(top_usrs$friends_count)` friends, though the actual number of distinct handles will be less because of overlap. On the surface, this appears to be a reasonably sized challenge.
+
+----
+
+Let's pause here and take another look at this listing. I am also interested in how many of my followers have chosen bot accounts as friends. Michael Kearney's `tweetbotornot` offers a single function for ascertaining probabilities. The default **gradient boosted** model uses both users-level (bio, location, number of followers and friends, etc.) and tweets-level (number of hashtags, mentions, capital letters, etc. in a user’s most recent 100 tweets) data to estimate the probability that users are bots. For larger data sets, the method can be slow. Due to Twitter’s REST API rate limits, users are limited to only 180 estimates per every 15 minutes.
+
+To maximize the number of estimates per 15 minutes (at the cost of being less accurate), we apply the `fast = TRUE` argument. This method uses only users-level data, which increases the maximum number of estimates per 15 minutes to 90,000, but the accuracy is diminished.
+
+```{r eval = FALSE}
+bots <- tweetbotornot(top_usrs, fast = TRUE) %>% 
+  arrange(desc(prob_bot))
+```
+
+```{r}
+if (file.exists(here("content/post/rtweet-on-windows/bots.rds"))) {
+bots <- read_rds(here("content/post/rtweet-on-windows/bots.rds"))
+} else {
+bots <- tweetbotornot(top_usrs, fast = TRUE) %>% 
+  arrange(desc(prob_bot))
+write_rds(bots, file = here("content/post/rtweet-on-windows/bots.rds"))
+}
+```
+```{r}
+bots %>% 
+  filter(prob_bot > 0.9) %>% 
+  select(screen_name, prob_bot) %>% 
+  knitr::kable(caption = "Likely BOTS that my followers have friended.") %>% 
+  kableExtra::scroll_box(width = "100%", height = "400px")
+```
+
+Let's also re-create our version of Michael Kearney's [Polar plot](https://twitter.com/kearneymw/status/1209130912463478788) with bots and my favorites accounts from above.
+
+```{r eval = FALSE}
+accounts <- c(pull(users_favorite, screen_name)[1:6],
+              pull(bots[1:5,], screen_name),"rstats4ds")
+
+tmls <- get_timelines(accounts, n = 3000)
 
 ```
+```{r get_timelines, include=FALSE}
+if (file.exists(here("content/post/rtweet-on-windows/tmls.rds"))) {
+tmls <- read_rds(here("content/post/rtweet-on-windows/tmls.rds"))
+} else {
+accounts <- c(pull(users_favorite, screen_name)[1:6],
+              pull(bots[1:5,], screen_name),"rstats4ds")
+
+tmls <- get_timelines(accounts, n = 3000)
+
+write_rds(tmls, file = here("content/post/rtweet-on-windows/tmls.rds"))
+}
+```
+```{r, warning=FALSE}
+
+tmls %>% 
+  mutate(tw_spot = floor_date(as_datetime(created_at, tz = "America/Chicago"), "10 mins")) %>% 
+  group_by(tw_hour = hour(tw_spot) + minute(tw_spot) / 60,
+           bots = if_else(screen_name %in% pull(bots[1:5,], screen_name), TRUE, FALSE),
+           screen_name) %>% 
+             summarize(activity = log10(n()),
+                       .groups = "drop") %>% 
+ ggplot(aes(tw_hour, activity, color = bots)) +
+  geom_point(show.legend = FALSE) +
+  geom_polygon(show.legend = FALSE) +
+  theme(axis.text.y =  element_blank()) +
+  coord_polar(theta = "x") +
+  facet_wrap(~ screen_name) +
+  labs(title = "Is it a TweetBot or Not?",
+       subtitle = "Tweet frequency by time of day, Chicago time, in 10 minute buckets for last 3000 Tweets",
+       y = "log(TweetCount)",
+       x = "Time of Day") 
+
+```
+
+To gather the remaining details of my follower's connections, we will have to call `get_friends()` for each of my followers. Twitter has a rate limit. That is, the base API allows 15 requests in a 15 minute period, so the commands are written to pause when it runs out until it can make more requests. With the size of my followers friends lists I expect the process to take around 70 hours, so saving `*.csv` files is a strategy for restarting if and when problems arise. (Where possible, source this code from a cloud based virtual machine that you can walk away from for a couple of days.)
+
+```{r, eval = FALSE}
+allfriends <- function(target_account){
+  friendable <- rate_limit("get_friends") 
+  if (friendable$remaining[1] < 1) {
+  Sys.sleep(as.numeric(difftime(friendable$reset_at[1], Sys.time(), units = "secs")) + 2)
+  }
+  result <- tryCatch(get_friends(target_account, retryonratelimit = TRUE),
+                   error = function(e) NULL, warning = function(w) NULL)
+  if (!is.null(result)) {
+  write_as_csv(result, file_name = here("content/post/rtweet-on-windows/fr/",target_account,"FR.csv"))
+  } 
+}
+
+still_to_get <- top_usrs$user_id
+
+lapply(still_to_get, allfriends) 
+```
+
+To restart the process, ignoring already downloaded follower ID's, we would execute this code:
+
+```{r eval = FALSE}
+still_to_get <- top_usrs$user_id[!(top_usrs$user_id %in% gsub("FR.csv","",list.files(path = here("content/post/rtweet-on-windows/fr/"), pattern="FR\\.csv"), fixed = TRUE))]
+
+lapply(still_to_get, allfriends) 
+```
+
+```{r include = FALSE}
+# rmarkdown memory housekeeping
+rm(bots, df_likes, tmls, tn, tw_activity, users_favorite)
+```
+
+There may well still be friends lists we can’t get, like private accounts, so we are working only with the publicly available information. 
+
+Some while later…      63 hours for me, in fact,
+    …we read in all the saved csv files and compile them into one list.
+
+```{r, warning = FALSE}
+df_relationships <- map_dfr(list.files(path = here("content/post/rtweet-on-windows/fr/"),
+                                       pattern = "FR\\.csv$", 
+                                       full.names = TRUE), read_csv, col_types = "cc") %>% 
+  select(user, user_id) 
+
+```
+
+```{r}
+df_relationships %>% 
+  group_by(user_id) %>%
+  mutate(occurances = n()) %>% 
+  ungroup() %>% 
+  count(user) %>% 
+  summarise(entries = sum(n), uniques = n())
+```
+
+The dataset then represents 3,559,934 relationship pairs for the 1751 (public) top active accounts following *@jim_gruman*.
+
+Because our interest is in finding commonalities in who follows the same accounts, let's check how large the problem would be if we remove the accounts **only followed by 1 person** in this dataset, as unique accounts, by definition, are not shared with other people.
+
+```{r}
+df_relationships %>% 
+  group_by(user_id) %>%
+  mutate(occurances = n()) %>% 
+  ungroup() %>% 
+  filter(occurances > 1) %>% 
+  count(user) %>% 
+  summarise(entries = sum(n), uniques = n())
+
+```
+
+This simplifies the problem to 2,725,818 relationship pairs, without losing anything that we care about in this analysis. Let's then turn it from a long list of individual pairs to a wide list of one row for each person that follows me and a column for each account followed by any (2 or more) of my followers.
+
+To apply `TSNE` or `UMAP` affinity mapping, the data frame needs to be reshaped into a wide matrix. Given enough time, I would have investigated the `sparseMatrix` data structure as well.
+
+```{r}
+wide_relationships <- df_relationships %>% 
+  group_by(user_id) %>%
+  mutate(occurences = n()) %>% 
+  ungroup() %>% 
+  filter(occurences > 1) %>% 
+  select(-occurences) %>% 
+  mutate(weight = 1L) %>%
+  pivot_wider(names_from = user_id, 
+              values_from = weight, 
+              values_fill = 0L)
+
+dim(wide_relationships)
+```
+```{r include = FALSE}
+write_rds(df_relationships, here("content/post/rtweet-on-windows/df_relationships.rds"))
+rm(df_relationships)
+```
+
+With 1751 rows and 318419 columns, where there is a 1 if a person follows the account and a 0 if they do not, we will use dimension reduction techniques to reduce the data frame down to 2 columns for an x and y position to plot. For brevity, will apply the `UMAP` technique here.
+
+```{r}
+data_matrix <- as.matrix(wide_relationships[,2:ncol(wide_relationships)])
+```
+
+```{r include = FALSE}
+write_rds(wide_relationships, here("content/post/rtweet-on-windows/wide_relationships.rds"))
+
+write_rds(data_matrix, here("content/post/rtweet-on-windows/data_matrix.rds"))
+
+rm(wide_relationships, data_matrix)
+
+```
+
+For building the `UMAP` reduction, please note that I used an hp Omen Windows laptop with 16 GB of RAM and a 2.2 GHz i7 processor. It took several minutes, towards the end of which the cooling fans were audibly active.
+
+```{r eval = FALSE}
+friends.umap <- umap(data_matrix)
+umap <- as.data.frame(friends.umap$layout)
+
+umap$user <- wide_relationships$user
+
+```
+```{r include = FALSE}
+if (file.exists(here("content/post/rtweet-on-windows/umap.rds"))) {
+umap <- read_rds(here("content/post/rtweet-on-windows/umap.rds"))
+} else {
+data_matrix <- read_rds(here("content/post/rtweet-on-windows/data_matrix.rds"))
+
+friends.umap <- umap(data_matrix, random_state = 42)
+umap <- as.data.frame(friends.umap$layout)
+
+wide_relationships <- read_rds( here("content/post/rtweet-on-windows/wide_relationships.rds"))
+
+umap$user <- wide_relationships$user
+
+write_rds(umap, file = here("content/post/rtweet-on-windows/umap.rds"))
+
+rm(wide_relationships, friends.umap, data_matrix)
+
+}
+```
+
+Let's also explore the amount of cross-following, that is, accounts that follow both me and accounts that follow me, as this has implications in characterizing the spread of information through my social network and the extent of the bubble. If we treat cross-followed accounts as major cites on a map, we need to rank the accounts by how cross-followed they are among those on the list.
+
+```{r include=FALSE}
+df_relationships <- read_rds(here("content/post/rtweet-on-windows/df_relationships.rds"))
+
+```
+
+```{r}
+prominence <- df_relationships %>% 
+  count(user_id) %>%
+  mutate(user_id = str_remove(user_id, "^x")) 
+
+landmarks <- top_usrs %>% 
+  left_join(prominence, by = "user_id") %>%
+  select(user = user_id, screen_name, follows = n) %>% 
+  mutate(follows = ifelse(is.na(follows), 0, follows)) 
+
+write_rds(landmarks, file = here("content/post/rtweet-on-windows/landmarks.rds"))
+```
+
+From here it is a visualization exercise with labels supplied by the landmarks. Let's see what happens when all of the labels for handles with follows greater than 240 are turned on.
+
+```{r, warning=FALSE}
+umap %>% 
+  inner_join(landmarks, by = "user") %>% 
+  mutate(screen_name = ifelse(follows > 240, 
+                            screen_name, NA)) %>%
+  ggplot(aes(V1,V2,size = follows, color = follows)) + 
+  geom_point(show.legend = FALSE) +
+  labs(title = "Twitter Social Media Following", subtitle = "UMAP",
+       caption = paste0(format(Sys.Date(), "%b %d, %Y"), " @jim_gruman")) +
+  geom_label_repel(aes(label = screen_name), size = 3, color = "black") +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c("color","fill"))
+```
+
+We can do better.
+
+Let's take a closer look at the position of a bunch of #AgTwitter and #Rstats accounts, to explore how natural the groups seem to be.
+
+```{r, warning=FALSE}
+ag <- c("MachineryPete","lesleyraekelly","apasztor82",
+        "PitstickFarms", "farmermegzz", "jerodmcdaniel",
+        "jasonmauck1", "thisfarmwife", "MGigger",
+        "jwolf7447","plowwife","ag_guy04","sunflowerfarmer",
+        "allison_horst", "CMastication")
+
+umap %>% 
+  inner_join(landmarks, by = "user") %>% 
+  mutate(screen_name = ifelse(screen_name %in% ag, 
+                            screen_name, NA)) %>%
+  ggplot(aes(V1,V2,size = follows, color = follows)) + 
+  geom_point(show.legend = FALSE) +
+  labs(title = "My Twitter Social Media Following", subtitle = "UMAP",
+       caption = paste0(format(Sys.Date(), "%b %d, %Y"), " @jim_gruman")) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c("color")) +
+  geom_label_repel(aes(label = screen_name), size = 6, color = "black") 
+  
+
+```
+
+There may be clustering structure in the cloud, but the image is very busy. How much more effective could a visual using density hexbins be?
+
+```{r, warning=FALSE}
+umap %>% 
+  inner_join(landmarks, by = "user") %>% 
+  ggplot(aes(V1,V2)) + 
+  geom_hex(color = NA) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c("color","fill"))
+```
+
+The pangea-like quality is visually appealing. Let's see what can be done with labels or annotations, and a follower count greater than 400.
+
+```{r, warning = FALSE}
+umap %>% 
+  inner_join(landmarks, by = "user") %>% 
+  mutate(screen_name = ifelse(follows > 400, screen_name, NA_character_),
+         xpoint = ifelse(follows > 400, V1, NA),
+         ypoint = ifelse(follows > 400, V2, NA),
+  ) %>%
+  ggplot(aes(x = V1,y = V2)) + 
+  geom_hex(color = NA, show.legend = FALSE) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c("color","fill")) + 
+  geom_point(aes(xpoint, ypoint)) +
+  geom_label_repel(aes(label = screen_name),
+                   size = 3,
+                   label.padding = 0.25,
+                   box.padding = 2.5) +   
+  labs(title = "Where my tweets travel",
+       caption = paste0(format(Sys.Date(), "%b %d, %Y"), "|  @jim_gruman")) 
+```
+Even with the box.padding parameter, it is a challenge to achieve the right balance of labels and visual. Let's selectively add in accounts that we think are illustrative, as a personal choice.
+
+```{r, warning=FALSE}
+cities <- c("allison_horst", "CMastication", "wtfisameme", "Casein_Micelles", "AgNews_Otto",  "SteveSprieser", "hoffsbeefs", "eatcookwrite", "ChrisClaytonDTN", "jerodmcdaniel","agronomistag", "timhammerich", "farmermegzz", "AGofTheWorld", "RobbFraley")
+
+umap %>% 
+  inner_join(landmarks, by = "user") %>% 
+  mutate(screen_name = if_else(screen_name %in% cities, screen_name, NA_character_),
+         cityx = ifelse(screen_name %in% cities, V1, NA)) %>%
+  ggplot(aes(V1,V2)) + 
+  geom_hex(color = NA, show.legend = FALSE) +
+  scale_fill_gradientn(colors = pal,
+                       aesthetics = c("color","fill")) + 
+  geom_point(aes(cityx, V2, size = follows), show.legend = FALSE) +
+  scale_size_area(max_size = 2) + 
+  labs(title = "Where my tweets travel",
+       caption = paste0(format(Sys.Date(), "%b %d, %Y"), " @jim_gruman")) +
+  geom_label_repel(aes(label = screen_name), size = 6) 
+
+```
+
+----
+
+References
+
+- Kearney MW (2019). “rtweet: Collecting and analyzing Twitter data.” Journal of Open Source Software, 4(42), 1829. doi: [10.21105/joss.01829](https://doi.org/10.21105/joss.01829), R package version 0.7.0, [https://joss.theoj.org/papers/10.21105/joss.01829](https://joss.theoj.org/papers/10.21105/joss.01829).
+
+- [`tweetbotornot`](https://github.com/mkearney/tweetbotornot) package
+
+- [A map of my Twitter readers, by thoughtfulbloke](https://github.com/thoughtfulbloke/november19_maps/tree/master/nov29)
 
 ----
 

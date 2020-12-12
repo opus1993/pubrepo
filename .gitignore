@@ -7,5 +7,5 @@ public/
 Thumbs.db
 content/post/GLMnet/data
 geospatial/
-data/*.wav
-data/*.csv
+content/post/rtweet-for-windows/fr/
+.rds
