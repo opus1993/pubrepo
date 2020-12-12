@@ -8,4 +8,4 @@ Thumbs.db
 content/post/GLMnet/data
 geospatial/
 content/post/rtweet-for-windows/fr/
-.rds
+*.rds
