@@ -111,8 +111,10 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 - [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)
 
 ----
-## Text Mining
+## Text Mining and Topic Modeling
 - [Text mining](https://www.tidytextmining.com/) by Julia Silge and David Robinson
+- [Supervised Machine Learning for Text Analysis in R](https://smltar.com/) by Emil Hvitfeldt and Julia Silge
+- [Text as Data: An Overview](https://kenbenoit.net/pdfs/CURINI_FRANZESE_Ch26.pdf) by Ken Benoit
 
 ----
 ## More Advanced Books
@@ -181,6 +183,7 @@ Join the Slack channels (button in the upper right hand corner) for community ne
 - [Business Science](https://www.business-science.io/) by 
 [Matt Dancho](https://twitter.com/mdancho84)
 - [Julia Silge](https://juliasilge.com/blog/)
+- [Ken Benoit](https://kenbenoit.net/posts/)
 - [Data Imaginist](https://www.data-imaginist.com/) by [Thomas Lin Pederson](https://twitter.com/thomasp85)
 - [Alison Hill](https://alison.rbind.io/) by [Alison Hill](https://twitter.com/apreshill)
 - [Thomas Neitmann](https://thomasadventure.blog/posts/)
