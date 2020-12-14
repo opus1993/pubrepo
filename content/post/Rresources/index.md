@@ -113,6 +113,7 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 - [Text mining](https://www.tidytextmining.com/) by Julia Silge and David Robinson
 - [Supervised Machine Learning for Text Analysis in R](https://smltar.com/) by Emil Hvitfeldt and Julia Silge
 - [Text as Data: An Overview](https://kenbenoit.net/pdfs/CURINI_FRANZESE_Ch26.pdf) by Ken Benoit
+- [Learn Regular Expressions](https://regexone.com/)
 
 ----
 ## More Advanced Books
