@@ -57,8 +57,6 @@ Other learning resources for those starting from Excel and basic statistics:
 - [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
 - [YaRrr! The Pirate’s Guide to R (Video)](https://www.youtube.com/playlist?list=PL9tt3I41HFS9gmeZFEuNrnu_7V_NFngfJ) by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
 - [Chromebook Data Science (CBDS)](http://jhudatascience.org/chromebookdatascience/cbds.html)
-- [Data Science: R Basics](https://www.edx.org/course/data-science-r-basics)
-- [Introduction to R for Data Science](https://www.edx.org/course/introduction-to-r-for-data-science-2)
 - [Intro to R](https://github.com/uc-r/Intro-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 - [Intermediate R](https://github.com/uc-r/Intermediate-R) by [Bradley Boehmke](https://twitter.com/bradleyboehmke)
 
