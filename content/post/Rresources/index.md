@@ -109,11 +109,14 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 - [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)
 
 ----
-## Text Mining and Topic Modeling
+## Text Mining, Classification, Sentiment Analysis, Word Embeddings, and Topic Modeling
 - [Text mining](https://www.tidytextmining.com/) by Julia Silge and David Robinson
 - [Supervised Machine Learning for Text Analysis in R](https://smltar.com/) by Emil Hvitfeldt and Julia Silge
 - [Text as Data: An Overview](https://kenbenoit.net/pdfs/CURINI_FRANZESE_Ch26.pdf) by Ken Benoit
+- [word2vec in R](https://www.bnosac.be/index.php/blog/100-word2vec-in-r)
 - [Learn Regular Expressions](https://regexone.com/)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1kV0fPDefBM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ----
 ## More Advanced Books
