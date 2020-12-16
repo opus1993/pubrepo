@@ -28,6 +28,7 @@ My short list of useful free books, courses, tutorials, and expert blogs. These 
 - **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication), [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
 
 Other learning resources for those starting from Excel and basic statistics:
+- [Data Science: A First Introduction](https://ubc-dsci.github.io/introduction-to-datascience/) by Tiffany-Anne Timbers, Trevor Campbell, and Melissa Lee
 - **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** by [Garrett Grolemund](https://twitter.com/StatGarrett)
 - [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger Peng
 - **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)
@@ -42,6 +43,7 @@ Other learning resources for those starting from Excel and basic statistics:
 - [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/) by [Russ Poldrack](https://twitter.com/russpoldrack)
 - [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/) by [Martin Monkman](https://twitter.com/monkmanmh)
 - [A Language, not a Letter: Learning Statistics in R](https://ademos.people.uic.edu/index.html)
+- [A quick tutorial on importing data from Advent Of Code into R](https://colin-fraser.net/post/a-quick-tutorial-on-importing-data-from-advent-of-code-into-r/)
 
 ----
 ## Online Courses
@@ -109,7 +111,7 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 - [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)
 
 ----
-## Text Mining, Classification, Sentiment Analysis, Word Embeddings, and Topic Modeling
+## Text Mining, Document classification, Sentiment Analysis, Word Embeddings, and Topic Modeling
 - [Text mining](https://www.tidytextmining.com/) by Julia Silge and David Robinson
 - [Supervised Machine Learning for Text Analysis in R](https://smltar.com/) by Emil Hvitfeldt and Julia Silge
 - [Text as Data: An Overview](https://kenbenoit.net/pdfs/CURINI_FRANZESE_Ch26.pdf) by Ken Benoit
@@ -154,6 +156,7 @@ For a free glimpse into the R environment ML frameworks, consider these resource
 ## Geospatial
 - [An Introduction to Choropleth maps in R](https://rstudio-pubs-static.s3.amazonaws.com/324400_69a673183ba449e9af4011b1eeb456b9.html) by Henry Cann
 - [Map Plots Created With R And Ggmap](https://www.littlemissdata.com/blog/maps) by Laura Ellis
+- [Reproducible road safety research with R](https://www.racfoundation.org/research/safety/reproducible-road-safety-research-with-r)
 - [`sen2r`](http://sen2r.ranghetti.info/index.html)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uZtto0cYjZM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
