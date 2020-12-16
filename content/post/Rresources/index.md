@@ -14,6 +14,9 @@ categories:
   - Education, R
 tags:
   - Education, R
+twitter:
+  site: "@jim_gruman"
+  creator: "@jim_gruman"
 ---
 
 Inspired by:
