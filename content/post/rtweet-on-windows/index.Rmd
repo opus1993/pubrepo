@@ -14,13 +14,16 @@ image:
   preview_only: false
 featured: false
 draft: false
+twitter:
+  site: "@jim_gruman"
+  creator: "@jim_gruman"
 ---
 
-I was inspired by [David Robinson](https://twitter.com/drob)'s Tidy Tuesday screencast to work with `rtweet` on some familiar Twitter handles. `rtweet` is an amazing way of having a little productive procrastination while honing R skills. 
+I was inspired by [David Robinson](https://twitter.com/drob)'s Tidy Tuesday screencast to work with `rtweet` on familiar Twitter handles. Writing on `rtweet` is an amusing bit of productive procrastination while honing my R skills. 
 
-The package creator and owner, [Mike Kearney](https://mikewk.com/), has hosted data journalism [workshops](https://rtweet-workshop.mikewk.com/#1) covering a wide range of uses for this kind of data. They include text sentiment, geospatial networks, time series, disinformation, and even bot detection. [Oscar Baruffa](https://twitter.com/OscarBaruffa) and [Veerle van Son](https://twitter.com/veerlevanson) have written a `bookdown` pamphlet called [Twitter for R Programmers](https://www.t4rstats.com/) as a starter guide for people new to the R community on Twitter. Colin Fay has a nice [blog post](https://colinfay.me/collect-rtweet/) on his exploration with the {`rtweet`} package. And on his `#30daysmapchallenge`, [David Hood](https://twitter.com/Thoughtfulnz) put together a super non-geographic map at [A map of my Twitter readers](https://github.com/thoughtfulbloke/november19_maps/tree/master/nov29).
+The `rtweet` package creator and owner, [Mike Kearney](https://mikewk.com/), has hosted data journalism [workshops](https://rtweet-workshop.mikewk.com/#1) covering a wide range of uses for this kind of data. They include text sentiment, geospatial networks, time series, and even bot detection. [Oscar Baruffa](https://twitter.com/OscarBaruffa) and [Veerle van Son](https://twitter.com/veerlevanson) have written a `bookdown` pamphlet called [Twitter for R Programmers](https://www.t4rstats.com/) as a starter guide for people new to the R community on Twitter. Colin Fay has a nice [blog post](https://colinfay.me/collect-rtweet/) on his exploration with the {`rtweet`} package. And on his `#30daysmapchallenge`, [David Hood](https://twitter.com/Thoughtfulnz) put together a super non-geographic map at [A map of my Twitter readers](https://github.com/thoughtfulbloke/november19_maps/tree/master/nov29).
 
-In this post we will look at the accounts that I engage most often, explore the time of day for my Twitter activity, probe for the presence of bots, and close by building an affinity map visualization of my Twitter following network.
+In this post we will look at the accounts that I engage most often, explore the time of day for my Twitter activity, probe for the presence of bots, and close by building an affinity map visualization of my Twitter network following.
 
 ----
 
@@ -185,7 +188,7 @@ top_usrs <- usrs %>%
 rm(usrs)
 ```
 
-The list drops to `r nrow(top_usrs)` handles to study. My friends in total have `r sum(top_usrs$friends_count)` friends, though the actual number of distinct handles will be less because of overlap. On the surface, this appears to be a reasonably sized challenge.
+The list drops to `r nrow(top_usrs)` handles to study. My followers in total have `r sum(top_usrs$friends_count)` followers, though the actual number of distinct handles will be less because of overlap. On the surface, this appears to be a reasonably sized challenge.
 
 ----
 

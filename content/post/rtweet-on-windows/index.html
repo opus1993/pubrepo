@@ -14,18 +14,19 @@ image:
   preview_only: false
 featured: false
 draft: false
+twitter:
+  site: "@jim_gruman"
+  creator: "@jim_gruman"
 ---
 
 <script src="{{< relref "post/rtweet-on-windows/index.html" >}}index_files/header-attrs/header-attrs.js"></script>
-<link href="{{< relref "post/rtweet-on-windows/index.html" >}}index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
-<script src="{{< relref "post/rtweet-on-windows/index.html" >}}index_files/anchor-sections/anchor-sections.js"></script>
 <script src="{{< relref "post/rtweet-on-windows/index.html" >}}index_files/kePrint/kePrint.js"></script>
 <link href="{{< relref "post/rtweet-on-windows/index.html" >}}index_files/lightable/lightable.css" rel="stylesheet" />
 
 
-<p>I was inspired by <a href="https://twitter.com/drob">David Robinson</a>’s Tidy Tuesday screencast to work with <code>rtweet</code> on some familiar Twitter handles. <code>rtweet</code> is an amazing way of having a little productive procrastination while honing R skills.</p>
-<p>The package creator and owner, <a href="https://mikewk.com/">Mike Kearney</a>, has hosted data journalism <a href="https://rtweet-workshop.mikewk.com/#1">workshops</a> covering a wide range of uses for this kind of data. They include text sentiment, geospatial networks, time series, disinformation, and even bot detection. <a href="https://twitter.com/OscarBaruffa">Oscar Baruffa</a> and <a href="https://twitter.com/veerlevanson">Veerle van Son</a> have written a <code>bookdown</code> pamphlet called <a href="https://www.t4rstats.com/">Twitter for R Programmers</a> as a starter guide for people new to the R community on Twitter. Colin Fay has a nice <a href="https://colinfay.me/collect-rtweet/">blog post</a> on his exploration with the {<code>rtweet</code>} package. And on his <code>#30daysmapchallenge</code>, <a href="https://twitter.com/Thoughtfulnz">David Hood</a> put together a super non-geographic map at <a href="https://github.com/thoughtfulbloke/november19_maps/tree/master/nov29">A map of my Twitter readers</a>.</p>
-<p>In this post we will look at the accounts that I engage most often, explore the time of day for my Twitter activity, probe for the presence of bots, and close by building an affinity map visualization of my Twitter following network.</p>
+<p>I was inspired by <a href="https://twitter.com/drob">David Robinson</a>’s Tidy Tuesday screencast to work with <code>rtweet</code> on familiar Twitter handles. Writing on <code>rtweet</code> is an amusing bit of productive procrastination while honing my R skills.</p>
+<p>The <code>rtweet</code> package creator and owner, <a href="https://mikewk.com/">Mike Kearney</a>, has hosted data journalism <a href="https://rtweet-workshop.mikewk.com/#1">workshops</a> covering a wide range of uses for this kind of data. They include text sentiment, geospatial networks, time series, and even bot detection. <a href="https://twitter.com/OscarBaruffa">Oscar Baruffa</a> and <a href="https://twitter.com/veerlevanson">Veerle van Son</a> have written a <code>bookdown</code> pamphlet called <a href="https://www.t4rstats.com/">Twitter for R Programmers</a> as a starter guide for people new to the R community on Twitter. Colin Fay has a nice <a href="https://colinfay.me/collect-rtweet/">blog post</a> on his exploration with the {<code>rtweet</code>} package. And on his <code>#30daysmapchallenge</code>, <a href="https://twitter.com/Thoughtfulnz">David Hood</a> put together a super non-geographic map at <a href="https://github.com/thoughtfulbloke/november19_maps/tree/master/nov29">A map of my Twitter readers</a>.</p>
+<p>In this post we will look at the accounts that I engage most often, explore the time of day for my Twitter activity, probe for the presence of bots, and close by building an affinity map visualization of my Twitter network following.</p>
 <hr />
 <p>As with any other project, start with loading the appropriate libraries.</p>
 <pre class="r"><code>knitr::opts_chunk$set(
@@ -135,7 +136,7 @@ usrs &lt;- lookup_users(tn$user_id) # get my followers full details</code></pre>
          as_date(created_at) &gt; dmy(&quot;01-01-2020&quot;))
 
 rm(usrs)</code></pre>
-<p>The list drops to 1752 handles to study. My friends in total have 6320554 friends, though the actual number of distinct handles will be less because of overlap. On the surface, this appears to be a reasonably sized challenge.</p>
+<p>The list drops to 1752 handles to study. My followers in total have 6320554 followers, though the actual number of distinct handles will be less because of overlap. On the surface, this appears to be a reasonably sized challenge.</p>
 <hr />
 <p>Let’s pause here and take another look at this listing. I am also interested in how many of my followers have chosen bot accounts as friends. Michael Kearney’s <code>tweetbotornot</code> offers a single function for ascertaining probabilities. The default <strong>gradient boosted</strong> model uses both users-level (bio, location, number of followers and friends, etc.) and tweets-level (number of hashtags, mentions, capital letters, etc. in a user’s most recent 100 tweets) data to estimate the probability that users are bots. For larger data sets, the method can be slow. Due to Twitter’s REST API rate limits, users are limited to only 180 estimates per every 15 minutes.</p>
 <p>To maximize the number of estimates per 15 minutes (at the cost of being less accurate), we apply the <code>fast = TRUE</code> argument. This method uses only users-level data, which increases the maximum number of estimates per 15 minutes to 90,000, but the accuracy is diminished.</p>
