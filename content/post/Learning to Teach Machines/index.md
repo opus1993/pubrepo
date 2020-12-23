@@ -30,7 +30,7 @@ Alison Hill recently shared a valuable list of learning resources, organized rou
 
 ----
 
-[Supervised Machine Learning by Julia Silege](https://supervised-ml-course.netlify.com/)
+[Supervised Machine Learning by Julia Silge](https://supervised-ml-course.netlify.com/)
 Now taught with R and the `tidymodels` package, this is a solid next step in your machine learning journey as you’ll start doing ML right away in your browser using an innovative course delivery platform. You’ll also get to play with data that is not iris, titanic, or AmesHousing. 
 
 ----
