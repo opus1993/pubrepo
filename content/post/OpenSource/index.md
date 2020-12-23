@@ -2,7 +2,7 @@
 date: "2020-03-24"
 diagram: true
 image: 
-  caption: 'Image credit: [Why Choose Open Source?](https://opensource.com/sites/default/files/styles/image-full-size/public/lead-images/BUS_OSwhy_520x292_ma.png)'
+  caption: 'Image credit: [Thinkstock](https://images.techhive.com/images/article/2016/05/open_source_keyboard-100659887-primary.idge.jpg)'
   placement: 1
 markup: goldmark
 math: true
