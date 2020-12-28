@@ -201,6 +201,8 @@ Join the Slack channels (button in the upper right hand corner) for community ne
 - [AllYourBayes](https://www.allyourbayes.com/)
 - [Data Meets Narrative](http://www.rebeccabarter.com/blog/)
 - [A. Kaplan on less well-known regression types](https://github.com/kaplanas/nonstandard-regression)
+- [Jake Rozran Learns Data Science](https://www.jakelearnsdatascience.com/post/)
+- [RCrastinate by Sascha Wolfer](http://rcrastinate.rbind.io/)
 - [Colin Fraser](https://colin-fraser.net/)
 - [rgeomatic](https://rgeomatic.hypotheses.org/category/r-en)
 - [Nicholas Tierney](http://njtierney.github.io/)
