@@ -106,7 +106,7 @@ act_data &lt;- compile_activities(my_acts)
 all_activity_heatmap &lt;- get_heat_map(act_data, key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), col = pal[4], size = 2, distlab = F, f = 0.4) +  
   coord_equal(expand = FALSE) +
   labs(title = &quot;My Cumulative Exercise Activity in Strava&quot;, 
-       subtitle = paste0(format(as.Date(min(act_data$start_date)),&quot;%B %e, %Y&quot;),&quot; to &quot;, format(today(),&quot;%B %e, %Y&quot;)),
+       subtitle = paste0(format(as.Date(min(act_data$start_date)),&quot;%B %e&quot;),&quot; to &quot;, format(today(),&quot;%B %e, %Y&quot;)),
        fill = &quot;&quot;, x = NULL, y = NULL,
        caption = &quot;map: Google&quot;) +
   theme(axis.text.x = element_blank(),
@@ -183,7 +183,7 @@ get_elev_prof(my_acts, id = id,
 <div id="setting-goals-for-2021" class="section level2">
 <h2>Setting Goals for 2021</h2>
 <p>Let’s establish global variables to use related to our goals, including:</p>
-<p><code>goal</code>: (num) - The goal in miles to achieve for each activity. For here: 900</p>
+<p><code>goal</code>: (num) - The goal in miles to achieve for each activity. For here: 900 and 50 respectively</p>
 <p><code>sports</code>: (chr) - Choose from the possible entries in the <code>type</code> column. My values: “Ride” and “Run”</p>
 <p><code>selected.year</code>: (num) - Choose the year to visualize. My value: 2020</p>
 <p><code>current.day</code>: (date) - For the vertical line marking the current day of the year. My value: <code>Sys.Date()</code></p>

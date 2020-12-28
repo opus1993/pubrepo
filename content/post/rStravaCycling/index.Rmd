@@ -117,7 +117,7 @@ act_data <- compile_activities(my_acts)
 all_activity_heatmap <- get_heat_map(act_data, key = Sys.getenv("GGMAP_GOOGLE_API_KEY"), col = pal[4], size = 2, distlab = F, f = 0.4) +  
   coord_equal(expand = FALSE) +
   labs(title = "My Cumulative Exercise Activity in Strava", 
-       subtitle = paste0(format(as.Date(min(act_data$start_date)),"%B %e, %Y")," to ", format(today(),"%B %e, %Y")),
+       subtitle = paste0(format(as.Date(min(act_data$start_date)),"%B %e")," to ", format(today(),"%B %e, %Y")),
        fill = "", x = NULL, y = NULL,
        caption = "map: Google") +
   theme(axis.text.x = element_blank(),
@@ -215,7 +215,7 @@ get_elev_prof(my_acts, id = id,
 
 Let's establish global variables to use related to our goals, including:
 
-`goal`: (num) - The goal in miles to achieve for each activity. For here: 900 
+`goal`: (num) - The goal in miles to achieve for each activity. For here: 900 and 50 respectively
 
 `sports`: (chr) - Choose from the possible entries in the `type` column. My values: “Ride” and "Run"
 
