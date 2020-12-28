@@ -9,3 +9,6 @@ content/post/GLMnet/data
 geospatial/
 content/post/rtweet-for-windows/fr/
 *.rds
+.DS_Store
+resources/
+.httr-oauth

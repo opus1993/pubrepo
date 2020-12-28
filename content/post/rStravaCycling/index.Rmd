@@ -1,0 +1,308 @@
+---
+title: "Animating 2021 Fitness Goals with rStrava"
+author: "Jim Gruman"
+date: "2020-12-28"
+diagram: true
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [R]
+description: "Analyze Strava data" 
+image: 
+  caption: ''
+  focal_point: "Smart"
+  preview_only: false
+featured: false
+draft: false
+---
+
+Looking back, 2020 was a very good year for cycling in the Chicago area. Our family splurged on "good" bikes way back in ~2007 and made some fine memories getting around. With the kids moving on and new opportunities this spring with SARS-COVID-19 work-from-home (no commuting) measures, I picked up the Strava community habit and started exploring much more widely. Since then I began to track my rides, runs, and walks and wondered what I might do with the data with the `rStrava` package currently in development.
+
+----
+
+Let's pause here and acknowledge my inspirations and resources for building this post:
+
+> Author and `rStrava` Creator [Marcus W. Beck](https://twitter.com/fawda123) 
+
+> [Sascha Wolfer](https://twitter.com/sascha_wolfer) published an awesome blog post recently at [rCrastinate](http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/) on running and is active in the [RStats Strava Club](https://www.strava.com/clubs/738071)
+
+> [Jack Rozran's blog](https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/)
+
+> [Chris Woods's Cycle Eye Visual](https://drawingwithdata.com/portfolio/cycle-eye/)
+
+> [John Peters](https://twitter.com/KittyJohne) hosts a Shiny app that leverages Strava and other data at [EnDuRA](https://bluecattechnical.shinyapps.io/EnDuRA/)
+
+### What we will look at in this posting
+
+1. Summarize total accumulated fitness efforts
+
+1. Explore the details of a specific workout activity spatially
+
+1. Establish a model for animating our progress towards annual goals
+
+----
+
+### Setup and Authentication
+
+As with any other project, we start with loading the appropriate libraries.
+
+```{r, echo=TRUE, warning = FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.align = "center"
+)
+
+suppressPackageStartupMessages({
+
+library(tidyverse)   
+library(rStrava)
+library(ggmap)
+library(gganimate)
+library(patchwork)
+library(lubridate)  
+library(here) 
+})
+
+theme_set(hrbrthemes::theme_ipsum() +
+            theme(plot.title.position = "plot"))
+
+extrafont::loadfonts(quiet = TRUE)
+
+pal <- wesanderson::wes_palette("Zissou1", 21, type = "continuous")
+```
+
+### Strava Authentication
+
+The `rStrava` [github site](http://fawda123.github.io/rStrava/#api-functions-token) offers clear instructions for mapping your Strava profile credentials to an API connection, even for free accounts. My code here wraps the config request into if-else statements so the blogdown site is not hammering Strava while it renders pages. For convenience I will use Google's background maps, though they are not often my first choice.
+
+```{r StravaAuthentication}
+# get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
+
+if (file.exists(here(".httr-oauth"))) {
+stoken <- httr::config(token = readRDS(here('.httr-oauth'))[[1]])
+} else {
+app_name <- 'Rapp' # chosen at https://www.strava.com/settings/api
+app_client_id  <- '58858' # Client ID
+app_secret <- Sys.getenv("rStravaSecret") # Keep your client Secrets with usethis::edit_r_environ
+stoken <- httr::config(token = strava_oauth(app_name, app_client_id, app_secret, app_scope = "activity:read_all", cache = TRUE))
+# Setting cache = TRUE for strava_oauth creates a hidden authentication file and masks it in .gitignore
+}
+
+# We will will also tap into Google's mapping API, thought alternatives from other services are available.
+register_google(Sys.getenv("GGMAP_GOOGLE_API_KEY"))
+
+# Be sure to enable the Google Maps Platform Elevations API at https://console.cloud.google.com/google/maps-apis/
+
+```
+----
+
+The API retrieval functions are called with the token established above. Let's start by downloading my athelete profile:
+
+```{r}
+# Your Athlete ID number can be found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
+
+myinfo <- get_athlete(stoken, id = '68008050')
+
+```
+
+From there we can build an example of a heat map of all activities recorded within Strava. The first call is to download the list with `get_activity_list()` and the second is to convert the list into an easy to use dataframe with `compile_activities()`.
+
+```{r}
+# get activities, get activities by lat/lon, distance, plot
+my_acts <- get_activity_list(stoken)
+act_data <- compile_activities(my_acts) 
+
+all_activity_heatmap <- get_heat_map(act_data, key = Sys.getenv("GGMAP_GOOGLE_API_KEY"), col = pal[4], size = 2, distlab = F, f = 0.4) +  
+  coord_equal(expand = FALSE) +
+  labs(title = "My Cumulative Exercise Activity in Strava", 
+       subtitle = paste0(format(as.Date(min(act_data$start_date)),"%B %e, %Y")," to ", format(today(),"%B %e, %Y")),
+       fill = "", x = NULL, y = NULL,
+       caption = "map: Google") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        plot.margin = margin(0, 0, 0, 0, "cm"))
+```
+
+
+```{r}
+all_activity_lines <- act_data %>% 
+  mutate(dates = as.Date(start_date, "%Y-%m-%dT%H:%M:%SZ")) %>% 
+  complete(dates, type, fill = list(distance = 0)) %>% 
+  arrange(dates) %>% 
+  group_by(type) %>% 
+  mutate(act_cum = cumsum(distance)) %>% 
+  ungroup() %>% 
+  ggplot(aes(dates, act_cum, color = type)) +
+  geom_line(size = 1.5) +
+  scale_x_date(breaks = "month", date_labels = "%b %Y") +
+  labs(title = NULL, x = NULL, y = "Miles", color = NULL) +
+  theme(legend.position = c(0.1, 0.8),
+        legend.background = element_rect(color = "white"),
+        plot.margin = margin(0, 0, 0, 0, "cm"))
+```
+
+```{r warning=FALSE}
+all_activity_heatmap + all_activity_lines
+
+```
+
+The package includes functions for plotting elevation and gradient for a single ride:
+
+```{r warning = FALSE}
+# activity id
+id <- 4304397081
+
+# plot elevation along a single ride
+get_heat_map(my_acts, id = id, alpha = 1, add_elev = T, f = 0.3, distlab = F, key = Sys.getenv("GGMAP_GOOGLE_API_KEY"), size = 2,
+             col = "RdYlBu", 
+             maptype = 'terrain', 
+             units = 'imperial') +  
+  coord_equal(expand = FALSE) +
+  labs(title = "Cycling Activity: Elevation along a Single Route", 
+       subtitle = paste0(format(as.Date(act_data[act_data$id == id,]$start_date),"%B %e, %Y")),
+       fill = "", x = NULL, y = NULL,
+       caption = "map: Google") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.position = c(0.1,0.5),
+        legend.background = element_rect(color = "white"))
+```
+
+The related % gradient for that ride:
+
+```{r warning = FALSE}
+# plot elevation along a single ride
+get_heat_map(my_acts, id = id, alpha = 1, 
+             add_elev = T, f = 0.3, distlab = F, 
+             key = Sys.getenv("GGMAP_GOOGLE_API_KEY"), 
+             size = 2, as_grad = TRUE,
+             col = "RdYlBu", 
+             maptype = 'terrain', 
+             units = 'imperial') +  
+  coord_equal(expand = FALSE) +
+  labs(title = "Cycling Activity: Gradient along a Single Route", 
+       subtitle = paste0(format(as.Date(act_data[act_data$id == id,]$start_date),"%B %e, %Y")),
+       fill = "", x = NULL, y = NULL,
+       caption = "map: Google") +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        legend.position = c(0.1,0.5),
+        legend.background = element_rect(color = "white"))
+```
+
+Instantaneous elevation profiles for that single ride:
+
+```{r}
+# get activities
+my_acts <- get_activity_list(stoken) 
+
+get_elev_prof(my_acts, id = id, 
+              key = Sys.getenv("GGMAP_GOOGLE_API_KEY"), 
+              units = 'imperial')
+```
+
+Accumulated elevation climb for the same single ride:
+
+```{r}
+get_elev_prof(my_acts, id = id, 
+              key = Sys.getenv("GGMAP_GOOGLE_API_KEY"), 
+              units = 'imperial', total = T)
+```
+
+## Setting Goals for 2021
+
+Let's establish global variables to use related to our goals, including:
+
+`goal`: (num) - The goal in miles to achieve for each activity. For here: 900 
+
+`sports`: (chr) - Choose from the possible entries in the `type` column. My values: “Ride” and "Run"
+
+`selected.year`: (num) - Choose the year to visualize. My value: 2020
+
+`current.day`: (date) - For the vertical line marking the current day of the year. My value: `Sys.Date()`
+
+```{r}
+goal <- c(900, 50)
+sports <- c("Ride", "Run")
+selected.year <- c(2020)
+current.day <- Sys.Date()
+```
+
+We will `filter()` for the relevant rows from the dataframe (year and type of sports). Then sort by timestamp and convert the timestamp into a date. The `tidyr` `complete` function fleshes out the dataframe with a complete sequence of days to better show the cumulative sum of miles traveled each day. And `dplyr()` `mutate()` is used to pre-calculate columns for use in the animation. 
+
+The result:
+
+```{r warning=FALSE}
+p <- act_data %>% 
+  mutate(dates = as.Date(start_date, "%Y-%m-%dT%H:%M:%SZ")) %>% 
+  filter(type %in% sports,
+         year(dates) %in% selected.year) %>% 
+  group_by(type, dates) %>% 
+  summarize(distance = sum(distance), .groups = "drop") %>% 
+  complete(dates = seq.Date(min(dates),Sys.Date(), by = "day"), type, fill = list(distance = 0)) %>% 
+  arrange(type, dates) %>% 
+  group_by(type) %>% 
+  mutate(act_cum = cumsum(distance)) %>% 
+  ungroup() %>% 
+  mutate(goal = map_dbl(type, ~goal[which(. == sports)]),
+         remaining = if_else(goal - act_cum > 0, round( goal - act_cum),0),
+         till.end = as.numeric(as.Date(paste0(selected.year, "-12-31")) - dates),
+         goal_cum = goal * (1 - till.end/365.25),
+         status_flag = if_else(goal_cum - act_cum > 0,TRUE, FALSE),
+         dist.per.week.to.goal = if_else(goal - act_cum > 0, round( 7 * (goal - act_cum)/till.end),0)) %>% 
+  ggplot() +
+  geom_line(aes(dates, act_cum, color = type), show.legend = FALSE) +
+  geom_point(aes(dates, act_cum, color = type), size = 2, show.legend = FALSE) +
+  geom_text(aes(dates + 7, act_cum,
+                label = round(act_cum),
+                color = if_else(status_flag, "black","green")),
+            hjust = 0, size = 4, show.legend = FALSE) +
+  geom_label(aes(label = paste0("Remaining: ", remaining, " miles;\n","To achieve goal: ", dist.per.week.to.goal, " miles/week"),
+                 x = as.Date(paste0(selected.year, "-01-15")),
+                 y = goal * 11 / 12),
+             hjust = 0, show.legend = FALSE) +
+  scale_x_date(breaks = "month", 
+               minor_breaks = NULL,
+               date_labels = "%b",
+               limits = c(as.Date(paste0(selected.year,"-01-01")),
+                          as.Date(paste0(selected.year,"-12-31")))) +
+  scale_y_continuous(minor_breaks = NULL) +
+  expand_limits(y = 0) +
+  geom_vline(xintercept = current.day, 
+             col = alpha("grey", .5), 
+             lty = "dashed") +
+  geom_hline(aes(yintercept = goal), 
+             color = "red",
+             show.legend = FALSE) +
+  facet_wrap(~ type, scales = "free_y") +
+  geom_segment(aes(yend = goal),
+               x = as.Date(paste0(selected.year, "-01-01")), 
+               y = 0, 
+               xend = as.Date(paste0(selected.year, "-12-31")), 
+               lty = "dashed", col = "red") +
+  labs(x = NULL, y = "miles completed", 
+       title = paste0('{format(frame_along,"%B %d")}'," progress towards ",selected.year, " goals in Strava"),
+       caption = "@jim_gruman") 
+
+p <- p + transition_reveal(dates)
+
+anim <- animate(p, width = 900, height = 600, end_pause = 50, duration = 60, renderer = gifski_renderer())
+
+anim
+
+```
+
+----
+
+References
+
+> [rStrava R package web page](http://fawda123.github.io/rStrava/)
+
+> [Strava API](https://www.strava.com/settings/api)
+
+----
+
+### Did you find this page helpful? Consider sharing it 🙌
+
