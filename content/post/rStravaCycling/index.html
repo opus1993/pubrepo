@@ -6,7 +6,7 @@ diagram: true
 output: 
  blogdown::html_page:
   toc: false
-categories: [R]
+categories: [R, cycling]
 description: "Analyze Strava data" 
 image: 
   caption: ''
@@ -18,6 +18,8 @@ twitter:
   site: "@jim_gruman"
   creator: "@jim_gruman"
 ---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>Looking back, 2020 was a very good year for cycling in the Chicago area. Our family splurged on “good” bikes way back in ~2007 and made some fine memories getting around. With the kids moving on and new opportunities this spring with SARS-COVID-19 work-from-home (no commuting) measures, I picked up the Strava community habit and started exploring much more widely. Since then I began to track my rides, runs, and walks and wondered what I might do with the data with the <code>rStrava</code> package currently in development.</p>
@@ -242,7 +244,7 @@ current.day &lt;- Sys.Date()</code></pre>
                xend = as.Date(paste0(selected.year, &quot;-12-31&quot;)), 
                lty = &quot;dashed&quot;, col = &quot;red&quot;) +
   labs(x = NULL, y = &quot;miles completed&quot;, 
-       title = paste0(&#39;{format(frame_along,&quot;%B %d&quot;)}&#39;,&quot; progress towards &quot;,selected.year, &quot; goals in Strava&quot;),
+       title = paste0(&#39;{format(frame_along,&quot;%B %e&quot;)}&#39;,&quot; progress towards &quot;,selected.year, &quot; goals in Strava&quot;),
        caption = &quot;@jim_gruman&quot;) 
 
 p &lt;- p + transition_reveal(dates)

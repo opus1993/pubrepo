@@ -6,7 +6,7 @@ diagram: true
 output: 
  blogdown::html_page:
   toc: false
-categories: [R]
+categories: [R, cycling]
 description: "Analyze Strava data" 
 image: 
   caption: ''
@@ -286,7 +286,7 @@ p <- act_data %>%
                xend = as.Date(paste0(selected.year, "-12-31")), 
                lty = "dashed", col = "red") +
   labs(x = NULL, y = "miles completed", 
-       title = paste0('{format(frame_along,"%B %d")}'," progress towards ",selected.year, " goals in Strava"),
+       title = paste0('{format(frame_along,"%B %e")}'," progress towards ",selected.year, " goals in Strava"),
        caption = "@jim_gruman") 
 
 p <- p + transition_reveal(dates)
