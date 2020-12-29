@@ -36,6 +36,8 @@ Here are my ten reasons to dive in:
     1. Be inspired by the creativity of others 
 I love to see the variety of visualizations coming from the same data sets. On most weeks, there is at least one Tidy Tuesday plot uses an approach I would not have thought of. Fortunately, most authors share their code. This is an easy way to learn cool new tricks. 
 
+{{< tweet 1343864907750469633 >}}
+
     2. Discover new functions and packages 
 Tidy Tuesday is a perfect opportunity for exploring new packages at low risk. I learned about the `gganimate` package here, to make animated GIFs. This can be helpful in some contexts to show trends over time. Another package I first used for Tidy Tuesday is `ggrepel`, to add labels to a subset of data points, making sure that the labels do not overlap any points or other labels. Last week my discovery was `ggbump` for plotting changes in ranking over time.
 
@@ -53,6 +55,8 @@ Tidy Tuesday also creates opportunities for hands-on experience with the tidyver
 
     5. Learn to fine-tune graphs 
 `ggplot2` is the graphics package of the tidyverse. Almost everything can be adjusted in a `ggplot`: for example, the text font, size, position, and alignment. You can change the position and appearance of the legend, and much more. If you use color in the graph itself, there are many color palettes and themes. Having control over the details means you can make your data visualization more powerful. 
+
+{{< tweet 1342937338188599296 >}}
 
     6. Discover new data sets every week 
 I can get complacent sometimes, working in one or two domains with the same, previously perfected, formulaic templates. Fortunately, Tidy Tuesday provides fresh new material each week. The challenge here is to put something new out there, rather than sitting on it and trying to make it perfect. There are vast resources available to enhance the analysis, like geospatial mapping, imdb movie reviews, text sentiment, and so much more. Having a busy week? You can always take a break and jump in again next week. New data is usually posted on Monday or early Tuesday morning. Despite the name, don’t limit yourself to Tuesdays. Any day is perfect to post a #TidyTuesday graph to Twitter! 
