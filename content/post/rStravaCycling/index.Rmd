@@ -18,8 +18,7 @@ twitter:
   site: "@jim_gruman"
   creator: "@jim_gruman"
 ---
-
-Looking back, 2020 was a very good year for cycling in the Chicago area. Our family splurged on "good" bikes way back in ~2007 and made some fine memories getting around. With the kids moving on and new opportunities this spring with SARS-COVID-19 work-from-home (no commuting) measures, I picked up the Strava community habit and started exploring much more widely. Since then I began to track my rides, runs, and walks and wondered what I might do with the data with the `rStrava` package currently in development.
+Looking back, 2020 was a very good year for cycling in the Chicago area. Our family splurged on "good" bikes way back in ~2007 and made some fine memories getting around. With the kids moving on and new opportunities this spring with SARS-COVID-19 work-from-home (no commuting) measures, I picked up the Strava community habit and started exploring much more widely, solo. The trail network is superb. I also began to track my rides, runs, and walks and wondered what I might do with the data with the `rStrava` package currently in development.
 
 ----
 
@@ -29,19 +28,19 @@ Let's pause here and acknowledge my inspirations and resources for building this
 
 > [Sascha Wolfer](https://twitter.com/sascha_wolfer) published an very nice blog post recently at [rCrastinate](http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/) on running and is active in the [RStats Strava Club](https://www.strava.com/clubs/738071)
 
-> [Jack Rozran's blog](https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/)
+> [Jack Rozran's blog](https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/) with plots on cumulative milage and ridgeplots.
 
-> [Chris Woods's Cycle Eye Visual](https://drawingwithdata.com/portfolio/cycle-eye/)
+> [Chris Woods's Cycle Eye Visual](https://drawingwithdata.com/portfolio/cycle-eye/) of total climb and distance in a radial plot.
 
-> [John Peters](https://twitter.com/KittyJohne) hosts a Shiny app that leverages Strava and other fitness data at [EnDuRA](https://bluecattechnical.shinyapps.io/EnDuRA/)
+> [John Peters](https://twitter.com/KittyJohne) has crafted a Shiny app that leverages Strava and other fitness data at [EnDuRA](https://bluecattechnical.shinyapps.io/EnDuRA/)
 
-### What we will look at in this post
+### This post will cover:
 
-1. Summarize total accumulated fitness efforts
+1. A way to summarize total accumulated fitness efforts.
 
-1. Explore the details of a specific workout activity spatially
+1. Explore the details of a specific workout activity spatially.
 
-1. Establish a model for animating our progress towards annual goals
+1. Establish a model for animating our progress towards annual goals.
 
 ----
 
@@ -49,7 +48,7 @@ Let's pause here and acknowledge my inspirations and resources for building this
 
 As with any other project, we start by loading the appropriate libraries.
 
-```{r, echo=TRUE, warning = FALSE}
+```{r setup, echo=TRUE, warning = FALSE}
 knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE,
@@ -103,7 +102,7 @@ register_google(Sys.getenv("GGMAP_GOOGLE_API_KEY"))
 
 The API retrieval functions are called with the token established above. Let's start by downloading my athelete profile:
 
-```{r}
+```{r myinfo}
 # Your Athlete ID number can be found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
 
 myinfo <- get_athlete(stoken, id = '68008050')
@@ -112,7 +111,7 @@ myinfo <- get_athlete(stoken, id = '68008050')
 
 From there we can build an example of a heat map of all activities recorded within Strava. The first call is to download the list with `get_activity_list()` and the second is to convert the list into an easy to use dataframe with `compile_activities()`.
 
-```{r}
+```{r activities}
 # get activities, get activities by lat/lon, distance, plot
 my_acts <- get_activity_list(stoken)
 act_data <- compile_activities(my_acts) 
@@ -129,7 +128,7 @@ all_activity_heatmap <- get_heat_map(act_data, key = Sys.getenv("GGMAP_GOOGLE_AP
 ```
 
 
-```{r}
+```{r lineplot}
 all_activity_lines <- act_data %>% 
   mutate(dates = as.Date(start_date, "%Y-%m-%dT%H:%M:%SZ")) %>% 
   complete(dates, type, fill = list(distance = 0)) %>% 
@@ -141,19 +140,19 @@ all_activity_lines <- act_data %>%
   geom_line(size = 1.5) +
   scale_x_date(breaks = "month", date_labels = "%b %Y") +
   labs(title = NULL, x = NULL, y = "Miles", color = NULL) +
-  theme(legend.position = c(0.1, 0.8),
+  theme(legend.position = c(0.15, 0.8),
         legend.background = element_rect(color = "white"),
         plot.margin = margin(0, 0, 0, 0, "cm"))
 ```
 
-```{r warning=FALSE}
+```{r patchwork, warning=FALSE}
 all_activity_heatmap + all_activity_lines
 
 ```
 
 The package includes functions for plotting elevation and gradient for a single ride:
 
-```{r warning = FALSE}
+```{r elevation, warning = FALSE}
 # activity id
 id <- 4304397081
 
@@ -175,7 +174,7 @@ get_heat_map(my_acts, id = id, alpha = 1, add_elev = T, f = 0.3, distlab = F, ke
 
 The related % gradient for that ride:
 
-```{r warning = FALSE}
+```{r gradient, warning = FALSE}
 # plot elevation along a single ride
 get_heat_map(my_acts, id = id, alpha = 1, 
              add_elev = T, f = 0.3, distlab = F, 
@@ -197,7 +196,7 @@ get_heat_map(my_acts, id = id, alpha = 1,
 
 Instantaneous elevation profiles for that single ride:
 
-```{r}
+```{r instant_elevation}
 # get activities
 my_acts <- get_activity_list(stoken) 
 
@@ -208,7 +207,7 @@ get_elev_prof(my_acts, id = id,
 
 Accumulated elevation climb for the same single ride:
 
-```{r}
+```{r accumulated_elevation}
 get_elev_prof(my_acts, id = id, 
               key = Sys.getenv("GGMAP_GOOGLE_API_KEY"), 
               units = 'imperial', total = T)
@@ -226,7 +225,7 @@ Let's establish global variables to use related to our goals, including:
 
 `current.day`: (date) - For the vertical line marking the current day of the year. My value: `Sys.Date()`
 
-```{r}
+```{r goals}
 goal <- c(900, 50)
 sports <- c("Ride", "Run")
 selected.year <- c(2020)
@@ -237,7 +236,7 @@ We will `filter()` for the relevant rows from the dataframe (year and type of sp
 
 The result:
 
-```{r warning=FALSE}
+```{r animation, warning=FALSE}
 p <- act_data %>% 
   mutate(dates = as.Date(start_date, "%Y-%m-%dT%H:%M:%SZ")) %>% 
   filter(type %in% sports,

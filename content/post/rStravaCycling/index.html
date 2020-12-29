@@ -22,7 +22,7 @@ twitter:
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
-<p>Looking back, 2020 was a very good year for cycling in the Chicago area. Our family splurged on “good” bikes way back in ~2007 and made some fine memories getting around. With the kids moving on and new opportunities this spring with SARS-COVID-19 work-from-home (no commuting) measures, I picked up the Strava community habit and started exploring much more widely. Since then I began to track my rides, runs, and walks and wondered what I might do with the data with the <code>rStrava</code> package currently in development.</p>
+<p>Looking back, 2020 was a very good year for cycling in the Chicago area. Our family splurged on “good” bikes way back in ~2007 and made some fine memories getting around. With the kids moving on and new opportunities this spring with SARS-COVID-19 work-from-home (no commuting) measures, I picked up the Strava community habit and started exploring much more widely, solo. The trail network is superb. I also began to track my rides, runs, and walks and wondered what I might do with the data with the <code>rStrava</code> package currently in development.</p>
 <hr />
 <p>Let’s pause here and acknowledge my inspirations and resources for building this post:</p>
 <blockquote>
@@ -32,20 +32,20 @@ twitter:
 <p><a href="https://twitter.com/sascha_wolfer">Sascha Wolfer</a> published an very nice blog post recently at <a href="http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/">rCrastinate</a> on running and is active in the <a href="https://www.strava.com/clubs/738071">RStats Strava Club</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/">Jack Rozran’s blog</a></p>
+<p><a href="https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/">Jack Rozran’s blog</a> with plots on cumulative milage and ridgeplots.</p>
 </blockquote>
 <blockquote>
-<p><a href="https://drawingwithdata.com/portfolio/cycle-eye/">Chris Woods’s Cycle Eye Visual</a></p>
+<p><a href="https://drawingwithdata.com/portfolio/cycle-eye/">Chris Woods’s Cycle Eye Visual</a> of total climb and distance in a radial plot.</p>
 </blockquote>
 <blockquote>
-<p><a href="https://twitter.com/KittyJohne">John Peters</a> hosts a Shiny app that leverages Strava and other fitness data at <a href="https://bluecattechnical.shinyapps.io/EnDuRA/">EnDuRA</a></p>
+<p><a href="https://twitter.com/KittyJohne">John Peters</a> has crafted a Shiny app that leverages Strava and other fitness data at <a href="https://bluecattechnical.shinyapps.io/EnDuRA/">EnDuRA</a></p>
 </blockquote>
-<div id="what-we-will-look-at-in-this-post" class="section level3">
-<h3>What we will look at in this post</h3>
+<div id="this-post-will-cover" class="section level3">
+<h3>This post will cover:</h3>
 <ol style="list-style-type: decimal">
-<li><p>Summarize total accumulated fitness efforts</p></li>
-<li><p>Explore the details of a specific workout activity spatially</p></li>
-<li><p>Establish a model for animating our progress towards annual goals</p></li>
+<li><p>A way to summarize total accumulated fitness efforts.</p></li>
+<li><p>Explore the details of a specific workout activity spatially.</p></li>
+<li><p>Establish a model for animating our progress towards annual goals.</p></li>
 </ol>
 <hr />
 </div>
@@ -126,11 +126,11 @@ all_activity_heatmap &lt;- get_heat_map(act_data, key = Sys.getenv(&quot;GGMAP_G
   geom_line(size = 1.5) +
   scale_x_date(breaks = &quot;month&quot;, date_labels = &quot;%b %Y&quot;) +
   labs(title = NULL, x = NULL, y = &quot;Miles&quot;, color = NULL) +
-  theme(legend.position = c(0.1, 0.8),
+  theme(legend.position = c(0.15, 0.8),
         legend.background = element_rect(color = &quot;white&quot;),
         plot.margin = margin(0, 0, 0, 0, &quot;cm&quot;))</code></pre>
 <pre class="r"><code>all_activity_heatmap + all_activity_lines</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/patchwork-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The package includes functions for plotting elevation and gradient for a single ride:</p>
 <pre class="r"><code># activity id
 id &lt;- 4304397081
@@ -149,7 +149,7 @@ get_heat_map(my_acts, id = id, alpha = 1, add_elev = T, f = 0.3, distlab = F, ke
         axis.text.y = element_blank(),
         legend.position = c(0.1,0.5),
         legend.background = element_rect(color = &quot;white&quot;))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/elevation-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The related % gradient for that ride:</p>
 <pre class="r"><code># plot elevation along a single ride
 get_heat_map(my_acts, id = id, alpha = 1, 
@@ -168,7 +168,7 @@ get_heat_map(my_acts, id = id, alpha = 1,
         axis.text.y = element_blank(),
         legend.position = c(0.1,0.5),
         legend.background = element_rect(color = &quot;white&quot;))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/gradient-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Instantaneous elevation profiles for that single ride:</p>
 <pre class="r"><code># get activities
 my_acts &lt;- get_activity_list(stoken) 
@@ -176,12 +176,12 @@ my_acts &lt;- get_activity_list(stoken)
 get_elev_prof(my_acts, id = id, 
               key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), 
               units = &#39;imperial&#39;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/instant_elevation-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Accumulated elevation climb for the same single ride:</p>
 <pre class="r"><code>get_elev_prof(my_acts, id = id, 
               key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), 
               units = &#39;imperial&#39;, total = T)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/accumulated_elevation-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="setting-goals-for-2021" class="section level2">
 <h2>Setting Goals for 2021</h2>
@@ -252,7 +252,7 @@ p &lt;- p + transition_reveal(dates)
 anim &lt;- animate(p, width = 900, height = 600, end_pause = 50, duration = 60, renderer = gifski_renderer())
 
 anim</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.gif" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/animation-1.gif" style="display: block; margin: auto;" /></p>
 <hr />
 <p>References</p>
 <blockquote>

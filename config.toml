@@ -70,3 +70,6 @@ ignoreFiles = ["\\.Rmd$","\\.Rmarkdown$","_cache$","\\.knit\\.md$","\\.utf8\\.md
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+# attempting to fix blogdown/postref issue on 28 Dec 2020
+# enableInlineShortcodes = true
