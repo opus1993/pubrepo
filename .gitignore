@@ -2,12 +2,11 @@
 .Rhistory
 .RData
 .Ruserdata
-blogdown
 public/
 Thumbs.db
-content/post/GLMnet/data
+data
 geospatial/
-content/post/rtweet-for-windows/fr/
+fr
 *.rds
 .DS_Store
 resources/
