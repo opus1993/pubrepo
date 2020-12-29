@@ -29,7 +29,7 @@ twitter:
 <p>Author and <code>rStrava</code> Creator <a href="https://twitter.com/fawda123">Marcus W. Beck</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://twitter.com/sascha_wolfer">Sascha Wolfer</a> published an awesome blog post recently at <a href="http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/">rCrastinate</a> on running and is active in the <a href="https://www.strava.com/clubs/738071">RStats Strava Club</a></p>
+<p><a href="https://twitter.com/sascha_wolfer">Sascha Wolfer</a> published an very nice blog post recently at <a href="http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/">rCrastinate</a> on running and is active in the <a href="https://www.strava.com/clubs/738071">RStats Strava Club</a></p>
 </blockquote>
 <blockquote>
 <p><a href="https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/">Jack Rozran’s blog</a></p>
@@ -38,10 +38,10 @@ twitter:
 <p><a href="https://drawingwithdata.com/portfolio/cycle-eye/">Chris Woods’s Cycle Eye Visual</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://twitter.com/KittyJohne">John Peters</a> hosts a Shiny app that leverages Strava and other data at <a href="https://bluecattechnical.shinyapps.io/EnDuRA/">EnDuRA</a></p>
+<p><a href="https://twitter.com/KittyJohne">John Peters</a> hosts a Shiny app that leverages Strava and other fitness data at <a href="https://bluecattechnical.shinyapps.io/EnDuRA/">EnDuRA</a></p>
 </blockquote>
-<div id="what-we-will-look-at-in-this-posting" class="section level3">
-<h3>What we will look at in this posting</h3>
+<div id="what-we-will-look-at-in-this-post" class="section level3">
+<h3>What we will look at in this post</h3>
 <ol style="list-style-type: decimal">
 <li><p>Summarize total accumulated fitness efforts</p></li>
 <li><p>Explore the details of a specific workout activity spatially</p></li>
@@ -51,7 +51,7 @@ twitter:
 </div>
 <div id="setup-and-authentication" class="section level3">
 <h3>Setup and Authentication</h3>
-<p>As with any other project, we start with loading the appropriate libraries.</p>
+<p>As with any other project, we start by loading the appropriate libraries.</p>
 <pre class="r"><code>knitr::opts_chunk$set(
   echo = TRUE,
   message = FALSE,
@@ -79,7 +79,7 @@ pal &lt;- wesanderson::wes_palette(&quot;Zissou1&quot;, 21, type = &quot;continu
 </div>
 <div id="strava-authentication" class="section level3">
 <h3>Strava Authentication</h3>
-<p>The <code>rStrava</code> <a href="http://fawda123.github.io/rStrava/#api-functions-token">github site</a> offers clear instructions for mapping your Strava profile credentials to an API connection, even for free accounts. My code here wraps the config request into if-else statements so the blogdown site is not hammering Strava while it renders pages. For convenience I will use Google’s background maps, though they are not often my first choice.</p>
+<p>The <code>rStrava</code> <a href="http://fawda123.github.io/rStrava/#api-functions-token">github site</a> offers clear instructions for mapping your Strava profile credentials to an API connection, even for free accounts. My code here wraps the config request into if-else statements so the blogdown site is not hammering Strava while it renders pages. For convenience I will use Google’s background maps though they are rarely my first choice.</p>
 <pre class="r"><code># get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
 
 if (file.exists(here(&quot;.httr-oauth&quot;))) {

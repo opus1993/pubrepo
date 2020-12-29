@@ -27,15 +27,15 @@ Let's pause here and acknowledge my inspirations and resources for building this
 
 > Author and `rStrava` Creator [Marcus W. Beck](https://twitter.com/fawda123) 
 
-> [Sascha Wolfer](https://twitter.com/sascha_wolfer) published an awesome blog post recently at [rCrastinate](http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/) on running and is active in the [RStats Strava Club](https://www.strava.com/clubs/738071)
+> [Sascha Wolfer](https://twitter.com/sascha_wolfer) published an very nice blog post recently at [rCrastinate](http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/) on running and is active in the [RStats Strava Club](https://www.strava.com/clubs/738071)
 
 > [Jack Rozran's blog](https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/)
 
 > [Chris Woods's Cycle Eye Visual](https://drawingwithdata.com/portfolio/cycle-eye/)
 
-> [John Peters](https://twitter.com/KittyJohne) hosts a Shiny app that leverages Strava and other data at [EnDuRA](https://bluecattechnical.shinyapps.io/EnDuRA/)
+> [John Peters](https://twitter.com/KittyJohne) hosts a Shiny app that leverages Strava and other fitness data at [EnDuRA](https://bluecattechnical.shinyapps.io/EnDuRA/)
 
-### What we will look at in this posting
+### What we will look at in this post
 
 1. Summarize total accumulated fitness efforts
 
@@ -47,7 +47,7 @@ Let's pause here and acknowledge my inspirations and resources for building this
 
 ### Setup and Authentication
 
-As with any other project, we start with loading the appropriate libraries.
+As with any other project, we start by loading the appropriate libraries.
 
 ```{r, echo=TRUE, warning = FALSE}
 knitr::opts_chunk$set(
@@ -78,7 +78,7 @@ pal <- wesanderson::wes_palette("Zissou1", 21, type = "continuous")
 
 ### Strava Authentication
 
-The `rStrava` [github site](http://fawda123.github.io/rStrava/#api-functions-token) offers clear instructions for mapping your Strava profile credentials to an API connection, even for free accounts. My code here wraps the config request into if-else statements so the blogdown site is not hammering Strava while it renders pages. For convenience I will use Google's background maps, though they are not often my first choice.
+The `rStrava` [github site](http://fawda123.github.io/rStrava/#api-functions-token) offers clear instructions for mapping your Strava profile credentials to an API connection, even for free accounts. My code here wraps the config request into if-else statements so the blogdown site is not hammering Strava while it renders pages. For convenience I will use Google's background maps though they are rarely my first choice.
 
 ```{r StravaAuthentication}
 # get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
