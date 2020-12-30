@@ -26,11 +26,11 @@ Inspired by:
 My short list of useful free books, courses, tutorials, and expert blogs. These are all possible departure points for your own learning journey. Where possible, look for materials that integrate your subject area of interest. 
 
 ## Introductory Books
-**R for Data Science** and the **R Cookbook** were primary resources, at least for me, in the Notre Dame Business Analytics program. 
-- **[R for Data Science](https://r4ds.had.co.nz/) by [Hadley Wickham](https://twitter.com/hadleywickham)** and [Garrett Grolemund](https://twitter.com/StatGarrett) is excellent. The [R for Data Science Online Learning Community](https://www.rfordatasci.com/) hosts book club-style weekly chapter reviews through Slack channels, and [Vebash](https://twitter.com/sciencificity) has assembled a nice [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html).
+**R for Data Science** and the **R Cookbook** were primary resources for me in the Notre Dame Business Analytics program. 
+- **[R for Data Science](https://r4ds.had.co.nz/)** by [Hadley Wickham](https://twitter.com/hadleywickham) and [Garrett Grolemund](https://twitter.com/StatGarrett) is excellent. The [R for Data Science Online Learning Community](https://www.rfordatasci.com/) hosts book club-style weekly chapter discussions through their Slack channels, and [Vebash](https://twitter.com/sciencificity) has assembled a nice [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html).
 - **[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication), [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook)
 
-Other learning resources for those starting from Excel and basic statistics:
+Others for those starting from Excel and basic statistics:
 - [Data Science: A First Introduction](https://ubc-dsci.github.io/introduction-to-datascience/) by Tiffany-Anne Timbers, Trevor Campbell, and Melissa Lee
 - **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** by [Garrett Grolemund](https://twitter.com/StatGarrett)
 - [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger Peng
@@ -50,6 +50,7 @@ Other learning resources for those starting from Excel and basic statistics:
 
 ----
 ## Online Courses
+- [Data Science in a Box](https://datasciencebox.org/index.html)
 - [learnr4free.com](https://www.learnr4free.com/en/index.html)
 - [`swirl`](https://swirlstats.com/students.html)
 - **[STAT545](https://stat545.com/)** by [Jenny Bryan](https://twitter.com/JennyBryan)
@@ -67,11 +68,11 @@ Other learning resources for those starting from Excel and basic statistics:
 
 ----
 ## Data Visualization
-If your toolkit has been limited to Powerpoint and Excel, you may not even know that there is so much more to effective visual communication. In addition to the learning resources listed here, look for the recent books by Hans Rosling and Alberto Cairo at your local library.
+If your toolkit has been limited to Powerpoint and Excel, you might not yet appreciate that there is so much more to crafting effective visual communication materials. In addition to the learning resources listed here, look for the recent books by Hans Rosling and Alberto Cairo at your local library.
 - **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** by [Kieran Healy](https://twitter.com/kjhealy)
 - [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) the online version of work-in-progress 3rd edition by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen
 - [Hands-On Data Visualization](https://handsondataviz.org/) by Jack Dougherty and Ilya Ilyankou
-- [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows)
+- [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows) by [W R Chase](https://twitter.com/W_R_Chase)
 
 {{< youtube id="h29g21z0a68" autoplay="false" >}}
 
@@ -83,16 +84,6 @@ If your toolkit has been limited to Powerpoint and Excel, you may not even know 
 - [Exploratory Data Analysis & Visualization](https://edav.info/index.html) by [Zach Bogart](https://twitter.com/zachbogart) and [Joyce Robbins](https://twitter.com/jtrnyc)
 - [The Complete ggplot2 Tutorial](http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html)
 - [flowingdata.com](https://flowingdata.com/)
-- [`patchwork`](https://patchwork.data-imaginist.com/)
-- [`cowplot`](https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html)
-- [`ggbump`](https://github.com/davidsjoberg/ggbump)
-
-----
-## Colors
-- [Color Extractor](https://github.com/zumbov2/colorfindr)
-- [`colourpicker`](https://github.com/daattali/colourpicker/) Rstudio widget by [Dean Attali](https://twitter.com/daattali)
-- [`paletteer`](https://emilhvitfeldt.github.io/paletteer/) a comprehensive metacollection of color palettes
-- [Wes Anderson color palettes](https://github.com/karthik/wesanderson)
 - [How to standardize group colors in data visualizations in R](https://paulvanderlaken.com/2020/03/20/how-to-standardize-group-colors-in-data-visualizations-in-r/) by [Paul van der Laken](https://twitter.com/paulvanderlaken)
 
 ----
@@ -137,12 +128,23 @@ Mastery of the wide array of Machine Learning techniques for prediction and infe
 
 There is a running joke on Twitter that most resumes that list Natural Language Processing as a skill are *at-best* indicating the use of regular expressions.  To be blunt, the free materials available at this point are not sufficient to provide a proper foundation in the many risks and trade-offs, particularly with respect to each knowledge domain. For example, consider SARs COVID-19 and all of the epidemiological models and ramifications for policy decisions. Further, the leading edge of thinking in many ML areas is changing rapidly.
 
-Though it is not free, find a copy of Provost and Fawcett's **Data Science for Business** published by O'Reilly. Nwanganga and Chapple's **Practical Machine Learning in R** [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/) is another approachable book. Gelman, Hill, and Vehtari's **Regression and Other Stories, Analytical Methods for Social Research** is an applied statistics text that provides real-world lessons for quantitative researchers applying ML techniques. Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
+Though none of these are free, find each of these at a library or a gently used copy, as students use them in classes and often sell them back.
+
+> Provost and Fawcett's 2013 **Data Science for Business** published by O'Reilly. 
+
+> Nwanganga and Chapple's 2020 **Practical Machine Learning in R** [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). 
+
+> David Salsburg's 2002 **The Lady Tasting Tea: How Statistics Revolutionized Science in the Twentieth Century** on the statistical revolution over time and the contributions of key characters. 
+
+> Gelman, Hill, and Vehtari's **Regression and Other Stories, Analytical Methods for Social Research** is an applied statistics text that provides real-world lessons for quantitative researchers applying ML techniques. 
+
+Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
 Machine learning modeling frameworks do offer somewhat more streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages.
 
 For a free glimpse into the R environment ML frameworks, consider these resources:
 - [Tidy Modeling with R](https://www.tmwr.org/) by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)
+- [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/)
 - [Julia Silge's blog](https://juliasilge.com/)
 - [Jared Lander](https://www.jaredlander.com/talks/)
 
@@ -157,10 +159,8 @@ For a free glimpse into the R environment ML frameworks, consider these resource
 
 ----
 ## Geospatial
-- [An Introduction to Choropleth maps in R](https://rstudio-pubs-static.s3.amazonaws.com/324400_69a673183ba449e9af4011b1eeb456b9.html) by Henry Cann
-- [Map Plots Created With R And Ggmap](https://www.littlemissdata.com/blog/maps) by Laura Ellis
+- [Map Plots Created With R And Ggmap](https://www.littlemissdata.com/blog/maps) by [Laura Ellis](https://twitter.com/LittleMissData)
 - [Reproducible road safety research with R](https://www.racfoundation.org/research/safety/reproducible-road-safety-research-with-r)
-- [`sen2r`](http://sen2r.ranghetti.info/index.html)
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/uZtto0cYjZM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -188,8 +188,11 @@ Join the Slack channels (button in the upper right hand corner) for community ne
 - [New York Open Statistical Programming Meetup](https://www.meetup.com/nyhackr/)
 - [Win Vector blog](https://win-vector.com/blog-2/)
 - [David Smith's RevolutionAnalytics](https://blog.revolutionanalytics.com/)
-- [Business Science](https://www.business-science.io/) by 
-[Matt Dancho](https://twitter.com/mdancho84)
+- [Business Science Blog](https://www.business-science.io/blog/index.html) by 
+[Matt Dancho](https://twitter.com/mdancho84). The [Business Science University](https://www.business-science.io/) team built an on-line school with virtual workshop course tracks, private Slack forum, and a [Learning Labs Pro](https://university.business-science.io/p/learning-labs-pro) bi-weekly seminar offering. Their courses are not free, as the curriculum extends into building a wide array of useful business solutions on cloud services. Matt is an open source package author in time series and a prominent member of the R community. If your work is in non-academic settings (out in "industry"), look into the "pro" offering.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nogIHBPixP0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 - [Julia Silge](https://juliasilge.com/blog/)
 - [Ken Benoit](https://kenbenoit.net/posts/)
 - [Data Imaginist](https://www.data-imaginist.com/) by [Thomas Lin Pederson](https://twitter.com/thomasp85)
@@ -199,6 +202,7 @@ Join the Slack channels (button in the upper right hand corner) for community ne
 - [Plant out of Place](https://plantoutofplace.com/) by [Andrew Kniss](https://twitter.com/WyoWeeds)
 - [Harvard Data Science Review](https://review.datascience.harvard.edu/)
 - [AllYourBayes](https://www.allyourbayes.com/)
+- [datamethods](https://discourse.datamethods.org/) This is a place where statisticians, epidemiologists, informaticists, machine learning practitioners, and other research methodologists discuss issues related to data: research methods, quantitative methods, study design, measurement, statistical analysis, interpretation of data and statistical results, clinical trials, journal articles, statistical graphics, causal inference, medical decision making, and more.
 - [Data Meets Narrative](http://www.rebeccabarter.com/blog/)
 - [A. Kaplan on less well-known regression types](https://github.com/kaplanas/nonstandard-regression)
 - [Jake Rozran Learns Data Science](https://www.jakelearnsdatascience.com/post/)
@@ -214,7 +218,6 @@ Join the Slack channels (button in the upper right hand corner) for community ne
 - [Uni Freiburg](http://www.rblog.uni-freiburg.de)
 - [Ted Laderas](http://laderast.github.io/)
 - [r4stats.com](http://r4stats.com/blog/)
-- [Revolutions](http://blog.revolutionanalytics.com/)
 - [R-bloggers](http://www.r-bloggers.com/)
 - [Karl Broman](http://kbroman.org/blog/) by [Karl Broman](https://twitter.com/kwbroman)
 - [Rob Kabacoff](https://www.statmethods.net/)
