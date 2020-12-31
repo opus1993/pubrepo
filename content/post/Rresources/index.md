@@ -227,7 +227,7 @@ A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-suppo
 | [R Users & R-Ladies Warsaw](https://www.meetup.com/Spotkania-Entuzjastow-R-Warsaw-R-Users-Group-Meetup/)
 | [New York Open Statistical Programming Meetup](https://www.meetup.com/nyhackr/)
 | [Win Vector blog](https://win-vector.com/blog-2/) | by Dr. John Mount and Dr. Nina Zumel|
-| [David Smith's RevolutionAnalytics](https://blog.revolutionanalytics.com/)
+| [RevolutionAnalytics](https://blog.revolutionanalytics.com/)| by [David Smith](https://twitter.com/revodavid)|
 [Business Science Blog](https://www.business-science.io/blog/index.html) |by [Matt Dancho](https://twitter.com/mdancho84)|
 
 The [Business Science University](https://www.business-science.io/) team has built an on-line school with virtual workshop course tracks, private Slack forum, and a [Learning Labs Pro](https://university.business-science.io/p/learning-labs-pro) bi-weekly seminar. Their courses are not free, as the curriculum extends into building a wide array of useful business solutions on cloud services. Matt is an open source package author and a prominent member of the R community. If your work is in non-academic settings (out in "industry"), consider the "pro" offering.
