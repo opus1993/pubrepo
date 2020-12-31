@@ -226,6 +226,7 @@ A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-suppo
 | [Greater Boston useR Group](https://www.meetup.com/Boston-useR/)
 | [R Users & R-Ladies Warsaw](https://www.meetup.com/Spotkania-Entuzjastow-R-Warsaw-R-Users-Group-Meetup/)
 | [New York Open Statistical Programming Meetup](https://www.meetup.com/nyhackr/)
+| [themockup](https://themockup.blog/)|by [Thomas Mock](https://twitter.com/thomas_mock) |
 | [Win Vector blog](https://win-vector.com/blog-2/) | by Dr. John Mount and Dr. Nina Zumel|
 | [RevolutionAnalytics](https://blog.revolutionanalytics.com/)| by [David Smith](https://twitter.com/revodavid)|
 [Business Science Blog](https://www.business-science.io/blog/index.html) |by [Matt Dancho](https://twitter.com/mdancho84)|
