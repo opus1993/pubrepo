@@ -244,6 +244,7 @@ The [Business Science University](https://www.business-science.io/) team has bui
 | [Thomas Neitmann](https://thomasadventure.blog/posts/) | Biostatistics|
 | [Edward Visel](https://alistaire.rbind.io/) |by [Edward Visel](https://twitter.com/alistaire)|
 | [Plant out of Place](https://plantoutofplace.com/) |by [Andrew Kniss](https://twitter.com/WyoWeeds) on agriculture|
+| [Ag Data News](https://asmith.ucdavis.edu/news) | by [Aaron Smith](https://twitter.com/ASmithUCD)|
 | [AllYourBayes](https://www.allyourbayes.com/)| by [Domenic  Di Francesco](https://twitter.com/Domenic_DF)|
 | [datamethods](https://discourse.datamethods.org/) |Where statisticians, epidemiologists, informaticists, machine learning practitioners, and other research methodologists discuss issues related to data: research methods, quantitative methods, study design, measurement, statistical analysis, interpretation of data and statistical results, clinical trials, journal articles, statistical graphics, causal inference, medical decision making, and more.|
 | [Data Meets Narrative](http://www.rebeccabarter.com/blog/) |by [Rebecca Barter](https://twitter.com/rlbarter)|
