@@ -209,7 +209,7 @@ For a free glimpse into the R environment ML frameworks, consider these resource
 
 ----
 ## Meetups, Blogs, and User Groups
-A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-support-program) organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the [open source](https://jimgruman.netlify.app/post/open-source/) R community to lift one another up and recognize efforts. The software is "free" as in speech, not as in beer. If you learn something useful and encounter a [buy me coffee](https://www.buymeacoffee.com/) button, be sure to provide them a cup of java.
+A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-support-program) organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the [open source](https://jimgruman.netlify.app/post/open-source/) R community to lift one another up and recognize efforts. The software is "free" as in speech, not as in beer. If you learn something useful and encounter a [buy me coffee](https://www.buymeacoffee.com/) button, be sure to offer  a cup of java in return.
 |    |    |
 |:---|:---|
 | [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, and career tips |
@@ -226,7 +226,7 @@ A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-suppo
 | [Greater Boston useR Group](https://www.meetup.com/Boston-useR/)
 | [R Users & R-Ladies Warsaw](https://www.meetup.com/Spotkania-Entuzjastow-R-Warsaw-R-Users-Group-Meetup/)
 | [New York Open Statistical Programming Meetup](https://www.meetup.com/nyhackr/)
-| [Win Vector blog](https://win-vector.com/blog-2/)
+| [Win Vector blog](https://win-vector.com/blog-2/) | by Dr. John Mount and Dr. Nina Zumel|
 | [David Smith's RevolutionAnalytics](https://blog.revolutionanalytics.com/)
 [Business Science Blog](https://www.business-science.io/blog/index.html) |by [Matt Dancho](https://twitter.com/mdancho84)|
 
