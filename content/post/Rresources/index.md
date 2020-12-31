@@ -18,9 +18,9 @@ twitter:
   site: "@jim_gruman"
   creator: "@jim_gruman"
 ---
-My short list of useful books, courses, tutorials, and expert blogs. Most are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice. 
+My short list of useful books, courses, and expert blogs. Most are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice. 
 
-Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about in my work is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When our team members each have a baseline of competencies, we work better together on the problems we face.
+Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about in my work is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.
 
 Tell me about what is good here, and what I have missed. 
 
@@ -29,14 +29,14 @@ Inspired by:
 
 ----
 ## Introductory Books
-**R for Data Science** and the **R Cookbook** were our primary resources in the Notre Dame Business Analytics program. 
+**R for Data Science** was a primary resource in the [Notre Dame Business Analytics MSBA](https://mendoza.nd.edu/graduate-programs/business-analytics-msba/) program. 
 
 |     |    | 
 |:---|:---:|
 |**[R for Data Science](https://r4ds.had.co.nz/)** by [Hadley Wickham](https://twitter.com/hadleywickham) and [Garrett Grolemund](https://twitter.com/StatGarrett) is an excellent introduction to the Tidyverse. The [R for Data Science Online Learning Community](https://www.rfordatasci.com/) hosts book club-style weekly chapter discussions through their Slack channels. [Vebash Naidoo](https://twitter.com/sciencificity) has assembled a related [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html).|<a href="https://r4ds.had.co.nz/"><img alt="R for Data Science" src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png" width="250"></a>|
 |**[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication), [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook) is full of how-to recipes, each of which solves a specific problem. The recipe includes a quick introduction followed by a discussion that unpacks the solution and provides insight into how it works.|<a href="https://rc2e.com/"><img alt="R Cookbook, 2nd Edition" src="https://rc2e.com/images_v2/book_cover.jpg" width="250"></a>|
          
-Other books for those starting from Excel and basic statistics:
+Other books for students starting from Excel and basic statistics:
 |   |    | 
 |:---|:---|
 | [Data Science: A First Introduction](https://ubc-dsci.github.io/introduction-to-datascience/) | by [Tiffany-Anne Timbers](https://twitter.com/TiffanyTimbers), Trevor Campbell, and Melissa Lee |
@@ -77,7 +77,7 @@ Other books for those starting from Excel and basic statistics:
 
 ----
 ## Data Visualization
-If your toolkit has been limited to Powerpoint and Excel, you might not yet appreciate that there is so much more to crafting effective visual communication materials. In addition to the learning resources listed here, look for the recent books by Hans Rosling and Alberto Cairo at your local library.
+If your toolkit has been limited to Powerpoint and Excel, you might not yet appreciate that there is so much more to crafting effective visual communication materials. In addition to the learning resources listed here, look for the recent books by Alberto Cairo and David McCandless at your local library.
 |     |    | 
 |:---|:---|
 | **[Data Visualization, a Practial Introduction in R](https://socviz.co/index.html)** |by [Kieran Healy](https://twitter.com/kjhealy)|
@@ -101,7 +101,7 @@ If your toolkit has been limited to Powerpoint and Excel, you might not yet appr
 ## Empirical Bayes
 In this little book, David Robinson introduces powerful tools for handling uncertainty across observations. It teaches both the math behind these and the code that you can adapt to your own data through the detail of a single case study: batting averages in baseball. He wrote it for people (like me) who need to understand and apply methods, but would rather work with real data than face down pages of equations.
 
-So why is Empirical Bayes worth learning? Frankly, this method is especially well suited for the modern application of data science.
+So why is Empirical Bayes worth learning? These methods are especially well suited for many modern applications of data science.
 
 <a href="https://gumroad.com/l/empirical-bayes">
          <img alt="Introduction to Empirical Bayes" src="https://static-2.gumroad.com/res/gumroad/5593696892949/asset_previews/b4389a17ef026304160aed044e1f5f9d/retina/unnamed.png"
@@ -153,7 +153,7 @@ So why is Empirical Bayes worth learning? Frankly, this method is especially wel
 
 ----
 ## Machine Learning
-Mastery of the wide array of Machine Learning techniques for prediction and inference in real business contexts requires a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We're smart. Just wing it, right? *This is a bad idea.*
+Mastery of the wide array of Machine Learning techniques in real business contexts requires a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We're smart. Just wing it, right? *This is a bad idea.*
 
 There is a running joke on Twitter that most resumes that list Natural Language Processing as a skill are *at-best* suggesting an awareness of regular expressions.  To be blunt, the free materials available at this point are not sufficient to provide a proper foundation in the many risks and trade-offs, particularly with respect to each knowledge domain. For example, consider SARs COVID-19 and all of the epidemiological models and ramifications for policy decisions. Further, the leading edge of thinking in many ML areas is changing rapidly.
 
@@ -167,14 +167,13 @@ Though none of these are free, find each of these at a library or a gently used 
 
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
-Machine learning modeling frameworks do offer somewhat more streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages.
+The Machine learning modeling frameworks offer streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages. In R the widely used frameworks are `caret`, `tidymodels`, and `mlr3`.
 
-For a free glimpse into the R environment ML frameworks, consider these resources:
+For a glimpse into the R environment ML frameworks, consider these resources:
 |    |    |
 |:---|:---|
 | [Tidy Modeling with R](https://www.tmwr.org/) |by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)|
 | [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/) |by [Max Kuhn](https://twitter.com/topepos) and Kjell Johnson|
-| [Julia Silge's blog](https://juliasilge.com/)
 | [Jared Lander](https://www.jaredlander.com/talks/)'s talks
 
 {{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
@@ -186,6 +185,7 @@ For a free glimpse into the R environment ML frameworks, consider these resource
 | [DALEX moDel Agnostic Language for Exploration and eXplanation](https://modeloriented.github.io/DALEX/)
 | [R interface to keras](https://keras.rstudio.com/)
 | [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
+| [Introducing Torch for R](https://blog.rstudio.com/2020/09/29/torch/)
 
 ----
 ## Geospatial
@@ -209,7 +209,7 @@ For a free glimpse into the R environment ML frameworks, consider these resource
 
 ----
 ## Meetups, Blogs, and User Groups
-A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-support-program) organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the [open source](https://jimgruman.netlify.app/post/open-source/) R community to lift one another up and recognize efforts. The software is "free" as in speech, not as in beer. If you learn something useful and encounter a [buy me coffee](https://www.buymeacoffee.com/) button, be sure to offer  a cup of java in return.
+A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-support-program) organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the [open source](https://jimgruman.netlify.app/post/open-source/) R community to lift one another up and recognize efforts. The software is "free" as in speech, not as in beer. If you learn something useful and encounter a [buy me coffee](https://www.buymeacoffee.com/) button, be sure to offer  a cup of java to the presenter in return.
 |    |    |
 |:---|:---|
 | [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, and career tips |
@@ -237,7 +237,7 @@ The [Business Science University](https://www.business-science.io/) team has bui
 |    |    |
 |:---|:---|
 | [Julia Silge](https://juliasilge.com/blog/)
-| [David Robinson](http://varianceexplained.org/posts/)
+| [Variance Explained](http://varianceexplained.org/posts/) | by [David Robinson](https://twitter.com/drob)|
 | [Ken Benoit](https://kenbenoit.net/posts/) |on Text and NLP|
 | [Data Imaginist](https://www.data-imaginist.com/) |by [Thomas Lin Pederson](https://twitter.com/thomasp85) on ggplot2|
 | [Alison Hill](https://alison.rbind.io/) |by [Alison Hill](https://twitter.com/apreshill) on education|
@@ -248,7 +248,7 @@ The [Business Science University](https://www.business-science.io/) team has bui
 | [AllYourBayes](https://www.allyourbayes.com/)| by [Domenic  Di Francesco](https://twitter.com/Domenic_DF)|
 | [datamethods](https://discourse.datamethods.org/) |Where statisticians, epidemiologists, informaticists, machine learning practitioners, and other research methodologists discuss issues related to data: research methods, quantitative methods, study design, measurement, statistical analysis, interpretation of data and statistical results, clinical trials, journal articles, statistical graphics, causal inference, medical decision making, and more.|
 | [Data Meets Narrative](http://www.rebeccabarter.com/blog/) |by [Rebecca Barter](https://twitter.com/rlbarter)|
-| [Jake Rozran Learns Data Science](https://www.jakelearnsdatascience.com/post/)
+| [Jake Rozran Learns Data Science](https://www.jakelearnsdatascience.com/post/) | by [Jake Rozran](https://twitter.com/StatsManPHL) |
 | [RCrastinate ](http://rcrastinate.rbind.io/) | by [Sascha Wolfer](https://twitter.com/sascha_wolfer)|
 | [Colin Fraser](https://colin-fraser.net/)
 | [rgeomatic](https://rgeomatic.hypotheses.org/category/r-en)
