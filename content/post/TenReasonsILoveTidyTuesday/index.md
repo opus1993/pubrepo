@@ -24,7 +24,7 @@ The R for Data Science online learning community (R4DS) hosts a wonderful progra
 ----
 [What is TidyTuesday?](https://github.com/jthomasmock/tidytuesday_presentation-user-2020/blob/master/)
 
-A **scaffold** for a **self-directed community of practice** in mastering data visualization
+According to [Thomas Mock](https://themockup.blog/posts/2020-12-31-2020-in-review/), it is a **scaffold** for a **self-directed community of practice** in mastering data visualization. 
 
 In education, scaffolding refers to a number of instructional techniques used to move students progressively toward stronger understanding and, ultimately, greater independence in the learning process.
 
@@ -34,7 +34,7 @@ A community of practice is a living, voluntary group of people that share a pass
 Here are my ten reasons to dive in: 
 
     1. Be inspired by the creativity of others 
-I love to see the variety of visualizations coming from the same data sets. On most weeks, there is at least one Tidy Tuesday plot uses an approach I would not have thought of. Fortunately, most authors share their code. This is an easy way to learn cool new tricks. 
+I love to see the variety of visualizations coming from the same data sets. On most weeks, there is at least one Tidy Tuesday plot that uses an approach I would not have thought of. Fortunately, most authors share their code. This is an easy way to learn cool new tricks. 
 
 {{< tweet 1343864907750469633 >}}
 
