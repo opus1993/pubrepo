@@ -217,6 +217,7 @@ A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-suppo
 | [Chicago R Users Group](https://chicago-r-user-group.github.io/)
 | [Chicago R Collaborative](https://chircollab.github.io/)
 | **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** |by [R4DS](https://twitter.com/rstats4ds) and  [Ten reasons why I love Tidy Tuesday](https://jimgruman.netlify.app/post/ten-reasons-why-i-love-tidy-tuesday/)|
+| [TidyTuesday Tweets](https://www.notion.so/8cfed86c707e4974b2f483716c35bac3?v=7e87113d8a7946fdaeeafd7cdaf69598) |  curated by [Silvia Canelón](https://twitter.com/spcanelon) |
 | [WhyR Foundation](http://whyr.pl/foundation/webinars)
 | [Simply Statistics](https://simplystatistics.org/) |by Rafa Irizarry, Roger Peng, and Jeff Leek|
 | [Salt Lake City R Users Group](https://www.meetup.com/slc-rug/)
