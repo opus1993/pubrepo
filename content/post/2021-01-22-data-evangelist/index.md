@@ -34,7 +34,7 @@ projects: []
 
 **Gulp** is right :flushed: 
 
-The failures in AI and data science in recent years should be well known by now. How many of you have received offers both from AI HR services that screen candidate resumes -AND- AI HR services that help write a better resume? For any one of the algorithms deployed, what could possibly go wrong, and who owns it? Who is the owner of the algorithms used where you work, and does everybody know what the standards are?
+The failures in AI and data science in recent years should be well known by now. How many of you have received offers both from AI HR services that screen candidate resumes -AND- AI HR services that help write a better resume? For any one of the algorithms deployed, what could possibly go wrong, and who owns it? Who is the owner of the algorithms used where you work, and does everybody know what the standards are? Diversity and fairness must be addressed as a normal course of work processes, that in many cases do not exist yet.
 
 I couldn't help but recall [Sergio Marchionne](https://www.ft.com/content/6a813814-8ff3-11e8-b639-7680cedcc421)'s philosophical framework on leadership from 10+ years ago. If you left the company today, could you articulate the ways the organization, or customer experience, has been impacted because of your work? Ethical leadership requires that we go beyond an awareness of the potential issues and actually impart accountability, insight, and action. 
 
@@ -50,7 +50,7 @@ I have a hunch that avid readers exhibit a deeper sense of curiosity, going beyo
 
 The ability to convey stories with a sense of our shared history makes the math come alive in more meaningful ways. 
 
-When is the last time that you helped someone with a request that they could have easily done themselves? Do you use the ad-hoc engagements as opportunities to build relationships and advocate for new ways of working? When and where is there a stage and a receptive audience for data science?
+When is the last time that you helped someone with a request that they could have easily done themselves? Do you use the ad-hoc engagements as opportunities to build relationships and advocate for new ways of working? When and where has there been a stage and a receptive audience for data science?
 
 {{< tweet 1352604567800864769 >}}
 
@@ -70,7 +70,7 @@ With the importance of data evangelism in mind, below are six ideas for initiati
 
 1. **Workshops**
 
-Educating line of business stakeholders on SQL, advanced Excel, and R will lead to huge time savings on the ad-hoc requests. Other topics could include an overview of basic business intelligence data visualization tools, or even a workshop describing the basics of how predictive models make decisions. The key here is to engage, educate and inspire colleagues to continue learning on their own. Having office hours during specific times of the week may be another useful way to keep engagement high and create time to answer questions. This way you can also batch questions, and avoid context switching during the week.
+Educating line of business stakeholders on SQL, advanced Excel, and R will lead to huge time savings on the ad-hoc requests. Other topics could include an overview of  business intelligence data visualization tools, or even a workshop describing the basics of how predictive models make decisions. The key here is to engage, educate and inspire colleagues to continue learning on their own. Having office hours during specific times of the week may be another useful way to keep engagement high and create time to answer questions. This way you can also batch questions, and avoid context switching during the week.
 
 2. **Yammer newsletters and guest blogs**
 
