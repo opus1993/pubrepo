@@ -28,33 +28,41 @@ image:
 projects: []
 ---
 
-[R-Studio's annual global conference](https://global.rstudio.com/student/catalog) came and went yesterday with ~16,000 dialing in virtually for 24 hours of rapid-fire talks simulcast on a huge variety of topics. Grant Fleming is very much qualified to deliver this particular talk as an author and contributor to two recent books on fairness in machine learning and model explainability. It's one of the more challenging topics to speak on.
+[R-Studio's annual global conference](https://global.rstudio.com/student/catalog) for 2021 came and went yesterday. This year's format was 24 hours of back to back simulcast talks, shared interest networking rooms, and opportunities to engage the speakers in discussions. As many as ~16,000 dialed in virtually, a figure quite a bit higher than the previous years' in-person conferences.
+
+This post is intended to accomplish three things:  1) reflect on a handful of takeaways from the conference relevant to my own work this year, 2) link up several threads on working towards addressing diversity and inclusion, and 3) as most companies set annual employee development goals this time of year, make a call to action.
+
+> If you are not familiar with R, take a moment to explore the [R-Consortium](https://www.r-consortium.org/) web site and watch the 90 second video. Over 2 million users and hundreds of companies have joined to support an open source governance and foundation model. 
+
+One track of talks at the conference featured topics on diversity, fairness, and inclusiveness. Speaking on these can be challenging because the issues manifest themselves both in our workplaces and in our work output, the algorithms and tools we build. Grant Fleming here is very much qualified to deliver this particular talk as an author and contributor to two recent books on fairness in machine learning and model explainability. 
 
 {{<tweet 1352072130184306689>}}
 
 **Gulp** is right :flushed: 
 
-The many failures in AI and data science in recent years should be well known by now. How many of you have received offers both from AI HR services that screen candidate resumes -AND- AI HR services that help write a better resume? For any one of the algorithms deployed, what could possibly go wrong, and who owns it? Who is the owner of the algorithms used where you work, and who sets the standards? Diversity and fairness must be addressed as a normal course of work processes, for processes that in many cases do not exist yet.
+The many failures in AI and data science in recent years should be well known by now. How many of you have received offers both from AI HR services that screen candidate resumes -AND- AI HR services that help write a better resume? For any one of the algorithms deployed, what could possibly go wrong, and who owns it? Who is the owner of the algorithms used where you work, and who sets the standards? Diversity and fairness must be addressed as a normal course of work processes, for processes that in many cases do not have guardrails yet.
 
-In his time, [Sergio Marchionne](https://www.ft.com/content/6a813814-8ff3-11e8-b639-7680cedcc421) spoke often about his leadership framework. In a nutshell, if you left the company today, could you articulate the ways the organization, or customer experience, has been impacted because of your work? Ethical leadership requires that we go beyond an awareness of the potential issues and actually impart accountability, insight, and action. 
+In his time, [Sergio Marchionne](https://www.ft.com/content/6a813814-8ff3-11e8-b639-7680cedcc421) spoke often about his leadership framework. In a nutshell, if you left the company today, could you articulate the ways the organization, or customer experience, has been impacted because of your work? Ethical leadership requires that we go beyond an awareness of the potential issues and actually impart accountability, insight, and action. Successful examples in domains like STEM, agriculture, manufacturing, and even in the statistics community have been too few and far between.
 
-Vicki Boykis gave a keynote address at the same conference on empowerment.
+----
+
+Vicki Boykis gave a keynote address at the conference on empowerment. A synopsis:
 
 {{<tweet 1352415527248023556>}}
 
-[Brian Popp](https://www.linkedin.com/in/brian-popp-mba/) makes a compelling argument in his [How to Build a High-Performance Analytics Team](https://www.meetup.com/St-Louis-Machine-Learning/events/275340419/) talk that we should be taking time to assess the curiosity of job candidates. Does the candidate have a trusted network of peers to bounce ideas off of? Some organizations host internal communities of practice, book clubs, or even Toastmasters chapters to bring out the best in their people. As the manager, we are committing to make a significant investment in building out both skills and the network for the new employee's success, so they are in a position to make that positive impact. 
+On a related note, [Brian Popp](https://www.linkedin.com/in/brian-popp-mba/) makes a compelling argument in his [How to Build a High-Performance Analytics Team](https://www.meetup.com/St-Louis-Machine-Learning/events/275340419/) talk that we should be taking time to assess the curiosity of job candidates. Does the candidate have a trusted network of peers to bounce ideas off of? Some organizations host internal communities of practice, book clubs, or even Toastmasters chapters to bring out the best in their people. As the manager, we are committing to make a significant investment in building out both skills and the network for the new employee's success, so they are in a position to make positive contributions. 
 
 I've observed that avid readers often exhibit a deeper sense of curiosity, going beyond doom-scrolling the echo-box of social media. Readers often can bring value to the organization making the greater impact on the non technical parts of the enterprise. 
 
 {{<tweet 1330449208600649730>}}
 
-The ability to convey stories with a sense of our shared history makes the math come alive in more meaningful ways. 
+The ability to convey stories with a sense of our shared history makes the math come alive in more meaningful ways. Other probing questions:
 
-When is the last time that you helped someone with a request that they could have easily done themselves? 
+- When is the last time that you helped someone with a request that they could have easily done themselves? 
 
-Do you use the ad-hoc engagements as opportunities to build relationships and advocate for new ways of working? 
+- Do you use the ad-hoc engagements as opportunities to build relationships and advocate for new ways of working? 
 
-When and where has there been a stage and a receptive audience for data science?
+- When and where has there been a stage and a receptive audience for data science?
 
 {{< tweet 1352604567800864769 >}}
 
@@ -82,7 +90,7 @@ With a newsletter, the focus can shift from internal topics (highlighting projec
 
 3. **Meetups**
 
-New employees straight out of college can find it difficult to continue learning and staying on top of the latest developments. Meetups like [R in manufactuRing & consumeR products](https://www.meetup.com/RStudio-Enterprise-Community-Meetup/events/275770080/) can serve as a useful accountability tool, bridging academia and industry. They may also lead to some interesting ideas that impact the technical roadmap.
+New employees straight out of college can find it difficult to continue learning and staying on top of the latest developments. Meetups like [R in manufactuRing & consumeR products](https://www.meetup.com/RStudio-Enterprise-Community-Meetup/events/275770080/) and the hundreds of local [R User Groups](https://www.meetup.com/pro/r-user-groups/) can serve as useful accountability tools, bridging academia and industry. They may also lead to some interesting ideas that impact the business' technical roadmap.
 
 4. **Learning Lunches**
 
