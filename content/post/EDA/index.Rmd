@@ -1,11 +1,8 @@
 ---
 date: "2021-01-29"
 diagram: true
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image: 
-  caption: ''
+  caption: 'by Allison Horst'
   focal_point: "TopRight"
   preview_only: false
 title: 'Exploratory Data Analysis'
@@ -19,17 +16,17 @@ featured: false
 draft: false
 ---
 
-In many cases, the most beneficial near-term analytics projects do not involve Artificial Intelligence. The financial return on analytics comes from insights delivered back to the organization through Exploratory Data Analysis, or EDA.
+More often than not, the most beneficial near-term analytics projects do not involve any Artificial Intelligence. The tangible financial return on analytics comes from insights delivered back to the organization via Exploratory Data Analysis, or EDA.
 
-Professionals who focus on decision science and analytics, that is, people that use data to provide ideas and ground truth to the business, must be able to articulate what the EDA process is and what the standards are for the process. Analysts should be the best people available to find meaning in the data. 
+Analytics professionals who focus on decision science, that is, people that use data to provide ground truth to the business, must be able to articulate what the EDA process is and what the standards are for the process. Analysts should be the best people available to find meaning in the data. 
 
-Crafting an analysis that can take a vast amount of privileged company data and convert it into a concise result that clarifies the matter at hand is often difficult and may be practically an art. The act of figuring out what is meaningfully mathematically, what the business cares about, and how to bridge the gap between the two is not something that most people will know how to do naturally.
+Crafting an analysis that takes a vast amount of privileged company data and converts it into a concise result could be considered an art. The act of figuring out what is meaningful mathematically, what the business cares about, and how to bridge the gap between the two is not something that most people will know how to do naturally.
 
-This post will be a description of the major elements of Exploratory Data Analysis. 
+This post will be a short outline of the major elements of Exploratory Data Analysis. I welcome your feedback, and especially from those that have extraordinary analysts on their teams.
 
 # What makes a good analysis?
 
-According to [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science):
+According to the 2020 book [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science):
 
 - *It answers the question*. An analysis starts with someone asking a question, and it must provide an answer to that question.
 
@@ -45,13 +42,13 @@ Ultimately, a good analysis is simply the work product that helps non-analysts d
 
 ## The analysis plan
 
-Knowing whether the data that could plausibly answer the question is available is *really* important. An analysis plan should consist of actionable tasks that drill down into the dimensions of the business question and how they should be addressed. It should be shared with the team manager and the client to secure an agreed-upon foundation for the work. For example, importing and cleaning data will require files and security access be made available. 
+Knowing whether the data that could plausibly answer the question is available is *really* important. An analysis plan should consist of actionable tasks that drill down into the dimensions of the business question and how they should be addressed. It should be shared with both the team manager and the client to secure an agreed-upon foundation for the work. For example, importing and cleaning data will require that files and security access be made available. Given the size and the nature of the dataset, cloud resources may need to be provisioned.
 
-So, where can data-driven analytics fail? 
+Where can data-driven analytics plan fail? 
 
 > By far, the most common mistake is to solve the problems that nobody has.
 
-Every EDA plan first steps through identifying potential issues that require remedial work before moving forward. This could be characterized as data cleaning or data checking. The pattern, then:
+Every EDA plan steps through identifying potential issues that require remedial work before moving forward. This could be characterized as data cleaning or data checking. Generally speaking, the pattern here is:
 
 1. Generate questions about the data.
 
@@ -59,7 +56,7 @@ Every EDA plan first steps through identifying potential issues that require rem
 
 1. Use what is learned to refine the questions and generate new questions.
 
-Bear in mind that EDA is not a single linear process with a strict set of rules. During the initial phases of EDA every idea will be investigated. Some of these ideas will pan out, and most will be dead ends. As exploration continues, the analyst will discover a few particularly productive areas  to write up and communicate.
+Bear in mind that EDA is never a single linear process with a strict set of rules. During the initial phases of EDA every idea will be investigated. Some of these ideas will pan out, and most will be dead ends. As exploration continues, the analyst will discover a few particularly productive areas  to write up and communicate.
 
 > "Far better an approximate answer to the right question, which is often
 > vague, than an exact answer to the wrong question, which can always be made
@@ -71,15 +68,15 @@ EDA is fundamentally a creative process. And like most creative processes, the k
 
 > This was the tendency of jobs to be adapted to tools, rather than adapting tools to jobs. [Silvan Tomkins](https://en.wikipedia.org/wiki/Silvan_Tomkins), Computer Simulation of Personality: Frontier of Psychological Theory (1963)
 
-In both Python and R, data analysis tooling has coalesced around the **data frame** object, which is a huge productivity boost for the analyst. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying boilerplate code. This creates a creativity trap where the analysis can become narrowed by the range of uses supported by a particular set of tools. While the dashboard tools are powerful when they are genuinely supporting the analyst to develop understanding of the data narrative, it’s important to avoid becoming too reliant on any single template.
+Data analysis tooling has coalesced around the **data frame** object, which is a huge productivity boost for the analyst. In some settings we talk about self-service, or even "citizen" data scientists that have access to the prepared data frame structures. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying boilerplate code. This creates a creativity trap where the analysis can be constrained by the range of uses supported by a particular set of tools. While reporting tools are powerful when they genuinely support the analyst in developing an understanding of the data narrative, it’s important to avoid becoming too reliant on any single tool.
 
-In my experience it’s good to have familiarity with tooling at several levels of abstraction. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides a finer control and fewer restrictions on creativity.
+In my experience it’s good to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides a finer control and fewer restrictions on creativity.
 
 The main point here is that exploratory data analysis can’t and shouldn’t be automated, because it is a process to support a human's learning, and to do that well there are few shortcuts.
 
 ----
 
-At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize the activities under five themes:
+At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize activities under five themes:
 
 - Feature names and field types
 
@@ -89,20 +86,18 @@ At this point, all of the technical tools of EDA will be needed: visualization, 
 
 - Patterns and modeling feature inferences
 
-For illustrative purposes, let's load a few libraries with plotting functions and sample penguin data.
+For illustrative purposes, let's load a few libraries with plotting functions and a sample penguin dataset.
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE
-)
+knitr::opts_chunk$set(echo = TRUE,message = FALSE,warning = FALSE)
+fredr::fredr_set_key(Sys.getenv("fredr_key"))
+```
 
+```{r packages_and_penguins}
 suppressPackageStartupMessages({
 library(tidyverse) # tidy data manipulation, including dplyr and ggplot
 library(systemfonts) # register Windows Fonts
-  
-library(palmerpenguins)
+library(palmerpenguins) # penguin sample dataset
 })
 
 theme_set(hrbrthemes::theme_ipsum())   # Set a ggplot color, font theme
@@ -111,11 +106,11 @@ theme_set(hrbrthemes::theme_ipsum())   # Set a ggplot color, font theme
 
 ### Feature names and field types
 
-I am often handed sample data in Excel or a .csv text file at the first engagement of a project. In my experience, always, always check for the correctness of the column types. Expect to find integers incorrectly encoded as strings, dates encoded as strings, timestamps in odd time zones and other issues. Sometimes a column that should be numeric has the occasional string entry. Perhaps the query did not specify the correct schema when reading the database, or the data are encoded in an ambiguous way that results in an inappropriate type, or maybe some earlier data manipulation caused a problem.
+Analysts are often handed sample data in Excel or a .csv text file at the first engagement of a project. In my experience, always, always check for the correctness of the column types. Expect to find integers incorrectly coded as strings, dates coded as strings, timestamps in odd time zones, non-English character sets, and other issues. Sometimes a column that should be numeric has the occasional string entry. Perhaps the query did not specify the correct schema when reading the database, or the data are encoded in an ambiguous way that results in an inappropriate type, or maybe some earlier data manipulation caused a problem.
 
 Before going further, let's define some terms: 
 
-- A __variable__ is a quantity, quality, or property that you can measure. Often shown in columns, these are also known as features.
+- A __variable__ is a quantity, quality, or property that you can measure. Often shown in columns, these are also known in data science as features.
 
 - A __value__ is the state of a variable when you measure it. The value of a variable may change from measurement to measurement.
   
@@ -129,7 +124,9 @@ Before going further, let's define some terms:
 
 - __Resolution__ describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery is has somewhat higher resolution.
 
-Descriptive statistics are useful in data exploration and understanding. They involve the use of measures to describe the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurance in the dataset. For continuous data, measures like mean and median are used.
+Descriptive statistics are useful in data exploration and understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.
+
+For the penguins dataset:
 
 ```{r}
 summary(penguins)
@@ -138,27 +135,25 @@ summary(penguins)
 
 ### Missingness
 
-We must check the prevalence of missing values and their relationship with other features because many modeling methods do not handle missing values natively. There is a story about a marine mammal weights dataset where the missing values are those that exceeded the capacity of the scale. Remedies here might include dropping or transforming columns, imputing missing values as the median, or choosing an algorithm that handles missingness out of the box. As a worse case, it may be necessary to solicit more data.
+We must check the prevalence of missing values and their relationship with other features. There is a story about a marine mammal weights dataset where the missing values are those whales that exceeded the capacity of the scale. Remedies here might include dropping or transforming columns, imputing missing values as the median, or choosing an algorithm that handles missingness out of the box. As a worse case, it may be necessary to solicit more data.
 
-If you've encountered missing values in the dataset and simply want to move on to the rest of the analysis, there are two options.
+If you've encountered missing values in the dataset and want to quickly move on to the rest of the analysis, there are two options.
 
-1.  Drop the entire row with the missing values:
+1.  Drop the entire row that has the missing values:
+    ```{r, eval = FALSE}
+    penguins2 <- penguins %>% 
+        filter(is.na(bill_length_mm))
+    ```
 
-```{r, eval = FALSE}
-penguins2 <- penguins %>% 
-      filter(is.na(bill_length_mm))
-```
+1.  Replace the missing values with an imputed value, like the median of the variable.
+    ```{r}
+    median_bill_length <- median(penguins$bill_length_mm)
+    
+    penguins2 <- penguins %>% 
+        mutate(bill_length_mm = if_else(is.na(bill_length_mm), median_bill_length, bill_length_mm))
+    ```
 
-1.  Replacing the missing values with an imputed value, like the median.
-
-```{r}
-median_bill_length <- median(penguins$bill_length_mm)
-
-penguins2 <- penguins %>% 
-      mutate(y = if_else(is.na(bill_length_mm), median_bill_length, bill_length_mm))
-```
-
-We should make every effort to understand what makes observations with missing values different to observations with recorded values. For example, in `nycflights13::flights`, missing values in the `dep_time` variable indicate that the flight was cancelled. It is important to compare the scheduled departure times for cancelled and non-cancelled times. You can do this by making a new variable with `is.na()`.
+We should make every effort to understand what makes observations with missing values different versus observations with recorded values. For example, in the sample dataset `nycflights13::flights`, missing values in the `dep_time` variable indicate that the flight was cancelled. It is important to compare the scheduled departure times for cancelled and non-cancelled times. 
 
 ```{r}
 nycflights13::flights %>% 
@@ -172,20 +167,20 @@ nycflights13::flights %>%
     geom_freqpoly(mapping = aes(colour = cancelled), binwidth = 1/4)
 ```
 
-Note that this plot really is not great because there are many more non-canceled flights than canceled flights. 
+This example is also a good example of an unbalanced dataset, where the class of a variable of interest may be overwhelmed by the other classes. There are analytics techniques for synthesizing upsampling, or resampling, to prepare the data to better understand the underlying patterns.
 
 ### Variance and covariance
 
 **Variation** is the tendency of the values of a single variable to change from measurement to measurement. Variation is easily observed in real life; if you measure any continuous variable twice, you will get two different results. This is true even when measuring quantities that are constant, like the speed of light. Each measurement will include a small amount of error that varies from measurement to measurement. Every variable has its own pattern of variation. The best way to understand that pattern is to visualize the distribution of the variable's values.
 
-The means of visualizing the distribution of a variable will depend on whether the variable is categorical or continuous. A variable is **categorical** if it can only take one of a small set of values. Categorical variables are usually saved as factors or character vectors. To examine the distribution of counts of a categorical variable, use a bar chart:
+The means of visualizing the distribution of a variable will depend on whether the variable is categorical or continuous. A variable is **categorical** if it can only take one of a small set of values. To examine the distribution of counts of a categorical variable, use a bar chart:
 
 ```{r}
 ggplot(data = penguins) +
   geom_bar(mapping = aes(x = island))
 ```
 
-The height of the bars displays how many observations occurred with each x value. A table that shows the same information:
+The height of the bars displays how many observations occurred with each value. A table that diplays the same information:
 
 ```{r}
 penguins %>% 
@@ -218,7 +213,7 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
   geom_histogram(binwidth = 0.1)
 ```
 
-If you wish to overlay multiple histograms in the same plot, we can use `geom_freqpoly()` instead of `geom_histogram()`. `geom_freqpoly()` performs the same calculation as `geom_histogram()`, but instead of displaying the counts with bars, is uses lines instead. It's much easier to understand overlapping lines than bars.
+If you wish to overlay multiple histograms in the same plot, we can use `geom_freqpoly()` instead of `geom_histogram()`. `geom_freqpoly()` performs the same calculation as `geom_histogram()`, but instead of displaying the counts with bars, it uses lines instead. It's often easier to understand overlapping lines than bars.
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, colour = species)) +
@@ -269,12 +264,12 @@ It's common to want to explore the distribution of a continuous variable broken 
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = ..density..)) + 
-  geom_freqpoly(mapping = aes(colour = species), binwidth = 50)
+  geom_freqpoly(mapping = aes(colour = species), binwidth = 100)
 ```
 
-Frequency polygons are a little hard to interpret - there's a lot going on in this plot.
+Frequency polygons are a little hard to interpret. There's a lot going on in this plot.
 
-Another alternative to display the distribution of a continuous variable broken down by a categorical variable is the boxplot. A **boxplot** is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:
+An alternative: a **boxplot** is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:
 
 - A box that stretches from the 25th percentile of the distribution to the 75th percentile, a distance known as the interquartile range (IQR). In the middle of the box is a line that displays the median, i.e. 50th percentile. 
 
@@ -282,23 +277,28 @@ Another alternative to display the distribution of a continuous variable broken 
 
 - A line (or whisker) that extends from each end of the box and goes to the farthest non-outlier point in the distribution.
 
-Let's take a look at the distribution of price by cut using `geom_boxplot()`:
+Let's take a look at the distribution of body mass by species using `geom_boxplot()`:
 
 ```{r fig.height = 3}
 ggplot(data = penguins, mapping = aes(x = species, y = body_mass_g       )) +
   geom_boxplot()
 ```
 
-We see much less information about the distribution, but the boxplots are much more compact so we can more easily compare them (and fit more on one plot). 
+We see less information about the distribution, but the boxplots are much more compact so we can more easily compare them (and fit more on one plot). 
 
-If you have long variable names, `geom_boxplot()` will work better if flipped by 90°.
+If you have long variable names, `geom_boxplot()` will work better if flipped by 90°. In this case, we will add the original data points, with "jitter", and color for each species.
 
 ```{r}
-ggplot(data = penguins) +
-  geom_boxplot(mapping = aes(y = reorder(species, body_mass_g, FUN = median), x = body_mass_g)) 
+ggplot(data = penguins, 
+       mapping = aes(y = reorder(species, body_mass_g, FUN = median), 
+                     x = body_mass_g,
+                     color = species)) +
+  geom_boxplot(show.legend = FALSE) +
+  geom_point(alpha = 0.2, position = "jitter", show.legend = FALSE) +
+  labs(y = NULL)
 ```
 
-To visualise the covariation between categorical variables, we will need to count the number of observations for each combination. One way to do that is to rely on the built-in `geom_count()`:
+To visualize the covariation between categorical variables, we will need to count the number of observations for each combination. One way to do that is to use  `geom_count()`:
 
 ```{r}
 ggplot(data = penguins) +
@@ -307,7 +307,7 @@ ggplot(data = penguins) +
 
 The size of each circle in the plot displays how many observations occurred at each combination of values. Covariation will appear as a strong correlation between specific x values and specific y values. 
 
-Another approach is to compute the count with dplyr:
+Another approach is to calculate the counts:
 
 ```{r}
 penguins %>% 
@@ -323,23 +323,23 @@ penguins %>%
     geom_tile(mapping = aes(fill = n))
 ```
 
-For larger plots, try the d3heatmap or heatmaply packages, which create interactive plots.
+You've already seen one great way to visualise the covariation between two continuous variables: draw a scatterplot with `geom_point()`. You can see covariation as a pattern in the points. For example, you can roughly see an relationship between the body mass and bill length of the penguins:
 
-You've already seen one great way to visualise the covariation between two continuous variables: draw a scatterplot with `geom_point()`. You can see covariation as a pattern in the points. For example, you can see an  relationship between the body mass and bill length of these penguins.
-
-```{r, dev = "png"}
+```{r}
 ggplot(data = penguins) +
   geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm    ))
 ```
 
-Scatterplots become less useful as the size of the dataset grows, because points begin to overplot, and pile up into areas of uniform black. One way to fix the problem is to add the `alpha` aesthetic to add transparency.
+Scatterplots become less useful as the size of the dataset grows, because points begin to overplot, and pile up into areas of uniform black. One way to fix the problem is to add the `alpha` aesthetic to add transparency. Again, we will add color as species. Can you begin to see useful patterns here?
 
 ```{r, dev = "png"}
 ggplot(data = penguins) + 
-  geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm), alpha = 0.2)
+  geom_point(mapping = aes(x = body_mass_g, 
+                           y = bill_length_mm, 
+                           color = species), alpha = 0.2)
 ```
 
-Another solution is to use bin. `geom_bin2d()` and `geom_hex()` divide the coordinate plane into 2d bins and then use a fill color to display how many points fall into each bin. `geom_bin2d()` creates rectangular bins. `geom_hex()` creates hexagonal bins. You will need to install the hexbin package to use `geom_hex()`.
+Another solution is to use bin. `geom_bin2d()` divides the coordinate plane into 2d bins and then uses a fill color to display how many points fall into each bin. `geom_bin2d()` creates rectangular bins. Another alternative, `geom_hex()`, creates hexagonal bins. 
 
 ```{r, fig.asp = 1, out.width = "50%", fig.align = "default", message = FALSE}
 ggplot(data = penguins) +
@@ -385,7 +385,7 @@ ggplot(data = faithful) +
 
 Patterns provide one of the most useful tools for data scientists because they reveal covariation. If you think of variation as a phenomenon that creates uncertainty, covariation is a phenomenon that reduces it. If two variables covary, you can use the values of one variable to make better predictions about the values of the second. If the covariation is due to a causal relationship (a special case), then the value of one variable can be used to control the value of the second.
 
-Machine learning models can provide additional insight, via inference.
+Machine learning models can provide additional insight via inference. In this case, we simply fit a linear model for penguin body mass against the bill length and the species.
 
 ```{r}
 mod <- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
@@ -393,11 +393,11 @@ mod <- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
 broom::tidy(mod)
 ```
 
-In this simple linear case, each additional mm of bill length is related to a 91 gram increase in body mass, for a penguin of the same species. More complex techniques can be used to discover more complex interactions.
+We find here that each additional mm of bill length is related to a 91.44 gram increase in body mass, for a penguin of the same species. More sophisticated machine learning techniques can be used to discover complex patterns and interactions.
 
-**Survival** analysis modeling is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
+Another modeling tool, **Survival** analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
 
-A simpler characterization might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an event to occur after an exposure. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participant’s exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.
+A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an event to occur after an exposure. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participant’s exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.
 
 Most survival datasets have some censoring. A censored study subject may be censored due to:
 
@@ -409,13 +409,23 @@ Most survival datasets have some censoring. A censored study subject may be cens
 
 Censored subjects still provide information so must be appropriately included in the analysis. Ignoring censoring leads to an overestimate of the overall survival probability, because the censored subjects only contribute information for part of the follow-up time, and then fall out of the risk set, thus pulling down the cumulative probability of survival.
 
-In industry it is common to track component warranty claims and cost on machines sold. Warranty datasets are heavily censored because the study period rarely aligns with the warranty period for each machine delivered. The study time period and fleet population membership must be carefully considered and explicitly defined. In most cases, exposure is aligned to zero at the warranty start date.
+In industry it is common to track component warranty claims and cost on machines sold. Warranty datasets are heavily censored because the study period rarely aligns with the warranty period for each machine delivered in a fleet. The study time period and fleet population membership must be carefully considered and explicitly defined. In most cases, exposure time is aligned to zero at the warranty start date.
 
-We need special methods for time to event data, first, because duration times are always positive. Traditional regression models make a number of assumptions for independence and normality that are no longer valid in this space. There are distributions, like Weibull, that better represent the problem space. 
+We have special methods in survival for time to event data, first, because duration times are always positive. Traditional regression models make a number of assumptions for independence and normality that are no longer valid in this domain. There are distributions, like Weibull, that better represent the problem space. 
 
-**Time Series** modeling, sometimes also called forecasting, seeks to leverage the underlying patterns in data with a timestamp feature to make statements about causal inference or to predict the future. Time is a challenging feature to work with, in that the variables are not observations taken at once. Further, they are not independent, and may be auto-correlated at intervals, or lags. 
+**Time Series** modeling, sometimes also called forecasting, seeks to leverage the underlying patterns in data with a timestamp feature to make statements about causal inference or to predict the future. Time is a challenging feature to work with, in that the variables are not observations taken at once. Further, they are almost never independent, and will often be auto-correlated at intervals, or lags. 
 
-**Geospatial** and geospatial time-series analytics combine all of the challenges above and warrant their own blog posts.
+This time series example is US Gross Domestic Product, in Billions of $US, pulled from the Federal Reserve web API with the `fredr` package:
+
+```{r}
+fredr::fredr(series_id = 'GDPC1') %>% 
+  ggplot() +
+  geom_line(mapping = aes(x = date, y = value)) +
+  labs(caption = "Federal Reserve Economic Data | US Real Gross Domestic Product")
+
+```
+
+**Geospatial** and geospatial time-series modeling combine all of the challenges above and warrant their own detailed blog posts.
 
 # Conclusion
 
@@ -423,11 +433,11 @@ We need special methods for time to event data, first, because duration times ar
 
 [‘grok’](http://catb.org/~esr/jargon/html/G/grok.html), The Jargon File
 
-There is a persistent myth of the data analyst as a robotic processor of data, who is detached and introverted. The reality is completely the opposite, where the best data analysis will always come from an analyst with a deep understanding of the data and the processes that generated it. EDA has a crucial role in converting data from a contextless collection of bytes into meaningful insights. EDA is a creative and personal journey that is supported by a continuing dialogue that probes and revisits understanding of the broader context.
+There is a persistent myth of the data analyst as a robotic processor of data, who is introverted and detached. Reality is the opposite, where the best data analysis will always come from an analyst with a deep understanding of the data and the processes that generated it. EDA has a crucial role in converting data from a contextless collection of bytes into meaningful insights. EDA is a creative and personal journey that is supported by a continuing dialogue that probes the broader context.
 
-The data is an incomplete and encoded representation of a real world experience. Part of the analyst's role is to solve problems and generate insights that respects the story of how the data were generated. Let’s call this story the data narrative. Part of the narrative might be the sequencing of events that lead to each data record coming into existence, part of it might be the data’s lineage in terms of the  wrangling required. The data narrative completely frames the work, how we interpret every insight, and most importantly, the credibility which ultimately influences the audience.
+The data is an incomplete and encoded representation of a real world experience. Part of the analyst's role is to represent the story of how the data were generated. Let’s call this story the data narrative. Part of the narrative might be the sequencing of events that lead to each data record coming into existence, or the data’s lineage in terms of the  wrangling required. The data narrative completely frames the work, how we interpret every insight, and most importantly, the credibility which ultimately influences the audience.
 
-It is common that analysts are neither domain experts nor provided with nice documentation. In this case, the narrative is something that will be synthesized through detective work, drawing on a combination of data analysis and the experience of collaborating of domain experts. 
+It is common that analysts are neither domain experts nor provided with detailed documentation. In this case, the narrative is something that will be synthesized through detective work, drawing on a combination of data analysis and the experience of collaborating of domain experts. 
 
 > Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make.
 
@@ -435,15 +445,13 @@ It is common that analysts are neither domain experts nor provided with nice doc
 
 EDA cannot happen in a computational vacuum. To do this well, we need to be alternating between interrogating the data and asking ourselves if what we find is consistent with our internal understanding of the data’s narrative. *Does what I see make sense to me? Would I feel comfortable to explain it to someone else?*
 
-In large organizations, the analyst will be speaking with domain experts, though they needn’t be an internal expert if the data come from outside the organization. Always demand that you have access to the domain expert, as this person will supercharge the eventual analysis and will be often be the difference between success or failure of the entire project. In the beginning, take lots of time to let experts talk broadly about the data, as they understand all of the salient dependencies, anomalies and gotchas that will save a lot of time in the long run. The key here is not checking for correctness, but to grow understanding of the data: it’s important to remember that it’s one thing to be told something about the data narrative, but it’s much more meaningful to discover it expressed in the data.
+In large organizations, the analyst will be speaking with domain experts, though they need not be an internal expert if the data come from outside the organization. The best always demand that they have access to the domain expert, as this person will supercharge the eventual analysis and will be often be the difference between success or failure of the entire project. From the outset, let experts talk broadly about the data, as their understanding of the salient dependencies, anomalies and gotchas will save a lot of time in the long run. The key here is not checking for correctness, but to grow understanding of the data: it’s important to remember that it’s one thing to be told something about the data narrative, but it’s much more meaningful to discover it expressed in the data.
 
-As understanding deepens and the analysis progresses, continue to find new patterns and structure in the data. Keep revisiting the understanding of the data narrative, and check whether what you are seeing is consistent. As understanding of the data narrative matures, the gaps will come into focus: consider creative ways to use the data or ask a relevant question to close the gap. The relationship between internalized data narrative and data exploration is a two-way street.
-
-Take time to discuss the results with another data scientist. The key here is to aim to communicate understanding of the data narrative without getting too mired in the technical details of the data. The process of preparing a narrative that can be explained to a colleague will help to consolidate what's been learned and quickly expose gaps. 
+As understanding deepens and the analysis progresses, continue to find new patterns and structure in the data. Keep revisiting the understanding of the data narrative, and check whether what has been seen is consistent. As understanding of the data narrative matures, the gaps will come into focus: consider creative ways to use the data or ask a relevant question to close the gap. The relationship between internalized data narrative and data exploration is a two-way street.
 
 ----
 
-References:
+Excellent references on the topics covered by this post:
 
 > [R for Data Science](https://r4ds.had.co.nz/) Chapter 7, and 
 
