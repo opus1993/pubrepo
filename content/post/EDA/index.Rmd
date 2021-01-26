@@ -130,7 +130,7 @@ Before going further, let's define some terms:
 
 - __Resolution__ describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery is has somewhat higher resolution.
 
-Descriptive statistics are useful in data exploration and understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.
+Descriptive statistics are useful in building understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.
 
 For the penguins dataset:
 
