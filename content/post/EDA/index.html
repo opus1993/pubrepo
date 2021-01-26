@@ -94,7 +94,7 @@ theme_set(hrbrthemes::theme_ipsum())   # Set a ggplot color, font theme</code></
 <li><p><strong>Tabular data</strong> is a set of values, each associated with a variable and an observation. Tabular data is <em>tidy</em> if each value is placed in its own “cell”, each variable in its own column, and each observation in its own row.</p></li>
 <li><p><strong>Dimensionality</strong> represents the number of variables, or features, of a dataset. The higher the dimensionality, the more we know about the data, but also the higher the computational complexity. There are approaches to reducing the dimensionality without losing predictive power.</p></li>
 <li><p><strong>Sparsity and Density</strong> describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity. Geospatial, survival, natural language processing, and text mining datasets are often sparse.</p></li>
-<li><p><strong>Resolution</strong> describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery is has somewhat higher resolution.</p></li>
+<li><p><strong>Resolution</strong> describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery has somewhat higher resolution, and images taken at ground level can have very high resolution.</p></li>
 </ul>
 <p>Descriptive statistics are useful in building understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.</p>
 <p>For the penguins dataset:</p>
@@ -141,14 +141,14 @@ penguins2 &lt;- penguins %&gt;%
   ggplot(mapping = aes(sched_dep_time)) + 
     geom_freqpoly(mapping = aes(colour = cancelled), binwidth = 1/4)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>This example is also a good example of an unbalanced dataset, where the class of a variable of interest may be overwhelmed by the other classes. There are analytics techniques for synthesizing upsampling, or resampling, to prepare the data to better understand the underlying patterns.</p>
+<p>This is also a good example of an unbalanced dataset, where the class of a variable of interest may be overwhelmed by the other classes. There are analytics techniques for synthesizing upsampling, or resampling, to prepare the data to better understand the underlying patterns.</p>
 </div>
 <div id="variance-and-covariance" class="section level3">
 <h3>Variance and covariance</h3>
 <p><strong>Variance</strong> is the tendency of the values of a single variable to change from measurement to measurement. Variation is easily observed in real life; measuring any continuous variable twice, there will often be two different results. This is true even when measuring quantities that are constant, like the speed of light. Each measurement will include a small amount of error that varies from measurement to measurement. Every variable has its own pattern of variation. The best way to understand that pattern is to visualize the distribution of the variable’s values.</p>
 <p>The means of visualizing the distribution of a variable will depend on whether the variable is categorical or continuous. A variable is <strong>categorical</strong> if it can only take one of a small set of values. To examine the distribution of counts of a categorical variable, use a bar chart:</p>
 <pre class="r"><code>ggplot(data = penguins) +
-  geom_bar(mapping = aes(x = island))</code></pre>
+  geom_bar(mapping = aes(x = island, fill = island), show.legend = FALSE)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>The height of the bars displays how many observations occurred with each value. A table that diplays the same information:</p>
 <pre class="r"><code>penguins %&gt;% 

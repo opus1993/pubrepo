@@ -128,7 +128,7 @@ Before going further, let's define some terms:
 
 - __Sparsity and Density__ describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity. Geospatial, survival, natural language processing, and text mining datasets are often sparse.
 
-- __Resolution__ describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery is has somewhat higher resolution.
+- __Resolution__ describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery has somewhat higher resolution, and images taken at ground level can have very high resolution.
 
 Descriptive statistics are useful in building understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.
 
@@ -173,7 +173,7 @@ nycflights13::flights %>%
     geom_freqpoly(mapping = aes(colour = cancelled), binwidth = 1/4)
 ```
 
-This example is also a good example of an unbalanced dataset, where the class of a variable of interest may be overwhelmed by the other classes. There are analytics techniques for synthesizing upsampling, or resampling, to prepare the data to better understand the underlying patterns.
+This is also a good example of an unbalanced dataset, where the class of a variable of interest may be overwhelmed by the other classes. There are analytics techniques for synthesizing upsampling, or resampling, to prepare the data to better understand the underlying patterns.
 
 ### Variance and covariance
 
@@ -183,7 +183,7 @@ The means of visualizing the distribution of a variable will depend on whether t
 
 ```{r}
 ggplot(data = penguins) +
-  geom_bar(mapping = aes(x = island))
+  geom_bar(mapping = aes(x = island, fill = island), show.legend = FALSE)
 ```
 
 The height of the bars displays how many observations occurred with each value. A table that diplays the same information:
