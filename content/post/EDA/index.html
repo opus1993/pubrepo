@@ -1,0 +1,358 @@
+---
+date: "2021-01-29"
+diagram: true
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+image: 
+  caption: ''
+  focal_point: "TopRight"
+  preview_only: false
+title: 'Exploratory Data Analysis'
+author: "Jim Gruman"
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [R]
+description: "Crafting a Data Narrative"
+featured: false
+draft: false
+---
+
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>In many cases, the most beneficial near-term analytics projects do not involve Artificial Intelligence. The financial return on analytics comes from insights delivered back to the organization through Exploratory Data Analysis, or EDA.</p>
+<p>Professionals who focus on decision science and analytics, that is, people that use data to provide ideas and ground truth to the business, must be able to articulate what the EDA process is and what the standards are for the process. Analysts should be the best people available to find meaning in the data.</p>
+<p>Crafting an analysis that can take a vast amount of privileged company data and convert it into a concise result that clarifies the matter at hand is often difficult and may be practically an art. The act of figuring out what is meaningfully mathematically, what the business cares about, and how to bridge the gap between the two is not something that most people will know how to do naturally.</p>
+<p>This post will be a description of the major elements of Exploratory Data Analysis.</p>
+<div id="what-makes-a-good-analysis" class="section level1">
+<h1>What makes a good analysis?</h1>
+<p>According to <a href="https://www.manning.com/books/build-a-career-in-data-science">Build a Career in Data Science</a>:</p>
+<ul>
+<li><p><em>It answers the question</em>. An analysis starts with someone asking a question, and it must provide an answer to that question.</p></li>
+<li><p><em>It is made quickly</em>. Businesses have deadlines. If the analysis takes too long to create, the decision will be made without the analysis.</p></li>
+<li><p><em>It can be shared</em>. The work product needs to be shared, not only with the person that asked for the analysis, but also with whomever that person wants to share it with in turn.</p></li>
+<li><p><em>It is self-contained</em>. Because you can’t predict who will see the analysis, it needs to be understandable on its own. Plots and tables have to have clear annotations, axes must be labeled, and explanations should be written down.</p></li>
+<li><p><em>It can be revisited</em>. Most questions will be asked again in the future. Sometimes, answering subsequent versions of the same question is a matter of running the same script on fresh data.</p></li>
+</ul>
+<p>Ultimately, a good analysis is simply the work product that helps non-analysts do their own jobs.</p>
+<div id="the-analysis-plan" class="section level2">
+<h2>The analysis plan</h2>
+<p>Knowing whether the data that could plausibly answer the question is available is <em>really</em> important. An analysis plan should consist of actionable tasks that drill down into the dimensions of the business question and how they should be addressed. It should be shared with the team manager and the client to secure an agreed-upon foundation for the work. For example, importing and cleaning data will require files and security access be made available.</p>
+<p>So, where can data-driven analytics fail?</p>
+<blockquote>
+<p>By far, the most common mistake is to solve the problems that nobody has.</p>
+</blockquote>
+<p>Every EDA plan first steps through identifying potential issues that require remedial work before moving forward. This could be characterized as data cleaning or data checking. The pattern, then:</p>
+<ol style="list-style-type: decimal">
+<li><p>Generate questions about the data.</p></li>
+<li><p>Search for answers by visualizing, transforming, and modeling the data.</p></li>
+<li><p>Use what is learned to refine the questions and generate new questions.</p></li>
+</ol>
+<p>Bear in mind that EDA is not a single linear process with a strict set of rules. During the initial phases of EDA every idea will be investigated. Some of these ideas will pan out, and most will be dead ends. As exploration continues, the analyst will discover a few particularly productive areas to write up and communicate.</p>
+<blockquote>
+<p>“Far better an approximate answer to the right question, which is often
+vague, than an exact answer to the wrong question, which can always be made
+precise.” — John Tukey</p>
+</blockquote>
+<p>EDA is fundamentally a creative process. And like most creative processes, the key to asking <em>quality</em> questions is to generate a large <em>quantity</em> of questions. It is always difficult to ask revealing questions at the start of the analysis because the analyst does not yet know what insights are contained in the dataset. On the other hand, each new question asked will expose a new aspect of the data and increase the chance of making a discovery.</p>
+<div id="the-pitfalls-of-the-data-frame-interface" class="section level3">
+<h3>The pitfalls of the data frame interface</h3>
+<blockquote>
+<p>This was the tendency of jobs to be adapted to tools, rather than adapting tools to jobs. <a href="https://en.wikipedia.org/wiki/Silvan_Tomkins">Silvan Tomkins</a>, Computer Simulation of Personality: Frontier of Psychological Theory (1963)</p>
+</blockquote>
+<p>In both Python and R, data analysis tooling has coalesced around the <strong>data frame</strong> object, which is a huge productivity boost for the analyst. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying boilerplate code. This creates a creativity trap where the analysis can become narrowed by the range of uses supported by a particular set of tools. While the dashboard tools are powerful when they are genuinely supporting the analyst to develop understanding of the data narrative, it’s important to avoid becoming too reliant on any single template.</p>
+<p>In my experience it’s good to have familiarity with tooling at several levels of abstraction. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides a finer control and fewer restrictions on creativity.</p>
+<p>The main point here is that exploratory data analysis can’t and shouldn’t be automated, because it is a process to support a human’s learning, and to do that well there are few shortcuts.</p>
+<hr />
+<p>At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize the activities under five themes:</p>
+<ul>
+<li><p>Feature names and field types</p></li>
+<li><p>Missingness</p></li>
+<li><p>Variance and covariance</p></li>
+<li><p>Patterns and modeling feature inferences</p></li>
+</ul>
+<p>For illustrative purposes, let’s load a few libraries with plotting functions and sample penguin data.</p>
+</div>
+<div id="feature-names-and-field-types" class="section level3">
+<h3>Feature names and field types</h3>
+<p>I am often handed sample data in Excel or a .csv text file at the first engagement of a project. In my experience, always, always check for the correctness of the column types. Expect to find integers incorrectly encoded as strings, dates encoded as strings, timestamps in odd time zones and other issues. Sometimes a column that should be numeric has the occasional string entry. Perhaps the query did not specify the correct schema when reading the database, or the data are encoded in an ambiguous way that results in an inappropriate type, or maybe some earlier data manipulation caused a problem.</p>
+<p>Before going further, let’s define some terms:</p>
+<ul>
+<li><p>A <strong>variable</strong> is a quantity, quality, or property that you can measure. Often shown in columns, these are also known as features.</p></li>
+<li><p>A <strong>value</strong> is the state of a variable when you measure it. The value of a variable may change from measurement to measurement.</p></li>
+<li><p>An <strong>observation</strong> is a set of measurements made under similar conditions. You usually make all of the measurements in an observation at the same time and on the same object. An observation will contain several values, each associated with a different variable. We sometimes refer to an observation as an instance.</p></li>
+<li><p><strong>Tabular data</strong> is a set of values, each associated with a variable and an observation. Tabular data is <em>tidy</em> if each value is placed in its own “cell”, each variable in its own column, and each observation in its own row.</p></li>
+<li><p><strong>Dimensionality</strong> represents the number of variables, or features, of a dataset. The higher the dimensionality, the more we know about the data, but also the higher the computational complexity. There are approaches to reducing the dimensionality without losing predictive power.</p></li>
+<li><p><strong>Sparsity and Density</strong> describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity.</p></li>
+<li><p><strong>Resolution</strong> describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery is has somewhat higher resolution.</p></li>
+</ul>
+<p>Descriptive statistics are useful in data exploration and understanding. They involve the use of measures to describe the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurance in the dataset. For continuous data, measures like mean and median are used.</p>
+<pre class="r"><code>summary(penguins)</code></pre>
+<pre><code>##       species          island    bill_length_mm bill_depth_mm  flipper_length_mm
+##  Adelie   :152   Biscoe   :168   Min.   :32.1   Min.   :13.1   Min.   :172      
+##  Chinstrap: 68   Dream    :124   1st Qu.:39.2   1st Qu.:15.6   1st Qu.:190      
+##  Gentoo   :124   Torgersen: 52   Median :44.5   Median :17.3   Median :197      
+##                                  Mean   :43.9   Mean   :17.2   Mean   :201      
+##                                  3rd Qu.:48.5   3rd Qu.:18.7   3rd Qu.:213      
+##                                  Max.   :59.6   Max.   :21.5   Max.   :231      
+##                                  NA&#39;s   :2      NA&#39;s   :2      NA&#39;s   :2        
+##   body_mass_g       sex           year     
+##  Min.   :2700   female:165   Min.   :2007  
+##  1st Qu.:3550   male  :168   1st Qu.:2007  
+##  Median :4050   NA&#39;s  : 11   Median :2008  
+##  Mean   :4202                Mean   :2008  
+##  3rd Qu.:4750                3rd Qu.:2009  
+##  Max.   :6300                Max.   :2009  
+##  NA&#39;s   :2</code></pre>
+</div>
+<div id="missingness" class="section level3">
+<h3>Missingness</h3>
+<p>We must check the prevalence of missing values and their relationship with other features because many modeling methods do not handle missing values natively. There is a story about a marine mammal weights dataset where the missing values are those that exceeded the capacity of the scale. Remedies here might include dropping or transforming columns, imputing missing values as the median, or choosing an algorithm that handles missingness out of the box. As a worse case, it may be necessary to solicit more data.</p>
+<p>If you’ve encountered missing values in the dataset and simply want to move on to the rest of the analysis, there are two options.</p>
+<ol style="list-style-type: decimal">
+<li>Drop the entire row with the missing values:</li>
+</ol>
+<pre class="r"><code>penguins2 &lt;- penguins %&gt;% 
+      filter(is.na(bill_length_mm))</code></pre>
+<ol style="list-style-type: decimal">
+<li>Replacing the missing values with an imputed value, like the median.</li>
+</ol>
+<pre class="r"><code>median_bill_length &lt;- median(penguins$bill_length_mm)
+
+penguins2 &lt;- penguins %&gt;% 
+      mutate(y = if_else(is.na(bill_length_mm), median_bill_length, bill_length_mm))</code></pre>
+<p>We should make every effort to understand what makes observations with missing values different to observations with recorded values. For example, in <code>nycflights13::flights</code>, missing values in the <code>dep_time</code> variable indicate that the flight was cancelled. It is important to compare the scheduled departure times for cancelled and non-cancelled times. You can do this by making a new variable with <code>is.na()</code>.</p>
+<pre class="r"><code>nycflights13::flights %&gt;% 
+  mutate(
+    cancelled = is.na(dep_time),
+    sched_hour = sched_dep_time %/% 100,
+    sched_min = sched_dep_time %% 100,
+    sched_dep_time = sched_hour + sched_min / 60
+  ) %&gt;% 
+  ggplot(mapping = aes(sched_dep_time)) + 
+    geom_freqpoly(mapping = aes(colour = cancelled), binwidth = 1/4)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>Note that this plot really is not great because there are many more non-canceled flights than canceled flights.</p>
+</div>
+<div id="variance-and-covariance" class="section level3">
+<h3>Variance and covariance</h3>
+<p><strong>Variation</strong> is the tendency of the values of a single variable to change from measurement to measurement. Variation is easily observed in real life; if you measure any continuous variable twice, you will get two different results. This is true even when measuring quantities that are constant, like the speed of light. Each measurement will include a small amount of error that varies from measurement to measurement. Every variable has its own pattern of variation. The best way to understand that pattern is to visualize the distribution of the variable’s values.</p>
+<p>The means of visualizing the distribution of a variable will depend on whether the variable is categorical or continuous. A variable is <strong>categorical</strong> if it can only take one of a small set of values. Categorical variables are usually saved as factors or character vectors. To examine the distribution of counts of a categorical variable, use a bar chart:</p>
+<pre class="r"><code>ggplot(data = penguins) +
+  geom_bar(mapping = aes(x = island))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The height of the bars displays how many observations occurred with each x value. A table that shows the same information:</p>
+<pre class="r"><code>penguins %&gt;% 
+  count(island)</code></pre>
+<pre><code>## # A tibble: 3 x 2
+##   island        n
+## * &lt;fct&gt;     &lt;int&gt;
+## 1 Biscoe      168
+## 2 Dream       124
+## 3 Torgersen    52</code></pre>
+<p>A variable is <strong>continuous</strong> if it can take any of an infinite set of ordered values. Numbers and date-times are two examples of continuous variables. To examine the distribution of a continuous variable, use a histogram:</p>
+<pre class="r"><code>ggplot(data = penguins) +
+  geom_histogram(mapping = aes(x = bill_length_mm), binwidth = 2)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>Or, as a summary table, in bins:</p>
+<pre class="r"><code>penguins %&gt;% 
+  count(cut_width(bill_length_mm, 2))</code></pre>
+<pre><code>## # A tibble: 16 x 2
+##    `cut_width(bill_length_mm, 2)`     n
+##  * &lt;fct&gt;                          &lt;int&gt;
+##  1 [31,33]                            1
+##  2 (33,35]                           10
+##  3 (35,37]                           31
+##  4 (37,39]                           40
+##  5 (39,41]                           38
+##  6 (41,43]                           34
+##  7 (43,45]                           23
+##  8 (45,47]                           58
+##  9 (47,49]                           31
+## 10 (49,51]                           47
+## 11 (51,53]                           20
+## 12 (53,55]                            4
+## 13 (55,57]                            3
+## 14 (57,59]                            1
+## 15 (59,61]                            1
+## 16 &lt;NA&gt;                               2</code></pre>
+<p>A histogram divides the x-axis into equally spaced bins and then uses the height of a bar to display the number of observations that fall in each bin. In the graph above, the tallest bar shows that almost 58 observations have a <code>bill_length_mm</code> value between 45 and 47, which are the left and right edges of the bar.</p>
+<p>The width of the intervals in a histogram are set with the <code>binwidth</code> argument, which is measured in the units of the <code>x</code> variable. Always explore a variety of binwidths when working with histograms, as different binwidths can reveal different patterns. For example, here is how the graph above looks when we zoom into just the penguins with a bill_length of less than 40 mm and choose a smaller binwidth.</p>
+<pre class="r"><code>smaller &lt;- penguins %&gt;% 
+  filter(bill_length_mm &lt; 40)
+  
+ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
+  geom_histogram(binwidth = 0.1)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>If you wish to overlay multiple histograms in the same plot, we can use <code>geom_freqpoly()</code> instead of <code>geom_histogram()</code>. <code>geom_freqpoly()</code> performs the same calculation as <code>geom_histogram()</code>, but instead of displaying the counts with bars, is uses lines instead. It’s much easier to understand overlapping lines than bars.</p>
+<pre class="r"><code>ggplot(data = penguins, mapping = aes(x = bill_length_mm, colour = species)) +
+  geom_freqpoly(binwidth = 2)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Now that we can visualise variation, what should we look for in plots? And what type of follow-up questions should we ask? I’ve put together a list below of the most useful types of information that to find in graphs, along with some follow-up questions for each type of information. The key to asking good follow-up questions will be to rely on curiosity as well as skepticism (How could this be misleading?).</p>
+<p>In both bar charts and histograms, tall bars show the common values of a variable, and shorter bars show less-common values. Places that do not have bars reveal values that were not seen in the data. To turn this information into useful questions, look for anything unexpected:</p>
+<ul>
+<li><p>Which values are the most common? Why?</p></li>
+<li><p>Which values are rare? Why? Does that match expectations?</p></li>
+<li><p>Can we see any unusual patterns? What might explain them?</p></li>
+</ul>
+<p>Clusters of similar values suggest that subgroups exist in the data. To understand the subgroups, ask:</p>
+<ul>
+<li><p>How are the observations within each cluster similar to each other?</p></li>
+<li><p>How are the observations in separate clusters different from each other?</p></li>
+<li><p>How can you explain or describe the clusters?</p></li>
+<li><p>Why might the appearance of clusters be misleading?</p></li>
+</ul>
+<p>The histogram below shows the length (in minutes) of 272 eruptions of the Old Faithful Geyser in Yellowstone National Park. Eruption times appear to be clustered into two groups: there are short eruptions (of around 2 minutes) and long eruptions (4-5 minutes), but little in between.</p>
+<pre class="r"><code>ggplot(data = faithful, mapping = aes(x = eruptions)) + 
+  geom_histogram(binwidth = 0.25)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>Many of the questions above will prompt us to explore a relationship <em>between</em> variables to see if the values of one variable can explain the behavior of another variable.</p>
+<p><strong>Outliers</strong> are observations that are unusual; data points that don’t seem to fit the pattern. Sometimes outliers are data entry errors; other times outliers suggest important new science. When there is a lot of data, outliers are sometimes difficult to see in a histogram. For example, take the distribution of the <code>y</code> variable from the diamonds dataset. The only evidence of outliers is the unusually wide limits on the x-axis.</p>
+<pre class="r"><code>ggplot(diamonds) + 
+  geom_histogram(mapping = aes(x = y), binwidth = 0.5)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>It’s good practice to repeat the analysis with and without the outliers. If they have minimal effect on the results, it may be reasonable to replace them with missing values and move on. However, if they have a substantial effect on the results, do not drop them without justification. Figure out what caused them (e.g. a data entry error) and disclose that they were removed in the write-up.</p>
+<p>If variation describes the behavior <em>within</em> a variable, covariation describes the behavior <em>between</em> variables. <strong>Covariation</strong> is the tendency for the values of two or more variables to vary together in a related way. The best way to spot covariation is to visualise the relationship between two or more variables. How you do that should again depend on the type of variables involved.</p>
+<p>It’s common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. The default appearance of <code>geom_freqpoly()</code> is not that useful for that sort of comparison because the height is given by the count. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we’ll display <strong>density</strong>, which is the count standardised so that the area under each frequency polygon is one.</p>
+<pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = ..density..)) + 
+  geom_freqpoly(mapping = aes(colour = species), binwidth = 50)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Frequency polygons are a little hard to interpret - there’s a lot going on in this plot.</p>
+<p>Another alternative to display the distribution of a continuous variable broken down by a categorical variable is the boxplot. A <strong>boxplot</strong> is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:</p>
+<ul>
+<li><p>A box that stretches from the 25th percentile of the distribution to the 75th percentile, a distance known as the interquartile range (IQR). In the middle of the box is a line that displays the median, i.e. 50th percentile.</p></li>
+<li><p>Visual points that display observations that fall more than 1.5 times the IQR from either edge of the box. These outlying points are unusual so are plotted individually.</p></li>
+<li><p>A line (or whisker) that extends from each end of the box and goes to the farthest non-outlier point in the distribution.</p></li>
+</ul>
+<p>Let’s take a look at the distribution of price by cut using <code>geom_boxplot()</code>:</p>
+<pre class="r"><code>ggplot(data = penguins, mapping = aes(x = species, y = body_mass_g       )) +
+  geom_boxplot()</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>We see much less information about the distribution, but the boxplots are much more compact so we can more easily compare them (and fit more on one plot).</p>
+<p>If you have long variable names, <code>geom_boxplot()</code> will work better if flipped by 90°.</p>
+<pre class="r"><code>ggplot(data = penguins) +
+  geom_boxplot(mapping = aes(y = reorder(species, body_mass_g, FUN = median), x = body_mass_g)) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>To visualise the covariation between categorical variables, we will need to count the number of observations for each combination. One way to do that is to rely on the built-in <code>geom_count()</code>:</p>
+<pre class="r"><code>ggplot(data = penguins) +
+  geom_count(mapping = aes(x = island, y = species))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>The size of each circle in the plot displays how many observations occurred at each combination of values. Covariation will appear as a strong correlation between specific x values and specific y values.</p>
+<p>Another approach is to compute the count with dplyr:</p>
+<pre class="r"><code>penguins %&gt;% 
+  count(species, island)</code></pre>
+<pre><code>## # A tibble: 5 x 3
+##   species   island        n
+##   &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt;
+## 1 Adelie    Biscoe       44
+## 2 Adelie    Dream        56
+## 3 Adelie    Torgersen    52
+## 4 Chinstrap Dream        68
+## 5 Gentoo    Biscoe      124</code></pre>
+<p>Then visualise with <code>geom_tile()</code> and the fill aesthetic:</p>
+<pre class="r"><code>penguins %&gt;% 
+  count(species, island) %&gt;%  
+  ggplot(mapping = aes(x = species, y = island)) +
+    geom_tile(mapping = aes(fill = n))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>For larger plots, try the d3heatmap or heatmaply packages, which create interactive plots.</p>
+<p>You’ve already seen one great way to visualise the covariation between two continuous variables: draw a scatterplot with <code>geom_point()</code>. You can see covariation as a pattern in the points. For example, you can see an relationship between the body mass and bill length of these penguins.</p>
+<pre class="r"><code>ggplot(data = penguins) +
+  geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm    ))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Scatterplots become less useful as the size of the dataset grows, because points begin to overplot, and pile up into areas of uniform black. One way to fix the problem is to add the <code>alpha</code> aesthetic to add transparency.</p>
+<pre class="r"><code>ggplot(data = penguins) + 
+  geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm), alpha = 0.2)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p>Another solution is to use bin. <code>geom_bin2d()</code> and <code>geom_hex()</code> divide the coordinate plane into 2d bins and then use a fill color to display how many points fall into each bin. <code>geom_bin2d()</code> creates rectangular bins. <code>geom_hex()</code> creates hexagonal bins. You will need to install the hexbin package to use <code>geom_hex()</code>.</p>
+<pre class="r"><code>ggplot(data = penguins) +
+  geom_bin2d(mapping = aes(x = body_mass_g, y = bill_length_mm))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="50%" /></p>
+<p>Another option is to bin one continuous variable so it acts like a categorical variable. Then you can use one of the techniques for visualising the combination of a categorical and a continuous variable that you learned about. For example, you could bin <code>carat</code> and then for each group, display a boxplot:</p>
+<pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
+  geom_boxplot(mapping = aes(group = cut_width(body_mass_g, 100)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p><code>cut_width(x, width)</code>, as used above, divides <code>x</code> into bins of width <code>width</code>. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it’s difficult to tell that each boxplot summarises a different number of points. One way to show that is to make the width of the boxplot proportional to the number of points with <code>varwidth = TRUE</code>.</p>
+<p>Another approach is to display approximately the same number of points in each bin. That’s the job of <code>cut_number()</code>:</p>
+<pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
+  geom_boxplot(mapping = aes(group = cut_number(body_mass_g, 20)))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="patterns-and-models" class="section level3">
+<h3>Patterns and models</h3>
+<p>Patterns in data provide clues about relationships. If a systematic relationship exists between two variables it will appear as a pattern in the data. When spotting a pattern, ask:</p>
+<ul>
+<li><p>Could this pattern be due to coincidence (i.e. random chance)?</p></li>
+<li><p>How can you describe the relationship implied by the pattern?</p></li>
+<li><p>How strong is the relationship implied by the pattern?</p></li>
+<li><p>What other variables might affect the relationship?</p></li>
+<li><p>Does the relationship change if you look at individual subgroups of the data?</p></li>
+</ul>
+<p>A scatterplot of Old Faithful eruption lengths versus the wait time between eruptions shows a pattern: longer wait times are associated with longer eruptions. The scatterplot also displays the two clusters that we noticed above.</p>
+<pre class="r"><code>ggplot(data = faithful) + 
+  geom_point(mapping = aes(x = eruptions, y = waiting))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Patterns provide one of the most useful tools for data scientists because they reveal covariation. If you think of variation as a phenomenon that creates uncertainty, covariation is a phenomenon that reduces it. If two variables covary, you can use the values of one variable to make better predictions about the values of the second. If the covariation is due to a causal relationship (a special case), then the value of one variable can be used to control the value of the second.</p>
+<p>Machine learning models can provide additional insight, via inference.</p>
+<pre class="r"><code>mod &lt;- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
+
+broom::tidy(mod)</code></pre>
+<pre><code>## # A tibble: 4 x 5
+##   term             estimate std.error statistic  p.value
+##   &lt;chr&gt;               &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)         154.     269.       0.572 5.68e- 1
+## 2 bill_length_mm       91.4      6.89    13.3   1.16e-32
+## 3 speciesChinstrap   -886.      88.3    -10.0   6.37e-21
+## 4 speciesGentoo       579.      75.4      7.68  1.76e-13</code></pre>
+<p>In this simple linear case, each additional mm of bill length is related to a 91 gram increase in body mass, for a penguin of the same species. More complex techniques can be used to discover more complex interactions.</p>
+<p><strong>Survival</strong> analysis modeling is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.</p>
+<p>A simpler characterization might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an event to occur after an exposure. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participant’s exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.</p>
+<p>Most survival datasets have some censoring. A censored study subject may be censored due to:</p>
+<ul>
+<li><p>Loss to follow-up (i.e. undocumented, not recorded)</p></li>
+<li><p>Withdrawal from study</p></li>
+<li><p>No event of interest by the end of the fixed study period</p></li>
+</ul>
+<p>Censored subjects still provide information so must be appropriately included in the analysis. Ignoring censoring leads to an overestimate of the overall survival probability, because the censored subjects only contribute information for part of the follow-up time, and then fall out of the risk set, thus pulling down the cumulative probability of survival.</p>
+<p>In industry it is common to track component warranty claims and cost on machines sold. Warranty datasets are heavily censored because the study period rarely aligns with the warranty period for each machine delivered. The study time period and fleet population membership must be carefully considered and explicitly defined. In most cases, exposure is aligned to zero at the warranty start date.</p>
+<p>We need special methods for time to event data, first, because duration times are always positive. Traditional regression models make a number of assumptions for independence and normality that are no longer valid in this space. There are distributions, like Weibull, that better represent the problem space.</p>
+<p><strong>Time Series</strong> modeling, sometimes also called forecasting, seeks to leverage the underlying patterns in data with a timestamp feature to make statements about causal inference or to predict the future. Time is a challenging feature to work with, in that the variables are not observations taken at once. Further, they are not independent, and may be auto-correlated at intervals, or lags.</p>
+<p><strong>Geospatial</strong> and geospatial time-series analytics combine all of the challenges above and warrant their own blog posts.</p>
+</div>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1>Conclusion</h1>
+<blockquote>
+<p>When you claim to “grok” some knowledge or technique, you are asserting that you have not merely learned it in a detached instrumental way but that it has become part of you, part of your identity.</p>
+</blockquote>
+<p><a href="http://catb.org/~esr/jargon/html/G/grok.html">‘grok’</a>, The Jargon File</p>
+<p>There is a persistent myth of the data analyst as a robotic processor of data, who is detached and introverted. The reality is completely the opposite, where the best data analysis will always come from an analyst with a deep understanding of the data and the processes that generated it. EDA has a crucial role in converting data from a contextless collection of bytes into meaningful insights. EDA is a creative and personal journey that is supported by a continuing dialogue that probes and revisits understanding of the broader context.</p>
+<p>The data is an incomplete and encoded representation of a real world experience. Part of the analyst’s role is to solve problems and generate insights that respects the story of how the data were generated. Let’s call this story the data narrative. Part of the narrative might be the sequencing of events that lead to each data record coming into existence, part of it might be the data’s lineage in terms of the wrangling required. The data narrative completely frames the work, how we interpret every insight, and most importantly, the credibility which ultimately influences the audience.</p>
+<p>It is common that analysts are neither domain experts nor provided with nice documentation. In this case, the narrative is something that will be synthesized through detective work, drawing on a combination of data analysis and the experience of collaborating of domain experts.</p>
+<blockquote>
+<p>Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make.</p>
+</blockquote>
+<p><a href="https://r4ds.had.co.nz/">R for Data Science</a> by Hadley Wickham</p>
+<p>EDA cannot happen in a computational vacuum. To do this well, we need to be alternating between interrogating the data and asking ourselves if what we find is consistent with our internal understanding of the data’s narrative. <em>Does what I see make sense to me? Would I feel comfortable to explain it to someone else?</em></p>
+<p>In large organizations, the analyst will be speaking with domain experts, though they needn’t be an internal expert if the data come from outside the organization. Always demand that you have access to the domain expert, as this person will supercharge the eventual analysis and will be often be the difference between success or failure of the entire project. In the beginning, take lots of time to let experts talk broadly about the data, as they understand all of the salient dependencies, anomalies and gotchas that will save a lot of time in the long run. The key here is not checking for correctness, but to grow understanding of the data: it’s important to remember that it’s one thing to be told something about the data narrative, but it’s much more meaningful to discover it expressed in the data.</p>
+<p>As understanding deepens and the analysis progresses, continue to find new patterns and structure in the data. Keep revisiting the understanding of the data narrative, and check whether what you are seeing is consistent. As understanding of the data narrative matures, the gaps will come into focus: consider creative ways to use the data or ask a relevant question to close the gap. The relationship between internalized data narrative and data exploration is a two-way street.</p>
+<p>Take time to discuss the results with another data scientist. The key here is to aim to communicate understanding of the data narrative without getting too mired in the technical details of the data. The process of preparing a narrative that can be explained to a colleague will help to consolidate what’s been learned and quickly expose gaps.</p>
+<hr />
+<p>References:</p>
+<blockquote>
+<p><a href="https://r4ds.had.co.nz/">R for Data Science</a> Chapter 7, and</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.wiley.com/en-us/Practical+Machine+Learning+in+R-p-9781119591535">Practical Machine Learning in R</a> Chapter 3</p>
+</blockquote>
+<blockquote>
+<p><a href="https://www.manning.com/books/build-a-career-in-data-science">Build a Career in Data Science</a> Chapter 10</p>
+</blockquote>
+<hr />
+<div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
+<h3>Did you find this page helpful? Consider sharing it 🙌</h3>
+</div>
+</div>
