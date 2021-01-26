@@ -81,7 +81,7 @@ library(systemfonts) # register Windows Fonts
 library(palmerpenguins) # penguin sample dataset
 })
 
-theme_set(hrbrthemes::theme_ipsum())   # Set a ggplot color, font theme</code></pre>
+theme_set(theme_minimal())  # a clean style for plotting </code></pre>
 </div>
 <div id="feature-names-and-field-types" class="section level3">
 <h3>Feature names and field types</h3>
@@ -119,17 +119,6 @@ theme_set(hrbrthemes::theme_ipsum())   # Set a ggplot color, font theme</code></
 <div id="missingness" class="section level3">
 <h3>Missingness</h3>
 <p>We must check the prevalence of missing values and their relationship with other features. There is a story about a marine mammal weights dataset where the missing values are those whales that exceeded the capacity of the scale. Remedies here might include dropping or transforming columns, imputing missing values as the median, or choosing an algorithm that handles missingness out of the box. As a worse case, it may be necessary to solicit more data.</p>
-<p>If you’ve encountered missing values in the dataset and want to quickly move on to the rest of the analysis, there are two options.</p>
-<ol style="list-style-type: decimal">
-<li><p>Drop the entire row that has the missing values:</p>
-<pre class="r"><code>penguins2 &lt;- penguins %&gt;% 
-    filter(is.na(bill_length_mm))</code></pre></li>
-<li><p>Replace the missing values with an imputed value, like the median of the variable.</p>
-<pre class="r"><code>median_bill_length &lt;- median(penguins$bill_length_mm)
-
-penguins2 &lt;- penguins %&gt;% 
-    mutate(bill_length_mm = if_else(is.na(bill_length_mm), median_bill_length, bill_length_mm))</code></pre></li>
-</ol>
 <p>We should make every effort to understand what makes observations with missing values different versus observations with recorded values. For example, in the sample dataset <code>nycflights13::flights</code>, missing values in the <code>dep_time</code> variable indicate that the flight was cancelled. It is important to compare the scheduled departure times for cancelled and non-cancelled times.</p>
 <pre class="r"><code>nycflights13::flights %&gt;% 
   mutate(
@@ -140,7 +129,7 @@ penguins2 &lt;- penguins %&gt;%
   ) %&gt;% 
   ggplot(mapping = aes(sched_dep_time)) + 
     geom_freqpoly(mapping = aes(colour = cancelled), binwidth = 1/4)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <p>This is also a good example of an unbalanced dataset, where the class of a variable of interest may be overwhelmed by the other classes. There are analytics techniques for synthesizing upsampling, or resampling, to prepare the data to better understand the underlying patterns.</p>
 </div>
 <div id="variance-and-covariance" class="section level3">
@@ -149,7 +138,7 @@ penguins2 &lt;- penguins %&gt;%
 <p>The means of visualizing the distribution of a variable will depend on whether the variable is categorical or continuous. A variable is <strong>categorical</strong> if it can only take one of a small set of values. To examine the distribution of counts of a categorical variable, use a bar chart:</p>
 <pre class="r"><code>ggplot(data = penguins) +
   geom_bar(mapping = aes(x = island, fill = island), show.legend = FALSE)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <p>The height of the bars displays how many observations occurred with each value. A table that diplays the same information:</p>
 <pre class="r"><code>penguins %&gt;% 
   count(island)</code></pre>
@@ -162,7 +151,7 @@ penguins2 &lt;- penguins %&gt;%
 <p>A variable is <strong>continuous</strong> if it can take any of an infinite set of ordered values. Numbers and date-times are two examples of continuous variables. To examine the distribution of a continuous variable, use a histogram:</p>
 <pre class="r"><code>ggplot(data = penguins) +
   geom_histogram(mapping = aes(x = bill_length_mm), binwidth = 2)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>Or, as a summary table, in bins:</p>
 <pre class="r"><code>penguins %&gt;% 
   count(cut_width(bill_length_mm, 2))</code></pre>
@@ -192,11 +181,11 @@ penguins2 &lt;- penguins %&gt;%
   
 ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
   geom_histogram(binwidth = 0.1)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>To overlay multiple histograms in the same plot, use <code>geom_freqpoly()</code> instead of <code>geom_histogram()</code>. <code>geom_freqpoly()</code> performs the same calculation as <code>geom_histogram()</code>, but instead of displaying the counts with bars, it uses lines instead. It’s often easier to understand overlapping lines than bars.</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = bill_length_mm, colour = species)) +
   geom_freqpoly(binwidth = 2)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Now that we can visualize variation, what should we look for in plots? And what type of follow-up questions should we ask? I’ve put together a list below of the most useful types of information that to find in graphs, along with some follow-up questions for each type of information. The key to asking good follow-up questions will be to rely on curiosity as well as skepticism (How could this be misleading?).</p>
 <p>In both bar charts and histograms, tall bars show the common values of a variable, and shorter bars show less-common values. Places that do not have bars reveal values that were not seen in the data. To turn this information into useful questions, look for anything unexpected:</p>
 <ul>
@@ -214,18 +203,18 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
 <p>The histogram below shows the length (in minutes) of 272 eruptions of the Old Faithful Geyser in Yellowstone National Park. Eruption times appear to be clustered into two groups: there are short eruptions (of around 2 minutes) and long eruptions (4-5 minutes), but little in between.</p>
 <pre class="r"><code>ggplot(data = faithful, mapping = aes(x = eruptions)) + 
   geom_histogram(binwidth = 0.25)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <p>Many of the questions above will prompt us to explore a relationship <em>between</em> variables to see if the values of one variable can explain the behavior of another variable.</p>
 <p><strong>Outliers</strong> are observations that are unusual; data points that don’t seem to fit the pattern. Sometimes outliers are data entry errors; other times outliers suggest important new science. When there is a lot of data, outliers are sometimes difficult to see in a histogram. For example, take the distribution of the <code>y</code> variable from the diamonds dataset. The only evidence of outliers is the unusually wide limits on the x-axis.</p>
 <pre class="r"><code>ggplot(diamonds) + 
   geom_histogram(mapping = aes(x = y), binwidth = 0.5)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>It’s good practice to repeat the analysis with and without the outliers. If they have minimal effect on the results, it may be reasonable to replace them with missing values and move on. However, if they have a substantial effect on the results, do not drop them without justification. Figure out what caused them (e.g. a data entry error) and disclose that they were removed in the write-up.</p>
 <p>If variation describes the behavior <em>within</em> a variable, covariation describes the behavior <em>between</em> variables. <strong>Covariation</strong> is the tendency for the values of two or more variables to vary together in a related way. The best way to spot covariation is to visualize the relationship between two or more variables.</p>
 <p>It’s common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. The default appearance of <code>geom_freqpoly()</code> is not that useful for that sort of comparison because the height is given by the count. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we’ll display <strong>density</strong>, which is the count standardised so that the area under each frequency polygon is one.</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = ..density..)) + 
   geom_freqpoly(mapping = aes(colour = species), binwidth = 100)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>Frequency polygons are a little hard to interpret. There’s a lot going on in this plot.</p>
 <p>An alternative: a <strong>boxplot</strong> is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:</p>
 <ul>
@@ -236,7 +225,7 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
 <p>Let’s take a look at the distribution of body mass by species using <code>geom_boxplot()</code>:</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = species, y = body_mass_g       )) +
   geom_boxplot()</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>We see less information about the distribution, but the boxplots are much more compact so we can more easily compare them (and fit more on one plot).</p>
 <p>With long variable names, <code>geom_boxplot()</code> will work better if flipped by 90°. In this case, we will add the original data points, with “jitter”, and color for each species.</p>
 <pre class="r"><code>ggplot(data = penguins, 
@@ -244,13 +233,13 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
                      x = body_mass_g,
                      color = species)) +
   geom_boxplot(show.legend = FALSE) +
-  geom_point(alpha = 0.2, position = &quot;jitter&quot;, show.legend = FALSE) +
+  geom_point(alpha = 0.5, position = &quot;jitter&quot;, show.legend = FALSE) +
   labs(y = NULL)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>To visualize the covariation between categorical variables, we will need to count the number of observations for each combination. One way to do that is to use <code>geom_count()</code>:</p>
 <pre class="r"><code>ggplot(data = penguins) +
   geom_count(mapping = aes(x = island, y = species))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>The size of each circle in the plot displays how many observations occurred at each combination of values. Covariation will appear as a strong correlation between specific x values and specific y values.</p>
 <p>Another approach is to calculate the counts:</p>
 <pre class="r"><code>penguins %&gt;% 
@@ -268,30 +257,30 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
   count(species, island) %&gt;%  
   ggplot(mapping = aes(x = species, y = island)) +
     geom_tile(mapping = aes(fill = n))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>We’ve already seen one great way to visualize the covariation between two continuous variables: draw a scatterplot with <code>geom_point()</code>. Note the covariation as a pattern in the points. For example, observe the relationship between the body mass and bill length of the penguins:</p>
 <pre class="r"><code>ggplot(data = penguins) +
   geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm    ))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p>Scatterplots become less useful as the size of the dataset grows, because points begin to overplot, and pile up into areas of uniform black. One way to fix the problem is to add the <code>alpha</code> aesthetic to add transparency. Again, we will add color as species.</p>
 <pre class="r"><code>ggplot(data = penguins) + 
   geom_point(mapping = aes(x = body_mass_g, 
                            y = bill_length_mm, 
-                           color = species), alpha = 0.2)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+                           color = species), alpha = 0.5)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>Another solution is to use bin. <code>geom_bin2d()</code> divides the coordinate plane into 2d bins and then uses a fill color to display how many points fall into each bin. <code>geom_bin2d()</code> creates rectangular bins. Another alternative, <code>geom_hex()</code>, creates hexagonal bins.</p>
 <pre class="r"><code>ggplot(data = penguins) +
   geom_bin2d(mapping = aes(x = body_mass_g, y = bill_length_mm))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="50%" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="50%" /></p>
 <p>Another option is to bin one continuous variable so it acts like a categorical variable. Then use one of the techniques for visualising the combination of a categorical and a continuous variable. For example, bin body_mass_g and then for each group, and then display a boxplot:</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
   geom_boxplot(mapping = aes(group = cut_width(body_mass_g, 100)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p><code>cut_width(x, width)</code>, as used above, divides <code>x</code> into bins of width <code>width</code>. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it’s difficult to tell that each boxplot summarises a different number of points. One way to show that is to make the width of the boxplot proportional to the number of points with <code>varwidth = TRUE</code>.</p>
 <p>Another approach is to display approximately the same number of points in each bin. That’s the job of <code>cut_number()</code>:</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
   geom_boxplot(mapping = aes(group = cut_number(body_mass_g, 20)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 </div>
 <div id="patterns-and-models" class="section level3">
 <h3>Patterns and models</h3>
@@ -306,7 +295,7 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
 <p>A scatterplot of Old Faithful eruption lengths versus the wait time between eruptions shows a pattern: longer wait times are associated with longer eruptions. The scatterplot also displays the two clusters that we noticed above.</p>
 <pre class="r"><code>ggplot(data = faithful) + 
   geom_point(mapping = aes(x = eruptions, y = waiting))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 <p>Patterns provide one of the most useful tools for data scientists because they reveal covariation. If two variables covary, the values of one variable may interact with the values of the second. If the covariation is due to a causal relationship (a special case), then the value of one variable can be used to control the value of the second.</p>
 <p>Machine learning models can provide additional insight via inference. In this case, we simply fit a linear model for penguin body mass against the bill length and the species.</p>
 <pre class="r"><code>mod &lt;- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
@@ -337,7 +326,7 @@ broom::tidy(mod)</code></pre>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value)) +
   labs(caption = &quot;Federal Reserve Economic Data | US Real Gross Domestic Product&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
 <p><strong>Geospatial</strong> and geospatial time-series modeling combine all of the challenges above and warrant their own detailed blog posts.</p>
 </div>
 </div>

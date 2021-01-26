@@ -106,8 +106,7 @@ library(systemfonts) # register Windows Fonts
 library(palmerpenguins) # penguin sample dataset
 })
 
-theme_set(hrbrthemes::theme_ipsum())   # Set a ggplot color, font theme
-
+theme_set(theme_minimal())  # a clean style for plotting 
 ```
 
 ### Feature names and field types
@@ -142,22 +141,6 @@ summary(penguins)
 ### Missingness
 
 We must check the prevalence of missing values and their relationship with other features. There is a story about a marine mammal weights dataset where the missing values are those whales that exceeded the capacity of the scale. Remedies here might include dropping or transforming columns, imputing missing values as the median, or choosing an algorithm that handles missingness out of the box. As a worse case, it may be necessary to solicit more data.
-
-If you've encountered missing values in the dataset and want to quickly move on to the rest of the analysis, there are two options.
-
-1.  Drop the entire row that has the missing values:
-    ```{r, eval = FALSE}
-    penguins2 <- penguins %>% 
-        filter(is.na(bill_length_mm))
-    ```
-
-1.  Replace the missing values with an imputed value, like the median of the variable.
-    ```{r}
-    median_bill_length <- median(penguins$bill_length_mm)
-    
-    penguins2 <- penguins %>% 
-        mutate(bill_length_mm = if_else(is.na(bill_length_mm), median_bill_length, bill_length_mm))
-    ```
 
 We should make every effort to understand what makes observations with missing values different versus observations with recorded values. For example, in the sample dataset `nycflights13::flights`, missing values in the `dep_time` variable indicate that the flight was cancelled. It is important to compare the scheduled departure times for cancelled and non-cancelled times. 
 
@@ -300,7 +283,7 @@ ggplot(data = penguins,
                      x = body_mass_g,
                      color = species)) +
   geom_boxplot(show.legend = FALSE) +
-  geom_point(alpha = 0.2, position = "jitter", show.legend = FALSE) +
+  geom_point(alpha = 0.5, position = "jitter", show.legend = FALSE) +
   labs(y = NULL)
 ```
 
@@ -342,7 +325,7 @@ Scatterplots become less useful as the size of the dataset grows, because points
 ggplot(data = penguins) + 
   geom_point(mapping = aes(x = body_mass_g, 
                            y = bill_length_mm, 
-                           color = species), alpha = 0.2)
+                           color = species), alpha = 0.5)
 ```
 
 Another solution is to use bin. `geom_bin2d()` divides the coordinate plane into 2d bins and then uses a fill color to display how many points fall into each bin. `geom_bin2d()` creates rectangular bins. Another alternative, `geom_hex()`, creates hexagonal bins. 
