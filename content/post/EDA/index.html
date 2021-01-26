@@ -67,14 +67,14 @@ precise.” — John Tukey</p>
 <p>In my experience it’s good to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides a finer control and fewer restrictions on creativity.</p>
 <p>The main point here is that exploratory data analysis can’t and shouldn’t be automated, because it is a process to support a human’s learning, and to do that well there are few shortcuts. As an analogy, think of this like running a document through a spellchecker versus reading it yourself. While software is useful for spotting typos and grammatical errors, only a critical human eye can detect the nuance. EDA is similar in this respect, in that tools can help, but it requires our own intuition to make sense of it. This personal, in-depth insight will support detailed data analysis further down the line.</p>
 <hr />
-<p>At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize activities under five themes:</p>
+<p>At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize activities under these headings:</p>
 <ul>
 <li><p>Feature names and field types</p></li>
 <li><p>Missingness</p></li>
 <li><p>Variance and covariance</p></li>
 <li><p>Patterns and modeling feature inferences</p></li>
 </ul>
-<p>For illustrative purposes, let’s load a few libraries with plotting functions and a sample penguin dataset.</p>
+<p>For illustrative purposes, let’s load a few libraries with plotting functions and a sample <a href="https://allisonhorst.github.io/palmerpenguins/">penguin</a> dataset.</p>
 <pre class="r"><code>suppressPackageStartupMessages({
 library(tidyverse) # tidy data manipulation, including dplyr and ggplot
 library(systemfonts) # register Windows Fonts
@@ -93,10 +93,10 @@ theme_set(hrbrthemes::theme_ipsum())   # Set a ggplot color, font theme</code></
 <li><p>An <strong>observation</strong> is a set of measurements made under similar conditions. Usually all of the measurements in an observation are taken at the same time and on the same object. An observation will contain several values, each associated with a different variable. We sometimes refer to an observation as an instance.</p></li>
 <li><p><strong>Tabular data</strong> is a set of values, each associated with a variable and an observation. Tabular data is <em>tidy</em> if each value is placed in its own “cell”, each variable in its own column, and each observation in its own row.</p></li>
 <li><p><strong>Dimensionality</strong> represents the number of variables, or features, of a dataset. The higher the dimensionality, the more we know about the data, but also the higher the computational complexity. There are approaches to reducing the dimensionality without losing predictive power.</p></li>
-<li><p><strong>Sparsity and Density</strong> describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity.</p></li>
+<li><p><strong>Sparsity and Density</strong> describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity. Geospatial, survival, natural language processing, and text mining datasets are often sparse.</p></li>
 <li><p><strong>Resolution</strong> describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery is has somewhat higher resolution.</p></li>
 </ul>
-<p>Descriptive statistics are useful in data exploration and understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.</p>
+<p>Descriptive statistics are useful in building understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.</p>
 <p>For the penguins dataset:</p>
 <pre class="r"><code>summary(penguins)</code></pre>
 <pre><code>##       species          island    bill_length_mm bill_depth_mm  flipper_length_mm

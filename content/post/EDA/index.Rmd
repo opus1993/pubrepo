@@ -82,7 +82,7 @@ The main point here is that exploratory data analysis can’t and shouldn’t be
 
 ----
 
-At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize activities under five themes:
+At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize activities under these headings:
 
 - Feature names and field types
 
@@ -92,7 +92,7 @@ At this point, all of the technical tools of EDA will be needed: visualization, 
 
 - Patterns and modeling feature inferences
 
-For illustrative purposes, let's load a few libraries with plotting functions and a sample penguin dataset.
+For illustrative purposes, let's load a few libraries with plotting functions and a sample [penguin](https://allisonhorst.github.io/palmerpenguins/) dataset.
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE,message = FALSE,warning = FALSE)
@@ -126,7 +126,7 @@ Before going further, let's define some terms:
 
 - __Dimensionality__ represents the number of variables, or features, of a dataset. The higher the dimensionality, the more we know about the data, but also the higher the computational complexity. There are approaches to reducing the dimensionality without losing predictive power.
 
-- __Sparsity and Density__ describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity.
+- __Sparsity and Density__ describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity. Geospatial, survival, natural language processing, and text mining datasets are often sparse.
 
 - __Resolution__ describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery is has somewhat higher resolution.
 
