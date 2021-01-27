@@ -78,7 +78,7 @@ Data analysis tooling has coalesced around the **data frame** object, a huge pro
 
 In my experience its best to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides finer control and fewer restrictions on creativity.
 
-The main point here is that exploratory data analysis cannnot and should not be automated, because it is a process to support human learning, and to do that well there are few shortcuts. As an analogy, think of this like running a document through a spellchecker versus reading it yourself. While software is useful for spotting typos and grammatical errors, only a critical human eye can detect the nuance. EDA is similar in this respect, in that tools can help, but it requires our own intuition to make sense of it. This personal, in-depth insight will support detailed data analysis further down the line.
+The main point here is that exploratory data analysis cannot and should not be automated, because it is a process to support human learning, and to do that well there are few shortcuts. As an analogy, think of this like running a document through a spellchecker versus reading it yourself. While software is useful for spotting typos and grammatical errors, only a critical human eye can detect the nuance. EDA is similar in this respect, in that tools can help, but it requires our own intuition to make sense of it. This personal, in-depth insight will support detailed data analysis further down the line.
 
 ----
 
@@ -88,7 +88,7 @@ The main point here is that exploratory data analysis cannnot and should not be 
 
 At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of this blog post, we will organize activities under these headings:
 
-- Feature names and field types
+- Feature names and types
 
 - Missingness
 
@@ -114,7 +114,7 @@ library(GGally) #ggplot2 extensions
 theme_set(theme_minimal())  # a clean style for plotting 
 ```
 
-### Feature names and field types
+### Feature names and types
 
 Analysts are often handed sample data in Excel or a .csv text file at the first engagement of a project. In my experience, always, always check for the correctness of the column types. Expect to find integers incorrectly coded as strings, dates coded as strings, timestamps in odd time zones, non-English character sets, and other issues. Sometimes a column that should be numeric has the occasional string entry. Perhaps the query did not specify the correct schema when reading the database, or the data are encoded in an ambiguous way that results in an inappropriate type, or maybe some earlier data manipulation caused a problem.
 
@@ -446,7 +446,9 @@ Excellent book references on the topics covered by this post:
 
 > [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science) Chapter 10
 
-Other blog posts:
+Other posts:
+
+> [Opinionated Analysis Development](https://rstudio.com/resources/rstudioconf-2017/opinionated-analysis-development/) Hilary Parker video
 
 > [What Is Exploratory Data Analysis?](https://careerfoundry.com/en/blog/data-analytics/exploratory-data-analysis/)
 
