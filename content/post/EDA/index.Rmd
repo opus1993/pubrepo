@@ -2,7 +2,7 @@
 date: "2021-01-26"
 diagram: true
 image: 
-  caption: 'by Allison Horst'
+  caption: 'art by Allison Horst'
   focal_point: "TopRight"
   preview_only: false
 title: 'Exploratory Data Analysis'
