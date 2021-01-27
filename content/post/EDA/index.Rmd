@@ -74,11 +74,11 @@ EDA is fundamentally a creative process. And like most creative processes, the k
 
 > This was the tendency of jobs to be adapted to tools, rather than adapting tools to jobs. [Silvan Tomkins](https://en.wikipedia.org/wiki/Silvan_Tomkins), Computer Simulation of Personality: Frontier of Psychological Theory (1963)
 
-Data analysis tooling has coalesced around the **data frame** object, a huge productivity boost for the analyst. In some settings we talk about self-service, or even "citizen" data scientists that have access to the prepared data frame structures. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying templates. This results in a creativity trap where the analysis can be constrained by the templates in a particular set of tools. While reporting tools are powerful when they genuinely support the analyst in developing an understanding of the data narrative, it’s important to avoid becoming too reliant on any single tool.
+Data analysis tooling has coalesced around the **data frame** object, a huge productivity boost for the analyst. In some settings we talk about self-service, or even "citizen" data scientists that have access to the prepared data frame structures. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying templates. This results in a creativity trap where the analysis can be constrained by the templates in a particular set of tools. While reporting tools are powerful when they genuinely support the analyst in developing an understanding of the data narrative, its important to avoid becoming too reliant on any single tool.
 
-In my experience it’s best to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides finer control and fewer restrictions on creativity.
+In my experience its best to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides finer control and fewer restrictions on creativity.
 
-The main point here is that exploratory data analysis can’t and shouldn’t be automated, because it is a process to support human learning, and to do that well there are few shortcuts. As an analogy, think of this like running a document through a spellchecker versus reading it yourself. While software is useful for spotting typos and grammatical errors, only a critical human eye can detect the nuance. EDA is similar in this respect, in that tools can help, but it requires our own intuition to make sense of it. This personal, in-depth insight will support detailed data analysis further down the line.
+The main point here is that exploratory data analysis cannnot and should not be automated, because it is a process to support human learning, and to do that well there are few shortcuts. As an analogy, think of this like running a document through a spellchecker versus reading it yourself. While software is useful for spotting typos and grammatical errors, only a critical human eye can detect the nuance. EDA is similar in this respect, in that tools can help, but it requires our own intuition to make sense of it. This personal, in-depth insight will support detailed data analysis further down the line.
 
 ----
 
@@ -142,7 +142,6 @@ For the penguins dataset:
 summary(penguins)
 ```
 
-
 ### Missingness
 
 We must check the prevalence of missing values and their relationship with other features. There is a story about a marine mammal weights dataset where the missing values are those whales that exceeded the capacity of the scale. Remedies here might include dropping or transforming columns, imputing missing values as the median, or choosing an algorithm that handles missingness out of the box. As a worse case, it may be necessary to solicit more data.
@@ -174,7 +173,7 @@ ggplot(data = penguins) +
   geom_bar(mapping = aes(x = island, fill = island), show.legend = FALSE)
 ```
 
-The height of the bars displays how many observations occurred with each value. A table that diplays the same information:
+The height of the bars displays how many observations occurred with each value. A table that displays the same information:
 
 ```{r}
 penguins %>% 
@@ -339,7 +338,7 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
   geom_boxplot(mapping = aes(group = cut_number(body_mass_g, 20)))
 ```
 
-For small datasets, a combination `GGally` visualization can be built to illustrate all of the pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables is not so useful with more, particularly for non-techincal audiences.
+For small datasets, a combination `GGally` visualization can be built to illustrate all of the pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables is not so useful with more, particularly for non-technical audiences.
 
 ```{r warnings= FALSE}
 GGally::ggpairs(data = penguins, 
@@ -385,7 +384,7 @@ We find here that each additional mm of bill length is related to a 91.4 gram in
 
 Another modeling tool, **Survival** analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
 
-A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an *event* to occur after an *exposure*. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participant’s exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.
+A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an *event* to occur after an *exposure*. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participants exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.
 
 Most survival datasets have some censoring. A censored study subject may be censored due to:
 
@@ -435,7 +434,7 @@ Cassie Kozyrkov at Google, in [The ultimate guide to starting AI](https://www.li
 
 > You can’t expect to get anything useful by asking wizards to sprinkle machine learning magic on your business without some effort from you first.
 
-In large organizations, the analyst must engage many domain experts, though they need not be internal if the data come from outside the organization. In my workplace, domain expert most often has the title "engineer," though it could as easily be "scientist" or "product manager." The best analysts always demand that they have access to the domain expert, as this person will supercharge the eventual analysis and will often be the difference between success or failure of the entire project. The key here is not about checking for correctness, but to grow understanding of the data: it’s important to remember that it’s one thing to be told something about the data narrative, but it’s much more meaningful to discover it expressed in the data.
+In large organizations, the analyst must engage many domain experts, though they need not be internal if the data come from outside the organization. In my workplace, domain expert most often has the title "engineer," though it could as easily be "scientist" or "product manager." The best analysts always demand that they have access to the domain expert, as this person will supercharge the eventual analysis and will often be the difference between success or failure of the entire project. The key here is not about checking for correctness, but to grow understanding of the data: its important to remember that its one thing to be told something about the data narrative, but its much more meaningful to discover it expressed in the data.
 
 ----
 
