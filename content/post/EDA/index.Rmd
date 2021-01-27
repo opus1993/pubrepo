@@ -404,10 +404,9 @@ We have special methods in survival for time to event data, first, because durat
 
 ```{r}
 fredr::fredr(series_id = 'GDPC1') %>% 
-  timetk::plot_time_series(.date_var = date,
-                           .value = value,
-                           .smooth = FALSE,
-                           .title = "Federal Reserve Economic Data | US Real Gross Domestic Product")
+  ggplot() +
+  geom_line(aes(x = date, y = value))+
+  labs(caption = "Federal Reserve Economic Data | US Real Gross Domestic Product")
 
 ```
 
