@@ -50,7 +50,7 @@ The American mathematician John Tukey formally introduced the concept in 1961. T
 
 Knowing whether the data that could plausibly answer the question is available is *really* important. An analysis plan should consist of actionable tasks that drill down into the dimensions of the business question and how they should be addressed. It should be shared with both the team manager and the client to secure an agreed-upon foundation for the work. For example, importing and cleaning data will require that files and security access be made available. Given the size and the nature of the dataset, cloud resources may need to be provisioned.
 
-Where can data-driven analytics plan fail? 
+So, where do analytics plans fail? 
 
 > By far, the most common mistake is to solve the problems that nobody has.
 
@@ -193,17 +193,7 @@ penguins %>%
 
 A histogram divides the x-axis into equally spaced bins and then uses the height of a bar to display the number of observations that fall in each bin. In the graph above, the tallest bar shows that almost 58 observations have a `bill_length_mm` value between 45 and 47, which are the left and right edges of the bar. 
 
-The width of the intervals in a histogram are set with the `binwidth` argument, which is measured in the units of the `x` variable. Always explore a variety of binwidths when working with histograms, as different binwidths can reveal different patterns. For example, here is how the graph above looks when we zoom into just the penguins with a bill_length of less than 40 mm and choose a smaller binwidth.
-
-```{r}
-smaller <- penguins %>% 
-  filter(bill_length_mm < 40)
-  
-ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
-  geom_histogram(binwidth = 0.1)
-```
-
-To overlay multiple histograms in the same plot, use `geom_freqpoly()` instead of `geom_histogram()`. `geom_freqpoly()` performs the same calculation as `geom_histogram()`, but instead of displaying the counts with bars, it uses lines instead. It's often easier to understand overlapping lines than bars.
+More than one histogram could be plotted together, but a better approach graphically may be to use lines instead, as it's often easier to understand overlapping lines than bars.
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = bill_length_mm, colour = species)) +
@@ -250,14 +240,14 @@ It's good practice to repeat the analysis with and without the outliers. If they
 
 If variation describes the behavior _within_ a variable, covariation describes the behavior _between_ variables. **Covariation** is the tendency for the values of two or more variables to vary together in a related way. The best way to spot covariation is to visualize the relationship between two or more variables. 
 
-It's common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. The default appearance of `geom_freqpoly()` is not that useful for that sort of comparison because the height is given by the count. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we'll first display __density__, which is the count standardized so that the area under each frequency polygon is one.
+It's common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we'll display __density__, which is the count standardized so that the area under each frequency polygon is one.
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = ..density..)) + 
   geom_freqpoly(mapping = aes(colour = species), binwidth = 100)
 ```
 
-So, in this case frequency polygons may be a little hard for most audiences to interpret. There's a lot going on in this plot.
+This may be a little hard for most audiences to interpret. There's a lot going on in this plot.
 
 An alternative: a **boxplot** is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:
 
@@ -267,7 +257,7 @@ An alternative: a **boxplot** is a type of visual shorthand for a distribution o
 
 - A line (or whisker) that extends from each end of the box and goes to the farthest non-outlier point in the distribution.
 
-Let's take a look at the distribution of body mass by species using `geom_boxplot()`:
+Let's take a look at the distribution of body mass by species:
 
 ```{r fig.height = 3}
 ggplot(data = penguins, mapping = aes(x = species, y = body_mass_g       )) +
@@ -276,7 +266,7 @@ ggplot(data = penguins, mapping = aes(x = species, y = body_mass_g       )) +
 
 We see less information about the distribution, but the boxplots are much more compact so we can more easily compare them (and fit more on one plot). 
 
-With long variable names, `geom_boxplot()` will work better if flipped by 90°. In this case, we will add the original data points, with "jitter", and color for each species.
+With long variable names, the boxplot works better if flipped by 90°. In this case, we will add the original data points, with "jitter" (random spacing off from the center axis), and color for each species.
 
 ```{r}
 ggplot(data = penguins, 
@@ -288,7 +278,7 @@ ggplot(data = penguins,
   labs(y = NULL)
 ```
 
-To visualize the covariation between categorical variables, we will need to count the number of observations for each combination. One way to do that is to use  `geom_count()`:
+To visualize the covariation between categorical variables, we will need to count the number of observations for each combination. One approach:
 
 ```{r}
 ggplot(data = penguins) +
@@ -304,7 +294,7 @@ penguins %>%
   count(species, island)
 ```
 
-Then visualize with `geom_tile()` and the fill aesthetic:
+Then visualize as a tile map with a fill aesthetic:
 
 ```{r}
 penguins %>% 
@@ -313,7 +303,7 @@ penguins %>%
     geom_tile(mapping = aes(fill = n))
 ```
 
-We've already seen one great way to visualize the covariation between two continuous variables: draw a scatterplot with `geom_point()`. Note the covariation as a pattern in the points. For example, observe the relationship between the body mass and bill length of the penguins:
+We've already seen one great way to visualize the covariation between two continuous variables: draw a scatterplot. Note the covariation as a pattern in the points. For example, observe the relationship between the body mass and bill length of the penguins:
 
 ```{r}
 ggplot(data = penguins) +
@@ -329,13 +319,6 @@ ggplot(data = penguins) +
                            color = species), alpha = 0.5)
 ```
 
-Another solution is to use bin. `geom_bin2d()` divides the coordinate plane into 2d bins and then uses a fill color to display how many points fall into each bin. `geom_bin2d()` creates rectangular bins. Another alternative, `geom_hex()`, creates hexagonal bins. 
-
-```{r, fig.asp = 1, out.width = "50%", fig.align = "default", message = FALSE}
-ggplot(data = penguins) +
-  geom_bin2d(mapping = aes(x = body_mass_g, y = bill_length_mm))
-```
-
 Another option is to bin one continuous variable so it acts like a categorical variable. Then use one of the techniques for visualizing the combination of a categorical and a continuous variable. For example, bin body_mass_g and then for each group, and then display a boxplot:
 
 ```{r}
@@ -343,16 +326,16 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
   geom_boxplot(mapping = aes(group = cut_width(body_mass_g, 100)))
 ```
 
-`cut_width(x, width)`, as used above, divides `x` into bins of width `width`. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it's difficult to tell that each boxplot summarizes a different number of points. One way to show that is to make the width of the boxplot proportional to the number of points with `varwidth = TRUE`.
+The cuts as used above divides `x` into bins of width `width`. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it's difficult to tell that each boxplot summarizes a different number of points. 
 
-Another approach is to display approximately the same number of points in each bin. That's the job of `cut_number()`:
+Another approach is to display approximately the same number of points in each bin:
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
   geom_boxplot(mapping = aes(group = cut_number(body_mass_g, 20)))
 ```
 
-For small datasets, an combination `GGally` visualization can be built to illustrate pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables is not so useful with more, particularly for non-techincal audiences.
+For small datasets, a combination `GGally` visualization can be built to illustrate all of the pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables is not so useful with more, particularly for non-techincal audiences.
 
 ```{r warnings= FALSE}
 GGally::ggpairs(data = penguins, 
@@ -410,7 +393,7 @@ Most survival datasets have some censoring. A censored study subject may be cens
 
 Censored subjects still provide information so must be appropriately included in the analysis. Ignoring censoring leads to an overestimate of the overall survival probability, because the censored subjects only contribute information for part of the follow-up time, and then fall out of the risk set, thus pulling down the cumulative probability of survival.
 
-In industry it is common to track component warranty claims and cost on machines sold. Warranty datasets are heavily censored because the study period rarely aligns with the warranty period for each machine delivered in a fleet. The study time period and fleet population membership must be carefully considered and explicitly defined. In most cases, exposure time is aligned to zero at the warranty start date.
+In the heavy equipment industry it is necessary to track component warranty claims and cost on machines sold. Warranty datasets are heavily censored because the study period rarely aligns with the warranty period for each machine delivered in a fleet. The study time period and fleet population membership must be carefully considered and explicitly defined. In most cases, exposure time is aligned to zero at the warranty start date.
 
 We have special methods in survival for time to event data, first, because duration times are always positive. Traditional regression models make a number of assumptions for independence and normality that are no longer valid in this domain. There are distributions, like Weibull, that better represent the problem space. 
 
@@ -430,23 +413,19 @@ fredr::fredr(series_id = 'GDPC1') %>%
 
 # Conclusion
 
-> When you claim to “grok” some knowledge or technique, you are asserting that you have not merely learned it in a detached instrumental way but that it has become part of you, part of your identity.
+> When you claim to “grok” some knowledge or technique, you are asserting that you have not merely learned it in a detached instrumental way but that it has become part of you, part of your identity. [‘grok’](http://catb.org/~esr/jargon/html/G/grok.html), The Jargon File
 
-[‘grok’](http://catb.org/~esr/jargon/html/G/grok.html), The Jargon File
+There is a persistent, unfounded myth that the data analyst is an introverted, robotic data processor. EDA has a crucial role in converting data from a contextless collection of bytes into meaningful insights. EDA is a creative journey that is supported by a continuing dialogue that probes the broader context.
 
-There is a persistent myth of the data analyst as a robotic processor of data, who is introverted and detached. Reality is the opposite, where the best data analysis will always come from an analyst with a deep understanding of the data and the processes that generated it. EDA has a crucial role in converting data from a contextless collection of bytes into meaningful insights. EDA is a creative and personal journey that is supported by a continuing dialogue that probes the broader context.
+Data itself is an incomplete and encoded representation of real world experiences. Part of the analyst's role is to represent the story of how the data were generated. [Alastair Rushworth](https://thedatasciencekernel.com/2021/01/24/exploratory-data-analysis-whats-the-point/) calls this story the data narrative. Part of the narrative might be the sequencing of events that lead to each data record coming into existence, or the data’s lineage in terms of the wrangling required. The data narrative completely frames the work, how we interpret every insight, and most importantly, the credibility which ultimately influences the audience.
 
-The data is an incomplete and encoded representation of a real world experience. Part of the analyst's role is to represent the story of how the data were generated. Let’s call this story the data narrative. Part of the narrative might be the sequencing of events that lead to each data record coming into existence, or the data’s lineage in terms of the  wrangling required. The data narrative completely frames the work, how we interpret every insight, and most importantly, the credibility which ultimately influences the audience.
+It is common that analysts are neither domain experts nor are they provided with nice detailed documentation. In this case, the narrative is something that will be revealed through detective work, drawing on a combination of data analysis and the experience of collaborating with domain experts. 
 
-It is common that analysts are neither domain experts nor are they provided with nice detailed documentation. In this case, the narrative is something that will be revealed through detective work, drawing on a combination of data analysis and the experience of collaborating of domain experts. 
-
-> Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make.
-
-[R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham
+> Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make.  [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham
 
 EDA cannot happen in a computational vacuum. To do this well, we need to be alternating between interrogating the data and asking ourselves if what we find is consistent with our internal understanding of the data’s narrative. *Does what I see make sense to me? Would I feel comfortable to explain it to someone else?*
 
-In large organizations, the analyst will be speaking with domain experts, though they need not be an internal expert if the data come from outside the organization. The best always demand that they have access to the domain expert, as this person will supercharge the eventual analysis and will be often be the difference between success or failure of the entire project. From the outset, let experts talk broadly about the data, as their understanding of the salient dependencies, anomalies and gotchas will save a lot of time in the long run. The key here is not checking for correctness, but to grow understanding of the data: it’s important to remember that it’s one thing to be told something about the data narrative, but it’s much more meaningful to discover it expressed in the data.
+In large organizations, the analyst must engage many domain experts, though they need not be an internal expert if the data come from outside the organization. The best always demand that they have access to the domain expert, as this person will supercharge the eventual analysis and will be often be the difference between success or failure of the entire project. From the outset, let experts talk broadly about the data, as their understanding of the salient dependencies, anomalies and gotchas will save a lot of time in the long run. The key here is not about checking for correctness, but to grow understanding of the data: it’s important to remember that it’s one thing to be told something about the data narrative, but it’s much more meaningful to discover it expressed in the data.
 
 As understanding deepens and the analysis progresses, continue to find new patterns and structure in the data. Keep revisiting the understanding of the data narrative, and check whether what has been seen is consistent. As understanding of the data narrative matures, the gaps will come into focus: consider creative ways to use the data or ask a relevant question to close the gap. The relationship between internalized data narrative and data exploration is a two-way street.
 
