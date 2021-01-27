@@ -28,6 +28,10 @@ This post will be a short outline of the major elements of Exploratory Data Anal
 
 According to the 2020 book [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science):
 
+```{r echo=FALSE}
+tweetrmd::tweet_embed('https://twitter.com/ManningBooks/status/1237122435436118017', maxwidth = 2, align = "right")
+```
+
 - *It answers the question*. An analysis starts with someone asking a question, and it must provide an answer to that question.
 
 - *It is made quickly*. Businesses have deadlines. If the analysis takes too long to create, the decision will be made without the analysis.
@@ -39,10 +43,6 @@ According to the 2020 book [Build a Career in Data Science](https://www.manning.
 - *It can be revisited*. Most questions will be asked again in the future. Sometimes, answering subsequent versions of the same question is a matter of running the same script on fresh data.
 
 Ultimately, a good analysis is simply the work product that helps non-analysts do their own jobs. 
-
-```{r echo=FALSE}
-tweetrmd::tweet_embed('https://twitter.com/ManningBooks/status/1237122435436118017')
-```
 
 The American mathematician John Tukey formally introduced the concept in 1961. The idea of summarizing a dataset’s key characteristics coincided with the development of early programming languages. This was also a time when scientists and engineers were working on new data-driven approaches related to early computing. For more than 60 years, EDA has been widely adopted as a core tenet of data science. 
 
@@ -436,6 +436,10 @@ In large organizations, the analyst must engage many domain experts, though they
 
 ----
 
+```{r echo=FALSE}
+tweetrmd::tweet_embed('https://twitter.com/hadleywickham/status/804838201047339009', maxwidth = 2, align = "right")
+```
+
 Excellent book references on the topics covered by this post:
 
 > [R for Data Science](https://r4ds.had.co.nz/) Chapter 7 
@@ -452,9 +456,7 @@ Other posts:
 
 > [Exploratory Data Analysis: what’s the point?](https://thedatasciencekernel.com/2021/01/24/exploratory-data-analysis-whats-the-point/)
 
-```{r echo=FALSE}
-tweetrmd::tweet_embed('https://twitter.com/hadleywickham/status/804838201047339009')
-```
+
 
 ----
 
