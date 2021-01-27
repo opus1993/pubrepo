@@ -14,6 +14,7 @@ categories: [R]
 description: "Crafting a Data Narrative"
 featured: false
 draft: false
+thumbnail: "featured.png"
 ---
 
 More often than not, the most beneficial analytics projects do not involve any artificial intelligence. The tangible financial return on analytics comes from insights delivered to the organization via Exploratory Data Analysis, or EDA.
