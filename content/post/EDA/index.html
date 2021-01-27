@@ -20,7 +20,7 @@ draft: false
 <script src="{{< blogdown/postref >}}index_files/twitter-widget/widgets.js"></script>
 
 
-<p>More often than not, the most beneficial analytics projects do not involve any Artificial Intelligence. The tangible financial return on analytics comes from insights delivered back to the organization via Exploratory Data Analysis, or EDA.</p>
+<p>More often than not, the most beneficial analytics projects do not involve any artificial intelligence. The tangible financial return on analytics comes from insights delivered back to the organization via Exploratory Data Analysis, or EDA.</p>
 <p>Analytics professionals who focus on decision science, that is, people that use data to provide ground truth to the business, must be able to articulate what the EDA process is and what the standards are for the process. Analysts should be the best people available to find meaning in the data.</p>
 <p>Crafting an analysis that takes a vast amount of privileged company data and converts it into a concise result could be considered an art. The act of figuring out what is meaningful mathematically, what the business cares about, and how to bridge the gap between the two is not something that most people will know how to do naturally.</p>
 <p>This post will be a short outline of the major elements of Exploratory Data Analysis. I welcome your feedback, and especially from those that have extraordinary analysts on their teams.</p>
@@ -79,6 +79,7 @@ precise.” — John Tukey</p>
 library(tidyverse) # tidy data manipulation, including dplyr and ggplot
 library(systemfonts) # register Windows Fonts
 library(palmerpenguins) # penguin sample dataset
+library(GGally) #ggplot2 extensions
 })
 
 theme_set(theme_minimal())  # a clean style for plotting </code></pre>
@@ -86,7 +87,7 @@ theme_set(theme_minimal())  # a clean style for plotting </code></pre>
 <div id="feature-names-and-field-types" class="section level3">
 <h3>Feature names and field types</h3>
 <p>Analysts are often handed sample data in Excel or a .csv text file at the first engagement of a project. In my experience, always, always check for the correctness of the column types. Expect to find integers incorrectly coded as strings, dates coded as strings, timestamps in odd time zones, non-English character sets, and other issues. Sometimes a column that should be numeric has the occasional string entry. Perhaps the query did not specify the correct schema when reading the database, or the data are encoded in an ambiguous way that results in an inappropriate type, or maybe some earlier data manipulation caused a problem.</p>
-<p>Before going further, let’s define some terms:</p>
+<p>Going further, let’s define some terms:</p>
 <ul>
 <li><p>A <strong>variable</strong> is a quantity, quality, or property that is measured. Often shown in columns, these are also known in data science as features.</p></li>
 <li><p>A <strong>value</strong> is the state of a variable when measured. The value of a variable may change from measurement to measurement.</p></li>
@@ -96,7 +97,7 @@ theme_set(theme_minimal())  # a clean style for plotting </code></pre>
 <li><p><strong>Sparsity and Density</strong> describe the degree to which data exists for the features in a dataset. For example, if 20 percent of the values in a dataset are missing, the dataset is said to be 20 percent sparse. Density is the complement of sparsity. Geospatial, survival, natural language processing, and text mining datasets are often sparse.</p></li>
 <li><p><strong>Resolution</strong> describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery has somewhat higher resolution, and images taken at ground level can have very high resolution.</p></li>
 </ul>
-<p>Descriptive statistics are useful in building understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.</p>
+<p>Descriptive statistics are useful in building understanding. They involve the use of measures to describe characteristics of variables. For example, categorical variables are described in the frequencies, or counts, of their occurrence in the dataset. For continuous variables, summary measures like mean and median are often useful.</p>
 <p>For the penguins dataset:</p>
 <pre class="r"><code>summary(penguins)</code></pre>
 <pre><code>##       species          island    bill_length_mm bill_depth_mm  flipper_length_mm
@@ -211,11 +212,11 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>It’s good practice to repeat the analysis with and without the outliers. If they have minimal effect on the results, it may be reasonable to replace them with missing values and move on. However, if they have a substantial effect on the results, do not drop them without justification. Figure out what caused them (e.g. a data entry error) and disclose that they were removed in the write-up.</p>
 <p>If variation describes the behavior <em>within</em> a variable, covariation describes the behavior <em>between</em> variables. <strong>Covariation</strong> is the tendency for the values of two or more variables to vary together in a related way. The best way to spot covariation is to visualize the relationship between two or more variables.</p>
-<p>It’s common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. The default appearance of <code>geom_freqpoly()</code> is not that useful for that sort of comparison because the height is given by the count. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we’ll display <strong>density</strong>, which is the count standardised so that the area under each frequency polygon is one.</p>
+<p>It’s common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. The default appearance of <code>geom_freqpoly()</code> is not that useful for that sort of comparison because the height is given by the count. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we’ll first display <strong>density</strong>, which is the count standardized so that the area under each frequency polygon is one.</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = ..density..)) + 
   geom_freqpoly(mapping = aes(colour = species), binwidth = 100)</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
-<p>Frequency polygons are a little hard to interpret. There’s a lot going on in this plot.</p>
+<p>So, in this case frequency polygons may be a little hard for most audiences to interpret. There’s a lot going on in this plot.</p>
 <p>An alternative: a <strong>boxplot</strong> is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:</p>
 <ul>
 <li><p>A box that stretches from the 25th percentile of the distribution to the 75th percentile, a distance known as the interquartile range (IQR). In the middle of the box is a line that displays the median, i.e. 50th percentile.</p></li>
@@ -262,7 +263,7 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
 <pre class="r"><code>ggplot(data = penguins) +
   geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm    ))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
-<p>Scatterplots become less useful as the size of the dataset grows, because points begin to overplot, and pile up into areas of uniform black. One way to fix the problem is to add the <code>alpha</code> aesthetic to add transparency. Again, we will add color as species.</p>
+<p>Scatterplots become less useful as the size of the dataset grows, because points begin to overplot and pile up into areas of uniform black. One way to fix the problem is to add the <code>alpha</code> aesthetic to add transparency. Again, we will add color as species.</p>
 <pre class="r"><code>ggplot(data = penguins) + 
   geom_point(mapping = aes(x = body_mass_g, 
                            y = bill_length_mm, 
@@ -272,15 +273,23 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
 <pre class="r"><code>ggplot(data = penguins) +
   geom_bin2d(mapping = aes(x = body_mass_g, y = bill_length_mm))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="50%" /></p>
-<p>Another option is to bin one continuous variable so it acts like a categorical variable. Then use one of the techniques for visualising the combination of a categorical and a continuous variable. For example, bin body_mass_g and then for each group, and then display a boxplot:</p>
+<p>Another option is to bin one continuous variable so it acts like a categorical variable. Then use one of the techniques for visualizing the combination of a categorical and a continuous variable. For example, bin body_mass_g and then for each group, and then display a boxplot:</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
   geom_boxplot(mapping = aes(group = cut_width(body_mass_g, 100)))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
-<p><code>cut_width(x, width)</code>, as used above, divides <code>x</code> into bins of width <code>width</code>. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it’s difficult to tell that each boxplot summarises a different number of points. One way to show that is to make the width of the boxplot proportional to the number of points with <code>varwidth = TRUE</code>.</p>
+<p><code>cut_width(x, width)</code>, as used above, divides <code>x</code> into bins of width <code>width</code>. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it’s difficult to tell that each boxplot summarizes a different number of points. One way to show that is to make the width of the boxplot proportional to the number of points with <code>varwidth = TRUE</code>.</p>
 <p>Another approach is to display approximately the same number of points in each bin. That’s the job of <code>cut_number()</code>:</p>
 <pre class="r"><code>ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
   geom_boxplot(mapping = aes(group = cut_number(body_mass_g, 20)))</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+<p>For small datasets, an combination <code>GGally</code> visualization can be built to illustrate pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables is not so useful with more, particularly for non-techincal audiences.</p>
+<pre class="r"><code>GGally::ggpairs(data = penguins, 
+                columns = c(&quot;island&quot;, 
+                            &quot;bill_length_mm&quot;, 
+                            &quot;body_mass_g&quot;),
+                mapping = aes(color = species),
+                progress = FALSE) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
 </div>
 <div id="patterns-and-models" class="section level3">
 <h3>Patterns and models</h3>
@@ -295,9 +304,9 @@ ggplot(data = smaller, mapping = aes(x = bill_length_mm)) +
 <p>A scatterplot of Old Faithful eruption lengths versus the wait time between eruptions shows a pattern: longer wait times are associated with longer eruptions. The scatterplot also displays the two clusters that we noticed above.</p>
 <pre class="r"><code>ggplot(data = faithful) + 
   geom_point(mapping = aes(x = eruptions, y = waiting))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
-<p>Patterns provide one of the most useful tools for data scientists because they reveal covariation. If two variables covary, the values of one variable may interact with the values of the second. If the covariation is due to a causal relationship (a special case), then the value of one variable can be used to control the value of the second.</p>
-<p>Machine learning models can provide additional insight via inference. In this case, we simply fit a linear model for penguin body mass against the bill length and the species.</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>Patterns provide one of the most useful tools for data scientists because they reveal covariation. If two variables have covariance, the values of one variable may interact with the values of the second. If the covariation is due to a causal relationship (a special case), then the interaction should be explored.</p>
+<p>Machine learning models can provide additional insight via inference. Just briefly here, we simply fit a linear model for penguin body mass against the bill length and the species.</p>
 <pre class="r"><code>mod &lt;- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
 
 broom::tidy(mod)</code></pre>
@@ -308,7 +317,7 @@ broom::tidy(mod)</code></pre>
 ## 2 bill_length_mm       91.4      6.89    13.3   1.16e-32
 ## 3 speciesChinstrap   -886.      88.3    -10.0   6.37e-21
 ## 4 speciesGentoo       579.      75.4      7.68  1.76e-13</code></pre>
-<p>We find here that each additional mm of bill length is related to a 91.44 gram increase in body mass, for a penguin of the same species. More sophisticated machine learning techniques can be used to discover complex patterns and interactions.</p>
+<p>We find here that each additional mm of bill length is related to a 91.4 gram increase in body mass, for a penguin of the same species. More sophisticated machine learning techniques can be used to discover complex patterns and interactions.</p>
 <p>Another modeling tool, <strong>Survival</strong> analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.</p>
 <p>A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an event to occur after an exposure. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participant’s exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.</p>
 <p>Most survival datasets have some censoring. A censored study subject may be censored due to:</p>
@@ -326,7 +335,7 @@ broom::tidy(mod)</code></pre>
   ggplot() +
   geom_line(mapping = aes(x = date, y = value)) +
   labs(caption = &quot;Federal Reserve Economic Data | US Real Gross Domestic Product&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
 <p><strong>Geospatial</strong> and geospatial time-series modeling combine all of the challenges above and warrant their own detailed blog posts.</p>
 </div>
 </div>

@@ -16,7 +16,7 @@ featured: false
 draft: false
 ---
 
-More often than not, the most beneficial analytics projects do not involve any Artificial Intelligence. The tangible financial return on analytics comes from insights delivered back to the organization via Exploratory Data Analysis, or EDA.
+More often than not, the most beneficial analytics projects do not involve any artificial intelligence. The tangible financial return on analytics comes from insights delivered back to the organization via Exploratory Data Analysis, or EDA.
 
 Analytics professionals who focus on decision science, that is, people that use data to provide ground truth to the business, must be able to articulate what the EDA process is and what the standards are for the process. Analysts should be the best people available to find meaning in the data. 
 
@@ -104,6 +104,7 @@ suppressPackageStartupMessages({
 library(tidyverse) # tidy data manipulation, including dplyr and ggplot
 library(systemfonts) # register Windows Fonts
 library(palmerpenguins) # penguin sample dataset
+library(GGally) #ggplot2 extensions
 })
 
 theme_set(theme_minimal())  # a clean style for plotting 
@@ -113,7 +114,7 @@ theme_set(theme_minimal())  # a clean style for plotting
 
 Analysts are often handed sample data in Excel or a .csv text file at the first engagement of a project. In my experience, always, always check for the correctness of the column types. Expect to find integers incorrectly coded as strings, dates coded as strings, timestamps in odd time zones, non-English character sets, and other issues. Sometimes a column that should be numeric has the occasional string entry. Perhaps the query did not specify the correct schema when reading the database, or the data are encoded in an ambiguous way that results in an inappropriate type, or maybe some earlier data manipulation caused a problem.
 
-Before going further, let's define some terms: 
+Going further, let's define some terms: 
 
 - A __variable__ is a quantity, quality, or property that is measured. Often shown in columns, these are also known in data science as features.
 
@@ -129,7 +130,7 @@ Before going further, let's define some terms:
 
 - __Resolution__ describes the grain or level of detail in the data. The more detailed the data, the finer (or higher) the resolution. Satellite imagery consists of pixels on a grid spaced at some 3 meters or so on the ground. Aerial imagery has somewhat higher resolution, and images taken at ground level can have very high resolution.
 
-Descriptive statistics are useful in building understanding. They involve the use of measures to describe some of the characteristics of features. For example, categorical features are described in the frequencies, or counts, of their occurrence in the dataset. For continuous data, summary measures like mean and median are often useful.
+Descriptive statistics are useful in building understanding. They involve the use of measures to describe characteristics of variables. For example, categorical variables are described in the frequencies, or counts, of their occurrence in the dataset. For continuous variables, summary measures like mean and median are often useful.
 
 For the penguins dataset:
 
@@ -249,14 +250,14 @@ It's good practice to repeat the analysis with and without the outliers. If they
 
 If variation describes the behavior _within_ a variable, covariation describes the behavior _between_ variables. **Covariation** is the tendency for the values of two or more variables to vary together in a related way. The best way to spot covariation is to visualize the relationship between two or more variables. 
 
-It's common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. The default appearance of `geom_freqpoly()` is not that useful for that sort of comparison because the height is given by the count. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we'll display __density__, which is the count standardised so that the area under each frequency polygon is one.
+It's common to want to explore the distribution of a continuous variable broken down by a categorical variable, as in the previous frequency polygon. The default appearance of `geom_freqpoly()` is not that useful for that sort of comparison because the height is given by the count. To make the comparison easier we need to swap what is displayed on the y-axis. Instead of displaying count, we'll first display __density__, which is the count standardized so that the area under each frequency polygon is one.
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = ..density..)) + 
   geom_freqpoly(mapping = aes(colour = species), binwidth = 100)
 ```
 
-Frequency polygons are a little hard to interpret. There's a lot going on in this plot.
+So, in this case frequency polygons may be a little hard for most audiences to interpret. There's a lot going on in this plot.
 
 An alternative: a **boxplot** is a type of visual shorthand for a distribution of values that is popular among statisticians. Each boxplot consists of:
 
@@ -319,7 +320,7 @@ ggplot(data = penguins) +
   geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm    ))
 ```
 
-Scatterplots become less useful as the size of the dataset grows, because points begin to overplot, and pile up into areas of uniform black. One way to fix the problem is to add the `alpha` aesthetic to add transparency. Again, we will add color as species.
+Scatterplots become less useful as the size of the dataset grows, because points begin to overplot and pile up into areas of uniform black. One way to fix the problem is to add the `alpha` aesthetic to add transparency. Again, we will add color as species.
 
 ```{r, dev = "png"}
 ggplot(data = penguins) + 
@@ -335,20 +336,31 @@ ggplot(data = penguins) +
   geom_bin2d(mapping = aes(x = body_mass_g, y = bill_length_mm))
 ```
 
-Another option is to bin one continuous variable so it acts like a categorical variable. Then use one of the techniques for visualising the combination of a categorical and a continuous variable. For example, bin body_mass_g and then for each group, and then display a boxplot:
+Another option is to bin one continuous variable so it acts like a categorical variable. Then use one of the techniques for visualizing the combination of a categorical and a continuous variable. For example, bin body_mass_g and then for each group, and then display a boxplot:
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
   geom_boxplot(mapping = aes(group = cut_width(body_mass_g, 100)))
 ```
 
-`cut_width(x, width)`, as used above, divides `x` into bins of width `width`. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it's difficult to tell that each boxplot summarises a different number of points. One way to show that is to make the width of the boxplot proportional to the number of points with `varwidth = TRUE`.
+`cut_width(x, width)`, as used above, divides `x` into bins of width `width`. By default, boxplots look roughly the same (apart from number of outliers) regardless of how many observations there are, so it's difficult to tell that each boxplot summarizes a different number of points. One way to show that is to make the width of the boxplot proportional to the number of points with `varwidth = TRUE`.
 
 Another approach is to display approximately the same number of points in each bin. That's the job of `cut_number()`:
 
 ```{r}
 ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) + 
   geom_boxplot(mapping = aes(group = cut_number(body_mass_g, 20)))
+```
+
+For small datasets, an combination `GGally` visualization can be built to illustrate pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables is not so useful with more, particularly for non-techincal audiences.
+
+```{r warnings= FALSE}
+GGally::ggpairs(data = penguins, 
+                columns = c("island", 
+                            "bill_length_mm", 
+                            "body_mass_g"),
+                mapping = aes(color = species),
+                progress = FALSE) 
 ```
 
 ### Patterns and models
@@ -372,9 +384,9 @@ ggplot(data = faithful) +
   geom_point(mapping = aes(x = eruptions, y = waiting))
 ``` 
 
-Patterns provide one of the most useful tools for data scientists because they reveal covariation. If two variables covary, the values of one variable may interact with  the values of the second. If the covariation is due to a causal relationship (a special case), then the value of one variable can be used to control the value of the second.
+Patterns provide one of the most useful tools for data scientists because they reveal covariation. If two variables have covariance, the values of one variable may interact with the values of the second. If the covariation is due to a causal relationship (a special case), then the interaction should be explored.
 
-Machine learning models can provide additional insight via inference. In this case, we simply fit a linear model for penguin body mass against the bill length and the species.
+Machine learning models can provide additional insight via inference. Just briefly here, we simply fit a linear model for penguin body mass against the bill length and the species.
 
 ```{r}
 mod <- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
@@ -382,7 +394,7 @@ mod <- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
 broom::tidy(mod)
 ```
 
-We find here that each additional mm of bill length is related to a 91.44 gram increase in body mass, for a penguin of the same species. More sophisticated machine learning techniques can be used to discover complex patterns and interactions.
+We find here that each additional mm of bill length is related to a 91.4 gram increase in body mass, for a penguin of the same species. More sophisticated machine learning techniques can be used to discover complex patterns and interactions.
 
 Another modeling tool, **Survival** analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
 
