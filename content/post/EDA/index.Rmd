@@ -384,7 +384,7 @@ We find here that each additional mm of bill length is related to a 91.4 gram in
 
 Another modeling tool, **Survival** analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
 
-A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an *event* to occur after an *exposure*. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participants exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.
+A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an *event* to occur after an *exposure*. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participants exposure time. The event of interest could be the failure of a component of the tractor. 
 
 Most survival datasets have some censoring. A censored study subject may be censored due to:
 
@@ -396,19 +396,18 @@ Most survival datasets have some censoring. A censored study subject may be cens
 
 Censored subjects still provide information so must be appropriately included in the analysis. Ignoring censoring leads to an overestimate of the overall survival probability, because the censored subjects only contribute information for part of the follow-up time, and then fall out of the risk set, thus pulling down the cumulative probability of survival.
 
-In the heavy equipment industry it is necessary to track component warranty claims and cost on machines sold. Warranty datasets are heavily censored because the study period rarely aligns with the warranty period for each machine delivered in a fleet. The study time period and fleet population membership must be carefully considered and explicitly defined. In most cases, exposure time is aligned to zero at the warranty start date.
+In the heavy equipment industry it is necessary to track component warranty claims and cost on machines sold. Warranty datasets are heavily censored because the study period rarely aligns with the warranty period for each machine delivered in a fleet. The study time period and fleet population membership must be carefully considered and explicitly defined. 
 
 We have special methods in survival for time to event data, first, because duration times are always positive. Traditional regression models make a number of assumptions for independence and normality that are no longer valid in this domain. There are distributions, like Weibull, that better represent the problem space. 
 
-**Time Series** modeling, sometimes also called forecasting, seeks to leverage the underlying patterns in data with a timestamp feature to make statements about causal inference or to predict the future. Time is a challenging feature to work with, in that the variables are not observations taken at once. Further, they are almost never independent, and will often be auto-correlated at intervals, or lags. 
-
-This time series example is US Gross Domestic Product, in Billions of $US, pulled from the Federal Reserve web API with the `fredr` package:
+**Time Series** modeling, sometimes also called forecasting, seeks to leverage the underlying patterns in data with a timestamp feature to make statements about causal inference or to predict the future. Time is a challenging feature to work with, in that the variables are not observations taken at once. Further, they are almost never independent, and will often be auto-correlated at intervals, or lags. This time series example is annual US Gross Domestic Product, in Billions of $US, pulled from the Federal Reserve web API with the `fredr` package. 
 
 ```{r}
 fredr::fredr(series_id = 'GDPC1') %>% 
-  ggplot() +
-  geom_line(mapping = aes(x = date, y = value)) +
-  labs(caption = "Federal Reserve Economic Data | US Real Gross Domestic Product")
+  timetk::plot_time_series(.date_var = date,
+                           .value = value,
+                           .smooth = FALSE,
+                           .title = "Federal Reserve Economic Data | US Real Gross Domestic Product")
 
 ```
 
