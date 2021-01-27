@@ -86,7 +86,7 @@ The main point here is that exploratory data analysis cannnot and should not be 
 
 ----
 
-At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of a the blog post, we will organize activities under these headings:
+At this point, all of the technical tools of EDA will be needed: visualization, transformation, and modeling. For the purposes of this blog post, we will organize activities under these headings:
 
 - Feature names and field types
 
