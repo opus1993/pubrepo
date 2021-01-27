@@ -16,7 +16,7 @@ featured: false
 draft: false
 ---
 
-More often than not, the most beneficial analytics projects do not involve any artificial intelligence. The tangible financial return on analytics comes from insights delivered back to the organization via Exploratory Data Analysis, or EDA.
+More often than not, the most beneficial analytics projects do not involve any artificial intelligence. The tangible financial return on analytics comes from insights delivered to the organization via Exploratory Data Analysis, or EDA.
 
 Analytics professionals who focus on decision science, that is, people that use data to provide ground truth to the business, must be able to articulate what the EDA process is and what the standards are for the process. Analysts should be the best people available to find meaning in the data. 
 
@@ -74,11 +74,15 @@ EDA is fundamentally a creative process. And like most creative processes, the k
 
 > This was the tendency of jobs to be adapted to tools, rather than adapting tools to jobs. [Silvan Tomkins](https://en.wikipedia.org/wiki/Silvan_Tomkins), Computer Simulation of Personality: Frontier of Psychological Theory (1963)
 
-Data analysis tooling has coalesced around the **data frame** object, which is a huge productivity boost for the analyst. In some settings we talk about self-service, or even "citizen" data scientists that have access to the prepared data frame structures. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying templates. This results in a creativity trap where the analysis can be constrained by the small range of uses supported by a particular set of tools. While reporting tools are powerful when they genuinely support the analyst in developing an understanding of the data narrative, it’s important to avoid becoming too reliant on any single tool.
+Data analysis tooling has coalesced around the **data frame** object, a huge productivity boost for the analyst. In some settings we talk about self-service, or even "citizen" data scientists that have access to the prepared data frame structures. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying templates. This results in a creativity trap where the analysis can be constrained by the templates in a particular set of tools. While reporting tools are powerful when they genuinely support the analyst in developing an understanding of the data narrative, it’s important to avoid becoming too reliant on any single tool.
 
-In my experience it’s good to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides a finer control and fewer restrictions on creativity.
+In my experience it’s best to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides finer control and fewer restrictions on creativity.
 
-The main point here is that exploratory data analysis can’t and shouldn’t be automated, because it is a process to support a human's learning, and to do that well there are few shortcuts. As an analogy, think of this like running a document through a spellchecker versus reading it yourself. While software is useful for spotting typos and grammatical errors, only a critical human eye can detect the nuance. EDA is similar in this respect, in that tools can help, but it requires our own intuition to make sense of it. This personal, in-depth insight will support detailed data analysis further down the line.
+The main point here is that exploratory data analysis can’t and shouldn’t be automated, because it is a process to support human learning, and to do that well there are few shortcuts. As an analogy, think of this like running a document through a spellchecker versus reading it yourself. While software is useful for spotting typos and grammatical errors, only a critical human eye can detect the nuance. EDA is similar in this respect, in that tools can help, but it requires our own intuition to make sense of it. This personal, in-depth insight will support detailed data analysis further down the line.
+
+----
+
+[TL;DR - skip to the Conclusion](#Conclusion) 
 
 ----
 
@@ -310,7 +314,7 @@ ggplot(data = penguins) +
   geom_point(mapping = aes(x = body_mass_g, y = bill_length_mm    ))
 ```
 
-Scatterplots become less useful as the size of the dataset grows, because points begin to overplot and pile up into areas of uniform black. One way to fix the problem is to add the `alpha` aesthetic to add transparency. Again, we will add color as species.
+Scatterplots become less useful as the size of the dataset grows, because points begin to overplot and pile up into areas of uniform black. One way to fix the problem is to add transparency (here, called `alpha`). Again, we will add color as species.
 
 ```{r, dev = "png"}
 ggplot(data = penguins) + 
@@ -381,7 +385,7 @@ We find here that each additional mm of bill length is related to a 91.4 gram in
 
 Another modeling tool, **Survival** analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
 
-A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an event to occur after an exposure. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participant’s exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.
+A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an *event* to occur after an *exposure*. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participant’s exposure time. The event of interest could be death or the failure of a component of the tractor. Time-to-event data always consist of the distinct exposure start and distinct event end for each study participant.
 
 Most survival datasets have some censoring. A censored study subject may be censored due to:
 
@@ -410,6 +414,8 @@ fredr::fredr(series_id = 'GDPC1') %>%
 ```
 
 **Geospatial** and geospatial time-series modeling combine all of the challenges above and warrant their own detailed blog posts.
+
+<a id="Conclusion"></a>
 
 # Conclusion
 
