@@ -370,9 +370,9 @@ ggplot(data = faithful) +
   geom_point(mapping = aes(x = eruptions, y = waiting))
 ``` 
 
-Patterns provide one of the most useful tools for data scientists because they reveal covariation. If two variables have covariance, the values of one variable may interact with the values of the second. If the covariation is due to a causal relationship (a special case), then the interaction should be explored.
+Patterns provide one of the most useful tools because they reveal covariation. If two variables have covariance, the values of one variable may interact with the values of the second. If the covariation is due to a causal relationship (a special case), then the interaction should be explored further.
 
-Machine learning models can provide additional insight via inference. Just briefly here, we simply fit a linear model for penguin body mass against the bill length and the species.
+Machine learning models can provide additional insight via inference. As a quick example, to quantify the pattern we can simply fit a linear model for penguin body mass against the bill length and the species.
 
 ```{r}
 mod <- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
@@ -400,12 +400,12 @@ In the heavy equipment industry it is necessary to track component warranty clai
 
 We have special methods in survival for time to event data, first, because duration times are always positive. Traditional regression models make a number of assumptions for independence and normality that are no longer valid in this domain. There are distributions, like Weibull, that better represent the problem space. 
 
-**Time Series** modeling, sometimes also called forecasting, seeks to leverage the underlying patterns in data with a timestamp feature to make statements about causal inference or to predict the future. Time is a challenging feature to work with, in that the variables are not observations taken at once. Further, they are almost never independent, and will often be auto-correlated at intervals, or lags. This time series example is annual US Gross Domestic Product, in Billions of $US, pulled from the Federal Reserve web API with the `fredr` package. 
+**Time Series** modeling, sometimes also called forecasting, seeks to leverage the underlying patterns in data with a timestamp feature to make statements about causal inference or to predict the future. Time is a challenging feature to work with, in that the variables are not observations taken at once. Further, they are almost never independent, and will often be auto-correlated and have seasonality. This time series example is annual US Gross Domestic Product, in Billions of $US, pulled from the Federal Reserve web API with the `fredr` package. 
 
 ```{r}
 fredr::fredr(series_id = 'GDPC1') %>% 
   ggplot() +
-  geom_line(aes(x = date, y = value))+
+  geom_line(aes(x = date, y = value)) +
   labs(caption = "Federal Reserve Economic Data | US Real Gross Domestic Product")
 
 ```
@@ -455,8 +455,6 @@ Other posts:
 > [What Is Exploratory Data Analysis?](https://careerfoundry.com/en/blog/data-analytics/exploratory-data-analysis/)
 
 > [Exploratory Data Analysis: what’s the point?](https://thedatasciencekernel.com/2021/01/24/exploratory-data-analysis-whats-the-point/)
-
-
 
 ----
 
