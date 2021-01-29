@@ -186,6 +186,7 @@ For a glimpse into the R environment ML frameworks, consider these resources:
 | [R interface to keras](https://keras.rstudio.com/)
 | [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
 | [Introducing Torch for R](https://blog.rstudio.com/2020/09/29/torch/)
+| [Deep Learning](https://www.deeplearningbook.org/)
 
 ----
 ## Geospatial
