@@ -50,9 +50,7 @@ The American mathematician John Tukey formally introduced the concept in 1961. T
 
 Knowing whether the data that could plausibly answer the question is available is *really* important. An analysis plan should consist of actionable tasks that drill down into the dimensions of the business question and how they should be addressed. It should be shared with both the team manager and the client to secure an agreed-upon foundation for the work. For example, importing and cleaning data will require that files and security access be made available. Given the size and the nature of the dataset, cloud resources may need to be provisioned.
 
-So, where do analytics plans fail? 
-
-> By far, the most common mistake is to solve the problems that nobody has.
+So, where do analytics plans fail? The most common mistake is to solve the problems that nobody has.
 
 Every EDA plan steps through identifying potential issues that require remedial work before moving forward. This could be characterized as data cleaning or data checking. Generally speaking, the pattern here is:
 
@@ -64,9 +62,7 @@ Every EDA plan steps through identifying potential issues that require remedial 
 
 Bear in mind that EDA is never a single linear process with a strict set of rules. During the initial phases of EDA every idea will be investigated. Some of these ideas will pan out, and most will be dead ends. As exploration continues, the analyst will discover a few particularly productive areas  to write up and communicate.
 
-> "Far better an approximate answer to the right question, which is often
-> vague, than an exact answer to the wrong question, which can always be made
-> precise." --- John Tukey
+> "Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question, which can always be made precise." John Tukey
 
 EDA is fundamentally a creative process. And like most creative processes, the key to asking _quality_ questions is to generate a large _quantity_ of questions. It is always difficult to ask revealing questions at the start of the analysis because the analyst does not yet know what insights are contained in the dataset. On the other hand, each new question asked will expose a new aspect of the data and increase the chance of making a discovery. 
 
@@ -410,7 +406,7 @@ fredr::fredr(series_id = 'GDPC1') %>%
 
 # Conclusion
 
-> Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make.  [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham
+> Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make. [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham
 
 EDA cannot happen in a computational vacuum. To do this well, we need to be alternating between interrogating the data and asking ourselves if what we find is consistent with our internal understanding of the data’s narrative. *Does what I see make sense to me? Would I feel comfortable to explain it to someone else?*
 

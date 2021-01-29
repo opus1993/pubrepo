@@ -51,9 +51,7 @@ The American mathematician John Tukey formally introduced the concept in 1961. T
 
 Knowing whether the data that could plausibly answer the question is available is *really* important. An analysis plan should consist of actionable tasks that drill down into the dimensions of the business question and how they should be addressed. It should be shared with both the team manager and the client to secure an agreed-upon foundation for the work. For example, importing and cleaning data will require that files and security access be made available. Given the size and the nature of the dataset, cloud resources may need to be provisioned.
 
-So, where do analytics plans fail?
-
-> By far, the most common mistake is to solve the problems that nobody has.
+So, where do analytics plans fail? The most common mistake is to solve the problems that nobody has.
 
 Every EDA plan steps through identifying potential issues that require remedial work before moving forward. This could be characterized as data cleaning or data checking. Generally speaking, the pattern here is:
 
@@ -65,9 +63,7 @@ Every EDA plan steps through identifying potential issues that require remedial 
 
 Bear in mind that EDA is never a single linear process with a strict set of rules. During the initial phases of EDA every idea will be investigated. Some of these ideas will pan out, and most will be dead ends. As exploration continues, the analyst will discover a few particularly productive areas to write up and communicate.
 
-> “Far better an approximate answer to the right question, which is often
-> vague, than an exact answer to the wrong question, which can always be made
-> precise.” — John Tukey
+> “Far better an approximate answer to the right question, which is often vague, than an exact answer to the wrong question, which can always be made precise.” John Tukey
 
 EDA is fundamentally a creative process. And like most creative processes, the key to asking *quality* questions is to generate a large *quantity* of questions. It is always difficult to ask revealing questions at the start of the analysis because the analyst does not yet know what insights are contained in the dataset. On the other hand, each new question asked will expose a new aspect of the data and increase the chance of making a discovery.
 
