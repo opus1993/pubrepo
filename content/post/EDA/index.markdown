@@ -73,8 +73,6 @@ EDA is fundamentally a creative process. And like most creative processes, the k
 
 ### The pitfalls of the data frame interface
 
-> This was the tendency of jobs to be adapted to tools, rather than adapting tools to jobs. [Silvan Tomkins](https://en.wikipedia.org/wiki/Silvan_Tomkins), Computer Simulation of Personality: Frontier of Psychological Theory (1963)
-
 Data analysis tooling has coalesced around the **data frame** object, a huge productivity boost for the analyst. In some settings we talk about self-service, or even “citizen” data scientists that have access to the prepared data frame structures. There is a risk here that EDA, because of the ease and uniformity of use of the tooling, becomes an exercise in applying templates. This results in a creativity trap where the analysis can be constrained by the templates in a particular set of tools. While reporting tools are powerful when they genuinely support the analyst in developing an understanding of the data narrative, its important to avoid becoming too reliant on any single tool.
 
 In my experience its best to have familiarity with tooling at several levels of abstraction, whether python or R, Tableau or PowerBI. High level interfaces to auto-generate certain types of exploratory analysis are handy when they provide just what is needed. However, the majority of EDA is more creative in nature and becoming expert with data manipulation tools like dplyr and pandas in combination with graphical tools like matplotlib and ggplot2 provides finer control and fewer restrictions on creativity.
