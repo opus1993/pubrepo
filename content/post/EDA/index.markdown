@@ -508,14 +508,6 @@ fredr::fredr(series_id = 'GDPC1') %>%
 
 # Conclusion
 
-> When you claim to “grok” some knowledge or technique, you are asserting that you have not merely learned it in a detached instrumental way but that it has become part of you, part of your identity. [‘grok’](http://catb.org/~esr/jargon/html/G/grok.html), The Jargon File
-
-There is a persistent, unfounded myth that the data analyst is an introverted, robotic data processor. EDA has a crucial role in converting data from a contextless collection of bytes into meaningful insights. EDA is a creative journey that is supported by a continuing dialogue that probes the broader context.
-
-Data itself is an incomplete and encoded representation of real world experiences. Part of the analyst’s role is to represent the story of how the data were generated. [Alastair Rushworth](https://thedatasciencekernel.com/2021/01/24/exploratory-data-analysis-whats-the-point/) calls this story the data narrative. Part of the narrative might be the sequencing of events that lead to each data record coming into existence, or the data’s lineage in terms of the wrangling required. The data narrative completely frames the work, how we interpret every insight, and most importantly, the credibility which ultimately influences the audience.
-
-It is common that analysts are neither domain experts nor are they provided with nice detailed documentation. In this case, the narrative is something that will be revealed through detective work, drawing on a combination of data analysis and the experience of collaborating with domain experts.
-
 > Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make. [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham
 
 EDA cannot happen in a computational vacuum. To do this well, we need to be alternating between interrogating the data and asking ourselves if what we find is consistent with our internal understanding of the data’s narrative. *Does what I see make sense to me? Would I feel comfortable to explain it to someone else?*
@@ -524,7 +516,7 @@ Cassie Kozyrkov at Google, in [The ultimate guide to starting AI](https://www.li
 
 > You can’t expect to get anything useful by asking wizards to sprinkle machine learning magic on your business without some effort from you first.
 
-In large organizations, the analyst must engage many domain experts, though they need not be internal if the data come from outside the organization. In my workplace, domain expert most often has the title “engineer,” though it could as easily be “scientist” or “product manager.” The best analysts always demand that they have access to the domain expert, as this person will supercharge the eventual analysis and will often be the difference between success or failure of the entire project. The key here is not about checking for correctness, but to grow understanding of the data: its important to remember that its one thing to be told something about the data narrative, but its much more meaningful to discover it expressed in the data.
+In my workplace, domain expert most often has the title “engineer,” though it could as easily be “scientist” or “product manager.” The key here is not about checking for correctness, but to grow understanding of the data: its important to remember that its one thing to be told something about the data narrative, but its much more meaningful to discover it expressed in the data.
 
 ------------------------------------------------------------------------
 
@@ -543,8 +535,6 @@ Other posts:
 > [Opinionated Analysis Development](https://rstudio.com/resources/rstudioconf-2017/opinionated-analysis-development/) Hilary Parker video
 
 > [What Is Exploratory Data Analysis?](https://careerfoundry.com/en/blog/data-analytics/exploratory-data-analysis/)
-
-> [Exploratory Data Analysis: what’s the point?](https://thedatasciencekernel.com/2021/01/24/exploratory-data-analysis-whats-the-point/)
 
 ------------------------------------------------------------------------
 
