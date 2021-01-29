@@ -500,15 +500,11 @@ fredr::fredr(series_id = 'GDPC1') %>%
 
 > Your goal during EDA is to develop an understanding of your data. The easiest way to do this is to use questions as tools to guide your investigation. When you ask a question, the question focuses your attention on a specific part of your dataset and helps you decide which graphs, models, or transformations to make. [R for Data Science](https://r4ds.had.co.nz/) by Hadley Wickham
 
-EDA cannot happen in a computational vacuum. To do this well, we need to be alternating between interrogating the data and asking ourselves if what we find is consistent with our internal understanding of the data’s narrative. *Does what I see make sense to me? Would I feel comfortable to explain it to someone else?*
-
 Cassie Kozyrkov at Google, in [The ultimate guide to starting AI](https://www.linkedin.com/pulse/ultimate-guide-starting-ai-cassie-kozyrkov/), argues that:
 
 > You can’t expect to get anything useful by asking wizards to sprinkle machine learning magic on your business without some effort from you first.
 
-In my workplace, domain expert most often has the title “engineer,” though it could as easily be “scientist” or “product manager.” The key here is not about checking for correctness, but to grow understanding of the data: its important to remember that its one thing to be told something about the data narrative, but its much more meaningful to discover it expressed in the data.
-
-------------------------------------------------------------------------
+In my workplace, domain expert most often has the title “engineer,” though it could as easily be “scientist” or “product manager.” The key here is not about checking for correctness, but to grow the enterprise’s understanding of the data and elicit valuable insights from it.
 
 <blockquote class="twitter-tweet" align="right" data-width="220" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">Loving the new colour cover for R4DS! On track for mid Dec printing. Pre-order: <a href="https://t.co/BMFYacy7x5">https://t.co/BMFYacy7x5</a>. Read for 🆓: <a href="https://t.co/48IKOWCtSc">https://t.co/48IKOWCtSc</a> <a href="https://t.co/2R1hFrR6v6">pic.twitter.com/2R1hFrR6v6</a></p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/804838201047339009?ref_src=twsrc%5Etfw">December 3, 2016</a></blockquote>
 
