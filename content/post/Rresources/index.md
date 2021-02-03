@@ -134,6 +134,7 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 |     |    | 
 |:---|:---|
 | [Text mining](https://www.tidytextmining.com/) |by [Julia Silge](https://twitter.com/juliasilge) and [David Robinson](https://twitter.com/drob)|
+| [Learn Tidytext](https://juliasilge.shinyapps.io/learntidytext/) | by [Julia Silge](https://twitter.com/juliasilge)|
 | [Supervised Machine Learning for Text Analysis in R](https://smltar.com/) |by [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt) and [Julia Silge](https://twitter.com/juliasilge)|
 | [Text as Data: An Overview](https://kenbenoit.net/pdfs/CURINI_FRANZESE_Ch26.pdf) |by [Ken Benoit](https://twitter.com/kenbenoit)|
 | [word2vec in R](https://www.bnosac.be/index.php/blog/100-word2vec-in-r) |Belgium Network of Open Source Analytical Consultants|
