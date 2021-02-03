@@ -186,7 +186,7 @@ For a glimpse into the R environment ML frameworks, consider these resources:
 | [DALEX moDel Agnostic Language for Exploration and eXplanation](https://modeloriented.github.io/DALEX/)
 | [R interface to keras](https://keras.rstudio.com/)
 | [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
-| [Introducing Torch for R](https://blog.rstudio.com/2020/09/29/torch/)
+| [torch for R](https://torch.mlverse.org/)
 | [Deep Learning](https://www.deeplearningbook.org/)
 
 ----
