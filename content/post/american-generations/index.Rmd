@@ -8,7 +8,7 @@ image:
   caption: ''
   focal_point: "TopRight"
   preview_only: false
-title: 'The Seven Living Generations in America'
+title: 'Generations in America'
 author: "Jim Gruman"
 output: 
  blogdown::html_page:
@@ -16,7 +16,7 @@ output:
 categories: [R]
 description: "The composition of American generations per Pew Research & US Census"
 featured: false
-draft: false
+draft: true
 ---
 
 >Inspired by [Jason Timm's post](https://www.jtimm.net/2020/06/10/american-generations/)
