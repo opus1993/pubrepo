@@ -13,6 +13,7 @@ categories:
 tags:
   - plot
   - R Markdown
+draft: true
 ---
 
 This series from Cassie Kozyrkov is perhaps the best *best of* compilation for students approaching Machine Learning, starting from statistics, for the first time. 
