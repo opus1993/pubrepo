@@ -15,6 +15,7 @@ image:
   focal_point: 'Smart'
   preview_only: false
 projects: []
+draft: true
 ---
 
 Beyond our immediate concerns about SARS-CoV-19 in 2020, there are changes that are fueling major shifts in the global economy and wider society. These changes, or megatrends, will be enormous in their impact. 
