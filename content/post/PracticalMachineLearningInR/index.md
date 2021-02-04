@@ -45,13 +45,15 @@ As a bridge between these two categories, this book is billed as approachable an
 
 ### What's missing from **Practical Machine Learning in R**?
 
-Readers should look elsewhere for detailed instruction on crucial skills in statistics, SQL, data visualization, and computing architectures. Time series forecasting and geospatial topics warrant their own books as well. Fortunately, many are available gratis at my resource list, [here](https://jimgruman.netlify.app/post/education-r/).
+Readers should look elsewhere for detailed instruction on crucial skills in statistics, SQL, data visualization, and computing architectures. Time series forecasting and geospatial topics warrant their own books as well. 
+
+This book's section on linear regression models explores stepwise feature selection. This approach is problematic for several reasons, and a large literature exists that critiques the method (see Steyerberg, Eijkemans, and Habbema ([1999](https://bookdown.org/max/FES/references.html#ref-Steyerberg)), Whittingham et al. ([2006](https://bookdown.org/max/FES/references.html#ref-Whittingham)), and Mundry and Nunn ([2009](https://bookdown.org/max/FES/references.html#ref-Mundry))), and Harrell ([2015](https://bookdown.org/max/FES/references.html#ref-rms)).
 
 The [`glmnet`](https://glmnet.stanford.edu/articles/glmnet.html) methodology offers a more robust technique for fitting generalized linear models and offers solutions to overfitting problems that can plague stepwise regression. Bradley Boehmke at the [University of Cincinnati R Programming Guide](http://uc-r.github.io/regularized_regression) offers a nice overview.
 
-Professor Andrew Gelman's [Reggression and Other Stories](https://statmodeling.stat.columbia.edu/2020/07/08/regression-and-other-stories-is-available/) goes further to challenge the statistical hypothesis assumptions of the frequentist camp and offers a more robust bayesian workflow for the generalized linear model, especially in the social sciences.
+Max Kuhn and Kjell Johnson's [Feature Engineering and Selection: A Practical Approach for Predictive Models](https://bookdown.org/max/FES/) offers a more thorough exploration of several other predictive modeling methods.
 
-But as with so many other learning journeys, the student has to start at the beginning. **Practical Machine Learning in R** provides a well-illustrated early overview on the journey. **Practical Machine Learning in R** uses R libraries that are mature, stable, and widely available, including the `tidyverse` and a little bit of `caret`. In the near future, the [`tidymodels`](https://www.tidymodels.org/) and [`mlr3`](https://mlr3book.mlr-org.com/) packages in development will emerge as the professional tools of choice. Watch for the release of [Tidy Modeling with R](https://www.tmwr.org/index.html) by Max Kuhn and Julia Silge as well.
+**Practical Machine Learning in R** uses R libraries that are mature, stable, and widely available, including the `tidyverse` and a little bit of `caret`. As of early 2021, the [`tidymodels`](https://www.tidymodels.org/) and [`mlr3`](https://mlr3book.mlr-org.com/) frameworks have emerged as the professional tools of choice. Watch for the release of the book [Tidy Modeling with R](https://www.tmwr.org/index.html) by Max Kuhn and Julia Silge as well.
 
 ----
 
