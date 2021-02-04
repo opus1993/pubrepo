@@ -17,6 +17,7 @@ image:
   focal_point: 'Smart'
   preview_only: false
 projects: []
+draft: true
 ---
 
 Most business clients have a genuine interest in the uses of data, yet do not know how to achieve their analytics and Artificial Intelligence goals. The analyst's job is to help them understand how to navigate the journey successfully. The organization's mid-level functional managers are given latitude to immediately stop, delay, or move work forward. A handful of causes explain most of the issues with analytics in this interface. Let's look at these areas to be armed with advanced thinking about how to convince stakeholders that these roadblocks need to be overcome.
