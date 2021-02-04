@@ -16,7 +16,7 @@ image:
   focal_point: "TopRight"
   preview_only: false
 featured: false
-draft: false
+draft: true
 ---
 
 R 4.0.0 is expected to be released to CRAN on Friday April 24th
