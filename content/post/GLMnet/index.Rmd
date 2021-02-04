@@ -16,7 +16,7 @@ image:
   focal_point: "Smart"
   preview_only: false
 featured: false
-draft: false
+draft: true
 ---
 
 Statistics today has become almost synonymous with machine learning, a collection of techniques that benefit from today's incredible computing power. 
