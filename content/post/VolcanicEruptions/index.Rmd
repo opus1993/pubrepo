@@ -15,7 +15,7 @@ image:
   caption: ''
   focal_point: "Smart"
   preview_only: true
-draft: false
+draft: true
 featured: false
 ---
 
