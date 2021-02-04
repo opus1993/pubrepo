@@ -15,6 +15,7 @@ image:
   focal_point: 'Smart'
   preview_only: false
 projects: []
+draft: true
 ---
 
 ### [More and more top level enterprises have strategies that expect to exploit artificial intelligence.](https://fortune.com/packages/special-report-artificial-intelligence/) Companies are investing vast sums into data-hungry systems believing that they will profoundly transform the business landscape. Their revenue projections are increasingly dependent on delivering on ever more complex projects. Let’s explore the attributes of better AI teams at a handful of firms and how they are built to execute.
