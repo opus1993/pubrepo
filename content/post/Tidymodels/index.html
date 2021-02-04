@@ -16,9 +16,10 @@ image:
   focal_point: "Smart"
   preview_only: true
 featured: false
-draft: false
+draft: true
 ---
 
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>The tidyverse’s form of machine learning is finally here. <code>Tidymodels</code> forms the basis of tidy machine learning, and this post provides a tour.</p>
@@ -58,10 +59,8 @@ draft: false
 <p>First we need to load the collections of meta-libraries: <code>tidymodels</code> and <code>tidyverse</code>. We will also be using the <code>workflows</code> and <code>tune</code> packages that should eventually become part of CRAN’s <code>tidymodels</code> package bundle, but need to be loaded separately for now.</p>
 <pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, message = FALSE)
 # load the  tidymodels libraries
-library(tidymodels)</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.2</code></pre>
-<pre><code>## Warning: package &#39;parsnip&#39; was built under R version 4.0.2</code></pre>
-<pre class="r"><code>library(tidyverse)
+library(tidymodels)
+library(tidyverse)
 library(workflows)
 library(tune)
 
@@ -92,7 +91,7 @@ theme_set(theme_minimal())</code></pre>
   theme(legend.position = &quot;&quot;,
         plot.title.position = &quot;plot&quot;)+
   labs(title = &quot;Ames Housing Numeric Variable Data Count Histogram Distributions&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p>There appear to be null values in the data (looking at the ‘vertical bars’ at 0 along the x-axis). Many of the numeric variables are actually discrete and not continuous. As mentioned earlier in the histograms, dimension-related variables seem to follow a similar pattern as the Sale Price and might be good indicators. Other features do not have a strong relationship with Sale Price, like ‘Year Sold’.</p>
 <p>Another data vizualization showing the relationships between the numeric features and sale price:</p>
 <pre class="r"><code>ames_fctrs&lt;-c(&quot;Bsmt_Full_Bath&quot;,
@@ -119,7 +118,7 @@ ames_clean %&gt;%
         plot.title.position = &quot;plot&quot;)+
   labs(x = &quot;Numeric Feature Value&quot;,
        title = &quot;Ames Housing Numeric Variable versus Sale Price&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="768" /></p>
 <p>A few variables, like overall quality and lot square footage, are highly correlated with Sale Price. Other views of correlation from the new tidymodels <code>corrr</code> package and the <code>DataExplorer</code> package:</p>
 <pre class="r"><code>ames_clean %&gt;%
   select(-Id)%&gt;%
@@ -128,13 +127,13 @@ ames_clean %&gt;%
   corrr::rearrange() %&gt;%
   corrr::shave() %&gt;%
   corrr::rplot(shape = 15, colours = c(&quot;darkorange&quot;,&quot;white&quot;,&quot;darkcyan&quot;))</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre class="r"><code>ames_clean %&gt;%
   select(-Id)%&gt;%
   keep(is.numeric) %&gt;%
   corrr::correlate() %&gt;%
   corrr::network_plot(min_cor = 0.2)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 </div>
 <div id="exploration-of-categorical-variables" class="section level3">
 <h3>Exploration of Categorical Variables</h3>
@@ -155,7 +154,7 @@ ames_clean %&gt;%
         plot.title.position = &quot;plot&quot;)+
   labs(x = &quot;Categorical Feature Value&quot;,
        title = &quot;Ames Housing Categorical Variable versus Sale Price&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
 </div>
 </div>
 <div id="split-the-data-into-trainingtesting" class="section level2">
@@ -181,7 +180,15 @@ ames_test &lt;- testing(ames_split)</code></pre>
   geom_smooth(se = FALSE) + 
   scale_y_log10() +
   facet_wrap(~ predictor, scales = &quot;free_x&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/geo-plots-1.png" width="672" /></p>
+<pre><code>## Warning in seq.default(0, 1, length = nk): partial argument match of &#39;length&#39; to
+## &#39;length.out&#39;</code></pre>
+<pre><code>## Warning in model.matrix.default(Terms[[i]], mf, contrasts = oc): partial argument match
+## of &#39;contrasts&#39; to &#39;contrasts.arg&#39;</code></pre>
+<pre><code>## Warning in seq.default(0, 1, length = nk): partial argument match of &#39;length&#39; to
+## &#39;length.out&#39;</code></pre>
+<pre><code>## Warning in model.matrix.default(Terms[[i]], mf, contrasts = oc): partial argument match
+## of &#39;contrasts&#39; to &#39;contrasts.arg&#39;</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/geo-plots-1.png" width="672" /></p>
 <p>These two geospatial predictors could be modeled using <a href="https://towardsdatascience.com/numerical-interpolation-natural-cubic-spline-52c1157b98ac">natural splines</a> in conjunction with a linear model. The amount of “wiggliness” in these splines is determined by the degrees of freedom. An appropriate value of this parameter cannot be analytically determined from the data, so it is a <em>tuning parameter</em> . A common approach is to use resampling to estimate model performance over different values of these parameters and use these results to set reasonable values. We will come back to resampling and hyperparameter tuning later.</p>
 </div>
 <div id="define-a-recipe" class="section level2">
@@ -271,69 +278,66 @@ mean(ames$Longitude) ) %&gt;%
 ames_prep &lt;- prep(ames_rec) 
 
 ames_prep %&gt;% juice()</code></pre>
-<pre><code>## # A tibble: 2,198 x 323
-##    Lot_Frontage Lot_Area Year_Built Mas_Vnr_Area BsmtFin_SF_1 BsmtFin_SF_2
-##           &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;
-##  1        2.08     2.69      -0.380        1.15        -0.949       -0.380
-##  2        0.682    0.526     -0.346       -0.805        0.846        2.63 
-##  3        0.707    0.948     -0.446        1.14        -1.57        -0.380
-##  4        0.997    0.444     -0.113       -0.805       -1.57        -0.380
-##  5        0.633    0.219      0.885        0.707       -0.424       -0.380
-##  6       -0.351   -1.14       0.985       -0.805       -0.424       -0.380
-##  7        0.173   -0.341      0.918       -0.805        1.21        -0.380
-##  8       -1.85    -0.221      0.685       -0.805       -1.57        -0.380
-##  9        0.805    0.259      0.619       -0.805       -0.424       -0.380
-## 10       -1.85    -0.524      0.452       -0.805       -0.424        2.64 
-## # ... with 2,188 more rows, and 317 more variables: Bsmt_Unf_SF &lt;dbl&gt;,
-## #   Total_Bsmt_SF &lt;dbl&gt;, First_Flr_SF &lt;dbl&gt;, Second_Flr_SF &lt;dbl&gt;,
-## #   Low_Qual_Fin_SF &lt;dbl&gt;, Gr_Liv_Area &lt;dbl&gt;, Bedroom_AbvGr &lt;dbl&gt;,
-## #   Kitchen_AbvGr &lt;dbl&gt;, TotRms_AbvGrd &lt;dbl&gt;, Fireplaces &lt;dbl&gt;,
-## #   Garage_Cars &lt;dbl&gt;, Garage_Area &lt;dbl&gt;, Wood_Deck_SF &lt;dbl&gt;,
-## #   Open_Porch_SF &lt;dbl&gt;, Enclosed_Porch &lt;dbl&gt;, Three_season_porch &lt;dbl&gt;,
-## #   Screen_Porch &lt;dbl&gt;, Pool_Area &lt;dbl&gt;, Misc_Val &lt;dbl&gt;, Mo_Sold &lt;dbl&gt;,
-## #   Year_Sold &lt;dbl&gt;, Id &lt;int&gt;, Sale_Price &lt;int&gt;, TotBath &lt;dbl&gt;, TotalSF &lt;dbl&gt;,
-## #   avgRoomSF &lt;dbl&gt;, PorchSF &lt;dbl&gt;, GrgCrsXCond &lt;dbl&gt;,
-## #   LotAreaTr_x_SaleCndOth &lt;dbl&gt;, MS_SubClass_Two_Story_1946_and_Newer &lt;dbl&gt;,
+<pre><code>## # A tibble: 2,198 x 322
+##    Lot_Frontage Lot_Area Year_Built Mas_Vnr_Area BsmtFin_SF_1 BsmtFin_SF_2 Bsmt_Unf_SF
+##           &lt;dbl&gt;    &lt;dbl&gt;      &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt;
+##  1        2.07     2.60      -0.389        1.13        -0.951       -0.364    -0.00698
+##  2        0.661    0.483     -0.356       -0.811        0.856        2.75     -0.446  
+##  3        0.510    0.832      0.833       -0.811       -0.422       -0.364    -0.910  
+##  4        0.611    0.181      0.866        0.685       -0.422       -0.364    -0.295  
+##  5       -0.377   -1.15       0.965       -0.811       -0.422       -0.364     0.548  
+##  6       -0.319   -1.12       0.668       -0.811       -1.58        -0.364     1.02   
+##  7        0.148   -0.369      0.899       -0.811        1.22        -0.364     0.983  
+##  8       -1.88    -0.251      0.668       -0.811       -1.58        -0.364    -0.560  
+##  9        0.227   -0.152      0.866       -0.811        1.22        -0.364     0.663  
+## 10        0.784    0.220      0.602       -0.811       -0.422       -0.364     0.443  
+## # ... with 2,188 more rows, and 315 more variables: Total_Bsmt_SF &lt;dbl&gt;,
+## #   First_Flr_SF &lt;dbl&gt;, Second_Flr_SF &lt;dbl&gt;, Low_Qual_Fin_SF &lt;dbl&gt;, Gr_Liv_Area &lt;dbl&gt;,
+## #   Bedroom_AbvGr &lt;dbl&gt;, Kitchen_AbvGr &lt;dbl&gt;, TotRms_AbvGrd &lt;dbl&gt;, Fireplaces &lt;dbl&gt;,
+## #   Garage_Cars &lt;dbl&gt;, Garage_Area &lt;dbl&gt;, Wood_Deck_SF &lt;dbl&gt;, Open_Porch_SF &lt;dbl&gt;,
+## #   Enclosed_Porch &lt;dbl&gt;, Three_season_porch &lt;dbl&gt;, Screen_Porch &lt;dbl&gt;,
+## #   Pool_Area &lt;dbl&gt;, Misc_Val &lt;dbl&gt;, Mo_Sold &lt;dbl&gt;, Year_Sold &lt;dbl&gt;, Id &lt;int&gt;,
+## #   Sale_Price &lt;int&gt;, TotBath &lt;dbl&gt;, TotalSF &lt;dbl&gt;, avgRoomSF &lt;dbl&gt;, PorchSF &lt;dbl&gt;,
+## #   GrgCrsXCond &lt;dbl&gt;, LotAreaTr_x_SaleCndOth &lt;dbl&gt;,
+## #   MS_SubClass_Two_Story_1946_and_Newer &lt;dbl&gt;,
 ## #   MS_SubClass_One_and_Half_Story_Finished_All_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_One_Story_PUD_1946_and_Newer &lt;dbl&gt;,
 ## #   MS_SubClass_One_Story_1945_and_Older &lt;dbl&gt;,
+## #   MS_SubClass_Two_Story_1945_and_Older &lt;dbl&gt;, MS_SubClass_Split_or_Multilevel &lt;dbl&gt;,
 ## #   MS_SubClass_Two_Story_PUD_1946_and_Newer &lt;dbl&gt;,
-## #   MS_SubClass_Two_Story_1945_and_Older &lt;dbl&gt;,
-## #   MS_SubClass_Split_or_Multilevel &lt;dbl&gt;,
 ## #   MS_SubClass_Duplex_All_Styles_and_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_Two_Family_conversion_All_Styles_and_Ages &lt;dbl&gt;,
-## #   MS_SubClass_Split_Foyer &lt;dbl&gt;,
+## #   MS_SubClass_Split_Foyer &lt;dbl&gt;, MS_SubClass_PUD_Multilevel_Split_Level_Foyer &lt;dbl&gt;,
 ## #   MS_SubClass_Two_and_Half_Story_All_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_One_and_Half_Story_Unfinished_All_Ages &lt;dbl&gt;,
-## #   MS_SubClass_PUD_Multilevel_Split_Level_Foyer &lt;dbl&gt;,
 ## #   MS_SubClass_One_Story_with_Finished_Attic_All_Ages &lt;dbl&gt;,
 ## #   MS_SubClass_One_and_Half_Story_PUD_All_Ages &lt;dbl&gt;,
 ## #   MS_Zoning_Residential_Medium_Density &lt;dbl&gt;,
-## #   MS_Zoning_Floating_Village_Residential &lt;dbl&gt;, MS_Zoning_C_all &lt;dbl&gt;,
-## #   MS_Zoning_Residential_High_Density &lt;dbl&gt;, MS_Zoning_A_agr &lt;dbl&gt;,
-## #   MS_Zoning_I_all &lt;dbl&gt;, Street_Grvl &lt;dbl&gt;, Alley_Gravel &lt;dbl&gt;,
-## #   Alley_Paved &lt;dbl&gt;, Lot_Shape_Slightly_Irregular &lt;dbl&gt;,
+## #   MS_Zoning_Floating_Village_Residential &lt;dbl&gt;,
+## #   MS_Zoning_Residential_High_Density &lt;dbl&gt;, MS_Zoning_C_all &lt;dbl&gt;,
+## #   MS_Zoning_I_all &lt;dbl&gt;, MS_Zoning_A_agr &lt;dbl&gt;, Street_Grvl &lt;dbl&gt;,
+## #   Alley_Gravel &lt;dbl&gt;, Alley_Paved &lt;dbl&gt;, Lot_Shape_Slightly_Irregular &lt;dbl&gt;,
 ## #   Lot_Shape_Moderately_Irregular &lt;dbl&gt;, Lot_Shape_Irregular &lt;dbl&gt;,
 ## #   Land_Contour_HLS &lt;dbl&gt;, Land_Contour_Bnk &lt;dbl&gt;, Land_Contour_Low &lt;dbl&gt;,
-## #   Utilities_NoSewr &lt;dbl&gt;, Lot_Config_Corner &lt;dbl&gt;, Lot_Config_CulDSac &lt;dbl&gt;,
-## #   Lot_Config_FR2 &lt;dbl&gt;, Lot_Config_FR3 &lt;dbl&gt;, Land_Slope_Mod &lt;dbl&gt;,
-## #   Land_Slope_Sev &lt;dbl&gt;, Neighborhood_College_Creek &lt;dbl&gt;,
+## #   Utilities_NoSewr &lt;dbl&gt;, Utilities_NoSeWa &lt;dbl&gt;, Lot_Config_Corner &lt;dbl&gt;,
+## #   Lot_Config_CulDSac &lt;dbl&gt;, Lot_Config_FR2 &lt;dbl&gt;, Lot_Config_FR3 &lt;dbl&gt;,
+## #   Land_Slope_Mod &lt;dbl&gt;, Land_Slope_Sev &lt;dbl&gt;, Neighborhood_College_Creek &lt;dbl&gt;,
 ## #   Neighborhood_Old_Town &lt;dbl&gt;, Neighborhood_Edwards &lt;dbl&gt;,
 ## #   Neighborhood_Somerset &lt;dbl&gt;, Neighborhood_Northridge_Heights &lt;dbl&gt;,
 ## #   Neighborhood_Gilbert &lt;dbl&gt;, Neighborhood_Sawyer &lt;dbl&gt;,
-## #   Neighborhood_Northwest_Ames &lt;dbl&gt;, Neighborhood_Sawyer_West &lt;dbl&gt;,
-## #   Neighborhood_Mitchell &lt;dbl&gt;, Neighborhood_Brookside &lt;dbl&gt;,
-## #   Neighborhood_Crawford &lt;dbl&gt;, Neighborhood_Iowa_DOT_and_Rail_Road &lt;dbl&gt;,
+## #   Neighborhood_Sawyer_West &lt;dbl&gt;, Neighborhood_Northwest_Ames &lt;dbl&gt;,
+## #   Neighborhood_Mitchell &lt;dbl&gt;, Neighborhood_Crawford &lt;dbl&gt;,
+## #   Neighborhood_Brookside &lt;dbl&gt;, Neighborhood_Iowa_DOT_and_Rail_Road &lt;dbl&gt;,
 ## #   Neighborhood_Timberland &lt;dbl&gt;, Neighborhood_Northridge &lt;dbl&gt;,
+## #   Neighborhood_Stone_Brook &lt;dbl&gt;,
 ## #   Neighborhood_South_and_West_of_Iowa_State_University &lt;dbl&gt;,
-## #   Neighborhood_Stone_Brook &lt;dbl&gt;, Neighborhood_Clear_Creek &lt;dbl&gt;,
-## #   Neighborhood_Meadow_Village &lt;dbl&gt;, Neighborhood_Bloomington_Heights &lt;dbl&gt;,
+## #   Neighborhood_Clear_Creek &lt;dbl&gt;, Neighborhood_Meadow_Village &lt;dbl&gt;,
 ## #   Neighborhood_Briardale &lt;dbl&gt;, Neighborhood_Northpark_Villa &lt;dbl&gt;,
-## #   Neighborhood_Veenker &lt;dbl&gt;, Neighborhood_Blueste &lt;dbl&gt;,
-## #   Neighborhood_Greens &lt;dbl&gt;, Neighborhood_Green_Hills &lt;dbl&gt;,
-## #   Condition_1_Feedr &lt;dbl&gt;, Condition_1_Artery &lt;dbl&gt;, Condition_1_RRAn &lt;dbl&gt;,
-## #   Condition_1_PosN &lt;dbl&gt;, Condition_1_RRAe &lt;dbl&gt;, Condition_1_PosA &lt;dbl&gt;,
-## #   Condition_1_RRNn &lt;dbl&gt;, Condition_1_RRNe &lt;dbl&gt;, ...</code></pre>
+## #   Neighborhood_Bloomington_Heights &lt;dbl&gt;, Neighborhood_Veenker &lt;dbl&gt;,
+## #   Neighborhood_Blueste &lt;dbl&gt;, Neighborhood_Greens &lt;dbl&gt;,
+## #   Neighborhood_Green_Hills &lt;dbl&gt;, Condition_1_Feedr &lt;dbl&gt;, Condition_1_Artery &lt;dbl&gt;,
+## #   Condition_1_RRAn &lt;dbl&gt;, Condition_1_PosN &lt;dbl&gt;, Condition_1_RRAe &lt;dbl&gt;,
+## #   Condition_1_PosA &lt;dbl&gt;, Condition_1_RRNn &lt;dbl&gt;, Condition_1_RRNe &lt;dbl&gt;, ...</code></pre>
 <p>If you want to create a pre-processed data, you can first <code>prep()</code> the recipe for a specific dataset and <code>juice()</code> the prepped recipe to extract the pre-processed data. It turns out that extracting the pre-processed data isn’t actually necessary for the pipeline (but sometimes it’s useful anyway), since this will be done under the hood when the model is fit.</p>
 <p>The power of <code>tidymodels</code> becomes more apparent as we move forward into sophisticated machine learning techniques.</p>
 <pre class="r"><code>rm(ames, ames_clean)</code></pre>
@@ -388,13 +392,13 @@ rf_tune_results &lt;- rf_workflow %&gt;%
 <p>It’s always a good idea to explore the results of the cross-validation. <code>collect_metrics()</code> is a handy function that can be used in a variety of circumstances to extract any metrics that have been calculated within the object it’s being used on. In this case, the metrics come from the cross-validation performance across different values of mtry parameters.</p>
 <pre class="r"><code>rf_tune_results %&gt;%
   collect_metrics()</code></pre>
-<pre><code>## # A tibble: 4 x 6
-##    mtry .metric .estimator   mean     n std_err
-##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt;
-## 1    20 rmse    standard   26265.    10   1480.
-## 2    30 rmse    standard   25809.    10   1483.
-## 3    50 rmse    standard   25515.    10   1458.
-## 4    80 rmse    standard   25553.    10   1460.</code></pre>
+<pre><code>## # A tibble: 4 x 7
+##    mtry .metric .estimator   mean     n std_err .config             
+##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;   &lt;dbl&gt; &lt;chr&gt;               
+## 1    20 rmse    standard   27170.    10   1363. Preprocessor1_Model1
+## 2    30 rmse    standard   26874.    10   1294. Preprocessor1_Model2
+## 3    50 rmse    standard   26667.    10   1279. Preprocessor1_Model3
+## 4    80 rmse    standard   26725.    10   1211. Preprocessor1_Model4</code></pre>
 </div>
 </div>
 <div id="finalize-the-workflow" class="section level2">
@@ -405,10 +409,10 @@ rf_tune_results &lt;- rf_workflow %&gt;%
   select_best(metric = &quot;rmse&quot;)
 
 param_final</code></pre>
-<pre><code>## # A tibble: 1 x 1
-##    mtry
-##   &lt;dbl&gt;
-## 1    50</code></pre>
+<pre><code>## # A tibble: 1 x 2
+##    mtry .config             
+##   &lt;dbl&gt; &lt;chr&gt;               
+## 1    50 Preprocessor1_Model3</code></pre>
 <p>Then we can add this parameter to the workflow using the <code>finalize_workflow()</code> function.</p>
 <pre class="r"><code>rf_workflow &lt;- rf_workflow %&gt;%
     finalize_workflow(param_final)</code></pre>
@@ -421,11 +425,12 @@ param_final</code></pre>
   last_fit(ames_split)</code></pre>
 <p>Note that the fit object that is created is a data-frame-like object; specifically, it is a tibble with list columns.</p>
 <pre class="r"><code>rf_fit</code></pre>
-<pre><code>## # Monte Carlo cross-validation (0.75/0.25) with 1 resamples  
+<pre><code>## # Resampling results
+## # Manual resampling 
 ## # A tibble: 1 x 6
-##   splits        id           .metrics      .notes      .predictions    .workflow
-##   &lt;list&gt;        &lt;chr&gt;        &lt;list&gt;        &lt;list&gt;      &lt;list&gt;          &lt;list&gt;   
-## 1 &lt;split [2.2K~ train/test ~ &lt;tibble [2 x~ &lt;tibble [0~ &lt;tibble [732 x~ &lt;workflo~</code></pre>
+##   splits          id             .metrics       .notes        .predictions     .workflow
+##   &lt;list&gt;          &lt;chr&gt;          &lt;list&gt;         &lt;list&gt;        &lt;list&gt;           &lt;list&gt;   
+## 1 &lt;split [2.2K/7~ train/test sp~ &lt;tibble [2 x ~ &lt;tibble [0 x~ &lt;tibble [732 x ~ &lt;workflo~</code></pre>
 <p>This is a really nice feature of <code>tidymodels</code> (and is what makes it work so nicely with the tidyverse) since you can do all of your tidyverse operations to the model object. While truly taking advantage of this flexibility requires proficiency with <code>purrr</code>, if you don’t want to deal with <code>purrr</code> and list-columns, there are functions that can extract the relevant information from the fit object that remove the need for purrr as we will see below.</p>
 </div>
 <div id="evaluate-the-model-on-the-test-set" class="section level1">
@@ -433,27 +438,27 @@ param_final</code></pre>
 <p>Since we supplied the train/test object when we fit the workflow, the metrics are evaluated on the test set. Now when we use the <code>collect_metrics()</code> function (recall we used this when tuning our parameters), it extracts the performance of the final model (since rf_fit now consists of a single final model) applied to the test set.</p>
 <pre class="r"><code>test_performance &lt;- rf_fit %&gt;% collect_metrics()
 test_performance</code></pre>
-<pre><code>## # A tibble: 2 x 3
-##   .metric .estimator .estimate
-##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt;
-## 1 rmse    standard   24907.   
-## 2 rsq     standard       0.913</code></pre>
+<pre><code>## # A tibble: 2 x 4
+##   .metric .estimator .estimate .config             
+##   &lt;chr&gt;   &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;               
+## 1 rmse    standard   21828.    Preprocessor1_Model1
+## 2 rsq     standard       0.917 Preprocessor1_Model1</code></pre>
 <pre class="r"><code># generate predictions from the test set
 test_predictions &lt;- rf_fit %&gt;% collect_predictions()
 test_predictions</code></pre>
-<pre><code>## # A tibble: 732 x 4
-##    id                 .pred  .row Sale_Price
-##    &lt;chr&gt;              &lt;dbl&gt; &lt;int&gt;      &lt;int&gt;
-##  1 train/test split 191051.     5     189900
-##  2 train/test split 183804.     8     191500
-##  3 train/test split 247533.     9     236500
-##  4 train/test split 180040.    11     175900
-##  5 train/test split 177724.    13     180400
-##  6 train/test split 161634.    22     170000
-##  7 train/test split 156986.    25     149900
-##  8 train/test split 230560.    41     220000
-##  9 train/test split 308963.    43     259000
-## 10 train/test split 210193.    44     214000
+<pre><code>## # A tibble: 732 x 5
+##    id                 .pred  .row Sale_Price .config             
+##    &lt;chr&gt;              &lt;dbl&gt; &lt;int&gt;      &lt;int&gt; &lt;chr&gt;               
+##  1 train/test split 150061.     3     172000 Preprocessor1_Model1
+##  2 train/test split 246994.     4     244000 Preprocessor1_Model1
+##  3 train/test split 255788.     9     236500 Preprocessor1_Model1
+##  4 train/test split 179556.    11     175900 Preprocessor1_Model1
+##  5 train/test split 157060.    22     170000 Preprocessor1_Model1
+##  6 train/test split 146935.    24     149000 Preprocessor1_Model1
+##  7 train/test split 104983.    32      88000 Preprocessor1_Model1
+##  8 train/test split 293338.    38     306000 Preprocessor1_Model1
+##  9 train/test split 244843.    40     290941 Preprocessor1_Model1
+## 10 train/test split 231123.    41     220000 Preprocessor1_Model1
 ## # ... with 722 more rows</code></pre>
 <pre class="r"><code>test_predictions %&gt;%
   ggplot(aes(Sale_Price, .pred))+
@@ -464,7 +469,7 @@ test_predictions</code></pre>
   labs(title = &quot;Ames Housing Sale Price Actual versus Prediction&quot;,
        subtitle = &quot;Expecting a linear line with slope of 1&quot;)+
   theme(plot.title.position = &quot;plot&quot;)</code></pre>
-<p><img src="/post/Tidymodels/index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <hr />
 <div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
 <h3>Did you find this page helpful? Consider sharing it 🙌</h3>
