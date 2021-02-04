@@ -15,6 +15,7 @@ categories:
 tags:
   - plot
   - R Markdown
+draft: true
 ---
 
 Malcolm Barrett at the University of Southern California explains a couple of the finer points of ggplot. He also sets a very high standard for creating visuals for teaching the content.
