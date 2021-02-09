@@ -19,13 +19,13 @@ draft: false
 <script src="{{< blogdown/postref >}}index_files/twitter-widget/widgets.js"></script>
 <script src="{{< blogdown/postref >}}index_files/twitter-widget/widgets.js"></script>
 
-More often than not, the most beneficial analytics projects do not involve any artificial intelligence. The tangible financial return on analytics comes from insights delivered to the organization via Exploratory Data Analysis, or EDA.
+More often than not, the most impactful analytics projects do not involve any artificial intelligence. The real financial return comes from insights delivered to the organization via Exploratory Data Analysis, or EDA.
 
 Analytics professionals who focus on decision science, that is, people that use data to provide ground truth to the business, must be able to articulate what the EDA process is and what the standards are for the process. Analysts should be the best people available to find meaning in the data.
 
 Crafting an analysis that takes a vast amount of privileged company data and converts it into a concise result could be considered an art. The act of figuring out what is meaningful mathematically, what the business cares about, and how to bridge the gap between the two is not something that most people will know how to do naturally.
 
-This post will be a short outline of the major elements of Exploratory Data Analysis. I welcome your feedback, and especially from those that have extraordinary analysts on their teams.
+This post will be a short outline of the major elements of Exploratory Data Analysis.
 
 # What makes a good analysis?
 
@@ -95,6 +95,7 @@ library(tidyverse) # tidy data manipulation, including dplyr and ggplot
 library(systemfonts) # register Windows Fonts
 library(palmerpenguins) # penguin sample dataset
 library(GGally) #ggplot2 extensions
+library(correlationfunnel)
 })
 
 theme_set(theme_minimal())  # a clean style for plotting 
@@ -407,7 +408,7 @@ ggplot(data = penguins, mapping = aes(x = body_mass_g, y = bill_length_mm)) +
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
-For small datasets, a combination `GGally` visualization can be built to illustrate all of the pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables is not so useful with more, particularly for non-technical audiences.
+For small datasets, a combination `GGally` ggpairs() visualization illustrates pairwise relationships. Unfortunately, the graphic that looks reasonable with only three variables can be overwhelming with more, particularly for non-technical audiences.
 
 ``` r
 GGally::ggpairs(data = penguins, 
@@ -420,13 +421,55 @@ GGally::ggpairs(data = penguins,
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-21-1.png" width="672" />
 
-### Patterns and models
+Another option for exploring many pairwise relationships is the [`brinton`](https://sciencegraph.github.io/brinton/) package by Pere Millán-Martínez. The 2019 CRAN research article “[The Landscape of R Packages for
+Automated Exploratory Data Analysis](https://journal.r-project.org/archive/2019/RJ-2019-033/RJ-2019-033.pdf)” by Mateusz Staniak and Przemysław Biecek surveys another 15 Automated EDA R packages to identify areas where automated data exploration could be improved.
 
-Patterns in data provide clues about relationships. If a systematic relationship exists between two variables it will appear as a pattern in the data. When spotting a pattern, ask:
+Predictive power scores are a more advanced technique for providing measures of the strength of features, particularly where relationships could be non-linear and with category levels. Matt Dancho’s [`correlationfunnel`](https://cran.r-project.org/web/packages/correlationfunnel/vignettes/introducing_correlation_funnel.html) is a package that provides a fast and useful exploratory data visual of Pearson correlation coefficients.
+
+As an example, the sample dataset `customer_churn_tbl` contains 20 features related to a telecommunications customer-base and whether or not the customer has churned. In this example, the `customerID` field is removed, and the missing `TotalCharges` are imputed with the `MonthlyCharges` figure. The `binarize()` function takes data in a “normal” format and converts it to a binned binary format (1s and 0s). Next, we use `correlate()` to correlate the binary features to a target (in our case Customer Churn). Finally, we visualize the correlation using the `plot_correlation_funnel()` function.
+
+Note that assumptions have to be made in the number of bins and that this approach risks missing detail in imbalanced data sets.
+
+``` r
+customer_churn_tbl %>%
+  select(-customerID) %>%
+  mutate(TotalCharges = ifelse(is.na(TotalCharges), MonthlyCharges, TotalCharges)) %>%
+  binarize(n_bins = 5, thresh_infreq = 0.01, name_infreq = "OTHER", one_hot = TRUE) %>% 
+  correlate(Churn__Yes) %>% 
+  plot_correlation_funnel()
+```
+
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+
+As business insights, we see that these features are correlated with Churn:
+
+|                                    |
+|:-----------------------------------|
+| “Month to Month” Contract Type     |
+| No Online Security                 |
+| No Tech Support                    |
+| Customer tenure less than 6 months |
+| Fiber Optic internet service       |
+| Pays with electronic check         |
+
+We can also see that the following features are correlated with Staying (No Churn):
+
+|                                                  |
+|:-------------------------------------------------|
+| “Two Year” Contract Type                         |
+| Customer Purchases Online Security               |
+| Customer Purchases Tech Support                  |
+| Customer tenure greater than 60 months (5 years) |
+| DSL internet service                             |
+| Pays with automatic credit card                  |
+
+As a response, the business can then choose to develop targeted strategies to retain high risk customers.
+
+### Models
+
+Data models also provide clues about relationships. If a systematic relationship exists between variables it will appear as a pattern in the data. When spotting a pattern, ask:
 
 -   Could this pattern be due to coincidence (i.e. random chance)?
-
--   How can you describe the relationship implied by the pattern?
 
 -   How strong is the relationship implied by the pattern?
 
@@ -434,36 +477,7 @@ Patterns in data provide clues about relationships. If a systematic relationship
 
 -   Does the relationship change if you look at individual subgroups of the data?
 
-A scatterplot of Old Faithful eruption lengths versus the wait time between eruptions shows a pattern: longer wait times are associated with longer eruptions. The scatterplot also displays the two clusters that we noticed above.
-
-``` r
-ggplot(data = faithful) + 
-  geom_point(mapping = aes(x = eruptions, y = waiting))
-```
-
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-22-1.png" width="672" />
-
-Patterns provide one of the most useful tools because they reveal covariation. If two variables have covariance, the values of one variable may interact with the values of the second. If the covariation is due to a causal relationship (a special case), then the interaction should be explored further.
-
-Machine learning models can provide additional insight via inference. As a quick example, to quantify the pattern we can simply fit a linear model for penguin body mass against the bill length and the species.
-
-``` r
-mod <- lm(body_mass_g ~ bill_length_mm + species, data = penguins)
-
-broom::tidy(mod)
-```
-
-    ## # A tibble: 4 x 5
-    ##   term             estimate std.error statistic  p.value
-    ##   <chr>               <dbl>     <dbl>     <dbl>    <dbl>
-    ## 1 (Intercept)         154.     269.       0.572 5.68e- 1
-    ## 2 bill_length_mm       91.4      6.89    13.3   1.16e-32
-    ## 3 speciesChinstrap   -886.      88.3    -10.0   6.37e-21
-    ## 4 speciesGentoo       579.      75.4      7.68  1.76e-13
-
-We find here that each additional mm of bill length is related to a 91.4 gram increase in body mass, for a penguin of the same species. More sophisticated machine learning techniques can be used to discover complex patterns and interactions.
-
-Another modeling tool, **Survival** analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
+**Survival** analysis is one of the oldest subfields of statistics. Today survival analysis models are important in Engineering, Insurance, Marketing, Medicine, Econometrics, and many other application areas.
 
 A simpler characterization of Survival might be time-to-event analysis. These are use cases where we are concerned with the time it takes for an *event* to occur after an *exposure*. As an example, an exposure might be the date of a medical diagnosis. Or it could be the moment of childbirth. Or the date of delivery of a new tractor to a customer. Survival analysis data is aligned for all participants to zero at each participants exposure time. The event of interest could be the failure of a component of the tractor.
 
@@ -490,7 +504,7 @@ fredr::fredr(series_id = 'GDPC1') %>%
   labs(caption = "Federal Reserve Economic Data | US Real Gross Domestic Product")
 ```
 
-<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" />
 
 **Geospatial** and geospatial time-series modeling combine all of the challenges above and warrant their own detailed blog posts.
 
