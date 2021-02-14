@@ -520,7 +520,7 @@ Cassie Kozyrkov at Google, in [The ultimate guide to starting AI](https://www.li
 
 In my workplace, domain expert most often has the title “engineer,” though it could as easily be “scientist” or “product manager.” The key here is not about checking for correctness, but to grow the enterprise’s understanding of the data and elicit valuable insights from it.
 
-<blockquote class="twitter-tweet" align="right" data-width="220" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">Loving the new colour cover for R4DS! On track for mid Dec printing. Pre-order: <a href="https://t.co/BMFYacy7x5">https://t.co/BMFYacy7x5</a>. Read for 🆓: <a href="https://t.co/48IKOWCtSc">https://t.co/48IKOWCtSc</a> <a href="https://t.co/2R1hFrR6v6">pic.twitter.com/2R1hFrR6v6</a></p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/804838201047339009?ref_src=twsrc%5Etfw">December 3, 2016</a></blockquote>
+<blockquote class="twitter-tweet" align="right" data-lang="en" data-dnt="true" data-theme="light"><p lang="en" dir="ltr">Loving the new colour cover for R4DS! On track for mid Dec printing. Pre-order: <a href="https://t.co/BMFYacy7x5">https://t.co/BMFYacy7x5</a>. Read for 🆓: <a href="https://t.co/48IKOWCtSc">https://t.co/48IKOWCtSc</a> <a href="https://t.co/2R1hFrR6v6">pic.twitter.com/2R1hFrR6v6</a></p>&mdash; Hadley Wickham (@hadleywickham) <a href="https://twitter.com/hadleywickham/status/804838201047339009?ref_src=twsrc%5Etfw">December 3, 2016</a></blockquote>
 
 Excellent book references on the topics covered by this post:
 
@@ -529,6 +529,8 @@ Excellent book references on the topics covered by this post:
 > [Practical Machine Learning in R](https://www.wiley.com/en-us/Practical+Machine+Learning+in+R-p-9781119591535) Chapter 3
 
 > [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science) Chapter 10
+
+> [Feature Engineering and Selection](http://www.feat.engineering/exploratory-visualizations.html) Chapter 4
 
 Other posts:
 
