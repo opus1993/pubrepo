@@ -144,11 +144,15 @@ Roger's materials and links to source material are posted [here](https://github.
 
 ## Book Recommendations
 
+Feature Engineering and Selection
+
 <a href="https://www.taylorfrancis.com/books/feature-engineering-selection-max-kuhn-kjell-johnson/10.1201/9781315108230"><img alt="Feature Engineering and Selection" src="https://images.tandf.co.uk/common/jackets/agentjpg/978113807/9781138079229.jpg" width="450"></a>
 
 Also available for free at [http://www.feat.engineering/](http://www.feat.engineering/)
 
 *"The book is timely and needed. The interest in all things 'data science' morphed into everybody pretending to do, or know, Machine Learning. Kuhn and Johnson happen to actually know this―as evidenced by their earlier and still-popular tome entitled ‘Applied Predictive Modeling.’ The proposed ‘Feature Engineering and Selection’ builds on this and extends it. I expect it to become as popular with a wide reach as both a textbook, self-study material, and reference."* ~Dirk Eddelbuettel, University of Illinois at Urbana-Champaign
+
+Staff Engineer
 
 <a href="https://staffeng.com//book"><img alt="Staff Engineer: Leadership beyond the management track" src="https://staffeng.com/StaffEngCoverHero.png" width="450"></a>
 
