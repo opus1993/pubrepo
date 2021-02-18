@@ -42,7 +42,7 @@ My post this week touches on a GPU Deep Learning topic, Opinionated Analytics Fr
 
 Conventional wisdom right now is that deep learning techniques in tabular data tend to over-fit, are not useful for discovering feature inferences, and are not interpretable. Arik and Pfister presented a 2020 paper and method called [tabnet](https://blogs.rstudio.com/ai/posts/2021-02-11-tabnet/#ref-arik2020tabnet) that leverages the deep learning `torch` framework and aspects of decision trees to overcome these limitations.
 
-Sigrid Keydana published a blog post [torch, tidymodels, and high-energy physics](https://blogs.rstudio.com/ai/posts/2021-02-11-tabnet/) that I re-ran on an Azure ML Studio VM to explore the framework as well as Azure's GPU compute facilities. She may have the advantage of development versions some packages, as her results were slightly different than mine. I'll explore the difference a little further and put together a post on github.
+Sigrid Keydana published a blog post [torch, tidymodels, and high-energy physics](https://blogs.rstudio.com/ai/posts/2021-02-11-tabnet/) that I re-ran on an Azure ML Studio VM to explore the framework as well as Azure's GPU compute facilities. She may have the advantage of development versions of some packages, as her results were slightly different than mine. I'll explore the difference a little further and put together a post on github.
 
 ----
 
