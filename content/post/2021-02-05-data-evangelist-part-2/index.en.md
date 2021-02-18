@@ -110,11 +110,11 @@ Every path to competency is going to be different. Like [Paige Bailey](https://t
 
 1. Don't cede hiring decision making to your interview panel. You are building a *team*, not a collection of individuals. 
 
-For the take home test technical content, there are a number of Data Science and Analytics credentialing organizations, like [here](https://www.informs.org/Professional-Development/Continuing-Education/INFORMS-CAP-Prep-Course#:~:text=INFORMS'%20latest%20continuing%20education%20offering,%20is%20the%20INFORMS,certification%20or%20to%20refresh%20their%20knowledge%20and%20skills.) and [here](https://grow.google/certificates/). Books like [Cracking the Data Science Interview: 101+ Data Science Questions & Solutions](https://www.amazon.com/dp/171068013X), [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science), and even this four page [interview prep cheat sheet](https://github.com/aaronwangy/Data-Science-Cheatsheet) offer lists of what to know before going into an interview.
+For the take home test technical content, there are a number of Data Science and Analytics credentialing organizations that bundle the input of their memberships, like [here](https://www.informs.org/Professional-Development/Continuing-Education/INFORMS-CAP-Prep-Course#:~:text=INFORMS'%20latest%20continuing%20education%20offering,%20is%20the%20INFORMS,certification%20or%20to%20refresh%20their%20knowledge%20and%20skills.) and [here](https://grow.google/certificates/). Books like [Cracking the Data Science Interview: 101+ Data Science Questions & Solutions](https://www.amazon.com/dp/171068013X), or [Build a Career in Data Science](https://www.manning.com/books/build-a-career-in-data-science), and even this four page [interview prep cheat sheet](https://github.com/aaronwangy/Data-Science-Cheatsheet) offer lists of what candidates expect to know before going into an interview.
 
-> For your own company, do you know what the material is on the technical evaluation for new hires? 
+> For your own company, do you know what the material is on the technical evaluation for new DS and analytics hires? 
 
-Expect the bar to be raised. On that note, Linda Burtch gave a 26 minute talk this last week on the latest on talent acquisition, technical roles, and what to expect in 2021:
+Expect the bar to be raised in the coming years. On that note, Linda Burtch gave a 26 minute talk this last week on the latest on talent acquisition, technical roles, and what to expect in 2021:
 
 {{< youtube RHjXYicPWGA >}}
 
