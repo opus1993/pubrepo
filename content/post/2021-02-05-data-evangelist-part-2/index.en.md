@@ -13,7 +13,7 @@ featured: no
 image:
   caption: 'Tsukioka Yoshitoshi (1875)'
   focal_point: ''
-  preview_only: no
+  preview_only: false
 projects: []
 draft: false
 ---
