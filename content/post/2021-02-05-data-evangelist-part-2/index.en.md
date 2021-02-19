@@ -18,11 +18,11 @@ projects: []
 draft: false
 ---
 
-The weekly check-in conversations with my boss in the COVID era nowadays often dwell on the finer points of organizational change management, which is certainly one of his strengths. As [this post](https://www.prosci.com/resources/articles/the-what-why-and-how-of-change-management) argues, organizational change actually happens **one person at a time**. Or more succinctly, organizations don't change. People within organizations change. Whatever prompted you to read this blog post, I'd like to think that you are in a position where you want to be a part of a change.  Or, at least, to "induce the wobble."
+The weekly check-in conversations with my boss in the COVID era often dwell on the finer points of change management, which is certainly one of his strengths. Organizational change happens [**one person at a time**](https://www.prosci.com/resources/articles/the-what-why-and-how-of-change-management). Or more succinctly, organizations don't change. People within organizations change. Whatever prompted you to read this blog post, I'd like to think that you are in a position where you want to be a part of the change.  Or, at least, to "induce the wobble."
 
-The questions I expect to drill down to eventually, at least to continue to "induce the wobble," include:
+In time, the questions I expect to drill down to this year include:
 
-- Where is the center of excellence for analytics here?
+- Where exactly is our center of excellence for analytics?
 
 - What is the current assessment of analytics maturity?
 
@@ -34,11 +34,11 @@ The questions I expect to drill down to eventually, at least to continue to "ind
 
 - Where is our robust feature store of high quality, clean data for modeling to accelerate analytics?
 
-My post this week touches on a GPU Deep Learning topic, Opinionated Analytics Frameworks, Who Deserves an Audience, Learning Data Science, Upcoming Meetups, and closes with two Book Recommendations. 
+My post this week touches on 1) a GPU Deep Learning topic, 2) Opinionated Analytics Frameworks, 3) Who Deserves an Audience, 4) Learning Data Science, 6) Upcoming Meetups, and 6) closes with two Book Recommendations. 
 
 ----
 
-## Explainable and Interpretable Deep Learning
+## Interpretable Deep Learning
 
 Conventional wisdom right now is that deep learning techniques in tabular data tend to over-fit, are not useful for discovering feature inferences, and are not interpretable. Arik and Pfister presented a 2020 paper and method called [tabnet](https://blogs.rstudio.com/ai/posts/2021-02-11-tabnet/#ref-arik2020tabnet) that leverages the deep learning `torch` framework and aspects of decision trees to overcome these limitations.
 
@@ -56,9 +56,9 @@ People in leadership positions that have no coding experience might be led to be
 
 My perspective today is that the complete opposite is true. First, there are plenty of people out there with R or Python (or pick your language) ability that can be hired; no one is irreplaceable. Second, the code is reproducible and readable.
 
-Well documented/commented code is a dream for validation. You know where the data came from, the filters applied, assumptions, variables, etc. and it is all in a logical sequence.
+Well documented/commented code is a must for validation. You know where the data came from, the filters applied, assumptions, variables, etc. and it is all in a logical sequence.
 
-There is nothing worse than being handed a huge Excel sheet with no explanation of where it came from, and then playing 'follow the formulas' and try to figure out the logic. This is hard enough when the person is still there, and nearly impossible if the person is no longer with the company (or contractor). 
+There is nothing worse than being handed a huge Excel sheet with no explanation of where it came from, and then playing 'follow the formulas' and try to figure out the logic. This is hard enough when the colleague is still there, and nearly impossible if the person is no longer with the company (or contractor). 
 
 Hilary Parker's 2017 paper [Opinionated analysis development](https://peerj.com/preprints/3210/) and [conference talk](https://rstudio.com/resources/rstudioconf-2017/opinionated-analysis-development/) speaks to the processes of developing the technical artifacts — that is, the paper, dashboard, or other deliverable.
 
@@ -74,23 +74,23 @@ Landing the connection with the audience is a core tenet of business school prog
 
 {{<tweet 1356395056899362816>}}
 
-My blog post cover image is an 1875 woodblock printing entitled "[Tokugawa Iemitsu Receiving Lords in Audience](https://artvee.com/dl/tokugawa-iemitsu-receiving-lords-in-audience)" The artist, Tsukioka Yoshitoshi, like many Japanese of that era, was interested in new things from the rest of the world, but over time he became increasingly concerned with the loss of aspects of traditional Japanese culture that brought people together.
+My blog post cover image is an 1875 woodblock printing entitled "[Tokugawa Iemitsu Receiving Lords in Audience](https://artvee.com/dl/tokugawa-iemitsu-receiving-lords-in-audience)" The artist, Tsukioka Yoshitoshi, like many Japanese of that era, was interested in new things from the rest of the world like photography, but over time he became increasingly concerned with the loss of aspects of traditional Japanese culture that brought people together.
 
 {{<tweet 1356650318730305537>}}
 
 In Amanda Mull's Atlantic piece "[The Pandemic Has Erased Entire Categories of Friendship](https://www.theatlantic.com/health/archive/2021/01/pandemic-goodbye-casual-friends/617839/)," she explains how there’s a reason you miss the people you didn’t even know that well. Most people are familiar with the idea of an inner circle. Sociologists propose that we also have an outer circle, vital to our social health in its own ways, functioning as the forums that we normally look to to find validation for our work and ideas.
 
-"Inducing the wobble" in change management requires that our data science community of practice be clear and find new ways to re-connect with colleagues and leaders.
+"Inducing the wobble" in change management requires that our data science community of practice find new ways to re-connect with colleagues and leaders.
 
 -----
 
 ## Learning Data Science
 
-I've dropped my DataCamp subscription and moved on to other learning resources. In about one year's time I had managed to take some 30 or more short courses. Many of the original instructors have moved on now, and some of the courses are stale, using older versions of packages. The company itself has taken actions that make it easy for me to choose to walk away.
+I've dropped my DataCamp subscription and moved on to other learning resources. In about one year's time I had managed to take some 30 or more short courses. Many of the original instructors there have moved on now, and some of the courses are stale, using older versions of packages. The company itself has taken actions that make it easy for me to choose to walk away.
 
 Matt Dancho's [Business-Science](https://www.business-science.io/) courses and their Learning Labs Pro offering in particular suits my needs better for where I am. Forest Brazeal's blog post [The career-changing art of reading the docs](https://acloudguru.com/blog/engineering/the-career-changing-art-of-reading-the-docs) is great advice for keeping at the leading edge of a technical profession.
 
-Every path to competency is going to be different. Like [Paige Bailey](https://twitter.com/DynamicWebPaige/status/1360303252219154432), I want not to be surprised if a data scientist used to be a biologist, or a bartender, or a geologist. DS skills do not require an ivory tower, or time sacrificed on acronyms for a Ph.D. Your Github should be your CV.
+Every path to digital competency is going to be different. Like [Paige Bailey](https://twitter.com/DynamicWebPaige/status/1360303252219154432), I want not to be surprised if a data scientist used to be a biologist, or a bartender, or a geologist. DS skills do not require an ivory tower, or time sacrificed on acronyms for a Ph.D. Your Github should be your CV.
 
 [Chris Albon](https://twitter.com/chrisalbon/status/1360465652817874944) at wikimedia outlines his hiring strategy as:
 
@@ -114,7 +114,7 @@ For the take home test technical content, there are a number of Data Science and
 
 > For your own company, do you know what the material is on the technical evaluation for new DS and analytics hires? 
 
-Expect the bar to be raised in the coming years. On that note, Linda Burtch gave a 26 minute talk this last week on the latest on talent acquisition, technical roles, and what to expect in 2021:
+Expect the bar to be raised on tech knowledge requirements in the coming years. I've recently seen "business intelligence analyst" postings that require NLP and Python. On that note, Linda Burtch gave a 26 minute talk this last week on the latest on talent acquisition, technical roles, and what to expect in 2021:
 
 {{< youtube RHjXYicPWGA >}}
 
@@ -122,7 +122,7 @@ Expect the bar to be raised in the coming years. On that note, Linda Burtch gave
 
 ## Data Science Meetups
 
-With virtual events it's possible to join from all over the place 🙌. Here are a few that are upcoming:
+With virtual events it's possible to join communities of practice from all over the place 🙌. Here are a few that are upcoming:
 
 ⭐️ Feb 23rd RStudio Enterprise Community Meetup [End-to-end Data Science with RStudio Connect](https://lnkd.in/drU5qAk)
 
@@ -134,7 +134,7 @@ With virtual events it's possible to join from all over the place 🙌. Here are
 
 ⭐️ March 4th Why R Foundation [Towards automating Time Series Forecasting Using R]( https://lnkd.in/d8J7rEJ)
 
-⭐️ Also check out the recording of this week's Why R talk, with Roel Hogervorst, on cloud resources and effective collaboration
+⭐️ Also check out the recording of this week's [Why R Foundation](https://www.youtube.com/WhyRFoundationVideos) talk, with Roel Hogervorst, on cloud resources and effective collaboration
 
 {{< youtube 1t47U_nBXdE>}}
 
