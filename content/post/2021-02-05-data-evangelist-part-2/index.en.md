@@ -34,7 +34,7 @@ In that spirit, the questions I expect to drill down to through the course of th
 
 - Where is our robust feature store of high quality, clean data for modeling to accelerate analytics?
 
-My post this week touches on 1) a GPU Deep Learning topic, 2) Opinionated Analytics Frameworks, 3) Who Deserves an Audience, 4) Learning Data Science, 6) Upcoming Meetups, and 6) closes with two Book Recommendations. 
+My post this week touches on 1) a GPU Deep Learning topic, 2) Opinionated Analytics Frameworks, 3) Who Deserves an Audience, 4) Learning Data Science, 5) Upcoming Meetups, and 6) closes with two Book Recommendations. 
 
 ----
 
