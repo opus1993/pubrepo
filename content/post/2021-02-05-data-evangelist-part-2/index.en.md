@@ -20,7 +20,7 @@ draft: false
 
 The weekly check-in conversations with my boss in the COVID era often dwell on the finer points of change management, which is certainly one of his strengths. Organizational change happens [**one person at a time**](https://www.prosci.com/resources/articles/the-what-why-and-how-of-change-management). Or more succinctly, organizations don't change. People within organizations change. Whatever prompted you to read this blog post, I'd like to think that you are in a position where you want to be a part of the change.  Or, at least, to "induce the wobble."
 
-In time, the questions I expect to drill down to this year include:
+In that spirit, the questions I expect to drill down to through the course of this year include:
 
 - Where exactly is our center of excellence for analytics?
 
