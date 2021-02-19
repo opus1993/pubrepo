@@ -102,7 +102,7 @@ Every path to digital competency is going to be different. Like [Paige Bailey](h
 
 1. As the hiring manager, hop on a 15 minute call with anyone remotely qualified. Have a conversation and collectively decide if they should continue with the process. Your bar here should be super low.
 
-1. Send anyone remotely qualified candidate a take home AND have the take home quantitatively measurable. 
+1. Send any remotely qualified candidate a take home AND have the take home quantitatively measurable. 
 
 1. Require colleagues in the interview loop to pre-register interview questions. They can come up with their own questions but every candidate needs to get the same question.
 
