@@ -100,7 +100,7 @@ Making tangible change requires frequent communication and widespread awareness 
 
 Coursera offers this course by Wil van der Aalst as 14 hours of videos, supplementary reading, case studies, quizzes, and an available certificate. A textbook is available.
 
-There are many business contexts where log or event data is available for a process sequence. These techniques provide the analyst with tools to model the process visually, explore bottlenecks, and describe conformity. The course provides a cursory link to a handful of machine learning techniques for extending the practice to other domains.
+There are many business contexts where log or event data is available for a process sequence. Consider, for example, dealer repair processes and time to fix. Process mining techniques provide the analyst with tools to model the process visually, explore bottlenecks, and describe conformity. The course provides a cursory link to a handful of machine learning techniques for extending the practice to other domains.
 
 The open source software tools are easy to use. Paid versions are available, though where needed I will be using the excellent R packages and markdown.
 
