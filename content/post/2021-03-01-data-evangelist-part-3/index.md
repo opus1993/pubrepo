@@ -62,7 +62,7 @@ In a rapidly changing competitive environment, priors alone should not be used t
 
 ## Research for Sustainable Competitive Advantage
 
-Machine Learning's advantage is in its ability to build models that simulate customer experiences, business systems, processes, and even marketplaces. Done well, data science **research** happens rapidly based upon iterative data gathering and experimentation. Poor assumptions are discarded early. Experiments are designed to prove the model simulates accurately.
+Machine Learning's advantage is in its ability to build models that simulate customer experiences, business systems, processes, and even marketplaces. Done well, data science **research** happens rapidly based upon iterative data gathering and experimentation. Poor assumptions are discarded early. Experiments are designed to prove the model provides valuable inferences and predictions.
 
 The data science team expects to be challenged. They expect review, critiques, and skepticism and are accustomed to it. It is their job to craft experiments and to prove or refute a hypothesis. To be robust, it is also a gated, managed process. Researchers work within budgets, timelines, and deliverables. The research agenda includes artifacts and publications. In contrast, the **digital transformation** agenda is to perpetuate itself.
 
