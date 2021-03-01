@@ -30,9 +30,9 @@ image:
 projects: []
 ---
 
-The fields of Artificial Intelligence are touted by many futurists, shamans, and propagandists. And AI skeptics often write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
+The fields of Artificial Intelligence are touted by many futurists and shamans as the answer to many of the world's problems. And AI skeptics often write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
 
-This post is a different sort of AI critique. What we call our roles and our work matters. I am going to call out **Digital transformation**, as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), and make three book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
+This post is a different sort of AI critique. What we call our roles and our work matters. I am going to call out **digital transformation**, as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), and make three book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
@@ -89,6 +89,8 @@ The placement of data science within the company organization is critical, as we
 - Where is our robust feature store of high quality, clean data for modeling to accelerate analytics?
 
 Making tangible change requires frequent communication and widespread awareness of the answers to these questions. And **research**, not **digital transformation**, is the path to AI maturity.
+
+{{<tweet 1366493451169144832>}}
 
 ----
 
