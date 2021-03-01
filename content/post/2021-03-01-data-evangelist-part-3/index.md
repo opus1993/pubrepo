@@ -32,7 +32,7 @@ projects: []
 
 The fields of Artificial Intelligence are touted by futurists and shamans as the answer to many of the world's problems. And AI skeptics often write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
 
-This post is a different sort of AI critique. What we call our roles and our work matters. In a recent blog post, Vin Vashishta called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), and make three book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
+This post is a different sort of AI critique. What we call our roles and our work matters. In a recent blog post, Vin Vashishta called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), and make four book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
@@ -128,6 +128,11 @@ by Judea Pearly and Dana Mackenzie is really three books woven together:
 <a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf"><img alt="Bayesian Data Analysis" src="https://images.routledge.com/common/jackets/amazon/978143984/9781439840955.jpg" width="450"></a>
 
 Now in its third edition, this classic book is widely considered the leading text on Bayesian methods, lauded for its accessible, practical approach to analyzing data and solving research problems. Bayesian Data Analysis, Third Edition continues to take an applied approach to analysis using up-to-date Bayesian methods. The authors—all leaders in the statistics community—introduce basic concepts from a data-analytic perspective before presenting advanced methods. Throughout the text, numerous worked examples drawn from real applications and research emphasize the use of Bayesian inference in practice.
+
+<a href="http://heather.cs.ucdavis.edu/artofml/draft.pdf"><img alt="The Art of Machine Learning" src="https://editorialia.com/wp-content/uploads/2020/06/the-art-of-machine-learning-algorithms-data-r.jpg" width="450"></a>
+
+Why is this book different from all other machine learning (ML) books?
+There are many great books out there, of course, but none really empowers the reader to use ML effectively in real-world problems. In a short 239 pages, professor Matloff gives a reasonable introduction.
 
 ----
 
