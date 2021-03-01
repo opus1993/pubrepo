@@ -38,7 +38,7 @@ This post is a different sort of AI critique. What we call our roles and our wor
 
 > "Any sufficiently advanced technology is indistinguishable from magic." Arthur C. Clarke
 
-I've had the good fortune to have reached 25 years with the same company through several acquisitions and a wide variety of roles. The past three years have been unusual in the way we have had to unlearn and dismantle organizational structures to be competitive. The wave of underperforming Data Science pilot projects is a direct result of legacy structures struggling to adapt. **Digital transformation** may be the right sentiment, but a 20-year-old business strategy cannot build the foundation for achieving it.
+I've had the good fortune to have reached 25 years with the same company through several acquisitions and a wide variety of roles. The past three years have been unusual in the way we have had to unlearn and dismantle organizations to be competitive. The wave of underperforming Data Science pilot projects is a direct result of legacy structures struggling to adapt. **Digital transformation** may be the right sentiment, but a 20-year-old business strategy cannot build the foundation for achieving it.
 
 Specifically, **digital transformation** as it is understood by the business stakeholders and IT does not facilitate adopting the culture of Data Science and Machine Learning for AI. **Digital transformation** is software automation centric. It is the promise of easy BI with the governance of "no." There is no innovation or competitive advantage created. As such, it is a control room task list rather than a strategy.
 
