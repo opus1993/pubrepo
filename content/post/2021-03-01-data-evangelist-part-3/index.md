@@ -132,7 +132,7 @@ Now in its third edition, this classic book is widely considered the leading tex
 <a href="http://heather.cs.ucdavis.edu/artofml/draft.pdf"><img alt="The Art of Machine Learning" src="https://editorialia.com/wp-content/uploads/2020/06/the-art-of-machine-learning-algorithms-data-r.jpg" width="450"></a>
 
 Why is this book different from all other machine learning (ML) books?
-There are many great books out there, of course, but none really empowers the reader to use ML effectively in real-world problems. In a short 239 pages, professor Matloff gives a reasonable introduction.
+There are many great books out there, of course, but none really empowers the reader to use ML effectively in real-world problems. In a short 239 pages, professor Matloff gives a reasonable introduction to the topic.
 
 ----
 
