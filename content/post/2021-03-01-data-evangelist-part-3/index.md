@@ -106,6 +106,12 @@ The open source software tools are easy to use. Paid versions are available, tho
 
 ----
 
+Ken Jee's recent short video post "Why I QUIT Data Science" speaks to the role and where it fits into the organization. It's nice that Ken shares his personal journey in a candid way.
+
+{{<youtube SVtRsDhHlDk>}}
+
+----
+
 ## Book recommendations
 
 <a href="https://www.packtpub.com/product/building-analytics-teams/9781800203167"><img alt="Building Analytics Teams" src="https://static.packt-cdn.com/products/9781800203167/cover/smaller" width="250"></a>
