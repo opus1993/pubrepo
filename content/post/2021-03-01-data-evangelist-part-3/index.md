@@ -68,7 +68,7 @@ The Data Science team expects to be challenged. They expect review, critiques, a
 
 Consider an industry like FinTech. The reason hedge funds are willing to pay Data Science and Machine Learning Engineers extraordinary salaries is driven by their unique understanding of customer, business, and market performance characteristics. They demonstrate an advantage valued in the billions of dollars.
 
-## Removing Barriers and reducing the Cost of Adoption
+## Removing Barriers 
 
 Kenny Ning's [blog post](https://kleandata.substack.com/p/data-science-is-different) on his poor experiences as a new hire tell the all-too-common story. Their job description read “Data Scientist” with requirements of “Master’s degree or higher; experience in deep learning frameworks a plus.” But that was not the content of the job.
 
