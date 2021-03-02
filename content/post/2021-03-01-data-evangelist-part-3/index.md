@@ -70,9 +70,9 @@ Consider an industry like FinTech. The reason hedge funds are willing to pay Dat
 
 ## Removing Barriers 
 
-Kenny Ning's [blog post](https://kleandata.substack.com/p/data-science-is-different) on his poor experiences as a new hire tell the all-too-common story. Their job description read “Data Scientist” with requirements of “Master’s degree or higher; experience in deep learning frameworks a plus.” But that was not the content of the job.
+Kenny Ning's [blog post](https://kleandata.substack.com/p/data-science-is-different) on his poor experiences as a new hire tell the all-too-common story. His employer's job description read “Data Scientist” with requirements of “Master’s degree or higher; experience in deep learning frameworks a plus.” But that was not the content of the job.
 
-In the end, Kenny was more than glad to get out and find a company where management was actually competent enough to articulate what they were looking for. The best tools are largely open source. Much of the talent is already out there, and even upskilling can be relatively inexpensive. Although the models may be complex, the delivery is user centric. Human in the loop machine learning is intentionally not disruptive to customer UX or company operations.
+In the end, Kenny was more than glad to get out and find a company where management was actually competent enough to articulate what they were looking for. Ironically, the best tools are largely open source. Much of the talent is already out there, and even upskilling can be relatively inexpensive. 
 
 {{<tweet 1366430206181969922>}}
 
