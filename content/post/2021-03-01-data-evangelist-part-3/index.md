@@ -100,7 +100,7 @@ In the end, Kenny was more than glad to get out and find a company where managem
 
 ## The Plan
 
-Real change requires frequent communication and widespread awareness. The recognition the role of AI and Data Science services within the company is critical, as well as enabling the supporting resources. In the last Data Evangelist post I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The first two:
+Real change requires frequent communication and widespread awareness. The recognition of the role that AI and Data Science services play within the company is critical, as well as enabling the supporting resources. In the last Data Evangelist post I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The first two:
 
 - Where exactly is our center of excellence for analytics?
 
