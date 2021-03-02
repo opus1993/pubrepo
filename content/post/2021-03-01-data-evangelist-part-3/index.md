@@ -60,6 +60,20 @@ In a rapidly changing competitive environment, priors alone should not be used t
 
 **Digital transformation** without rigor mislabels analytics as Data Science, creating a barrier to getting value from the technology. The result is overly expensive analytics with the AI label slapped on.
 
+----
+
+Three talks on the applications of Data Science solving strategic challenges in industry by
+
+- Pratt and Whitney - Brendan Scully
+
+- Kellogg Company - Phillip Lear
+
+- AGCO - Dr. Yu-Hung Chang
+
+{{<youtube SVtRsDhHlDk>}}
+
+----
+
 ## Research for Sustainable Competitive Advantage
 
 Machine Learning's advantage is in its ability to build models that simulate customer experiences, business systems, processes, and even marketplaces. Done well, Data Science **research** happens rapidly based upon iterative data gathering and experimentation. Poor assumptions are discarded early. Experiments are designed to prove the model provides valuable inferences and predictions.
