@@ -32,7 +32,7 @@ projects: []
 
 The fields of Artificial Intelligence are touted by futurists and shamans as the answer to many of the world's problems. And AI skeptics often write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
 
-This post is a different sort of AI critique. What we call our roles and our work matters. In a recent blog post, Vin Vashishta called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining) and close with four book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
+This post is a different sort of AI critique. What we call our roles and our work matters. Vin Vashishta recently called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining) and close with four book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
