@@ -62,13 +62,13 @@ In a rapidly changing competitive environment, priors alone should not be used t
 
 ----
 
-Three talks on the applications of Data Science solving strategic challenges in industry by
+Three [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on the applications of Data Science solving strategic challenges in industry by
 
 - Pratt and Whitney - Brendan Scully
 
 - Kellogg Company - Phillip Lear
 
-- AGCO - Dr. Yu-Hung Chang
+- AGCO - Dr. Yu-Hung Chang 
 
 {{<youtube SVtRsDhHlDk>}}
 
