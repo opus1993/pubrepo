@@ -30,19 +30,27 @@ image:
 projects: []
 ---
 
-The fields of Artificial Intelligence are touted by futurists and shamans as the answer to many of the world's problems. And AI skeptics often write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
+The fields of Artificial Intelligence are touted by futurists and shamans as the answer to many of the world's problems. And AI skeptics in turn write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
 
-This post is a different sort of AI critique. What we call our roles and our work matters. Vin Vashishta recently called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining) and close with four book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
+This post is a different sort of AI critique. What we call our roles and our work matters. Vin Vashishta recently called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment in this post on 
+
+- the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), 
+- creating sustainable competitive advantage,  
+- two of the change management questions from [last week](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/),
+- look at an example at Microsoft,
+- and close with four book recommendations. 
+
+Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
 > "Any sufficiently advanced technology is indistinguishable from magic." Arthur C. Clarke
 
-I've had the good fortune to have reached 25 years with the same company through mergers and a wide variety of roles. The past three years have been unusual in the way we have had to unlearn and dismantle organizations to be competitive. The wave of underperforming Data Science pilot projects is a direct result of legacy structures struggling to adapt. **Digital transformation** may be the right sentiment, but a 20-year-old business strategy cannot build the foundation for achieving it.
+I've had the good fortune to have reached 25 years with the same company through mergers and a wide variety of roles. The past three years have been unusual in the way we have had to unlearn and dismantle groups to be competitive. The wave of underperforming Data Science pilot projects is a direct result of legacy structures struggling to adapt. **Digital transformation** may be the right sentiment, but a 20-year-old business strategy cannot build the foundation for achieving it.
 
-Specifically, **digital transformation** as it is understood by the business stakeholders and IT does not facilitate adopting the culture of Data Science and Machine Learning for AI. **Digital transformation** is software automation centric. It is the promise of easy BI with the governance of "no." There is no innovation or competitive advantage created. As such, it is a control room task list rather than a strategy.
+Specifically, **digital transformation** as it is understood by some business stakeholders and IT does not facilitate adopting the culture of Data Science and Machine Learning for AI. **Digital transformation** is software automation centric. It is the promise of easy BI with the governance of "no." There is no innovation or competitive advantage created. As such, it is a control room task list rather than a strategy.
 
-**Digital transformation** as we know it today is unnecessary, creating barriers on the path to modernizing the entire business model. In it, IT builds magnificent walls and moats, and organizational units each develop their own knowledge islands. In contrast, startups not burdened by legacy systems unleash talent and deliver customer value far more quickly and effectively. Abandoning **digital transformation** is more efficient than inserting it into existing departments. We need to talk about how.
+**Digital transformation** as we know it today is unnecessary, creating barriers on the path to modernizing entire business models. In it, IT builds magnificent walls and moats, and organizational units each develop their own knowledge islands. In contrast, startups not burdened by legacy systems unleash talent and deliver customer value far more quickly and effectively. Abandoning **digital transformation** is more efficient than inserting it into existing departments. We need to talk about how.
 
 The first step of strategic planning in any context is full lifecycle **research**. Embracing a Data Science and Machine Learning strategy is no different. **Research** results in artifacts the business uses to inform strategic planning. Once a supported strategy has been built, each subsequent  iteration builds competitive advantage. Unique data sets and models create a high wall because they are difficult for competitors to reproduce.
 
@@ -54,31 +62,29 @@ Even in 2021, organizations are riddled with opinions in search of supporting da
 
 A **research** process gathers data, declares a hypothesis, builds a model, iterates and experiments to understand the business systems being modeled, and only then releases a thesis supported by evidence gathered during experiments. The strategy planning process then is a peer review of the thesis by senior leadership. A research process creates tangible, reliable results with rigor.
 
-**Digital transformation** stops at the hypothesis step. In many cases the data are not available within the decision timeframe, so the organization falls back on expert testimony, or "priors." The result is an analytical conceptualization that is their best attempt to explain what has happened in the past.
-
-In a rapidly changing competitive environment, priors alone should not be used to predict or to prescribe. There has been no validation or peer review to support their use. From a strategy planning and forward-looking perspective, analytics alone are not useful and are at-best hit or miss, particularly when looking 3+ years into the future.
+**Digital transformation** stops short at the hypothesis step. In many cases the data are not available within the decision timeframe, so the organization falls back on expert testimony, or "priors." In a rapidly changing competitive environment, priors alone should not be used to predict or to prescribe. There has been no validation to support their use. From a strategy planning and forward-looking perspective, analytics alone are at-best hit or miss, particularly when looking 3+ years into the future.
 
 **Digital transformation** without rigor mislabels analytics as Data Science, creating a barrier to getting value from the technology. The result is overly expensive analytics with the AI label slapped on.
 
 ----
 
-Three [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on the applications of Data Science solving strategic challenges in industry by
+From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges in industry by
 
-- Pratt and Whitney - Brendan Scully
+- Pratt and Whitney - [Brendan Scully](https://www.linkedin.com/in/brendanjscully/), Aftermarket Operations
 
-- Kellogg Company - Phillip Lear
+- Kellogg Company - [Phillip Lear](https://www.linkedin.com/in/philliplear/)
 
-- AGCO - Dr. Yu-Hung Chang 
+- AGCO - [Dr. Yu-Hung Chang](https://www.linkedin.com/in/dryuhungchang/), Advanced Quality Analytics
 
-{{<youtube SVtRsDhHlDk>}}
+Instructions to playback the recording are [posted here.](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-recording-from-march-2nd/96941)
 
 ----
 
 ## Research for Sustainable Competitive Advantage
 
-Machine Learning's advantage is in its ability to build models that simulate customer experiences, business systems, processes, and even marketplaces. Done well, Data Science **research** happens rapidly based upon iterative data gathering and experimentation. Poor assumptions are discarded early. Experiments are designed to prove the model provides valuable inferences and predictions.
+Machine Learning's advantage is in its ability to build models that simulate customer experiences, business processes, and even marketplaces. Done well, Data Science **research** happens rapidly based upon iterative data gathering and experimentation. Poor assumptions are discarded early. Experiments are designed to prove the model provides valuable inferences and predictions.
 
-The Data Science team expects to be challenged. They expect review, critiques, and skepticism and are accustomed to it. It is their job to craft experiments and to prove or refute a hypothesis. To be robust, it is also a gated, managed process. Researchers work within budgets, timelines, and deliverables. The research agenda includes artifacts and publications. In contrast, the **digital transformation** agenda is to perpetuate itself.
+Data Science teams expect to be challenged. They expect review, critiques, and skepticism and are accustomed to it. It is their job to craft experiments and to prove or refute a hypothesis. To be robust, the work is also a managed process with deliverables. The research agenda includes artifacts and publications. In contrast, the **digital transformation** agenda is to perpetuate itself.
 
 Consider an industry like FinTech. The reason hedge funds are willing to pay Data Science and Machine Learning Engineers extraordinary salaries is driven by their unique understanding of customer, business, and market performance characteristics. They demonstrate an advantage valued in the billions of dollars.
 
@@ -90,21 +96,46 @@ In the end, Kenny was more than glad to get out and find a company where managem
 
 {{<tweet 1366430206181969922>}}
 
-The placement of Data Science within the company organization is critical, as well as enabling the supporting resources. In the last Data Evangelist post I explored [change management and the leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/), including:
+----
+
+## The Plan
+
+Real change requires frequent communication and widespread awareness. The recognition the role of AI and Data Science services within the company is critical, as well as enabling the supporting resources. In the last Data Evangelist post I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The first two:
 
 - Where exactly is our center of excellence for analytics?
 
-- What is the current assessment of analytics maturity?
-
 - Where is the analytics leadership forum, and how are they delivering to the business?
 
-- What best practices opinionated framework guides our selection of the primary tool stack and skills definitions?
+The obvious answer is **a distributed center of excellence on Artificial Intelligence**.
 
-- What is our documented data quality strategy? How does the enterprise embrace it?
+The main goal of the center: 
+> Create value for our customers through a global expert network of small teams on multiple sites. Each team is to have core expertise on specific use cases.
 
-- Where is our robust feature store of high quality, clean data for modeling to accelerate analytics?
+The network itself focuses on:
+> Long term strategic vision, with a technology roadmap
 
-Making tangible change requires frequent communication and widespread awareness of the answers to these questions. And **research**, not **digital transformation**, is the path to AI maturity.
+> Sharing of knowledge
+
+> Finding solutions for common challenges
+
+> Pooling & commonizing toolchains and technologies
+
+What it is not:
+> A passive monthly standing meeting
+
+Leadership is needed to foster active collaboration, sharing, and skills progression across the enterprise. This requires travel and freeing up cohorts to dedicate two week sessions to workshops to stimulate exchanges across the network.
+
+## An example at Microsoft
+
+Microsoft's Machine Learning community serves as a global network that strives to 
+
+<p style="text-align: center;">"break the hierarchy"</p>
+
+Their principles include creating opportunities for people to contribute by organizing a variety of events like tutorials, panels, and Ask Me Anything Sessions. In turn, Microsoft seeks to
+
+<p style="text-align: center;">recruit for enthusiasm</p>
+
+People development at Microsoft has a dedicated budget and a community manager. Microsoft allocates compute resources and licenses to ensure that knowledge building and learning continues. That way there is always a forum to communicate with one another, build sufficient consensus, and secure support from leadership.
 
 {{<tweet 1366493451169144832>}}
 
