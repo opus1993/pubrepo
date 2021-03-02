@@ -32,13 +32,13 @@ projects: []
 
 The fields of Artificial Intelligence are touted by futurists and shamans as the answer to many of the world's problems. And AI skeptics often write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
 
-This post is a different sort of AI critique. What we call our roles and our work matters. In a recent blog post, Vin Vashishta called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), and make four book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
+This post is a different sort of AI critique. What we call our roles and our work matters. In a recent blog post, Vin Vashishta called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment on the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining) and close with four book recommendations. Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
 > "Any sufficiently advanced technology is indistinguishable from magic." Arthur C. Clarke
 
-I've had the good fortune to have reached 25 years with the same company through several acquisitions and a wide variety of roles. The past three years have been unusual in the way we have had to unlearn and dismantle organizations to be competitive. The wave of underperforming Data Science pilot projects is a direct result of legacy structures struggling to adapt. **Digital transformation** may be the right sentiment, but a 20-year-old business strategy cannot build the foundation for achieving it.
+I've had the good fortune to have reached 25 years with the same company through mergers and a wide variety of roles. The past three years have been unusual in the way we have had to unlearn and dismantle organizations to be competitive. The wave of underperforming Data Science pilot projects is a direct result of legacy structures struggling to adapt. **Digital transformation** may be the right sentiment, but a 20-year-old business strategy cannot build the foundation for achieving it.
 
 Specifically, **digital transformation** as it is understood by the business stakeholders and IT does not facilitate adopting the culture of Data Science and Machine Learning for AI. **Digital transformation** is software automation centric. It is the promise of easy BI with the governance of "no." There is no innovation or competitive advantage created. As such, it is a control room task list rather than a strategy.
 
@@ -50,7 +50,7 @@ Consider for a moment how budgets and cost savings are valued. **Digital transfo
 
 ## From Opinion Driven to Research Driven
 
-Even in 2021, organizations are riddled with opinions in search of supporting data. Connections between strategy and outcomes is proven after the fact. There may be data involved but not rigor. 
+Even in 2021, organizations are riddled with opinions in search of supporting data. Connections between strategy and outcomes are proven after the fact. There may be data involved but not rigor. 
 
 A **research** process gathers data, declares a hypothesis, builds a model, iterates and experiments to understand the business systems being modeled, and only then releases a thesis supported by evidence gathered during experiments. The strategy planning process then is a peer review of the thesis by senior leadership. A research process creates tangible, reliable results with rigor.
 
@@ -62,9 +62,9 @@ In a rapidly changing competitive environment, priors alone should not be used t
 
 ## Research for Sustainable Competitive Advantage
 
-Machine Learning's advantage is in its ability to build models that simulate customer experiences, business systems, processes, and even marketplaces. Done well, data science **research** happens rapidly based upon iterative data gathering and experimentation. Poor assumptions are discarded early. Experiments are designed to prove the model provides valuable inferences and predictions.
+Machine Learning's advantage is in its ability to build models that simulate customer experiences, business systems, processes, and even marketplaces. Done well, Data Science **research** happens rapidly based upon iterative data gathering and experimentation. Poor assumptions are discarded early. Experiments are designed to prove the model provides valuable inferences and predictions.
 
-The data science team expects to be challenged. They expect review, critiques, and skepticism and are accustomed to it. It is their job to craft experiments and to prove or refute a hypothesis. To be robust, it is also a gated, managed process. Researchers work within budgets, timelines, and deliverables. The research agenda includes artifacts and publications. In contrast, the **digital transformation** agenda is to perpetuate itself.
+The Data Science team expects to be challenged. They expect review, critiques, and skepticism and are accustomed to it. It is their job to craft experiments and to prove or refute a hypothesis. To be robust, it is also a gated, managed process. Researchers work within budgets, timelines, and deliverables. The research agenda includes artifacts and publications. In contrast, the **digital transformation** agenda is to perpetuate itself.
 
 Consider an industry like FinTech. The reason hedge funds are willing to pay Data Science and Machine Learning Engineers extraordinary salaries is driven by their unique understanding of customer, business, and market performance characteristics. They demonstrate an advantage valued in the billions of dollars.
 
@@ -76,7 +76,7 @@ In the end, Kenny was more than glad to get out and find a company where managem
 
 {{<tweet 1366430206181969922>}}
 
-The placement of data science within the company organization is critical, as well as enabling the supporting resources. In the last Data Evangelist post I explored [change management and the leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/), including:
+The placement of Data Science within the company organization is critical, as well as enabling the supporting resources. In the last Data Evangelist post I explored [change management and the leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/), including:
 
 - Where exactly is our center of excellence for analytics?
 
