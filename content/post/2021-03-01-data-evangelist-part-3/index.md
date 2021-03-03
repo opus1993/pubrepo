@@ -30,9 +30,9 @@ image:
 projects: []
 ---
 
-The fields of Artificial Intelligence are touted by futurists and shamans as the answer to many of the world's problems. And AI skeptics in turn write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
+The fields of Artificial Intelligence are touted by futurists as the answers to many of the world's problems. And AI skeptics in turn write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
 
-This post is a different sort of AI critique. What we call our roles and our work matters. Vin Vashishta recently called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment in this post on 
+This post is a different sort of AI critique. What we call our roles and our work matters. Vin Vashishta, chief data scientist and author, recently called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment in this post on 
 
 - the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), 
 - creating sustainable competitive advantage,  
@@ -50,7 +50,7 @@ I've had the good fortune to have reached 25 years with the same company through
 
 Specifically, **digital transformation** as it is understood by some business stakeholders and IT does not facilitate adopting the culture of Data Science and Machine Learning for AI. **Digital transformation** is software automation centric. It is the promise of easy BI with the governance of "no." There is no innovation or competitive advantage created. As such, it is a control room task list rather than a strategy.
 
-**Digital transformation** as we know it today is unnecessary, creating barriers on the path to modernizing entire business models. In it, IT builds magnificent walls and moats, and organizational units each develop their own knowledge islands. In contrast, startups not burdened by legacy systems unleash talent and deliver customer value far more quickly and effectively. Abandoning **digital transformation** is more efficient than inserting it into existing departments. We need to talk about how.
+Vashishta argues that **Digital transformation** as we know it today is unnecessary, creating barriers on the path to modernizing entire business models. In it, IT builds magnificent walls and moats, and organizational units each develop their own knowledge islands. In contrast, startups not burdened by legacy systems unleash talent and deliver customer value far more quickly and effectively. Abandoning **digital transformation** is more efficient than inserting it into existing departments. We need to talk about how.
 
 The first step of strategic planning in any context is full lifecycle **research**. Embracing a Data Science and Machine Learning strategy is no different. **Research** results in artifacts the business uses to inform strategic planning. Once a supported strategy has been built, each subsequent  iteration builds competitive advantage. Unique data sets and models create a high wall because they are difficult for competitors to reproduce.
 
@@ -62,13 +62,13 @@ Even in 2021, organizations are riddled with opinions in search of supporting da
 
 A **research** process gathers data, declares a hypothesis, builds a model, iterates and experiments to understand the business systems being modeled, and only then releases a thesis supported by evidence gathered during experiments. The strategy planning process then is a peer review of the thesis by senior leadership. A research process creates tangible, reliable results with rigor.
 
-**Digital transformation** stops short at the hypothesis step. In many cases the data are not available within the decision timeframe, so the organization falls back on expert testimony, or "priors." In a rapidly changing competitive environment, priors alone should not be used to predict or to prescribe. There has been no validation to support their use. From a strategy planning and forward-looking perspective, analytics alone are at-best hit or miss, particularly when looking 3+ years into the future.
+According to Vashishta, **Digital transformation** stops short at the hypothesis step. In many cases the data are not available within the decision timeframe, so the organization falls back on expert testimony, or "priors." In a rapidly changing competitive environment, priors alone should not be used to predict or to prescribe. There has been no validation to support their use. From a strategy planning and forward-looking perspective, analytics alone are at-best hit or miss, particularly when looking 3+ years into the future.
 
 **Digital transformation** without rigor mislabels analytics as Data Science, creating a barrier to getting value from the technology. The result is overly expensive analytics with the AI label slapped on.
 
 ----
 
-From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges in industry by
+From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges at
 
 - Pratt and Whitney - [Brendan Scully](https://www.linkedin.com/in/brendanjscully/), Aftermarket Operations
 
@@ -98,15 +98,27 @@ In the end, Kenny was more than glad to get out and find a company where managem
 
 ----
 
-## The Plan
+## An example at Microsoft
 
-Real change requires frequent communication and widespread awareness. The recognition of the role that AI and Data Science services play within the company is critical, as well as enabling the supporting resources. In the last Data Evangelist post I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The first two:
+Microsoft's Machine Learning community serves as a global network that strives to 
+
+<p style="text-align: center;">"break the hierarchy"</p>
+
+Their principles include creating opportunities for people to contribute by organizing a variety of events like tutorials, panels, and Ask Me Anything Sessions. In turn, Microsoft seeks to
+
+<p style="text-align: center;">recruit for enthusiasm</p>
+
+People development at Microsoft has a dedicated budget and a community manager. Microsoft allocates compute resources and licenses to ensure that knowledge building and learning continues. That way there is always a forum to communicate with one another, build sufficient consensus, and secure support from leadership.
+
+Real change requires frequent communication and widespread awareness. The recognition of the role that AI and Data Science services play within the company is critical, as well as enabling the supporting resources. 
+
+In the last Data Evangelist post I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The first two:
 
 - Where exactly is our center of excellence for analytics?
 
 - Where is the analytics leadership forum, and how are they delivering to the business?
 
-The obvious answer is **a distributed center of excellence on Artificial Intelligence**.
+Following the Microsoft example, the answer is **a distributed center of excellence on Artificial Intelligence**.
 
 The main goal of the center: 
 > Create value for our customers through a global expert network of small teams on multiple sites. Each team is to have core expertise on specific use cases.
@@ -123,19 +135,7 @@ The network itself focuses on:
 What it is not:
 > A passive monthly standing meeting
 
-Leadership is needed to foster active collaboration, sharing, and skills progression across the enterprise. This requires travel and freeing up cohorts to dedicate two week sessions to workshops to stimulate exchanges across the network.
-
-## An example at Microsoft
-
-Microsoft's Machine Learning community serves as a global network that strives to 
-
-<p style="text-align: center;">"break the hierarchy"</p>
-
-Their principles include creating opportunities for people to contribute by organizing a variety of events like tutorials, panels, and Ask Me Anything Sessions. In turn, Microsoft seeks to
-
-<p style="text-align: center;">recruit for enthusiasm</p>
-
-People development at Microsoft has a dedicated budget and a community manager. Microsoft allocates compute resources and licenses to ensure that knowledge building and learning continues. That way there is always a forum to communicate with one another, build sufficient consensus, and secure support from leadership.
+Leadership then fosters active collaboration, sharing, and skills progression across the enterprise. This requires travel and freeing up cohorts to dedicate week long sessions to workshops to stimulate exchanges across the network.
 
 {{<tweet 1366493451169144832>}}
 
