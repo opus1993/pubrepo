@@ -66,6 +66,8 @@ According to Vashishta, **Digital transformation** stops short at the hypothesis
 
 ----
 
+## Events
+
 From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges with data science at
 
 - Pratt and Whitney - [Brendan Scully](https://www.linkedin.com/in/brendanjscully/), Aftermarket Operations
@@ -75,6 +77,12 @@ From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](h
 - AGCO - [Dr. Yu-Hung Chang](https://www.linkedin.com/in/dryuhungchang/), Advanced Quality Analytics
 
 Instructions to playback the recording are [posted here.](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-recording-from-march-2nd/96941)
+
+Other upcoming events:
+
+⭐️ April 6-7th [ISU Analytics Symposium](https://www.ivybusiness.iastate.edu/analytics-symposium/)
+
+⭐️ September 6-10th [EARL Conference 2021]( https://info.mango-solutions.com/earl-2021#:~:text=EARL%202021%206%2D10th%20September,of%20the%20world%27s%20leading%20practitioners)
 
 ----
 
