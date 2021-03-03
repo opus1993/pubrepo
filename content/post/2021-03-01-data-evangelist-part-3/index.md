@@ -108,6 +108,10 @@ People development at Microsoft has a dedicated budget and a community manager. 
 
 Real change requires frequent communication and widespread awareness. The recognition of the role that AI and Data Science services play within the company is critical, as well as enabling the supporting resources. 
 
+<a href="http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram"><img alt="THE DATA SCIENCE VENN DIAGRAM" src="https://images.squarespace-cdn.com/content/v1/5150aec6e4b0e340ec52710a/1364352051365-HZAS3CLBF7ABLE3F5OBY/ke17ZwdGBToddI8pDm48kB2M2-8_3EzuSSXvzQBRsa1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxPe_8B-x4gq2tfVez1FwLYYZXud0o-3jV-FAs7tmkMHY-a7GzQZKbHRGZboWC-fOc/Data_Science_VD.png" width="250"></a>
+
+Drew Conway’s famous Venn diagram on what data science is made of stresses the importance of substantive expertise as an integral part of data science. Encouraging a culture of collaboration between business and analytics function ensures that this is the case. On the other hand, an argument can also be made in the reverse. Ensuring that the business has enough knowledge of data science to be able to accurately reflect and act on the findings of data-driven insights is just as important. Without this, insights discovered by the data science community will not be able to have the fullest possible impact on the business, or, at worst, could even end up being misunderstood and misinterpreted. Enabling training at all levels of data awareness is critical, and this even including training on how to use information to guide decision-making.
+
 In the last Data Evangelist post I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The first two:
 
 - Where exactly is our center of excellence for analytics?
@@ -185,6 +189,8 @@ There are many great books out there on machine learning. In a short 239 pages, 
 ## Related posts
 
 [the last post of the Data Evangelist series](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/)
+
+[HOW TO GROW YOUR OWN DATA SCIENCE TEAMS – A PRACTICAL GUIDE](https://www.mango-solutions.com/how-to-grow-your-own-data-science-teams/)
 
 [AI and Data Strategy](https://jimgruman.netlify.app/post/ai-and-data-strategy/)
 
