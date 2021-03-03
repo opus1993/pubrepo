@@ -37,7 +37,7 @@ This post is a different sort of AI critique. What we call our roles and our wor
 - the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), 
 - creating sustainable competitive advantage,  
 - two of the change management questions from [last week](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/),
-- look at an example at Microsoft,
+- look at how Microsoft manages AI initiatives,
 - and close with four book recommendations. 
 
 Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
@@ -68,7 +68,7 @@ According to Vashishta, **Digital transformation** stops short at the hypothesis
 
 ----
 
-From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges at
+From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges with data science at
 
 - Pratt and Whitney - [Brendan Scully](https://www.linkedin.com/in/brendanjscully/), Aftermarket Operations
 
@@ -100,7 +100,7 @@ In the end, Kenny was more than glad to get out and find a company where managem
 
 ## An example at Microsoft
 
-Microsoft's Machine Learning community serves as a global network that strives to 
+Microsoft's own machine learning community is a global network that strives to 
 
 <p style="text-align: center;">"break the hierarchy"</p>
 
