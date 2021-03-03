@@ -156,15 +156,15 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 ## Machine Learning
 Mastery of the wide array of Machine Learning techniques in real business contexts requires a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We're smart. Just wing it, right? *This is a bad idea.*
 
-There is a running joke on Twitter that most resumes that list Natural Language Processing as a skill are *at-best* suggesting an awareness of regular expressions.  To be blunt, the free materials available at this point are not sufficient to provide a proper foundation in the many risks and trade-offs, particularly with respect to each knowledge domain. For example, consider SARs COVID-19 and all of the epidemiological models and ramifications for policy decisions. Further, the leading edge of thinking in many ML areas is changing rapidly.
+To be blunt, the free materials available at this point are not sufficient to provide a proper foundation in the many risks and trade-offs, particularly with respect to each knowledge domain. For example, consider SARs COVID-19 and all of the epidemiological models and ramifications for policy decisions. Further, the leading edge of thinking in many ML areas is changing rapidly.
 
-Though none of these are free, find each of these at a library or a gently used copy, as students use them in classes and often sell them back.
+Though none of these are free, find each of these at a library or a gently used copy, as students use them in classes and sell them back.
 |     |    |
 |:----|:---|
 | **Data Science for Business** |by Provost and Fawcett (2013 O'Reilly)| 
+| **Feature Engineering** |by Max Kuhn and Kjell Johnson (2019)|
 | **Practical Machine Learning in R** | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
-| **The Lady Tasting Tea: How Statistics Revolutionized Science in the Twentieth Century** | David Salsburg (2002) on the statistical revolution over time and the contributions of key thought leaders. |
-| **Regression and Other Stories, Analytical Methods for Social Research** |Gelman, Hill, and Vehtari's with an applied statistics text that provides real-world lessons for quantitative researchers applying ML techniques. |
+| **The Art of Machine Learning** Algorithms+Data+R | Norm Matloff (2021) |
 
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
