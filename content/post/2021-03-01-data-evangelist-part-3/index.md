@@ -62,9 +62,7 @@ Even in 2021, organizations are riddled with opinions in search of supporting da
 
 A **research** process gathers data, declares a hypothesis, builds a model, iterates and experiments to understand the business systems being modeled, and only then releases a thesis supported by evidence gathered during experiments. The strategy planning process then is a peer review of the thesis by senior leadership. A research process creates tangible, reliable results with rigor.
 
-According to Vashishta, **Digital transformation** stops short at the hypothesis step. In many cases the data are not available within the decision timeframe, so the organization falls back on expert testimony, or "priors." In a rapidly changing competitive environment, priors alone should not be used to predict or to prescribe. There has been no validation to support their use. From a strategy planning and forward-looking perspective, analytics alone are at-best hit or miss, particularly when looking 3+ years into the future.
-
-**Digital transformation** without rigor mislabels analytics as Data Science, creating a barrier to getting value from the technology. The result is overly expensive analytics with the AI label slapped on.
+According to Vashishta, **Digital transformation** stops short at the hypothesis step. In many cases the data are not available within the decision timeframe, so the organization falls back on expert testimony, or "priors." In a rapidly changing competitive environment, priors alone should not be used to predict or to prescribe. There has been little validation to support their use. The result is overly expensive analytics with the AI label slapped on.
 
 ----
 
