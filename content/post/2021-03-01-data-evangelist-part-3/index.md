@@ -104,11 +104,9 @@ Microsoft's own machine learning community is a global network that strives to
 
 <p style="text-align: center;">"break the hierarchy"</p>
 
-Their principles include creating opportunities for people to contribute by organizing a variety of events like tutorials, panels, and Ask Me Anything Sessions. In turn, Microsoft seeks to
+Their principles include creating opportunities for people to contribute by organizing a variety of events like tutorials, panels, and Ask Me Anything Sessions. 
 
-<p style="text-align: center;">recruit for enthusiasm</p>
-
-People development at Microsoft has a dedicated budget and a community manager. Microsoft allocates compute resources and licenses to ensure that knowledge building and learning continues. That way there is always a forum to communicate with one another, build sufficient consensus, and secure support from leadership.
+People development at Microsoft has a dedicated budget and a community manager. Microsoft allocates compute resources and licenses to ensure that knowledge building and learning continues. There is always a forum to communicate with one another, build sufficient consensus, and secure support from leadership.
 
 Real change requires frequent communication and widespread awareness. The recognition of the role that AI and Data Science services play within the company is critical, as well as enabling the supporting resources. 
 
