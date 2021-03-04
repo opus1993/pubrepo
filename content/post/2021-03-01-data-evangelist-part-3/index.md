@@ -32,7 +32,7 @@ projects: []
 
 The fields of Artificial Intelligence are touted by futurists as the answers to many of the world's problems. And AI skeptics in turn write on topics like ethics & privacy because they resonate with the widest possible audience, driving readership.
 
-This post is a different sort of AI critique. What we call our roles and our work matters. Vin Vashishta, chief data scientist and author, recently called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive Analytics with the Artificial Intelligence label slapped on. I will also comment in this post on 
+This post is a different sort of AI critique. What we call our roles and our work matters. Vin Vashishta, chief data scientist and author, recently called out [**digital transformation**](https://www.linkedin.com/pulse/digital-transformation-strategy-barrier-data-science-vin-vashishta/) as it mislabels many things as Data Science, and as such creates barriers to realizing value from the technology. The result is expensive analytics with the Artificial Intelligence label slapped on. I will also comment in this post on 
 
 - the [Wil van der Aalst Process Mining course](https://www.coursera.org/learn/process-mining), 
 - creating sustainable competitive advantage,  
@@ -55,6 +55,8 @@ Vashishta argues that **Digital transformation** as we know it today is unnecess
 The first step of strategic planning in any context is full lifecycle **research**. Embracing a Data Science and Machine Learning strategy is no different. **Research** results in artifacts the business uses to inform strategic planning. Once a supported strategy has been built, each subsequent  iteration builds competitive advantage. Unique data sets and models create a high wall because they are difficult for competitors to reproduce.
 
 Consider for a moment how budgets and cost savings are valued. **Digital transformation** fights for its share of budget allocation within business units for automating reporting and dashboards, with barely credible justifications. In many cases there is little support between project metrics and business metrics. **Research**, on the other hand, is essential to driving the core strategic portfolio of products and services that the business offers.
+
+----
 
 ## From Opinion Driven to Research Driven
 
@@ -94,15 +96,19 @@ Data Science teams expect to be challenged. They expect review, critiques, and s
 
 Consider an industry like FinTech. The reason hedge funds are willing to pay Data Science and Machine Learning Engineers extraordinary salaries is driven by their unique understanding of customer, business, and market performance characteristics. They demonstrate an advantage valued in the billions of dollars.
 
-## Removing Barriers 
-
-Kenny Ning's [blog post](https://kleandata.substack.com/p/data-science-is-different) on his poor experiences as a new hire tell the all-too-common story. His employer's job description read “Data Scientist” with requirements of “Master’s degree or higher; experience in deep learning frameworks a plus.” But that was not the content of the job.
-
-In the end, Kenny was more than glad to get out and find a company where management was actually competent enough to articulate what they were looking for. Ironically, the best tools are largely open source. Much of the talent is already out there, and even upskilling can be relatively inexpensive. 
+----
 
 {{<tweet 1366430206181969922>}}
 
+## Removing Barriers 
+
+Kenny Ning's [blog post](https://kleandata.substack.com/p/data-science-is-different) on his poor experiences as a new hire tell an all-too-common story. His employer's job description read “Data Scientist” with requirements of “Master’s degree or higher; experience in deep learning frameworks a plus.” But that was not the content of the job.
+
+In the end, Kenny was more than glad to get out and find a company where management was actually competent enough to articulate what they were looking for. Ironically, the best tools are largely open source. Much of the talent is already out there, and even upskilling can be relatively inexpensive when compared to employee churn. If company governance blocks access to data and tools, there is little benefit to be gained from hiring people with data science & AI skills.
+
 ----
+
+{{<tweet 1366493451169144832>}}
 
 ## An example at Microsoft
 
@@ -118,7 +124,7 @@ Real change requires frequent communication and widespread awareness. The recogn
 
 <a href="http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram"><img alt="THE DATA SCIENCE VENN DIAGRAM" src="https://images.squarespace-cdn.com/content/v1/5150aec6e4b0e340ec52710a/1364352051365-HZAS3CLBF7ABLE3F5OBY/ke17ZwdGBToddI8pDm48kB2M2-8_3EzuSSXvzQBRsa1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpxPe_8B-x4gq2tfVez1FwLYYZXud0o-3jV-FAs7tmkMHY-a7GzQZKbHRGZboWC-fOc/Data_Science_VD.png" width="250"></a>
 
-Drew Conway’s famous Venn diagram on what data science is made of stresses the importance of substantive expertise as an integral part of data science. Encouraging a culture of collaboration between business and data science functions ensures that this is the case. On the other hand, an argument can also be made in the reverse. Ensuring that the business has enough knowledge of data science to be able to accurately reflect and act on the findings of data-driven insights is just as important. Without this, insights discovered by the data science community will not be able to have the fullest possible impact on the business, or, at worst, could even end up being misunderstood and misinterpreted. Enabling training at all levels of data awareness is critical, and this even including training on how to use information to guide decision-making.
+Drew Conway’s famous [Venn diagram](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram) on what data science is made of stresses the importance of substantive expertise as an integral part of data science. Fostering a culture of collaboration between business and data science functions ensures it. On the other hand, an argument can also be made for the inverse. Ensuring that the business has enough knowledge of data science to be able to accurately reflect and act on the findings of data-driven insights is just as important. Without this, insights discovered by the data science community will not be able to have the fullest possible impact on the business, or, at worst, could even end up being misinterpreted. 
 
 In the last Data Evangelist post I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The first two:
 
@@ -145,17 +151,19 @@ What it is not:
 
 Leadership then fosters active collaboration, sharing, and skills progression across the enterprise. This requires travel and freeing up cohorts to dedicate week long sessions to workshops to stimulate exchanges across the network.
 
-{{<tweet 1366493451169144832>}}
-
 ----
 
-## [Process Mining: Data science in Action by Eindhoven University of Technology](https://www.coursera.org/learn/process-mining)
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6772533711427682304" height="720" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
-Coursera offers this course by Wil van der Aalst as 14 hours of videos, supplementary reading, case studies, quizzes, and an available certificate. A textbook is available.
+## [Process Mining: Data science in Action](https://www.coursera.org/learn/process-mining) by Eindhoven University of Technology
 
-There are many business contexts where log or event data is available for a process sequence. Consider, for example, dealer repair processes and time to fix. Process mining techniques provide the analyst with tools to model the process visually, explore bottlenecks, and describe conformity. The course provides a cursory link to a handful of machine learning techniques for extending the practice to other domains.
+Coursera offers [this course](https://www.coursera.org/learn/process-mining) by [Wil van der Aalst](https://www.acm.org/articles/people-of-acm/2021/wil-van-der-aalst) as 14 hours of videos, supplementary reading, case studies, quizzes, and an available certificate. The textbook is a nice deskside reference, but not necessary.
 
-The open source software tools are easy to use. Paid versions are available, though where needed I will be using the excellent R packages and markdown.
+There are many business contexts where logged event data is available for research of process sequences. Consider, for example, dealer repair processes and optimizing time to fix. Process mining techniques provide the analyst with tools to model the process visually, explore bottlenecks, and describe conformity. The course provides a cursory link to a handful of machine learning techniques for extending the practice to other domains.
+
+The Business Process Management (BPM) discipline was considered to be dead a few years ago, but is thriving today with advances in process mining and Robotic Process Automation (RPA). RPA makes it possible to automate repetitive tasks cost-effectively. Process mining supports RPA initiatives by uncovering opportunities. The process mining discipline connects process management and data science, and will continue to grow.
+
+Paid versions of the software is available, though where needed I will be using excellent open source tools.
 
 ----
 
