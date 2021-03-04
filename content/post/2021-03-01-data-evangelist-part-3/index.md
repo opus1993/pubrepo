@@ -52,7 +52,7 @@ Vashishta argues that **Digital transformation** as we know it today is unnecess
 
 The first step of strategic planning in any context is full lifecycle **research**. Embracing a Data Science and Machine Learning strategy is no different. **Research** results in artifacts the business uses to inform strategic planning. Once a supported strategy has been built, each subsequent  iteration builds competitive advantage. Unique data sets and models create a high wall because they are difficult for competitors to reproduce.
 
-Consider for a moment how budgets and cost savings are valued. **Digital transformation** fights for its share of budget allocation within business units for automating reporting and dashboards, with barely credible justifications. In many cases there is little support between project metrics and business metrics. **Research**, on the other hand, is essential to driving the core strategic portfolio of products and services that the business offers.
+Consider for a moment how budgets and cost savings are valued. **Digital transformation** fights for its share of budget allocation within business units for automating reporting and dashboards, with barely credible justifications. In many cases there is little support between project metrics and business metrics. **Research**, on the other hand, is essential to driving the roadmap towards building the core strategic portfolio of products and services that the business offers.
 
 ----
 
