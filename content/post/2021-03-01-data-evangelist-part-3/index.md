@@ -1,6 +1,4 @@
 ---
-# Documentation: https://sourcethemes.com/academic/docs/managing-content/
-
 title: The Data Evangelist
 subtitle: "Perspectives on building the Data Science Community"
 summary: ""
