@@ -54,6 +54,10 @@ The first step of strategic planning in any context is full lifecycle **research
 
 Consider for a moment how budgets and cost savings are valued. **Digital transformation** fights for its share of budget allocation within business units for automating reporting and dashboards, with barely credible justifications. In many cases there is little relationship between project metrics and business metrics. **Research**, on the other hand, is essential to driving the core strategic portfolio of products and services that the business offers.
 
+In [BI and Data Science: The Best of Both Worlds](https://blog.rstudio.com/2021/03/04/bi-and-ds-part1/), Lou Bajuk writes that "*These common purposes and capabilities, ironically, often trap the teams that use and maintain these tools as organizational competitors for software budgets and executive mindshare. These very different approaches can end up delivering applications and dashboards that may (at first glance) appear very similar. The strengths, weaknesses and nuances of the two approaches can be obscured to decision makers, especially to executive budget holders.*"
+
+<a href="https://d33wubrfki0l68.cloudfront.net/83d2965a7ee9709b41139246d6a2493f59ce27d4/4c375/2021/03/04/bi-and-ds-part1/robot-fencers.jpg"><img alt="BI and Data Science: The Best of Both Worlds" src="https://d33wubrfki0l68.cloudfront.net/83d2965a7ee9709b41139246d6a2493f59ce27d4/4c375/2021/03/04/bi-and-ds-part1/robot-fencers.jpg" width="250"></a>
+
 ## From Opinion Driven to Research Driven
 
 Even in 2021, organizations are riddled with opinions in search of supporting data. Connections between strategy and outcomes are proven after the fact. There may be data involved but not rigor. 
@@ -183,6 +187,8 @@ There are many great books out there on machine learning. In a short 239 pages, 
 ## Related posts
 
 [the last post of the Data Evangelist series](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/)
+
+[BI and Data Science: The Best of Both Worlds](https://blog.rstudio.com/2021/03/04/bi-and-ds-part1/)
 
 [HOW TO GROW YOUR OWN DATA SCIENCE TEAMS – A PRACTICAL GUIDE](https://www.mango-solutions.com/how-to-grow-your-own-data-science-teams/)
 
