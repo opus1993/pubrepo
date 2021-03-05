@@ -78,3 +78,4 @@ ignoreFiles = ["\\.Rmd$","\\.Rmarkdown$","_cache$","\\.knit\\.md$","\\.utf8\\.md
 [privacy]
   [privacy.disqus]
     disable = true
+    
