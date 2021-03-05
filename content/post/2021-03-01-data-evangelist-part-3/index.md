@@ -46,7 +46,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 I've had the good fortune to have reached two decades with the same company through mergers and a wide variety of roles. The past three years have been unusual in the way we have had to unlearn and dismantle groups to be competitive. The wave of underperforming pilot projects is a direct result of legacy structures struggling to adapt. **Digital transformation** may be the right sentiment, but a 20-year-old business strategy cannot build the foundation for achieving it.
 
-Specifically, **digital transformation** as it is understood by some business stakeholders does not facilitate adopting the culture of required for AI. **Digital transformation** is software automation centric. It is the promise of easy BI with the governance of "no." There is no innovation or competitive advantage created. As such, it is a control room task list rather than a strategy.
+Specifically, **digital transformation** as it is understood by some business stakeholders does not facilitate adopting the culture required for AI. **Digital transformation** is software automation centric. It is the promise of easy BI with the governance of "no." There is no innovation or competitive advantage created. As such, it is a control room task list rather than a strategy.
 
 Vashishta argues that **Digital transformation** as we know it today is unnecessary, creating barriers on the path to modernizing entire business models. In contrast, startups not burdened by legacy systems unleash talent and deliver customer value far more quickly and effectively. Abandoning **digital transformation** is more efficient than inserting it into existing departments. We need to talk about how.
 
