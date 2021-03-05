@@ -70,7 +70,7 @@ According to Vashishta, **Digital transformation** stops short at the hypothesis
 
 ## Events
 
-From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges with data science at
+⭐️ From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-on-march-2nd/96941) on solving strategic challenges with data science at
 
 - Pratt and Whitney - [Brendan Scully](https://www.linkedin.com/in/brendanjscully/), Aftermarket Operations
 
@@ -79,6 +79,8 @@ From this past Tuesday March 2nd, check out the three 20 minute [meetup talks](h
 - AGCO - [Dr. Yu-Hung Chang](https://www.linkedin.com/in/dryuhungchang/), Advanced Quality Analytics
 
 Instructions to playback the recording are [posted here.](https://community.rstudio.com/t/r-in-manufacturing-and-consumer-products-virtual-meetup-recording-from-march-2nd/96941)
+
+⭐️ March 5th [Chicago Chapter of INFORMS:  Data Analysis in The New Normal](https://www.meetup.com/INFORMS-Chicago-Chapter-Meetup/events/276336478/) with guest speaker Kevin Hartman. As Global Head of Analyst Development at Google, Kevin is responsible for leading the design, implementation, and evolution of a program to recruit, onboard, and develop 3,000+ data analysts working across Google's global network. The event was also recorded.
 
 Other upcoming events:
 
