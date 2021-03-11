@@ -76,10 +76,14 @@ Industry 4.0 RFID, torque monitoring, wearable technology, PLC automation monito
 
 Another challenge will be establishing trust in AI. The increased use of deep learning techniques has caused people to demand explanations of AI models and be certain of the ethics. People don’t want AI to be a black box. Instead, they really want explainability, that is, to understand what is driving decision recommendations. That’s a good problem to have, though, because it shows that people see the value in making business decisions driven by data analytics. So the challenge then becomes helping the understand what is driving those recommendations.
 
+a suggestion for future articles would be around analytic maturity within an organization and some basic steps to grow in this area. At least for area that I serve in CNH, I would say we are on the very basic side of analytics and bringing in ideas or inputs on how to grow would be interesting. A big part of our opportunity is to change the questions that we are being asked by the business that we serve. Topics on moving from descriptive analytics to diagnostic to predictive to prescriptive analytics would help folks visualize the opportunity. Maybe you have written these types of articles in the past and I haven’t seen them. Also would be very interested to see topics around data quality strategies and data access. These are significant issue’s for us. 
+
 ----
 
 {{<tweet 1366430206181969922>}}
 
+
+{{<tweet 1333033134481420289>}}
 ## Tweet
 
 
@@ -89,7 +93,11 @@ comment on an interesting tweet from this week
 
 {{<tweet 1366493451169144832>}}
 
-## An example at Walmart??  McDonalds??  
+## National Science Foundation Engineering Research Center for the Internet of Things for Precision Agriculture
+
+The IoT4Ag project unites faculty and students from the University of Pennsylvania, Purdue University, the University of California Merced, and the University of Florida with industry and government partners to transform agriculture.
+
+
 
 
 Comment on an interesting company this week
@@ -125,6 +133,11 @@ Machine learning is a broad field, encompassing pieces of computer science, stat
 A youtube video
 
 {{<youtube SVtRsDhHlDk>}}
+
+
+Google Data Analytics Professional Certificate program
+
+
 
 ----
 
