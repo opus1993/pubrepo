@@ -48,7 +48,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 A challenge shared with most other organizations is realizing that we all are still in the early stages of AI. It’s not off-the-shelf shrink wrapped prepackaged software, and most likely will never be. AI requires volumes of quality data, solid analytics capabilities, and strong business acumen. In most AI use cases we have to create the data, do the labeling, and train the models. It also requires new ways of assessing the talent and capabilities of the people within most every functional group. 
 
-One size doesn’t fit all for every project or team. Sometimes the first solutions delivered are too brittle, and thus difficult to flex when the marketplace evolves. They will have to iterate. On the one hand, understanding how to get AI capabilities to the front lines, or even the edge, is essential. On the other hand, there are areas that we must be strategically aligned through a centrally driven project. With a large global dealer network, customer facing operations are fairly decentralized already, so leaders need to be thinking about AI in contexts that span the entire range. 
+One size doesn’t fit all for every project or team. Sometimes the first solutions delivered are too brittle, and thus difficult to flex when the marketplace evolves. They will have to iterate. On the one hand, understanding how to get AI capabilities to the front lines, or even the edge, is essential. On the other hand, there are areas that must be strategically coordinated through a centrally driven project. With a large global dealer network, customer facing operations are fairly decentralized already, so leaders need to be thinking about AI in contexts that span the entire range. 
 
 Another challenge is always establishing trust in AI deployments. The increased use of deep learning techniques has caused people to demand explanations of models and the ethics involved. People don’t want AI to be a black box. Instead they really want explainability, that is, to understand what is driving decision recommendations. That’s a good problem to have, though, because it shows that people see the value in making business decisions driven this way. 
 
@@ -113,7 +113,7 @@ Machine learning is a broad field, encompassing aspects of computer science, sta
 
 {{<youtube duMcYRtQITA>}}
 
-The [Google Data Analytics Professional Certificate](https://grow.google/dataanalytics/#?modal_active=none) program has been released to the Coursera online learning platform. It it is self-paced, though they recommend a commitment of 10 hours per week. I expect it to be very popular. Google is positioning the credential as the equivalent of a 4-year degree in their hiring process. No doubt this will influence many other companies to do the same, especially for professionals looking to change mid-career. If you enroll, I'd like to hear about your experience.
+The [Google Data Analytics Professional Certificate](https://grow.google/dataanalytics/#?modal_active=none) program has been released to the Coursera online learning platform. It it is self-paced, though they recommend a commitment of 10 hours per week. I expect that it will be very popular. Google is positioning the credential as the equivalent of a 4-year degree in their hiring process. No doubt this will influence many other companies to do the same, especially for professionals looking to change mid-career. If you enroll, I'd like to hear about your experience.
 
 ----
 
