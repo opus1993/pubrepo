@@ -103,6 +103,8 @@ A sizable portion of advanced AI efforts is investigating potential partners and
 
 All business leaders recognize the importance of starting with a clear requirements definition of the central question and the business opportunity. Product owners know that insights accumulated on the AI journey may cause directional adjustments to that central question as the team uncovers the truth from the data. At every level, teams must avoid having the pursuit of business value turn into simply a lab experiment with new technology. The promise of AI is real, but as data is explored, the findings may surprise everyone. This doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout the extended enterprise. The community of practice is also an opportunity for individuals to share what they are doing and how they are doing it. 
 
+{{<tweet 1369738859248971776>}}
+
 ----
 
 ## Learning Resources
