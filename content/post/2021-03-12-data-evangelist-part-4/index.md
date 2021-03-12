@@ -50,7 +50,7 @@ A challenge shared with most other organizations is realizing that we all are st
 
 One size doesn’t fit all for every project or team. Sometimes the first solutions delivered are too brittle, and thus difficult to flex when the marketplace evolves. They will have to iterate. On the one hand, understanding how to get AI capabilities to the front lines, or even the edge, is essential. On the other hand, there are areas that must be strategically coordinated through a centrally driven project. With a large global dealer network, customer facing operations are fairly decentralized already, so leaders need to be thinking about AI in contexts that span the entire range. 
 
-Another challenge is always establishing trust in AI deployments. The increased use of deep learning techniques has caused people to demand explanations of models and the ethics involved. People don’t want AI to be a black box. Instead they really want explainability, that is, to understand what is driving decision recommendations. That’s a good problem to have, though, because it shows that people see the value in making business decisions driven this way. 
+Another challenge is establishing trust in AI deployments. The increased use of deep learning techniques has some demanding explanations of how they work and the ethics involved. People don’t want AI to be a black box. Instead they really want explainability, that is, to understand what is driving the decision recommendations. That’s a good problem to have, though, because it shows that people see the value in making business decisions driven this way. 
 
 ----
 
