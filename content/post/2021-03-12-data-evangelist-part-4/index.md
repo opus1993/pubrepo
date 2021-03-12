@@ -56,7 +56,7 @@ Another challenge is establishing trust in AI deployments. The increased use of 
 
 ## Events
 
-These are opportunities, hosted by academic groups or open source communities, to engage and learn about analytics, data science, and AI from peers.
+These are opportunities to engage and learn about analytics, data science, and AI from peers.
 
 ⭐️ April 6-7th [ISU Analytics Symposium](https://www.ivybusiness.iastate.edu/analytics-symposium/)
 
