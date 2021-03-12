@@ -16,7 +16,7 @@ draft: false
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
-  caption: "CNH Industrial"
+  caption: "a chair"
   focal_point: ""
   preview_only: false
 
@@ -28,15 +28,15 @@ image:
 projects: []
 ---
 
-A digital and analytics career at a heavy equipment OEM offers something most will never experience in the [FAANG](https://www.businessinsider.com/what-is-faang) “tech” companies: the chance to see ideas come to life in real products and services used in farm fields and on customer jobsites all over the world. What we imagine and ultimately make a reality will help customers work more safely, more efficiently and more productively.
+Working at an equipment OEM offers something most will never experience in the [FAANG](https://www.businessinsider.com/what-is-faang) “tech” companies: the chance to see ideas come to life in farm fields and on jobsites all over the world. What we imagine and ultimately make a reality will help customers work more safely, more efficiently and more productively. And it's also better than making things like chairs (more on this later).
 
-Artificial Intelligence will become an increasingly important part of many of the things that are done around here, and not just in autonomy and remote solutions. It will be vital to how we ensure the right part is at the right place when the customer needs it, how technicians service machines, and how we make all of this cost effective.
+Artificial Intelligence is becoming an increasingly important aspect of the smart way of doing all the things that we do, and not just in vehicle autonomy and telematics. It is vital to ensure the right part is at the right place before the customer needs it, how technicians service machines correctly, and how we make all of this cost effective. Consider the full enterprise view of AI opportunities related to supply streamlining, dealer operations, inventory management, demand planning, and equipment repair, among many others. Data-driven AI also has the potential to allow brand marketing to deliver a much more personalized customer experience. So it's a big deal in a big organization. On that note, this short post explores 
 
-Data-driven AI has the potential to allow our brands to deliver faster and more personalized customer experiences. Let's be honest: with the new tech, we can optimize dealer and customer experiences in ways that have never been possible in the past. This post explores how a huge organization makes the pivot, through a center of excellence  leadership framework, and
-
-- extreme collaboration
-- skills and talent deployment
-- and acceleration
+- how a huge organization makes the pivot, 
+- extreme ownership,
+- an honest assessment of analytics maturity,
+- learning resources, and
+- 2 book recommendations.
 
 Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
 
@@ -46,17 +46,17 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 > "Tidy datasets are all alike; but every messy dataset is messy in its own way." Hadley Wickham
 
-The business opportunities for AI and data analytics go beyond automating the experience of setting up a combine. We must take a full enterprise view of internal AI opportunities related to supply streamlining, dealer operations, inventory management, demand planning, and equipment repair before failure, among many others.
+A challenge shared with most other organizations is realizing that we all are still in the early stages of AI. It’s not off-the-shelf shrink wrapped prepackaged software, and most likely will never be. AI requires volumes of quality data, solid analytics capabilities, and strong business acumen. In most AI use cases we have to create the data, do the labeling, and train the models. It also requires new ways of assessing the talent and capabilities of the people within most every functional group. 
 
-A common challenge is recognizing that we are still in the early stages of AI. It’s not off-the-shelf shrink wrapped prepackaged software. It requires a high volume of quality data, solid analytics capabilities, and strong business acumen. In most AI use cases, we have to create the data, do the labeling and train the models. Sometimes the solutions are still fairly linear and can be brittle and difficult to flex when the models evolve.
+One size doesn’t fit all for every project or team. Sometimes the first solutions delivered are too brittle, and thus difficult to flex when the marketplace evolves. They will have to iterate. On the one hand, understanding how to get AI capabilities to the front lines, or even the edge, is essential. On the other hand, there are areas that we must be strategically aligned through a centrally driven project. With a large global dealer network, customer facing operations are fairly decentralized already, so leaders need to be thinking about AI in contexts that span the entire range. 
 
-It’s also important to note that narrow AI still dominates solutions in the marketplace, which for the most part address very specific problems under a defined set of operating conditions. With new technologies and developments the data science community will be able to go after wider opportunities, but for now, it’s still quite narrowly focused.
-
-One size doesn’t fit all for every project or team. On the one hand, understanding how to get AI capabilities to the front lines is essential. On the other hand, there are areas that we must be strategically aligned and we need a central core. With a large global dealer network, customer facing operations are fairly decentralized already, so we need to be thinking about AI in that context. 
+Another challenge is always establishing trust in AI deployments. The increased use of deep learning techniques has caused people to demand explanations of models and the ethics involved. People don’t want AI to be a black box. Instead they really want explainability, that is, to understand what is driving decision recommendations. That’s a good problem to have, though, because it shows that people see the value in making business decisions driven this way. 
 
 ----
 
 ## Events
+
+These are opportunities, hosted by academic groups or open source communities, to engage and learn about analytics, data science, and AI from peers.
 
 ⭐️ April 6-7th [ISU Analytics Symposium](https://www.ivybusiness.iastate.edu/analytics-symposium/)
 
@@ -67,88 +67,65 @@ One size doesn’t fit all for every project or team. On the one hand, understan
 
 ----
 
-## New title for this section
+> "It doesn't make sense to hire smart people and then tell them what to do; we hire smart people so they can tell us what to do." - Steve Jobs
 
-We need to address a preparedness gap in our talent, from how we hire to how we ensure our employees have the tools they need to build up AI acumen within their functions and markets. We are not naïve about the limitations of AI, so it’s important that we think beyond current constraints and continue to innovate to meet our customers’ needs.
+## Extreme Ownership
 
-Industry 4.0 RFID, torque monitoring, wearable technology, PLC automation monitoring controls
+We should not be naïve about the limitations of AI, today or in the future. It’s also important that we think beyond current constraints in the tools and in our talent. In their book [Extreme Ownership](https://echelonfront.com/extreme-ownership/), authors Jocko Willink and Leif Babin reflect that leadership, at every level, is the most important thing on the battlefield. An entire chapter is dedicated to decentralized command. They argue that you can really only manage about 6 people: larger organizations need decision-makers below them. We need to address a preparedness gap in our talent, from how we hire to how we ensure our employees have the tools they need to build up AI acumen within their own functions and markets. 
 
+When I look at the **Industry 4.0** basket of manufacturing and supply chain technologies like RFID, torque tool monitoring, wearables, PLC automation monitoring, and other digital controls, in most every case a digital map is built that links up each employee's workmanship today to an individual customer operating that machine tomorrow. In a healthy environment, the technologies drive accountability and positive conversations about improving, every day. Maybe the magic of the Amazon Alexa or Google Maps has misled us into believing that AI is easy. What is more often the case is that AI drives us to understand our customers' experiences more than ever, and that is often hard.
 
-Another challenge will be establishing trust in AI. The increased use of deep learning techniques has caused people to demand explanations of AI models and be certain of the ethics. People don’t want AI to be a black box. Instead, they really want explainability, that is, to understand what is driving decision recommendations. That’s a good problem to have, though, because it shows that people see the value in making business decisions driven by data analytics. So the challenge then becomes helping the understand what is driving those recommendations.
+<a href="https://www.grainger.com/product/31CC54"><img alt="Air Powered Staple Gun" src="https://static.grainger.com/rp/s/is/image/Grainger/31CC54_AS01?hei=536&amp;wid=536" width="300"></a>
 
-a suggestion for future articles would be around analytic maturity within an organization and some basic steps to grow in this area. At least for area that I serve in CNH, I would say we are on the very basic side of analytics and bringing in ideas or inputs on how to grow would be interesting. A big part of our opportunity is to change the questions that we are being asked by the business that we serve. Topics on moving from descriptive analytics to diagnostic to predictive to prescriptive analytics would help folks visualize the opportunity. Maybe you have written these types of articles in the past and I haven’t seen them. Also would be very interested to see topics around data quality strategies and data access. These are significant issue’s for us. 
+Many years ago I worked as an engineer at an office chair factory. The components were simple:  fabric, adhesive, foam, plywood, hardware, and staples. In my role, besides product and tooling design in Pro/E, one project required videotaping for time studies of assemblers. It was noisy with air compressors and staple guns firing constantly. The data we analyzed was used to set productivity quotas and incentives. There were also periodic kaisen events with a visiting consultant to sweep up, touch up the paint, and strip down to one piece flow to reduce waste. Outside of the kaisen, from time to time, near the end of a shift when workers were fatigued and trying to make quota, everything would stop. It wasn't unusual that there would be a staple gun incident, where an assembler had stapled his gloved hand to the plywood.😧
+
+When I think of achieving analytics maturity, the first thing that I think of is candor. The furniture factory is different today. Little changes to reduce fatigue reduced the lost time incident counts a little. Eliminating the staples from the design reduced the lost time accidents a lot. The effort in driving the needed change was far more than just statistics or data visuals. 
+
+Consultancies like Accenture, the [International Institute for Analytics](https://www.iianalytics.com/), [Princeton Consultants](https://www.princeton.com/), and others offer valuable analytics maturity frameworks and assessments. These and other firms interview business leadership to assess the enterprises' journey through building **Descriptive > Diagnostic > Predictive** decision support tools. As with the kaisen events, maturity assessments are worthwhile. But in my own view, the critical foundation is built on sound, rigorous communities of practice where the craft of analytics is advanced by practitioners. The hard part isn't the math or coding, its the candor required to face the business and drive needed change. Extreme Ownership, indeed.
 
 ----
-
-{{<tweet 1366430206181969922>}}
-
 
 {{<tweet 1333033134481420289>}}
-## Tweet
 
+## Analytic Maturity
 
-comment on an interesting tweet from this week
+The [National Science Foundation](https://twitter.com/NSF), through a 5-year, $26 million grant, has established the [NSF Engineering Research Center for the Internet of Things for Precision Agriculture](https://iot4ag.us/). Better known as [IoT4Ag](https://iot4ag.us/), the project unites faculty and students from the University of Pennsylvania, Purdue University, the University of California Merced, and the University of Florida with industry and government partners to transform agriculture. 
 
-----
+The mission: To ensure food, energy, and water security by advancing technology to increase crop production, while minimizing the use of energy and water resources and the impact of agricultural practices on the environment. The Center will create internet of things (IoT) technologies to optimize practices for every plant; from sensors, robotics, and energy and communication devices to data-driven models constrained by plant physiology, soil, weather, management practices, and socio-economics.
 
-{{<tweet 1366493451169144832>}}
-
-## National Science Foundation Engineering Research Center for the Internet of Things for Precision Agriculture
-
-The IoT4Ag project unites faculty and students from the University of Pennsylvania, Purdue University, the University of California Merced, and the University of Florida with industry and government partners to transform agriculture.
-
-
-
-
-Comment on an interesting company this week
-
-
-A few weeks back I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). The next two in the series:
+A few weeks back I posed several [change management and leadership questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/). Two of them, in the series:
 
 - Where is the analytics leadership forum, and how are they delivering to the business?
 
 - What best practices opinionated framework guides our selection of the primary tool stack and skills definitions?
 
+A sizable portion of advanced AI efforts is finding potential partners and knowledge sources, like IoT4Ag, both in industry and in academia. The focus goes well beyond mandating the choice of a single enterprise software tool or a programming language. An **AI Center of Excellence** is a small core cross-functional business leadership team that coordinates these activities. No one person is expected to read every academic paper, participate in all the conferences, or be an expert on every algorithmic technique. On the other hand, the coordination and dissemination of AI needs to be driven for the portfolio of projects that are strategic to the business, to the wider community of practice.
 
-
-Center of Excellence
-
-Communities of Practice
-
-Affinity groups
-
-
-Our business leaders recognize the importance of starting with a clear definition of the central question and the business opportunity. The insights and learnings on the AI journey may cause directional adjustments to that central question as you uncover the truth from the data, but keeping it as your beacon is critical. Avoid having the pursuit of business value turn into simply a lab experiment with new technology — be ready to adjust course and stay committed. The promise of AI is real, but as you explore the data, the findings may surprise you.
-
-As with others, we do a lot of work with partners and academic institutions externally as well to help democratize AI and take others along on the data literacy journey. That doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout McDonald’s. In addition, we want to expose the community to what we’re doing and how we’re doing it. 
-
+All business leaders recognize the importance of starting with a clear requirements definition of the central question and the business opportunity. Product owners know that insights accumulated on the AI journey may cause directional adjustments to that central question as the team uncovers the truth from the data. At every level, teams must avoid having the pursuit of business value turn into simply a lab experiment with new technology. The promise of AI is real, but as data is explored, the findings may surprise everyone. This doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout the extended enterprise. The community of practice is also an opportunity for individuals to share what they are doing and how they are doing it. 
 
 ----
 
-# [Machine Learning Flash Cards](https://t.co/eZ2bbpDzwV?amp=1) ----
+## Learning Resources
 
-<a href="https://t.co/eZ2bbpDzwV?amp=1"><img alt="Machine Learning Flash Cards" src="https://pbs.twimg.com/profile_banners/11518572/1503261622/600x200" width="250"></a>
+<a href="https://t.co/eZ2bbpDzwV?amp=1"><img alt="Machine Learning Flash Cards" src="https://pbs.twimg.com/profile_banners/11518572/1503261622/600x200" width="600"></a>
 
-Machine learning is a broad field, encompassing pieces of computer science, statistics, and mathematics. There are hundreds of concepts to learn. Chris Albon's flashcards are designed to help memorize key concepts in machine learning rapidly and enjoyably.
-A youtube video
+Machine learning is a broad field, encompassing aspects of computer science, statistics, and business communications. There are hundreds of concepts to learn. Chris Albon's hand drawn [flashcards](https://t.co/eZ2bbpDzwV?amp=1) are designed to help memorize key concepts in machine learning rapidly and enjoyably. I bought a set as a self-assessment, to walk through what I may need to learn (again?) to fill gaps. How many of the 300 have you mastered?
 
-{{<youtube SVtRsDhHlDk>}}
+{{<youtube duMcYRtQITA>}}
 
-
-Google Data Analytics Professional Certificate program
-
-
+The [Google Data Analytics Professional Certificate](https://grow.google/dataanalytics/#?modal_active=none) program has been released to the Coursera online learning platform. It it is self-paced, though they recommend a commitment of 10 hours per week. I expect it to be very popular. Google is positioning the credential as the equivalent of a 4-year degree in their hiring process. No doubt this will influence many other companies to do the same, especially for professionals looking to change mid-career. If you enroll, I'd like to hear about your experience.
 
 ----
 
 ## Book recommendations
 
-The book of why
+<a href="https://www.amazon.com/dp/B075DCKP7V"><img alt="The Book of Why: The New Science of Cause and Effect" src="https://images-na.ssl-images-amazon.com/images/I/417Y78D+TeL._SX331_BO1,204,203,200_.jpg" width="400"></a>
 
+"Correlation is not causation." This mantra, chanted by scientists and engineers for more than a century, has led to a virtual prohibition on causal talk. **Today, that taboo is dead.** The causal revolution, instigated by Judea Pearl and his colleagues, has cut through a century of confusion and established causality -- the study of cause and effect -- on a firm scientific basis.
 
-R4 data science
+<a href="https://r4ds.had.co.nz/"><img alt="R for Data Science" src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png" width="400"></a>
 
-
+**[R for Data Science](https://r4ds.had.co.nz/)** by [Hadley Wickham](https://twitter.com/hadleywickham) and [Garrett Grolemund](https://twitter.com/StatGarrett) is an excellent introduction to R and the Tidyverse. The [R for Data Science Online Learning Community](https://www.rfordatasci.com/) hosts book club-style weekly chapter discussions through their [Slack channels](http://r4ds.io/join). [Vebash Naidoo](https://twitter.com/sciencificity) has assembled a related [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html).
 
 ----
 
