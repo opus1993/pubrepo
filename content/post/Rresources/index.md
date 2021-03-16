@@ -90,6 +90,7 @@ If your toolkit has been limited to Powerpoint and Excel, you might not yet appr
 |:---|:---|
 | [MPA 635: Data Visualization](https://datavizf18.classes.andrewheiss.com/) |by [Andrew Heiss](https://twitter.com/andrewheiss)|
 | [How to Create BBC Style Graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)| |
+| [ggplot**2tor**](https://ggplot2tor.com/)  | Tutorials and guides to aesthetics and scales by [Christian Burkhart](https://christianburkhart.de/) |
 | [R Graph Gallery](https://www.r-graph-gallery.com/)
 | **[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)** |by [Claus Wilke](https://twitter.com/ClausWilke)|
 | [Exploratory Data Analysis & Visualization](https://edav.info/index.html) |by [Zach Bogart](https://twitter.com/zachbogart) and [Joyce Robbins](https://twitter.com/jtrnyc)|
