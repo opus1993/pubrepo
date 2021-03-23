@@ -29,6 +29,13 @@ projects: []
 
 Opening paragraphs
 
+Recap the high points of the past several weeks
+
+
+
+A movement / a following
+
+
 Business leadership builds the strategy and targets. 
 
 But they do not (and are not be expected to) have the technical acumen for every aspect of leading-edge AI. 
@@ -52,6 +59,16 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 {{< tweet 1373137457663868930 >}}
 
+
+[Agile at Scale at Atlassian](https://www.atlassian.com/agile/agile-at-scale/okr)
+
+OKRs are a refinement of a widely used practice of management by objectives (MBO). The difference is that OKRs are a more collaborative process as opposed to a top-down bureaucratic process. Peter Drucker – who first popularized MBO – suggested that a manager should review the organization's goals and then set the worker's objectives. In contrast, OKRs rely on the teams within the organization to take high-level objectives and refine them for each specific area. And if teams have to work with other partners in the organization to reach high-level objectives, those teams might collaborate and write OKRs together to ensure proper alignment. It’s a shift in mindset where the question changes from "were we busy doing the tasks?" to "did we move the needle for our organization to thrive?"
+
+It’s more useful to think about the “OKR process” than it is to just consider the “objective” and the “key result” bits. Static goals that aren’t regularly reviewed and revised as the operating environment changes quickly become stale and meaningless. Combining clear objectives with a small set of specific, measurable results and a regular process of reviewing progress toward those measures is what makes OKRs truly useful.
+
+Defining OKRs
+OKRs have two important parts: The objective you want to achieve and the key results, which are the way you measure achieving the objective.
+
 Early in every university statistics 101 course there is that moment when the professor delivers the line about what happens to the average income of the party when Bill Gates walks into the room. Of course, the story is a bridge to a conversation about the median and interquartile range.  Later, most students hear about Siméon Denis Poisson's estimation of the annual number of Prussian cavalry soldiers killed due to horse-kicks. If you are lucky, you might apply Poisson's distribution to modern examples like estimating the number of car crashes, or counts of fault code events. In modern econometrics and epidemiology the beta distribution and Bayesian techniques are front and center. 
 
 Certain technologies are well-known around engineering organizations. Machine learning has its roots in statistical work.
@@ -59,6 +76,8 @@ Certain technologies are well-known around engineering organizations. Machine le
 This raises the question of whether an AI COE should be combined with analytics groups are already embedded into regional/functional groups.
 
 If an existing analytics group is already practicing in predictive analytics, it stands to reason those skills could be applied to other AI projects, and a combined organization makes sense.
+
+{{<tweet 1373979077674033155>}}
 
 However, the same rigor and standards must be fulfilled everywhere.
 
@@ -75,6 +94,8 @@ Finally, our job-posting requirements language must be unified and aligned with 
 
 ----
 
+{{<tweet 1373057724691447817>}}
+
 ## Events
 
 These are opportunities to engage and learn about analytics, data science, and AI from peers.
@@ -85,6 +106,8 @@ These are opportunities to engage and learn about analytics, data science, and A
 [INFORMS Business Analytics Conference](http://meetings2.informs.org/wordpress/analytics2021/)
 
 ⭐️ September 6-10th [EARL Conference 2021]( https://info.mango-solutions.com/earl-2021#:~:text=EARL%202021%206%2D10th%20September,of%20the%20world%27s%20leading%20practitioners)
+
+
 
 ----
 
@@ -152,14 +175,34 @@ This core leadership team includes the leading experts, including the company’
 
 Among others, their prime deliverables to the business and AI community of practice are:
 
-Craft a vision for AI in the company. It’s important for executives to discuss — ideally with AI experts — what AI is, what it can do, and how it might enable new business models and strategies. Otherwise, it may sub-optimize what AI can ultimately do for the business.
+![Roles](figure_16-1.png)
+
+Craft a vision for AI in the company.
+
+It’s important for executives to discuss — ideally with AI experts — what AI is, what it can do, and how it might enable new business models and strategies. Otherwise, it may sub-optimize what AI can ultimately do for the business.
+
 Identify highest-value business-driven use-cases. Developers of AI capabilities will need a prioritized list of applications or use cases within the company. They should balance strategic value with what is achievable. Companies may develop some of these use cases as pilots or prototypes, but they should also have a “pipeline” — regularly monitored by the AI center and by executives — that leads to robust production deployment.
-Determine the appropriate level of ambition. Since AI typically supports tasks rather than entire business processes, it is usually best to undertake less ambitious projects as opposed to “moon shots.” But in order to get management attention and have a substantial impact on the business, organizations may want to undertake a series of smaller projects in one area of the business. This requires a road map, showing multiple use cases across a timeline, with resources and dependencies. An AI center can help the company “think big, but start small.”
-Create a target data architecture. The vision and use-cases define the data platform and tools needed to deliver. This is key for all (data-relevant) projects, and all types of data — structured, unstructured, and external. SQL server is the standard data management platform today, but the AI center needs to decide between on-premises versus cloud variations, and self-maintained open source solutions versus licensed solutions. Most companies benefit from using user-ready analytics tools with open-source components enabling quick user-friendly modeling, rather than packaged tools that are rigidly BI-oriented.
-Manage external innovation. An AI center can orchestrate relationships with universities, vendors, AI start-ups, and other sources of expertise and innovation. The company can develop an AI ecosystem, and perhaps even invest in firms that show promise of adding value to the business. This is also important for the tools and technology to be best-in-class.
+
+Determine the appropriate level of ambition.
+
+Since AI typically supports tasks rather than entire business processes, it is usually best to undertake less ambitious projects as opposed to “moon shots.” But in order to get management attention and have a substantial impact on the business, organizations may want to undertake a series of smaller projects in one area of the business. This requires a road map, showing multiple use cases across a timeline, with resources and dependencies. An AI center can help the company “think big, but start small.”
+
+Create a target data architecture.
+
+The vision and use-cases define the data platform and tools needed to deliver. This is key for all (data-relevant) projects, and all types of data — structured, unstructured, and external. SQL server is the standard data management platform today, but the AI center needs to decide between on-premises versus cloud variations, and self-maintained open source solutions versus licensed solutions. Most companies benefit from using user-ready analytics tools with open-source components enabling quick user-friendly modeling, rather than packaged tools that are rigidly BI-oriented.
+
+Manage external innovation.
+
+An AI center can orchestrate relationships with universities, vendors, AI start-ups, and other sources of expertise and innovation. The company can develop an AI ecosystem, and perhaps even invest in firms that show promise of adding value to the business. This is also important for the tools and technology to be best-in-class.
 Facilitate on-going recruiting, attracting, and building talent. It is no secret that leading-edge AI engineers and data scientists (statisticians) are difficult to find, let alone hire.
-Spread success stories. A key success factor with AI or any new technology is to spread early success stories with prioritized use cases. This will build the appetite for more AI activity, in effect performing a marketing function for the AI center itself, and the AI talent group.
-Develop and maintain a network of AI champions. An AI center will work best if it cultivates a network of influential supporters and champions for the technology across the business. Given the commoditization of programming (with readily available scripts in languages like R- and Python), the focus for in-house capability building should be on statistical and mathematical modeling, in business-relevant, value-creating use-cases, rather than pure programming.
+
+Spread success stories.
+
+A key success factor with AI or any new technology is to spread early success stories with prioritized use cases. This will build the appetite for more AI activity, in effect performing a marketing function for the AI center itself, and the AI talent group.
+
+Develop and maintain a network of AI champions.
+
+An AI center will work best if it cultivates a network of influential supporters and champions for the technology across the business. Given the commoditization of programming (with readily available scripts in languages like R- and Python), the focus for in-house capability building should be on statistical and mathematical modeling, in business-relevant, value-creating use-cases, rather than pure programming.
 
 ----
 
@@ -173,13 +216,15 @@ Josh Starmer statquest
 
 ## Book recommendations
 
-<a href="https://www.amazon.com/dp/B075DCKP7V"><img alt="The Book of Why: The New Science of Cause and Effect" src="https://images-na.ssl-images-amazon.com/images/I/417Y78D+TeL._SX331_BO1,204,203,200_.jpg" width="400"></a>
+Build a Career in Data Science
 
-"Correlation is not causation." This mantra, chanted by scientists and engineers for more than a century, has led to a virtual prohibition on causal talk. **Today, that taboo is dead.** The causal revolution, instigated by Judea Pearl and his colleagues, has cut through a century of confusion and established causality -- the study of cause and effect -- on a firm scientific basis.
+<a href="https://www.manning.com/books/build-a-career-in-data-science"><img alt="Build a Career in Data Science" src="https://images.manning.com/360/480/resize/book/1/bea60fb-05d3-480a-bef1-08393500e222/Robinson_DataScience_hires.png" width="400"></a>
 
-<a href="https://r4ds.had.co.nz/"><img alt="R for Data Science" src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png" width="400"></a>
+The Chapters of Part 4 cover material on career paths in data science.
 
-**[R for Data Science](https://r4ds.had.co.nz/)** by [Hadley Wickham](https://twitter.com/hadleywickham) and [Garrett Grolemund](https://twitter.com/StatGarrett) is an excellent introduction to R and the Tidyverse. The [R for Data Science Online Learning Community](https://www.rfordatasci.com/) hosts book club-style weekly chapter discussions through their [Slack channels](http://r4ds.io/join). [Vebash Naidoo](https://twitter.com/sciencificity) has assembled a related [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html).
+<a href="https://www.oreilly.com/library/view/python-and-r/9781492093398/"><img alt="Python and R for the Modern Data Scientist" src="https://learning.oreilly.com/library/cover/9781492093398/250w/" width="400"></a>
+
+Success in data science depends on the flexible and appropriate use of tools. That includes Python and R, the two foundational programming languages in the field. With this book, data scientists from the Python and R communities will learn how to speak the dialects of each language. By recognizing the strengths of working with both, you'll discover new ways to accomplish data science tasks and expand your skill set.
 
 ----
 
