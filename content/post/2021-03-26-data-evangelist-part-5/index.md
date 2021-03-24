@@ -27,26 +27,14 @@ image:
 projects: []
 ---
 
-Opening paragraphs
+This is the fifth post in a series with the same title. The first issued a [call to action](https://jimgruman.netlify.app/post/2021-01-22-data-evangelist/) with six ideas to kick start a transformation towards digital literacy, diversity, and inclusiveness. The second post reflected on organizational change and Doug Muegge's [six questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/) on how we know we all are going the right direction. The third explored AI cultural change and how a leading AI company like Microsoft manages a distributed [center of excellence on Artificial Intelligence](https://jimgruman.netlify.app/post/2021-03-01-data-evangelist-part-3/). The [fourth and most recent edition](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/) argued that the critical foundation is built on sound, rigorous communities of practice where the craft of analytics is advanced by practitioners. Repeating one paragraph:
 
-Recap the high points of the past several weeks
+> [Business leaders recognize the importance of starting with a clear requirements definition for the business opportunity. Product owners know that insights accumulated on the AI journey may cause directional adjustments as the team uncovers the truth from the data. At every level, teams must avoid having the pursuit of business value turn into simply a lab experiment with new technology. The promise of AI is real, but as data is explored, the findings may surprise everyone. This doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout the extended enterprise. The community of practice is also an opportunity for individuals to share the rigor of what they are doing and how they are doing it.](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/)
 
+This short post will dwell on what an executive team can expect from an AI Center of Excellence. They do not (and are not  expected to) have the technical acumen for every aspect of leading-edge AI. Although the executive team could seek outside advice, to realize sustainable competitive advantage this set of competencies needs to be built and led internally. On that note, this short post explores 
 
-
-A movement / a following
-
-
-Business leadership builds the strategy and targets. 
-
-But they do not (and are not be expected to) have the technical acumen for every aspect of leading-edge AI. 
-
-The executive team could seek outside consultancy for advice, like Gartner, but if CNH is going to lead, this competency needs to be built and led internally.
-
-
-On that note, this short post explores 
-
-- Talent
-- Events
+- Talent and Role Definitions
+- Upcoming Events
 - Rigor
 - learning resources, and
 - 2 book recommendations.
@@ -55,46 +43,45 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ----
 
-## Talent section
-
 {{< tweet 1373137457663868930 >}}
 
+## Talent and Role Definitions
 
-[Agile at Scale at Atlassian](https://www.atlassian.com/agile/agile-at-scale/okr)
+Early in every university statistics 101 course there is that moment when the professor delivers the line about what happens to the average income of the room when Bill Gates walks in. Of course, the story is a bridge to a conversation about the median and interquartile range.  Later, students hear the story of Siméon Denis Poisson's estimation of the annual number of Prussian cavalry soldiers killed due to horse-kicks. If you are lucky, you might learn there to apply Poisson's distribution to modern examples like estimating the number of car crashes, or forecasting counts of fault code events. 
 
-OKRs are a refinement of a widely used practice of management by objectives (MBO). The difference is that OKRs are a more collaborative process as opposed to a top-down bureaucratic process. Peter Drucker – who first popularized MBO – suggested that a manager should review the organization's goals and then set the worker's objectives. In contrast, OKRs rely on the teams within the organization to take high-level objectives and refine them for each specific area. And if teams have to work with other partners in the organization to reach high-level objectives, those teams might collaborate and write OKRs together to ensure proper alignment. It’s a shift in mindset where the question changes from "were we busy doing the tasks?" to "did we move the needle for our organization to thrive?"
+Data science has its roots in the same statistical work. This raises the question of whether an AI COE should be combined with engineering & analytics groups already embedded into regional/functional groups.  If an existing  group is already practicing in predictive analytics, it stands to reason those skills could be applied to other AI projects, and a combined organization makes sense.
 
-It’s more useful to think about the “OKR process” than it is to just consider the “objective” and the “key result” bits. Static goals that aren’t regularly reviewed and revised as the operating environment changes quickly become stale and meaningless. Combining clear objectives with a small set of specific, measurable results and a regular process of reviewing progress toward those measures is what makes OKRs truly useful.
-
-Defining OKRs
-OKRs have two important parts: The objective you want to achieve and the key results, which are the way you measure achieving the objective.
-
-Early in every university statistics 101 course there is that moment when the professor delivers the line about what happens to the average income of the party when Bill Gates walks into the room. Of course, the story is a bridge to a conversation about the median and interquartile range.  Later, most students hear about Siméon Denis Poisson's estimation of the annual number of Prussian cavalry soldiers killed due to horse-kicks. If you are lucky, you might apply Poisson's distribution to modern examples like estimating the number of car crashes, or counts of fault code events. In modern econometrics and epidemiology the beta distribution and Bayesian techniques are front and center. 
-
-Certain technologies are well-known around engineering organizations. Machine learning has its roots in statistical work.
-
-This raises the question of whether an AI COE should be combined with analytics groups are already embedded into regional/functional groups.
-
-If an existing analytics group is already practicing in predictive analytics, it stands to reason those skills could be applied to other AI projects, and a combined organization makes sense.
-
-{{<tweet 1373979077674033155>}}
-
-However, the same rigor and standards must be fulfilled everywhere.
-
-Many functional groups and regional locations at CNH are attempting to hire analysts, data scientists, and data engineers today.
-
-Though most functional groups are outsourcing those services.
-
-The scarcity of talent and expertise means it is even more critical than other resource types to create a critical mass – a community.
-
-We need to align our technical assessments of candidates for professional roles, and make it clear what knowledge is required to advance from a junior position to a senior position.
-
-Finally, our job-posting requirements language must be unified and aligned with the industry, so we attract the right talent, and they understand the expectations of the roles. 
-
+Before returning to Talent and Roles, let's take a short detour through OKRs:
 
 ----
 
-{{<tweet 1373057724691447817>}}
+### Objectives and Key Results 
+
+[OKRs](https://www.profit.co/blog/okr-university/what-are-okrs/) are a startup and tech company refinement of the widely used management by objectives (MBO). The subtle difference is that OKRs are arrived at through a collaborative process. Peter Drucker, who first popularized MBO, suggested that a manager should review the organization's goals and then set each worker's objectives. In contrast, OKRs rely on the teams within the organization to take high-level objectives and refine key results for their specific area. And when teams have to work with other partners in the organization to objectives, those teams must collaborate and write OKRs together to ensure alignment. 
+
+Its more useful to think about the “OKR process” than it is to simply consider the “objective” and the “key result” bits. Static goals that aren’t regularly reviewed and revised as the operating environment changes quickly become meaningless. Combining clear objectives with a small set of specific, measurable results and a cadence of reviewing progress toward those measures is what gives OKRs driven organizations an advantage. Five key elements of OKRs include:
+
+**Focus:** No more than 3 – 5 objectives, in a single line, and less than 5 Key Results per objective.
+
+**Alignment:** Corporate employees are often unaware of organizational strategy and goals. OKRs solve this problem by ensuring that they are cascaded. Alignment gives clarity to employees about how their work contributes.
+
+**Commitment:** Commitments are OKRs to be achieved without fail in the chosen time period. 
+
+**Tracking:** OKRs are tracked every week. Metrics for Key Results are established at the beginning of the quarter.
+
+**Stretching:** OKRs help the team elevate their performance beyond what they thought “was possible.” So the goals are ambitious, and a 70% achievement is considered as “strong performance.”
+
+----
+
+Artificial intelligence and advanced analytics skill sets are in demand. My company, like others, has functional groups and regional locations attempting to hire all kinds of analysts, data scientists, and data engineers today. Most functional groups are also outsourcing services through consultants. The scarcity of talent and expertise means it is even more critical to create a critical mass, as a community. Unfortunately, a large proportion of the market for new talent is aiming to join the 100,000 at Google, the 160,000 at Microsoft, or the 492,000 at Accenture. Each of those companies have learning development processes and OKRs.
+
+An important characteristic of community is that the same rigor and standards must be fulfilled everywhere, to allow for rotational development and project embedding. Whether working in modern econometrics or epidemiology, emerging techniques are front and center, and many of the same techniques are also useful in industrial contexts. There is much to be learned from one another between domains.
+
+Yet there is also a need to align technical assessments of candidates for professional roles, and make it clear what is required to advance from a junior position to a senior position. Even the job-posting requirements language must be clarified to attract the right talent, and ensure candidates understand the expectations of the roles. 
+
+> Every path to digital competency is going to be different. Like [Paige Bailey](https://twitter.com/DynamicWebPaige/status/1360303252219154432), I want not to be surprised if a data scientist used to be a biologist, or a bartender, or a geologist. DS skills do not require an ivory tower, or time sacrificed on acronyms for a Ph.D. Your Github should be your CV.
+
+----
 
 ## Events
 
@@ -107,31 +94,16 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ⭐️ September 6-10th [EARL Conference 2021]( https://info.mango-solutions.com/earl-2021#:~:text=EARL%202021%206%2D10th%20September,of%20the%20world%27s%20leading%20practitioners)
 
-
-
 ----
 
 {{< tweet 1373381331309129729 >}}
 
-## Rigor section
+## Rigor 
 
-Align with the language of prior Evangelist letters
+Since the days of Sarbanes-Oxley in the `00s, and more recently GDPR,  organizations have documented policies in various places for data governance and security review. Some may be overlapping. And some are not widely known, or conformed to, leaving gaps. There must be a champion for driving standards and rigor across the enterprise, especially in AI. As a practical matter, this means, prior to deployment, all work should be subject to “peer review” by the business. 
 
-CNH has resources in various places for data governance and security review, and policies already.  
+It also means statistical models must be retained, and AI model performance reviewed periodically by the business, post deployment. More than anything, a single clear champion for standards and rigor must be identified. Though that person might currently sit in finance or audit, or even information technology, 
 
-Some are overlapping. Some not widely known, or conformed to, leaving gaps.
-
-There must be a champion for driving standards and rigor across the enterprise.
-
-This means, prior to deployment, all work is subject to “peer review” by the business, including ethics. 
-
-Peer review could easily be associated with GPD (or not).
-
-It means statistical models must be retained, and AI model performance reviewed periodically by the business, post deployment.
-
-To accelerate our work, we need a clean feature (data) catalogue.
-
-More than anything, a clear champion for standards and rigor, must be identified.
 
 This new role:  Principal Data Scientist
 
@@ -139,10 +111,13 @@ The expert in data science, responsible for helping others do data science
 
 Four main responsibilities:
 
-Strategy: lay out the plan for tackling data science problems. Is modeling a given business problem even feasible? Should a neural network be used?    
-Setting Standards:  driving cross-functional co-ordination and synergy.
-Mentoring:  facilitating knowledge transfer and dissemination of information/news
-Finding solutions to the company’s most difficult problems.
+**Strategy:** lay out the plan for tackling data science problems. Is modeling a given business problem even feasible? Should a neural network be used? 
+
+**Setting Standards:**  driving cross-functional co-ordination and synergy.
+
+**Mentoring:**  facilitating knowledge transfer and dissemination of information/news
+
+**Finding solutions** to the company’s most difficult problems.
 
 Compared with a business manager, the principal data scientist is still very much doing data science work, reading technical papers, being part of the technical community. This role is all data science all the time.
 
@@ -225,6 +200,10 @@ The Chapters of Part 4 cover material on career paths in data science.
 <a href="https://www.oreilly.com/library/view/python-and-r/9781492093398/"><img alt="Python and R for the Modern Data Scientist" src="https://learning.oreilly.com/library/cover/9781492093398/250w/" width="400"></a>
 
 Success in data science depends on the flexible and appropriate use of tools. That includes Python and R, the two foundational programming languages in the field. With this book, data scientists from the Python and R communities will learn how to speak the dialects of each language. By recognizing the strengths of working with both, you'll discover new ways to accomplish data science tasks and expand your skill set.
+
+----
+
+As Cassie Kozyrkov points out in her [video tutorial](https://youtu.be/YsrPImZyisI) follow your personality when exploring the unknown. If you want to make a few important decisions under uncertainty, go with statistics. If you want to automate and make a million decisions under uncertainty, then machine learning is the way to go. But what if you don't know how many decisions you want to make before you start? Or, you feel lost in your quest for inspiration, but you are still excited by the ambiguity of exploration? If you want to understand your world, this is analytics.
 
 ----
 
