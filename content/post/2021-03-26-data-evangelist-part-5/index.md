@@ -15,7 +15,7 @@ draft: false
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
-  caption: "a chair"
+  caption: ""
   focal_point: ""
   preview_only: false
 
@@ -27,7 +27,7 @@ image:
 projects: []
 ---
 
-This is the fifth post in a series with the same title. The first issued a [call to action](https://jimgruman.netlify.app/post/2021-01-22-data-evangelist/) to kick start a transformation towards digital literacy, diversity, and inclusiveness. The second post reflected on how difficult organizational change is and introduced [six questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/) to gauge how we know we all are going the right direction. The third explored AI culture and how a leading AI company like Microsoft manages a distributed [center of excellence on Artificial Intelligence](https://jimgruman.netlify.app/post/2021-03-01-data-evangelist-part-3/). The [fourth and most recent edition](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/) argued that the critical foundation is built on sound, rigorous communities of practice where the craft of analytics is advanced by practitioners. Repeating one paragraph:
+This is the fifth post in a series with the same title. The first issued a [call to action](https://jimgruman.netlify.app/post/2021-01-22-data-evangelist/) to kick start digital literacy, diversity, and inclusiveness. The second post reflected on how difficult organizational change is and introduced [six questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/) to gauge how we know we all are going the right direction. The third explored AI culture and how a leading AI company like Microsoft manages a distributed [center of excellence on Artificial Intelligence](https://jimgruman.netlify.app/post/2021-03-01-data-evangelist-part-3/). The [fourth and most recent edition](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/) argued that the critical foundation is built on sound, rigorous communities of practice where the craft of analytics is advanced by practitioners. Repeating one paragraph:
 
 > [Business leaders recognize the importance of starting with a clear requirements definition for the business opportunity. Product owners know that insights accumulated on the AI journey may cause directional adjustments as the team uncovers the truth from the data. At every level, teams must avoid having the pursuit of business value turn into simply a lab experiment with new technology. The promise of AI is real, but as data is explored, the findings may surprise everyone. This doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout the extended enterprise. The community of practice is also an opportunity for individuals to share the rigor of what they are doing and how they are doing it.](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/)
 
