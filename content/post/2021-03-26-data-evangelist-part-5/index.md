@@ -7,7 +7,7 @@ categories:
   - Business, Data Science
 tags: 
   - Data Science
-date: 2021-03-26
+date: 2021-03-25
 featured: false
 draft: false
 
@@ -27,11 +27,11 @@ image:
 projects: []
 ---
 
-This is the fifth post in a series with the same title. The first issued a [call to action](https://jimgruman.netlify.app/post/2021-01-22-data-evangelist/) to kick start a transformation towards digital literacy, diversity, and inclusiveness. The second post reflected on how difficult organizational change is and introduced [six questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/) on how we know we all are going the right direction. The third explored AI culture and how a leading AI company like Microsoft manages a distributed [center of excellence on Artificial Intelligence](https://jimgruman.netlify.app/post/2021-03-01-data-evangelist-part-3/). The [fourth and most recent edition](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/) argued that the critical foundation is built on sound, rigorous communities of practice where the craft of analytics is advanced by practitioners. Repeating one paragraph:
+This is the fifth post in a series with the same title. The first issued a [call to action](https://jimgruman.netlify.app/post/2021-01-22-data-evangelist/) to kick start a transformation towards digital literacy, diversity, and inclusiveness. The second post reflected on how difficult organizational change is and introduced [six questions](https://jimgruman.netlify.app/post/2021-02-05-data-evangelist-part-2/) to gauge how we know we all are going the right direction. The third explored AI culture and how a leading AI company like Microsoft manages a distributed [center of excellence on Artificial Intelligence](https://jimgruman.netlify.app/post/2021-03-01-data-evangelist-part-3/). The [fourth and most recent edition](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/) argued that the critical foundation is built on sound, rigorous communities of practice where the craft of analytics is advanced by practitioners. Repeating one paragraph:
 
 > [Business leaders recognize the importance of starting with a clear requirements definition for the business opportunity. Product owners know that insights accumulated on the AI journey may cause directional adjustments as the team uncovers the truth from the data. At every level, teams must avoid having the pursuit of business value turn into simply a lab experiment with new technology. The promise of AI is real, but as data is explored, the findings may surprise everyone. This doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout the extended enterprise. The community of practice is also an opportunity for individuals to share the rigor of what they are doing and how they are doing it.](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/)
 
-I was preoccupied this week with a handful of discussion threads where the crux of the issue was our confidence in whether staff has sufficient skills sets to take on moonshot projects. In some ways, the conversation resembles the old QS-9000 manufacturing skills inventory, but the critical difference is that we aim to develop AI that has never previously been developed. The alternative, of course, is to outsource even more work to firms that claim to have the skills. Bill Frank's [IIA webinar talk](https://youtu.be/2iZDb14QQZg) this week on Modernizing the Roles was timely. The video is an hour long, and the takeaway is that we are not alone in trying to sort this out.
+I was preoccupied this week with a handful of discussion threads where the crux of the issue was our confidence in whether staff has sufficient skill sets to take on moonshot projects. In some ways, the conversation resembles the old QS-9000 manufacturing skills inventory, but the critical difference is that we aim to develop AI that has never previously been developed. The alternative, of course, is to outsource even more work to firms that claim to have the skills. Bill Frank's [IIA webinar talk](https://youtu.be/2iZDb14QQZg) this week on Modernizing the Roles was timely. The video is an hour long, and the takeaway is that we are not alone in trying to sort this out.
 
 This short post will cover what an executive team can expect from an AI Center of Excellence. Business leaders do not (and are not  expected to) have the technical acumen for each and every aspect of leading-edge AI. Although the executive team could seek outside advice, to realize sustainable competitive advantage this set of competencies also needs to be built and led internally. On that note, this short post explores 
 
@@ -52,7 +52,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 Early in every university statistics 101 course there is that moment when the professor delivers the line about what happens to the average income of the room when Bill Gates walks in. Of course, the story is a bridge to a conversation about the median and interquartile range.  Later, students hear the story of Siméon Denis Poisson's estimation of the annual number of Prussian cavalry soldiers killed due to horse-kicks. If you are lucky, you might learn there to apply Poisson's distribution to modern examples like estimating the number of car crashes, or forecasting counts of fault code events. 
 
-Data science has its roots in the same statistical work. This raises the question of whether an AI CoE should be combined with engineering & analytics groups already embedded into regional/functional groups.  If an existing  group is already practicing predictive analytics, it stands to reason those skills could be applied to other AI projects and a combined organization makes sense.
+Data science has its roots in the same statistical work. This raises the question of whether an AI CoE should be combined with engineering & analytics groups already embedded within regional/functional groups.  If an existing  group is already practicing predictive analytics, it stands to reason those skills could be applied to other AI projects and a combined organization makes sense.
 
 Cassie Kozyrkov looks at the skills continuum in her [ML video tutorials](https://youtu.be/YsrPImZyisI). When we want to make a few important decisions under uncertainty, we go with statistics. If we want to automate and make millions of decisions under uncertainty, then machine learning is the way to go. But what if we don't know how many decisions we want to make before we start? Or, we feel lost in our quest for inspiration, but are still excited by the ambiguity of exploration? If we want to understand our world, this is analytics.
 
@@ -94,7 +94,7 @@ My company, like others everywhere in industry, has functional groups and region
 
 The same rigor and standards really need to be universal to allow for rotational development and project embedding. Whether working in modern econometrics or epidemiology, emerging techniques are front and center. Many of the same techniques are also useful in industrial contexts. There is much to be learned from one another between domains.
 
-There is also a need to align technical assessments of candidates for DS and analytics roles, and make it clear what is required to advance from a junior to a senior position. Even the job-posting requirements language must be clarified to attract the right talent and ensure candidates understand the expectations. 
+There is also a need to align technical assessments of candidates for DS and analytics job postings, and make it clear what is required to advance from a junior to a senior position. Even the job posting requirements language must be clarified to attract the right talent and ensure candidates understand the expectations. 
 
 > Every path to digital competency is going to be different. Like [Paige Bailey](https://twitter.com/DynamicWebPaige/status/1360303252219154432), I want not to be surprised if a data scientist used to be a biologist, or a bartender, or a geologist. DS skills do not require an ivory tower, or time sacrificed on acronyms for a Ph.D. Your Github should be your CV.
 
@@ -152,9 +152,9 @@ In the COVID era, I've re-calibrated my own views on the AI conference and educa
 
 {{<youtube 06-AZXmwHjo>}}
 
-The best practices today distinguish themselves by fostering student engagement by providing forums for people to present what they have learned and built. In the case of DeepLearningAI, the events are called [Pie & AI](https://www.deeplearning.ai/ambassador/).
+The best practices today distinguish themselves by fostering student engagement by providing forums for people to present what they have learned and built to their harshest critics, their classmates. In the case of DeepLearningAI, the events are called [Pie & AI](https://www.deeplearning.ai/ambassador/).
 
-Professional groups like INFORMS, IEEE, and the R Consortium are adapting well to serving members and providing engagement, now through their own virtual meetups and hackathons. Many local chapters have topic groups where they meet periodically (often monthly) and solicit presentations from members. Some of these communities of practice are mimicked internally in corporate environments as part of training and mentorship programs.
+Professional groups like INFORMS and the R Consortium are adapting well to serving members and providing engagement, now through their own virtual [meetups](https://www.meetup.com/pro/r-user-groups/) and hackathons. Many local chapters have topic groups that meet periodically (often monthly) and solicit presentations from members. Some of these communities of practice are mimicked internally in corporate environments as part of training and mentorship programs.
 
 Starting from the entry level for Business Intelligence or even Citizen Data Scientist, employees at any career stage should be welcome to opt-in to learn more, even for their own career development. To make these as collaborative as possible, experts at higher levels should be expected to meet and share within their community of practice periodically to drive digital growth. ‘Inclusive AI’ would recognize individuals for their achievements in advancing the state of the art for their location in both digital literacy and in deploying models.
 
