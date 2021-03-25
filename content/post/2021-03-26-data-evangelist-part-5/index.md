@@ -148,11 +148,11 @@ Compiling a team skills inventory is a bit like asking for a list of the books e
 
 A better question:  Given open source tools and compute resources, what is the potential of this person to build and deliver? And what is their potential as the state of the art advances and new use cases are brought by the business? How can we assess human potential?
 
-In the COVID era, I've re-calibrated my own views on the AI conference and education landscape. The exclusive, expensive private events from ODSC and Gartner give the aura of delivering knowledge that nobody else has from their advisory panels, but its mostly an illusion. Bootcamps and on-line programs, like Coursera or DataCamp, have also lost the some of credibility that they had to begin with.  If you are not familiar with it, take a moment check out [DeepLearning.AI](https://www.deeplearning.ai/), Andrew Ng's platform for AI education, for your own perspective:
+In the COVID era, I've re-calibrated my own views on the AI conference and education landscape. The exclusive, expensive private events from ODSC and Gartner give the aura of delivering knowledge that nobody else has from their advisory panels, but its mostly an illusion. Bootcamps and on-line programs, like Coursera or DataCamp, have also lost some of credibility that they had in previous years.  If you are not familiar with it, take a moment to check out [DeepLearning.AI](https://www.deeplearning.ai/), Andrew Ng's platform for AI education, for your own perspective:
 
 {{<youtube 06-AZXmwHjo>}}
 
-The best practices today distinguish themselves by fostering student engagement by providing forums for people to present what they have learned and built to their harshest critics, their classmates. In the case of DeepLearningAI, the events are called [Pie & AI](https://www.deeplearning.ai/ambassador/).
+The best practices today distinguish themselves by fostering student engagement, providing forums for people to present what they have learned and built to their harshest critics, their classmates. In the case of DeepLearningAI, the events are called [Pie & AI](https://www.deeplearning.ai/ambassador/).
 
 Professional groups like INFORMS and the R Consortium are adapting well to serving members and providing engagement, now through their own virtual [meetups](https://www.meetup.com/pro/r-user-groups/) and hackathons. Many local chapters have topic groups that meet periodically (often monthly) and solicit presentations from members. Some of these communities of practice are mimicked internally in corporate environments as part of training and mentorship programs.
 
