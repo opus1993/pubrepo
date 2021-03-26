@@ -144,7 +144,7 @@ In contrast to a business manager at any level, the principal data scientist is 
 
 ## Skills Inventory
 
-Compiling a team skills inventory is a bit like asking for a list of the books each person has read. The list could also be augmented by domain expertise, business acumen, location, and even tenure.
+Compiling a team skills inventory is a bit like asking for a list of the books each person has read. Even after augmenting the list by domain expertise, business acumen, location, and even tenure, it's still not very useful.
 
 A better question:  Given open source tools and compute resources, what is the potential of this person to build and deliver? And what is their potential as the state of the art advances and new use cases are brought by the business? How can we assess human potential?
 
