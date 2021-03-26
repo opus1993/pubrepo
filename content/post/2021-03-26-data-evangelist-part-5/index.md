@@ -164,7 +164,9 @@ The curation of knowledge clusters, or AI affinity groups, along with identifyin
 
 - deep learning vision systems,
 
-- customer experience,
+- NLP and chatbots, 
+
+- A/B testing and customer experience,
 
 - survival, reliability, and econometrics, 
 
