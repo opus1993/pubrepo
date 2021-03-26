@@ -31,7 +31,7 @@ This is the fifth post in a series with the same title. The first issued a [call
 
 > [Business leaders recognize the importance of starting with a clear requirements definition for the business opportunity. Product owners know that insights accumulated on the AI journey may cause directional adjustments as the team uncovers the truth from the data. At every level, teams must avoid having the pursuit of business value turn into simply a lab experiment with new technology. The promise of AI is real, but as data is explored, the findings may surprise everyone. This doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout the extended enterprise. The community of practice is also an opportunity for individuals to share the rigor of what they are doing and how they are doing it.](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-4/)
 
-I was preoccupied this week with a handful of discussion threads where the crux of the issue was our confidence in whether staff has sufficient skill sets to take on moonshot projects. In some ways, the conversation resembles the old QS-9000 manufacturing skills inventory, but the critical difference is that we aim to develop AI that has never previously been developed. The alternative, of course, is to outsource even more work to firms that claim to have the skills. Bill Frank's [IIA webinar talk](https://youtu.be/2iZDb14QQZg) this week on Modernizing the Roles was timely. The video is an hour long, and the takeaway is that we are not alone in trying to sort this out.
+I was preoccupied this week with a handful of discussion threads where the crux of the issue was our confidence in whether staff has sufficient skill sets to take on moonshot projects. In some ways, the conversation resembles the old QS-9000 manufacturing skills inventory, but the critical difference is that we aim to develop AI that has never previously been developed. The alternative, of course, is to outsource even more work to firms that claim to have the skills. Bill Frank's [IIA webinar talk](https://youtu.be/2iZDb14QQZg) this week on Modernizing the Roles was timely. The short takeaway of the hour long talk is that we are not alone in trying to sort this out.
 
 This short post will cover what an executive team can expect from an AI Center of Excellence. Business leaders do not (and are not  expected to) have the technical acumen for each and every aspect of leading-edge AI. Although the executive team could seek outside advice, to realize sustainable competitive advantage this set of competencies also needs to be built and led internally. On that note, this short post explores 
 
@@ -163,8 +163,6 @@ The curation of knowledge clusters, or AI affinity groups, along with identifyin
 - time series forecasting, 
 
 - deep learning vision systems,
-
-- financial,
 
 - customer experience,
 
