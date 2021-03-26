@@ -206,6 +206,8 @@ A key success factor with AI or any new technology is to spread early success st
 
 An AI center will work best if it cultivates a network of influential supporters and champions for the technology across the business. Given the commoditization of programming (with readily available scripts in languages like R- and Python), the focus for in-house capability building should be on statistical and mathematical modeling, in business-relevant, value-creating use-cases, rather than pure programming.
 
+{{<tweet 1375512864123809795>}}
+
 ----
 
 ## Book recommendations
