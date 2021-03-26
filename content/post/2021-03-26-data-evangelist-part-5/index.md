@@ -76,7 +76,7 @@ Its more useful to think about the “OKR process” than it is to simply consid
 
 **Stretching:** OKRs help the team elevate their performance beyond what they thought “was possible.” So the goals are ambitious, and a 70% achievement is considered as “strong performance.”
 
-A large proportion of the AI talent pool today is aiming to join the 100,000 at Google, the 120,000 at Alibaba, the 160,000 at Microsoft, the 492,000 at Accenture, or even the 1.3 million at Amazon. Each of those organization have their own take on AI learning development and OKRs.
+A large proportion of the AI talent pool today is aiming to join the 100,000 at Google, the 120,000 at Alibaba, the 160,000 at Microsoft, the 492,000 at Accenture, or even the 1.3 million at Amazon. Each organization has their own take on AI learning development and OKRs.
 
 {{< tweet 1373987720905715719 >}}
 
