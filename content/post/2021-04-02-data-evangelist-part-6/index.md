@@ -27,9 +27,9 @@ image:
 projects: []
 ---
 
-Vicki Boykis' post ["The ghosts in the data"](http://veekaybee.github.io/2021/03/26/data-ghosts/) on explicit versus implicit knowledge resonated with me this week. In the business, oftentimes we really only have a sense of what is know-able by engaging one another. Elsewhere, Mark Palmer [blogged](https://techno-sapien.com/blog/cassie-data-science-teams) this week on a progression of data science roles. In the two days since I posted a reference to it on the Yammer, it has reached 14 clicks. James Le's [blog post on DataOps](https://jameskle.com/writes/dataops-unleashed2021) has 29.
+Vicki Boykis' post ["The ghosts in the data"](http://veekaybee.github.io/2021/03/26/data-ghosts/) on explicit versus implicit knowledge resonated with me this week. In the business, oftentimes we really only have a sense of what is know-able by engaging one another. Elsewhere, Mark Palmer [blogged](https://techno-sapien.com/blog/cassie-data-science-teams) on a progression of data science roles. In the two days since I posted a reference to it on the Yammer, it has reached 14 clicks. James Le's [blog post on DataOps](https://jameskle.com/writes/dataops-unleashed2021) has 29 clicks.
 
-We are all so busy. Sometimes even too busy, and we miss the big opportunities. This brief post will cover
+We are all so busy. Sometimes even too busy, and we miss the big opportunities. Respecting the value of everyone's time, this brief post will cover
 
 -   Networked Thought,
 -   High Performance Time Series Forecasting,
@@ -52,7 +52,7 @@ For many, the core of this "knowledge value chain" is a system for capturing ide
 
 As one who likes to continually evolve my tools to be more efficient, I've tried a bunch of different approaches over the past 25 years: Franklin planners, Microsoft OneNote, and even sending e-mails to myself have all played roles in my workflow.
 
-That is, until my switch to a tool called Obsidian, which changed the way I capture and create knowledge. Now, this isn't really about Obsidian. You'll find many of these kinds of tools on the interwebs. Rather, it's about how Obsidian is one example of a new crop of note-taking tools enabling what some call *networked thought*.
+New tools like Obsidian aim to change the way we capture and create knowledge. There are many of them on the interwebs, as a new crop of note-taking tools enabling what some call *networked thought*.
 
 The term *networked thought*, while a bit high minded for a note-taking app, actually does a good job of capturing what's exciting about the current crop of ~~note taking~~ thinking tools.
 
@@ -88,7 +88,7 @@ The [code for the demonstration is available on github here](https://github.com/
 
 ## Modern Data Science Workflows
 
-On the surface, Vin Vashista's target audience for this 35 minute talk is people just entering the field in 2021. Engaging clients in business requires a level of candor about what rigorous work looks like. The talk is also relevant for professionals building on their current workflow to support more complex models and use cases. 
+On the surface, Vin Vashista's target audience for this 35 minute talk is people just entering the field in 2021. Engaging clients in business requires a level of candor about what rigorous work looks like. The talk is also relevant for professionals building out their current set of competencies to support more complex models and use cases. 
 
 It's worth your time. Check it out:
 
