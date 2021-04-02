@@ -35,6 +35,7 @@ We are all so busy. Sometimes even too busy, and we miss the big opportunities. 
 -   High Performance Time Series Forecasting,
 -   Modern Data Science Workflows,
 -   Upcoming Events,
+-   Helping data science students merge their advanced skills into existing teams
 -   Imposter Syndrome,
 -   and a book recommendation.
 
@@ -109,6 +110,14 @@ These are opportunities to engage and learn about analytics, data science, and A
 :star:️ September 6-10th [EARL Conference 2021](https://info.mango-solutions.com/earl-2021#:~:text=EARL%202021%206%2D10th%20September,of%20the%20world%27s%20leading%20practitioners)
 
 ------------------------------------------------------------------------
+
+![](https://jnolis.com/images/blog/training_for_ds_teams/language_icons.jpg)
+
+## Merge conflicts: helping data science students merge their advanced skills into existing teams
+
+Allison Horst and Jacqueline Nolis published a [post this week](https://jnolis.com/blog/training_ds_for_teams/) on the perilous transition from the academic world of data science to industry. Entering the workplace, data science program graduates will often join teams further from the leading edge tools and approaches. Having a junior employee with more sophisticated technical skills than the senior members can cause complications for both the junior employee and the team as a whole. 
+
+They close by recommending that students make connections with industry on capstone projects, take on internships, and participate in workshops to build skills on the human side of working with diverse teams.
 
 {{<tweet 1348399361521111040>}}
 
