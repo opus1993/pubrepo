@@ -1,5 +1,5 @@
 ---
-date: "2020-12-30"
+date: "2021-04-01"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -157,15 +157,13 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 ## Machine Learning
 Mastery of the wide array of Machine Learning techniques in real business contexts requires a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We're smart. Just wing it, right? *This is a bad idea.*
 
-There is a running joke on Twitter that most resumes that list Natural Language Processing as a skill are *at-best* suggesting an awareness of regular expressions.  To be blunt, the free materials available at this point are not sufficient to provide a proper foundation in the many risks and trade-offs, particularly with respect to each knowledge domain. For example, consider SARs COVID-19 and all of the epidemiological models and ramifications for policy decisions. Further, the leading edge of thinking in many ML areas is changing rapidly.
+The leading edge of thinking in many ML areas is changing rapidly. These are a starting point:
 
-Though none of these are free, find each of these at a library or a gently used copy, as students use them in classes and often sell them back.
 |     |    |
 |:----|:---|
 | **Data Science for Business** |by Provost and Fawcett (2013 O'Reilly)| 
 | **Practical Machine Learning in R** | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
-| **The Lady Tasting Tea: How Statistics Revolutionized Science in the Twentieth Century** | David Salsburg (2002) on the statistical revolution over time and the contributions of key thought leaders. |
-| **Regression and Other Stories, Analytical Methods for Social Research** |Gelman, Hill, and Vehtari's with an applied statistics text that provides real-world lessons for quantitative researchers applying ML techniques. |
+| [Introduction to Computational Thinking and Data Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/)| Grimson, Guttag, and Bell |
 
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
@@ -184,9 +182,6 @@ For a glimpse into the R environment ML frameworks, consider these resources:
 | [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha) on Azure
 | [Javier Lurachi's mlverse videos](https://www.youtube.com/c/mlverse/videos)
 | [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
-| [DALEX moDel Agnostic Language for Exploration and eXplanation](https://modeloriented.github.io/DALEX/)
-| [R interface to keras](https://keras.rstudio.com/)
-| [Tensorflow for R](https://blogs.rstudio.com/tensorflow/gallery.html)
 | [torch for R](https://torch.mlverse.org/)
 | [Deep Learning](https://www.deeplearningbook.org/)
 
@@ -223,12 +218,7 @@ A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-suppo
 | [TidyTuesday Tweets](https://www.notion.so/8cfed86c707e4974b2f483716c35bac3?v=7e87113d8a7946fdaeeafd7cdaf69598) |  curated by [Silvia Canelón](https://twitter.com/spcanelon) |
 | [WhyR Foundation](http://whyr.pl/foundation/webinars)
 | [Simply Statistics](https://simplystatistics.org/) |by Rafa Irizarry, Roger Peng, and Jeff Leek|
-| [Salt Lake City R Users Group](https://www.meetup.com/slc-rug/)
-| [Seattle useR Group](https://www.meetup.com/Seattle-useR/)   
-| [Bay Area useR Group](https://www.meetup.com/R-Users/)
-| [IndyUseR Group](https://www.meetup.com/Indy-useR-Group/)
-| [Greater Boston useR Group](https://www.meetup.com/Boston-useR/)
-| [R Users & R-Ladies Warsaw](https://www.meetup.com/Spotkania-Entuzjastow-R-Warsaw-R-Users-Group-Meetup/)
+| [R User Group Meetups Worldwide](https://www.meetup.com/pro/r-user-groups/) | 87 chapters sponsored by the R Consortium |
 | [New York Open Statistical Programming Meetup](https://www.meetup.com/nyhackr/)
 | [themockup](https://themockup.blog/)|by [Thomas Mock](https://twitter.com/thomas_mock) |
 | [Win Vector blog](https://win-vector.com/blog-2/) | by Dr. John Mount and Dr. Nina Zumel|
