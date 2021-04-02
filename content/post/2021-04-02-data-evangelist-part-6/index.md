@@ -139,7 +139,7 @@ The organizers are considering creating "birds of a feather" channels to facilit
 
 ## Related posts
 
-[the last post of the Data Evangelist series](https://jimgruman.netlify.app/post/2021-03-12-data-evangelist-part-5/)
+[the last post of the Data Evangelist series](https://jimgruman.netlify.app/post/2021-03-26-data-evangelist-part-5/)
 
 [AI and Data Strategy](https://jimgruman.netlify.app/post/ai-and-data-strategy/)
 
