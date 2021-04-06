@@ -85,6 +85,8 @@ The [code for the demonstration is available on github here](https://github.com/
 
 <a href="https://university.business-science.io/courses/541207/lectures/31554634"><img alt="Modeltime GluonTS Deep Learning | Saturn Cloud GPUs" src="./TimeSeriesBusinessScience.png" width="500"></a>
 
+{{<youtube vmfzjTsU_zE>}}
+
 ------------------------------------------------------------------------
 
 ## Modern Data Science Workflows
