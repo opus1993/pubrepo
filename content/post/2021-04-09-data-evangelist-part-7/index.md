@@ -74,7 +74,7 @@ But the generalist data scientist work is sometimes accounted for as a loss, or 
 
 You have to learn how and why different fields collect data. One team uses a unique piece of software from a vendor, and the only output mechanism is PDF. Another team might rely on data that comes in receipt scans. CAN logs and error messages may infer different event meanings from vehicle to vehicle. Others might do everything in a single spreadsheet from hell (Looking at you Atlas & SCAN). 
 
-Thankfully, one aspect of breadth is that once we start, it gets easier to use that knowledge to draw parallels to other fields. It's the same as how the learning curve of between R and Python isn’t too painful compared to learning either from no programming background whatsoever. While you always have to be wary of over-generalizing knowledge, many things transfer and it gets easier with time.
+Thankfully, one aspect of breadth is that once we start, it gets easier to use that knowledge to draw parallels to other fields. It's the same as how the learning curve between R and Python isn’t too painful compared to learning either from no programming background whatsoever. While you always have to be wary of over-generalizing knowledge, many things transfer and it gets easier with time.
 
 A big problem is how to figure out how the existing system actually works. Maybe you've just joined the project; maybe it's been a while since you touched this module and the docs never existed or are out of date, or maybe it never worked as it should. Where would we be if we treated this as a learning problem (as in "people learning things")? Where would we be if we stopped thinking of code and docs as blueprints and started thinking of them as lessons?
 
