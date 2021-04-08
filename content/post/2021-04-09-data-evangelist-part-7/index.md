@@ -29,7 +29,7 @@ projects: []
 
 "How am I going to help use the set of things I have to solve your customer problem?”
 
-A number of conversations this week involved resources waiting for business problems to come to them. Many experts each own and secure a body of data in a form that is deemed sufficient, at least for their own previous needs. A supply chain manager that I respect asked for the plan for the whole enterprise data feature store. And the truth is, right now it only exists to the extent that individual expert owners allow it to be. 
+A number of conversations this week involved resources waiting for business problems to come to them. Experts that each own and secure a body of data in a form that is deemed sufficient, at least for their own ex-ante needs. So with a new CDO coming on board, I expect the question: "What's the plan for the whole enterprise data feature store?" And the truth is, right now it only exists to the extent that individual expert owners allow it to be. 
 
 We often miss the big opportunities. Maybe the language we apply around data curation and expertise is a barrier to creating value for customers. This brief post will cover a few thoughts on
 
