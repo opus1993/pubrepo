@@ -86,7 +86,7 @@ The hardest part about working with lots of experts, is working with lots of exp
 
 *You have to learn how and why different fields collect data. One team uses a unique piece of software from a vendor, and the only output mechanism is PDF. Another team might rely on data that comes in receipt scans. CAN logs and error messages may infer different event meanings from vehicle to vehicle. Others might do everything in a single spreadsheet from hell* (Looking at you Atlas & SCAN). 
 
-*Thankfully, one of the nice things about breath is that once you start snowballing fields, it gets easier to use that knowledge to draw parallels to other fields. Just like how the learning curve of between* R *and Python isn’t too painful compared to learning either from no programming background whatsoever. While you always have to be wary of over-generalizing, many skills can transfer and things get easier with time.*
+*Thankfully, one of the nice things about* breadth *is that once you start snowballing fields, it gets easier to use that knowledge to draw parallels to other fields. Just like how the learning curve of between* R *and Python isn’t too painful compared to learning either from no programming background whatsoever. While you always have to be wary of over-generalizing, many skills can transfer and things get easier with time.*
 
 ### Focus on the lowest hanging fruit
 
