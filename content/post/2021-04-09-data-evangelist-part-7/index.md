@@ -96,7 +96,7 @@ The hardest part about working with lots of experts, is working with lots of exp
 
 ### Focus on the lowest hanging fruit
 
-A big problem is how to figure out how the existing system actually works. Maybe you've just joined the project; maybe it's been a while since you touched this module and the docs never existed or are out of date, or maybe it never worked as it should. Where would we be if we treated this as a learning problem (as in "people learning things")? Where would we be if we stopped thinking of code and docs as blueprints and started thinking of them as lessons?
+A big problem is figuring out how the existing system actually works. Maybe you've just joined the project; maybe it's been a while since you touched this module and the docs never existed or are out of date, or maybe it never worked as it should. Where would we be if we treated this as a learning problem (as in "people learning things")? Where would we be if we stopped thinking of code and docs as blueprints and started thinking of them as lessons?
 
 Generalists *cannot expect to solve every problem with a few strokes of the keyboard. If it were possible, someone else would have done it already. Instead, the main goal is to identify where the big wins are, without getting lost in minutiae.*  Ask "What keeps you up at night?" *Since data science is often about making better decisions more quickly, whether its through automation or decision support, there is usually something that can be made more efficient.*
 
