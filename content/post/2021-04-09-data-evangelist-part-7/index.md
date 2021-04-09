@@ -33,7 +33,7 @@ A number of conversations this week involved resources waiting for business prob
 
 We often miss the big opportunities. Maybe the language we apply around data curation and expertise is a barrier to creating value for customers. This brief post will cover a few thoughts on
 
--   Teaming up to Innovate,
+-   Teaming up to Innovate in the Garage,
 -   A Data Science Generalist Role,
 -   Survival Analysis, 
 -   Upcoming Events,
@@ -46,11 +46,17 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 {{<tweet 1287782817963954178>}}
 
-## Teaming up to Innovate
+## Teaming up to Innovate in the Garage
 
 > “In less than one year, we went from not even a concept on a napkin to an operating, deployed, scaled product to customers,” says **Parag Garg**, T-Mobile’s vice president of Product & Technology. “Together, we really quickly came to an architecture that worked and a solution center that worked. [Microsoft](https://news.microsoft.com/transform/from-hackathons-to-new-products-northwest-neighbors-t-mobile-and-microsoft-team-up-to-innovate/) brought in architects, they gave us support, they were really good partners and they’re right there in Redmond.”
 
-A must-read piece about successfully innovating, deploying, and scaling solutions [here](https://news.microsoft.com/transform/from-hackathons-to-new-products-northwest-neighbors-t-mobile-and-microsoft-team-up-to-innovate/).
+Garg's team is featured in a 2020 article about successfully innovating, deploying, and scaling solutions from the Microsoft Garage [here](https://news.microsoft.com/transform/from-hackathons-to-new-products-northwest-neighbors-t-mobile-and-microsoft-team-up-to-innovate/).
+
+The [Microsoft Garage](https://www.microsoft.com/en-us/garage/about/) delivers programs and experiences to employees, customers, and partners. Their motto is “doers, not talkers.” The Garage attracts people who are passionate about making a difference in the world. They are relentlessly curious and lifelong, hands-on learners. By actively participating in the creative process, regardless of success or failure, each person gets the opportunity to gain valuable insights, increase their knowledge, and learn diverse perspectives.
+
+In the early days of The Garage, the focus was on employees and mobilizing Microsoft’s cultural ambitions. The Garage helped employees integrate these cultural priorities – Growth Mindset, Customer Obsession, Diversity & Inclusion, One Microsoft, and Making a difference – into everyday work. As The Garage grew and the culture shift actions gained critical mass, entire teams and organizations began driving their business forward. An additional focus of The Garage was helping teams and organizations integrate growth mindset activities into team workflows. More recently, The Garage has continued to evolve by bringing in Microsoft customers to team up with employees for high speed growth activities.
+
+<a href="https://www.microsoft.com/en-us/garage/about/"><img src="https://www.microsoft.com/en-us/garage/wp-content/uploads/sites/5/2018/02/RedmondGarage-WEB.jpg" alt="What is The Garage?" width="600"/></a>
 
 ----
 
@@ -84,7 +90,7 @@ But the generalist data scientist work is sometimes accounted for as a loss, or 
 
 The hardest part about working with lots of experts, is working with lots of experts. *Each has their own language, expectations, conventions and norms. It takes a lot of effort to understand where people come from. The worst part is that if you don’t make the effort to understand, you’re either going to fail to create a useful solution at best, or burn social capital and damage your reputation.*
 
-*You have to learn how and why different fields collect data. One team uses a unique piece of software from a vendor, and the only output mechanism is PDF. Another team might rely on data that comes in receipt scans. CAN logs and error messages may infer different event meanings from vehicle to vehicle. Others might do everything in a single spreadsheet from hell* (Looking at you Atlas & SCAN). 
+*You have to learn how and why different fields collect data. One team uses a unique piece of software from a vendor, and the only output mechanism is PDF. Another team might rely on data that comes in receipt scans.* CAN logs and error messages may infer different event meanings from vehicle to vehicle. Others might do everything in a single spreadsheet from hell (Looking at you Atlas & SCAN). 
 
 *Thankfully, one of the nice things about* breadth *is it gets easier to use that knowledge to draw parallels to other fields. Just like how the learning curve between* R *and Python isn’t too painful compared to learning either from no programming background whatsoever. While you always have to be wary of over-generalizing, many skills transfer and things get easier with time.*
 
@@ -139,6 +145,8 @@ These are opportunities to engage and learn about analytics, data science, and A
 :star:️ April 12-14th [INFORMS Business Analytics Conference](http://meetings2.informs.org/wordpress/analytics2021/)
 
 :star:️ April 21st [IIA's Spring Symposium](http://iiasymposium.com)
+
+:star: July 5-9th [useR!2021](https://user2021.r-project.org/)
 
 :star:️ September 6-10th [EARL Conference 2021](https://info.mango-solutions.com/earl-2021#:~:text=EARL%202021%206%2D10th%20September,of%20the%20world%27s%20leading%20practitioners)
 
