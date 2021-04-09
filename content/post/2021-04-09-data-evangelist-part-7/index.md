@@ -180,6 +180,8 @@ Why do companies use external providers for data and analytical services they ca
 
 *Start interviewing for innovative companies that really want you to create IP internally.*
 
+{{<tweet 879773567386140672>}}
+
 ------------------------------------------------------------------------
 
 ## Book Recommendation
