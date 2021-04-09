@@ -86,35 +86,35 @@ The hardest part about working with lots of experts, is working with lots of exp
 
 *You have to learn how and why different fields collect data. One team uses a unique piece of software from a vendor, and the only output mechanism is PDF. Another team might rely on data that comes in receipt scans. CAN logs and error messages may infer different event meanings from vehicle to vehicle. Others might do everything in a single spreadsheet from hell* (Looking at you Atlas & SCAN). 
 
-*Thankfully, one of the nice things about* breadth *is that once you start snowballing fields, it gets easier to use that knowledge to draw parallels to other fields. Just like how the learning curve of between* R *and Python isn’t too painful compared to learning either from no programming background whatsoever. While you always have to be wary of over-generalizing, many skills can transfer and things get easier with time.*
+*Thankfully, one of the nice things about* breadth *is it gets easier to use that knowledge to draw parallels to other fields. Just like how the learning curve between* R *and Python isn’t too painful compared to learning either from no programming background whatsoever. While you always have to be wary of over-generalizing, many skills transfer and things get easier with time.*
 
 ### Focus on the lowest hanging fruit
 
 A big problem is how to figure out how the existing system actually works. Maybe you've just joined the project; maybe it's been a while since you touched this module and the docs never existed or are out of date, or maybe it never worked as it should. Where would we be if we treated this as a learning problem (as in "people learning things")? Where would we be if we stopped thinking of code and docs as blueprints and started thinking of them as lessons?
 
-Generalists *cannot expect to solve everyone’s problems with a few strokes of the keyboard. If it were possible, someone else would’ve done it already. Instead, the main goal is to identify where the big wins are, without getting lost in minutiae.*  Ask "What keeps you up at night?" *Since data science is often about making better decisions more quickly, whether its through automation or decision support, there is usually something that can be made more efficient.*
+Generalists *cannot expect to solve every problem with a few strokes of the keyboard. If it were possible, someone else would have done it already. Instead, the main goal is to identify where the big wins are, without getting lost in minutiae.*  Ask "What keeps you up at night?" *Since data science is often about making better decisions more quickly, whether its through automation or decision support, there is usually something that can be made more efficient.*
 
-*Speeding up decision making is very often a case of understanding what information people need, and giving it to them in a better way. Dashboards, often maligned for being rarely used and over-requested, can actually be useful in some situations. Other times, giving people context like “similar requests came up X times this week, this is normal but this one here isn’t normal” can lighten cognitive load.* 
+*Speeding up decision making is very often a case of understanding what information people need, and giving it to them in a better way. Dashboards, often maligned for being rarely used and over-requested, can actually be useful in some situations. Other times, giving people context like “similar requests came up X times this week, this is normal but this one here is not normal” can lighten cognitive load.* 
 
 ### When you can’t do it alone, bridge
 
-*In most cases, even the low hanging fruit problems aren’t solvable by a lone data scientist. Charts won’t change the world on their own.*
+*In most cases, even the low hanging fruit problems are not solvable by a lone data scientist. Charts will not change the world on their own.*
 
-*For example, imagine a subscription service where every new subscription is checked over by a human to reduce bad actors from joining a forum. We'd love to block those out quickly, but we also don’t want a high false positive rate because it would hurt the service and anger paying customers.*
+*For example, imagine a subscription service where every new subscription is checked over by a human to reduce bad actors from joining a forum. We'd love to block those out quickly, but we also do not want a high false positive rate because it would hurt the service and anger paying customers.*
 
-*There are definitely solid, proven data science methods to apply to this problem. Fraud and anomaly detection has a long history, is fairly well understood, and has off-the-shelf parts. But no one has implemented those systems for this team yet because it just wasn’t deemed high enough priority to throw data science effort behind it. Then the generalist comes around and finds that it’s a solvable problem.*
+*There are definitely solid, proven data science methods to apply to this problem. Fraud and anomaly detection has a long history, is fairly well understood, and has off-the-shelf parts. But no one has implemented those systems for this team yet because it just was not deemed high enough priority to throw data science effort behind it. Then the generalist comes around and finds that its a solvable problem.*
 
-A data science generalist *should realize that she cannot just implement a spam control system herself. It’s too big of a project with lots of integration into existing systems. But knowing what a spam control system would look like, and applying technical skills let her sketch out how a system might wire into existing infrastructure. Sizing up the problem and the business impact is a value-add in itself. Having visibility and credibility between all the teams helps to align resources across the enterprise. Sitting in the intersection of all these groups of people and being able to communicate with all of them, she can find a way to make people’s lives easier, and everyone wins.*
+A data science generalist *should realize that she cannot just implement a spam control system herself. Its too big of a project with lots of integration into existing systems. But knowing what a spam control system would look like, and applying technical skills let her sketch out how a system might wire into existing infrastructure. Sizing up the problem and the business impact is a value-add in itself. Having visibility and credibility between all the teams helps to align resources across the enterprise. Sitting in the intersection of all these groups of people and being able to communicate with all of them, she can find a way to make peoples lives easier, and everyone wins.*
 
 ### Your biggest impact is often through saving people’s time
 
-*Teams who incidentally generate data during their day-to-day activities often don’t have data science skills. So when helping out a team that doesn’t have access to programming resources, saving time through automation and simpler decision making often jumps to the forefront. This is especially true when the teams get larger, saving everybody an hour of their time, multiplied by the team size, can quickly scale into a huge amount of time (and human frustration) saved.*
+*Teams who incidentally generate data during their day-to-day activities often do not have data science skills. So when helping out a team that does not have access to programming resources, saving time through automation and simpler decision making often jumps to the forefront. This is especially true when the teams get larger, saving everybody an hour of their time, multiplied by the team size, can quickly scale into a huge amount of time (and human frustration) saved.*
 
 ### Build and leverage connections
 
-*One last benefit for working broadly is that the generalist will build connections all over the place. There’s all the individual and team connections, which can be leveraged to get stuff done. There’s value in being able to bridge context between teams that might not normally communicating closely.*
+*One last benefit for working broadly is that the generalist will build connections all over the place. There are all the individual and team connections, which can be leveraged to get stuff done. There is value in being able to bridge context between teams that might not normally communicating closely.*
 
-*There’s also all the disparate data sets that could possibly be combined to make newer, even more exiting things. Networks get stronger and more interesting every time we add a new node.*
+*There is also all the disparate data sets that could possibly be combined to make newer, even more exiting things. Networks get stronger and more interesting every time we add a new node.*
 
 Randy's blog is at [Counting Stuff](https://ko-fi.com/countingstuff). Support his writing and buy him a coffee.
 
