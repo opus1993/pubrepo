@@ -130,7 +130,7 @@ Randy's blog is at [Counting Stuff](https://ko-fi.com/countingstuff). Support hi
 
 ## Survival Analysis In Engineering, Business, And Medicine
 
-Dr. Nelson delivered a timely ASQ talk this week that demonstrated how analytical techniques in several domains are related in the context of censored, survival analytical examples. His slide materials are  [posted here](https://handouts-live.s3.amazonaws.com/2163e383912a4f9fa1ddd105f850baec?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210408T155814Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJICNIQWVMWBRIUMQ%2F20210408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a59a9689d5297aa234e27f5559425d6dfc2c077598a1fcd32c892c7d2d9d7e09).
+Dr. Nelson delivered a timely ASQ talk this week that demonstrated how analytical techniques in several domains are related in the context of censored, survival analytical examples. His slide materials are  [posted here](https://handouts-live.s3.amazonaws.com/2163e383912a4f9fa1ddd105f850baec?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210408T155814Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJICNIQWVMWBRIUMQ%2F20210408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a59a9689d5297aa234e27f5559425d6dfc2c077598a1fcd32c892c7d2d9d7e09). The video recording, when available, will be posted [here](https://asqrrd.org/recorded-webinars/).
 
 Justin Zeltzer approaches the topic in an easy-to-watch video series. This is the second episode:
 
