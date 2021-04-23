@@ -56,13 +56,13 @@ On the surface, the benefit of participating in local chapter events is visibili
 
 {{<tweet 1379424631648555015>}}
 
-# Google Maps' Moat is Evaporating
+## Google Maps' Moat is Evaporating
 
 Joe Morrison has published a number of great substack articles in recent months. [Here](https://joemorrison.substack.com/p/google-maps-moat-is-evaporating), he makes a compelling argument that *OpenStreetMap (OSM), over the next decade, has the potential to do to Google what Android did to Apple: dramatically grow the overall market while drawing a clear line between the larger “open” ecosystem and the smaller “proprietary” one.* Joe doesn't believe Google can maintain its current leading position in the  mapping world for another decade without pivoting to embrace the same open ecosystem that FAAMm (Facebook, Apple, Amazon, Microsoft, and Mapbox) is using to challenge them.
 
-The lazy way to tell the history of computing is by enumerating key events. There’s a different framing that’s more compelling: the history of computing can be told from the point of view of shifting power.
+The lazy way to tell the history of computing is by enumerating key events. There’s a different framing that’s more compelling: the history of computing can be told from the point of view of shifting power. Will Google maps fall as the next victim?
 
-The geospatial world is far more than just Google's killer mobile phone app. [This](https://open.spotify.com/embed-podcast/episode/4M2qsfRzxQEPrWnCRpwfRR) 42 minute podcast explores the ways that access to geospatial data has a dramatic impact on local economies, and how professionals make room for unexpected contributors, and the mindset to support unrestricted access to accelerate collaborative innovation.
+The geospatial world is far more than just Google's killer mobile phone app. [This](https://open.spotify.com/embed-podcast/episode/4M2qsfRzxQEPrWnCRpwfRR) 42 minute podcast explores the ways that access to geospatial data has a dramatic impact on local economies, and how open source GIS professionals make room for unexpected contributors, and the philosophical mindset to support unrestricted access to accelerate collaborative innovation.
 
 <iframe src="https://open.spotify.com/embed-podcast/episode/4M2qsfRzxQEPrWnCRpwfRR" width="100%" height="232" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 
@@ -122,7 +122,7 @@ Vin Vashishta has been researching the most recent changes in Data Science job r
 
 For 2021, the job requirements for data scientists that have changed __the most__ include:
 
-- **Business Communications**:  As Dancho and Burtch note above, the Data Scientist must demonstrate that they are capable of creating business value. Most job postings have multiple lines where employers spell out what is expected in terms of stakeholder engagement and active communications, finding opportunities through teamwork and collaboration. These also include proactive thought leadership, coalition building, and mentoring to drive enterprise growth.
+- **Business Communications**:  As Dancho and Burtch note above, Data Scientists must demonstrate that they are capable of creating business value. Most job postings have multiple lines where employers spell out what is expected in terms of stakeholder engagement and active communications, finding opportunities through teamwork and collaboration. These also include proactive thought leadership, coalition building, and mentoring to drive enterprise growth.
 
 - **Software Engineering Robustness**:  The drive towards production delivery means that having a background in the processes of crafting reliable and maintainable code is increasingly important. This means writing unit tests and supporting continuous integration to work at scale with software developers. 
 
