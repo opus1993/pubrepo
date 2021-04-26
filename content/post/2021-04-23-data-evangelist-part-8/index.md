@@ -78,6 +78,8 @@ As a general rule, business and industrial engineering programs at universities 
 
 Students assemble documentation on a capstone or internship experience and post it to a blog or github to showcase the work. Some will also prepare a business case presentation and video content. Interviews for junior analytics roles should have some context for how what the candidate brings fits with what the enterprise workflow requires.
 
+[Not every data scientist does "data science" work](https://towardsdatascience.com/heres-the-honest-truth-about-making-a-career-switch-into-data-science-2e5a42d24879). The range of skills and job responsibilities at one company can look completely different at another. There really are very few organizations with the specialization where a single person only builds machine learning models.
+
 Matt Dancho writes here in more detail on team building and skills alignment in the enterprise:
 
 {{<tweet 1383423259656396801>}}
@@ -128,7 +130,7 @@ For 2021, the job requirements for data scientists that have changed __the most_
 
 - **Managed Innovation**: Experimental processes must be statistically sound to assure the business that the model has "learned" something useful. Causal inference is becoming more and more important in research planning and exploring feasibility, especially in business settings, where the artifacts need to be available for re-use across all functional groups to deliver competitive advantage. Demonstrate where off-the-shelf models can be customized to exploit novel approaches to achieve results not available at any competitor.
 
-- **Data Management**: Data scientists today are expected to take a more active role in  data acquisition and infrastructure, to be accountable for the curation of useful features into a feature store. This may require being responsible for finding high-quality third party data resources to enhance models for competitive advantage. For example, in geospatial domains, be prepared to talk about successes with curating unique geospatial datasets like satellite imagery.
+- **Data Management**: Data scientists today are expected to take a more active role in  data acquisition and infrastructure, to be accountable for the curation of useful features into a feature store. This may require being responsible for finding high-quality third party data resources to enhance models for competitive advantage. [For example](https://r-spatial.org/r/2021/04/23/cloud-based-cubes.html), in geospatial domains, be prepared to talk about successes with curating unique geospatial datasets like satellite imagery.
 
 - **Active Learning and Teaching**:  As a technical mentor, rapidly learn and then mentor others in the enterprise. Identify areas for knowledge growth relevant to the business and to the team. Where appropriate, be prepared to share with partners outside of the business as well. Guest lecturing at a nearby university, mentoring capstone projects, or working events with a local INFORMS chapter creates a number of follow-on benefits for the company.
 
