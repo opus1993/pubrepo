@@ -15,7 +15,7 @@ draft: false
 # To use, add an image named `featured.jpg/png` to your page's folder.
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
-  caption: "Photo by Lyndon French for Aventine"
+  caption: "Photo by Federico Respini for Unsplash"
   focal_point: "Bottom"
   preview_only: false
 
