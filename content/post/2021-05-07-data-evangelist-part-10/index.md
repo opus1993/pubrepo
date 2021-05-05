@@ -20,7 +20,7 @@ projects: []
 
 My colleague Andrew Olliver was recently appointed as Vice-Chairperson of the [Agricultural Industry Electronics Foundation](https://www.aef-online.org/home.html) (AEF). Numerous other engineering colleagues serve on standards committees with industry, academia, and regulatory experts all over the world. Developing and maintaining interfaces with [suppliers](https://supplier.cnhind.com/) and other [developers](https://www.developer.cnhindustrial.com/home) is a significant undertaking here and in many other companies involved in global agriculture.
 
-My plan here is to explain why this fits with the mission and make some observations about the rapidly expanding scope of digital in agriculture. I'll also through in a handful of posts as seen on social media this week. On that theme, this brief post will cover:
+My plan here is to explain why this fits with the mission and make some observations about the rapidly expanding scope of digital in agriculture. I'll also throw in a handful of posts as seen on social media this week. On that theme, this brief post will cover:
 
 -   Industry Collaboration, Trust, Robustness, Sustainability, and Other Motivations,
 -   Gartner Analytics Conference Debrief,
@@ -180,9 +180,7 @@ Buy or build? Packaged analytics software or custom? These are false choices. Th
 
 <a href="https://www.amazon.com/Loonshots-Nurture-Diseases-Transform-Industries/dp/1250185963"><img src="https://images-na.ssl-images-amazon.com/images/I/41xeO-IKMUL._SX327_BO1,204,203,200_.jpg" alt="Loonshots: How to Nurture the Crazy Ideas That Win Wars, Cure Diseases, and Transform Industries" width="400"/></a>
 
-> Why do good teams kill great ideas? Loonshots reveals a surprising new
-> way of thinking about the mysteries of group behavior that challenges
-> everything we thought we knew about nurturing radical breakthroughs.
+> Why do good teams kill great ideas? Loonshots reveals a surprising new way of thinking about the mysteries of group behavior that challenges everything we thought we knew about nurturing radical breakthroughs.
 
 ------------------------------------------------------------------------
 
