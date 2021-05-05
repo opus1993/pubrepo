@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-My colleague Andrew Olliver was recently appointed as Vice-Chairperson of the [Agricultural Industry Electronics Foundation](https://www.aef-online.org/home.html) (AEF). Numerous other engineering colleagues serve on standards committees with industry, academia, and regulatory experts all over the world. 
+My colleague Andrew Olliver was recently appointed as Vice-Chairperson of the [Agricultural Industry Electronics Foundation](https://www.aef-online.org/home.html) (AEF). Numerous other engineering colleagues serve on standards committees with industry, academia, and regulatory experts all over the world. Developing and maintaining interfaces with [suppliers](https://supplier.cnhind.com/) and other [developers](https://www.developer.cnhindustrial.com/home) is a significant undertaking here and in many other companies involved in global agriculture.
 
 My plan here is to explain why and how this fits with the mission and make observations about the rapidly expanding scope of digital in agriculture. On that theme, this brief post will cover a few thoughts on
 
@@ -34,7 +34,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ## Industry Collaboration
 
-The AEF counts eight manufacturers and three trade associations as core members together with over 200 general members. They have worked together for many years to improve cross-manufacturer compatibility of electronic systems in agricultural equipment and to establish transparency about compatibility issues, providing guidelines for internationally agreed best practices as well as technical specifications for tools, machinery and other products and processes. The organization's main workstreams have recently been expanded to include electric drives, camera systems, farm management information systems, high speed ISOBUS messaging, and wireless in-field communication.
+The AEF counts eight manufacturers and three trade associations as core members together with over 200 general members. They have worked together for many years to improve cross-manufacturer compatibility and to establish transparency about compatibility issues, providing guidelines for internationally agreed best practices as well as technical specifications for tools, machinery and other products and processes. The organization's main workstreams have recently been expanded to include electric drives, camera systems, farm management information systems, high speed ISOBUS messaging, and wireless in-field communication.
 
 {{< tweet 1386660651939123201 >}}
 
@@ -46,11 +46,11 @@ Greg Myers, Syngenta CIO, wrote an appeal last month imploring that agriculture,
 
 ![](1619440387850.gif)
 
-Standards in agriculture is an ancient topic. They explain how we ended up with units of measure like the bushel and the furlong. I am reminded here of the role that former US Commerce Secretary (and eventual President) Herbert Hoover played in the 1920s. Under his leadership, government departments concerned with trade, the Census Bureau, and the Bureau of Standards were greatly expanded. He called over three thousand conferences to encourage efficiency, standardization, and the elimination of waste in industry. Hoover's Commerce Department played a key role in the development and regulation of several new technologies, including broadcast radio, passenger air travel, and mechanised agriculture.
+Standards in agriculture really is an ancient topic. They explain how we ended up with units of measure like the bushel and the furlong. I am reminded here of the role that former US Commerce Secretary (and eventual President) Herbert Hoover played in the 1920s. Under his leadership, government departments concerned with trade, the Census Bureau, and the Bureau of Standards were greatly expanded. He called over three thousand conferences to encourage efficiency, standardization, and the elimination of waste in industry. Hoover's Commerce Department played a key role in the development and regulation of several new technologies, including broadcast radio, passenger air travel, and mechanized agriculture.
 
 Henry Ford became a folk hero of sorts that decade by championing technology sharing, standardized automotive parts and processes, and reforms in patent litigation. "No man has a right to profit by patent only," said Ford, in 1925. "That produces parasites, men who are willing to lay back on their oars and do nothing. If any reward is due the man whose brain has produced something new and good, he should get enough profits from the manufacture and sale of the thing."
 
-All of the major growth businesses of the 21st century have benefited from scaled and standardized infrastructure, often in the form of **open source** software frameworks made possible with similar thinking. These include HTML, Unix, Android, Python, R, and many others. By augmenting parallel efforts, open source makes a society more efficient at producing higher quality products, like the mobile phone mentioned above. Three reasons:
+The major growth businesses of the 21st century have benefited from scaled and standardized infrastructure, often in the form of **open source** software frameworks, made possible with similar thinking. These include HTML, Unix, Android, Python, R, and many others. By augmenting parallel efforts, open source makes a society more efficient at producing higher quality products, like the mobile phone mentioned above. Three reasons:
 
 1.  **Efficiency:** When firms work more efficiently, the economy produces more (and better) software, software that can in turn, improve lives. If you believe that all the easy problems have already been solved, then on a macroeconomic level, open source allows you to move firms from lower-level work to higher level, yet-unsolved challenges. The results of this higher level work tends to be disruptive, rather than iterative, creating the churn that invigorates the economy. If every technology company must devote a few years of R&D solving the same 5-10 problems, that delays (or at the very least shifts capital from) the company's ability to be productive and produce technology that's valuable to society, not to mention, it raises the barrier for new market entrants to offer alternatives to established firms.
 
@@ -58,10 +58,7 @@ All of the major growth businesses of the 21st century have benefited from scale
 
 3.  **Fuel the marketplace of ideas:** Software is nothing more than technical knowledge. There was once a time when alchemists would withhold the results of their work, claiming their discoveries as proprietary. Each had to learn the hard way the result on the human body of drinking lead. When those alchemists began sharing their work, we began calling them scientists, and the scientific revolution was born. The same is true of computer software. Two developers working individually may come up with two solutions to a given problem, but through dialog and collaboration, each bringing their own knowledge and experience, will often discover many other solutions to the same challenge, and society is better as a result.
 
-> At `Facebook`, the data science team's data visualizations in `R` give it the best overview of what kind of data it is dealing with. The data can range from something like News Feed numbers to correlations with the amount of connections a user has. "Generally, we use `R` to move fast when we get a new data set," says Solomon Messing, data scientist at `Facebook`. "With R, we don't need to develop custom tools or write a bunch of code. Instead, we can just go about cleaning and exploring the data." Messing and the other `Facebook` data scientists regularly use open-source `R` packages from Hadley Wickham, chief scientist at `RStudio`. Wickham's packages, like ggplot2 and the tidyverse, allow the team to explore new data through custom visualizations. The `Facebook` data science team uses `R` so ardently to visualize data that it even created a [MOOC](https://www.udacity.com/course/data-analysis-with-r--ud651) that teaches students what it knows.
-
-![Visualizations from Messing's colleagues at Facebook, done in collaboration with Stanford University's HCI
-Group](https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3030063-inline-screenshot-2014-05-02-140959.png)
+> The 2002 [Amazon API Mandate](https://www.cio.com/article/3218667/have-you-had-your-bezos-moment-what-you-can-learn-from-amazon.html) drove similar principles, in an effort to be agile and drive innovation, by requiring developers to scale technology assets with APIs--externalizable services--so the broader organization could independently reuse and leverage code assets to drive business outcomes through other use cases. It is the foundation of AWS. [Amazon continues to be a large contributor to several open source community efforts](https://aws.amazon.com/opensource).
 
 For much of its lifespan since WWII, operations research analytics outputs were "artisanal"---hand-crafted, slow, and expensive to create. The goal was typically to create a report using statistics and linear algebra, and maybe a regression model too. But there was another attribute of artisanal analytics seldom mentioned until now: they were individually-oriented. Like an individual artist or craftsperson, the analytical artisan created analytics for him or herself, or with their team of practitioners. At most a more senior decision-maker might see the results of the analysis. After all, this was the "decision support."
 
@@ -102,21 +99,7 @@ Open source allows for greater transparency of process, whether that's the trans
 
 Finally, **Shifting development from low-value work to high-value work:** In open source communities we often hear that all the easy problems have already been solved. Blogging, content management, and perating systems are all problems with established (and mainstream) open source solutions, to name a few. While your developers could spend their time reinventing wheels that the open source community have already perfected, it's far preferable to use the worlds best wheel, especially when that wheel comes at no cost to you. This frees developers up to work on yet-unsolved challenges, the types of challenges that are unique to and add value to your organization's mission. Why not stand on the shoulders of technology giants?
 
-### `GitHub` Cofounder Tom Preston-Werner lays out additional arguments in his 2011 post [Open Source (Almost) Everything](https://tom.preston-werner.com/2011/11/22/open-source-everything.html), summarized here:
-
-**Force multiplication:** Open source is a force multiplier for developers. This happens in three ways: First, when communities form around shared challenges, the diversity of ideas that naturally emerges surfaces better solutions than if the marketplace of ideas was limited to just your organization, meaning developers are working smarter. Second, exposing the problem space to other interested organizations provides additional human capital to tackle the challenge, meaning the solution has more developer hours thrown at it, at no additional cost. Finally, "more users means more use cases being explored, which means more robust code."
- 
-**Modularity:** Open source projects tend to be more modularly architected, improving both the flexibility, and the robustness of the code. When building software for a single use case, the developer is able to take some technical short cuts. The problem comes when the enterprise would like to use that software in a different use case, or when requirements change. Open source, by its nature, is built for a variety of use cases, environments, and users. This means more options, and a tendency to encourage more modularity, resulting in greater flexibility and lower customization costs in the long run. Put another way, open source necessitates cleaner, more maintainable code. "Even internal code should pretend to be open source code".
-
-> The 2002 [Amazon API Mandate](https://www.cio.com/article/3218667/have-you-had-your-bezos-moment-what-you-can-learn-from-amazon.html) drove similar principles, in an effort to be agile and drive innovation, by requiring developers to scale technology assets with APIs--externalizable services--so the broader organization could independently reuse and leverage code assets to drive business outcomes through other use cases. It is the foundation of AWS. [Amazon continues to be a large contributor to several open source community efforts](https://aws.amazon.com/opensource).
-
-**Reduce duplication of effort:** Each company should focus on a set of core competencies. What makes it unique or gives it an advantage? Everything else is the work everyone else is also doing: or put another way, the work you need to do so that you can do the work that you want to do. It doesn't have to be that way. Open source reduces duplication of efforts, both within an organization and across organizations, by allowing for individual components to be shared. Coca-Cola's secret sauce is the formula for its syrup, not its ability publish blog posts or post press releases. Using an open source CMS, or sharing their built-in-house blog components with the world, doesn't make Pepsi taste any better.
-
-**Great advertising:** Maintainers of successful open source projects are often seen as industry leaders, providing themselves with the ability to shape the conversation around particular software problems and associating their brand with the preferred solution. `CNHIndustrial`, for example, is a founding member of the [OATSCenter](https://oatscenter.org/) and `AirBNB` is a primary developer of `Apache Airflow`.
-
-**Attract talent:** Developers want to work on yet-unsolved problems. Open source allows you to showcase the interesting challenges you face and how you think about solving them. Open source developers can casually contribute to projects, to learn how you work, and what it's like developing software for a particular set of challenges. If they like what they see, there's a much better chance that they'll apply for a job, than if your organization was a black box when it comes to what it's like to work there. "Smart developers like to hang out with smart code."
-
-**Best technical interview possible:** Technical interviews traditionally involve working on a simulated problem that can be tackled in a set amount of time with little additional context. Such simulations, by definition, are poor examples of real world use cases, and they do not demomstrate what working with an applicant would be like. Open source provides visibility into both how a candidate solves problems, and how they work with others. A business can hire much more confidently if, for the past six months, the candidate has been contributing meaningfully to an open source project relevant to the hiring company.
+`GitHub` Cofounder Tom Preston-Werner lays out additional arguments in his 2011 post [Open Source (Almost) Everything](https://tom.preston-werner.com/2011/11/22/open-source-everything.html)
 
 ![IMAGE: FLICKR USER:_SARCHI](https://images.fastcompany.net/image/upload/w_562,ar_16:9,c_fill,g_auto,f_auto,q_auto,fl_lossy/fc/3030063-poster-p-1-why-the-r-programming-language-is-good-for-business.jpg)
 
@@ -158,14 +141,13 @@ There are likely other reasons to prefer consuming, publishing,collaborating on,
 
 ### [Gartner Data & Analytics Summit -- Americas](https://reg.gartner.com/flow/gartner/bi19v/attportal/page/home) Debrief
 
-This week's three days of polished, produced virtual sessions covered a range of analytics topics. Many talks are suitable for the perspective of a CIO or other C-suite executive responsible for analytics services to a large business. The book recommendation below, "Loonshots," comes from one of the guest keynote addresses. I did note, thought, that our roundtable membership represented a wide variety of institutions. It has been difficult to realize the value of engaging the community in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
+This week's three days of polished, produced virtual sessions covered a range of analytics topics. Most talks are presented at a technical level for a busy CIO or other C-suite executive responsible for analytics services delivery to a large business. The book recommendation below, "Loonshots," comes from one of the guest keynote addresses. I did note, thought, that our roundtable breakout represented a wide variety of institutions. It has been difficult to realize the value of engaging the community in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
 
 ------------------------------------------------------------------------
 
 ## Upcoming Events
 
-These are opportunities to engage and learn about analytics, data
-science, and AI from peers.
+These are opportunities to engage and learn about analytics, data science, and AI from peers.
 
 :star: May 17 [Comparing {lightgbm} to other Gradient Boosted Decision Tree libraries](https://www.google.com/url?q=https://www.meetup.com/nyhackr/events/277831968&sa=D&source=calendar&usd=2&usg=AOvVaw34CH9FaHrV2CdwP-rXGWUh) with James Lamb 
 
@@ -175,6 +157,8 @@ science, and AI from peers.
 
 :star: May 26 [Automating business processes](https://www.meetup.com/Cleveland-UseR-Group/events/277370785/)
 with [Frans van Dunné](https://www.fransvandunne.com/), Chief Data Officer at [ixpantia](https://www.ixpantia.com/)
+
+:star: May 26 INFORMS Chicago Chapter Resume Review & Mini Career Fair
 
 :star: July 5-9th [useR!2021](https://user2021.r-project.org/)
 
