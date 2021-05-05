@@ -20,7 +20,7 @@ projects: []
 
 My colleague Andrew Olliver was recently appointed as Vice-Chairperson of the [Agricultural Industry Electronics Foundation](https://www.aef-online.org/home.html) (AEF). Numerous other engineering colleagues serve on standards committees with industry, academia, and regulatory experts all over the world. 
 
-My plan here is to commit some words to the blog to explain why and how this fits with our mission. On that theme, this brief post will cover a few thoughts on
+My plan here is to explain why and how this fits with the mission and make observations about the rapidly expanding scope of digital in agriculture. On that theme, this brief post will cover a few thoughts on
 
 -   Industry Collaboration, Trust, Robustness, Sustainability, and Other Motivations,
 -   Gartner Analytics Conference Debrief,
@@ -38,7 +38,7 @@ The AEF counts eight manufacturers and three trade associations as core members 
 
 {{< tweet 1386660651939123201 >}}
 
-Greg Myers, Syngenta CIO, wrote an appeal last month imploring that agriculture, to move more quickly on climate change and other social issues, must move away from building "walled gardens" and move towards even more collaboration and open environments. A couple of his key points:
+Greg Myers, Syngenta CIO, wrote an appeal last month imploring that agriculture, given climate change and other social issues, move away from building "walled gardens" and towards even more collaboration and open environments. A couple of his key points:
 
 > Agtech must avoid the progress-slowing pattern followed by such earlier novel and transformative technology advances as personal computing and the internet.
 
@@ -46,7 +46,7 @@ Greg Myers, Syngenta CIO, wrote an appeal last month imploring that agriculture,
 
 ![](1619440387850.gif)
 
-Standards in agriculture is an ancient topic. They explain how we ended up with units of measure like the bushel and the furlong. I am reminded here of the role that former US Commerce Secretary (and eventual President) Herbert Hoover played in the 1920s. Under his leadership, government departments concerned with trade, the Census Bureau, and the Bureau of Standards were greatly expanded. He called over three thousand conferences to encourage efficiency, standardization, and the elimination of waste in industry. Hoover's Commerce Department played a key role in the development and regulation of several new technologies, including broadcast radio and passenger air travel.
+Standards in agriculture is an ancient topic. They explain how we ended up with units of measure like the bushel and the furlong. I am reminded here of the role that former US Commerce Secretary (and eventual President) Herbert Hoover played in the 1920s. Under his leadership, government departments concerned with trade, the Census Bureau, and the Bureau of Standards were greatly expanded. He called over three thousand conferences to encourage efficiency, standardization, and the elimination of waste in industry. Hoover's Commerce Department played a key role in the development and regulation of several new technologies, including broadcast radio, passenger air travel, and mechanised agriculture.
 
 Henry Ford became a folk hero of sorts that decade by championing technology sharing, standardized automotive parts and processes, and reforms in patent litigation. "No man has a right to profit by patent only," said Ford, in 1925. "That produces parasites, men who are willing to lay back on their oars and do nothing. If any reward is due the man whose brain has produced something new and good, he should get enough profits from the manufacture and sale of the thing."
 
@@ -65,10 +65,7 @@ Group](https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_a
 
 For much of its lifespan since WWII, operations research analytics outputs were "artisanal"---hand-crafted, slow, and expensive to create. The goal was typically to create a report using statistics and linear algebra, and maybe a regression model too. But there was another attribute of artisanal analytics seldom mentioned until now: they were individually-oriented. Like an individual artist or craftsperson, the analytical artisan created analytics for him or herself, or with their team of practitioners. At most a more senior decision-maker might see the results of the analysis. After all, this was the "decision support."
 
-But now we are in an era in which data, analytics, and AI have become critical organizational assets. They are created by teams for teams, and the many producing teams might serve business teams that are colleagues,
-senior executives, customers, suppliers, or an entire ecosystem. Today, for an analytics artisan to create an analytical program for him or herself is considered a waste of value and time. And the highly centralized approach, in which a corporate business intelligence group prepares data, dashboards, and analytics for thousands of users, is certainly even slower and more expensive.
-
-This shift to "collaborative analytics" has implications for the tools we use, the processes we employ to create and distribute our work, and the way we organize data science talent. We need to make it easy to share insights throughout, and even outside, our organizations.
+But now we are in an era in which data, analytics, and AI have become critical organizational assets. They are created by teams for teams, serving business teams that are colleagues, senior executives, customers, suppliers, or an entire information platform. Today, for an analytics artisan to create an analytical program for him or herself should be considered a waste of value and time. This shift to "collaborative analytics" has implications for the tools we use, the processes we employ to create and distribute our work, and the way we organize data science talent. We need to make it easy to share insights throughout, and even outside, our organizations.
 
 {{< youtube aSpI8LtlAPg >}}
 
@@ -159,7 +156,7 @@ There are likely other reasons to prefer consuming, publishing,collaborating on,
 
 {{< tweet 1389672393484951560 >}}
 
-## [Gartner Data & Analytics Summit -- Americas](https://reg.gartner.com/flow/gartner/bi19v/attportal/page/home) Debrief
+### [Gartner Data & Analytics Summit -- Americas](https://reg.gartner.com/flow/gartner/bi19v/attportal/page/home) Debrief
 
 This week's three days of polished, produced virtual sessions covered a range of analytics topics. Many talks are suitable for the perspective of a CIO or other C-suite executive responsible for analytics services to a large business. The book recommendation below, "Loonshots," comes from one of the guest keynote addresses. I did note, thought, that our roundtable membership represented a wide variety of institutions. It has been difficult to realize the value of engaging the community in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
 
@@ -185,7 +182,7 @@ with [Frans van Dunné](https://www.fransvandunne.com/), Chief Data Officer at [
 
 ------------------------------------------------------------------------
 
-## IIA Architecting a Modern Analytics Tech Stack
+### IIA Architecting a Modern Analytics Tech Stack
 
 {{< youtube Vtwk2B--uL0 >}}
 
