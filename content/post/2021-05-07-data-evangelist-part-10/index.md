@@ -133,7 +133,7 @@ Whether you are a developer or an aspiring developer, open source can provide an
 
 There are likely other reasons to prefer consuming, publishing,collaborating on, and supporting open source beyond those listed here. Whatever the rationale, it's clear open source isn't the next big thing. Open source is already here.
 
-**Open source is the future:** There is no startup today worth it's venture capital funding without open source tools. Even Microsoft, traditionally one of the biggest opponents to open source, has recently open sourced their primary development framework (along with Apple, Facebook, and Google). Today, the largest names in technology, from IBM, to SAP, to Adobe actively participate in the open source community. It's inaccurate to say that "open source is the future." Open source has already won. And 
+**Open source is the future:** There is no startup today worth it's venture capital funding without open source tools. Even Microsoft, traditionally one of the biggest opponents to open source, has recently open sourced their primary development framework (along with Apple, Facebook, and Google). Today, the largest names in technology, from IBM, to SAP, to Adobe actively participate in the open source community. It's inaccurate to say that "open source is the future." Open source has already won, even in agriculture.
 
 ------------------------------------------------------------------------
 
