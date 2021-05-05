@@ -158,7 +158,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 :star: May 26 [Automating business processes](https://www.meetup.com/Cleveland-UseR-Group/events/277370785/)
 with [Frans van Dunné](https://www.fransvandunne.com/), Chief Data Officer at [ixpantia](https://www.ixpantia.com/)
 
-:star: May 26 INFORMS Chicago Chapter Resume Review & Mini Career Fair
+:star: May 26 INFORMS Chicago Chapter College Resume Review & Mini Career Fair
 
 :star: July 5-9th [useR!2021](https://user2021.r-project.org/)
 
