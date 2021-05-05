@@ -7,7 +7,7 @@ categories:
   - Business, Data Science
 tags: 
   - Data Science
-date: 2021-05-07
+date: 2021-05-05
 featured: false
 draft: false
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
@@ -50,7 +50,7 @@ Standards in agriculture is an ancient topic. They explain how we ended up with 
 
 Henry Ford became a folk hero of sorts that decade by championing technology sharing, standardized automotive parts and processes, and reforms in patent litigation. "No man has a right to profit by patent only," said Ford, in 1925. "That produces parasites, men who are willing to lay back on their oars and do nothing. If any reward is due the man whose brain has produced something new and good, he should get enough profits from the manufacture and sale of the thing."
 
-More recently, all of the major growth businesses have benefited from scaled and standardized infrastructure in the form of open source software frameworks. These include HTML, Unix, Android, Python, R, and many others. By augmenting parallel efforts, open source makes a society more efficient at producing higher quality products, like the mobile phone mentioned above. Three reasons:
+All of the major growth businesses of the 21st century have benefited from scaled and standardized infrastructure, often in the form of **open source** software frameworks made possible with similar thinking. These include HTML, Unix, Android, Python, R, and many others. By augmenting parallel efforts, open source makes a society more efficient at producing higher quality products, like the mobile phone mentioned above. Three reasons:
 
 1.  **Efficiency:** When firms work more efficiently, the economy produces more (and better) software, software that can in turn, improve lives. If you believe that all the easy problems have already been solved, then on a macroeconomic level, open source allows you to move firms from lower-level work to higher level, yet-unsolved challenges. The results of this higher level work tends to be disruptive, rather than iterative, creating the churn that invigorates the economy. If every technology company must devote a few years of R&D solving the same 5-10 problems, that delays (or at the very least shifts capital from) the company's ability to be productive and produce technology that's valuable to society, not to mention, it raises the barrier for new market entrants to offer alternatives to established firms.
 
@@ -63,7 +63,7 @@ More recently, all of the major growth businesses have benefited from scaled and
 ![Visualizations from Messing's colleagues at Facebook, done in collaboration with Stanford University's HCI
 Group](https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/fc/3030063-inline-screenshot-2014-05-02-140959.png)
 
-For much of its lifespan since WWII, operations research analytics outputs were "artisanal"---hand-crafted, slow, and expensive to create. The goal was typically to create a report using statistics and linear algebra, although there were occasionally some predictive regression models too. But there was another attribute of artisanal analytics seldom mentioned until now: they were individually-oriented. Like an individual artist or craftsperson, the analytical artisan created analytics for him or herself, or with their team of practitioners. At most a more senior decision-maker might see the results of the analysis. After all, this was the "decision support."
+For much of its lifespan since WWII, operations research analytics outputs were "artisanal"---hand-crafted, slow, and expensive to create. The goal was typically to create a report using statistics and linear algebra, and maybe a regression model too. But there was another attribute of artisanal analytics seldom mentioned until now: they were individually-oriented. Like an individual artist or craftsperson, the analytical artisan created analytics for him or herself, or with their team of practitioners. At most a more senior decision-maker might see the results of the analysis. After all, this was the "decision support."
 
 But now we are in an era in which data, analytics, and AI have become critical organizational assets. They are created by teams for teams, and the many producing teams might serve business teams that are colleagues,
 senior executives, customers, suppliers, or an entire ecosystem. Today, for an analytics artisan to create an analytical program for him or herself is considered a waste of value and time. And the highly centralized approach, in which a corporate business intelligence group prepares data, dashboards, and analytics for thousands of users, is certainly even slower and more expensive.
