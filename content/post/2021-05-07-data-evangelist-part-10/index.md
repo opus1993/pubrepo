@@ -42,7 +42,7 @@ Greg Myers, Syngenta CIO, wrote an appeal last month imploring that agriculture,
 
 > Agtech must avoid the progress-slowing pattern followed by such earlier novel and transformative technology advances as personal computing and the internet.
 
-> Whichever software a farmer chooses as the main point of entry should benefit from the full breadth of innovation across the entire agriculture value chain - the same way all the apps on your phone work together, regardless of operating system or phne manufacturer.
+> Whichever software a farmer chooses as the main point of entry should benefit from the full breadth of innovation across the entire agriculture value chain - the same way all the apps on your phone work together, regardless of operating system or phone manufacturer.
 
 Standards in agriculture really is an ancient topic. They explain how we ended up with units of measure like the bushel and the furlong. I am reminded here of the role that former US Commerce Secretary (and eventual President) Herbert Hoover played in the 1920s. Under his leadership, government departments concerned with trade, the Census Bureau, and the Bureau of Standards were greatly expanded. He called over three thousand conferences to encourage efficiency, standardization, and the elimination of waste in industry. Hoover's Commerce Department played a key role in the development and regulation of several new technologies, including broadcast radio, passenger air travel, and mechanized agriculture.
 
