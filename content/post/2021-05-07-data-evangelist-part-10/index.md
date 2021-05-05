@@ -20,7 +20,7 @@ projects: []
 
 My colleague Andrew Olliver was recently appointed as Vice-Chairperson of the [Agricultural Industry Electronics Foundation](https://www.aef-online.org/home.html) (AEF). Numerous other engineering colleagues serve on standards committees with industry, academia, and regulatory experts all over the world. Developing and maintaining interfaces with [suppliers](https://supplier.cnhind.com/) and other [developers](https://www.developer.cnhindustrial.com/home) is a significant undertaking here and in many other companies involved in global agriculture.
 
-My plan here is to explain why and how this fits with the mission and make observations about the rapidly expanding scope of digital in agriculture. On that theme, this brief post will cover a few thoughts on
+My plan here is to explain why this fits with the mission and make some observations about the rapidly expanding scope of digital in agriculture. I'll also through in a handful of posts as seen on social media this week. On that theme, this brief post will cover:
 
 -   Industry Collaboration, Trust, Robustness, Sustainability, and Other Motivations,
 -   Gartner Analytics Conference Debrief,
@@ -141,7 +141,7 @@ There are likely other reasons to prefer consuming, publishing,collaborating on,
 
 ### [Gartner Data & Analytics Summit -- Americas](https://reg.gartner.com/flow/gartner/bi19v/attportal/page/home) Debrief
 
-This week's three days of polished, produced virtual sessions covered a range of analytics topics. Most talks are presented at a technical level for a busy CIO or other C-suite executive responsible for analytics services delivery to a large business. The book recommendation below, "Loonshots," comes from one of the guest keynote addresses. I did note, thought, that our roundtable breakout represented a wide variety of institutions. It has been difficult to realize the value of engaging the community in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
+This week's three days of polished, produced virtual sessions covered a range of analytics topics. Most talks are presented at a technical level for a busy CIO or other C-suite executive responsible for analytics services delivery to a large business. The book recommendation below, "Loonshots," comes from one of the guest keynote addresses. I did note, though, that our roundtable breakout represented a wide variety of institutions. It has been difficult to realize the value of engaging the community in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
 
 ------------------------------------------------------------------------
 
