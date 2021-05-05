@@ -44,8 +44,6 @@ Greg Myers, Syngenta CIO, wrote an appeal last month imploring that agriculture,
 
 > Whichever software a farmer chooses as the main point of entry should benefit from the full breadth of innovation across the entire agriculture value chain - the same way all the apps on your phone work together, regardless of operating system or phne manufacturer.
 
-![](1619440387850.gif)
-
 Standards in agriculture really is an ancient topic. They explain how we ended up with units of measure like the bushel and the furlong. I am reminded here of the role that former US Commerce Secretary (and eventual President) Herbert Hoover played in the 1920s. Under his leadership, government departments concerned with trade, the Census Bureau, and the Bureau of Standards were greatly expanded. He called over three thousand conferences to encourage efficiency, standardization, and the elimination of waste in industry. Hoover's Commerce Department played a key role in the development and regulation of several new technologies, including broadcast radio, passenger air travel, and mechanized agriculture.
 
 Henry Ford became a folk hero of sorts that decade by championing technology sharing, standardized automotive parts and processes, and reforms in patent litigation. "No man has a right to profit by patent only," said Ford, in 1925. "That produces parasites, men who are willing to lay back on their oars and do nothing. If any reward is due the man whose brain has produced something new and good, he should get enough profits from the manufacture and sale of the thing."
