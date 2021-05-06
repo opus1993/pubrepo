@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-In the news this month, my colleague Andrew Olliver was appointed Vice-Chairperson of the [Agricultural Industry Electronics Foundation](https://www.aef-online.org/home.html) (AEF). Numerous other engineering colleagues serve here on standards committees with industry, academia, and regulatory experts all over the world. Developing and maintaining interfaces with [suppliers](https://supplier.cnhind.com/) and other [developers](https://www.developer.cnhindustrial.com/home) is a significant undertaking here and in most other companies involved in global agriculture.
+In the news this month, my colleague Andrew Olliver was appointed Vice-Chairperson of the [Agricultural Industry Electronics Foundation](https://www.aef-online.org/home.html) (AEF). Numerous other engineering colleagues serve on standards committees with industry, academia, and regulatory experts all over the world. Developing and maintaining interfaces with [suppliers](https://supplier.cnhind.com/) and other [developers](https://www.developer.cnhindustrial.com/home) is a significant undertaking here and in most other companies involved in global agriculture.
 
 My plan here is to explain why this fits with the mission and make a few observations about the rapidly expanding scope of digital in agriculture. I'll also throw in a handful of posts as seen on social media this week. On that theme, this brief post will cover:
 
