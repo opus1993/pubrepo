@@ -105,7 +105,7 @@ Open source allows for greater transparency of process, whether that's the trans
 
 **Interoperability:** Open source software is much better at adhering to open standards than proprietary software is. If interoperability with other businesses, computers, and users has a high value, and B2B parties don't want to be limited by proprietary data formats, open source software is definitely the way to go.
 
-**Auditability:** With AEF standards, there is little but the vendor's claims assuring that they're keeping the software secure and adhering to standards. It's basically a leap of faith. The visibility of the code behind open source software, however, means all developers can monitor compliance.
+**Auditability:** Without AEF standards, there is little but the vendor's claims assuring that they're keeping the software secure and adhering to standards. It's basically a leap of faith. The visibility of the code behind open source software, however, means all developers can monitor compliance.
 
 Finally, **Shifting development from low-value work to high-value work:** In communities we often hear that all the easy problems have already been solved. Blogging, content management, and perating systems are all problems with established (and mainstream) solutions, to name a few. While your developers could spend their time reinventing wheels that the community have already perfected, it's far preferable to use the worlds best wheel, especially when that wheel comes at no cost to you. This frees developers up to work on yet-unsolved challenges, the types of challenges that are unique to and add value to the organization's mission. Why not stand on the shoulders of technology giants?
 
