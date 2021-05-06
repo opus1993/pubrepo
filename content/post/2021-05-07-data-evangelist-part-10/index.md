@@ -133,6 +133,8 @@ goal for all the products he develops is that they are installable and runnable 
 
 **Customer feedback:** Open source empowers consumers to have a combined, powerful voice in the private sector development process. Think of it like `Yelp` for software. Without `Yelp`, a restaurant is free to upset a single customer. At most, the dissatisfied patrons could dissuade 5-10 other potential patrons. In a post-`Yelp` world, customers read the reviews of strangers before they choose where to go. Open source amplifies the voice of software consumers within the consumer-publisher relationship. Not to mention, the feedback the private company receives can go towards better informing product decisions and improve the overall product. Open source gives companies a direct line to their most passionate customers.
 
+{{< tweet 1389973284402384900 >}}
+
 ### Personal motivations
 
 Whether you are a developer or an aspiring developer, open source can provide an inexpensive on-ramp to a path for personal growth within the software development community.
