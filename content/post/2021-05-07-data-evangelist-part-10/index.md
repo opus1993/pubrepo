@@ -60,7 +60,7 @@ Now, in the 21st century, the major growth businesses have benefited themselves 
 
 <a href="https://agstack.org/about/"><img src="https://agstack.org/wp-content/uploads/sites/7/2021/04/agstack-color-site2-01.svg" alt="AgStack: A Linux Foundation Project" width="400"/></a>
 
-Announced this week, [AgStack](https://agstack.org/about/) is new open source project designed to foster collaboration across global supply chains. Members and partners include Purdue University OATS, IBM, NIAB, Agralogics, OpenTeam, the Produce Marketing Association, and many others. Three reasons for getting involved:
+Also announced this week, [AgStack](https://agstack.org/about/) is a new open source project designed to foster collaboration across global supply chains. Members and partners include Purdue University OATS, IBM, NIAB, Agralogics, OpenTeam, the Produce Marketing Association, and many others. Three reasons for getting involved:
 
 1.  **Efficiency:** When firms work more efficiently, the economy produces more (and better) software, software that can in turn, improve lives. If you believe that all the easy problems have already been solved, then on a macroeconomic level, open source allows you to move firms from lower-level work to higher level, yet-unsolved challenges. The results of this higher level work tends to be disruptive, rather than iterative, creating the churn that invigorates the economy. If every technology company must devote a few years of R&D solving the same 5-10 problems, that delays (or at the very least shifts capital from) the company's ability to be productive and produce technology that's valuable to society, not to mention, it raises the barrier for new market entrants to offer alternatives to established firms.
 
