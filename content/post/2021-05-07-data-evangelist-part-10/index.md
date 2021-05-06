@@ -22,13 +22,21 @@ In the news this month, my colleague Andrew Olliver was appointed Vice-Chairpers
 
 My plan here is to explain why this fits with the mission and make a few observations about the rapidly expanding scope of digital in agriculture. I'll also throw in a handful of posts as seen on social media this week. On that theme, this brief post will cover:
 
--   Industry Collaboration, Trust, Robustness, Sustainability, and Other Motivations,
+-   A Book Recommendation,
+-   Collaboration, Trust, Robustness, Sustainability, and Other Motivations,
 -   Gartner Analytics Conference Debrief,
 -   Upcoming Events,
--   IIA Architecting a Modern Analytics Tech Stack Debrief,
--   and a book recommendation.
+-   and IIA Architecting a Modern Analytics Tech Stack Debrief.
 
 Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
+
+------------------------------------------------------------------------
+
+## Book Recommendation
+
+<a href="https://www.amazon.com/Loonshots-Nurture-Diseases-Transform-Industries/dp/1250185963"><img src="https://images-na.ssl-images-amazon.com/images/I/41xeO-IKMUL._SX327_BO1,204,203,200_.jpg" alt="Loonshots: How to Nurture the Crazy Ideas That Win Wars, Cure Diseases, and Transform Industries" width="400"/></a>
+
+> Why do good teams kill great ideas? Loonshots reveals a surprising new way of thinking about the mysteries of group behavior that challenges everything we thought we knew about nurturing radical breakthroughs.
 
 ------------------------------------------------------------------------
 
@@ -81,7 +89,7 @@ Open source allows for greater transparency of process, whether that's the trans
 
 ### Robustness
 
-**Given enough eyeballs, all bugs are shallow** (Linus's Law): Empirically, open source [tends to produce better quality software than its proprietary or alternative counterparts](https://dwheeler.com/oss_fs_why.html). With closed source software, the only developers that can potentially detect, diagnose, and resolve software bugs are those that happen to be employed by the company that publishes the software (or the arms-length contractor they paid to build it). Open source provides three advantages here: first, the opportunity to tap the knowledge of the world's best developers, not just those on one organization's payroll. Second, the number of potentially contributing developers and thus the potential knowledge pool is orders of magnitude larger. Finally, open source software gets adapted in variety of use cases, not just the one the publisher originally intended, surfacing bugs and edge cases much more rapidly than traditional QA processes.
+**Given enough eyeballs, all bugs are shallow** (Linus's Law): Empirically, open collaborative work [tends to produce better quality software than its proprietary or alternative counterparts](https://dwheeler.com/oss_fs_why.html). With proprietary frameworks, the only developers that can potentially detect, diagnose, and resolve software bugs are those that happen to be employed by the company that publishes the software (or the arms-length contractor they paid to build it). Open source provides three advantages here: first, the opportunity to tap the knowledge of the world's best developers, not just those on one organization's payroll. Second, the number of potentially contributing developers and thus the potential knowledge pool is orders of magnitude larger. Finally, open source software gets adapted in variety of use cases, not just the one the publisher originally intended, surfacing bugs and edge cases much more rapidly than traditional QA processes.
 
 **Modern software development practices:** Open source software is more than simply "published" code. You'd be hard-pressed to find an open source project that follows outdated command-and-control development philosophies. Open source projects all but necessitate modern software development workflows. These workflows are electronic (meaning process is naturally captured and exposed), asynchronous (meaning decisions are time and location agnostic), and lock-free (meaning contributors can rapidly experiment without prior approval). 
 
@@ -89,13 +97,13 @@ Open source allows for greater transparency of process, whether that's the trans
 
 ### Sustainability
 
-**Upstream improvements:** When consuming open source software, it's in the institution's best interest to contribute back. Contributions can be in the form of reporting bugs, or even submitting proposed fixes. Since software is written by humans, it's highly unlikely to be perfect, and even if so, likely doesn't satisfy every use case. Rather than forking the project and implementing changes into your own version, submitting bug reports and improvements upstream allows the consumer to more easily continue to benefit from the subsequent fixes and improvements submitted by others.
+**Upstream improvements:** When consuming software in a trade group, it's in the institution's best interest to contribute back. Contributions can be in the form of reporting bugs, or even submitting proposed fixes. Since software is written by humans, it's highly unlikely to be perfect, and even if so, likely doesn't satisfy every use case. Rather than forking the project and implementing changes into your own version, submitting bug reports and improvements upstream allows the consumer to more easily continue to benefit from the subsequent fixes and improvements submitted by others.
 
 **Interoperability:** Open source software is much better at adhering to open standards than proprietary software is. If interoperability with other businesses, computers, and users has a high value, and B2B parties don't want to be limited by proprietary data formats, open source software is definitely the way to go.
 
-**Auditability:** With closed source software, there is little but the vendor's claims assuring that they're keeping the software secure and adhering to standards. It's basically a leap of faith. The visibility of the code behind open source software, however, means all developers can monitor compliance.
+**Auditability:** With AEF standards, there is little but the vendor's claims assuring that they're keeping the software secure and adhering to standards. It's basically a leap of faith. The visibility of the code behind open source software, however, means all developers can monitor compliance.
 
-Finally, **Shifting development from low-value work to high-value work:** In open source communities we often hear that all the easy problems have already been solved. Blogging, content management, and perating systems are all problems with established (and mainstream) open source solutions, to name a few. While your developers could spend their time reinventing wheels that the open source community have already perfected, it's far preferable to use the worlds best wheel, especially when that wheel comes at no cost to you. This frees developers up to work on yet-unsolved challenges, the types of challenges that are unique to and add value to your organization's mission. Why not stand on the shoulders of technology giants?
+Finally, **Shifting development from low-value work to high-value work:** In communities we often hear that all the easy problems have already been solved. Blogging, content management, and perating systems are all problems with established (and mainstream) solutions, to name a few. While your developers could spend their time reinventing wheels that the community have already perfected, it's far preferable to use the worlds best wheel, especially when that wheel comes at no cost to you. This frees developers up to work on yet-unsolved challenges, the types of challenges that are unique to and add value to the organization's mission. Why not stand on the shoulders of technology giants?
 
 `GitHub` Cofounder Tom Preston-Werner lays out additional arguments in his 2011 post [Open Source (Almost) Everything](https://tom.preston-werner.com/2011/11/22/open-source-everything.html)
 
@@ -139,7 +147,7 @@ There are likely other reasons to prefer consuming, publishing,collaborating on,
 
 ### [Gartner Data & Analytics Summit -- Americas](https://reg.gartner.com/flow/gartner/bi19v/attportal/page/home) Debrief
 
-This week's three days of polished, produced virtual sessions covered a range of analytics topics. Most talks are presented at a technical level for a busy CIO or other C-suite executive responsible for analytics services delivery to a large business. The book recommendation below, "Loonshots," comes from one of the guest keynote addresses. I did note, though, that our roundtable breakout represented a wide variety of institutions. It has been difficult to realize the value of engaging the community in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
+This week's three days of polished virtual sessions covered a wide range of analytics topics. Most talks are presented at a technical level for a busy CIO or other C-suite executive responsible for analytics services delivery to a large business. The book recommendation above, "Loonshots," comes from one of the guest keynote addresses. I did notice, though, that our roundtable breakouts represented a wide variety of institutions. It has been difficult to realize the full value of engaging the community for advice in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
 
 ------------------------------------------------------------------------
 
@@ -171,14 +179,6 @@ with [Frans van Dunné](https://www.fransvandunne.com/), Chief Data Officer at [
 As a contrast to Gartner's generic, paywalled C-suite survey advisory approach, in this conversation IIA's Ken Sanford shares his hands-on experience along with a simple, effective framework for making data science tool stack choices, informed by specific needs, not by sales hype.
 
 Buy or build? Packaged analytics software or custom? These are false choices. The challenges in terms of business opportunities, talent constraints, compute trade-offs and data availability are highly contextual, and each company needs to architect its own stack for its own needs.
-
-------------------------------------------------------------------------
-
-## Book Recommendation
-
-<a href="https://www.amazon.com/Loonshots-Nurture-Diseases-Transform-Industries/dp/1250185963"><img src="https://images-na.ssl-images-amazon.com/images/I/41xeO-IKMUL._SX327_BO1,204,203,200_.jpg" alt="Loonshots: How to Nurture the Crazy Ideas That Win Wars, Cure Diseases, and Transform Industries" width="400"/></a>
-
-> Why do good teams kill great ideas? Loonshots reveals a surprising new way of thinking about the mysteries of group behavior that challenges everything we thought we knew about nurturing radical breakthroughs.
 
 ------------------------------------------------------------------------
 
