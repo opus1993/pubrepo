@@ -58,7 +58,7 @@ Henry Ford became a folk hero of sorts that decade by championing technology sha
 
 Now, in the 21st century, the major growth businesses have benefited themselves from standardized and scaled infrastructure, often in the form of **open source** software frameworks, made possible with similar thinking. These include HTML, Unix, Android, Python, R, and many others. By augmenting parallel efforts, open source makes a society more efficient at producing higher quality products, like the mobile phone Mr. Myers mentioned above. 
 
-![AgStack Logo](https://agstack.org/wp-content/uploads/sites/7/2021/04/agstack-color-site2-01.svg)
+<a href="https://agstack.org/about/"><img src="https://agstack.org/wp-content/uploads/sites/7/2021/04/agstack-color-site2-01.svg" alt="AgStack: A Linux Foundation Project" width="400"/></a>
 
 Announced this week, [AgStack](https://agstack.org/about/) is new open source project designed to foster collaboration across global supply chains. Members and partners include Purdue University OATS, IBM, NIAB, Agralogics, OpenTeam, the Produce Marketing Association, and many others. Three reasons for getting involved:
 
