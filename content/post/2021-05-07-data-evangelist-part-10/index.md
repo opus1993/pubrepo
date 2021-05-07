@@ -153,7 +153,9 @@ There are likely other reasons to prefer consuming, publishing,collaborating on,
 
 ### [Gartner Data & Analytics Summit -- Americas](https://reg.gartner.com/flow/gartner/bi19v/attportal/page/home) Debrief
 
-This week's three days of polished virtual sessions covered a wide range of analytics topics. Most talks are presented at a technical level for a busy CIO or other C-suite executive responsible for analytics services delivery to a large business. The book recommendation above, "Loonshots," comes from one of the guest keynote addresses. I did notice, though, that our roundtable breakouts represented a wide variety of institutions. It has been difficult to realize the full value of engaging the community for advice in the COVID era, though Gartner's media tool is better than most. I've brought back some materials for sharing with peers.
+This week's three days of polished virtual sessions covered a wide range of analytics topics. Most talks were presented at a technical level for a busy CIO or other C-suite executive responsible for analytics services delivery to a large business. The book recommendation above, "Loonshots," comes from one of the guest keynote addresses. I did notice that our roundtable breakouts represented a wide variety of institutions. It has been difficult to realize the full value of engaging the community for advice in the COVID era, though Gartner's media tool is better than most. 
+
+I've brought back some materials for sharing with peers. All of their presentations close with links back to related research reports.
 
 ------------------------------------------------------------------------
 
@@ -162,6 +164,8 @@ This week's three days of polished virtual sessions covered a wide range of anal
 These are opportunities to engage and learn about analytics, data science, and AI from peers.
 
 :star: May 17 [Comparing {lightgbm} to other Gradient Boosted Decision Tree libraries](https://www.google.com/url?q=https://www.meetup.com/nyhackr/events/277831968&sa=D&source=calendar&usd=2&usg=AOvVaw34CH9FaHrV2CdwP-rXGWUh) with James Lamb 
+
+:star: May 18-20 Gartner Data & Analytics Summit EMEA
 
 :star: May 19 [No More Dashboards: Why Employees Aren't Using Data and What to do About It](https://www.meetup.com/acm-chicago/events/277629843/) with Nate Nichols of Narrative Science
 
@@ -182,7 +186,7 @@ with [Frans van Dunné](https://www.fransvandunne.com/), Chief Data Officer at [
 
 {{< youtube Vtwk2B--uL0 >}}
 
-As a contrast to Gartner's generic, paywalled C-suite survey advisory approach, in this conversation IIA's Ken Sanford shares his hands-on experience along with a simple, effective framework for making data science tool stack choices, informed by specific needs, not by sales hype.
+As a contrast to Gartner's generic, paywalled C-suite survey advisory approach, in this conversation IIA's Ken Sanford shares his hands-on experience along with a simple, effective framework for making data science tool stack choices.
 
 Buy or build? Packaged analytics software or custom? These are false choices. The challenges in terms of business opportunities, talent constraints, compute trade-offs and data availability are highly contextual, and each company needs to architect its own stack for its own needs.
 
