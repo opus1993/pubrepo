@@ -14,7 +14,7 @@ draft: false
 image:
   caption: "Photo by Hugo Kemmel for Unsplash"
   focal_point: "Bottom"
-  preview_only: true
+  preview_only: false
 projects: []
 ---
 
@@ -64,7 +64,7 @@ To make a **good decision**, I want to identify people I respect who are well-in
 
 ## How can leaders educate themselves on the value of data and the opportunity that it presents?
 
-I doubt that business leaders in 2021 are working with a knowledge deficit. Some leader's goals, however, might not be aligned. [Tom Davenport](https://www.tomdavenport.com/about/) and many others have been writing on the topic for many years. In 2019, he wrote:
+I doubt that business leaders in 2021 are working with a knowledge deficit on data. Some leader's goals, however, may not be aligned on the mission. [Tom Davenport](https://www.tomdavenport.com/about/) has been writing on the topic for many years. In 2019, for example:
 
 > [More than a decade after the concept of big data became part of the lexicon, only a minority of companies have become insight-driven organizations...](https://www2.deloitte.com/us/en/insights/topics/analytics/insight-driven-organization.html)
 
