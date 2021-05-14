@@ -14,9 +14,14 @@ draft: false
 image:
   caption: "Photo by Dylan Gillis for Unsplash"
   focal_point: "Bottom"
-  preview_only: false
+  preview_only: true
 projects: []
 ---
+
+Bi-weekly Fleet and Farm flash demonstration event, global teams, end of spring showcase
+
+
+
 
 In the news this month, 
 
@@ -72,7 +77,15 @@ Chief Data Strategist Role
 to quickly engineer and productionize
 massive pools of new data
 
+-----
 
+## Chevron at Informs
+
+
+
+----
+
+## Obsidian flash cards plug in
 
 
 
