@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-Technology on its own will never be enough. To have a tangible, sustainable impact on decision making in our company, through our network, and across our industry, we build productive, effective, and collaborative teams. This post covers highlights from the world we work in, including:
+Technology on its own will never be enough. To have a tangible, sustainable impact on decision making in our company, through our network, and across our industry, we build productive, effective, diverse, collaborative teams of people. This post covers highlights from the world we work in, including:
 
 -   We Predict,
 -   Building teams panel,
@@ -77,7 +77,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ## What will it mean to farm in the future?
 
-Rhishi Pethe works as a product manager on Project Mineral at Alphabet X, focused on sustainable agriculture. He writes this weekly newsletter and a companion blog to learn, connect, and to build a community to drive meaningful change. Check it out, subscribe, and punch that "like" button.
+Rhishi Pethe is a product manager on Project Mineral at Alphabet X (Google), focused on sustainable agriculture. He writes this weekly newsletter and a companion blog to learn, connect, and to build a community to drive meaningful change. Check it out.
 
 ------
 
