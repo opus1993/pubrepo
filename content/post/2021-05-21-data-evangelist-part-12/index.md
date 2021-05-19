@@ -18,9 +18,9 @@ image:
 projects: []
 ---
 
-Technology on its own will never be enough. To have a tangible, sustainable impact on decision making in our company, through our network, and across our industry, we build productive, effective, diverse, collaborative teams of people. This post covers highlights from the world we work in, including:
+Technology on its own will never be enough. To have a tangible, sustainable impact on decision making we actually have to build teams of people. This post covers highlights from the world we all work in, including:
 
--   We Predict,
+-   Service provider **We Predict**,
 -   Building teams panel,
 -   Upcoming events,
 -   What will it mean to farm in the future?,
