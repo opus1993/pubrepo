@@ -9,7 +9,7 @@ tags:
   - Data Science
 date: 2021-05-21
 featured: false
-draft: true
+draft: false
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
   caption: "Photo by Hugo Kemmel for Unsplash"
@@ -18,9 +18,7 @@ image:
 projects: []
 ---
 
-
-
- On that theme, this brief post will cover:
+Technology on its own will never be enough. To have a tangible, sustainable impact on decision making in our company, through our network, and across our industry, we build productive, effective, and collaborative teams. This post covers highlights from the world we work in, including:
 
 -   We Predict,
 -   Building teams panel,
@@ -79,7 +77,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ## What will it mean to farm in the future?
 
-Rhishi Pethe works as a product manager on Project Mineral at Alphabet X, focused on sustainable agriculture. He writes this weekly newsletter and a companion blog to learn, connect, and to build a community to drive meaningful change.
+Rhishi Pethe works as a product manager on Project Mineral at Alphabet X, focused on sustainable agriculture. He writes this weekly newsletter and a companion blog to learn, connect, and to build a community to drive meaningful change. Check it out, subscribe, and punch that "like" button.
 
 ------
 
