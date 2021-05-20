@@ -39,7 +39,7 @@ The glitzy marketing side of data science has a really combative vibe. One might
 
 There are agendas at work in telling us who gets access, who gets to be smart, who gets to be technical, who gets to use what. Our community of practice has to push back on the gatekeeping and be much more open. If that makes it less "magic," so be it. (adapted from [Dr. Cat Hicks](https://twitter.com/grimalkina/status/1395058552260075522))
 
-The proprietary walled gardens of SAS, Salesforce and others are beginning to crumble. I do wonder if this is a factor.
+The proprietary walled gardens of SAS, Salesforce, Matlab and others are beginning to crumble. I do wonder if this is a factor.
 
 ----
 
@@ -102,7 +102,15 @@ Rhishi Pethe is a product manager on Project Mineral at Alphabet X (Google), foc
 
 The critical thing to know about data engineering for analytics is that by making data analysis and operations more efficient, it unlocks a huge number of use cases that were impractical before. Out in startup world - this probably isn't huge news. Many have already recognized the value and importance of analytics engineering. That's going to continue and accelerate. There are huge potential applications in research, in academia, and in civic life. The big story of the past decade has been a lot of organizations drowning in data and unsure how to manage it all. Analytics engineering presents an answer to that question.
 
------
+{{<tweet 1395374178631626753>}}
+
+So [what makes a data analyst excellent?](https://towardsdatascience.com/what-makes-a-data-analyst-excellent-17ee4651c6db)
+
+The answer:  speed.
+
+Is the infrastructure and governance in place today optimized for speed? I've often thought that benchmarking our incumbent analysts, in any functional group setting, would provide an executive team with important strategic information, that they often lack when sitting across from software salespeople.
+
+----
 
 ## Iwao Fusillo
 
