@@ -35,9 +35,9 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ## Gatekeeping
 
-The glitzy marketing side of data science has a really combative vibe. When you make it to the 'inner circle' through the gatekeeping, you'll get to be a person doing 'magic' for insight-hungry stakeholders. There is an enormous empathy cliff to understand here. Folks are less hungry for data than they are hungry for *partnership* and genuine collaboration. There are lots of people in this world trying to use data as a means to an end, no doubt. But there is a growing awareness of all the ways data science disappoints, and there are other options for how this all works. 
+The glitzy marketing side of data science has a really combative vibe. One might think that when you make it to the 'inner circle' through all the gatekeeping, you'll get to be a person doing 'magic' for insight-hungry stakeholders. There is an enormous empathy cliff to understand here. Folks are less hungry for data than they are hungry for *partnership* and genuine collaboration. There are lots of people in this world trying to use data as a means to an end, no doubt. But there is a growing awareness of all the ways data science disappoints, and there are so many options for how this all works. 
 
-There are agendas at work in telling us who gets access, who gets to be smart, who gets to be technical, who gets to use what. Our community of practice has to push back. If that makes it less "magic," so be it. (adapted from [Dr. Cat Hicks](https://twitter.com/grimalkina/status/1395058552260075522))
+There are agendas at work in telling us who gets access, who gets to be smart, who gets to be technical, who gets to use what. Our community of practice has to push back on the gatekeeping and be much more open. If that makes it less "magic," so be it. (adapted from [Dr. Cat Hicks](https://twitter.com/grimalkina/status/1395058552260075522))
 
 The proprietary walled gardens of SAS, Salesforce and others are beginning to crumble. I do wonder if this is a factor.
 
@@ -69,6 +69,8 @@ Data science leaders from Warner Music Group, T-Mobile, Saturn Cloud, The Looma 
 These are opportunities to engage and learn about analytics, data science, and AI from peers.
 
 :star: May 25 [R in Supply Chain Management](https://www.meetup.com/RStudio-Enterprise-Community-Meetup/events/277113742/) Nicolas Nguyen, Digital Supply Chain and Global S&OP Leader for Carl Zeiss Meditec
+
+:star: May 25 [Closing the Analytical Talent Gap: An Executive’s Guide to Working with Universities](https://info.iianalytics.com/webmail/12372/910581255/06a26e354dab858b1486a724643a977aeb93fcd32c0e61e119c78ad0b7f0d739) 
 
 :star: May 26 [Automating business processes](https://www.meetup.com/Cleveland-UseR-Group/events/277370785/) with [Frans van Dunné](https://www.fransvandunne.com/), Chief Data Officer at [ixpantia](https://www.ixpantia.com/)
 
