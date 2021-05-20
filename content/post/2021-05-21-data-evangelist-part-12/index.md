@@ -62,6 +62,10 @@ Data science leaders from Warner Music Group, T-Mobile, Saturn Cloud, The Looma 
 - How their teams prioritize and deliver work in a way that adds value to their organizations, while also maintaining credibility even when the results aren’t necessarily good news.
 - Their advice for advancing your own data science career and collaborating with non-data-science stakeholders.
 
+{{<youtube ceCQh73dU98>}}
+
+Sean Taylor is a Data Scientist and former Head of Lyft Rideshare Labs, and specializes in methods for solving causal inference and business decision problems. Previously, he was a Research Scientist on Facebook's Core Data Science team. In this conversation, note the way he describes how their team goes about statistically determining ETA (Estimated Time of Arrival) and engaging the business on customer satisfaction measures.
+
 -----
 
 ## Upcoming Events
