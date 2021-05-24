@@ -1,5 +1,5 @@
 ---
-date: "2021-04-01"
+date: "2021-05-24"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -44,7 +44,6 @@ Other books for students starting from Excel and basic statistics:
 | [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) | by [Roger Peng](https://twitter.com/rdpeng)|
 | [Big Book of R](https://www.bigbookofr.com/) | includes about 150 links to other Books |
 | **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** |by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)|
-| [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/) |by [Roger Peng](https://twitter.com/rdpeng) |
 | [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)|by [Chester Ismay](https://twitter.com/old_man_chester) and [Albert Kim](https://twitter.com/rudeboybert)|
 | [R in a Nutshell](https://paulvanderlaken.files.wordpress.com/2017/08/r_in_a_nutshell.pdf) |by [Joseph Adler](https://twitter.com/jadler)|
 | [Learning Statistics with R](https://learningstatisticswithr.com/) |by [Danielle Navarro](https://twitter.com/djnavarro)|
@@ -53,6 +52,8 @@ Other books for students starting from Excel and basic statistics:
 | [Answering questions with data](https://crumplab.github.io/statistics/) |by [Matt Crump](https://twitter.com/MattCrump_)|
 | [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/) | by [Russ Poldrack](https://twitter.com/russpoldrack) |
 | [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/) | by [Martin Monkman](https://twitter.com/monkmanmh)|
+
+Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.html), or at least the early chapters. It's not as well written as more modern documentation, but it is important in being able to understand older legacy code.
 
 ----
 ## Online Courses
@@ -67,6 +68,7 @@ Other books for students starting from Excel and basic statistics:
 | [R Coder](https://r-coder.com/learn-r/) | y Español |
 | **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** |by [Jenny Bryan](https://twitter.com/JennyBryan)|
 | [Contribute to an open-source project on GitHub](https://docs.microsoft.com/en-us/learn/modules/contribute-open-source/?WT.mc_id=opensource-0000-davidsmi)| Microsoft|
+| [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/) |by [Roger Peng](https://twitter.com/rdpeng) |
 | [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
 | [YaRrr! The Pirate’s Guide to R (Video)](https://www.youtube.com/playlist?list=PL9tt3I41HFS9gmeZFEuNrnu_7V_NFngfJ) |by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)|
 | [Johns Hopkins Chromebook Data Science (CBDS)](http://jhudatascience.org/chromebookdatascience/cbds.html)
@@ -157,12 +159,11 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 ## Machine Learning
 Mastery of the wide array of Machine Learning techniques in real business contexts requires a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We're smart. Just wing it, right? *This is a bad idea.*
 
-The leading edge of thinking in many ML areas is changing rapidly. These are a starting point:
+The leading edge of thinking in many ML areas is changing rapidly. These are a good starting point:
 
 |     |    |
 |:----|:---|
-| **Data Science for Business** |by Provost and Fawcett (2013 O'Reilly)| 
-| **Practical Machine Learning in R** | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
+| [Data Science for Business](http://pages.stern.nyu.edu/~fprovost/) |by Provost and Fawcett ([2013 O'Reilly](https://www.oreilly.com/library/view/data-science-for/9781449374273/))| 
 | [Introduction to Computational Thinking and Data Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/)| Grimson, Guttag, and Bell |
 
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
@@ -174,15 +175,17 @@ For a glimpse into the R environment ML frameworks, consider these resources:
 |:---|:---|
 | [Tidy Modeling with R](https://www.tmwr.org/) |by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)|
 | [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/) |by [Max Kuhn](https://twitter.com/topepos) and Kjell Johnson|
+| [Supervised Machine Learning for Text Analysis in R](https://www.hvitfeldt.me/blog/smltar-announcement/)| by [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt) and [Julia Silge](https://twitter.com/juliasilge)
 | [Jared Lander](https://www.jaredlander.com/talks/)'s talks
+| [An Introduction to Statistical Learning](https://www.statlearning.com/) | 2nd edition coming Summer 2021
+| [An Introduction to Statistical Learning Labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) | `tidymodels` examples |
+| [Practical Machine Learning in R](https://www.wiley.com/en-us/Practical+Machine+Learning+in+R-p-9781119591535) | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
 
 {{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
 |    |    |
 |:---|:---|
 | [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha) on Azure
-| [Javier Lurachi's mlverse videos](https://www.youtube.com/c/mlverse/videos)
 | [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
-| [torch for R](https://torch.mlverse.org/)
 | [Deep Learning](https://www.deeplearningbook.org/)
 
 ----
@@ -210,16 +213,13 @@ For a glimpse into the R environment ML frameworks, consider these resources:
 A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-support-program) organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the [open source](https://jimgruman.netlify.app/post/open-source/) R community to lift one another up and recognize efforts. The software is "free" as in speech, not as in beer. If you learn something useful and encounter a [buy me coffee](https://www.buymeacoffee.com/) button, be sure to offer  a cup of java to the presenter in return.
 |    |    |
 |:---|:---|
-| [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, and career tips |
+| [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, birds-of-a-feature groups, and career tips |
 | [R Views](https://rviews.rstudio.com/)| the RStudio blog |
-| [Chicago R Users Group](https://chicago-r-user-group.github.io/)
-| [Chicago R Collaborative](https://chircollab.github.io/)
 | **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** |by [R4DS](https://twitter.com/rstats4ds) and  [Ten reasons why I love Tidy Tuesday](https://jimgruman.netlify.app/post/ten-reasons-why-i-love-tidy-tuesday/)|
 | [TidyTuesday Tweets](https://www.notion.so/8cfed86c707e4974b2f483716c35bac3?v=7e87113d8a7946fdaeeafd7cdaf69598) |  curated by [Silvia Canelón](https://twitter.com/spcanelon) |
 | [WhyR Foundation](http://whyr.pl/foundation/webinars)
 | [Simply Statistics](https://simplystatistics.org/) |by Rafa Irizarry, Roger Peng, and Jeff Leek|
-| [R User Group Meetups Worldwide](https://www.meetup.com/pro/r-user-groups/) | 87 chapters sponsored by the R Consortium |
-| [New York Open Statistical Programming Meetup](https://www.meetup.com/nyhackr/)
+| [R User Group Meetups Worldwide](https://www.meetup.com/pro/r-user-groups/) | ~89 chapters sponsored by the R Consortium |
 | [themockup](https://themockup.blog/)|by [Thomas Mock](https://twitter.com/thomas_mock) |
 | [Win Vector blog](https://win-vector.com/blog-2/) | by Dr. John Mount and Dr. Nina Zumel|
 | [RevolutionAnalytics](https://blog.revolutionanalytics.com/)| by [David Smith](https://twitter.com/revodavid)|
@@ -241,12 +241,11 @@ The [Business Science University](https://www.business-science.io/) team has bui
 | [Plant out of Place](https://plantoutofplace.com/) |by [Andrew Kniss](https://twitter.com/WyoWeeds) on agriculture|
 | [Ag Data News](https://asmith.ucdavis.edu/news) | by [Aaron Smith](https://twitter.com/ASmithUCD)|
 | [AllYourBayes](https://www.allyourbayes.com/)| by [Domenic  Di Francesco](https://twitter.com/Domenic_DF)|
-| [datamethods](https://discourse.datamethods.org/) |Where statisticians, epidemiologists, informaticists, machine learning practitioners, and other research methodologists discuss issues related to data: research methods, quantitative methods, study design, measurement, statistical analysis, interpretation of data and statistical results, clinical trials, journal articles, statistical graphics, causal inference, medical decision making, and more.|
 | [Data Meets Narrative](http://www.rebeccabarter.com/blog/) |by [Rebecca Barter](https://twitter.com/rlbarter)|
 | [Jake Rozran Learns Data Science](https://www.jakelearnsdatascience.com/post/) | by [Jake Rozran](https://twitter.com/StatsManPHL) |
 | [RCrastinate ](http://rcrastinate.rbind.io/) | by [Sascha Wolfer](https://twitter.com/sascha_wolfer)|
 | [Colin Fraser](https://colin-fraser.net/)
-| [rgeomatic](https://rgeomatic.hypotheses.org/category/r-en)
+| [rgeomatic](https://rgeomatic.hypotheses.org/category/r-en) | geospatial topics |
 | [Arnaud Amsellem](http://www.thertrader.com) |for quantitative finance|
 | [Ted Laderas](http://laderast.github.io/) |on Bioinformatics and Computational Biology|
 | [r4stats.com](http://r4stats.com/blog/)
