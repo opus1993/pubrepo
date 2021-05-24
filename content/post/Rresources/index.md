@@ -55,6 +55,8 @@ Other books for students starting from Excel and basic statistics:
 
 Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.html), or at least the early chapters. It's not as well written as more modern documentation, but it is important in being able to understand older legacy code.
 
+One of the R4DS Book Clubs is currently jointly reading [Practical Statistics for Data Scientists](https://www.oreilly.com/library/view/practical-statistics-for/9781492072935/). There is a [Slack channel](http://r4ds.io/join) and [YouTube channel](https://www.youtube.com/watch?v=yuFdAZvdyg8&list=PL3x6DOfs2NGiKx4kSh_YeLDoKYJRGn9pV) available if you would like to join in.
+
 ----
 ## Online Courses
 |     |    | 
@@ -107,7 +109,7 @@ In this little book, David Robinson introduces powerful tools for handling uncer
 So why is Empirical Bayes worth learning? These methods are especially well suited for many modern applications of data science.
 
 <a href="https://gumroad.com/l/empirical-bayes">
-         <img alt="Introduction to Empirical Bayes" src="https://static-2.gumroad.com/res/gumroad/5593696892949/asset_previews/b4389a17ef026304160aed044e1f5f9d/retina/unnamed.png"
+         <img alt="Introduction to Empirical Bayes" src="https://public-files.gumroad.com/variants/070hlmq86og1qo2kgb3tl2fgwkbi/35a9dc65b899b4bc9688c9aa5d9d6d5f21c77fd36a53b6adc66ca71a81bc9933"
          width=335"></a>
 
 ----
