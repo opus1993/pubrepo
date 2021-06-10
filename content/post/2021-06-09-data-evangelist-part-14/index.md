@@ -33,7 +33,7 @@ In this week's post it leads me to the question:
 Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work. The content:
 
 - Data Science Education
-- The APEX Predator of Strategy
+- The Apex Predator of Strategy
 - Buzzword Bing
 - Upcoming Events
 - and two book recommendations
@@ -91,7 +91,7 @@ We live in a world where software producers are continually making things easier
 
 {{<tweet 1402992554128207884>}}
 
-## The APEX Predator of Strategy
+## The Apex Predator of Strategy
 
 An effective Chief Data Scientist is
 
@@ -105,7 +105,7 @@ An effective Chief Data Scientist is
 
 I am re-stating some of the points from an [earlier post](https://jimgruman.netlify.app/post/2021-03-26-data-evangelist-part-5/) because C-suites (CEO/CIO/CFO/CTO...) are absolutely overwhelmed by powerpoint hand-wavers.
 
-The data science has team has evidence and robust, rigorous processes, and as such are the most powerful strategic practitioners in the enterprise. Each data scientist is at the rare intersection of evidentiary, experimentally driven thesis and execution.
+In contrast, the data science team has evidence and robust, rigorous processes, and as such are the most powerful strategic practitioners in the enterprise. Each data scientist is at the rare intersection of evidentiary, experimentally driven thesis and execution.
 
 🚨 sarcasm ahead 🚨
 
