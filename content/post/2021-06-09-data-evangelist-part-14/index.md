@@ -20,7 +20,7 @@ projects: []
 
 [#SLICED](https://www.notion.so/SLICED-Show-c7bd26356e3a42279e2dfbafb0480073) is the hot new real time data science competition hosted by [Nick Wan](https://twitter.com/nickwan) and [Meg Risdal](https://twitter.com/MeganRisdal). Each Tuesday evening four of the best  in the business live-code for two hours to explore, analyze, and model a never-seen Kaggle dataset for points and prestige. 
 
-A sizable fan base watches and interacts with the hosts via chat, with a little bit of snark and fun mixed in. Learning about the contestants backgrounds gives the sense that there is room here for everyone in the community. The best part of #SLICED is that YOU as a viewer can participate with the same starting dataset. There are not many places where you can learn how your skills and tools stack up against others this way. 
+A sizable fan base watches and interacts with the hosts via chat, with a little bit of snark and fun mixed in. Learning about the contestant's backgrounds gives the sense that there is room here for everyone in this diverse community. The best part of #SLICED is that YOU as a viewer can participate with the same starting dataset. There are not many places where you can learn how your skills and tools stack up against others this way. 
 
 One of the contestants this week was [Julia Silge](https://twitter.com/juliasilge), a physics and astronomy PhD that today works as a software engineer. In this [recent podcast](https://nssdeviations.com/134-special-guest-julia-silge?tdest_id=743150), she was interviewed on the tools her team is developing and how they envision them being applied in data science curricula and in industry. She reflects on [a recent panel conversation with executives](https://www.rstudio.com/resources/webinars/building-effective-data-science-teams/) where the maturity of the team and the maturity of the data science field more broadly is measured more by doing the work that matters, by effective communications, and by strategic thinking. 
 
@@ -111,9 +111,9 @@ In contrast, the data science team has evidence and robust, rigorous processes, 
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:6802868573795704832" height="1051" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
-Coming full circle back to the #SLICED competition, the near term choices that a data scientist makes, like the use of python, or a specific cloud service, or a software, are all tactics. If it's on #SLICED, its two hours of entertaining tactics.
+Coming full circle back to the #SLICED competition, the near term choices that a data scientist makes, like the use of python, or a specific cloud service, or a software, are all tactics. If it's on #SLICED, it is two hours of entertaining tactics.
 
-Experts create a culture of mentorship and growth. Experts do work that has impact. Experts communicate effectively. And experts think strategically.
+Experts create a culture of mentorship and growth. Experts do work that has impact. Experts communicate effectively. And experts think and work strategically.
 
 ----
 
