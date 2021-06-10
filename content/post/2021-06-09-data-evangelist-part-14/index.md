@@ -101,7 +101,7 @@ An effective Chief Data Scientist is
 
 1) a leader of a small, high-impact team. They must build the unit and make it more efficient and more effective, both in building products directly and in mentoring the dotted-line staff embedded out in functional groups.
 
-1) a chief strategist, building the AI strategy for the company in the pursuit of leverage in competitive zero sum marketplaces with limited resource pools. Obviously, the enterprise expects to exploit advantages, to compete in arenas where they enjoy an edge. To to this, models are developed for planning, mapping customer engagement, and understanding contingencies for the dynamics of the marketplace. When successfully leveraging machine learning, the business changes.
+1) a chief strategist, building the AI strategy for the company in the pursuit of leverage in competitive zero sum marketplaces with limited resource pools. Obviously, the enterprise expects to exploit advantages, to compete in arenas where they enjoy an edge. To accomplish this, models are developed for planning, mapping customer engagement, and understanding contingencies for the dynamics of the marketplace. When successfully leveraging machine learning, the business changes.
 
 I am re-stating some of the points from an [earlier post](https://jimgruman.netlify.app/post/2021-03-26-data-evangelist-part-5/) because C-suites (CEO/CIO/CFO/CTO...) are absolutely overwhelmed by powerpoint hand-wavers.
 
@@ -162,7 +162,13 @@ These are opportunities to engage and learn about analytics, data science, and A
 <a href="https://bookdown.org/roback/bookdown-BeyondMLR/"><img src="https://bookdown.org/roback/bookdown-BeyondMLR/data/book_cover.jpg" alt="Beyond Multiple Linear Regression
 " width="400"/></a>
 
-------
+----
+
+A final note: These are exciting times to be solving problems in agriculture, regardless of the color of the equipment. Lee makes a compelling pitch.
+
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6808526625324564480" height="614" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+----
 
 ## Related posts
 
