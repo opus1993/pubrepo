@@ -40,6 +40,12 @@ Whatever prompted you to read this, I hope that you come away with a handful of 
 
 ----
 
+Steve Bartos helped start the analytics effort at Worthington Industries, adding more and more use cases across the enterprise. It's worth the time to hear about their levels of expertise and the definitions of roles. (23 minutes)
+
+<iframe style="border: none" src="//html5-player.libsyn.com/embed/episode/id/17190638/height/90/theme/custom/thumbnail/yes/direction/backward/render-playlist/no/custom-color/72afff/" height="90" width="100%" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
+
+----
+
 ## Data Science Education
 
 The [Harvard Data Science Review](https://hdsr.mitpress.mit.edu/) (HDSR) has hosted a diverse series of thought provoking articles on Data Science Education. The DS world has advanced so far since [Breiman's 2001 Two Cultures paper](http://staff.pubhealth.ku.dk/~tag/Teaching/share/material/Breiman-two-cultures.pdf), where he observed the diverging centers of thought in academia between what we know today as statistics versus data science. This is a new field. Recall that DJ Patil and Jeff Hammerbacher were the first titled “data scientists,” in about 2011. Breiman closes with:
