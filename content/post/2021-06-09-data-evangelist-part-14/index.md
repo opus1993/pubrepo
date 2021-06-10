@@ -26,7 +26,7 @@ One of the contestants this week was [Julia Silge](https://twitter.com/juliasilg
 
 <iframe style="border: none" src="//html5-player.libsyn.com/embed/episode/id/19357316/height/90/theme/custom/thumbnail/yes/direction/forward/render-playlist/no/custom-color/000000/" height="90" width="100%" scrolling="no"  allowfullscreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen></iframe>
 
-In this week's post it leads me to the question:  
+It leads me to the question, for this week's post:  
 
 > Just what is an expert in this field, anyway?
 
