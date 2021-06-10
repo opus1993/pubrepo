@@ -50,7 +50,7 @@ In [Tim Harford](https://twitter.com/TimHarford)'s [How to Make the World Add Up
 
 ### Experts are made, not born
 
-[The journey to superior performance is neither for the faint of heart nor for the impatient](https://hbr.org/2007/07/the-making-of-an-expert) (2007, HBR). The development of real expertise requires struggle and honest, often painful self-assessment. Individual accounts of expertise are notoriously unreliable, as demonstrated by measurable, consistently superior performance. 
+[The journey to superior performance is neither for the faint of heart nor for the impatient](https://hbr.org/2007/07/the-making-of-an-expert) (2007, HBR). The development of durable, tangible expertise requires struggle and honest, often painful self-assessment. Individual accounts of expertise are notoriously unreliable, as demonstrated by measurable, consistently superior performance. 
 
 The idea that you can improve performance by relaxing and “just trusting your gut” is popular in some circles. While it may be true that intuition is valuable in routine situations, informed intuition is the result of deliberate practice. No-one will consistently improve their ability to make decisions without considerable practice, reflection, and analysis.
 
