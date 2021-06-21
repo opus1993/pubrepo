@@ -20,11 +20,11 @@ projects: []
 
 Back in January, in the [first Evangelist post](http://localhost:4321/post/2021-01-22-data-evangelist/), I proposed digital initiatives like workshops, newsletters and guest blogs, meetups, learning lunches, hackathons, and creating opportunities for others to craft documentation. The thinking was that a culture that educates and empowers through data evangelism efforts will be one that would reap many benefits. 
 
-In a perfect world, every employee and executive works under a well-defined, well known set of duties and responsibilities.
+As I encounter more and more stakeholders on this journey, I am discovering that there is a vocabulary that we may each think we know, but we don't share the same understandings of what the words mean. In a perfect world, every employee and executive works under a well-defined, well known set of duties and responsibilities.
 
 Data science isn’t that world.
 
-As I encounter more and more stakeholders on this journey, I am discovering that there is a vocabulary that we may each think we know, but we don't share the same understandings of what the words mean. So for this, the fifteenth post of the series, we will focus on the question:
+So for this, the fifteenth post of the series, we will focus on the question:
 
 > Just what is machine learning?
 
