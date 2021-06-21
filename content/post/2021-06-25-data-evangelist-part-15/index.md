@@ -18,7 +18,11 @@ image:
 projects: []
 ---
 
-Back in January, in the [first Evangelist post](http://localhost:4321/post/2021-01-22-data-evangelist/), I proposed digital initiatives like workshops, newsletters and guest blogs, meetups, learning lunches, hackathons, and creating opportunities for others to craft documentation. The thinking was that a culture which educates and empowers employees through data evangelism efforts will be one that would reap many benefits. 
+Back in January, in the [first Evangelist post](http://localhost:4321/post/2021-01-22-data-evangelist/), I proposed digital initiatives like workshops, newsletters and guest blogs, meetups, learning lunches, hackathons, and creating opportunities for others to craft documentation. The thinking was that a culture that educates and empowers through data evangelism efforts will be one that would reap many benefits. 
+
+In a perfect world, every employee and executive works under a well-defined, well known set of duties and responsibilities.
+
+Data science isn’t that world.
 
 As I encounter more and more stakeholders on this journey, I am discovering that there is a vocabulary that we may each think we know, but we don't share the same understandings of what the words mean. So for this, the fifteenth post of the series, we will focus on the question:
 
@@ -118,6 +122,8 @@ Her executive summary:
 | Deep Learning Engineer (large-scale) | The NeurIPS, ICML, and ICLR contingent; these are the researchers you would expect to see hired at OpenAI, Google Brain, etc. | Jupyter/JupyterLab, PyCharm or VS Code |
 | Deep Learning Framework Builder | Authors of low-level APIs for TensorFlow, JAX, and PyTorch; distributed training frameworks, like Ray; and similar. | PyCharm or VS Code |
 | ML Ops Practitioner | The engineers who productionize ML systems; responsible for running, maintaining, and debugging ML pipelines (from ETL through deployment). Usually do not have a background in machine learning. | Visual Studio, VS Code, PyCharm (or other JetBrains tools) |
+
+Teams that have the best understanding of how each fits into the company’s goals are best positioned to deliver successful outcomes. No matter the role, accelerated computing infrastructure is also key to powering success throughout the pipeline as capabilities move from analytics to advanced AI.
 
 ----
 
