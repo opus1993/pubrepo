@@ -58,7 +58,7 @@ Artificial intelligence, machine learning, and neural networks are terms often u
 
 **Features** – input variables used for prediction or inference.
 
-**Feature engineering** – the process of determining which combinations and transformations of features that should be used in a machine learning model.
+**Feature engineering** – the process of determining which combinations and transformations of features should be used in a machine learning model.
 
 **Holdout data** – a random selection of data that is completely withheld from training data to be later used to test the model performance for overfitting.
 
@@ -160,11 +160,13 @@ How to create a great developer experience at our company...
 
 1) If they reach out directly to decisionmakers, be firm and clear with them that this is a violation of chain of command. DO NOT reach out to developers with surveys or 1o1s about how they find the DX at the company. (See above points about not making more work than we have to)
 
+🚨 end sarcasm 🚨
+
 ----
 
 ## R for Excel users
 
-In my senior year of undergraduate engineering, Lotus 1-2-3 replaced FORTRAN as the go-to tool for data analysis. Excel eventually replaced that as the killer app. The vast majority of users became fairly proficient with the tool in just days, building all sorts of reports and graphics. When you think about it, this is an amazing feature of Excel. Every day, all over the world, people open up a spreadsheet to do data entry and then, bit by bit, learn to do increasingly complex analytical tasks. Excel is a master at teaching people how to use Excel.
+In my senior year of undergraduate engineering, Lotus 1-2-3 replaced FORTRAN as the go-to tool for data analysis. Excel eventually replaced 1-2-3 as the killer app. The vast majority of users became fairly proficient with the tool in just days, building all sorts of reports and graphics. When you think about it, this is an amazing aspect of Excel. Every day, people open up a spreadsheet to do data entry and then, bit by bit, learn to do increasingly complex analytical tasks. Excel is a master at teaching people how to use Excel.
 
 R is not like that. 
 
@@ -218,7 +220,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 <a href="https://www.bigbookofr.com/"><img src="https://rzine.fr/publication/20210102_big_book_of_r/featured_hu78e119a2b20a9729ac08e064cff5daba_50225_720x0_resize_lanczos_2.png" alt="Analytics How Intelligence" width="400"/></a>
 
-This isn't a book to buy. Think of it as a page to bookmark as a resource to find other books.
+This isn't a book to buy. Think of it as a page to bookmark as a resource to find other books. [Oscar Baruffa](https://twitter.com/OscarBaruffa) maintains the listing as a public service. He is writing book on Data Science Project Management, and has recorded a handful of insightful videos on [job postings](https://oscarbaruffa.com/jobs/).
 
 ----
 
