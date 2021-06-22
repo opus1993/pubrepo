@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-Back in January, in the [first Evangelist post](http://localhost:4321/post/2021-01-22-data-evangelist/), I proposed digital initiatives like workshops, newsletters and guest blogs, meetups, learning lunches, hackathons, and creating opportunities for others to craft documentation. The thinking was that a culture that educates and empowers through data evangelism efforts will be one that would reap many benefits. 
+Back in January, in the [first Evangelist post](http://localhost:4321/post/2021-01-22-data-evangelist/), I proposed digital initiatives like workshops, newsletters and guest blogs, meetups, learning lunches, hackathons, and creating other opportunities. The thinking was that a culture that educates and empowers through data evangelism efforts will be one that would reap many benefits. 
 
 As I encounter more and more stakeholders on this journey, I am discovering that there is a vocabulary that we may each think we know, but we don't share the same understandings of what the words mean. In a perfect world, every employee and executive works under a well-defined, shared vocabulary.
 
@@ -46,15 +46,21 @@ Tarun Kataria has accumulated experience leading analytics efforts at Coca-cola,
 
 ## A Data Science Glossary
 
-Artificial intelligence, machine learning, and neural networks are terms often used synonymously, but their distinctions are important and some general awareness is needed to be able to function effectively in cross functional teams. While there's no need for non-data scientists to understand exactly how machine learning (ML) works, we all should understand enough to use the basic terms correctly. The following glossary covers the fundamentals.
+Artificial intelligence, machine learning, and neural networks are terms often used synonymously, but their distinctions are important and some general awareness is needed to be able to function effectively in cross functional teams. While there's no need for non-data scientists to understand exactly how machine learning (ML) works, we all should understand enough to use the basic terms correctly. The following [glossary](https://developers.google.com/machine-learning/glossary/) covers the fundamentals.  
 
-**A/B testing** – a user experience research methodology, used to compare two versions of a single object, typically by testing a response to variant A against variant B, and determining which of the two variants is more effective in achieving an objective.
+**A/B testing** – a statistical user experience research methodology, used to compare two (or more) techniques, typically an incumbent against a new rival. A/B testing aims to determine not only which technique performs better but also to understand whether the difference is significant. 
 
-**Clustering** – grouping objects based on similarity. For example, within an M&M population, the individuals within that population might be grouped by color or by type.
+**Bias** - Systematic error introduced by a sampling or reporting procedure. - or - Stereotyping, prejudice or favoritism towards some things, people, or groups over others. These will affect interpretation of data, the design of the system, and how users interact with a system.
 
-**Decision tree** –  a hierarchical flowchart-like structure in which each internal node represents a "test" on an attribute, each branch represents the outcome of the test, and each leaf node represents a class label. In machine learning, an optimized decision tree is one that minimizes a loss function, like miss-classification or regression error. Decision trees are simple to interpret and deploy.
+**Categorical** - Features having a discrete set of possible values. 
 
-**Deep learning** - a set of machine learning techniques that consist of sequences of layers, each consisting of a matrix of weights, with inputs and outputs to progressively extract higher-level features from the raw input. For example, in image processing, lower layers may identify edges, while higher layers may identify the concepts relevant to a human such as digits or letters or faces. The inter-connections of each layer resembles the neural connections in the human brain. 
+**Clustering** – grouping objects based on similarity. Many clustering algorithms exist. 
+
+**Decision tree** –  a flowchart-like structure in which each internal node represents a "test" on an attribute, each branch represents the outcome of the test, and each leaf node represents a class label. In machine learning, an optimized decision tree is one that minimizes a loss function, like miss-classification or regression error. Decision trees are simple to interpret and deploy.
+
+**Deep learning** - a set of machine learning techniques that consist of sequences of layers, each consisting of a matrix of weights, with inputs and outputs to progressively extract higher-level features from the raw input. For example, in image processing, lower layers may identify edges, while higher layers may identify the concepts relevant to a human such as digits or letters or faces. The inter-connections of each layer resembles the neural connections in the human brain.
+
+**Embeddings** - A categorical feature represented as a continuous-valued feature. Typically, an embedding is a translation of a high-dimensional vector into a low-dimensional space, built with a deep learning technique.
 
 **False negative** – a result that the model predicts to be negative but is in fact positive.
 
@@ -64,25 +70,47 @@ Artificial intelligence, machine learning, and neural networks are terms often u
 
 **Feature engineering** – the process of determining which combinations and transformations of features should be used in a machine learning model.
 
+**Federated learning** - A distributed machine learning approach that trains machine learning models using decentralized examples residing on devices such as smartphones. In federated learning, a subset of devices downloads the current model from a central coordinating server. The devices use the examples stored on the devices to make improvements to the model. Since the training examples are never uploaded, federated learning follows the privacy principles of focused data collection and data minimization.
+
 **Holdout data** – a random selection of data that is completely withheld from training data to be later used to test the model performance for overfitting.
 
 **Inference** – the theory, methods, and practice of forming judgments about the parameters of a population and their statistical relationships on the basis of random sampling and bootstrapping. Inference may suggest causality or how much the outcome changes when a given parameter changes.
+
+**Interpretability** - The degree to which a model's predictions can be readily explained to a general audience. Deep models are often non-interpretable; that is, a deep model's different layers can be hard to decipher. By contrast, linear regression models and decision trees are typically far more interpretable.
 
 **K-means** – a clustering technique that uses a numeric distance function to determine the similarity of examples.
 
 **Label** – a supervised set of results defined by humans to train the machine learning model for.
 
+**Majority class** - The more common label in a class-imbalanced dataset. For example, given a dataset containing 99% non-spam labels and 1% spam labels, the non-spam labels are the majority class.
+
+**Metric** - A performance number that you care about. It may or may not be directly optimized in a machine-learning system. A metric that your system tries to optimize is called an objective.
+
+**Overfitting** - Creating a model that matches the training data so closely that the model fails to make correct predictions on new data.
+
+**Perceptron** - A system that takes in one or more input values, runs a function on the weighted sum of the inputs, and computes a single output value. The function is typically nonlinear, such as *ReLU*, *sigmoid*, or *tanh*. Perceptrons are the nodes in deep neural networks. That is, a deep neural network consists of multiple connected perceptrons, plus a backpropagation algorithm to introduce feedback.
+
 **Random forest** – an bootstrapped aggregation ensemble of several small decision trees built on randomized subsets of features. Random forests are often more accurate than a single decision tree but are not as interpretable.
 
 **Reinforcement learning** – a type of machine learning that uses a system of rewards and penalties in place of some direct labels.
 
+**Recommendation system** - A system that selects for each user a relatively small set of desirable items from a large corpus. For example, a video recommendation system might recommend two videos from a corpus of 100,000 videos, selecting *Casablanca* and *The Philadelphia Story* for one user, and *Wonder Woman* and *Black Panther* for another. 
+
+**Sentiment analysis** - Using statistical or machine learning algorithms to determine a group's overall attitude—positive or negative—toward a service, product, organization, or topic. 
+
+**SLA** - The service level agreement document that details the operational content, support quality measures, and the means of problem resolution. ML projects have unique challenges in ongoing performance monitoring, latency benchmarks, capacity, and deciding when to train new models.
+
 **Supervised learning** – machine learning modeling that uses labeled data and the associated features.
+
+**Survival analysis** - a branch of statistics for modeling the expected duration of time until an event of interest occurs, such as death in biological organisms and failure in mechanical systems. This topic is called reliability theory or reliability analysis in engineering, duration analysis or duration modelling in economics, and event history analysis in sociology. The training data in survival analysis is censored.
+
+**Time Series** - A subfield of machine learning and statistics that analyzes temporal data and uses the time/date as an independent feature.
 
 **Training set** – subsets of the data used for training.
 
 **Unsupervised learning** – clustering techniques that infer data groupings and is often used to discover insights in patterns in language or human behavior.
 
-**Validation** – subsets of the training data used to tune the hyperparameters of many models and arrive at a best candidate model without overfitting.
+**Validation set** – subsets of the training set used to tune the hyperparameters of many models and arrive at a best candidate model without overfitting.
 
 Machine learning efforts should always be focused on a business objective and not on some accuracy criteria. For example, the economic impacts of the deployed model are not likely balanced between false positives and false negatives. Consider, for example, the cost of acquiring a customer or the revenue associated with keeping them once acquired.
 
@@ -139,33 +167,17 @@ In my senior year of undergraduate engineering, Lotus 1-2-3 replaced FORTRAN as 
 
 R is not like that. 
 
-This is the basic pain of learning to write in code. Programming languages are designed to be general in their application and to accomplish a huge variety of complex tasks with the same basic set of tools. The cost of this generality is a learning curve. When you start learning to do basic tasks in R, you are also learning how to do complex things down the road. As you learn more and more, the marginal cost of complex analyses goes down.  
+Like it or not, this is the pain of learning to write in code. Programming languages are designed to be general in their application and to accomplish a huge variety of complex tasks with the same basic set of tools. The cost of this generality is a learning curve. When you start learning to do basic tasks in R, you are also learning how to do complex things down the road. As you learn more and more, the marginal cost of complex analyses goes down.  
 
-For a lot of us, the pain of learning to program feels like the pain of failure. When the program gives an incomprehensible error message it feels like it’s telling you that you’re stupid and lack programming aptitude. The pain you feel is not the pain of failure, it’s just the pain of learning.
+For many of us, the pain of learning to program feels like the pain of failure. When the program gives an incomprehensible error message it feels like it’s telling you that you’re stupid and lack the programming aptitude. Consider that the pain you feel is not the pain of failure, it’s just the pain of learning.
 
-Many of the people who do learn R have some background in programming. The mental models underlying languages like Matlab or Python, as well as statistical packages like SPSS and SAS, have a lot in common with R, and there are many resources available for translating the bits which don’t make sense. Excel makes you think about analytical problems in a very different way, and there aren’t very many resources for translating the two paradigms.
+Some of the people that learn R have some background in programming. The mental models underlying languages like Matlab or Python have a lot in common with R, and there are many resources available for translating the bits that don’t make sense. Excel makes you think about analytical problems in a very different way, and there aren’t very many resources for translating the two paradigms.
 
-Gordon Shotwell observes that there are [four fundamental differences between R and Excel](https://shotwell.ca/posts/r_for_excel_users/):
+On this digital journey, even in 2021 there remains a huge barrier between people that code and people that do not code to get work done. I am observing that, generally, the coders thrive in communities of practice and seek out new ways of building solutions. On the surface, non-coders appear to be... frustrated with the status of projects.
 
-### Text-based analysis
-Excel is based on the physical spreadsheet, or a ledger. At one time this was a large piece of paper with rows and columns. Records were stored in the first column on the left, calculations on those records were stored in the boxes to the right, and the sum of those calculations was totaled at the bottom. The data and computation are stored in the same place. Data is identified by its location on the grid. Usually you don’t name a data range in Excel, but instead refer to it by its location. 
+{{<tweet 1407278287760543745>}}
 
-In R, data and computation are separate. You have one file which stores the data and another file which stores the commands with instructions for manipulating the data. This leads to a procedural kind of model in which the raw data is fed through a set of instructions and the output pops out the other side. Data is generally referenced by name. 
-
-### Data structures
-Excel has only one basic data structure: the cell. Cells are extremely flexible in that they can store numeric, character, logical or formula information. The cost of this flexibility is unpredictability. For instance you can store the character “6” in a cell when you mean to store the number 6.
-
-The basic R data structure is a vector. You can think of a vector like a column in an Excel spreadsheet with the limitation that all the data in that vector must be of the same type. If it is a character vector, every element must be a character; if it is a logical vector, every element must be TRUE or FALSE; if it’s numeric you can trust that every element is a number. There’s no such constraint in Excel: you might have a column which has a bunch of numbers, but then some explanatory test intermingled with the numbers. This isn’t allowed in R.
-
-### Iteration
-Iteration is one of the most powerful features of programming languages and is a big adjustment for Excel users. Iteration is just getting the computer to do the same thing over and over again for some period of time. Maybe you want to draw the same graph based on fifty different data sets, or read and filter a lot of data tables. In a programming language like R you write a script which works for all of the cases which you want to apply it to, and then tell the computer to do the application.
-
-Excel analysts do a lot of this iteration manually. For instance if an Excel analyst wanted to combine ten different .xls files into one big file, they would probably open each one individually, copy the data, and paste it into a master spreadsheet. The analyst is effectively taking the place of a for loop by doing one thing over and over again until a condition is met.
-
-### Simplification through abstraction
-Another major difference is that programming encourages you to simplify your analysis by abstracting common functions from that analysis as entirely new functions. There’s really no analog for these kinds of functions in an Excel-based workflow.
-
-{{<tweet 1407010171755368448>}}
+Consistent delivery to digital SLAs requires that every team member have a minimum of understanding of the common parlance of machine learning.
 
 -----
 
@@ -183,13 +195,17 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 :star: September 16-17 [INFORMS Midwest Regional Analytics Conference](http://meetings2.informs.org/wordpress/regional-analytics-midwest2021/) Chicago Chapter hosting, virtual event
 
+{{<tweet 1407010171755368448>}}
+
 ----
 
 ## Book Recommendation
 
 <a href="https://www.bigbookofr.com/"><img src="https://rzine.fr/publication/20210102_big_book_of_r/featured_hu78e119a2b20a9729ac08e064cff5daba_50225_720x0_resize_lanczos_2.png" alt="Analytics How Intelligence" width="400"/></a>
 
-This isn't a book to buy. Think of it as a page to bookmark as a resource to find other books. [Oscar Baruffa](https://twitter.com/OscarBaruffa) maintains the listing as a public service. He is writing another book on Data Science Project Management, and has recorded a handful of insightful videos on [job postings](https://oscarbaruffa.com/jobs/).
+This isn't a book to buy. Think of it as a page to bookmark as a resource to find other books. [Oscar Baruffa](https://twitter.com/OscarBaruffa) maintains the listing as a public service. He is writing another book on [Project Management for Data Analysts](https://oscarbaruffa.com/pm/) that I am very much looking forward to reading, and has recorded a handful of insightful videos on [job postings](https://oscarbaruffa.com/jobs/). 
+
+<a href="https://oscarbaruffa.com/pm/"><img src="https://i1.wp.com/oscarbaruffa.com/wp-content/uploads/2021/06/Attachment_1622997724.jpeg" alt="Project Management Fundamentals for Data Analysts" width="400"/></a>
 
 ----
 
