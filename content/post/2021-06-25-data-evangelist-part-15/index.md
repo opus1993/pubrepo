@@ -133,49 +133,6 @@ Adel speaks here with [Barr Moses](https://www.linkedin.com/in/barrmoses/), CEO 
 
 ----
 
-🚨 sarcasm ahead 🚨
-
-How to create a great developer experience at our company...
-*in the style of Charlie Munger, by [Zev Averbach](https://twitter.com/zevav)*:
-
-1) Don’t document anything. The best thing is to have an oral tradition where, if someone has a question about how something works/where a certain kind of data lives, you either schedule a meeting with multiple stakeholders or blast an email out to some suggested contacts.
-
-1) Barring this, have terribly written, never edited or curated, PDFs or SharePoint documents living in some obscure corner of the company’s intranet. Most importantly, make it so the only way you could ever find these PDFs is via the oral tradition described above.
-
-1) If anyone takes up an initiative to create better, more accessible documentation, stop them immediately and ask where they got permission to do this.
-
-1) During a pandemic, make zero effort to inquire about people’s internet speeds at home. This will prevent creating a lot of new work around allocating money and effort towards making sure everyone has sufficient bandwidth to do their work efficiently.
-
-1) Keep the VPNs and firewalls running exactly as they had been running before the pandemic, since even though they’re going to be much more taxed with people working from home, we don’t want to ruffle any feathers by declaring these a hindrance to productivity – even if true.
-
-1) Super important: To keep people on their toes, make sure they have to re-log into firewalls at least every 90 minutes; otherwise they may get into too much of a “flow” state and clear their plate of work too quickly. Allow conda and package management systems to operate only inside VPN, and k8s only outside VPN. 
-
-1) If a developer wants to create something new, make sure that the path to doing so is as labyrinthine and discouraging as possible. We wouldn’t want our Azure bills getting too big because some big-brain has an innovative idea.
-
-1) At minimum, three different parties from three separate departments should gatekeep the creation of new technical solutions. Along the lines of #1, make sure there’s either:
-
-    - zero documentation of how to create new cloud assets, or at least that
-    - the documentation is difficult to find, or even better, fragmented into multiple documents, each owned by a separate group. Only hire the most hostile and/or low-skilled people into the departments who hold the keys to the aforementioned gates.
-
-1) When doing a re-org, make as many decisions as possible behind closed doors and without consulting your developers. All technology is the same, as are all technologists. Did we hire someone on the strength of their Python skills? They’ll make a perfectly great DBA;
-
-1) no need to consult them or the people who are currently doing that job. Is someone conversant in SQL? Great, they should definitely be writing Python scripts then, because all technology _is the same_.
-
-1) When deciding who should manage your developers, only bring people in who have never touched a single line of SQL or other code, let alone managed servers or continuous integration pipelines.
-
-1) There are two ways that this helps: 
-
-    - It keeps an air of mystery between managers and developers, where one is never quite sure what the other is up to.
-    - The company can be sure to contribute maximally to the economy by hiring people who can only do half of the job, at best, thus ensuring job security for all. Finally, hire in alignment with #1 by de-emphasizing writing skills.
-
-1) If a developer wants the ear of someone with the power to make significant changes to any of the above three points, make sure that they have to go through at least four layers of management to do so.
-
-1) If they reach out directly to decisionmakers, be firm and clear with them that this is a violation of chain of command. DO NOT reach out to developers with surveys or 1o1s about how they find the DX at the company. (See above points about not making more work than we have to)
-
-🚨 end sarcasm 🚨
-
-----
-
 ## R for Excel users
 
 In my senior year of undergraduate engineering, Lotus 1-2-3 replaced FORTRAN as the go-to tool for data analysis. Excel eventually replaced 1-2-3 as the killer app. The vast majority of users became fairly proficient with the tool in just days, building all sorts of reports and graphics. When you think about it, this is an amazing aspect of Excel. Every day, people open up a spreadsheet to do data entry and then, bit by bit, learn to do increasingly complex analytical tasks. Excel is a master at teaching people how to use Excel.
