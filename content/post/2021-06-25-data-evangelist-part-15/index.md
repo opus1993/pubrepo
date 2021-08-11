@@ -112,7 +112,7 @@ Artificial intelligence, machine learning, and neural networks are terms often u
 
 **Validation set** – subsets of the training set used to tune the hyperparameters of many models and arrive at a best candidate model without overfitting.
 
-Machine learning efforts should always be focused on a business objective and not on some accuracy criteria. For example, the economic impacts of the deployed model are not likely balanced between false positives and false negatives. Consider, for example, the cost of acquiring a customer or the revenue associated with keeping them once acquired.
+Machine learning efforts should always be focused on a business objective and not only on accuracy. For example, the economic impacts of the deployed model are not likely balanced between false positives and false negatives. Consider, for example, the cost of acquiring a customer or the revenue associated with keeping them once acquired.
 
 The ML techniques that data scientists use depend upon many factors including the business problem to be solved, the data available, the level of accuracy required, time, inference, interpretability, etc. Often the most elegant solution is the simplest, not the most sophisticated or complex.
 
