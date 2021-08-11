@@ -155,6 +155,10 @@ Teams that have the best understanding of how each fits into the company’s goa
 
 ----
 
+{{<youtube yT7QVwBGY-M >}}
+
+----
+
 Adel speaks here with [Barr Moses](https://www.linkedin.com/in/barrmoses/), CEO and co-founder of data reliability company Monte Carlo on the importance of data quality and how data observability creates trust in data throughout the organization. Previously, she was VP Customer Operations at Gainsight, a management consultant at Bain & Company, and served in the Israeli Air Force as a commander of an intelligence data analyst unit. (43 minutes)
 
 <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1067345488&color=ff5500&hide_related=true&show_teaser=false"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/dataframed" title="DataFramed" target="_blank" style="color: #cccccc; text-decoration: none;">DataFramed</a> · <a href="https://soundcloud.com/dataframed/creating-trust-in-data-with-data-observability" title="#64 Creating Trust in Data with Data Observabilty" target="_blank" style="color: #cccccc; text-decoration: none;">#64 Creating Trust in Data with Data Observabilty</a></div>
