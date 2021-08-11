@@ -7,7 +7,7 @@ categories:
   - Business, Data Science
 tags: 
   - Data Science
-date: 2021-08-16
+date: 2021-08-11
 featured: false
 draft: false
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
@@ -70,9 +70,11 @@ Let's return to the graphical abstraction from the introduction:
 
 > ![](HighLevelArchitecture.png)
 
-Managed data stores are foundational to delivering business success. With some work all of the verticals then deliver on the customer, client, and business mission. Data engineers ensure that each vertical has capacity to fulfill its unique requirements for service levels, whether real time latency or high volume, audio, video, telematics, geospatial, ...whatever. Accountants ensure that the compute costs of each vertical are allocated to its own geographic or functional group. Information security covers the unique challenges in protecting systems from vulnerabilities and maintaining compliance at every port.  Human resources ensures that job descriptions, skills, and headcount will be organized into accountability and incentive boxes. 
+A managed data store is foundational to delivering business success. Each vertical is a functional business unit. They include spare parts, quality and product support, capital, inbound supply chains, outbound logistics, marketing, network development, and others. They include each geographic region. With some work all of the verticals then deliver on the customer, client, and business mission. 
 
-The Gartner consultancy uses a standard iconography in all of their graphics. This [Solution Path](https://www.gartner.com/document/3994838) is an abstraction for an executive roadmap, as a crude work list.
+Data engineers ensure that each vertical has capacity to fulfill its unique data movement requirements for service levels, whether real time latency or high volume, audio, video, telematics, geospatial, ...whatever. Accountants ensure that the compute costs of each vertical are allocated to its own geographic or functional group. Information security covers the unique challenges in protecting systems from vulnerabilities and maintaining compliance at every port.  Human resources ensures that job descriptions, skills, and headcount are organized into accountability and incentive boxes. 
+
+The Gartner consultancy uses a standard iconography in all of their graphics. This [Solution Path](https://www.gartner.com/document/3994838) is an abstraction for an executive roadmap, as a crude work list, for achieving successful deployments of the Data Store for Analytics and Machine Learning.
 
 > ![](Figure_1_Solution_Path_for_Building_a_Holistic_Architecture_for_Data_Management_Analytics_and_Machine_Learning.png)
 
