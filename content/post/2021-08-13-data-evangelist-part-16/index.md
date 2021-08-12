@@ -90,6 +90,22 @@ In five easy steps :wink:, these main enterprise needs are fulfilled:
 
 ----
 
+## Data Science Hangouts
+
+A few weeks ago on Rachel Dempsey's [data science hangout](https://www.youtube.com/watch?v=a3ViJuhEthc&list=PL9HYL-VRX0oTel3ncl-YePCh0Yw7QNCEb), we chatted about what has worked well for leaders launching their own internal data science communities. She went back through the recording and pulled out a few awesome tips from Tori Oblad and Frank Corrigan:
+
+**Tori:**
+> "What I’ve found the most useful is starting with a few key people in certain areas that want to learn something and working with them 1:1. If I can help them start to figure out how to fix their problem, this is key. It has to be something that affects them otherwise it goes away and people will forget what they’ve learned. "
+
+> "Starting a community where it can be 1:1, you can ask them what the issues are and how they think they should go about it? When you can find those key people that are excited, they will actually start learning. They may share their excitement internally and it’s more credible to hear from somebody that is not a data scientist or super programmer that you can do it. I’ve found that it’s very useful to have Excel users or beginner analysts to help grow the internal community. "
+
+> "Partner with the business. Generally, your business users are not programmers. A lot of that communication where we have an objective that we’re trying to meet, through those discussions you’ll generally find small bits of “How are you going about that? Maybe we can tackle that in a different way." It turns into a lot of small side projects but it’s those relationships that you’re making where you find the people that need help."
+
+**Frank:**
+> "At my company, what I’ve found to be very helpful is leading little learning cohorts and I really focus on exploratory data analysis. I can create these cohorts with some business analysts in there who work in inventory management or transportation and pair them up with people who may be in more technical data analysis roles. If you can get them to learn together on a cadence, they form relationships and understand each other’s problems and they learn R at the same time. Any Excel user that discovers R, it’s unlikely that they’re going to only use Excel from now on."
+
+----
+
 ## The Practical AI Podcast
 
 The [Practical AI Podcast](https://changelog.com/practicalai), hosted by [Daniel Whitenack](https://twitter.com/dwhitena) (visiting Professor at Purdue) and [Chris Benson](https://twitter.com/chrisbenson) (of Lockheed Martin), hosts discussions to make artificial intelligence practical, productive, and accessible to everyone. In this episode they get a behind the scenes look at #SLICED and explore one approach to building a large data science community. (48 minutes)
@@ -127,6 +143,8 @@ These are opportunities to engage and learn about analytics, data science, and A
 :star: September 14-16 [SAE COMVEC](https://www.sae.org/comvec)
 
 :star: September 16-17 [INFORMS Midwest Regional Analytics Conference](http://meetings2.informs.org/wordpress/regional-analytics-midwest2021/) Chicago Chapter hosting, virtual event
+
+:star: October 6 [IIA's 2021 Fall Virtual Analytics Symposium](http://iiasymposium.com/index.php/registration/)
 
 :star: October 24-27 [2021 INFORMS Annual Meeting](http://meetings2.informs.org/wordpress/anaheim2021/)
 
