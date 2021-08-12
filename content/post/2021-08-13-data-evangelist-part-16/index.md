@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-For this, the sixteenth post of the series, we are going to explore a few of the graphical abstractions used in data science. Technical people take pride in acquiring and mastering arcane, valuable skills sets. We like to talk about tools and complex math. Unfortunately, some audiences are prone to cynically attribute motivations for tech presentations as sales pitches for tools, or worse: "when you are a hammer, every problem is a nail."  Graphical abstractions are needed to ground everyone on the mission, on where we each fit in, and on our motivations.  
+For this, the sixteenth post of the series, we are going to explore a few of the graphical abstractions used in data science. Technical people take pride in acquiring and mastering arcane, valuable skills sets. We like to talk about tools and complex math. Unfortunately, some audiences are prone to cynically attribute the motivations for tech presentations as sales pitches for tools, or worse: "when you are a hammer :hammer:, every problem is a nail."  Graphical abstractions are needed to ground everyone on the mission and on where we each fit in.  
 
 An example of a graphical abstraction:
 
@@ -52,7 +52,7 @@ Great educators use [scaffolding](https://www.gcu.edu/blog/teaching-school-admin
 
 <p><a href="https://www.rstudio.com/resources/rstudioconf-2019/putting-empathy-in-action-building-a-community-of-practice-for-analytics-in-a-global-corporation/?wvideo=l9t8mipcbn"><img src="https://embed-fastly.wistia.com/deliveries/b18a0ea8e350431042fda23855a727f0f99fd0be.jpg?image_play_button_size=2x&amp;image_crop_resized=960x540&amp;image_play_button=1&amp;image_play_button_color=4287c7e0" width="400" height="225" style="width: 400px; height: 225px;"></a></p>
 
-JD pulls a graphical abstraction from Kathy Sierra's book [Badass: Making Users Awesome](https://www.oreilly.com/library/view/badass-making-users/9781491919057/) to argue for helping people get better at what they are doing in a way that is meaningful to where they are in their roles right now. The techniques apply equally well to users of any tools we build, out in the field.
+JD pulls from Kathy Sierra's book [Badass: Making Users Awesome](https://www.oreilly.com/library/view/badass-making-users/9781491919057/) to argue for helping people get better at what they are doing in a way that is meaningful to where they are in their roles right now. The techniques apply equally well to users of any tools we build, out in the field.
 
 > ![](https://github.com/CerebralMastication/Presentations/blob/master/rstudio_conf_2019/fig/kathy_sierra_graph.jpg?raw=true)
 
@@ -78,7 +78,7 @@ The Gartner consultancy uses a standard iconography in all of their graphics. Th
 
 > ![](Figure_1_Solution_Path_for_Building_a_Holistic_Architecture_for_Data_Management_Analytics_and_Machine_Learning.png)
 
-In five easy steps, these main enterprise needs are fulfilled:
+In five easy steps :wink:, these main enterprise needs are fulfilled:
 
 1) Accelerate data exploration and velocity of prototyping
 
@@ -86,7 +86,7 @@ In five easy steps, these main enterprise needs are fulfilled:
 
 1) Enable business to self-service from cataloged clean data features stores within a safe environment
 
-1) Provide a platform for any Business Intelligence (BI) or UX tool (Streamlit, Shiny) to easily create dashboards, messaging (SMS, MS Teams Alert, etc.), and other business reporting
+1) Provide a platform for any Business Intelligence (BI) or UX tool (Streamlit, Shiny) to easily create dashboards, messaging (SMS, MS Teams Alert, etc.), and other business reporting everywhere
 
 ----
 
