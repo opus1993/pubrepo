@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-For this, the sixteenth post of the series, we are going to explore a few of the [graphical abstractions](https://en.wikipedia.org/wiki/Graphical_abstract) used in data science. Technical people take pride in mastering arcane skills sets. We like to talk about tools and complex math. Unfortunately, some audiences cynically attribute the motivations for tech presentations as sales pitches for tools, or worse: "when you are a hammer :hammer:, every problem is a nail."  Graphical abstractions are needed to ground everyone on the mission and on where we each fit in.  
+For this, the sixteenth post of the series, we are going to explore a few of the [graphical abstractions](https://en.wikipedia.org/wiki/Graphical_abstract) used in data science. Technical people take pride in mastering arcane skills sets. We like to talk about tools and complex math. Unfortunately, some audiences cynically attribute the motivations for tech presentations as sales pitches for tools, or worse: "when you are a hammer :hammer:, every problem is a nail."  Graphical abstractions ground everyone on the mission and on where we each fit in.  
 
 An example of a graphical abstraction:
 
@@ -26,7 +26,7 @@ An example of a graphical abstraction:
 
 With the arrival of a new CEO, the phrase "**North Star**" is now part of our corporate vernacular.  Your North Star is your personal mission statement. It’s a fixed destination that you can depend on in your life as the world changes around you. Graphical abstractions acknowledge the North Star, and convey connections with customer, client, and the business in simple, clear visuals.
 
-In this post, we are going to highlight a few recent talks by luminaries in Artificial Intelligence on their view of the future, noting some of their graphical abstractions. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
+This post highlights recent graphical abstractions used in talks by luminaries in Artificial Intelligence. They include Dr. Lak Lakshamanan, JD Long, Tori Oblad, Frank Corrigan, Dr. Daniel Whitenack, Chris Benson, Colin Gillespie and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
