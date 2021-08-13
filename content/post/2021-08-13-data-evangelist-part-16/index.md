@@ -18,13 +18,13 @@ image:
 projects: []
 ---
 
-For this, the sixteenth post of the series, we are going to explore a few of the graphical abstractions used in data science. Technical people take pride in acquiring and mastering arcane, valuable skills sets. We like to talk about tools and complex math. Unfortunately, some audiences are prone to cynically attribute the motivations for tech presentations as sales pitches for tools, or worse: "when you are a hammer :hammer:, every problem is a nail."  Graphical abstractions are needed to ground everyone on the mission and on where we each fit in.  
+For this, the sixteenth post of the series, we are going to explore a few of the [graphical abstractions](https://en.wikipedia.org/wiki/Graphical_abstract) used in data science. Technical people take pride in mastering arcane skills sets. We like to talk about tools and complex math. Unfortunately, some audiences cynically attribute the motivations for tech presentations as sales pitches for tools, or worse: "when you are a hammer :hammer:, every problem is a nail."  Graphical abstractions are needed to ground everyone on the mission and on where we each fit in.  
 
 An example of a graphical abstraction:
 
 > ![](HighLevelArchitecture.png)
 
-With the arrival of a new CEO, the phrase "**North Star**" is now part of our corporate vernacular.  Metaphorically speaking, your North Star is your personal mission statement. It’s a fixed destination that you can depend on in your life as the world changes around you. Graphical abstractions acknowledge the North Star, and relate the connection with customer, client, and functional business needs in simple, clear visuals.
+With the arrival of a new CEO, the phrase "**North Star**" is now part of our corporate vernacular.  Your North Star is your personal mission statement. It’s a fixed destination that you can depend on in your life as the world changes around you. Graphical abstractions acknowledge the North Star, and convey connections with customer, client, and the business in simple, clear visuals.
 
 In this post, we are going to highlight a few recent talks by luminaries in Artificial Intelligence on their view of the future, noting some of their graphical abstractions. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
 
@@ -32,21 +32,21 @@ In this post, we are going to highlight a few recent talks by luminaries in Arti
 
 ## Google's AI Platform
 
-[Dr. Lak Lakshmanan](https://twitter.com/lak_gcp) is the head of Data Analytics and AI Solutions at Google Cloud Platform, and was formerly a Director at [Climate Corporation](https://www.climate.com/company/press-releases/new-climate-basic-functionality/) leading a team of data scientists building probabilistic estimates of past, current and future weather. He is the author of several fantastic [books](https://aisoftwarellc.weebly.com/books.html) on topics ranging from ML in climate science, to geospatial analysis techniques, to Google BigQuery. 
+[Dr. Lak Lakshmanan](https://twitter.com/lak_gcp) is the head of Data Analytics and AI Solutions at [Google Cloud Platform](https://cloud.google.com/gcp/), and was formerly a Director at [Climate Corporation](https://www.climate.com/company/press-releases/new-climate-basic-functionality/) leading a team of data scientists building probabilistic estimates of past, current and future weather. He is the author of several fantastic [books](https://aisoftwarellc.weebly.com/books.html) on topics ranging from ML in climate science, to geospatial analysis techniques, to Google BigQuery. 
 
 Dr. Lakshmanan recently delivered a talk titled [Building a Data Cloud to Enable Analytics and AI-Driven Innovation](https://www.meetup.com/Serverless-Toronto/events/277818918/) to [Serverless Toronto](https://www.meetup.com/Serverless-Toronto). A recording is eventually to be posted [here](https://www.youtube.com/playlist?list=PLd31CCJlr9FrZazLqRg1Lxq7xw9b6VNP6) with slides [here](https://www.slideshare.net/dzivkovi/presentations).
 
-After a walk through Home Depot's current web site and a demonstration of the machine learning elements employed to shape customer journeys there, the talk moved to the work that any innovative AI development team must deliver. Design patterns for data and problem representation, operationalization, repeatability, reproducibility, flexibility, explainability, and fairness all exist and should not have to be built from scratch. There exist pre-trained image and spoken language models that require modest additional data before deployment.
+After a walk through [Home Depot](https://www.homedepot.com/)'s web experience and a demonstration of the machine learning elements employed to shape customer journeys there, the talk moved to the work that any innovative AI development team must do to deliver. Design patterns for data and problem representation, operationalization, repeatability, reproducibility, flexibility, explainability, and fairness all exist and should not have to be built from scratch. Lak noted that there exist pre-trained image and spoken language models that require modest additional data before deployment.
 
 ![](2021-08-11a.png)
 
-In structured business data contexts, analysts that currently work in SQL could themselves take advantage of machine learning algorithms. BigQuery ML is just an easy-to-use way to invoke machine learning models on structured data using SQL. The graphical abstraction of CI/CD/CT illustrates a development ideal for AI.
+In structured business data contexts, analysts that currently work in SQL could themselves take advantage of machine learning algorithms. BigQuery ML is just an easy-to-use way to invoke machine learning models on structured data using SQL. Google's graphical abstraction of CI/CD/CT illustrates a development ideal for AI.
 
 ----
 
 ## Empathy in Action
 
-In this short [JD Long](https://twitter.com/CMastication) talk, he discusses how he works to create a supportive learning environment focused on helping analysts "kick ass" regardless of their tool set. 
+In this short [JD Long](https://twitter.com/CMastication) talk, he discusses how he works to create a supportive learning environment focused on helping analysts "kick ass" regardless of their tool kit. 
 
 Great educators use [scaffolding](https://www.gcu.edu/blog/teaching-school-administration/what-scaffolding-education) to launch newcomers within a guided framework, providing more support at first. Over time, as learners become more independent, the scaffold is removed. New members on our business teams need scaffolding and mentoring, too. Graphical abstractions are an important part of starting people down the right path.
 
@@ -60,7 +60,7 @@ While having a plethora of data is a great position to be in, democratizing info
 
 * Cognitive overload due to the overwhelming count of dashboards to track on a daily, weekly, monthly, or quarterly basis. Dashboard fatigue is a real thing and overloading stakeholders with data can lead to feeling overwhelmed, severely stifling efficacy.
 * Lack of annotations and explanations can make information hard to digest and understand (after all, isn’t it our primary responsibility as analytical folks to make complex data sets digestible to people that might not have a background in stats or mathematics?)
-* While many sophisticated BI tools are available, they require stakeholders to be self-driven and knowledgeable in using tools.
+* While many sophisticated BI tools are available, they require stakeholders to be driven and experts in multiple tools.
 
 ----
 
@@ -70,21 +70,21 @@ Let's return to the graphical abstraction from the introduction:
 
 > ![](HighLevelArchitecture.png)
 
-A managed data store is foundational to delivering business success. Each vertical is a functional business unit. They include spare parts, quality and product support, capital, inbound supply chains, outbound logistics, marketing, network development, and others. They include each geographic region. With some work all of the verticals then deliver on the customer, client, and business mission. 
+A managed data store is foundational to delivering business success. Each vertical is a functional business unit. They include spare parts, quality and product support, capital, inbound supply chains, outbound logistics, marketing, powertrain development, network development, and others. They include each geographic region. With some work all of the verticals then deliver on the customer, client, and business mission. 
 
 Data engineers ensure that each vertical has capacity to fulfill its unique data movement requirements for service levels, whether real time latency or high volume, audio, video, telematics, geospatial, ...whatever. Accountants ensure that the compute costs of each vertical are allocated to its own geographic or functional group. Information security covers the unique challenges in protecting systems from vulnerabilities and maintaining compliance at every port.  Human resources ensures that job descriptions, skills, and headcount are organized into accountability and incentive boxes. 
 
-The Gartner consultancy uses a standard iconography in all of their graphics. This [Solution Path](https://www.gartner.com/document/3994838) is an abstraction for an executive roadmap, as a crude work list, for achieving successful deployments of the Data Store for Analytics and Machine Learning.
+The Gartner consultancy uses a standard iconography in all of their graphical abstractions. This [Solution Path](https://www.gartner.com/document/3994838) is an executive roadmap, or checklist, for building the Data Store for Analytics and Machine Learning.
 
 > ![](Figure_1_Solution_Path_for_Building_a_Holistic_Architecture_for_Data_Management_Analytics_and_Machine_Learning.png)
 
-In five easy steps :wink:, these main enterprise needs are fulfilled:
+In five easy steps :wink:, these broad enterprise needs are fulfilled:
 
-1) Accelerate data exploration and velocity of prototyping
+1) Accelerate data exploration and the velocity of prototyping, everywhere (beyond the skunk works, out in the business)
 
 1) Increase the ability to develop and scale models for ever larger use-cases
 
-1) Enable business to self-service from cataloged clean data features stores within a safe environment
+1) Enable business to self-service from cataloged clean data features stores within a safe, secure containerized environment
 
 1) Provide a platform for any Business Intelligence (BI) or UX tool (Streamlit, Shiny) to easily create dashboards, messaging (SMS, MS Teams Alert, etc.), and other business reporting everywhere
 
@@ -92,7 +92,7 @@ In five easy steps :wink:, these main enterprise needs are fulfilled:
 
 ## Data Science Hangouts
 
-A few weeks ago on Rachel Dempsey's [data science hangout](https://www.youtube.com/watch?v=a3ViJuhEthc&list=PL9HYL-VRX0oTel3ncl-YePCh0Yw7QNCEb), we chatted about what has worked well for leaders launching their own internal data science communities. She went back through the recording and pulled out a few awesome tips from Tori Oblad and Frank Corrigan:
+A few weeks ago on Rachel Dempsey's [data science hangout](https://www.youtube.com/watch?v=a3ViJuhEthc&list=PL9HYL-VRX0oTel3ncl-YePCh0Yw7QNCEb), we chatted about what has worked well for leaders launching their own internal data science communities. She went back through the recording and pulled out a few awesome tips from [Tori Oblad](https://www.linkedin.com/in/torioblad/) and [Frank Corrigan](https://www.linkedin.com/in/franciscorrigan3/):
 
 **Tori:**
 > "What I’ve found the most useful is starting with a few key people in certain areas that want to learn something and working with them 1:1. If I can help them start to figure out how to fix their problem, this is key. It has to be something that affects them otherwise it goes away and people will forget what they’ve learned. "
@@ -154,13 +154,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 <a href="https://www.oreilly.com/library/view/badass-making-users/9781491919057/"><img class="t-cover-img" src="https://learning.oreilly.com/library/cover/9781491919057/250w/" alt="Badass: Making Users Awesome"></a>
 
-Imagine you’re in a game with one objective: a bestselling product or service. The rules? No marketing budget, no PR stunts, and it must be sustainably successful. No short-term fads.
-
-This is not a game of chance. It is a game of skill and strategy.
-
-And it begins with a single question: given competing products of equal pricing, promotion, and perceived quality, why does one outsell the others?
-
-The answer doesn’t live in the sustainably successful products or services. The answer lives in those who use them.
+Imagine you are in a game with one objective: deliver a bestselling product or service. The rules? No marketing budget, no PR stunts, and it must be sustainably successful. No short-term fads.
 
 Our goal is to craft a strategy for creating successful users. And that strategy is full of surprising, counter-intuitive, and astonishingly simple techniques that don’t depend on a massive marketing or development budget. Techniques typically overlooked by even the most well-funded, well-staffed product teams. Every role is a key player in this game: Product development, engineering, marketing, user experience, support -- everyone on the team. 
 
