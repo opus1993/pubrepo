@@ -26,7 +26,7 @@ An example of a graphical abstraction:
 
 With the arrival of a new CEO, the phrase "**North Star**" is now part of our corporate vernacular.  Your North Star is your personal mission statement. It’s a fixed destination that you can depend on in your life as the world changes around you. Graphical abstractions acknowledge the North Star, and convey connections with customer, client, and the business in simple, clear visuals.
 
-This post highlights recent graphical abstractions used in talks by luminaries in Artificial Intelligence. They include Dr. Lak Lakshamanan, JD Long, Tori Oblad, Frank Corrigan, Dr. Daniel Whitenack, Chris Benson, Colin Gillespie and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
+This post highlights recent graphical abstractions used in talks by luminaries in the field. They include Dr. Lak Lakshamanan, JD Long, Tori Oblad, Frank Corrigan, Dr. Daniel Whitenack, Chris Benson, Colin Gillespie and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
@@ -34,7 +34,9 @@ This post highlights recent graphical abstractions used in talks by luminaries i
 
 [Dr. Lak Lakshmanan](https://twitter.com/lak_gcp) is the head of Data Analytics and AI Solutions at [Google Cloud Platform](https://cloud.google.com/gcp/), and was formerly a Director at [Climate Corporation](https://www.climate.com/company/press-releases/new-climate-basic-functionality/) leading a team of data scientists building probabilistic estimates of past, current and future weather. He is the author of several fantastic [books](https://aisoftwarellc.weebly.com/books.html) on topics ranging from ML in climate science, to geospatial analysis techniques, to Google BigQuery. 
 
-Dr. Lakshmanan recently delivered a talk titled [Building a Data Cloud to Enable Analytics and AI-Driven Innovation](https://www.meetup.com/Serverless-Toronto/events/277818918/) to [Serverless Toronto](https://www.meetup.com/Serverless-Toronto). A recording is eventually to be posted [here](https://www.youtube.com/playlist?list=PLd31CCJlr9FrZazLqRg1Lxq7xw9b6VNP6) with slides [here](https://www.slideshare.net/dzivkovi/presentations).
+Dr. Lakshmanan recently delivered a talk titled [Building a Data Cloud to Enable Analytics and AI-Driven Innovation](https://www.meetup.com/Serverless-Toronto/events/277818918/) for [Serverless Toronto](https://www.meetup.com/Serverless-Toronto). 
+
+{{<youtube ntBEQdD1IeQ>}}
 
 After a walk through [Home Depot](https://www.homedepot.com/)'s web experience and a demonstration of the machine learning elements employed to shape customer journeys there, the talk moved to the work that any innovative AI development team must do to deliver. Design patterns for data and problem representation, operationalization, repeatability, reproducibility, flexibility, explainability, and fairness all exist and should not have to be built from scratch. Lak noted that there exist pre-trained image and spoken language models that require modest additional data before deployment.
 
