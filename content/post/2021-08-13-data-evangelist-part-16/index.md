@@ -36,7 +36,7 @@ This post highlights recent graphical abstractions used in talks by luminaries i
 
 Dr. Lakshmanan recently delivered a talk titled [Building a Data Cloud to Enable Analytics and AI-Driven Innovation](https://www.meetup.com/Serverless-Toronto/events/277818918/) for [Serverless Toronto](https://www.meetup.com/Serverless-Toronto). 
 
-{{<youtube ntBEQdD1IeQ>}}
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ntBEQdD1IeQ?start=280" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 After a walk through [Home Depot](https://www.homedepot.com/)'s web experience and a demonstration of the machine learning elements employed to shape customer journeys there, the talk moved to the work that any innovative AI development team must do to deliver. Design patterns for data and problem representation, operationalization, repeatability, reproducibility, flexibility, explainability, and fairness all exist and should not have to be built from scratch. Lak noted that there exist pre-trained image and spoken language models that require modest additional data before deployment.
 
