@@ -26,7 +26,7 @@ An example of a graphical abstraction:
 
 With the arrival of a new CEO, the phrase "**North Star**" is now part of our corporate vernacular.  Your North Star is your personal mission statement. It’s a fixed destination that you can depend on in your life as the world changes around you. Graphical abstractions acknowledge the North Star, and convey connections with customer, client, and the business in simple, clear visuals.
 
-This post highlights recent graphical abstractions used in talks by luminaries in the field. They include Dr. Lak Lakshamanan, JD Long, Tori Oblad, Frank Corrigan, Dr. Daniel Whitenack, Chris Benson, Colin Gillespie and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
+This post highlights recent graphical abstractions used in talks by luminaries in the field. They include Dr. Lak Lakshmanan, JD Long, Tori Oblad, Frank Corrigan, Dr. Daniel Whitenack, Chris Benson, Colin Gillespie and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
 
 ----
 
@@ -34,7 +34,7 @@ This post highlights recent graphical abstractions used in talks by luminaries i
 
 [Dr. Lak Lakshmanan](https://twitter.com/lak_gcp) is the head of Data Analytics and AI Solutions at [Google Cloud Platform](https://cloud.google.com/gcp/), and was formerly a Director at [Climate Corporation](https://www.climate.com/company/press-releases/new-climate-basic-functionality/) leading a team of data scientists building probabilistic estimates of past, current and future weather. He is the author of several fantastic [books](https://aisoftwarellc.weebly.com/books.html) on topics ranging from ML in climate science, to geospatial analysis techniques, to Google BigQuery. 
 
-Dr. Lakshmanan recently delivered a talk titled [Building a Data Cloud to Enable Analytics and AI-Driven Innovation](https://www.meetup.com/Serverless-Toronto/events/277818918/) for [Serverless Toronto](https://www.meetup.com/Serverless-Toronto). 
+Dr. Lakshmanan recently delivered a talk titled [Building a Data Cloud to Enable Analytics and AI-Driven Innovation](https://www.meetup.com/Serverless-Toronto/events/277818918/) for [Serverless Toronto](https://www.meetup.com/Serverless-Toronto). His slides are [posted here](https://www.slideshare.net/dzivkovi/building-a-data-cloud-to-enable-analytics-aidriven-innovation-lak-lakshmanan).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ntBEQdD1IeQ?start=280" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
