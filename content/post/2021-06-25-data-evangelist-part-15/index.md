@@ -205,7 +205,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ## Book Recommendation
 
-<a href="https://www.bigbookofr.com/"><img src="https://rzine.fr/publication/20210102_big_book_of_r/featured_hu78e119a2b20a9729ac08e064cff5daba_50225_720x0_resize_lanczos_2.png" alt="Analytics How Intelligence" width="400"/></a>
+<a href="https://www.bigbookofr.com/"><img src="https://oscarbaruffa.com/wp-content/uploads/2020/12/Big-Book-of-R_header-1-1024x546.png" alt="Big Book of R" width="400"/></a>
 
 This isn't a book to buy. Think of it as a page to bookmark as a resource to find other books. [Oscar Baruffa](https://twitter.com/OscarBaruffa) maintains the listing as a public service. He is writing another book on [Project Management for Data Analysts](https://oscarbaruffa.com/pm/) that I am very much looking forward to reading, and has recorded a handful of insightful videos on [job postings](https://oscarbaruffa.com/jobs/). 
 
