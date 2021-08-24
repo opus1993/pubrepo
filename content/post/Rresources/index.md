@@ -22,10 +22,19 @@ My short list of useful books, courses, and expert blogs. Most are free. These c
 
 Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about in my work is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.
 
-Tell me about what is good here, and what I have missed. 
+Tell me about what is good here, and what was missed. 
 
 Inspired by:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
+
+----
+## The R Community
+
+|    |    |
+|:---|:---|
+| [Data Science StreamRs](https://rpodcast.shinyapps.io/shinycal/)| Several data science professionals and hobbyists who video stream their projects and share their knowledge |
+| [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, birds-of-a-feature groups, and career tips |
+| **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** | [R4DS](https://twitter.com/rstats4ds)'s weekly data project aimed at creating opportunities to develop understanding in how to summarize data to make meaningful charts|
 
 ----
 ## Introductory Books
@@ -35,7 +44,7 @@ Inspired by:
 |:---|:---:|
 |**[R for Data Science](https://r4ds.had.co.nz/)** by [Hadley Wickham](https://twitter.com/hadleywickham) and [Garrett Grolemund](https://twitter.com/StatGarrett) is an excellent introduction to the Tidyverse. The [R for Data Science Online Learning Community](https://www.rfordatasci.com/) hosts book club-style weekly chapter discussions through their Slack channels. [Vebash Naidoo](https://twitter.com/sciencificity) has assembled a related [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html).|<a href="https://r4ds.had.co.nz/"><img alt="R for Data Science" src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png" width="250"></a>|
 |**[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication), [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook) is full of how-to recipes, each of which solves a specific problem. The recipe includes a quick introduction followed by a discussion that unpacks the solution and provides insight into how it works.|<a href="https://rc2e.com/"><img alt="R Cookbook, 2nd Edition" src="https://rc2e.com/images_v2/book_cover.jpg" width="250"></a>|
-         
+
 Other books for students starting from Excel and basic statistics:
 |   |    | 
 |:---|:---|
@@ -129,15 +138,16 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 ## Markdown and Blogdown
 |     |    | 
 |:---|:---|
+| [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) |
 | [Rmarkdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) |by [Yihui Xie](https://twitter.com/xieyihui), [JJ Allaire](https://twitter.com/fly_upside_down), and [Garrett Grolemund](https://twitter.com/StatGarrett)|
 | [RMarkdown Tips and Tricks](https://www.richardshanna.com/tutorial/rmarkdown_tutorial_1/) |by [Richard Hanna](https://twitter.com/Richard_S_Hanna)|
-| [Introduction to `xaringan`](https://slides.yihui.org/xaringan/#1) |by [Yihui Xie](https://twitter.com/xieyihui)|
 | [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) |by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)|
 
 ----
 ## Text Mining, Document classification, Sentiment Analysis, Word Embeddings, and Topic Modeling
 |     |    | 
 |:---|:---|
+| [Supervised Machine Learning for Text Analysis in R](https://smltar.com/)| by [Julia Silge](https://twitter.com/juliasilge) and [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt)
 | [Text mining](https://www.tidytextmining.com/) |by [Julia Silge](https://twitter.com/juliasilge) and [David Robinson](https://twitter.com/drob)|
 | [Learn Tidytext](https://juliasilge.shinyapps.io/learntidytext/) | by [Julia Silge](https://twitter.com/juliasilge)|
 | [Supervised Machine Learning for Text Analysis in R](https://smltar.com/) |by [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt) and [Julia Silge](https://twitter.com/juliasilge)|
@@ -166,22 +176,18 @@ The leading edge of thinking in many ML areas is changing rapidly. These are a g
 |     |    |
 |:----|:---|
 | [Data Science for Business](http://pages.stern.nyu.edu/~fprovost/) |by Provost and Fawcett ([2013 O'Reilly](https://www.oreilly.com/library/view/data-science-for/9781449374273/))| 
+| [An Introduction to Statistical Learning](https://www.statlearning.com/) | 2nd edition |
 | [Introduction to Computational Thinking and Data Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/)| Grimson, Guttag, and Bell |
+| [Tidy Modeling with R](https://www.tmwr.org/) |by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)|
+| [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/) |by [Max Kuhn](https://twitter.com/topepos) and Kjell Johnson|
+| [Jared Lander](https://www.jaredlander.com/talks/)'s talks
+| [An Introduction to Statistical Learning Labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) | `tidymodels` examples |
+| [Practical Machine Learning in R](https://www.wiley.com/en-us/Practical+Machine+Learning+in+R-p-9781119591535) | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
+
 
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
 The Machine learning modeling frameworks offer streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages. In R the widely used frameworks are `caret`, `tidymodels`, and `mlr3`.
-
-For a glimpse into the R environment ML frameworks, consider these resources:
-|    |    |
-|:---|:---|
-| [Tidy Modeling with R](https://www.tmwr.org/) |by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)|
-| [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/) |by [Max Kuhn](https://twitter.com/topepos) and Kjell Johnson|
-| [Supervised Machine Learning for Text Analysis in R](https://www.hvitfeldt.me/blog/smltar-announcement/)| by [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt) and [Julia Silge](https://twitter.com/juliasilge)
-| [Jared Lander](https://www.jaredlander.com/talks/)'s talks
-| [An Introduction to Statistical Learning](https://www.statlearning.com/) | 2nd edition coming Summer 2021
-| [An Introduction to Statistical Learning Labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) | `tidymodels` examples |
-| [Practical Machine Learning in R](https://www.wiley.com/en-us/Practical+Machine+Learning+in+R-p-9781119591535) | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
 
 {{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
 |    |    |
@@ -215,9 +221,7 @@ For a glimpse into the R environment ML frameworks, consider these resources:
 A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-support-program) organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the [open source](https://jimgruman.netlify.app/post/open-source/) R community to lift one another up and recognize efforts. The software is "free" as in speech, not as in beer. If you learn something useful and encounter a [buy me coffee](https://www.buymeacoffee.com/) button, be sure to offer  a cup of java to the presenter in return.
 |    |    |
 |:---|:---|
-| [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, birds-of-a-feature groups, and career tips |
 | [R Views](https://rviews.rstudio.com/)| the RStudio blog |
-| **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** |by [R4DS](https://twitter.com/rstats4ds) and  [Ten reasons why I love Tidy Tuesday](https://jimgruman.netlify.app/post/ten-reasons-why-i-love-tidy-tuesday/)|
 | [TidyTuesday Tweets](https://www.notion.so/8cfed86c707e4974b2f483716c35bac3?v=7e87113d8a7946fdaeeafd7cdaf69598) |  curated by [Silvia Canelón](https://twitter.com/spcanelon) |
 | [WhyR Foundation](http://whyr.pl/foundation/webinars)
 | [Simply Statistics](https://simplystatistics.org/) |by Rafa Irizarry, Roger Peng, and Jeff Leek|
