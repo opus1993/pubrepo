@@ -152,7 +152,7 @@ So often, as data teams, we chase the self-serve experience that we think we’r
 
 Let's come full circle then on skills development and what individuals need to know to grow organizational capabilities. 
 
-Step 1 is sponsoring vibrant communities of practice where practitioners meet frequently and share what they have learned, at any level. Yes, the goals include making Excel users into better Excel users. Making the small jumps to topics like SQL and data visualization are so much easier with a Team book club or Teams chat room support network. Generally speaking, open source tools are free and accessible and available immediately to anyone. Create something simple like a Shiny App or R Markdown document. Share it. Get feedback.
+Step 1 is sponsoring vibrant communities of practice where practitioners meet frequently and share what they have learned, at any level. Yes, the goals include making Excel users into better Excel users. Making the small jumps to topics like SQL and data visualization are so much easier with an MS Teams book club or MS Teams chat room support network. Generally speaking, open source tools are free and accessible and available immediately to anyone. Create something simple like a Shiny App or R Markdown document. Share it. Get feedback.
 
 Consider joining the [R4DS community](https://www.rfordatasci.com/) on Slack. The resource is free. They offer channels that serve as help desks, birds-of-a-feather industry conversation rooms, and chapter-a-week virtual book clubs. 
 
