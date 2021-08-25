@@ -65,7 +65,7 @@ I am recognizing how organization theory matters now, more than ever. A useable 
 ----
 ## Analytics vs Engineering: a false dichotomy
 
-Adding the word [Engineer to the word Analyst](https://locallyoptimistic.com/post/analytics-engineer/) was a hot topic in 2019. [Anna Filippova](https://twitter.com/anna_fil) responds to the Tom Davenport articles with her post [We the purple people](https://blog.getdbt.com/we-the-purple-people/). She writes that
+Adding the word [Engineer to the word Analyst](https://locallyoptimistic.com/post/analytics-engineer/) was a hot topic in 2019. On that theme, [Anna Filippova](https://twitter.com/anna_fil) responds to the Tom Davenport articles with her post [We the purple people](https://blog.getdbt.com/we-the-purple-people/). She writes that
 
 *Adopting a modern data stack goes hand in hand with some serious rethinking of the [role of data humans in an organization](https://wraptext.equals.app/every-analyst-is-a-finance-analyst/). A tell tale sign of this happening: teams adding the word 'Analytics' behind a growing list of business functions like Finance, Product, Marketing, Engineering, Operations, Sales, Support...*
 
