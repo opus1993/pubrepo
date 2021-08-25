@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-I was asked recently for my views on skills development for digital literacy and effectiveness. Our departments want our rising stars to be on the right development track. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demetri does here, though:
+I was asked recently for my views on skills development for digital literacy and effectiveness. Department heads want their rising stars to be on the right development track. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demetri does here, though:
 
 {{<tweet 1428426873697095691>}}
 
