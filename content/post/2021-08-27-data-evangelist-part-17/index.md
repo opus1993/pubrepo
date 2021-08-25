@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-I was asked recently for my views on skills development, and what people need to know for our own organizations to grow in digital literacy and effectiveness. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demitri does here, though:
+I was asked recently for my views on skills development and what people need to know for our own organizations to grow in digital literacy and effectiveness. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demitri does here, though:
 
 {{<tweet 1428426873697095691>}}
 
@@ -28,7 +28,7 @@ Tom Davenport's [Purple people: The heart of cognitive systems engineering](http
 
 This is a rapidly evolving space. Leading organizations have added other roles like Data Architect, [Data Catalyst](https://www.linkedin.com/jobs/view/data-catalyst-at-john-deere-2555701854/), and even [Analytics Engineer](https://www.northeastern.edu/graduate/blog/what-is-an-analytics-engineer/) to better address the specific expertise required. And higher in the org chart there are a [number of critical strategy and leadership roles](https://jimgruman.netlify.app/post/2021-03-26-data-evangelist-part-5/) that I've discussed previously.
 
-Dr. Mike Chapple, in his Cloud Analytics course in the [Notre Dame MSBA program](https://mendoza.nd.edu/graduate-programs/business-analytics-chicago-msba/), observes how business moves from on-premise to cloud services becomes conflated with and sometimes even driven by functional group analytics use cases. Today, few will tolerate sending tickets to a central IT database team inbox for custom reports, where-ever they sit. The momentum is towards the decentralization of data teams, and further towards the concept of the **Data Mesh** (more on this in a moment). This post highlights recent talks and posts by experts in the field. They include Bar Moses, Sean Taylor, Ben Stancil, Anna Filippova and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
+Dr. Mike Chapple, in his Cloud Analytics course in the [Notre Dame MSBA program](https://mendoza.nd.edu/graduate-programs/business-analytics-chicago-msba/), observes how business projects moving from on-premise to cloud services becomes conflated with and is sometimes even driven by analytics use cases. Today, few will tolerate sending tickets to a central IT database team inbox for custom reports, where-ever they sit. The momentum is towards the decentralization of data teams, and further towards the concept of the **Data Mesh** (more on this in a moment). This post highlights recent talks and posts by experts in the field. They include Bar Moses, Sean Taylor, Ben Stancil, Anna Filippova and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
 
 -----
 ## The Data Mesh
@@ -83,7 +83,7 @@ The future of purple tools is open source.
 
 *The data stack of the future will make sure these abstractions are modular, reusable, that they are able to integrate flexibly into many scenarios, and that we share them with one another. This means continuing to make the purple parts of our data stack open in the same way all of the foundational tools and frameworks in a software engineer's toolkit are open — to foster collaboration, remixing and innovation. The foundation of our data ecosystem began with open source tools —  Databricks, PyTorch, Pandas, NumPy, RStudio, Jupyter... As we all move up the stack and stand on the shoulders of these giants, we continue to create space for purple people to do what they do best — make our data solutions better in new and exciting ways.*
 
-So the data stack and the skill sets we build must enable us to spend less time engineering, eliminate the gatekeeping, and open up more time for innovating. An open stack is not built exclusively for a particular set of practitioners or to solve a particular problem. Rather, building a stack and the skill sets that support the integration of modules with flexibility to solve new types of problems as they emerge. 
+So the data stack and the skill sets we build must enable us to spend less time engineering, eliminate the gatekeeping, and open up more time for innovating. An open stack is not built exclusively for a particular set of practitioners or to solve a particular problem. Rather, building a stack and the skill sets that support the integration of modules provide the flexibility to solve new types of problems as they emerge. 
 
 ----
 ## The North Star for the Modern Data Experience
@@ -154,7 +154,9 @@ Let's come full circle then on skills development and what individuals need to k
 
 Step 1 is sponsoring vibrant communities of practice where practitioners meet frequently and share what they have learned, at any level. Yes, the goals include making Excel users into better Excel users. Making the small jumps to topics like SQL and data visualization are so much easier with a Team book club or Teams chat room support network. Generally speaking, open source tools are free and accessible and available immediately to anyone. Create something simple like a Shiny App or R Markdown document. Share it. Get feedback.
 
-Consider joining the [R4DS community](https://www.rfordatasci.com/) on Slack. The resource is free. They offer channels that serve as help desks, birds-of-a-feather industry conversation rooms, and chapter-a-week virtual book clubs. I curate [a list of useful books, courses, and expert blogs](https://jimgruman.netlify.app/post/education-r/). Most are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice.
+Consider joining the [R4DS community](https://www.rfordatasci.com/) on Slack. The resource is free. They offer channels that serve as help desks, birds-of-a-feather industry conversation rooms, and chapter-a-week virtual book clubs. 
+
+I curate [a list of useful books, courses, and expert blogs](https://jimgruman.netlify.app/post/education-r/). Most are free. These could be departure points for your own learning journey, starting from any point. My hope is that you take and copy sections for sharing with your own community of practice.
 
 On-line programs like [DataCamp](https://learn.datacamp.com/) and [many others](https://github.com/Chris-Engelhardt/data_sci_guide) are self-paced and not expensive. In my case, I found myself needing to craft my own copies of what I had just done to retain or find the resources later. Be aware that some of the material is stale. 
 
@@ -162,7 +164,7 @@ On-line programs like [DataCamp](https://learn.datacamp.com/) and [many others](
 
 Matt Dancho's [Business Science](https://www.business-science.io/) is very good. It's hosted on the Teachable platform. His focus is very much on solving immediate business challenges. I am currently subscribing to his weekly "Learning Labs Pro" and Python materials. 
 
-Brandon Rohrer's [End to End Machine learning](https://end-to-end-machine-learning.teachable.com/) (also on Teachable) is also good. Brandon works more with Neural Nets, in python. There is foundational math ML material here for engineers in vision systems and speech.
+Brandon Rohrer's [End to End Machine learning](https://end-to-end-machine-learning.teachable.com/) (also on Teachable) is also worthwhile. Brandon's program covers more of deep learning, in python. There is foundational math ML material here for engineers in vision systems and speech.
 
 ----
 ## Recruiting Talent 
