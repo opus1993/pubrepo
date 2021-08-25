@@ -7,7 +7,7 @@ categories:
   - Business, Data Science
 tags: 
   - Data Science
-date: 2021-08-27
+date: 2021-08-25
 featured: false
 draft: false
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-I was asked recently for my views on skills development and what people need to know for our own organizations to grow in digital literacy and effectiveness. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demitri does here, though:
+I was asked recently for my views on skills development for digital literacy and effectiveness. Our departments want our rising stars to be on the right development track. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demitri does here, though:
 
 {{<tweet 1428426873697095691>}}
 
@@ -47,10 +47,10 @@ With an eye on doing digital well, we return to the central question: How do we 
 
 The original [data mesh](https://martinfowler.com/articles/data-monolith-to-mesh.html) paper dates from 2019 and is a pretty robust set of architectural requirements. In a nutshell, it adopts concepts adopted from software engineering, where distributed systems are deployed with mandated standards and norms, allowing for de-centralized ownership and responsibility while pushing the competencies out away from any central team. Self-service, whatever that is, only works if data is assured to be fresh, correct, and reliable (more on this later).
 
-Unfortunately, the **data mesh** becomes a whole new organizational philosophy, and requires what amounts the role of a data product manager to coordinate service level agreements (SLAs) between members for participation in the shared data lake and compute space. Ultimately, having good tools  dramatically lowers the friction in the interfaces between technical and non-technical users and accelerates data maturity. 
+Unfortunately, the **data mesh** demands a new organizational philosophy, and requires what amounts the role of a data product manager to coordinate service level agreements (SLAs) between members for participation in the shared data lake and compute space. Ultimately, though, having good tools dramatically lowers the friction in the interfaces between technical and non-technical users and accelerates data maturity. 
 
 ----
-## Building
+## Building Maturity
 
 Adapted from [Sean Taylor](https://twitter.com/seanjtaylor)
 
