@@ -28,7 +28,7 @@ Tom Davenport's [Purple people: The heart of cognitive systems engineering](http
 
 This is a rapidly evolving space. Leading organizations have added other roles like Data Architect, [Data Catalyst](https://www.linkedin.com/jobs/view/data-catalyst-at-john-deere-2555701854/), and even [Analytics Engineer](https://www.northeastern.edu/graduate/blog/what-is-an-analytics-engineer/) to better address the specific expertise required. And higher in the org chart there are a [number of critical strategy and leadership roles](https://jimgruman.netlify.app/post/2021-03-26-data-evangelist-part-5/) that I've discussed previously.
 
-Dr. Mike Chapple, in his Cloud Analytics course in the [Notre Dame MSBA program](https://mendoza.nd.edu/graduate-programs/business-analytics-chicago-msba/), observes how business projects moving IT workloads from on-premise datacenters to cloud services often become conflated with and are sometimes even driven by analytics use cases. Today, few will tolerate sending tickets to a central IT database team inbox for custom reports, where-ever they sit. The momentum is towards the decentralization of data teams, and further towards the concept of the **Data Mesh** (more on this in a moment). This post highlights recent talks and posts by experts in the field. They include Bar Moses, Sean Taylor, Ben Stancil, Anna Filippova and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
+Dr. Mike Chapple, in his Cloud Analytics course in the [Notre Dame MSBA program](https://mendoza.nd.edu/graduate-programs/business-analytics-chicago-msba/), observes how business projects moving IT workloads from on-premise datacenters to cloud services often become conflated with and are sometimes even driven by analytics use cases. Today, few will tolerate sending tickets to a central IT database team inbox for custom reports, where-ever they sit. The momentum is towards the decentralization of data teams, and further towards the concept of the **Data Mesh** (more on this in a moment). This post highlights recent talks and posts by experts in the field. They include Bar Moses, Sean Taylor, Ben Stancil, Emily Riederer, Anna Filippova and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
 
 -----
 ## The Data Mesh
@@ -61,6 +61,15 @@ To some extent, we all harbor the conceit that alone we could do something reall
 We get so frustrated when a big group of people cannot make progress on a problem, even if they all care about it. We've *seen* groups of people succeed in other contexts. Why is the effort of *this* specific group of people not coordinated and scaling well?
 
 I am recognizing how organization theory matters now, more than ever. A useable implication of this worldview is that the most impactful thing you can do today is ensure that it's desirable and easy for others to build on top of your work. To see why you're doing it and join you in working on it.
+
+----
+## A Data Validation Ecosystem
+
+<img width="500" height="350" src="https://moderndatastack.xyz/img/icons/blogging 1.svg" alt="The Modern Data Stack">
+
+Data quality monitoring is an essential part of any data analysis or business intelligence workflow. As such, an increasing number of promising tools (i.e. dbt, datafold, Soda, Great Expectations, and Monte Carlo) have emerged as part of the [Modern Data Stack](https://moderndatastack.xyz/) for robust orchestration, testing, and reporting.
+
+In this [short post](https://emilyriederer.netlify.app/post/data-valid-lightweight/), Emily Riederer proposes a lightweight system that leverages R, GitHub Actions, and Slack. For many organizations, data engineers may find that these "right-sized" solutions achieve the best balance. 
 
 ----
 ## Analytics vs Engineering: a false dichotomy
