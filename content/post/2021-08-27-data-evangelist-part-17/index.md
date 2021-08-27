@@ -7,7 +7,7 @@ categories:
   - Business, Data Science
 tags: 
   - Data Science
-date: 2021-08-25
+date: 2021-08-27
 featured: false
 draft: false
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
@@ -18,32 +18,32 @@ image:
 projects: []
 ---
 
-I was asked recently for my views on skills development for digital literacy and effectiveness. Department heads want their rising stars to be on the right development track. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demetri does here, though:
+I was asked recently for my views on digital literacy skills development. Department heads want their rising stars :star2: to be on the right development track. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demetri does here, though:
 
 {{<tweet 1428426873697095691>}}
 
-Tom Davenport's [Purple people: The heart of cognitive systems engineering](https://www2.deloitte.com/us/en/insights/focus/cognitive-technologies/artificial-intelligence-purple-people.html) and [To Succeed With Data Science, First Build the ‘Bridge’](https://sloanreview.mit.edu/article/to-succeed-with-data-science-first-build-the-bridge/) each emphasize that business engagement is still at the core, embedding the skills and tools as close as possible to the functional teams making the business decisions. Yet, he writes:
+Tom Davenport's "Purple people" articles [here](https://www2.deloitte.com/us/en/insights/focus/cognitive-technologies/artificial-intelligence-purple-people.html) and [here](https://sloanreview.mit.edu/article/to-succeed-with-data-science-first-build-the-bridge/) each emphasize that business engagement is still at the core of the mission, so we must work to embed the skills and tools as close as possible to the functional teams making the business decisions. Rule #1, after all, is to be customer centric.
 
-*“The business people, the actuaries, know what data they need and can define requirements, but typically don’t have the skill set to design a data architecture that gives them the data they need. Technology people typically don’t understand the business requirements, but they can design the data architectures. It’s like the people in IT speak blue, the people in business speak red, but we need people who speak purple in order to create an appropriate solution.”*
+Dr. Mike Chapple, in his Cloud Analytics course in the [Notre Dame MSBA program](https://mendoza.nd.edu/graduate-programs/business-analytics-chicago-msba/), observes how business projects moving IT workloads from on-premise datacenters to cloud services often become conflated with delivering analytics use cases. Today, few will tolerate sending tickets to a central IT database team inbox for custom reports, where-ever they sit. The momentum is towards the decentralization of data teams, and further towards the concept of the **Data Mesh** (more on this in a moment). 
 
-This is a rapidly evolving space. Leading organizations have added other roles like Data Architect, [Data Catalyst](https://www.linkedin.com/jobs/view/data-catalyst-at-john-deere-2555701854/), and even [Analytics Engineer](https://www.northeastern.edu/graduate/blog/what-is-an-analytics-engineer/) to better address the specific expertise required. And higher in the org chart there are a [number of critical strategy and leadership roles](https://jimgruman.netlify.app/post/2021-03-26-data-evangelist-part-5/) that I've discussed previously.
+This is a rapidly evolving space. Leading organizations have added other roles like [Data Architect](https://www.jigsawacademy.com/blogs/data-science/data-architect), [Data Catalyst](https://www.linkedin.com/jobs/view/data-catalyst-at-john-deere-2555701854/), and even [Analytics Engineer](https://www.northeastern.edu/graduate/blog/what-is-an-analytics-engineer/) to better address the specific expertise required. And higher in the org chart there are a [number of critical strategy and leadership roles](https://jimgruman.netlify.app/post/2021-03-26-data-evangelist-part-5/) that I've discussed previously.
 
-Dr. Mike Chapple, in his Cloud Analytics course in the [Notre Dame MSBA program](https://mendoza.nd.edu/graduate-programs/business-analytics-chicago-msba/), observes how business projects moving IT workloads from on-premise datacenters to cloud services often become conflated with and are sometimes even driven by analytics use cases. Today, few will tolerate sending tickets to a central IT database team inbox for custom reports, where-ever they sit. The momentum is towards the decentralization of data teams, and further towards the concept of the **Data Mesh** (more on this in a moment). This post highlights recent talks and posts by experts in the field. They include Bar Moses, Sean Taylor, Ben Stancil, Emily Riederer, Anna Filippova and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
+**WE** still need to be responsible for the data science and analytics strategy, the work breakdown, and ultimately the decision making. This post highlights recent talks and posts by experts in the field. They include Bar Moses, Sean Taylor, Ben Stancil, Emily Riederer, Anna Filippova and others. Whatever prompted you to read this, I hope that you come away with a handful of useful insights for your own work.
 
 -----
 ## The Data Mesh
 
-Jon Krohn recently interviewed [Barr Moses](https://twitter.com/BM_DataDowntime), the CEO of [Monte Carlo data](https://www.montecarlodata.com/) on the shortcomings of data teams today and solutions. 
+Jon Krohn recently interviewed [Barr Moses](https://twitter.com/BM_DataDowntime), the CEO of [Monte Carlo data](https://www.montecarlodata.com/) on the shortcomings of data teams today and the challenges they face. 
 
 {{<youtube LBoetaid78s>}}
 
-She notes that at one time a typical analyst would sit in [finance](https://wraptext.equals.app/every-analyst-is-a-finance-analyst/) and tally figures on internally available transactions against a departmental budget, monthly or quarterly. Control and movement of data was simple. As analytics is scaled out into new use cases across all of the other functional groups, common issues that arise:
+She notes that at one time a typical analyst would sit in [finance](https://wraptext.equals.app/every-analyst-is-a-finance-analyst/) and tally figures on internally available transactions against a departmental budget, monthly or quarterly. Control and movement of data was simple. As analytics is scaled out into new use cases across all of the other functional groups, the issues include:
 
 - Self-service platforms do not handle the massive number of data sources, batch and streaming, structured and un-structured, from both inside and outside of the enterprise. 
 - With the complexity of pipelines, there is a lack of trust as many are poorly orchestrated and not fresh or not well documented.
 - The rise of many new personas working with rich datasets outside of IT and finance that need data to fulfill their functional missions.
 
-With an eye on doing digital well, we return to the central question: How do we actually work with data? Whatever worked before is not going to cut it going forward.
+With an eye on doing digital *well*, we return to the central question: How do we actually work with data? Whatever worked before is not going to cut it going forward.
 
 The original [data mesh](https://martinfowler.com/articles/data-monolith-to-mesh.html) paper dates from 2019 and is a pretty robust set of architectural requirements. In a nutshell, it adopts concepts from software engineering, where distributed systems are deployed with mandated standards and norms, allowing for de-centralized ownership and responsibility while pushing the competencies out away from any central team. Self-service, whatever that is, only works if data is assured to be fresh, correct, and reliable (more on this later).
 
@@ -82,7 +82,7 @@ Adding the word [Engineer to the word Analyst](https://locallyoptimistic.com/pos
 
 *Success in modern software engineering isn't measured by technical complexity but by clarity, reliability, agility and impact — it is a collaborative practice, grounded in an ecosystem of open tools that enable automating the rote mechanics and focusing on the higher order problems. Good analytics isn't measured by the complexity of the methodology, but by the impact of the insight. Analytics is ingenuity. It is finding something novel, and saying — "Oh, now that's interesting!" – and then turning it into a meaningful abstraction to help others see what we see.*
 
-So purple teams need purple tools.
+So purple teams need purple tools, to move with urgency and agility.
 
 She writes: *Purple people aren't interested in solving the same problem over and over again. They'd like to do it once, learn a whole ton, and then automate it for everyone else. Purple people will therefore be the organizational champions for technology that reduces time to insight for everyone else. We are already seeing a shift in our industry towards automation and abstraction in [MLOps](https://towardsdatascience.com/ml-ops-machine-learning-as-an-engineering-discipline-b86ca4874a3f) (e.g. DataRobot, AzureML Studio) and Analytics (e.g. Sisu, ThoughtSpot) — solutions that represent data paths well traveled. These tools aren't optimizing for purple people directly, but purple people get excited about them because they help everyone move up the stack and refocus on solving new problems.*
 
@@ -92,7 +92,7 @@ The future of purple tools is open source.
 
 *The data stack of the future will make sure these abstractions are modular, reusable, that they are able to integrate flexibly into many scenarios, and that we share them with one another. This means continuing to make the purple parts of our data stack open in the same way all of the foundational tools and frameworks in a software engineer's toolkit are open — to foster collaboration, remixing and innovation. The foundation of our data ecosystem began with open source tools —  Databricks, PyTorch, Pandas, NumPy, RStudio, Jupyter... As we all move up the stack and stand on the shoulders of these giants, we continue to create space for purple people to do what they do best — make our data solutions better in new and exciting ways.*
 
-So the data stack and the skill sets we build must enable us to spend less time engineering, eliminate the gatekeeping, and open up more time for innovating. An open stack is not built exclusively for a particular set of practitioners or to solve a particular problem. Rather, building a stack and the skill sets that support the integration of modules provide the flexibility to solve new types of problems as they emerge. 
+So the data stack and the skill sets we build must enable us to spend less time engineering, eliminate the gatekeeping, assure that the security is built in from the start, and open up more time for innovating. An open stack is not built exclusively for a particular set of practitioners or to solve a particular problem. Rather, building a stack and the skill sets that support the integration of modules provide the flexibility to solve new types of problems as they emerge. 
 
 ----
 ## The North Star for the Modern Data Experience
@@ -140,7 +140,7 @@ Suspend all disbelief for a moment and, at some point in the distant future (i.e
 
 Are any of these self-serve? Are all of them?
 
-One way to answer is creating a list of “self-serve requirements,” and seeing how many boxes each option checks. You might even pull the latest Gartner review. But if you’re like me, that’s not how you think about it. For each idea, we each imagine ourselves using it. 
+One way to answer is creating a list of “self-serve requirements,” and seeing how many boxes each option checks. Some might even pull the latest Gartner report out :flushed:. But if you’re like me, that’s not how you think about it. For each idea, we each imagine ourselves using it. 
 
 Do I think I could use it without asking for help? 
 
@@ -154,22 +154,22 @@ As analytics teams, we have lots of paths to solve problems, and we get to choos
 
 If people love Excel, self-serve can be a OneDrive folder of regularly updated CSVs. If they love MS Teams, self-serve could be web-hook alerts posted to curated chat channels. If drag-and-drop tools aren’t well adopted because people feel overwhelmed by them, self-serve can be a handful of well-organized dashboards that answer the most common questions. If people constantly request metrics, self-serve can be a query interface into a metrics layer. If analysts don’t want to rebuild messy analytical work as BI dashboards, self-serve can be a few tightly-governed tables and a bit of education on how to write basic statements in SQL.
 
-So often, as data teams, we chase the self-serve experience that we think we’re supposed to build. We should be more critical of that, and chase the self-serve experience that makes our customers feel most at home.
+So often, as data teams, we chase the self-serve experience that we think we’re supposed to build. We should be more critical of that assumption, and chase the self-serve experience that makes our clients feel most at home.
 
 ----
 ## Enterprise Data Skills Training 
 
 Let's come full circle then on skills development and what individuals need to know to grow organizational capabilities. 
 
-Step 1 is sponsoring vibrant communities of practice where practitioners meet frequently and share what they have learned, at any level. Yes, the goals include making Excel users into better Excel users. Making the small jumps to topics like SQL and data visualization are so much easier with an MS Teams book club or MS Teams chat room support network. Generally speaking, open source tools are free and accessible and available immediately to anyone. Create something simple like a Shiny App or R Markdown document. Share it. Get feedback.
+Step 1 is sponsoring and engaging communities of practice where practitioners meet frequently and share what they have learned, at any level. Yes, the goals include making Excel users into better Excel users. Making the small jumps to topics like SQL and data visualization are so much easier with an MS Teams book club or MS Teams chat room support network. Generally speaking, open source tools are free and accessible and available immediately to anyone. Create something simple like a Shiny App, an R Markdown document, or an AngularJS animated graphic. Share it. Get feedback.
 
 Consider joining the [R4DS community](https://www.rfordatasci.com/) on Slack. The resource is free. They offer channels that serve as help desks, birds-of-a-feather industry conversation rooms, and chapter-a-week virtual book clubs. 
 
-I curate [a list of useful books, courses, and expert blogs](https://jimgruman.netlify.app/post/education-r/). Most are free. These could be departure points for your own learning journey, starting from any point. My hope is that you take and copy sections for sharing with your own community of practice.
+Read. I curate [a list of useful books, courses, and expert blogs](https://jimgruman.netlify.app/post/education-r/). Most are free. These could be departure points for your own learning journey, starting from any point. My hope is that you take and copy sections for sharing with your own community of practice.
 
-On-line programs like [DataCamp](https://learn.datacamp.com/) and [many others](https://github.com/Chris-Engelhardt/data_sci_guide) are self-paced and not expensive. In my case, I found myself needing to craft my own copies of what I had just done to retain or find the resources later. Be aware that some of the material is stale. 
+On-line programs like [DataCamp](https://learn.datacamp.com/) and [many others](https://github.com/Chris-Engelhardt/data_sci_guide) are self-paced and not expensive. In my case, I found myself needing to journal on what I had just done to retain and find the resources later. Be aware that some of the material is stale. 
 
-[Coursera](https://www.coursera.org/specializations/jhu-data-science)'s catalog is broader. The Roger Peng / Jeff Leek / Brian Caffo series alone has an enrollment of 438,000+. Some of it is re-purposed college lecture media. Google also offers a new [professional Data Analytics credential](https://grow.google/certificates/) through Coursera, and the material is fresh and very relevant. Google Collab is a nice cloud compute resource for teaching, and for those that want a sandbox to try concepts, Google owns Kaggle. 
+[Coursera](https://www.coursera.org/specializations/jhu-data-science)'s catalog is broader. The Roger Peng / Jeff Leek / Brian Caffo series on data science has an enrollment of 438,000+. Some of it is re-purposed college lecture media. Google also offers a new [professional Data Analytics credential](https://grow.google/certificates/) through Coursera, and the material is fresh and very relevant. Google Collab is a nice cloud compute resource for teaching, and for those that want a sandbox to try concepts, Google owns Kaggle. 
 
 Matt Dancho's [Business Science](https://www.business-science.io/) is very good. It's hosted on the Teachable platform. His focus is very much on solving immediate business challenges. I am currently subscribing to his weekly "Learning Labs Pro" and Python materials. 
 
