@@ -206,7 +206,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 ----
 ## Book Recommendation
 
-<a href="https://www.routledge.com/Supervised-Machine-Learning-for-Text-Analysis-in-R/Hvitfeldt-Silge/p/book/9780367554194"><img class="t-cover-img" src="https://images.routledge.com/common/jackets/crclarge/978036755/9780367554194.jpg" alt="Supervised Machine Learning for Text Analysis in R"></a>
+<a href="https://www.routledge.com/Supervised-Machine-Learning-for-Text-Analysis-in-R/Hvitfeldt-Silge/p/book/9780367554194"><img class="t-cover-img" src="https://images-na.ssl-images-amazon.com/images/I/41y5DvIzBFS._SX314_BO1,204,203,200_.jpg" alt="Supervised Machine Learning for Text Analysis in R"></a>
 
 An **HTML version** of the text can be found at [https://smltar.com/](https://smltar.com/).
 
