@@ -35,7 +35,7 @@ Let's walk through an example of how an analyst gets their data, talk a little a
 
 ----
 
-<img src="http://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="300">
+<img src="https://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="300">
 
 ## The Strava API
 
@@ -60,7 +60,7 @@ theme_set(theme_jim(base_size = 12))
 
 ```
 
-Strava requires authentication to track api utilization and compliance with their terms of service. This code is taken directly from [Marcus Beck](https://twitter.com/fawda123)'s `rStrava` [help pages](http://fawda123.github.io/rStrava/).
+Strava requires authentication to track api utilization and compliance with their terms of service. This code is taken directly from [Marcus Beck](https://twitter.com/fawda123)'s `rStrava` [help pages](https://fawda123.github.io/rStrava/).
 
 ```{r StravaAuthentication}
 # get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
