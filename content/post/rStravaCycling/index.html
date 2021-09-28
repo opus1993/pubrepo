@@ -1,7 +1,7 @@
 ---
-title: "Animating 2021 Fitness Goals with rStrava"
+title: "Animating 2021 Cycling Goals with rStrava"
 author: "Jim Gruman"
-date: "2020-12-28"
+date: "2021-09-28"
 diagram: true
 output: 
  blogdown::html_page:
@@ -22,9 +22,327 @@ twitter:
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
-<p>Looking back, 2020 was a very good year for cycling in the Chicago area. Our family splurged on “good” bikes way back in ~2007 and made some fine memories getting around. With the kids moving on and new opportunities this spring with SARS-COVID-19 work-from-home (no commuting) measures, I picked up the Strava community habit and started exploring much more widely, solo. The trail network is superb. I also began to track my rides, runs, and walks and wondered what I might do with the data with the <code>rStrava</code> package currently in development.</p>
+<p>Cycling 🚲 is much more popular in 2021 as evidenced by local <a href="https://fvbsc.org/">cycling club</a> activity and US <a href="https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf">national surveys</a>. Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to a wider audience. It’s also possible that post-COVID, people still want fun, affordable, family friendly activities.</p>
+<p>Bike shops have been busy filling orders and making repairs. Back orders for some are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a <a href="https://www.bsgcycling.com/">century ride</a> (100 miles).</p>
 <hr />
-<p>Let’s pause here and acknowledge my inspirations and resources for building this post:</p>
+<p>I posted to this blog in December of 2020 on the <code>rStrava</code> package, but realized this week that there is so much more to say, post-COVID, on related issues. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions <a href="https://youtu.be/6dKvSaMRcUw">here</a> and on statistical tool stacks available <a href="https://youtu.be/rzs6aSr4XoU">here</a>.</p>
+<p>Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some <a href="https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic">200 U.S. cities</a> changed their streets to accommodate increased outdoor activity, including biking. Garmin, Strava, and Lyft’s <a href="https://www.divvybikes.com/about">Divvy</a> are just three examples of private parties that provide data access APIs.</p>
+<p>Everything from navigating our <a href="https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/">personal health care</a> to decisions on <a href="https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/">how to ride safely</a> warrant an up to date understanding of this new world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving.</p>
+<p>Let’s walk through an example of how an analyst gets their data, talk a little about publishing what it all means to an audience, and close with an animation.</p>
+<hr />
+<p><img src="http://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="300"></p>
+<div id="the-strava-api" class="section level2">
+<h2>The Strava API</h2>
+<p>As with any other project in R, we will start by loading free open source libraries available from <a href="https://cran.r-project.org/">CRAN</a> and Marcus Beck’s <a href="http://fawda123.github.io/rStrava/">github</a> to pull from Strava’s application programming interface. I also set my own graphics theme for fonts and colors.</p>
+<pre class="r"><code>source(here::here(&quot;_common.R&quot;))
+
+suppressPackageStartupMessages({
+ 
+library(tidyverse) # data manipulation
+library(rStrava) # the Strava API
+library(ggmap) # one of the mapping APIs
+library(gganimate) # animation tools
+library(patchwork) # combine charts and graphs
+library(lubridate) # handle dates and times
+extrafont::loadfonts(quiet = TRUE)
+
+})
+
+theme_set(theme_jim(base_size = 12))</code></pre>
+<p>Strava requires authentication to track api utilization and compliance with their terms of service. This code is taken directly from <a href="https://twitter.com/fawda123">Marcus Beck</a>’s <code>rStrava</code> <a href="http://fawda123.github.io/rStrava/">help pages</a>.</p>
+<pre class="r"><code># get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
+
+if (file.exists(here::here(&quot;.httr-oauth&quot;))) {
+  stoken &lt;- httr::config(token = readRDS(here::here(&quot;.httr-oauth&quot;))[[1]])
+} else {
+  app_name &lt;- &quot;Rapp&quot; # chosen at https://www.strava.com/settings/api
+  app_client_id &lt;- &quot;58858&quot; # Client ID
+  app_secret &lt;- Sys.getenv(&quot;rStravaSecret&quot;) # Keep your client secrets hidden with usethis::edit_r_environ
+  stoken &lt;-
+    httr::config(
+      token = strava_oauth(
+        app_name,
+        app_client_id,
+        app_secret,
+        app_scope = &quot;activity:read_all&quot;,
+        cache = TRUE
+      )
+    )
+  # Setting cache = TRUE for strava_oauth creates a hidden authentication file and masks it in .gitignore
+}
+
+# We will will also tap into Google&#39;s mapping API, though alternatives from other services are available.
+mykey &lt;- Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;)
+
+register_google(mykey)
+# Be sure to enable the Google Maps Platform Elevations API at https://console.cloud.google.com/google/maps-apis/</code></pre>
+<p>The API retrieval functions are called with the token established above. Let’s start by downloading my own athlete profile:</p>
+<pre class="r"><code># Your Athlete ID number can be found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
+
+myinfo &lt;- get_athlete(stoken, id = &quot;68008050&quot;)</code></pre>
+<p>From there we can build an example of a heat map of all of my activities recorded within Strava. The first call is to download the list with <code>get_activity_list()</code> and the second is to convert the list into an easy to use dataframe with <code>compile_activities()</code>.</p>
+<pre class="r"><code># get activities, get activities by lat/lon, distance, plot
+my_acts &lt;- get_activity_list(stoken)
+act_data &lt;- compile_activities(my_acts,
+  units = &quot;imperial&quot;
+)
+
+all_activity_heatmap &lt;-
+  get_heat_map(
+    act_data,
+    key = mykey,
+    col = &quot;darkgreen&quot;,
+    size = 2,
+    distlab = F,
+    f = 0.1
+  ) +
+  coord_equal(expand = FALSE) +
+  labs(
+    title = &quot;My Cumulative Cycling Activity in Strava&quot;,
+    subtitle = paste0(format(as.Date(
+      min(act_data$start_date)
+    ), &quot;%B %e, %Y&quot;), &quot; to &quot;, format(today(), &quot;%B %e, %Y&quot;)),
+    fill = &quot;&quot;,
+    x = NULL,
+    y = NULL,
+    caption = &quot;map: Google&quot;
+  ) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    plot.margin = margin(0, 0, 0, 0, &quot;cm&quot;)
+  )</code></pre>
+<p>Let’s pair the map with a graph showing the accumulation of miles over time.</p>
+<pre class="r"><code>all_activity_lines &lt;- act_data %&gt;%
+  mutate(dates = as.Date(start_date, &quot;%Y-%m-%dT%H:%M:%SZ&quot;)) %&gt;%
+  filter(type == &quot;Ride&quot;) %&gt;%
+  complete(dates, type, fill = list(distance = 0)) %&gt;%
+  arrange(dates) %&gt;%
+  group_by(type) %&gt;%
+  mutate(act_cum = cumsum(distance)) %&gt;%
+  ungroup() %&gt;%
+  ggplot(aes(dates, act_cum)) +
+  geom_line(size = 1.5, color = &quot;darkgreen&quot;) +
+  scale_x_date(
+    breaks = &quot;3 months&quot;,
+    date_labels = &quot;%b %Y&quot;
+  ) +
+  scale_y_continuous(position = &quot;right&quot;) +
+  labs(title = NULL, x = NULL, y = &quot;Cumulative Miles&quot;, color = NULL) +
+  theme(
+    legend.position = c(0.15, 0.8),
+    legend.background = element_rect(color = &quot;white&quot;),
+    plot.margin = margin(0, 0, 0, 0, &quot;cm&quot;)
+  )</code></pre>
+<pre class="r"><code>all_activity_heatmap + all_activity_lines</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/patchwork-1.png" width="200%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>Accessing data, exploring it, and understanding what it means as an analyst is still less than half of the work. Connecting with an audience to tell the story in a meaningful way is always the more challenging task. Regardless of whether the topic is supply chain risk or health and fitness decisions, the data alone is not enough, regardless of whether it is hosted on a set of dashboards.</p>
+<p>Business school masters programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant’s pitch deck has the same MBA style building blocks.</p>
+<p>The emerging field of <a href="https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism">data journalism</a> offers some hard won insights into what conveying insights through media to the broader world is becoming, far beyond boardrooms.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Data_driven_journalism_process.jpg" /></p>
+<p>What makes data journalism different than the rest of journalism? It might be the new possibilities that open up when combining the traditional ‘nose for news’ and ability to tell a compelling story, with the scale and range of digital information now available. Those possibilities can come at any stage of the process: using programming to automate the gathering of information from sources. Or using software to find connections between hundreds of thousands of documents.</p>
+<p>Data journalism can help tell a complex story through engaging infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with <a href="https://www.gapminder.org/">Gapminder</a>. And David McCandless’s popular work in distilling big numbers shows the importance of clear design at <a href="https://informationisbeautiful.net/">Information is Beautiful</a>.</p>
+<p>Many data-driven stories begin with powerful resources in open source software, open access publishing and open data, while others are products of public records requests or leaked materials.</p>
+<hr />
+<p>This short video montage conveys a broader perspective of what sorts of work roles are doing modern analytical work in organizations all around us.</p>
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6848342838309085184" height="572" width="504" frameborder="0" allowfullscreen title="Embedded post">
+</iframe>
+<hr />
+<p>Drilling down deeper, the <code>rStrava</code> package includes functions for plotting either elevation or % gradient for a single ride. These were the high points of my recent century ride:</p>
+<pre class="r"><code>id &lt;- &quot;6024775955&quot;
+
+# plot elevation along a single ride
+get_heat_map(
+  my_acts,
+  id = id,
+  alpha = 1,
+  add_elev = T,
+  f = 0.1,
+  distlab = F,
+  key = mykey,
+  size = 2,
+  as_grad = FALSE,
+  col = &quot;RdYlBu&quot;,
+  maptype = &quot;terrain&quot;,
+  units = &quot;imperial&quot;
+) +
+  labs(
+    title = &quot;The Century Ride&quot;,
+    subtitle = paste0(format(
+      as.Date(act_data[act_data$id == id, ]$start_date), &quot;%B %e, %Y&quot;
+    ), &quot; Elevations&quot;),
+    fill = &quot;&quot;,
+    x = NULL,
+    y = NULL,
+    caption = &quot;map: Google&quot;
+  ) +
+  scale_fill_binned() +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    legend.position = &quot;none&quot;,
+    legend.background = element_rect(color = &quot;white&quot;)
+  )</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/elevation-1.png" width="200%" style="display: block; margin: auto;" /></p>
+<p>The accumulated elevation – that is, the climbing – for the same century ride:</p>
+<pre class="r"><code>get_elev_prof(
+  my_acts,
+  id = id,
+  key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;),
+  units = &quot;imperial&quot;,
+  total = T
+)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/accumulated_elevation-1.png" width="200%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>No purchased software was required to access my biometric data hosted on Strava. No purchased software was required to parse it or to visualize it. Generally speaking, less friction and less gate keeping are economically valuable. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need to beg for licenses from an IT department.</p>
+<p>When you think about it, the way humans tend to operate mirrors <a href="https://www.bcg.com/publications/2021/open-source-software-strategy-benefits">open source</a> principles. Arguably we are naturally inclined to use, share, learn, copy and improve on things together so that other people can be part of a community. It’s not surprising then that it’s been so widely adopted, and because it’s so widespread, the barriers to entry are relatively low if you want to join the club.</p>
+<p>Some companies are learning to tap into the open source community for talent and to upskill themselves. They go beyond reluctantly accepting the use of open source software to encouraging participation by their employees in projects.</p>
+<p>No company is more emblematic of the shift in attitude to open source software than Microsoft, which initially waged a legal battle against it. The digital giant now uses open source software extensively. Most of Microsoft Azure runs on Linux. The digital giant has joined the Open Source Initiative, acquired GitHub for $7.5 billion in 2018 – then the largest enterprise software acquisition ever – and its employees are heavily engaged with GitHub, with over 5,000 of them contributing to open source projects in 2020.</p>
+<p>Other companies have established open communities of excellence. They identify the open source software each department in the organization uses, and foster collaboration as well as best practice sharing. Catalyzing exchanges between enthusiasts and getting the various functions to share success stories help companies realize the full potential of open source software.</p>
+<p>On a personal interest level, being able to get involved and contribute to open source software while knowing there isn’t a monetary incentive is beneficial. It gives people a sense of purpose and helps to increase creativity and problem solving skills which positively influence productivity.</p>
+<hr />
+</div>
+<div id="setting-goals-for-2021" class="section level2">
+<h2>Setting Goals for 2021</h2>
+<p>Strava offers their own paid subscription feature that includes graphs that let members “visualize their progress and trajectory” as they strive to hit their targets. As always with this kind of functionality, the quality and usefulness of results depends on the inputs. Set reasonable goals and you’ll have a nice visual reminder that you’re on track. Excessive optimism, on the other hand, yields graphs that serve only to remind you that you really need to try harder.</p>
+<p>Another approach is to build our own goal tracking tool in R. Let’s walk through one approach here, including:</p>
+<p><code>goal</code>: (num) - The goal in miles to achieve for each activity. For here: <code>1600</code> miles of cycling.</p>
+<p><code>sports</code>: (chr) - My value: <code>Ride</code> for cycling.</p>
+<p><code>selected.year</code>: (num) - Choose the year to visualize. My value: <code>2021</code></p>
+<p><code>current.day</code>: (date) - For the vertical line marking the current day of the year. My value: <code>Sys.Date()</code></p>
+<p>We will <code>filter()</code> for the relevant rows from the dataframe (year and type of sports). Then sort by timestamp and convert the timestamp into a date. The <code>tidyr</code> <code>complete</code> function fleshes out the dataframe with a complete sequence of days to better show the cumulative sum of miles traveled each day. And <code>dplyr()</code> <code>mutate()</code> is used to pre-calculate columns for use in the animation.</p>
+<pre class="r"><code>goal &lt;- c(1600)
+sports &lt;- c(&quot;Ride&quot;)
+selected.year &lt;- c(2021)
+current.day &lt;- Sys.Date()</code></pre>
+<pre class="r"><code>p &lt;- act_data %&gt;%
+  mutate(dates = as.Date(start_date, &quot;%Y-%m-%dT%H:%M:%SZ&quot;)) %&gt;%
+  filter(
+    type %in% sports,
+    year(dates) %in% selected.year
+  ) %&gt;%
+  group_by(type, dates) %&gt;%
+  summarize(distance = sum(distance), .groups = &quot;drop&quot;) %&gt;%
+  complete(
+    dates = seq.Date(min(dates), Sys.Date(), by = &quot;day&quot;),
+    type,
+    fill = list(distance = 0)
+  ) %&gt;%
+  arrange(type, dates) %&gt;%
+  group_by(type) %&gt;%
+  mutate(act_cum = cumsum(distance)) %&gt;%
+  ungroup() %&gt;%
+  mutate(
+    goal = map_dbl(type, ~ goal[which(. == sports)]),
+    remaining = if_else(goal - act_cum &gt; 0, round(goal - act_cum), 0),
+    till.end = as.numeric(as.Date(paste0(
+      selected.year, &quot;-12-31&quot;
+    )) - dates),
+    goal_cum = goal * (1 - till.end / 365.25),
+    status_flag = if_else(goal_cum - act_cum &gt; 0, TRUE, FALSE),
+    dist.per.week.to.goal = if_else(goal - act_cum &gt; 0,
+      round(7 * (goal - act_cum) / till.end), 0
+    )
+  ) %&gt;%
+  ggplot() +
+  geom_line(aes(dates, act_cum, color = type),
+    show.legend = FALSE
+  ) +
+  geom_point(aes(dates, act_cum, color = type),
+    size = 2,
+    show.legend = FALSE
+  ) +
+  geom_text(
+    aes(
+      dates + 7,
+      act_cum,
+      label = round(act_cum),
+      color = if_else(status_flag, &quot;black&quot;, &quot;green&quot;)
+    ),
+    hjust = 0,
+    size = 4,
+    show.legend = FALSE
+  ) +
+  geom_label(
+    aes(
+      label = paste0(
+        &quot;Remaining: &quot;,
+        remaining,
+        &quot; miles;\n&quot;,
+        &quot;To achieve goal: &quot;,
+        dist.per.week.to.goal,
+        &quot; miles/week&quot;
+      ),
+      x = as.Date(paste0(selected.year, &quot;-01-15&quot;)),
+      y = goal * 11 / 12
+    ),
+    hjust = 0,
+    show.legend = FALSE
+  ) +
+  scale_x_date(
+    breaks = &quot;month&quot;,
+    minor_breaks = NULL,
+    date_labels = &quot;%b&quot;,
+    limits = c(
+      as.Date(paste0(
+        selected.year, &quot;-01-01&quot;
+      )),
+      as.Date(paste0(
+        selected.year, &quot;-12-31&quot;
+      ))
+    )
+  ) +
+  scale_y_continuous(minor_breaks = NULL) +
+  expand_limits(y = 0) +
+  geom_vline(
+    xintercept = current.day,
+    col = alpha(&quot;grey&quot;, .5),
+    lty = &quot;dashed&quot;
+  ) +
+  geom_hline(aes(yintercept = goal),
+    color = &quot;red&quot;,
+    show.legend = FALSE
+  ) +
+  facet_wrap(~type, scales = &quot;free_y&quot;) +
+  geom_segment(
+    aes(yend = goal),
+    x = as.Date(paste0(selected.year, &quot;-01-01&quot;)),
+    y = 0,
+    xend = as.Date(paste0(selected.year, &quot;-12-31&quot;)),
+    lty = &quot;dashed&quot;,
+    col = &quot;red&quot;
+  ) +
+  labs(
+    x = NULL,
+    y = &quot;miles completed&quot;,
+    title = paste0(
+      &quot;My Progress Towards &quot;,
+      selected.year,
+      &quot; goals in Strava as of &quot;,
+      &#39;{format(frame_along,&quot;%B %e&quot;)}&#39;
+    ),
+    caption = &quot;@jim_gruman&quot;
+  ) +
+  theme_jim(base_size = 16)
+
+p &lt;- p + transition_reveal(dates)
+
+anim &lt;-
+  animate(
+    p,
+    width = 900,
+    height = 600,
+    end_pause = 50,
+    duration = 60,
+    renderer = gifski_renderer()
+  )
+
+anim</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/animation-1.gif" width="200%" style="display: block; margin: auto;" /></p>
+<hr />
+<p>From my prior post, dated 28-Dec-2020:</p>
+<p>An acknowledgement of my inspirations and resources for building this post:</p>
 <blockquote>
 <p>Author and <code>rStrava</code> Creator <a href="https://twitter.com/fawda123">Marcus W. Beck</a></p>
 </blockquote>
@@ -40,219 +358,6 @@ twitter:
 <blockquote>
 <p><a href="https://twitter.com/KittyJohne">John Peters</a> has crafted a Shiny app that leverages Strava and other fitness data at <a href="https://bluecattechnical.shinyapps.io/EnDuRA/">EnDuRA</a></p>
 </blockquote>
-<div id="this-post-will-cover" class="section level3">
-<h3>This post will cover:</h3>
-<ol style="list-style-type: decimal">
-<li><p>A way to summarize total accumulated fitness efforts.</p></li>
-<li><p>Explore the details of a specific workout activity spatially.</p></li>
-<li><p>Establish a model for animating our progress towards annual goals.</p></li>
-</ol>
-<hr />
-</div>
-<div id="setup-and-authentication" class="section level3">
-<h3>Setup and Authentication</h3>
-<p>As with any other project, we start by loading the appropriate libraries.</p>
-<pre class="r"><code>knitr::opts_chunk$set(
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE,
-  fig.align = &quot;center&quot;
-)
-
-suppressPackageStartupMessages({
-
-library(tidyverse)   
-library(rStrava)
-library(ggmap)
-library(gganimate)
-library(patchwork)
-library(lubridate)  
-library(here) 
-})
-
-theme_set(hrbrthemes::theme_ipsum() +
-            theme(plot.title.position = &quot;plot&quot;))
-
-extrafont::loadfonts(quiet = TRUE)
-
-pal &lt;- wesanderson::wes_palette(&quot;Zissou1&quot;, 21, type = &quot;continuous&quot;)</code></pre>
-</div>
-<div id="strava-authentication" class="section level3">
-<h3>Strava Authentication</h3>
-<p>The <code>rStrava</code> <a href="http://fawda123.github.io/rStrava/#api-functions-token">github site</a> offers clear instructions for mapping your Strava profile credentials to an API connection, even for free accounts. My code here wraps the config request into if-else statements so the blogdown site is not hammering Strava while it renders pages. For convenience I will use Google’s background maps though they are rarely my first choice.</p>
-<pre class="r"><code># get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
-
-if (file.exists(here(&quot;.httr-oauth&quot;))) {
-stoken &lt;- httr::config(token = readRDS(here(&#39;.httr-oauth&#39;))[[1]])
-} else {
-app_name &lt;- &#39;Rapp&#39; # chosen at https://www.strava.com/settings/api
-app_client_id  &lt;- &#39;58858&#39; # Client ID
-app_secret &lt;- Sys.getenv(&quot;rStravaSecret&quot;) # Keep your client Secrets with usethis::edit_r_environ
-stoken &lt;- httr::config(token = strava_oauth(app_name, app_client_id, app_secret, app_scope = &quot;activity:read_all&quot;, cache = TRUE))
-# Setting cache = TRUE for strava_oauth creates a hidden authentication file and masks it in .gitignore
-}
-
-# We will will also tap into Google&#39;s mapping API, thought alternatives from other services are available.
-register_google(Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;))
-
-# Be sure to enable the Google Maps Platform Elevations API at https://console.cloud.google.com/google/maps-apis/</code></pre>
-<hr />
-<p>The API retrieval functions are called with the token established above. Let’s start by downloading my athlete profile:</p>
-<pre class="r"><code># Your Athlete ID number can be found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
-
-myinfo &lt;- get_athlete(stoken, id = &#39;68008050&#39;)</code></pre>
-<p>From there we can build an example of a heat map of all activities recorded within Strava. The first call is to download the list with <code>get_activity_list()</code> and the second is to convert the list into an easy to use dataframe with <code>compile_activities()</code>.</p>
-<pre class="r"><code># get activities, get activities by lat/lon, distance, plot
-my_acts &lt;- get_activity_list(stoken)
-act_data &lt;- compile_activities(my_acts) 
-
-all_activity_heatmap &lt;- get_heat_map(act_data, key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), col = pal[4], size = 2, distlab = F, f = 0.4) +  
-  coord_equal(expand = FALSE) +
-  labs(title = &quot;My Cumulative Exercise Activity in Strava&quot;, 
-       subtitle = paste0(format(as.Date(min(act_data$start_date)),&quot;%B %e&quot;),&quot; to &quot;, format(today(),&quot;%B %e, %Y&quot;)),
-       fill = &quot;&quot;, x = NULL, y = NULL,
-       caption = &quot;map: Google&quot;) +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        plot.margin = margin(0, 0, 0, 0, &quot;cm&quot;))</code></pre>
-<pre class="r"><code>all_activity_lines &lt;- act_data %&gt;% 
-  mutate(dates = as.Date(start_date, &quot;%Y-%m-%dT%H:%M:%SZ&quot;)) %&gt;% 
-  complete(dates, type, fill = list(distance = 0)) %&gt;% 
-  arrange(dates) %&gt;% 
-  group_by(type) %&gt;% 
-  mutate(act_cum = cumsum(distance)) %&gt;% 
-  ungroup() %&gt;% 
-  ggplot(aes(dates, act_cum, color = type)) +
-  geom_line(size = 1.5) +
-  scale_x_date(breaks = &quot;month&quot;, date_labels = &quot;%b %Y&quot;) +
-  labs(title = NULL, x = NULL, y = &quot;Miles&quot;, color = NULL) +
-  theme(legend.position = c(0.15, 0.8),
-        legend.background = element_rect(color = &quot;white&quot;),
-        plot.margin = margin(0, 0, 0, 0, &quot;cm&quot;))</code></pre>
-<pre class="r"><code>all_activity_heatmap + all_activity_lines</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/patchwork-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>The package includes functions for plotting elevation and gradient for a single ride:</p>
-<pre class="r"><code># activity id
-id &lt;- 4304397081
-
-# plot elevation along a single ride
-get_heat_map(my_acts, id = id, alpha = 1, add_elev = T, f = 0.3, distlab = F, key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), size = 2,
-             col = &quot;RdYlBu&quot;, 
-             maptype = &#39;terrain&#39;, 
-             units = &#39;imperial&#39;) +  
-  coord_equal(expand = FALSE) +
-  labs(title = &quot;Cycling Activity: Elevation along a Single Route&quot;, 
-       subtitle = paste0(format(as.Date(act_data[act_data$id == id,]$start_date),&quot;%B %e, %Y&quot;)),
-       fill = &quot;&quot;, x = NULL, y = NULL,
-       caption = &quot;map: Google&quot;) +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        legend.position = c(0.1,0.5),
-        legend.background = element_rect(color = &quot;white&quot;))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/elevation-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>The related % gradient for that ride:</p>
-<pre class="r"><code># plot elevation along a single ride
-get_heat_map(my_acts, id = id, alpha = 1, 
-             add_elev = T, f = 0.3, distlab = F, 
-             key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), 
-             size = 2, as_grad = TRUE,
-             col = &quot;RdYlBu&quot;, 
-             maptype = &#39;terrain&#39;, 
-             units = &#39;imperial&#39;) +  
-  coord_equal(expand = FALSE) +
-  labs(title = &quot;Cycling Activity: Gradient along a Single Route&quot;, 
-       subtitle = paste0(format(as.Date(act_data[act_data$id == id,]$start_date),&quot;%B %e, %Y&quot;)),
-       fill = &quot;&quot;, x = NULL, y = NULL,
-       caption = &quot;map: Google&quot;) +
-  theme(axis.text.x = element_blank(),
-        axis.text.y = element_blank(),
-        legend.position = c(0.1,0.5),
-        legend.background = element_rect(color = &quot;white&quot;))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/gradient-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Instantaneous elevation profiles for that single ride:</p>
-<pre class="r"><code># get activities
-my_acts &lt;- get_activity_list(stoken) 
-
-get_elev_prof(my_acts, id = id, 
-              key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), 
-              units = &#39;imperial&#39;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/instant_elevation-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Accumulated elevation climb for the same single ride:</p>
-<pre class="r"><code>get_elev_prof(my_acts, id = id, 
-              key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;), 
-              units = &#39;imperial&#39;, total = T)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/accumulated_elevation-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="setting-goals-for-2021" class="section level2">
-<h2>Setting Goals for 2021</h2>
-<p>Let’s establish global variables to use related to our goals, including:</p>
-<p><code>goal</code>: (num) - The goal in miles to achieve for each activity. For here: 900 and 50 respectively</p>
-<p><code>sports</code>: (chr) - Choose from the possible entries in the <code>type</code> column. My values: “Ride” and “Run”</p>
-<p><code>selected.year</code>: (num) - Choose the year to visualize. My value: 2020</p>
-<p><code>current.day</code>: (date) - For the vertical line marking the current day of the year. My value: <code>Sys.Date()</code></p>
-<pre class="r"><code>goal &lt;- c(900, 50)
-sports &lt;- c(&quot;Ride&quot;, &quot;Run&quot;)
-selected.year &lt;- c(2020)
-current.day &lt;- Sys.Date()</code></pre>
-<p>We will <code>filter()</code> for the relevant rows from the dataframe (year and type of sports). Then sort by timestamp and convert the timestamp into a date. The <code>tidyr</code> <code>complete</code> function fleshes out the dataframe with a complete sequence of days to better show the cumulative sum of miles traveled each day. And <code>dplyr()</code> <code>mutate()</code> is used to pre-calculate columns for use in the animation.</p>
-<p>The result:</p>
-<pre class="r"><code>p &lt;- act_data %&gt;% 
-  mutate(dates = as.Date(start_date, &quot;%Y-%m-%dT%H:%M:%SZ&quot;)) %&gt;% 
-  filter(type %in% sports,
-         year(dates) %in% selected.year) %&gt;% 
-  group_by(type, dates) %&gt;% 
-  summarize(distance = sum(distance), .groups = &quot;drop&quot;) %&gt;% 
-  complete(dates = seq.Date(min(dates),Sys.Date(), by = &quot;day&quot;), type, fill = list(distance = 0)) %&gt;% 
-  arrange(type, dates) %&gt;% 
-  group_by(type) %&gt;% 
-  mutate(act_cum = cumsum(distance)) %&gt;% 
-  ungroup() %&gt;% 
-  mutate(goal = map_dbl(type, ~goal[which(. == sports)]),
-         remaining = if_else(goal - act_cum &gt; 0, round( goal - act_cum),0),
-         till.end = as.numeric(as.Date(paste0(selected.year, &quot;-12-31&quot;)) - dates),
-         goal_cum = goal * (1 - till.end/365.25),
-         status_flag = if_else(goal_cum - act_cum &gt; 0,TRUE, FALSE),
-         dist.per.week.to.goal = if_else(goal - act_cum &gt; 0, round( 7 * (goal - act_cum)/till.end),0)) %&gt;% 
-  ggplot() +
-  geom_line(aes(dates, act_cum, color = type), show.legend = FALSE) +
-  geom_point(aes(dates, act_cum, color = type), size = 2, show.legend = FALSE) +
-  geom_text(aes(dates + 7, act_cum,
-                label = round(act_cum),
-                color = if_else(status_flag, &quot;black&quot;,&quot;green&quot;)),
-            hjust = 0, size = 4, show.legend = FALSE) +
-  geom_label(aes(label = paste0(&quot;Remaining: &quot;, remaining, &quot; miles;\n&quot;,&quot;To achieve goal: &quot;, dist.per.week.to.goal, &quot; miles/week&quot;),
-                 x = as.Date(paste0(selected.year, &quot;-01-15&quot;)),
-                 y = goal * 11 / 12),
-             hjust = 0, show.legend = FALSE) +
-  scale_x_date(breaks = &quot;month&quot;, 
-               minor_breaks = NULL,
-               date_labels = &quot;%b&quot;,
-               limits = c(as.Date(paste0(selected.year,&quot;-01-01&quot;)),
-                          as.Date(paste0(selected.year,&quot;-12-31&quot;)))) +
-  scale_y_continuous(minor_breaks = NULL) +
-  expand_limits(y = 0) +
-  geom_vline(xintercept = current.day, 
-             col = alpha(&quot;grey&quot;, .5), 
-             lty = &quot;dashed&quot;) +
-  geom_hline(aes(yintercept = goal), 
-             color = &quot;red&quot;,
-             show.legend = FALSE) +
-  facet_wrap(~ type, scales = &quot;free_y&quot;) +
-  geom_segment(aes(yend = goal),
-               x = as.Date(paste0(selected.year, &quot;-01-01&quot;)), 
-               y = 0, 
-               xend = as.Date(paste0(selected.year, &quot;-12-31&quot;)), 
-               lty = &quot;dashed&quot;, col = &quot;red&quot;) +
-  labs(x = NULL, y = &quot;miles completed&quot;, 
-       title = paste0(&#39;{format(frame_along,&quot;%B %e&quot;)}&#39;,&quot; progress towards &quot;,selected.year, &quot; goals in Strava&quot;),
-       caption = &quot;@jim_gruman&quot;) 
-
-p &lt;- p + transition_reveal(dates)
-
-anim &lt;- animate(p, width = 900, height = 600, end_pause = 50, duration = 60, renderer = gifski_renderer())
-
-anim</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/animation-1.gif" style="display: block; margin: auto;" /></p>
 <hr />
 <p>References</p>
 <blockquote>
