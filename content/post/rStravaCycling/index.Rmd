@@ -168,21 +168,21 @@ all_activity_heatmap + all_activity_lines
 
 ----
 
-Accessing data, exploring it, and understanding what it means as an analyst is still less than half of the work. Connecting with an audience to tell the story in a meaningful way is always the more challenging task. Regardless of whether the topic is supply chain risk or health and fitness decisions, the data alone is not enough, regardless of whether it is hosted on a set of dashboards.
+Accessing data, exploring it, and understanding what it means as an analyst is still less than half of the work. Connecting with an audience to tell the story in a meaningful way is always the more challenging task. Regardless of whether the topic is supply chain risk or health and fitness decisions, the data alone is not enough.
 
-Business school masters programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant's pitch deck has the same MBA style building blocks, for Powerpoint.
+Business school programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant's pitch deck has the same MBA style building blocks (for Powerpoint).
 
-The emerging field of [data journalism](https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism) offers some hard won process concepts into what conveying insights through media to the broader world is becoming.
+The emerging field of [data journalism](https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism) offers hard won process frameworks for conveying insights through media to the broader world.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/4/48/Data_driven_journalism_process.jpg)
 
-What makes data journalism different than the rest of journalism? It might be the new possibilities that open up when combining the traditional ‘nose for news’ and ability to tell a compelling story, with the scale and range of digital information now available. Those possibilities can come at any stage of the process: using programming to automate the gathering of information from sources. Or using software to find connections between hundreds of thousands of documents.
+What makes data journalism different than the rest of journalism? New possibilities open up when combining the traditional ‘nose for news’ and ability to tell a compelling story, with the scale and range of digital information now available. Those possibilities can come at any stage of the process: using programming to automate the gathering of information from sources, or using software to find connections between hundreds of thousands of documents.
 
-Data journalism can tell complex stories through infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with [Gapminder](https://www.gapminder.org/). And David McCandless’s popular work in distilling big numbers shows the importance of clear design at [Information is Beautiful](https://informationisbeautiful.net/).
+Data journalism can tell complex stories through infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with [Gapminder](https://www.gapminder.org/) and David McCandless’s work in distilling big numbers showing the importance of clear design at [Information is Beautiful](https://informationisbeautiful.net/).
 
 Often data-driven stories begin with resources in open source software, open access publishing and open data. Even a few businesses have noticed that the communication aspects of data science are critical unmet needs, to the point where they have invented yet another job title, [analytics translator](https://email.mg2.substack.com/c/eJw9kc1uhCAUhZ9m2I0RRMEFi276GoafOw6tgoFLHd--OKZNyCGcw80hH1YjzDEdaosZySkTHhuoAHteABESKRnS5J3qOR_HjhKnuKOyl8Tn6ZEAVu0XhakA2YpZvNXoYzgHmJB8JE8lTOc6oXvQTvCqTIhByx5aQXkvmblqdXEeggUFP5COGIAs6om45Vv3cWOfde373qz224cMR2PjWi1Tsg-Q8_1Rgj17czX_7tx10MuB3p5mLOleXT8_8Tz-R3dMOuRFY0zEK9Yy2o5MUtb2bGhYQzs3DMbIgRv2ANE3w-vVOe_cjbfrzJpcTEZtv8_3kKS-_NrMqaw61Hw-ybyDCmaq-1qCx2OCoM0C7mKGF_k3xWmGAKn-iJs0Kjp0THatqCLoxahC5VTSao6kNrtYp4KysQT0Yf4FNyyePw). I’m happy a few years later that the title seems not to have gained any traction, because it indicates that the work is being done and there’s no organizational gap elsewhere. Hopefully it’s data scientists taking up the work.
 
-This leads me to a thought on others that fill these communications needs in many organizations. This short video montage from a spring 2021 conference conveys a broader perspective of what sorts of work roles are doing modern analytical work. 
+This leads me to a thought on others that fill these communications needs in organizations. This short video montage from a spring 2021 conference conveys a broader perspective of what sorts of work roles are doing modern analytical work. 
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6848342838309085184" height="572" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
@@ -262,6 +262,7 @@ all_the_rides <- ggmap(map, darken = 0.15) +
     subtitle = paste0(format(as.Date(
       min(lat_lon$start_date)
     ), "%B %e, %Y"), " to ", format(today(), "%B %e, %Y")),
+    color = "Month",
     caption = "map: maps.stamen.com | data: Strava | visual: @jim_gruman"
   ) +
   transition_manual(n, cumulative = TRUE) +
