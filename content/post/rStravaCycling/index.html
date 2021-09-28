@@ -22,10 +22,10 @@ twitter:
 <script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
-<p>Cycling 🚲 is much more popular in 2021 as evidenced by local <a href="https://fvbsc.org/">cycling club</a> activity and US <a href="https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf">national surveys</a>. Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to a wider audience. It’s also possible that post-COVID, people still want fun, affordable, family friendly activities.</p>
-<p>Bike shops have been busy filling orders and making repairs. Back order lead times for some are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a <a href="https://www.bsgcycling.com/">century ride</a> (100 miles).</p>
+<p>Cycling 🚲 popularity has grown in 2021 as evidenced by local <a href="https://fvbsc.org/">cycling club</a> activity and US <a href="https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf">national surveys</a>. Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to more people. It’s also possible that post-COVID, many still want fun, affordable, family friendly activity.</p>
+<p>Bike shops have been busy filling orders and making repairs. Lead times for some models are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a <a href="https://www.bsgcycling.com/">century ride</a> (100 miles).</p>
 <hr />
-<p>I posted to this blog in December of 2020 initally on the <code>rStrava</code> package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions <a href="https://youtu.be/6dKvSaMRcUw">here</a> and on statistical tool stacks available <a href="https://youtu.be/rzs6aSr4XoU">here</a>.</p>
+<p>I posted to this blog in December of 2020 initially on the <code>rStrava</code> package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions <a href="https://youtu.be/6dKvSaMRcUw">here</a> and on statistical tool stacks available <a href="https://youtu.be/rzs6aSr4XoU">here</a>.</p>
 <p>Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some <a href="https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic">200 U.S. cities</a> changed their streets to accommodate increased outdoor activity, including biking. Strava and Lyft’s <a href="https://www.divvybikes.com/about">Divvy</a> are just two examples of private parties that provide data access APIs.</p>
 <p>Everything from navigating our <a href="https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/">personal health care</a> to decisions on <a href="https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/">how to ride safely</a> warrant an up to date study of this new world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving. Will that continue?</p>
 <p>Let’s walk through an example of how an analyst gets their data, talk a little about publishing what it all means to an audience, and close with an animation.</p>
@@ -33,7 +33,7 @@ twitter:
 <p><img src="https://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="350"></p>
 <div id="the-strava-api" class="section level2">
 <h2>The Strava API</h2>
-<p>As with any other project in R, we will start by loading free open source libraries available from <a href="https://cran.r-project.org/">CRAN</a> and Marcus Beck’s <a href="http://fawda123.github.io/rStrava/">github</a> to pull from Strava’s application programming interface. I also set my own graphics theme for fonts and colors.</p>
+<p>As with any other project in R, we will start by loading free open source libraries available from <a href="https://cran.r-project.org/">CRAN</a> and Marcus Beck’s <a href="http://fawda123.github.io/rStrava/">github</a> to pull from Strava’s application programming interface (API). I also set my own graphics theme.</p>
 <pre class="r"><code>source(here::here(&quot;_common.R&quot;))
 
 suppressPackageStartupMessages({
@@ -49,7 +49,7 @@ extrafont::loadfonts(quiet = TRUE)
 })
 
 theme_set(theme_jim(base_size = 12))</code></pre>
-<p>Strava requires authentication to track api utilization and compliance with their terms of service. This code is taken directly from <a href="https://twitter.com/fawda123">Marcus Beck</a>’s <code>rStrava</code> <a href="https://fawda123.github.io/rStrava/">help pages</a>.</p>
+<p>Strava requires authentication to track the api utilization and compliance with their terms of service. This code is taken directly from <a href="https://twitter.com/fawda123">Marcus Beck</a>’s <code>rStrava</code> <a href="https://fawda123.github.io/rStrava/">help pages</a>.</p>
 <pre class="r"><code># get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
 
 if (file.exists(here::here(&quot;.httr-oauth&quot;))) {
@@ -77,15 +77,16 @@ mykey &lt;- Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;)
 register_google(mykey)
 # Be sure to enable the Google Maps Platform Elevations API at https://console.cloud.google.com/google/maps-apis/</code></pre>
 <p>The API retrieval functions are called with the token established above. Let’s start by downloading my own athlete profile:</p>
-<pre class="r"><code># Your Athlete ID number can be found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
+<pre class="r"><code># Found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
 
 myinfo &lt;- get_athlete(stoken, id = &quot;68008050&quot;)</code></pre>
-<p>From there we can build an example of a heat map of all of my activities recorded within Strava. The first call is to download the list with <code>get_activity_list()</code> and the second is to convert the list into an easy to use dataframe with <code>compile_activities()</code>.</p>
+<p>From there we can build a heat map of my activities. The first call is to download the complete list with <code>get_activity_list()</code> and the second is to convert the list into an easy to use dataframe with <code>compile_activities()</code>.</p>
 <pre class="r"><code># get activities, get activities by lat/lon, distance, plot
 my_acts &lt;- get_activity_list(stoken)
 act_data &lt;- compile_activities(my_acts,
   units = &quot;imperial&quot;
-)
+) %&gt;%
+  mutate(id = factor(id))
 
 all_activity_heatmap &lt;-
   get_heat_map(
@@ -96,7 +97,7 @@ all_activity_heatmap &lt;-
     distlab = F,
     f = 0.1
   ) +
-  coord_equal(expand = FALSE) +
+  #  coord_equal(expand = FALSE) +
   labs(
     title = &quot;My Cumulative Cycling Activity in Strava&quot;,
     subtitle = paste0(format(as.Date(
@@ -113,89 +114,23 @@ all_activity_heatmap &lt;-
     plot.margin = margin(0, 0, 0, 0, &quot;cm&quot;)
   )</code></pre>
 <p>Let’s pair the map with a graph showing the accumulation of miles over time.</p>
-<pre class="r"><code>all_activity_lines &lt;- act_data %&gt;%
-  mutate(dates = as.Date(start_date, &quot;%Y-%m-%dT%H:%M:%SZ&quot;)) %&gt;%
-  filter(type == &quot;Ride&quot;) %&gt;%
-  complete(dates, type, fill = list(distance = 0)) %&gt;%
-  arrange(dates) %&gt;%
-  group_by(type) %&gt;%
-  mutate(act_cum = cumsum(distance)) %&gt;%
-  ungroup() %&gt;%
-  ggplot(aes(dates, act_cum)) +
-  geom_line(size = 1.5, color = &quot;darkgreen&quot;) +
-  scale_x_date(
-    breaks = &quot;3 months&quot;,
-    date_labels = &quot;%b %Y&quot;
-  ) +
-  scale_y_continuous(position = &quot;right&quot;) +
-  labs(title = NULL, x = NULL, y = &quot;Cumulative Miles&quot;, color = NULL) +
-  theme(
-    legend.position = c(0.15, 0.8),
-    legend.background = element_rect(color = &quot;white&quot;),
-    plot.margin = margin(0, 0, 0, 0, &quot;cm&quot;)
-  )</code></pre>
-<pre class="r"><code>all_activity_heatmap + all_activity_lines</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/patchwork-1.png" width="200%" style="display: block; margin: auto;" /></p>
 <hr />
 <p>Accessing data, exploring it, and understanding what it means as an analyst is still less than half of the work. Connecting with an audience to tell the story in a meaningful way is always the more challenging task. Regardless of whether the topic is supply chain risk or health and fitness decisions, the data alone is not enough, regardless of whether it is hosted on a set of dashboards.</p>
-<p>Business school masters programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant’s pitch deck has the same MBA style building blocks.</p>
-<p>The emerging field of <a href="https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism">data journalism</a> offers some hard won insights into what conveying insights through media to the broader world is becoming, far beyond boardrooms.</p>
+<p>Business school masters programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant’s pitch deck has the same MBA style building blocks, for Powerpoint.</p>
+<p>The emerging field of <a href="https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism">data journalism</a> offers some hard won process concepts into what conveying insights through media to the broader world is becoming.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Data_driven_journalism_process.jpg" /></p>
 <p>What makes data journalism different than the rest of journalism? It might be the new possibilities that open up when combining the traditional ‘nose for news’ and ability to tell a compelling story, with the scale and range of digital information now available. Those possibilities can come at any stage of the process: using programming to automate the gathering of information from sources. Or using software to find connections between hundreds of thousands of documents.</p>
-<p>Data journalism can help tell a complex story through engaging infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with <a href="https://www.gapminder.org/">Gapminder</a>. And David McCandless’s popular work in distilling big numbers shows the importance of clear design at <a href="https://informationisbeautiful.net/">Information is Beautiful</a>.</p>
-<p>Many data-driven stories begin with powerful resources in open source software, open access publishing and open data, while others are products of public records requests or leaked materials.</p>
-<hr />
-<p>This short video montage conveys a broader perspective of what sorts of work roles are doing modern analytical work in organizations all around us.</p>
+<p>Data journalism can tell complex stories through infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with <a href="https://www.gapminder.org/">Gapminder</a>. And David McCandless’s popular work in distilling big numbers shows the importance of clear design at <a href="https://informationisbeautiful.net/">Information is Beautiful</a>.</p>
+<p>Often data-driven stories begin with resources in open source software, open access publishing and open data. Even a few businesses have noticed that the communication aspects of data science are critical unmet needs, to the point where they have invented yet another job title, <a href="https://email.mg2.substack.com/c/eJw9kc1uhCAUhZ9m2I0RRMEFi276GoafOw6tgoFLHd--OKZNyCGcw80hH1YjzDEdaosZySkTHhuoAHteABESKRnS5J3qOR_HjhKnuKOyl8Tn6ZEAVu0XhakA2YpZvNXoYzgHmJB8JE8lTOc6oXvQTvCqTIhByx5aQXkvmblqdXEeggUFP5COGIAs6om45Vv3cWOfde373qz224cMR2PjWi1Tsg-Q8_1Rgj17czX_7tx10MuB3p5mLOleXT8_8Tz-R3dMOuRFY0zEK9Yy2o5MUtb2bGhYQzs3DMbIgRv2ANE3w-vVOe_cjbfrzJpcTEZtv8_3kKS-_NrMqaw61Hw-ybyDCmaq-1qCx2OCoM0C7mKGF_k3xWmGAKn-iJs0Kjp0THatqCLoxahC5VTSao6kNrtYp4KysQT0Yf4FNyyePw">analytics translator</a>. I’m happy a few years later that the title seems not to have gained any traction, because it indicates that the work is being done and there’s no organizational gap elsewhere. Hopefully it’s data scientists taking up the work.</p>
+<p>This leads me to a thought on others that fill these communications needs in many organizations. This short video montage from a spring 2021 conference conveys a broader perspective of what sorts of work roles are doing modern analytical work.</p>
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6848342838309085184" height="572" width="504" frameborder="0" allowfullscreen title="Embedded post">
 </iframe>
 <hr />
-<p>Drilling down deeper, the <code>rStrava</code> package includes functions for plotting either elevation or % gradient for a single ride. These were the high points of my recent century ride:</p>
-<pre class="r"><code>id &lt;- &quot;6024775955&quot;
-
-# plot elevation along a single ride
-get_heat_map(
-  my_acts,
-  id = id,
-  alpha = 1,
-  add_elev = T,
-  f = 0.1,
-  distlab = F,
-  key = mykey,
-  size = 2,
-  as_grad = FALSE,
-  col = &quot;RdYlBu&quot;,
-  maptype = &quot;terrain&quot;,
-  units = &quot;imperial&quot;
-) +
-  labs(
-    title = &quot;The Century Ride&quot;,
-    subtitle = paste0(format(
-      as.Date(act_data[act_data$id == id, ]$start_date), &quot;%B %e, %Y&quot;
-    ), &quot; Elevations&quot;),
-    fill = &quot;&quot;,
-    x = NULL,
-    y = NULL,
-    caption = &quot;map: Google&quot;
-  ) +
-  scale_fill_binned() +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank(),
-    legend.position = &quot;none&quot;,
-    legend.background = element_rect(color = &quot;white&quot;)
-  )</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/elevation-1.png" width="200%" style="display: block; margin: auto;" /></p>
-<p>The accumulated elevation – that is, the climbing – for the same century ride:</p>
-<pre class="r"><code>get_elev_prof(
-  my_acts,
-  id = id,
-  key = Sys.getenv(&quot;GGMAP_GOOGLE_API_KEY&quot;),
-  units = &quot;imperial&quot;,
-  total = T
-)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/accumulated_elevation-1.png" width="200%" style="display: block; margin: auto;" /></p>
+<p>Drilling down deeper, the <code>rStrava</code> package includes functions for pulling elevation or % gradient for individual rides, or all of them. Heart rates, travel speeds, and really anything recorded can be plotted over maps from Google, OpenStreetMap, or Stamen (each with their own APIs).</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/animated_paths-1.gif" width="200%" style="display: block; margin: auto;" /></p>
 <hr />
-<p>No purchased software was required to access my biometric data hosted on Strava. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are economically valuable. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need to beg for licenses from an IT department.</p>
+<p>No purchased software was required to access my personal biometric data. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are all ways of creating value. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need for analysts to beg for licenses from an IT department.</p>
 <p>When you think about it, the way humans tend to operate mirrors <a href="https://www.bcg.com/publications/2021/open-source-software-strategy-benefits">open source</a> principles. Arguably we are naturally inclined to use, share, learn, copy and improve on things together so that other people can be part of a community. It’s not surprising then that it’s been so widely adopted, and because it’s so widespread, the barriers to entry are relatively low if you want to join the club.</p>
 <p>Some companies are learning to tap into the open source community for talent and to upskill themselves. They go beyond reluctantly accepting the use of open source software to encouraging participation by their employees in projects.</p>
 <p>No company is more emblematic of the shift in attitude to open source software than Microsoft, which initially waged a legal battle against it. The digital giant now uses open source software extensively. Most of Microsoft Azure runs on Linux. The digital giant has joined the Open Source Initiative, acquired GitHub for $7.5 billion in 2018 – then the largest enterprise software acquisition ever – and its employees are heavily engaged with GitHub, with over 5,000 of them contributing to open source projects in 2020.</p>
@@ -211,144 +146,19 @@ get_heat_map(
 <p><code>sports</code>: (chr) - My value: <code>Ride</code> for cycling.</p>
 <p><code>selected.year</code>: (num) - Choose the year to visualize. My value: <code>2021</code></p>
 <p><code>current.day</code>: (date) - For the vertical line marking the current day of the year. My value: <code>Sys.Date()</code></p>
-<p>We will <code>filter()</code> for the relevant rows from the dataframe (year and type of sports). Then sort by timestamp and convert the timestamp into a date. The <code>tidyr</code> <code>complete</code> function fleshes out the dataframe with a complete sequence of days to better show the cumulative sum of miles traveled each day. And <code>dplyr()</code> <code>mutate()</code> is used to pre-calculate columns for use in the animation.</p>
+<p>The result:</p>
 <pre class="r"><code>goal &lt;- c(1600)
 sports &lt;- c(&quot;Ride&quot;)
 selected.year &lt;- c(2021)
 current.day &lt;- Sys.Date()</code></pre>
-<pre class="r"><code>p &lt;- act_data %&gt;%
-  mutate(dates = as.Date(start_date, &quot;%Y-%m-%dT%H:%M:%SZ&quot;)) %&gt;%
-  filter(
-    type %in% sports,
-    year(dates) %in% selected.year
-  ) %&gt;%
-  group_by(type, dates) %&gt;%
-  summarize(distance = sum(distance), .groups = &quot;drop&quot;) %&gt;%
-  complete(
-    dates = seq.Date(min(dates), Sys.Date(), by = &quot;day&quot;),
-    type,
-    fill = list(distance = 0)
-  ) %&gt;%
-  arrange(type, dates) %&gt;%
-  group_by(type) %&gt;%
-  mutate(act_cum = cumsum(distance)) %&gt;%
-  ungroup() %&gt;%
-  mutate(
-    goal = map_dbl(type, ~ goal[which(. == sports)]),
-    remaining = if_else(goal - act_cum &gt; 0, round(goal - act_cum), 0),
-    till.end = as.numeric(as.Date(paste0(
-      selected.year, &quot;-12-31&quot;
-    )) - dates),
-    goal_cum = goal * (1 - till.end / 365.25),
-    status_flag = if_else(goal_cum - act_cum &gt; 0, TRUE, FALSE),
-    dist.per.week.to.goal = if_else(goal - act_cum &gt; 0,
-      round(7 * (goal - act_cum) / till.end), 0
-    )
-  ) %&gt;%
-  ggplot() +
-  geom_line(aes(dates, act_cum, color = type),
-    show.legend = FALSE
-  ) +
-  geom_point(aes(dates, act_cum, color = type),
-    size = 2,
-    show.legend = FALSE
-  ) +
-  geom_text(
-    aes(
-      dates + 7,
-      act_cum,
-      label = round(act_cum),
-      color = if_else(status_flag, &quot;black&quot;, &quot;green&quot;)
-    ),
-    hjust = 0,
-    size = 16 * 5 / 14,
-    show.legend = FALSE
-  ) +
-  geom_label(
-    aes(
-      label = paste0(
-        &quot;Remaining: &quot;,
-        remaining,
-        &quot; miles;\n&quot;,
-        &quot;To achieve goal: &quot;,
-        dist.per.week.to.goal,
-        &quot; miles/week&quot;
-      ),
-      x = as.Date(paste0(selected.year, &quot;-01-15&quot;)),
-      y = goal * 11 / 12
-    ),
-    size = 16 * 5 / 14,
-    hjust = 0,
-    show.legend = FALSE
-  ) +
-  scale_x_date(
-    breaks = &quot;month&quot;,
-    minor_breaks = NULL,
-    date_labels = &quot;%b&quot;,
-    limits = c(
-      as.Date(paste0(
-        selected.year, &quot;-01-01&quot;
-      )),
-      as.Date(paste0(
-        selected.year, &quot;-12-31&quot;
-      ))
-    )
-  ) +
-  scale_y_continuous(minor_breaks = NULL) +
-  expand_limits(y = 0) +
-  geom_vline(
-    xintercept = current.day,
-    col = alpha(&quot;grey&quot;, .5),
-    lty = &quot;dashed&quot;
-  ) +
-  geom_hline(aes(yintercept = goal),
-    color = &quot;red&quot;,
-    show.legend = FALSE
-  ) +
-  facet_wrap(~type, scales = &quot;free_y&quot;) +
-  geom_segment(
-    aes(yend = goal),
-    x = as.Date(paste0(selected.year, &quot;-01-01&quot;)),
-    y = 0,
-    xend = as.Date(paste0(selected.year, &quot;-12-31&quot;)),
-    lty = &quot;dashed&quot;,
-    col = &quot;red&quot;
-  ) +
-  labs(
-    x = NULL,
-    y = &quot;miles completed&quot;,
-    title = paste0(
-      &quot;My Progress Towards &quot;,
-      selected.year,
-      &quot; goals in Strava as of &quot;,
-      &#39;{format(frame_along,&quot;%B %e&quot;)}&#39;
-    ),
-    caption = &quot;@jim_gruman&quot;
-  ) +
-  theme_jim(base_size = 16)
-
-p &lt;- p + transition_reveal(dates)
-
-anim &lt;-
-  animate(
-    p,
-    width = 900,
-    height = 600,
-    end_pause = 50,
-    duration = 60,
-    renderer = gifski_renderer()
-  )
-
-anim</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/animation-1.gif" width="200%" style="display: block; margin: auto;" /></p>
 <hr />
-<p>From my prior post, dated 28-Dec-2020:</p>
-<p>An acknowledgement of my inspirations and resources for building this post:</p>
+<p>An acknowledgement of my inspirations for building this post:</p>
 <blockquote>
 <p>Author and <code>rStrava</code> Creator <a href="https://twitter.com/fawda123">Marcus W. Beck</a></p>
 </blockquote>
 <blockquote>
-<p><a href="https://twitter.com/sascha_wolfer">Sascha Wolfer</a> published an very nice blog post recently at <a href="http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/">rCrastinate</a> on running and is active in the <a href="https://www.strava.com/clubs/738071">RStats Strava Club</a></p>
+<p><a href="https://twitter.com/sascha_wolfer">Sascha Wolfer</a> published an very nice blog post at <a href="http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/">rCrastinate</a> on running and is active in the <a href="https://www.strava.com/clubs/738071">RStats Strava Club</a></p>
 </blockquote>
 <blockquote>
 <p><a href="https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/">Jack Rozran’s blog</a> with plots on cumulative milage and ridgeplots.</p>
@@ -358,6 +168,9 @@ anim</code></pre>
 </blockquote>
 <blockquote>
 <p><a href="https://twitter.com/KittyJohne">John Peters</a> has crafted a Shiny app that leverages Strava and other fitness data at <a href="https://bluecattechnical.shinyapps.io/EnDuRA/">EnDuRA</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://padpadpadpad.github.io/post/animate-your-strava-activities-using-rstrava-and-gganimate/">Daniel Padfield</a> with concepts for animations.</p>
 </blockquote>
 <hr />
 <p>References</p>

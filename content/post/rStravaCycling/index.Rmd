@@ -19,13 +19,13 @@ twitter:
   creator: "@jim_gruman"
 ---
 
-Cycling 🚲 is much more popular in 2021 as evidenced by local [cycling club](https://fvbsc.org/) activity and US [national surveys](https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf). Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to a wider audience. It's also possible that post-COVID, people still want fun, affordable, family friendly activities.
+Cycling 🚲 popularity has grown in 2021 as evidenced by local [cycling club](https://fvbsc.org/) activity and US [national surveys](https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf). Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to more people. It's also possible that post-COVID, many still want fun, affordable, family friendly activity.
 
-Bike shops have been busy filling orders and making repairs. Back order lead times for some are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a [century ride](https://www.bsgcycling.com/) (100 miles). 
+Bike shops have been busy filling orders and making repairs. Lead times for some models are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a [century ride](https://www.bsgcycling.com/) (100 miles). 
 
 ----
 
-I posted to this blog in December of 2020 initally on the `rStrava` package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions [here](https://youtu.be/6dKvSaMRcUw) and on statistical tool stacks available [here](https://youtu.be/rzs6aSr4XoU). 
+I posted to this blog in December of 2020 initially on the `rStrava` package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions [here](https://youtu.be/6dKvSaMRcUw) and on statistical tool stacks available [here](https://youtu.be/rzs6aSr4XoU). 
 
 Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some [200 U.S. cities](https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic) changed their streets to accommodate increased outdoor activity, including biking. Strava and Lyft's [Divvy](https://www.divvybikes.com/about) are just two examples of private parties that provide data access APIs.
 
@@ -39,7 +39,7 @@ Let's walk through an example of how an analyst gets their data, talk a little a
 
 ## The Strava API
 
-As with any other project in R, we will start by loading free open source libraries available from [CRAN](https://cran.r-project.org/) and Marcus Beck's [github](http://fawda123.github.io/rStrava/) to pull from Strava's application programming interface.  I also set my own graphics theme for fonts and colors.
+As with any other project in R, we will start by loading free open source libraries available from [CRAN](https://cran.r-project.org/) and Marcus Beck's [github](http://fawda123.github.io/rStrava/) to pull from Strava's application programming interface (API).  I also set my own graphics theme.
 
 ```{r setup, echo=TRUE, warning = FALSE}
 source(here::here("_common.R"))
@@ -60,7 +60,7 @@ theme_set(theme_jim(base_size = 12))
 
 ```
 
-Strava requires authentication to track api utilization and compliance with their terms of service. This code is taken directly from [Marcus Beck](https://twitter.com/fawda123)'s `rStrava` [help pages](https://fawda123.github.io/rStrava/).
+Strava requires authentication to track the api utilization and compliance with their terms of service. This code is taken directly from [Marcus Beck](https://twitter.com/fawda123)'s `rStrava` [help pages](https://fawda123.github.io/rStrava/).
 
 ```{r StravaAuthentication}
 # get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
@@ -95,19 +95,20 @@ register_google(mykey)
 The API retrieval functions are called with the token established above. Let's start by downloading my own athlete profile:
 
 ```{r myinfo}
-# Your Athlete ID number can be found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
+# Found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
 
 myinfo <- get_athlete(stoken, id = '68008050')
 
 ```
 
-From there we can build an example of a heat map of all of my activities recorded within Strava. The first call is to download the list with `get_activity_list()` and the second is to convert the list into an easy to use dataframe with `compile_activities()`.
+From there we can build a heat map of my activities. The first call is to download the complete list with `get_activity_list()` and the second is to convert the list into an easy to use dataframe with `compile_activities()`.
 
 ```{r activities}
 # get activities, get activities by lat/lon, distance, plot
 my_acts <- get_activity_list(stoken)
 act_data <- compile_activities(my_acts,
-                               units = 'imperial')
+                               units = 'imperial') %>% 
+  mutate(id = factor(id))
 
 all_activity_heatmap <-
   get_heat_map(
@@ -118,7 +119,7 @@ all_activity_heatmap <-
     distlab = F,
     f = 0.1
   ) +
-  coord_equal(expand = FALSE) +
+#  coord_equal(expand = FALSE) +
   labs(
     title = "My Cumulative Cycling Activity in Strava",
     subtitle = paste0(format(as.Date(
@@ -139,7 +140,7 @@ all_activity_heatmap <-
 
 Let's pair the map with a graph showing the accumulation of miles over time.
 
-```{r lineplot}
+```{r lineplot, include=FALSE}
 all_activity_lines <- act_data %>% 
   mutate(dates = as.Date(start_date, "%Y-%m-%dT%H:%M:%SZ")) %>%   filter(type == "Ride") %>% 
   complete(dates, type, fill = list(distance = 0)) %>% 
@@ -148,17 +149,19 @@ all_activity_lines <- act_data %>%
   mutate(act_cum = cumsum(distance)) %>% 
   ungroup() %>% 
   ggplot(aes(dates, act_cum)) +
-  geom_line(size = 1.5, color = "darkgreen") +
+  geom_line(size = 1.5, 
+            color = "darkgreen", 
+            show.legend = FALSE) +
   scale_x_date(breaks = "3 months", 
-               date_labels = "%b %Y") +
+               date_minor_breaks = "month",
+               date_labels = "%b (%y)") +
   scale_y_continuous(position = "right") +
   labs(title = NULL, x = NULL, y = "Cumulative Miles", color = NULL) +
-  theme(legend.position = c(0.15, 0.8),
-        legend.background = element_rect(color = "white"),
-        plot.margin = margin(0, 0, 0, 0, "cm"))
+  theme(plot.margin = margin(0, 0, 0, 0, "cm"),
+        panel.grid.minor = element_line(color = "gray90"))
 ```
 
-```{r patchwork, warning=FALSE, fig.asp=1, width = 9}
+```{r patchwork, echo=FALSE, fig.asp=0.7, warning=FALSE}
 all_activity_heatmap + all_activity_lines
 
 ```
@@ -167,80 +170,119 @@ all_activity_heatmap + all_activity_lines
 
 Accessing data, exploring it, and understanding what it means as an analyst is still less than half of the work. Connecting with an audience to tell the story in a meaningful way is always the more challenging task. Regardless of whether the topic is supply chain risk or health and fitness decisions, the data alone is not enough, regardless of whether it is hosted on a set of dashboards.
 
-Business school masters programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant's pitch deck has the same MBA style building blocks.
+Business school masters programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant's pitch deck has the same MBA style building blocks, for Powerpoint.
 
-The emerging field of [data journalism](https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism) offers some hard won insights into what conveying insights through media to the broader world is becoming, far beyond boardrooms.
+The emerging field of [data journalism](https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism) offers some hard won process concepts into what conveying insights through media to the broader world is becoming.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/4/48/Data_driven_journalism_process.jpg)
 
 What makes data journalism different than the rest of journalism? It might be the new possibilities that open up when combining the traditional ‘nose for news’ and ability to tell a compelling story, with the scale and range of digital information now available. Those possibilities can come at any stage of the process: using programming to automate the gathering of information from sources. Or using software to find connections between hundreds of thousands of documents.
 
-Data journalism can help tell a complex story through engaging infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with [Gapminder](https://www.gapminder.org/). And David McCandless’s popular work in distilling big numbers shows the importance of clear design at [Information is Beautiful](https://informationisbeautiful.net/).
+Data journalism can tell complex stories through infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with [Gapminder](https://www.gapminder.org/). And David McCandless’s popular work in distilling big numbers shows the importance of clear design at [Information is Beautiful](https://informationisbeautiful.net/).
 
-Many data-driven stories begin with powerful resources in open source software, open access publishing and open data, while others are products of public records requests or leaked materials. 
+Often data-driven stories begin with resources in open source software, open access publishing and open data. Even a few businesses have noticed that the communication aspects of data science are critical unmet needs, to the point where they have invented yet another job title, [analytics translator](https://email.mg2.substack.com/c/eJw9kc1uhCAUhZ9m2I0RRMEFi276GoafOw6tgoFLHd--OKZNyCGcw80hH1YjzDEdaosZySkTHhuoAHteABESKRnS5J3qOR_HjhKnuKOyl8Tn6ZEAVu0XhakA2YpZvNXoYzgHmJB8JE8lTOc6oXvQTvCqTIhByx5aQXkvmblqdXEeggUFP5COGIAs6om45Vv3cWOfde373qz224cMR2PjWi1Tsg-Q8_1Rgj17czX_7tx10MuB3p5mLOleXT8_8Tz-R3dMOuRFY0zEK9Yy2o5MUtb2bGhYQzs3DMbIgRv2ANE3w-vVOe_cjbfrzJpcTEZtv8_3kKS-_NrMqaw61Hw-ybyDCmaq-1qCx2OCoM0C7mKGF_k3xWmGAKn-iJs0Kjp0THatqCLoxahC5VTSao6kNrtYp4KysQT0Yf4FNyyePw). I’m happy a few years later that the title seems not to have gained any traction, because it indicates that the work is being done and there’s no organizational gap elsewhere. Hopefully it’s data scientists taking up the work.
 
-----
-
-This short video montage conveys a broader perspective of what sorts of work roles are doing modern analytical work in organizations all around us. 
+This leads me to a thought on others that fill these communications needs in many organizations. This short video montage from a spring 2021 conference conveys a broader perspective of what sorts of work roles are doing modern analytical work. 
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6848342838309085184" height="572" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
 ----
 
-Drilling down deeper, the `rStrava` package includes functions for plotting either elevation or % gradient for a single ride. These were the high points of my recent century ride:
+Drilling down deeper, the `rStrava` package includes functions for pulling elevation or % gradient for individual rides, or all of them. Heart rates, travel speeds, and really anything recorded can be plotted over maps from Google, OpenStreetMap, or Stamen (each with their own APIs).
 
-```{r elevation, warning = FALSE, fig.asp=7}
-id <- "6024775955"
+```{r animated_paths, echo=FALSE, fig.asp=1}
 
-# plot elevation along a single ride
-get_heat_map(
-  my_acts,
-  id = id,
-  alpha = 1,
-  add_elev = T,
-  f = 0.1,
-  distlab = F,
-  key = mykey,
-  size = 2,
-  as_grad = FALSE,
-  col = "RdYlBu",
-  maptype = 'terrain',
-  units = 'imperial'
-) +
-  labs(
-    title = "The Century Ride",
-    subtitle = paste0(format(
-      as.Date(act_data[act_data$id == id, ]$start_date), "%B %e, %Y"
-    ), " Elevations"),
-    fill = "",
-    x = NULL,
-    y = NULL,
-    caption = "map: Google"
-  ) +
-  scale_fill_binned() +
-  theme(
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank(),
-    legend.position = "none",
-    legend.background = element_rect(color = "white")
+desired_columns <-
+  c(
+    'distance',
+    'elapsed_time',
+    'moving_time',
+    'start_date',
+    'start_date_local',
+    'type',
+    'map.summary_polyline',
+    'upload_id',
+    'start_latitude',
+    'start_longitude',
+    'id'
   )
-```
 
-The accumulated elevation -- that is, the climbing -- for the same century ride:
+my_acts <- act_data %>%
+  select_at(all_of(desired_columns)) %>%
+  mutate(
+    month = month(start_date, label = TRUE),
+    elapsed_time = elapsed_time / 60 / 60,
+    moving_time = moving_time / 60 / 60
+  ) 
 
-```{r accumulated_elevation}
-get_elev_prof(
-  my_acts,
-  id = id,
-  key = Sys.getenv("GGMAP_GOOGLE_API_KEY"),
-  units = 'imperial',
-  total = T
-)
+lat_lon <- my_acts %>%
+  filter(!is.na(map.summary_polyline)) %>%
+  nest(data = c(map.summary_polyline)) %>%
+   mutate(coords = map(data, get_latlon, mykey)) %>%  #,
+  #        distance = map(coords, ~get_dists(.x$lon, .x$lat))) %>%
+  # unnest(data) %>%
+  # unnest(c(coords, distance)
+  unnest(coords) %>% 
+  group_by(id) %>% 
+  mutate(n = row_number() #,
+#         tot_dist = max(distance)
+         ) %>% 
+  ungroup()
+
+bbox <- ggmap::make_bbox(lon, lat, data = lat_lon, f = 0.14)
+
+map <- get_stamenmap(
+  bbox = bbox,
+  zoom = 9
+) 
+
+color_index <- c(1,3,5,7,9,11,12,10,8,6,4,2)
+
+pal = viridis::viridis_pal(option = "H")(12)[color_index]
+
+all_the_rides <- ggmap(map, darken = 0.15) +
+  geom_path(
+    data = lat_lon,
+    aes(
+      x = lon,
+      y = lat,
+      color = month,
+      group = id
+    ),
+    size = 1,
+    alpha = 1
+  ) +
+  scale_color_manual(values = pal) +
+  labs(
+    title = paste0(
+      'My Recorded ',
+      emojifont::emoji("bike"),
+      ' Rides Animated Together'
+    ),
+    subtitle = paste0(format(as.Date(
+      min(lat_lon$start_date)
+    ), "%B %e, %Y"), " to ", format(today(), "%B %e, %Y")),
+    caption = "map: maps.stamen.com | data: Strava | visual: @jim_gruman"
+  ) +
+  transition_manual(n, cumulative = TRUE) +
+  theme_jim(base_size = 32) +
+  ggforce::theme_no_axes() 
+
+anim <- animate(
+    all_the_rides,
+    width = 600,
+    height = 900,
+    end_pause = 50,
+    duration = 60,
+    renderer = gifski_renderer()
+  )
+
+anim
 ```
 
 ----
 
-No purchased software was required to access my biometric data hosted on Strava. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are economically valuable. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need to beg for licenses from an IT department.
+No purchased software was required to access my personal biometric data. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are all ways of creating value. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need for analysts to beg for licenses from an IT department.
 
 When you think about it, the way humans tend to operate mirrors [open source](https://www.bcg.com/publications/2021/open-source-software-strategy-benefits) principles. Arguably we are naturally inclined to use, share, learn, copy and improve on things together so that other people can be part of a community. It’s not surprising then that it’s been so widely adopted, and because it’s so widespread, the barriers to entry are relatively low if you want to join the club.
 
@@ -268,7 +310,7 @@ Another approach is to build our own goal tracking tool in R. Let's walk through
 
 `current.day`: (date) - For the vertical line marking the current day of the year. My value: `Sys.Date()`
 
-We will `filter()` for the relevant rows from the dataframe (year and type of sports). Then sort by timestamp and convert the timestamp into a date. The `tidyr` `complete` function fleshes out the dataframe with a complete sequence of days to better show the cumulative sum of miles traveled each day. And `dplyr()` `mutate()` is used to pre-calculate columns for use in the animation. 
+The result:
 
 ```{r goals}
 goal <- c(1600)
@@ -277,7 +319,7 @@ selected.year <- c(2021)
 current.day <- Sys.Date()
 ```
 
-```{r animation, warning=FALSE, fig.asp=1}
+```{r animation, echo=FALSE, fig.asp=1, warning=FALSE}
 p <- act_data %>%
   mutate(dates = as.Date(start_date, "%Y-%m-%dT%H:%M:%SZ")) %>%
   filter(type %in% sports,
@@ -395,19 +437,19 @@ anim
 
 ----
 
-From my prior post, dated 28-Dec-2020:
-
-An acknowledgement of my inspirations and resources for building this post:
+An acknowledgement of my inspirations for building this post:
 
 > Author and `rStrava` Creator [Marcus W. Beck](https://twitter.com/fawda123) 
 
-> [Sascha Wolfer](https://twitter.com/sascha_wolfer) published an very nice blog post recently at [rCrastinate](http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/) on running and is active in the [RStats Strava Club](https://www.strava.com/clubs/738071)
+> [Sascha Wolfer](https://twitter.com/sascha_wolfer) published an very nice blog post at [rCrastinate](http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/) on running and is active in the [RStats Strava Club](https://www.strava.com/clubs/738071)
 
 > [Jack Rozran's blog](https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/) with plots on cumulative milage and ridgeplots.
 
 > [Chris Woods's Cycle Eye Visual](https://drawingwithdata.com/portfolio/cycle-eye/) of total climb and distance in a radial plot.
 
 > [John Peters](https://twitter.com/KittyJohne) has crafted a Shiny app that leverages Strava and other fitness data at [EnDuRA](https://bluecattechnical.shinyapps.io/EnDuRA/)
+
+> [Daniel Padfield](https://padpadpadpad.github.io/post/animate-your-strava-activities-using-rstrava-and-gganimate/) with concepts for animations.
 
 ----
 
