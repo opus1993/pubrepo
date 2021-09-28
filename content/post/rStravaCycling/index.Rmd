@@ -21,21 +21,21 @@ twitter:
 
 Cycling 🚲 is much more popular in 2021 as evidenced by local [cycling club](https://fvbsc.org/) activity and US [national surveys](https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf). Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to a wider audience. It's also possible that post-COVID, people still want fun, affordable, family friendly activities.
 
-Bike shops have been busy filling orders and making repairs. Back orders for some are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a [century ride](https://www.bsgcycling.com/) (100 miles). 
+Bike shops have been busy filling orders and making repairs. Back order lead times for some are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a [century ride](https://www.bsgcycling.com/) (100 miles). 
 
 ----
 
-I posted to this blog in December of 2020 on the `rStrava` package, but realized this week that there is so much more to say, post-COVID, on related issues. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions [here](https://youtu.be/6dKvSaMRcUw) and on statistical tool stacks available [here](https://youtu.be/rzs6aSr4XoU). 
+I posted to this blog in December of 2020 initally on the `rStrava` package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions [here](https://youtu.be/6dKvSaMRcUw) and on statistical tool stacks available [here](https://youtu.be/rzs6aSr4XoU). 
 
-Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some [200 U.S. cities](https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic) changed their streets to accommodate increased outdoor activity, including biking. Garmin, Strava, and Lyft's [Divvy](https://www.divvybikes.com/about) are just three examples of private parties that provide data access APIs.
+Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some [200 U.S. cities](https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic) changed their streets to accommodate increased outdoor activity, including biking. Strava and Lyft's [Divvy](https://www.divvybikes.com/about) are just two examples of private parties that provide data access APIs.
 
-Everything from navigating our [personal health care](https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/) to decisions on [how to ride safely](https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/) warrant an up to date understanding of this new world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving.
+Everything from navigating our [personal health care](https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/) to decisions on [how to ride safely](https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/) warrant an up to date study of this new world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving. Will that continue?
 
 Let's walk through an example of how an analyst gets their data, talk a little about publishing what it all means to an audience, and close with an animation.
 
 ----
 
-<img src="https://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="300">
+<img src="https://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="350">
 
 ## The Strava API
 
@@ -240,7 +240,7 @@ get_elev_prof(
 
 ----
 
-No purchased software was required to access my biometric data hosted on Strava. No purchased software was required to parse it or to visualize it. Generally speaking, less friction and less gate keeping are economically valuable. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need to beg for licenses from an IT department.
+No purchased software was required to access my biometric data hosted on Strava. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are economically valuable. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need to beg for licenses from an IT department.
 
 When you think about it, the way humans tend to operate mirrors [open source](https://www.bcg.com/publications/2021/open-source-software-strategy-benefits) principles. Arguably we are naturally inclined to use, share, learn, copy and improve on things together so that other people can be part of a community. It’s not surprising then that it’s been so widely adopted, and because it’s so widespread, the barriers to entry are relatively low if you want to join the club.
 
@@ -316,7 +316,7 @@ p <- act_data %>%
       color = if_else(status_flag, "black", "green")
     ),
     hjust = 0,
-    size = 4,
+    size = 16*5/14,
     show.legend = FALSE
   ) +
   geom_label(
@@ -332,6 +332,7 @@ p <- act_data %>%
       x = as.Date(paste0(selected.year, "-01-15")),
       y = goal * 11 / 12
     ),
+    size = 16*5/14,
     hjust = 0,
     show.legend = FALSE
   ) +
@@ -415,6 +416,8 @@ References
 > [rStrava R package web page](http://fawda123.github.io/rStrava/)
 
 > [Strava API](https://www.strava.com/settings/api)
+
+> [D. Kahle and H. Wickham. ggmap: Spatial Visualization with ggplot2. The R Journal, 5(1), 144-161.](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf)
 
 ----
 

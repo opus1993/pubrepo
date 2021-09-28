@@ -23,14 +23,14 @@ twitter:
 
 
 <p>Cycling 🚲 is much more popular in 2021 as evidenced by local <a href="https://fvbsc.org/">cycling club</a> activity and US <a href="https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf">national surveys</a>. Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to a wider audience. It’s also possible that post-COVID, people still want fun, affordable, family friendly activities.</p>
-<p>Bike shops have been busy filling orders and making repairs. Back orders for some are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a <a href="https://www.bsgcycling.com/">century ride</a> (100 miles).</p>
+<p>Bike shops have been busy filling orders and making repairs. Back order lead times for some are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a <a href="https://www.bsgcycling.com/">century ride</a> (100 miles).</p>
 <hr />
-<p>I posted to this blog in December of 2020 on the <code>rStrava</code> package, but realized this week that there is so much more to say, post-COVID, on related issues. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions <a href="https://youtu.be/6dKvSaMRcUw">here</a> and on statistical tool stacks available <a href="https://youtu.be/rzs6aSr4XoU">here</a>.</p>
-<p>Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some <a href="https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic">200 U.S. cities</a> changed their streets to accommodate increased outdoor activity, including biking. Garmin, Strava, and Lyft’s <a href="https://www.divvybikes.com/about">Divvy</a> are just three examples of private parties that provide data access APIs.</p>
-<p>Everything from navigating our <a href="https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/">personal health care</a> to decisions on <a href="https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/">how to ride safely</a> warrant an up to date understanding of this new world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving.</p>
+<p>I posted to this blog in December of 2020 initally on the <code>rStrava</code> package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions <a href="https://youtu.be/6dKvSaMRcUw">here</a> and on statistical tool stacks available <a href="https://youtu.be/rzs6aSr4XoU">here</a>.</p>
+<p>Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some <a href="https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic">200 U.S. cities</a> changed their streets to accommodate increased outdoor activity, including biking. Strava and Lyft’s <a href="https://www.divvybikes.com/about">Divvy</a> are just two examples of private parties that provide data access APIs.</p>
+<p>Everything from navigating our <a href="https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/">personal health care</a> to decisions on <a href="https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/">how to ride safely</a> warrant an up to date study of this new world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving. Will that continue?</p>
 <p>Let’s walk through an example of how an analyst gets their data, talk a little about publishing what it all means to an audience, and close with an animation.</p>
 <hr />
-<p><img src="https://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="300"></p>
+<p><img src="https://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="350"></p>
 <div id="the-strava-api" class="section level2">
 <h2>The Strava API</h2>
 <p>As with any other project in R, we will start by loading free open source libraries available from <a href="https://cran.r-project.org/">CRAN</a> and Marcus Beck’s <a href="http://fawda123.github.io/rStrava/">github</a> to pull from Strava’s application programming interface. I also set my own graphics theme for fonts and colors.</p>
@@ -195,7 +195,7 @@ get_heat_map(
 )</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/accumulated_elevation-1.png" width="200%" style="display: block; margin: auto;" /></p>
 <hr />
-<p>No purchased software was required to access my biometric data hosted on Strava. No purchased software was required to parse it or to visualize it. Generally speaking, less friction and less gate keeping are economically valuable. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need to beg for licenses from an IT department.</p>
+<p>No purchased software was required to access my biometric data hosted on Strava. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are economically valuable. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need to beg for licenses from an IT department.</p>
 <p>When you think about it, the way humans tend to operate mirrors <a href="https://www.bcg.com/publications/2021/open-source-software-strategy-benefits">open source</a> principles. Arguably we are naturally inclined to use, share, learn, copy and improve on things together so that other people can be part of a community. It’s not surprising then that it’s been so widely adopted, and because it’s so widespread, the barriers to entry are relatively low if you want to join the club.</p>
 <p>Some companies are learning to tap into the open source community for talent and to upskill themselves. They go beyond reluctantly accepting the use of open source software to encouraging participation by their employees in projects.</p>
 <p>No company is more emblematic of the shift in attitude to open source software than Microsoft, which initially waged a legal battle against it. The digital giant now uses open source software extensively. Most of Microsoft Azure runs on Linux. The digital giant has joined the Open Source Initiative, acquired GitHub for $7.5 billion in 2018 – then the largest enterprise software acquisition ever – and its employees are heavily engaged with GitHub, with over 5,000 of them contributing to open source projects in 2020.</p>
@@ -261,7 +261,7 @@ current.day &lt;- Sys.Date()</code></pre>
       color = if_else(status_flag, &quot;black&quot;, &quot;green&quot;)
     ),
     hjust = 0,
-    size = 4,
+    size = 16 * 5 / 14,
     show.legend = FALSE
   ) +
   geom_label(
@@ -277,6 +277,7 @@ current.day &lt;- Sys.Date()</code></pre>
       x = as.Date(paste0(selected.year, &quot;-01-15&quot;)),
       y = goal * 11 / 12
     ),
+    size = 16 * 5 / 14,
     hjust = 0,
     show.legend = FALSE
   ) +
@@ -365,6 +366,9 @@ anim</code></pre>
 </blockquote>
 <blockquote>
 <p><a href="https://www.strava.com/settings/api">Strava API</a></p>
+</blockquote>
+<blockquote>
+<p><a href="http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf">D. Kahle and H. Wickham. ggmap: Spatial Visualization with ggplot2. The R Journal, 5(1), 144-161.</a></p>
 </blockquote>
 <hr />
 <div id="did-you-find-this-page-helpful-consider-sharing-it" class="section level3">
