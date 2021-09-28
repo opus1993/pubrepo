@@ -444,7 +444,7 @@ An acknowledgement of my inspirations for building this post:
 
 > [Sascha Wolfer](https://twitter.com/sascha_wolfer) published an very nice blog post at [rCrastinate](http://rcrastinate.rbind.io/post/2020-12-23-running-through-the-fields-lying-flat-in-the-grass-animating-2020-running-goals/) on running and is active in the [RStats Strava Club](https://www.strava.com/clubs/738071)
 
-> [Jack Rozran's blog](https://www.jakelearnsdatascience.com/post/visualizing-exercise-data-from-strava/) with plots on cumulative milage and ridgeplots.
+> [Jack Rozran's blog](https://www.jakelearnsdatascience.com/) rStrava post on visualizing cumulative mileage with ridgeplots.
 
 > [Chris Woods's Cycle Eye Visual](https://drawingwithdata.com/portfolio/cycle-eye/) of total climb and distance in a radial plot.
 
