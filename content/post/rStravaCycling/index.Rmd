@@ -436,6 +436,12 @@ anim
 
 ```
 
+A closing thought:
+
+Comparing ourselves to the success, or even the failure, of others is only natural. Who should we be comparing ourselves to, anyway? Some thoughts from Leonard Lee:
+
+{{<youtube KheZYIO7jy8>}}
+
 ----
 
 An acknowledgement of my inspirations for building this post:
