@@ -35,7 +35,7 @@ Let's walk through an example of how an analyst gets their data, talk a little a
 
 ----
 
-<img src="https://fawda123.github.io/rStrava/man/figures/api_logo_pwrdBy_strava_horiz_light.png" align="left" width="350">
+<iframe allowtransparency frameborder='0' height='160' scrolling='no' src='https://www.strava.com/clubs/936750/latest-rides/420af2506e26497b40943ce5307a0b4e21649ccc?show_rides=false' width='300'></iframe>
 
 ## The Strava API
 
@@ -457,6 +457,10 @@ An acknowledgement of my inspirations for building this post:
 > [John Peters](https://twitter.com/KittyJohne) has crafted a Shiny app that leverages Strava and other fitness data at [EnDuRA](https://bluecattechnical.shinyapps.io/EnDuRA/)
 
 > [Daniel Padfield](https://padpadpadpad.github.io/post/animate-your-strava-activities-using-rstrava-and-gganimate/) with concepts for animations.
+
+> [Marcus Volz](https://github.com/marcusvolz/strava)'s creative data vizualizations
+
+> [Robin Lovelace](https://rpackage.cyclestreets.net)'s `cyclestreets` package
 
 ----
 
