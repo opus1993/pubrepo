@@ -19,17 +19,17 @@ twitter:
   creator: "@jim_gruman"
 ---
 
-Cycling 🚲 popularity has grown in 2021 as evidenced by local [cycling club](https://fvbsc.org/) activity and US [national surveys](https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf). Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to more people. It's also possible that post-COVID, many still want fun, affordable, family friendly activity.
+Cycling 🚲 popularity has grown in 2021 as evidenced by local [cycling club](https://fvbsc.org/) activity and US [national surveys](https://peopleforbikes.cdn.prismic.io/peopleforbikes/f99a1a11-08ab-4827-915f-2b43ad09110b_Support+For+Bike+Infrastructure.pdf). Some of this may be related to changes like new e-bike configurations and city-wide bike share systems that make it accessible to more people. It's also possible that post-COVID, many people still want fun & affordable exercise.
 
 Bike shops have been busy filling orders and making repairs. Lead times for some models are months long as global supply chains work to catch up. In my case, I waited 54 weeks for a new gravel bike. It arrived just hours before I embarked on the high point of my season this year, a [century ride](https://www.bsgcycling.com/) (100 miles). 
 
 ----
 
-I posted to this blog in December of 2020 initially on the `rStrava` package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions [here](https://youtu.be/6dKvSaMRcUw) and on statistical tool stacks available [here](https://youtu.be/rzs6aSr4XoU). 
+I posted to this blog in December of 2020 initially on the `rStrava` package, but realized this week that there is so much more to say, post-COVID, on the related issues and opportunities. There have recently been many good general supply chain talks, including examples on managing ripple effects of disruptions [here](https://youtu.be/6dKvSaMRcUw) and on the advanced statistical tool stacks available [here](https://youtu.be/rzs6aSr4XoU). 
 
-Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some [200 U.S. cities](https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic) changed their streets to accommodate increased outdoor activity, including biking. Strava and Lyft's [Divvy](https://www.divvybikes.com/about) are just two examples of private parties that provide data access APIs.
+Data resources on bike sharing and fitness tracker utilization are driving public policy decisions in new ways. In 2021, some [200 U.S. cities](https://www.peopleforbikes.org/news/how-bicycling-changed-during-a-pandemic) changed their streets to accommodate increased outdoor activity, including biking. Strava and Lyft's [Divvy](https://www.divvybikes.com/about) are just two examples of many private entities that provide data access APIs. If you have not yet seen it, be sure to explore [Strava's Global Activity Heatmap](https://www.strava.com/heatmap#7.00/-91.24139/41.64359/hot/ride) and just imagine the possibilities in your own community.
 
-Everything from navigating our [personal health care](https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/) to decisions on [how to ride safely](https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/) warrant an up to date study of this new world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving. Will that continue?
+Everything from navigating our [personal health care](https://www.consumerreports.org/bikes/bike-riding-safety-during-coronavirus-pandemic-a3562694211/) to decisions on [how to ride safely](https://www.bicycling.com/news/a31469228/cycling-during-coronavirus/) warrant an up to date study of our chaging world. For example, in general, roads were safer because of reduced traffic while many businesses and schools were closed and people weren’t driving. Will that continue?
 
 Let's walk through an example of how an analyst gets their data, talk a little about publishing what it all means to an audience, and close with an animation.
 
@@ -63,14 +63,12 @@ theme_set(theme_jim(base_size = 12))
 Strava requires authentication to track the api utilization and compliance with their terms of service. This code is taken directly from [Marcus Beck](https://twitter.com/fawda123)'s `rStrava` [help pages](https://fawda123.github.io/rStrava/).
 
 ```{r StravaAuthentication}
-# get the Strava token, labeled as `stoken`, from a prior session or prompt for a new authentication
-
 if (file.exists(here::here(".httr-oauth"))) {
 stoken <- httr::config(token = readRDS(here::here('.httr-oauth'))[[1]])
 } else {
-app_name <- 'Rapp' # chosen at https://www.strava.com/settings/api
+app_name <- 'Rapp' # chosen at 
 app_client_id  <- '58858' # Client ID
-app_secret <- Sys.getenv("rStravaSecret") # Keep your client secrets hidden with usethis::edit_r_environ
+app_secret <- Sys.getenv("rStravaSecret") # Keep client secrets hidden 
 stoken <-
   httr::config(
     token = strava_oauth(
@@ -78,34 +76,22 @@ stoken <-
       app_client_id,
       app_secret,
       app_scope = "activity:read_all",
-      cache = TRUE
+      cache = TRUE # creates a hidden authentication file and masks it in .gitignore
     )
   )
-# Setting cache = TRUE for strava_oauth creates a hidden authentication file and masks it in .gitignore
 }
 
-# We will will also tap into Google's mapping API, though alternatives from other services are available.
 mykey <- Sys.getenv("GGMAP_GOOGLE_API_KEY")
 
 register_google(mykey)
-# Be sure to enable the Google Maps Platform Elevations API at https://console.cloud.google.com/google/maps-apis/
+# Enable the Google Maps Platform Elevations API at https://console.cloud.google.com/google/maps-apis/
 
 ```
 
-The API retrieval functions are called with the token established above. Let's start by downloading my own athlete profile:
-
-```{r myinfo}
-# Found by locating the Vanity URL at https://www.strava.com/settings/profile and looking at the page reference in the browser
-
-myinfo <- get_athlete(stoken, id = '68008050')
-
-```
-
-From there we can build a heat map of my activities. The first call is to download the complete list with `get_activity_list()` and the second is to convert the list into an easy to use dataframe with `compile_activities()`.
+The API retrieval functions are called with the token established above. From there we can build a heat map of my activities. The first call is to download the complete list with `get_activity_list()` and the second is to convert the list into an easy to use dataframe with `compile_activities()`.
 
 ```{r activities}
-# get activities, get activities by lat/lon, distance, plot
-my_acts <- get_activity_list(stoken)
+my_acts  <- get_activity_list(stoken)
 act_data <- compile_activities(my_acts,
                                units = 'imperial') %>% 
   mutate(id = factor(id))
@@ -119,9 +105,8 @@ all_activity_heatmap <-
     distlab = F,
     f = 0.1
   ) +
-#  coord_equal(expand = FALSE) +
   labs(
-    title = "My Cumulative Cycling Activity in Strava",
+    title = "Cumulative Cycling Activity in Strava",
     subtitle = paste0(format(as.Date(
       min(act_data$start_date)
     ), "%B %e, %Y"), " to ", format(today(), "%B %e, %Y")),
@@ -168,21 +153,19 @@ all_activity_heatmap + all_activity_lines
 
 ----
 
-Accessing data, exploring it, and understanding what it means as an analyst is still less than half of the work. Connecting with an audience to tell the story in a meaningful way is always the more challenging task. Regardless of whether the topic is supply chain risk or health and fitness decisions, the data alone is not enough.
+Accessing data, exploring it, and understanding what it means as an analyst is still only half of the work. Connecting with an audience to tell the story in a meaningful way is always the more challenging task. Regardless of whether the topic is supply chain risk or health and fitness decisions, the data alone is not enough.
 
-Business school programs cover data visualization and leadership communications at some level, often for a c-suite audience. Most every consultant's pitch deck has the same MBA style building blocks (for Powerpoint).
+Business school programs cover data viz and leadership communications at some level, often for a c-suite audience. Most every consultant's pitch deck has the same MBA style building blocks (for Powerpoint).
 
 The emerging field of [data journalism](https://datajournalism.com/read/handbook/one/introduction/what-is-data-journalism) offers hard won process frameworks for conveying insights through media to the broader world.
 
 ![](https://upload.wikimedia.org/wikipedia/commons/4/48/Data_driven_journalism_process.jpg)
 
-What makes data journalism different than the rest of journalism? New possibilities open up when combining the traditional ‘nose for news’ and ability to tell a compelling story, with the scale and range of digital information now available. Those possibilities can come at any stage of the process: using programming to automate the gathering of information from sources, or using software to find connections between hundreds of thousands of documents.
+What makes data journalism different? New possibilities open up when combining the ‘nose for news’ and ability to tell a compelling story with the scale of digital information now available. Those possibilities can come at any stage: using programming to automate data retrieval, or using software to identify connections between thousands of documents.
 
-Data journalism can tell complex stories through infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with [Gapminder](https://www.gapminder.org/) and David McCandless’s work in distilling big numbers showing the importance of clear design at [Information is Beautiful](https://informationisbeautiful.net/).
+Data journalism can tell complex stories through infographics. Consider Hans Rosling’s spectacular talks on visualizing world poverty with [Gapminder](https://www.gapminder.org/) and David McCandless’s work showing the importance of clear design at [Information is Beautiful](https://informationisbeautiful.net/).
 
-Often data-driven stories begin with resources in open source software, open access publishing and open data. Even within the venerable New York Times there are bodies of open-source and even "inner-source" (widely distributed internal package) digital assets deployed. A few businesses noticed that the communication aspects of data science were critical unmet needs, to the point where they invented yet another job title, [analytics translator](https://email.mg2.substack.com/c/eJw9kc1uhCAUhZ9m2I0RRMEFi276GoafOw6tgoFLHd--OKZNyCGcw80hH1YjzDEdaosZySkTHhuoAHteABESKRnS5J3qOR_HjhKnuKOyl8Tn6ZEAVu0XhakA2YpZvNXoYzgHmJB8JE8lTOc6oXvQTvCqTIhByx5aQXkvmblqdXEeggUFP5COGIAs6om45Vv3cWOfde373qz224cMR2PjWi1Tsg-Q8_1Rgj17czX_7tx10MuB3p5mLOleXT8_8Tz-R3dMOuRFY0zEK9Yy2o5MUtb2bGhYQzs3DMbIgRv2ANE3w-vVOe_cjbfrzJpcTEZtv8_3kKS-_NrMqaw61Hw-ybyDCmaq-1qCx2OCoM0C7mKGF_k3xWmGAKn-iJs0Kjp0THatqCLoxahC5VTSao6kNrtYp4KysQT0Yf4FNyyePw). I’m happy that in the couple of years since the article was written, that the title seems not to have gained any traction. Perhaps the work is being done and there’s no organizational gap elsewhere.
-
-This leads me to a thought on others that fill these communications needs in organizations. This short video montage from a spring 2021 conference conveys a broader perspective of what sorts of work roles are doing modern analytical work. 
+Often stories begin with resources in open source software, open access publishing and open data. Even within the venerable New York Times there are repos of open-source and even "inner-source" (widely distributed internal package) digital tools. This leads me to a thought on the roles that fill these communications needs in organizations. This short video montage from a spring 2021 conference conveys a broader perspective of what sorts of people do modern analytical work. 
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:6848342838309085184" height="572" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
@@ -219,13 +202,9 @@ lat_lon <- my_acts %>%
   filter(!is.na(map.summary_polyline)) %>%
   nest(data = c(map.summary_polyline)) %>%
    mutate(coords = map(data, get_latlon, mykey)) %>%  #,
-  #        distance = map(coords, ~get_dists(.x$lon, .x$lat))) %>%
-  # unnest(data) %>%
-  # unnest(c(coords, distance)
   unnest(coords) %>% 
   group_by(id) %>% 
-  mutate(n = row_number() #,
-#         tot_dist = max(distance)
+  mutate(n = row_number()
          ) %>% 
   ungroup()
 
@@ -283,17 +262,17 @@ anim
 
 ----
 
-No purchased software was required to access my personal biometric data. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are all ways of creating value. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need for analysts to beg for licenses from an IT department.
+No purchased software was required to access the personal biometric data here. No purchased software was required to parse it or to visualize it. Generally speaking, less cost, less friction and less gate keeping are all ways of creating value. Oddly, legacy corporate and government bureaucracies may still not see it that way, as there is no longer a need for analysts to beg for licenses from an IT department.
 
 When you think about it, the way humans tend to operate mirrors [open source](https://www.bcg.com/publications/2021/open-source-software-strategy-benefits) principles. Arguably we are naturally inclined to use, share, learn, copy and improve on things together so that other people can be part of a community. It’s not surprising then that it’s been so widely adopted, and because it’s so widespread, the barriers to entry are relatively low if you want to join the club.
 
 Some companies are learning to tap into the open source community for talent and to upskill themselves. They go beyond reluctantly accepting the use of open source software to encouraging participation by their employees in projects.
 
-No company is more emblematic of the shift in attitude to open source software than Microsoft, which initially waged a legal battle against it. The digital giant now uses open source software extensively. Most of Microsoft Azure runs on Linux.  The digital giant has joined the Open Source Initiative, acquired GitHub for $7.5 billion in 2018 – then the largest enterprise software acquisition ever – and its employees are heavily engaged with GitHub, with over 5,000 of them contributing to open source projects in 2020.
+No company is more emblematic of the shift than Microsoft, which initially waged a legal battle against it. The digital giant now uses open source software extensively. Most of Microsoft Azure runs on Linux.  They acquired GitHub for $7.5 billion in 2018 – then the largest enterprise software acquisition ever – and its employees are heavily engaged, with over 5,000 of them contributing to open source projects in 2020.
 
-Other companies have established open communities of excellence. They identify the open source software each department in the organization uses, and foster collaboration as well as best practice sharing. Catalyzing exchanges between enthusiasts and getting the various functions to share success stories help companies realize the full potential of open source software.
+Other leading companies have established open communities of excellence. They identify the open source software each department in the organization uses, and foster collaboration as well as best practice sharing. Catalyzing exchanges and getting various functions to share success stories help companies realize the full potential of their people.
 
-On a personal interest level, being able to get involved and contribute to open source software while knowing there isn’t a monetary incentive is beneficial. It gives people a sense of purpose and helps to increase creativity and problem solving skills which positively influence productivity.
+On a personal interest level, open source lowers the learning barriers and allows for ad-hoc communities to spring up. It gives people a sense of purpose and helps to increase creativity and problem solving skills which favorably influence productivity.
 
 ----
 
@@ -301,26 +280,14 @@ On a personal interest level, being able to get involved and contribute to open 
 
 Strava offers their own paid subscription feature that includes graphs that let members “visualize their progress and trajectory” as they strive to hit their targets. As always with this kind of functionality, the quality and usefulness of results depends on the inputs. Set reasonable goals and you’ll have a nice visual reminder that you’re on track. Excessive optimism, on the other hand, yields graphs that serve only to remind you that you really need to try harder. 
 
-Another approach is to build our own goal tracking tool in R. Let's walk through one approach here, including:
+Another approach is to build our own goal tracking tool in R. One approach is illustrated here:
 
-`goal`: (num) - The goal in miles to achieve for each activity. For here: `1600` miles of cycling.
-
-`sports`: (chr) - My value: `Ride` for cycling. 
-
-`selected.year`: (num) - Choose the year to visualize. My value: `2021`
-
-`current.day`: (date) - For the vertical line marking the current day of the year. My value: `Sys.Date()`
-
-The result:
-
-```{r goals}
+```{r animation, echo=FALSE, fig.asp=1, warning=FALSE}
 goal <- c(1600)
 sports <- c("Ride")
 selected.year <- c(2021)
 current.day <- Sys.Date()
-```
 
-```{r animation, echo=FALSE, fig.asp=1, warning=FALSE}
 p <- act_data %>%
   mutate(dates = as.Date(start_date, "%Y-%m-%dT%H:%M:%SZ")) %>%
   filter(type %in% sports,
@@ -444,7 +411,7 @@ Comparing ourselves to the success, or even the failure, of others is only natur
 
 ----
 
-An acknowledgement of my inspirations for building this post:
+An acknowledgement of inspirations for building this post:
 
 > Author and `rStrava` Creator [Marcus W. Beck](https://twitter.com/fawda123) 
 
