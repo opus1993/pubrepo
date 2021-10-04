@@ -65,7 +65,7 @@ I am recognizing how organization theory matters now, more than ever. A useable 
 ----
 ## A Data Validation Ecosystem
 
-<img width="500" height="350" src="https://moderndatastack.xyz/img/icons/blogging 1.svg" alt="The Modern Data Stack">
+![](./blogging.svg)
 
 Data quality monitoring is an essential part of any data analysis or business intelligence workflow. As such, an increasing number of promising tools (i.e. dbt, datafold, Soda, Great Expectations, and Monte Carlo) have emerged as part of the [Modern Data Stack](https://moderndatastack.xyz/) for robust orchestration, testing, and reporting.
 
