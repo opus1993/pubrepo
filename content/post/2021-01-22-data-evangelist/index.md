@@ -64,7 +64,7 @@ The ability to convey stories with a sense of our shared history makes the math 
 
 - When and where has there been a stage and a receptive audience for data science?
 
-{{< tweet user="LittleMissData" id="1352604567800864769"" >}}
+{{< tweet user="LittleMissData" id="1352604567800864769" >}}
 
 Laura Ellis notes here that data evangelism is also the manager's role. Admittedly, every organization is at a different point in the data maturity journey. Besides eventually making colleagues self sufficient, the point of data evangelism is to strengthen both the technical team and promote awareness of the potential of data science across the enterprise.
 
