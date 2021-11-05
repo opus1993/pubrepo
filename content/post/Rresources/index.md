@@ -1,5 +1,5 @@
 ---
-date: "2021-05-24"
+date: "2021-11-05"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -32,13 +32,13 @@ Inspired by:
 
 |    |    |
 |:---|:---|
-| [Data Science StreamRs](https://rpodcast.shinyapps.io/shinycal/)| Several data science professionals and hobbyists who video stream their projects and share their knowledge |
 | [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, birds-of-a-feature groups, and career tips |
+| [bookdown.org](https://bookdown.org/) | Bookdown is an open source R-package that makes writing and publishing technical books easy. This website is a collection of recent, featured books. |
 | **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** | [R4DS](https://twitter.com/rstats4ds)'s weekly data project aimed at creating opportunities to develop understanding in how to summarize data to make meaningful charts|
+| [Data Science StreamRs](https://rpodcast.shinyapps.io/shinycal/)| Several data science professionals and hobbyists who video stream their projects and share their knowledge |
 
 ----
 ## Introductory Books
-**R for Data Science** was a primary resource in the [Notre Dame Business Analytics MSBA](https://mendoza.nd.edu/graduate-programs/business-analytics-msba/) program. 
 
 |     |    | 
 |:---|:---:|
@@ -63,8 +63,6 @@ Other books for students starting from Excel and basic statistics:
 | [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/) | by [Martin Monkman](https://twitter.com/monkmanmh)|
 
 Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.html), or at least the early chapters. It's not as well written as more modern documentation, but it is important in being able to understand older legacy code.
-
-One of the R4DS Book Clubs is currently jointly reading [Practical Statistics for Data Scientists](https://www.oreilly.com/library/view/practical-statistics-for/9781492072935/). There is a [Slack channel](http://r4ds.io/join) and [YouTube channel](https://www.youtube.com/watch?v=yuFdAZvdyg8&list=PL3x6DOfs2NGiKx4kSh_YeLDoKYJRGn9pV) available if you would like to join in.
 
 ----
 ## Online Courses
@@ -97,10 +95,6 @@ If your toolkit has been limited to Powerpoint and Excel, you might not yet appr
 | [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) |the online version of work-in-progress 3rd edition by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen|
 | [Hands-On Data Visualization](https://handsondataviz.org/) |by Jack Dougherty and Ilya Ilyankou|
 | [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows) |by [W R Chase](https://twitter.com/W_R_Chase)|
-
-{{< youtube id="h29g21z0a68" autoplay="false" >}}
-|     |    | 
-|:---|:---|
 | [MPA 635: Data Visualization](https://datavizf18.classes.andrewheiss.com/) |by [Andrew Heiss](https://twitter.com/andrewheiss)|
 | [How to Create BBC Style Graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)| |
 | [ggplot**2tor**](https://ggplot2tor.com/)  | Tutorials and guides to aesthetics and scales by [Christian Burkhart](https://christianburkhart.de/) |
@@ -118,8 +112,7 @@ In this little book, David Robinson introduces powerful tools for handling uncer
 So why is Empirical Bayes worth learning? These methods are especially well suited for many modern applications of data science.
 
 <a href="https://gumroad.com/l/empirical-bayes">
-         <img alt="Introduction to Empirical Bayes" src="https://public-files.gumroad.com/variants/070hlmq86og1qo2kgb3tl2fgwkbi/35a9dc65b899b4bc9688c9aa5d9d6d5f21c77fd36a53b6adc66ca71a81bc9933"
-         width=335"></a>
+         <img alt="Introduction to Empirical Bayes" src="https://public-files.gumroad.com/variants/070hlmq86og1qo2kgb3tl2fgwkbi/35a9dc65b899b4bc9688c9aa5d9d6d5f21c77fd36a53b6adc66ca71a81bc9933", width=335"></a>
 
 ----
 ## Smart Interactive Visualization Extensions and Widgets
@@ -155,8 +148,6 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 | [word2vec in R](https://www.bnosac.be/index.php/blog/100-word2vec-in-r) |Belgium Network of Open Source Analytical Consultants|
 | [Learn Regular Expressions](https://regexone.com/)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1kV0fPDefBM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ----
 ## More Advanced Books
 |     |    | 
@@ -184,12 +175,10 @@ The leading edge of thinking in many ML areas is changing rapidly. These are a g
 | [An Introduction to Statistical Learning Labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) | `tidymodels` examples |
 | [Practical Machine Learning in R](https://www.wiley.com/en-us/Practical+Machine+Learning+in+R-p-9781119591535) | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
 
-
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
 The Machine learning modeling frameworks offer streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages. In R the widely used frameworks are `caret`, `tidymodels`, and `mlr3`.
 
-{{< youtube id="WWuW4kkI_SA" autoplay="false" >}}
 |    |    |
 |:---|:---|
 | [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha) on Azure
@@ -198,19 +187,20 @@ The Machine learning modeling frameworks offer streamlined solutions for pre-pro
 
 ----
 ## Geospatial
+
+<a href="https://walker-data.com/census-r/index.html" ><img 
+src="https://walker-data.com/census-r/07-spatial-analysis-census_files/figure-html/show-min-times-1.png"
+alt="Map of travel-times to trauma centers by Census tract in Iowa" width="50%"></a>
+
 |   |   |
 |:---|:---|
+| [Analyzing US Census Data: Methods, Maps, and Models in R](https://walker-data.com/census-r/index.html) | The goal of this book, by [Kyle Walker](https://walker-data.com/) is to illustrate the utility of R to prepare, map, and present data products| 
 | [Map Plots Created With R And Ggmap](https://www.littlemissdata.com/blog/maps) |by [Laura Ellis](https://twitter.com/LittleMissData)|
 | [Making Maps with R](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html) | by Eric Anderson for (NOAA/SWFSC)|
 | [Spatial Data Science](https://keen-swartz-3146c4.netlify.app/) |by [Edzer Pebesma](https://twitter.com/edzerpebesma) and [Roger Bivand](https://twitter.com/RogerBivand)|
 | [Introduction to Spatial Data Programming with R](https://geobgu.xyz/r/) |by [Michael Dorman](https://twitter.com/MichaelDorman84)|
 | [Predictive Soil Mapping with R](https://soilmapper.org/) |by [Tomislav Hengl](https://twitter.com/tom_hengl) and [Robert A. MacMillan](https://twitter.com/opengeohub)|
 | [Reproducible road safety research with R](https://www.racfoundation.org/research/safety/reproducible-road-safety-research-with-r)
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uZtto0cYjZM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-|   |   |
-|:---|:---|
 | [Spatial Data Science](https://spatialanalysis.github.io/tutorials/) |by [Angela Li](https://twitter.com/CivicAngela)|
 | [The GDSL Big List of Teaching Links](https://github.com/GDSL-UL/Teaching_Links) | University of Liverpool|
 | [Geocomputation with R](https://geocompr.robinlovelace.net/) |by [Robin Lovelace](https://twitter.com/robinlovelace)|
