@@ -36,7 +36,7 @@ This post is intended to accomplish three things:  1) reflect on a handful of ta
 
 One track of talks at the conference featured topics on diversity, fairness, and inclusiveness. Speaking on these can be challenging because the issues manifest themselves both in our workplaces and in our work output, the algorithms and tools we build. Grant Fleming here is very much qualified to deliver this particular talk as an author and contributor to two recent books on fairness in machine learning and model explainability. 
 
-{{<tweet 1352072130184306689>}}
+{{<tweet user="hearthehearsay" id="1352072130184306689">}}
 
 **Gulp** is right :flushed: 
 
@@ -48,13 +48,13 @@ In his time, [Sergio Marchionne](https://www.ft.com/content/6a813814-8ff3-11e8-b
 
 Vicki Boykis gave a keynote address at the conference on empowerment. A synopsis:
 
-{{<tweet 1352415527248023556>}}
+{{<tweet user="jim_gruman" id="1352415527248023556">}}
 
 On a related note, [Brian Popp](https://www.linkedin.com/in/brian-popp-mba/) makes a compelling argument in his [How to Build a High-Performance Analytics Team](https://www.meetup.com/St-Louis-Machine-Learning/events/275340419/) talk that we should be taking time to assess the curiosity of job candidates. Does the candidate have a trusted network of peers to bounce ideas off of? Some organizations host internal communities of practice, book clubs, or even Toastmasters chapters to bring out the best in their people. As the manager, we are committing to make a significant investment in building out both skills and the network for the new employee's success, so they are in a position to make positive contributions. 
 
 I've observed that avid readers often exhibit a deeper sense of curiosity, going beyond doom-scrolling the echo-box of social media. Readers often can bring value to the organization making the greater impact on the non technical parts of the enterprise. 
 
-{{<tweet 1330449208600649730>}}
+{{<tweet user="MRAguy" id="1330449208600649730">}}
 
 The ability to convey stories with a sense of our shared history makes the math come alive in more meaningful ways. Other probing questions:
 
@@ -64,7 +64,7 @@ The ability to convey stories with a sense of our shared history makes the math 
 
 - When and where has there been a stage and a receptive audience for data science?
 
-{{< tweet 1352604567800864769 >}}
+{{< tweet user="LittleMissData" id="1352604567800864769"" >}}
 
 Laura Ellis notes here that data evangelism is also the manager's role. Admittedly, every organization is at a different point in the data maturity journey. Besides eventually making colleagues self sufficient, the point of data evangelism is to strengthen both the technical team and promote awareness of the potential of data science across the enterprise.
 
@@ -108,6 +108,6 @@ A culture which educates and empowers employees through data evangelism efforts 
 
 ----
 
-{{<tweet 1352630279387676673>}}
+{{<tweet user="vboykis" id="1352630279387676673">}}
 
 ### Did you find this page helpful? Consider sharing it 🙌
