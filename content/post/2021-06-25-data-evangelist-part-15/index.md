@@ -199,7 +199,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 :star: September 16-17 [INFORMS Midwest Regional Analytics Conference](http://meetings2.informs.org/wordpress/regional-analytics-midwest2021/) Chicago Chapter hosting, virtual event
 
-{{<tweet 1407010171755368448>}}
+{{<tweet user="MeganRisdal" id="1407010171755368448" >}}
 
 ----
 

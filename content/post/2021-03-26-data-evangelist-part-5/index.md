@@ -208,7 +208,7 @@ An AI center will work best if it cultivates a network of influential supporters
 
 There are several operating rhythms possible, and you can think of them as different gears in a system. They include a business strategy session, a portfolio-management routine, an internal portfolio review and periodic leadership updates. Definitions for each phase are discussed [here](https://www.burtchworks.com/2021/04/06/building-operating-modern-analytics-center-of-excellence/).
 
-{{<tweet id="djpard1s" id="1375512864123809795" >}}
+{{<tweet user="djpard1s" id="1375512864123809795" >}}
 
 ----
 

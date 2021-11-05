@@ -60,7 +60,7 @@ In the early days of The Garage, the focus was on employees and mobilizing Micro
 
 ----
 
-{{<tweet id="PhDemetri" id="1371912042140024833" >}}
+{{<tweet user="PhDemetri" id="1371912042140024833" >}}
 
 ## Data Science Generalist
 

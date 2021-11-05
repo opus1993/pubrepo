@@ -44,7 +44,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 The AEF counts eight manufacturers and three trade associations as core members together with over 200 general members. The mission, for many years, has been to improve cross-manufacturer compatibility and to establish transparency, providing guidelines for internationally agreed best practices for tools, machinery and other products and processes. The organization's main workstreams have recently been expanded to include electric drives, camera systems, farm management information systems, high speed ISOBUS messaging, and wireless in-field communication.
 
-{{< tweet id="gregmeyersCIO" id="1386660651939123201" >}}
+{{< tweet user="gregmeyersCIO" id="1386660651939123201" >}}
 
 Greg Myers, Syngenta CIO, wrote an appeal last month imploring the industry, given climate change and other social challenges, move towards even more collaboration and open environments. A couple of his key points:
 

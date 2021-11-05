@@ -106,7 +106,7 @@ Rhishi Pethe is a product manager on Project Mineral at Alphabet X (Google), foc
 
 The critical thing to know about data engineering for analytics is that by making data analysis and operations more efficient, it unlocks a huge number of use cases that were impractical before. Out in startup world - this probably isn't huge news. Many have already recognized the value and importance of analytics engineering. That's going to continue and accelerate. There are huge potential applications in research, in academia, and in civic life. The big story of the past decade has been a lot of organizations drowning in data and unsure how to manage it all. Analytics engineering presents an answer to that question.
 
-{{<tweet 1395374178631626753>}}
+{{<tweet user="quaesita" id="1395374178631626753" >}}
 
 So [what makes a data analyst excellent?](https://towardsdatascience.com/what-makes-a-data-analyst-excellent-17ee4651c6db)
 
