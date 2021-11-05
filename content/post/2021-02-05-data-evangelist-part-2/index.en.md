@@ -72,11 +72,9 @@ Comedian Jerry Seinfeld's new autobiography opens with a reflection of his forma
 
 Landing the connection with the audience is a core tenet of business school programs, with didactic multi-step methodologies to make anyone a speaking professional. For example, **#3** smile, **#6** walk towards your audience, and **#8** tell a story. Yet, in this era of social media, meaningful connections with audiences are still lacking, and the data science domain is no exception.
 
-{{<tweet 1356395056899362816>}}
-
 My blog post cover image is an 1875 woodblock printing entitled "[Tokugawa Iemitsu Receiving Lords in Audience](https://artvee.com/dl/tokugawa-iemitsu-receiving-lords-in-audience)" The artist, Tsukioka Yoshitoshi, like many Japanese of that era, was interested in new things from the rest of the world like photography, but over time he became increasingly concerned with the loss of aspects of traditional Japanese culture that brought people together.
 
-{{<tweet 1356650318730305537>}}
+{{<tweet user="nicoleradziwill" id="1356650318730305537" >}}
 
 In Amanda Mull's Atlantic piece "[The Pandemic Has Erased Entire Categories of Friendship](https://www.theatlantic.com/health/archive/2021/01/pandemic-goodbye-casual-friends/617839/)," she explains how there’s a reason you miss the people you didn’t even know that well. Most people are familiar with the idea of an inner circle. Sociologists propose that we also have an outer circle, vital to our social health in its own ways, functioning as the forums that we normally look to to find validation for our work and ideas.
 
@@ -162,6 +160,6 @@ Staff Engineer
 
 ICYMI the last post of the series:
 
-{{<tweet 1354203415962902529>}}
+{{<tweet user="RyanHamze" id="1354203415962902529" >}}
 
 ### Did you find this page helpful? Consider sharing it 🙌
