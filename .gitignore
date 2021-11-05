@@ -12,3 +12,4 @@ fr
 .DS_Store
 resources/
 .httr-oauth
+.hugo_build.lock
