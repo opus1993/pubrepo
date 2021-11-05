@@ -100,7 +100,7 @@ Consider an industry like FinTech. The reason hedge funds are willing to pay Mac
 
 ----
 
-{{<tweet 1366430206181969922>}}
+{{<tweet user="vboykis" id="1366430206181969922" >}}
 
 ## Removing Barriers 
 
@@ -110,7 +110,7 @@ In the end, Kenny was more than glad to get out and find a company where managem
 
 ----
 
-{{<tweet 1366493451169144832>}}
+{{<tweet user="v_vashishta" id="1366493451169144832" >}}
 
 ## An example at Microsoft
 
