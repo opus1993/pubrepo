@@ -13,3 +13,5 @@ fr
 resources/
 .httr-oauth
 .hugo_build.lock
+input
+logs/log4j.spark.log
