@@ -117,7 +117,7 @@ Allison Horst and Jacqueline Nolis published a [post this week](https://jnolis.c
 
 They close by recommending that students make connections with industry on capstone projects, take on internships, and participate in workshops to build skills on the human side of working with diverse teams.
 
-{{<tweet 1348399361521111040>}}
+{{<tweet user="shanselman" id="1348399361521111040" >}}
 
 ## Imposter Syndrome
 

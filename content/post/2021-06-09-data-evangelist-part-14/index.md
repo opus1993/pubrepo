@@ -95,7 +95,7 @@ We live in a world where software producers are continually making things easier
 
 ----
 
-{{<tweet 1402992554128207884>}}
+{{<tweet user="CMastication" id="1402992554128207884" >}}
 
 ## The Apex Predator of Strategy
 
@@ -127,11 +127,11 @@ Experts create a culture of mentorship and growth. Experts do work that has impa
 
 So many sales pitches in the data and analytics space today are ridiculously bad. This one is not unusual:
 
-{{<tweet 1402478408081186817>}}
+{{<tweet user="adamnash" id="1402478408081186817" >}}
 
 I really do not understand and have no interest in what their offering is. That is, I didn't until [JD Long](https://twitter.com/CMastication)'s tweet:  :eyes:
 
-{{<tweet 1399298124896686090>}}
+{{<tweet user="CMastication" id="1399298124896686090" >}}
 
 He goes on to write: "And this is where I got the idea for my new company offering Scapegoat as a Service! Every statement of work comes with a promise to take the fall and never sue." 
 

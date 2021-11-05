@@ -44,7 +44,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 The AEF counts eight manufacturers and three trade associations as core members together with over 200 general members. The mission, for many years, has been to improve cross-manufacturer compatibility and to establish transparency, providing guidelines for internationally agreed best practices for tools, machinery and other products and processes. The organization's main workstreams have recently been expanded to include electric drives, camera systems, farm management information systems, high speed ISOBUS messaging, and wireless in-field communication.
 
-{{< tweet 1386660651939123201 >}}
+{{< tweet id="gregmeyersCIO" id="1386660651939123201" >}}
 
 Greg Myers, Syngenta CIO, wrote an appeal last month imploring the industry, given climate change and other social challenges, move towards even more collaboration and open environments. A couple of his key points:
 
@@ -94,7 +94,7 @@ Open source allows for greater transparency of process, whether that's the trans
 
 **Modern software development practices:** Open source software is more than simply "published" code. You'd be hard-pressed to find an open source project that follows outdated command-and-control development philosophies. Open source projects all but necessitate modern software development workflows. These workflows are electronic (meaning process is naturally captured and exposed), asynchronous (meaning decisions are time and location agnostic), and lock-free (meaning contributors can rapidly experiment without prior approval). 
 
-{{< tweet 1389442160106385409 >}}
+{{< tweet user="agthentic" id="1389442160106385409" >}}
 
 ### Sustainability
 
@@ -128,7 +128,7 @@ A core tenet of The Apache Way is "Community Over Code", which encapsulates the 
 
 **Customer feedback:** Open source empowers consumers to have a combined, powerful voice in the private sector development process. Think of it like `Yelp` for software. Without `Yelp`, a restaurant is free to upset a single customer. At most, the dissatisfied patrons could dissuade 5-10 other potential patrons. In a post-`Yelp` world, customers read the reviews of strangers before they choose where to go. Open source amplifies the voice of software consumers within the consumer-publisher relationship. Not to mention, the feedback the private company receives can go towards better informing product decisions and improve the overall product. Open source gives companies a direct line to their most passionate customers.
 
-{{< tweet 1389973284402384900 >}}
+{{< tweet user="linuxfoundation" id="1389973284402384900" >}}
 
 ### Personal motivations
 
@@ -144,7 +144,7 @@ There are likely other reasons to prefer consuming, publishing,collaborating on,
 
 ------------------------------------------------------------------------
 
-{{< tweet 1389672393484951560 >}}
+{{< tweet user="Gartner_IT" id="1389672393484951560" >}}
 
 ### [Gartner Data & Analytics Summit -- Americas](https://reg.gartner.com/flow/gartner/bi19v/attportal/page/home) Debrief
 

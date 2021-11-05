@@ -44,7 +44,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ------------------------------------------------------------------------
 
-{{<tweet 1287782817963954178>}}
+{{<tweet user="MSFTnews" id="1287782817963954178" >}}
 
 ## Teaming up to Innovate in the Garage
 
@@ -60,7 +60,7 @@ In the early days of The Garage, the focus was on employees and mobilizing Micro
 
 ----
 
-{{<tweet 1371912042140024833>}}
+{{<tweet id="PhDemetri" id="1371912042140024833" >}}
 
 ## Data Science Generalist
 
@@ -126,7 +126,7 @@ Randy's blog is at [Counting Stuff](https://ko-fi.com/countingstuff). Support hi
 
 ------------------------------------------------------------------------
 
-{{<tweet 1379550608991080457>}}
+{{<tweet user="AsqDiv" id="1379550608991080457" >}}
 
 ## Survival Analysis In Engineering, Business, And Medicine
 
@@ -152,7 +152,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ------------------------------------------------------------------------
 
-{{<tweet 1374716048583368706>}}
+{{<tweet user="orestistsinalis" id="1374716048583368706" >}}
 
 ## Outsourcing Analytics
 
@@ -180,7 +180,7 @@ Why do companies use external providers for data and analytical services they ca
 
 *Start interviewing for innovative companies that really want you to create IP internally.*
 
-{{<tweet 879773567386140672>}}
+{{<tweet user="ChelseaParlett" id="879773567386140672" >}}
 
 ------------------------------------------------------------------------
 

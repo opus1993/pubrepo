@@ -122,7 +122,7 @@ For more Data Science terms and concepts, check out Chris Albon's flash cards:
 
 ----
 
-{{<tweet 1406300644567310340>}}
+{{<tweet user="DynamicWebPaige" id="1406300644567310340" >}}
 
 ## Data Science Roles
 
@@ -179,7 +179,7 @@ Some of the people that learn R have some background in programming. The mental 
 
 On this digital journey, even in 2021 there remains a huge barrier between people that code and people that do not code to get work done. I am observing that, generally, the coders thrive in communities of practice and seek out new ways of building solutions. On the surface, non-coders appear to be... frustrated with the status of projects.
 
-{{<tweet 1407278287760543745>}}
+{{<tweet user="abhi1thakur" id="1407278287760543745" >}}
 
 Consistent delivery to digital SLAs requires that every team member have a minimum of understanding of the common parlance of machine learning.
 

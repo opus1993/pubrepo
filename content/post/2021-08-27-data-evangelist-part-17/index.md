@@ -20,7 +20,7 @@ projects: []
 
 I was asked recently for my views on digital literacy skills development. Department heads want their rising stars :star2: to be on the right development track. [Monica Rogati's 2017 piece](https://hackernoon.com/the-ai-hierarchy-of-needs-18f111fcc007) with her Hierarchy of Needs illustration is referenced pretty widely in the data science community in this context to explain what skills map to which roles. Let's take a little different approach than Demetri does here, though:
 
-{{<tweet 1428426873697095691>}}
+{{<tweet user="PhDemetri" id="1428426873697095691" >}}
 
 Tom Davenport's "Purple people" articles [here](https://www2.deloitte.com/us/en/insights/focus/cognitive-technologies/artificial-intelligence-purple-people.html) and [here](https://sloanreview.mit.edu/article/to-succeed-with-data-science-first-build-the-bridge/) each emphasize that business engagement is still at the core of the mission, so we must work to embed the skills and tools as close as possible to the functional teams making the business decisions. Rule #1, after all, is to be customer centric.
 

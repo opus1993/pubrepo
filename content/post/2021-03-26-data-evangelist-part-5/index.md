@@ -46,7 +46,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ----
 
-{{< tweet 1373137457663868930 >}}
+{{< tweet user="ErrantScience" id="1373137457663868930" >}}
 
 ## Talent and Role Definitions
 
@@ -78,7 +78,7 @@ Its more useful to think about the “OKR process” than it is to simply consid
 
 A large proportion of the AI talent pool today is aiming to join the 100,000 at Google, the 120,000 at Alibaba, the 160,000 at Microsoft, the 492,000 at Accenture, or even the 1.3 million at Amazon. Each organization has their own take on AI learning development and OKRs.
 
-{{< tweet 1373987720905715719 >}}
+{{< tweet user="satyanadella" id="1373987720905715719" >}}
 
 ----
 
@@ -115,7 +115,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ----
 
-{{< tweet 1373381331309129729 >}}
+{{< tweet user="v_vashishta" id="1373381331309129729" >}}
 
 ## The Principal Data Scientist
 
@@ -140,7 +140,7 @@ In contrast to a business manager at any level, the principal data scientist is 
 
 ----
 
-{{<tweet 1373680350522601474>}}
+{{<tweet user="asmae_toumi" id="1360592032306106380" >}}
 
 ## Skills Inventory
 
@@ -208,7 +208,7 @@ An AI center will work best if it cultivates a network of influential supporters
 
 There are several operating rhythms possible, and you can think of them as different gears in a system. They include a business strategy session, a portfolio-management routine, an internal portfolio review and periodic leadership updates. Definitions for each phase are discussed [here](https://www.burtchworks.com/2021/04/06/building-operating-modern-analytics-center-of-excellence/).
 
-{{<tweet 1375512864123809795>}}
+{{<tweet id="djpard1s" id="1375512864123809795" >}}
 
 ----
 

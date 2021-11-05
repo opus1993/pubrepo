@@ -31,7 +31,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ----
 
-{{<tweet 1394703930232385542>}}
+{{<tweet user="joshuastarmer" id="1394703930232385542" >}}
 
 ## Gatekeeping
 
@@ -43,7 +43,7 @@ The proprietary walled gardens of SAS, Salesforce, Matlab and others are beginni
 
 ----
 
-{{<tweet 1296187374221713408>}}
+{{<tweet user="WePredictUK" id="1296187374221713408" >}}
 
 ## We Predict
 
@@ -92,7 +92,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ----
 
-{{<tweet 1394413400621416448>}}
+{{<tweet user="rpethe" id="1394413400621416448" >}}
 
 ## What will it mean to farm in the future?
 
@@ -100,7 +100,7 @@ Rhishi Pethe is a product manager on Project Mineral at Alphabet X (Google), foc
 
 ------
 
-{{<tweet 1395022400660594689>}}
+{{<tweet user="jasnonaz" id="1395022400660594689" >}}
 
 ## Data Engineering
 

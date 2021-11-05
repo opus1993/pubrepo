@@ -43,7 +43,7 @@ On that theme, this post covers highlights from this week in the world we all wo
 
 ----
 
-{{<tweet 1397204275508482061>}}
+{{<tweet user="PhDemetri" id="1397204275508482061" >}}
 
 ## Let's talk about teams
 
@@ -69,7 +69,7 @@ Most data scientists can build math models, but only a few can create business i
 
 ----
 
-{{<tweet 1397255027635359747>}}
+{{<tweet user="charliehoehn" id="1397255027635359747" >}}
 
 ## We’re solving the wrong problems
 

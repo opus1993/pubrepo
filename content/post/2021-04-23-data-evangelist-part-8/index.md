@@ -44,8 +44,6 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ------------------------------------------------------------------------
 
-{{<tweet 1385052576501178371>}}
-
 ## About the INFORMS Chicago Chapter
 
 [INFORMS](https://connect.informs.org/chicago/about-us/chicago-chapter) serves the scientific and professional needs of Analytics Professionals and Operations Researchers including educators, scientists, students, managers, analysts, and consultants. The Institute serves as a focal point for analytics and O.R. professionals, with forums to communicate with each other and to reach out to other professional societies.
@@ -54,7 +52,7 @@ On the surface, the benefit of participating in local chapter events is visibili
 
 ----
 
-{{<tweet 1379424631648555015>}}
+{{<tweet user="MapScaping" id="1379424631648555015" >}}
 
 ## Google Maps' Moat is Evaporating
 
@@ -82,7 +80,7 @@ Students assemble documentation on a capstone or internship experience and post 
 
 Matt Dancho writes here in more detail on team building and skills alignment in the enterprise:
 
-{{<tweet 1383423259656396801>}}
+{{<tweet user="bizScienc" id="1383423259656396801" >}}
 
 ------------------------------------------------------------------------
 

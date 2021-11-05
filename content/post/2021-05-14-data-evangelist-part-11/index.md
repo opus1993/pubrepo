@@ -38,7 +38,7 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ------------------------------------------------------------------------
 
-{{< tweet 1344386037695569921 >}}
+{{< tweet user="margaretdcp" id="1344386037695569921" >}}
 
 ## Decision Making
 
