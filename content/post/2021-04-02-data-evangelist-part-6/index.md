@@ -71,8 +71,6 @@ I’d sure like to hear about your experiences with these types of tools. Do you
 
 ------------------------------------------------------------------------
 
-<a href="https://university.business-science.io/courses/541207/lectures/31554634"><img alt="Modeltime GluonTS Deep Learning | Saturn Cloud GPUs" src="https://ci5.googleusercontent.com/proxy/Lc9Ws_oFZTd9TXp7bmEHGBopwR3lmQ-J3v2G4NldBspz3DByfjY3LKOVND_p0k8q-UFnUqeZh0dBWw-BMkCE9Jl_nQpyyg1MDyCvZ9XNIUOeb1nT1FK86A9OcaCglVBcZFKlLNipfaqNjVS5dKYoJEUTEoJqkQ=s0-d-e1-ft#https://mcusercontent.com/cc36813ecec32f8e7b5088961/images/fcc89b41-51b4-46ce-b419-515b466ea948.jpg" width="250"></a>
-
 ## High Performance Time Series Forecasting with GPUs
 
 Matt Dancho and Jacqueline Nolis delivered a 90-minute talk this week on building a modern high-performance forecasting system in the cloud. Matt's focus has been on packaging the feature engineering and algorithmic tools used in the winning Kaggle competition submissions into systems that can be deployed as world class demand planning business solutions.
@@ -82,8 +80,6 @@ Matt hosts an education platform called Business Science and develops open sourc
 <a href="https://university.business-science.io/courses/541207/lectures/31554634"><img alt="Modeltime GluonTS Deep Learning | Saturn Cloud GPUs" src="https://ci6.googleusercontent.com/proxy/vwpNrG1Q0lVWaobJ6kqK8R0MrRoNK28ikRMMPhsbnGxcpBMxkpbkVMeZQwtlio5kid71SxuHBCwNtZNHYsAFSFxV5u3TJpcKoEFiajz_2HMHnHMBvSYghpo0ZhfW8jTmgYsc0ZJnzMSLO3B9Fuwm54Ihpdxa-g=s0-d-e1-ft#https://mcusercontent.com/cc36813ecec32f8e7b5088961/images/b2963393-6932-48fd-96d7-2dda3f11ff60.gif" width="250"></a>
 
 The [code for the demonstration is available on github here](https://github.com/business-science/gpu_accelerated_forecasting_modeltime_gluonts). SaturnCloud provides 10 hours/month of free, basic GPU runtime. Look at Azure MLStudio and AWS infrastructure to host these tools as well, especially as the business needs scale up.
-
-<a href="https://university.business-science.io/courses/541207/lectures/31554634"><img alt="Modeltime GluonTS Deep Learning | Saturn Cloud GPUs" src="./TimeSeriesBusinessScience.png" width="500"></a>
 
 {{<youtube vmfzjTsU_zE>}}
 
