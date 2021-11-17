@@ -7,9 +7,9 @@ categories:
   - Business, Data Science
 tags: 
   - Data Science
-date: 2021-11-19
+date: 2021-11-17
 featured: false
-draft: true
+draft: false
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
   caption: "Microsoft"
