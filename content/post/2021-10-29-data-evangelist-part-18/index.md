@@ -55,19 +55,18 @@ The difficulty in choosing a "best" stack has to do with the nature of strategic
 {{<tweet user="CMastication" id="1460992737851981831" >}}
 
 -----
-## Scott Wine
+## Standard Work
 
 In a wide-ranging interview recently, our CEO was asked
 
 *What are some of the lessons you learned with your previous roles that you think could have direct application to farmers today?*
 
-> Scott Wine: [First, all the Navy operates on S.O.P.: standard operating procedures. In corporate America we call it standard work. You think about a lot of the farm operations and if they have standard work that they know if somebody's out and somebody fills in that it gets done the same way. A navy warship turns over the entire population of the ship every three years. Yet they don't make mistakes. They don't make mistakes because they have standard work and I think standard work/standard operating procedures would be really good for farmers. ](https://www.agweb.com/news/machinery/new-machinery/qa-cnh-industrials-ceo-scott-wine)
+Scott Wine:
+> "[First, all the Navy operates on S.O.P.: standard operating procedures. In corporate America we call it standard work. You think about a lot of the farm operations and if they have standard work that they know if somebody's out and somebody fills in that it gets done the same way. A navy warship turns over the entire population of the ship every three years. Yet they don't make mistakes. They don't make mistakes because they have standard work and I think standard work/standard operating procedures would be really good for farmers. ](https://www.agweb.com/news/machinery/new-machinery/qa-cnh-industrials-ceo-scott-wine)"
 
 Organizations, especially larger ones, are constantly churning people. We're not only fighting the passive network forces blocking our brilliant works :smile: from reaching people, we're fighting to overcome an [active and constant organizational brain drain](https://counting.substack.com/p/the-many-faces-of-production). Given the organizational flux, paying for access to gated community docs with a status, or really any invitation-only executive networking gigs, are counterproductive.
 
 [New power norms place a special emphasis on collaboration](https://hbr-org.cdn.ampproject.org/c/s/hbr.org/amp/2014/12/understanding-new-power), and not just as a way to get things done or as part of a mandated “consultation process.” New power models must, at their best, reinforce the human instinct to cooperate (rather than compete) by rewarding those who share their own ideas, spread those of others, or build on existing ideas to make them better. Sharing-economy models, for example, are driven by the accumulated verdict of the community. They rely on reputation systems that ensure that, say, rude or messy guests on Airbnb have trouble finding their next places to stay.
-
-**Yes, that means I'm looking for your "likes" on my Yammer posts** :wink:.
 
 <div style="max-width:854px"><div style="position:relative;height:0;padding-bottom:56.25%"><iframe src="https://embed.ted.com/talks/jeremy_heimans_what_new_power_looks_like" width="854" height="480" style="position:absolute;left:0;top:0;width:100%;height:100%" frameborder="0" scrolling="no" allowfullscreen></iframe></div></div>
 
@@ -84,7 +83,17 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 :star: January 5-8 [CES 2022](https://www.ces.tech/) in Las Vegas, Nevada
 
-:star: April 3-5 [2022 INFORMS Business Analytics Conference](http://meetings2.informs.org/wordpress/analytics2022/) in Houston, TX
+:star: April 3-5 [2022 INFORMS Business Analytics Conference](http://meetings2.informs.org/wordpress/analytics2022/) in Houston, TX with [tracks](https://meetings2.informs.org/wordpress/analytics2022/tracks/) including:
+
+  - [Analytics Leadership](https://meetings2.informs.org/wordpress/analytics2022/tracks/analytics-leadership)
+  - [Cyber Analytics](https://meetings2.informs.org/wordpress/analytics2022/tracks/cyber-analytics)
+  - [Decision and Risk Analytics](https://meetings2.informs.org/wordpress/analytics2022/tracks/)
+  - [Emerging Analytics](https://meetings2.informs.org/wordpress/analytics2022/tracks/emerging-analytics)
+  - [Machine Learning Applications in Marketing](https://meetings2.informs.org/wordpress/analytics2022/tracks/machine-learning-applications-in-marketing/)
+  - [Revenue Management and Pricing](https://meetings2.informs.org/wordpress/analytics2022/tracks/revenue-management-and-pricing/)
+  - [Supply Chain](https://meetings2.informs.org/wordpress/analytics2022/tracks/supply-chain/)
+
+![](http://meetings2.informs.org/wordpress/analytics2022/files/2021/04/RBG_2022_Analytics_Logo.png)
 
 ----
 ## Bell Labs
