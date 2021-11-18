@@ -93,7 +93,7 @@ These are opportunities to engage and learn about analytics, data science, and A
   - [Revenue Management and Pricing](https://meetings2.informs.org/wordpress/analytics2022/tracks/revenue-management-and-pricing/)
   - [Supply Chain](https://meetings2.informs.org/wordpress/analytics2022/tracks/supply-chain/)
 
-![](http://meetings2.informs.org/wordpress/analytics2022/files/2021/04/RBG_2022_Analytics_Logo.png)
+![](https://meetings2.informs.org/wordpress/analytics2022/files/2021/04/RBG_2022_Analytics_Logo.png)
 
 ----
 ## Bell Labs
