@@ -18,29 +18,29 @@ image:
 projects: []
 ---
 
-Writers intrude on the patience of readers by asking that you put aside time to hear us out. As an engineer, believe me, I am sure grateful that you do. 
+Writers intrude on the patience of readers by asking that you put aside time to hear us out. As an engineer, believe me, I am sure grateful that you do. It’s coming to the end of the year, which means it’s “plan for next year” season. For data folks, this also means “report on what has happened” season. 
 
-I will be taking on a new role at work that will go much deeper into the technical weeds in AI/ML governance. Even so, I need to, from time to time, make connections between my work and the big picture mission. So going forward, I am going to be challenged to conjure up words to communicate clearly what this AI/ML governance work does for solution developers, for customers, for dealers, and for other stakeholders, including you.
+I will be taking on a new role at work that will go much deeper into the technical weeds in AI/ML governance. I still need to, from time to time, make connections between my work and the big picture mission. Going forward, I am going to conjure up more words to try to communicate clearly what this AI/ML governance work does for solution developers, for customers, for dealers, and for other stakeholders, including you.
 
 So, why AI/ML governance?  The answer: In between all of these stakeholders, orchestrations are needed to deliver what we're committing to deliver on a standardized, scaleable, automatable set of tools and policies. More on this later.
 
 ![](overview-diagram.png)
 
 -----
-## After Market Parts Teams
+## After Market Parts 
 
-I was given an opportunity to join an aftermarket parts marketing and supply chain  strategy session recently. This really isn't a data science or coding group. They do travel to dealer stores to get the latest situation on the ground, like the status of the harvest and how equipment is performing in a given territory, and they expedite hot parts from all over the world to satisfy critical needs. There is a tactical military ops vibe to the conversation.
+I was given an opportunity to join an aftermarket parts marketing and supply chain session recently. This really isn't a data science or coding group. They do travel to dealer stores to get the latest situation on the ground, like the status of the harvest and how equipment is performing, and expedite hot parts from all over the world to satisfy critical needs. There is a tactical military ops vibe to the conversation.
 
-There are situations where a bigger tractor or a premium combine rotor nose cone might make sense economically to a given customer. Splitting the market with regular and premium parts might be the best strategy. Or is it? Our brands already provide a number of intelligent farm and fleet management solutions, like [tillage prescriptions](https://blog.caseih.com/digging-into-agronomic-research-tillage-prescriptions-drive-productivity/). What more could we do to target suitable parts for diverse applications if better statistical methods were applied, leveraging performance data for each and every farming operation?
+There are situations where a bigger tractor or a part like a premium combine rotor nose cone might make sense economically to a given customer. Covering the market with levels of regular and premium parts may be the best offering. Or is it? Our brands already provide a number of intelligent farm and fleet management solutions, like [tillage prescriptions](https://blog.caseih.com/digging-into-agronomic-research-tillage-prescriptions-drive-productivity/). What more could be done to target suitable parts for diverse applications if better statistical methods were applied, leveraging performance data for each and every farming operation?
 
-Projecting week-by-week forward economic activity is a bureaucratic challenge for this team. As talented as they all are, with years of accumulated experience, they still get surprises. What can be done to anticipate needs to make customers, dealers, and this team much more successful? BI analysts and data scientists should be able to build solutions in this forum, leveraging the enterprise data warehouse and machine learning operations stack. 
+Projecting week-by-week forward economic activity is a bureaucratic challenge for this team. As talented as they all are, with years of accumulated experience, they still can be surprised. What can be done to anticipate needs to make customers, dealers, and this team much more successful? BI analysts and data scientists should be able to build solutions in this space, leveraging the enterprise data warehouse and machine learning operations stack. 
 
 -----
 ## Free e-book
 
 Almost all technical sales nowadays involve enticements sent to customers with links to catalogues, white papers, or even free e-books. For example, Microsoft set me up with [Emmanuel Raj](https://www.linkedin.com/in/emmanuelraj7/)'s book [Engineering MLOps](https://www.amazon.com/Emmanuel-Raj/e/B08TZNW288) and some consultation time. 
 
-MLOps includes a huge ecosystem of existing tools, with many more coming. By [Gartner's count](https://www.gartner.com/document/mobile/3995089) there are dozens of commercial  offerings. Most of the big-name AI/ML companies (i.e. Uber, Netflix, Paypal, Etsy...) also craft their own stacks with internally tooling.
+Today's MLOps landscape includes a huge ecosystem of tools, with many more coming. By [Gartner's count](https://www.gartner.com/document/mobile/3995089) there are dozens of commercial offerings. Most of the big-name AI/ML companies (i.e. Uber, Netflix, Paypal, Etsy...) also craft their own stacks with internally built tooling.
 
 With all of this free information, how hard could it really be to just pick one and go? Customers in the Google cloud environment, of course, will naturally lean towards adopting [Vertex AI](https://cloud.google.com/vertex-ai). Azure customers will look here:
 
@@ -51,6 +51,8 @@ With all of this free information, how hard could it really be to just pick one 
 The difficulty in choosing a "best" stack has to do with the nature of strategic thinking, versus tactics. [Josh Poduska](https://www.linkedin.com/in/joshpoduska/), in [Key Metrics for Data Science Team Success](https://towardsdatascience.com/key-metrics-for-data-science-team-success-822da77f509c), writes:
 
 > The trick is to move beyond metrics that just show validity and results for certain projects, and deploy metrics that show the overall performance of your complete data science program. You want to show how your team is getting faster, how they are delivering measurable results, and how the team is situated to keep growing. These are the key areas to evaluate for your data science KPIs, to show how your group is adding value to the broader organization.
+
+-----
 
 {{<tweet user="CMastication" id="1460992737851981831" >}}
 
@@ -104,7 +106,7 @@ It's difficult to overstate ATT [Bell Lab's hegemony](https://en.wikipedia.org/w
 
 Researchers working at Bell Labs are credited with the development of radio astronomy, the transistor, the laser, the photovoltaic cell, the charge-coupled device (CCD), information theory, the Unix operating system, and the programming languages B, C, C++, S, AWK, and others. 
 
-The programming language S that took form between 1975-76 was created to "turn ideas into software quickly and faithfully." Up to that time, much of the statistical computing was done by directly calling Fortran subroutines; however, S was designed to offer an alternate and more interactive approach. In late 1979 S was ported from its original GCOS platform to UNIX, which would become their primary platform to this day. The open source incarnation, that continues to improve and evolve, is R.
+The programming language S that took form between 1975-76 was created to "turn ideas into software quickly and faithfully." Up to that time, much of the statistical computing was done by directly calling FORTRAN subroutines; however, S was designed to offer a more interactive approach. In late 1979 S was ported from its original GCOS platform to UNIX, which would become their primary platform to this day. The open source incarnation, that continues to improve and evolve, is R.
 
 ----
 ## Book Recommendations
@@ -113,7 +115,7 @@ The programming language S that took form between 1975-76 was created to "turn i
 
 [Jon Krohn](https://www.linkedin.com/in/jonkrohn/) is the chief data scientist at [Nebula](https://nebula.io/). He leads a flourishing Deep Learning Study Group, hosts a long running [Data Science podcast](https://www.youtube.com/channel/UCMbtqTGdSsxYYhhTpV4lSTQ), and teaches his Deep Learning curriculum at the NYC Data Science Academy. Jon holds a doctorate in neuroscience from Oxford University and has been publishing on machine learning in leading academic journals since 2010.
 
-This book is an approachable introduction, and the most beautifully illustrated deep learning book on the market.
+This book is an approachable, beautifully illustrated introduction to deep learning.
 
 ----
 ## Related posts
