@@ -27,7 +27,7 @@ Brandon Rohrer of **iRobot** curates a "Teachable" collection of courses/blogs c
 
 ![Foundational Skills](https://brohrer.github.io/images/waterfall.png)
 
-[Foundational Skills](https://end-to-end-machine-learning.teachable.com/p/000-foundational-skills) is an assembly of 9 groups of learning resources, starting with Python, solicited from peers through social media. Brandon gives a nod to Renee Teate's [DataSciGuide Learning Directory](www.datasciguide.com/). He also links to material that covers C++, SQL, Calculus, Linear Algebra, Git, and Mental Focus. Make it a point to bookmark some of these resources to come back to later.
+[Foundational Skills](https://end-to-end-machine-learning.teachable.com/p/000-foundational-skills) is an assembly of 9 groups of learning resources, starting with Python, solicited from peers through social media. Brandon gives a nod to Renee Teate's [DataSciGuide Learning Directory](https://www.datasciguide.com/). He also links to material that covers C++, SQL, Calculus, Linear Algebra, Git, and Mental Focus. Make it a point to bookmark some of these resources to come back to later.
 
 ![Navigating a Data Science Career](https://brohrer.github.io/images/zen_stones.jpg)
 
