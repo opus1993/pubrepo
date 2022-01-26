@@ -22,7 +22,7 @@ name: Jim Gruman
 organizations:
 - name: CNH Industrial
   url: "https://www.cnhindustrial.com/"
-role: Senior Program Manger, Digital Operations
+role: Senior Program Manger, AI/ML Governance
 social:
 - icon: envelope
   icon_pack: fas
@@ -39,11 +39,11 @@ user_groups:
 - Visitors
 ---
 
-My name is Jim Gruman. I am an **R** enthusiast currently responsible for Digital Operations Projects at CNH Industrial in the Chicago area. 
+This vanity site is my outlet for infrequent posts on building communities of practice in data analytics and machine learning operations topics. I am an **R** enthusiast and follow a wonderfully supportive open source community all over the world. My day job is with CNH Industrial in the Chicago area. This content does not represent the views of my employer in any way.
 
-I have worked on teams as an engineer and leader for more than 20 years. My undergraduate degree was originally in Mechanical Engineering, and I still enjoy working with agricultural product design and validation communities all over the world. 
 
-This vanity web site includes infrequent posts on learning, communicating, and building communities of practice with data analytics.
+
+
 
 
 
