@@ -101,7 +101,7 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 :star: March 21-24 [NVidia GTC 2022](https://www.nvidia.com/gtc/) online AI Developer Conference
 
-:star: April 3-5 [INFORMS Business Analytics Conference](http://meetings.informs.org/wordpress/analytics2022/)
+:star: April 3-5 [INFORMS Business Analytics Conference](https://meetings.informs.org/wordpress/analytics2022/)
 
 :star: June 3-4 [R/Finance Conference](https://web.cvent.com/event/2efa4ed6-5d94-44cf-9c15-e0ae8d78276e/summary) at the University of Illinois at Chicago
 
