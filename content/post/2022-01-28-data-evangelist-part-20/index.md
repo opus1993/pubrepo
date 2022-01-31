@@ -126,7 +126,7 @@ Kitchin's aim in writing the book was to shine a critical light onto the nature 
 
 ### The tech support agent
 
-During my time on the 4WD tractor platform we had market segments with customers operating at high performance boundary conditions that warranted in-season in-person visits. I found myself assigned to take my turn to make trips, and on that engagement to become the product support agent.
+During my time on the 4WD tractor platform we had market segments with customers operating at high performance boundary conditions that warranted in-season in-person visits. I found myself assigned to take my turn to make trips, and on those engagements to act as the product support agent.
 
 I stayed involved long enough to work with the wider product support community. In doing so, I had a chance to learn from far more talented support experts than I ever would be. Sitting in the trenches together with frustrated customers, they didn’t just teach how to close out a ticket. They showed how to handle the pressure of an infinitely scrolling to-do list. They showed how to diagnose a problem, how to listen, how to talk to someone who’s frustrated, and how to mediate without taking sides. They taught that support, like sales, is a job everyone should do at least once. All of this, frankly can make us better analysts. 
 
