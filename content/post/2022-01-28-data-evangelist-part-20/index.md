@@ -31,7 +31,7 @@ Whatever prompted you to read the blog post this time, buckle up for about 18 mi
 
 I have a dog-eared copy of Erin Meyer's 2014 book that I pull back off of the shelf from time to time. Over-generalizing cultural norms and labeling other people before getting to know them is dangerous. Never make assumptions about individual traits based only on where a person comes from. 
 
-There the oft-told story of two young fish that encounter an older fish swimming the opposite way. He nods at them and says, "Morning boys, how's the water?" which prompts one of the young fish to ask the other, "What the hell is water?" When you are in and of a culture, it is often difficult to *see* that culture.
+There is the oft-told story of two young fish that encounter an older fish swimming the opposite way. He nods at them and says, "Morning boys, how's the water?" which prompts one of the young fish to ask the other, "What the hell is water?" When you are in and of a culture, it is often difficult to *see* that culture.
 
 Thinking back through a long career, I find it useful to reflect on my own leadership style in the context of working with others internationally. Yes, I do tend to fit the label of an American egalitarian, with the overly quick decisiveness and bounded persuasion tendencies described in the book. 
 
