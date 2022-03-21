@@ -6,7 +6,7 @@ image:
   placement: 10
 markup: goldmark
 math: true
-title: R resources
+title: R Resources
 author: Jim Gruman
 projects: []
 slug: Education, R
@@ -20,12 +20,14 @@ twitter:
 ---
 My short list of useful books, courses, and expert blogs. Most are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice. 
 
-Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about in my work is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.
+Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.
 
-Tell me about what is good here, and what was missed. 
+I re-visit the content of this list a few times a year as my work in industry takes me further away from coding algorithms and more into defining how best to build production solutions. Many of you, too, will eventually be drawn into roles somewhere between educator, developer advocate, [R admin](https://kelly-obriant.medium.com/r-in-production-devops-and-the-importance-of-empathetic-witnesses-78ecf4430e36), and devops engineer. Every R user needs some exposure to a handful of Python libraries, YAML, DevOps and other tools that I mark with stars :star:.  Tell me about what is good here, and what was missed, from your perspective.
 
 Inspired by:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
+
+> Nathan Stephens's [Professional R Tooling and Integration](https://www.rstudio.com/resources/webinars/professional-r-tooling-and-integration/)
 
 ----
 ## The R Community
@@ -75,7 +77,7 @@ Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-int
 | [R Programming](https://www.coursera.org/learn/r-programming) |by [Roger Peng](https://twitter.com/rdpeng)|
 | [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) |by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)|
 | [R Coder](https://r-coder.com/learn-r/) | y Español |
-| **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** |by [Jenny Bryan](https://twitter.com/JennyBryan)|
+| :star: **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** |by [Jenny Bryan](https://twitter.com/JennyBryan)|
 | [Contribute to an open-source project on GitHub](https://docs.microsoft.com/en-us/learn/modules/contribute-open-source/?WT.mc_id=opensource-0000-davidsmi)| Microsoft|
 | [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/) |by [Roger Peng](https://twitter.com/rdpeng) |
 | [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
@@ -111,17 +113,12 @@ In this little book, David Robinson introduces powerful tools for handling uncer
 
 So why is Empirical Bayes worth learning? These methods are especially well suited for many modern applications of data science.
 
-<a href="https://gumroad.com/l/empirical-bayes">
-         <img alt="Introduction to Empirical Bayes" src="https://public-files.gumroad.com/variants/070hlmq86og1qo2kgb3tl2fgwkbi/35a9dc65b899b4bc9688c9aa5d9d6d5f21c77fd36a53b6adc66ca71a81bc9933", width=335"></a>
+<a href="https://gumroad.com/l/empirical-bayes"><img alt="Introduction to Empirical Bayes" src="https://public-files.gumroad.com/variants/070hlmq86og1qo2kgb3tl2fgwkbi/35a9dc65b899b4bc9688c9aa5d9d6d5f21c77fd36a53b6adc66ca71a81bc9933" width=335 ></a>
 
 ----
-## Smart Interactive Visualization Extensions and Widgets
+## Shiny
 |     |    | 
 |:---|:---|
-| [ggplot2 Extensions Gallery](https://exts.ggplot2.tidyverse.org/gallery/)
-| [htmlwidgets for R](https://www.htmlwidgets.org) 
-| [Discover RStudio addins](https://github.com/daattali/addinslist) |by [Dean Attali](https://twitter.com/daattali)|
-| [Shiny Tutorial](zevross.com/blog/2016/04/19/r-powered-web-applications-with-shiny-a-tutorial-and-cheat-sheet-with-40-example-apps/)
 | [Engineering Production-Grad Shiny Apps](https://engineering-shiny.org/index.html) |by [Colin Fay](https://twitter.com/_ColinFay), [Sébastien Rochette](https://twitter.com/StatnMap), [Vincent Guyader](https://twitter.com/VincentGuyader), & [Cervan Girard](https://twitter.com/CervanGirard) on the {`golem`} package|
 | [R Views Enterprise-ready dashboards with Shiny and Databases](https://rviews.rstudio.com/2017/09/20/dashboards-with-r-and-databases/)
 | [R Shiny upgrade packages](http://enhancedatascience.com/2017/07/10/the-packages-you-need-for-your-r-shiny-application/)
@@ -137,7 +134,7 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 | [Blogdown: Creating Websites with R Markdown](https://bookdown.org/yihui/blogdown/) |by [Yihui Xie](https://twitter.com/xieyihui), [Amber Thomas](https://twitter.com/ProQuesAsker) and [Alison Presmanes Hill](https://twitter.com/apreshill)|
 
 ----
-## Text Mining, Document classification, Sentiment Analysis, Word Embeddings, and Topic Modeling
+## NLP: Text Mining, Document Classification, Sentiment Analysis, and Topic Modeling
 |     |    | 
 |:---|:---|
 | [Supervised Machine Learning for Text Analysis in R](https://smltar.com/)| by [Julia Silge](https://twitter.com/juliasilge) and [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt)
@@ -162,7 +159,7 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 ## Machine Learning
 Mastery of the wide array of Machine Learning techniques in real business contexts requires a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We're smart. Just wing it, right? *This is a bad idea.*
 
-The leading edge of thinking in many ML areas is changing rapidly. These are a good starting point:
+The leading edge of thinking in many ML areas is changing rapidly. These are just a starting point:
 
 |     |    |
 |:----|:---|
@@ -177,21 +174,20 @@ The leading edge of thinking in many ML areas is changing rapidly. These are a g
 
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
-The Machine learning modeling frameworks offer streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages. In R the widely used frameworks are `caret`, `tidymodels`, and `mlr3`.
+Machine learning modeling frameworks offer streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages. In R the widely used frameworks are `caret`, `tidymodels`, and `mlr3`. Any machine learning solution put into production will require proper orchestration and monitoring along with conversations with the business client on service levels. 
 
 |    |    |
 |:---|:---|
-| [Building Machine Learning Powered Applications: Going from Idea to Product](https://www.amazon.com/Building-Machine-Learning-Powered-Applications-ebook-dp-B0842ZD3Y7/dp/B0842ZD3Y7) by Emmanuel Ameisen
-| [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha) on Azure
+| :star:  [Building Machine Learning Powered Applications: Going from Idea to Product](https://www.amazon.com/Building-Machine-Learning-Powered-Applications-ebook-dp-B0842ZD3Y7/dp/B0842ZD3Y7) | by Emmanuel Ameisen
+| :star: [The Phoenix Project](https://www.amazon.com/Phoenix-Project-DevOps-Helping-Business/dp/0988262592) | by Gene Kim, Kevin Behr, and George Spafford
+| [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha) | on Azure
 | [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
 | [Deep Learning](https://www.deeplearningbook.org/)
 
 ----
 ## Geospatial
 
-<a href="https://walker-data.com/census-r/index.html" ><img 
-src="https://walker-data.com/census-r/07-spatial-analysis-census_files/figure-html/show-min-times-1.png"
-alt="Map of travel-times to trauma centers by Census tract in Iowa" width="50%"></a>
+<a href="https://walker-data.com/census-r/index.html" ><img src="https://walker-data.com/census-r/07-spatial-analysis-census_files/figure-html/show-min-times-1.png" alt="Map of travel-times to trauma centers by Census tract in Iowa" width="50%"></a>
 
 |   |   |
 |:---|:---|
