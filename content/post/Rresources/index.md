@@ -1,5 +1,5 @@
 ---
-date: "2021-11-05"
+date: "2022-03-21"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -181,6 +181,7 @@ The Machine learning modeling frameworks offer streamlined solutions for pre-pro
 
 |    |    |
 |:---|:---|
+| [Building Machine Learning Powered Applications: Going from Idea to Product](https://www.amazon.com/Building-Machine-Learning-Powered-Applications-ebook-dp-B0842ZD3Y7/dp/B0842ZD3Y7) by Emmanuel Ameisen
 | [MLOPS with R: An end-to-end process for building machine learning applications](https://github.com/revodavid/mlops-r-gha) on Azure
 | [Interpretable Machine Learning](https://christophm.github.io/interpretable-ml-book/)
 | [Deep Learning](https://www.deeplearningbook.org/)
