@@ -76,8 +76,8 @@ Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-int
 | [Dublin City University R Tutorials](https://dcu-r-tutorials.netlify.com/)
 | [R Programming](https://www.coursera.org/learn/r-programming) |by [Roger Peng](https://twitter.com/rdpeng)|
 | [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) |by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)|
-| [R Coder](https://r-coder.com/learn-r/) | y Español |
 | :star: **[Happy Git and GitHub for the useR](https://happygitwithr.com/)** |by [Jenny Bryan](https://twitter.com/JennyBryan)|
+| :star: **[STAT 447 : Data Science Programming Methods](https://stat447.com/)** |by [Dirk Eddelbuettel](https://twitter.com/eddelbuettel)|
 | [Contribute to an open-source project on GitHub](https://docs.microsoft.com/en-us/learn/modules/contribute-open-source/?WT.mc_id=opensource-0000-davidsmi)| Microsoft|
 | [A Very Short Course on Time Series Analysis](https://bookdown.org/rdpeng/timeseriesbook/) |by [Roger Peng](https://twitter.com/rdpeng) |
 | [Learn R by R-Exercises](https://www.r-exercises.com/start-here-to-learn-r/)
@@ -140,7 +140,6 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 | [Supervised Machine Learning for Text Analysis in R](https://smltar.com/)| by [Julia Silge](https://twitter.com/juliasilge) and [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt)
 | [Text mining](https://www.tidytextmining.com/) |by [Julia Silge](https://twitter.com/juliasilge) and [David Robinson](https://twitter.com/drob)|
 | [Learn Tidytext](https://juliasilge.shinyapps.io/learntidytext/) | by [Julia Silge](https://twitter.com/juliasilge)|
-| [Supervised Machine Learning for Text Analysis in R](https://smltar.com/) |by [Emil Hvitfeldt](https://twitter.com/Emil_Hvitfeldt) and [Julia Silge](https://twitter.com/juliasilge)|
 | [Text as Data: An Overview](https://kenbenoit.net/pdfs/CURINI_FRANZESE_Ch26.pdf) |by [Ken Benoit](https://twitter.com/kenbenoit)|
 | [word2vec in R](https://www.bnosac.be/index.php/blog/100-word2vec-in-r) |Belgium Network of Open Source Analytical Consultants|
 | [Learn Regular Expressions](https://regexone.com/)
