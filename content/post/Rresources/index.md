@@ -164,6 +164,7 @@ The leading edge of thinking in many ML areas is changing rapidly. These are jus
 |:----|:---|
 | [Data Science for Business](http://pages.stern.nyu.edu/~fprovost/) |by Provost and Fawcett ([2013 O'Reilly](https://www.oreilly.com/library/view/data-science-for/9781449374273/))| 
 | [An Introduction to Statistical Learning](https://www.statlearning.com/) | 2nd edition |
+|:star: [Machine Learning Engineering in Action](https://www.manning.com/books/machine-learning-engineering-in-action) | Ben Wilson |
 | [Introduction to Computational Thinking and Data Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/)| Grimson, Guttag, and Bell |
 | [Tidy Modeling with R](https://www.tmwr.org/) |by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)|
 | [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/) |by [Max Kuhn](https://twitter.com/topepos) and Kjell Johnson|
