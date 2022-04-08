@@ -9,7 +9,7 @@ tags:
   - Data Science
 date: 2022-04-07
 featured: false
-draft: false
+draft: true
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
   caption: "Mission: Impossible - Rogue Nation (2015)"
@@ -18,7 +18,7 @@ image:
 projects: []
 ---
 
-This year's in-person face to face cultural training drove home 1) how diverse groups need clear definitions and meaningful illustrations of core guiding principles and 2) how much we needed the forum for group therapy, post-COVID. It made me so very happy to hear others say what I was only thinking, but not sure that I could express. I've collected a handful of thought fragments over these past weeks, and the one idea that links them together is the concept that we as individuals, in each of our choices, create culture ourselves.
+This year's in-person face to face cultural training drove home 1) how diverse groups need clear definitions and meaningful illustrations of core guiding principles and 2) how much we need a forum for group change therapy, post-COVID. It made me so very happy to hear others say what I was only thinking, but not sure that I could express. I've collected a handful of thought fragments over these past weeks, and the one idea that links them together is the concept that we as individuals, in each of our choices, create culture ourselves.
 
 So, yes, our extended team has a fresh, new mandate to not only think, but also to take action in new ways.
 
@@ -26,7 +26,7 @@ So, yes, our extended team has a fresh, new mandate to not only think, but also 
 
 > [Your mission, should you choose to accept it](https://www.imdb.com/title/tt2381249/), is to tell 2 positive focused stories and write 3 positive focused recognitions each and every week. 
 
-This is going to be harder than it looks on the surface. If I take this goal seriously, I am certain to become a better person and a better professional. It might or might not move the needle on "annual" performance goals (set in April, assessed in October :star: ). Whatever prompted you to read this short blog post, I hope that you come away with a handful of useful insights for your own work. Your feedback is welcome.
+This is going to be harder than it looks on the surface, and will require practice. If I take this goal seriously, I am certain to become a better person and a better professional. It might or might not move the needle on "annual" performance goals (set in April, assessed in October :star: ). Whatever prompted you to read this short blog post, I hope that you come away with a handful of useful insights for your own work. Your feedback is welcome.
 
 ----
 
