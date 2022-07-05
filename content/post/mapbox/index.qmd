@@ -2,7 +2,9 @@
 title: "mapboxapi"
 author: "Jim Gruman"
 date: "2022-07-04"
-format: hugo
+format: 
+  hugo:
+    page-layout: article
 categories: R
 summary: 'Mapbox web services APIs for #rspatial data science projects'
 featured: false
