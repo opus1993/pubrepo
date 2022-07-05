@@ -90,14 +90,6 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 :star:️ September 6-10th [EARL Conference 2021](https://info.mango-solutions.com/earl-2021#:~:text=EARL%202021%206%2D10th%20September,of%20the%20world%27s%20leading%20practitioners)
 
-----
-
-{{<tweet user="rpethe" id="1394413400621416448" >}}
-
-## What will it mean to farm in the future?
-
-Rhishi Pethe is a product manager on Project Mineral at Alphabet X (Google), focused on sustainable agriculture. He writes this weekly newsletter and a companion blog to learn, connect, and to build a community to drive meaningful change. Check it out.
-
 ------
 
 {{<tweet user="jasnonaz" id="1395022400660594689" >}}
