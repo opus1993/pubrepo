@@ -1,5 +1,5 @@
 ---
-date: "2022-03-21"
+date: "2022-07-05"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -18,61 +18,70 @@ twitter:
   site: "@jim_gruman"
   creator: "@jim_gruman"
 ---
-My short list of useful books, courses, and expert blogs. Most are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice. 
+My short list of useful books, courses, and expert blogs. Many are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice. 
 
 Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.
 
-I re-visit the content of this list a few times a year as my work in industry takes me further away from coding algorithms and more into defining how best to build production solutions. Many of you, too, will eventually be drawn into roles somewhere between educator, developer advocate, [R admin](https://kelly-obriant.medium.com/r-in-production-devops-and-the-importance-of-empathetic-witnesses-78ecf4430e36), and devops engineer. Every R user needs some exposure to a handful of Python libraries, YAML, DevOps and other tools that I mark with stars :star:.  Tell me about what is good here, and what was missed, from your perspective.
+I re-visit the content of this list a few times a year as my work takes me further away from coding and more into defining how best to build production solutions. Many of you, too, will eventually be drawn into roles somewhere between educator, developer advocate, [R admin](https://kelly-obriant.medium.com/r-in-production-devops-and-the-importance-of-empathetic-witnesses-78ecf4430e36), and devops engineer. Every R user needs some exposure to a handful of Python libraries, YAML, DevOps and other tools that I mark with stars :star:.  Tell me about what is good here, and what was missed, from your perspective.
 
-Inspired by:
+Inspired by these excellent pages:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
 
 > Nathan Stephens's [Professional R Tooling and Integration](https://www.rstudio.com/resources/webinars/professional-r-tooling-and-integration/)
 
+> Oscar Baruffa's [Big Book of R](https://www.bigbookofr.com/) 
+
+> Martin Monkman's [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/)
+
 ----
 ## The R Community
 
+R is incredible software for statistics and data science. But while the bits and bytes of software are an essential component of its usefulness, software needs a community to be successful. And that's an area where R really shines, as Shannon Ellis explains in this lovely [ROpenSci blog post](https://ropensci.org/blog/blog/2017/06/23/community). For software, a thriving community offers developers, expertise, collaborators, writers and documentation, testers, agitators (to keep the community and software on track!), and so much more. 
+
+A brief list of sources that has helped me feel informed and included in the community:
+
 |    |    |
 |:---|:---|
-| [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|Join the Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, birds-of-a-feature groups, and career tips |
-| [bookdown.org](https://bookdown.org/) | Bookdown is an open source R-package that makes writing and publishing technical books easy. This website is a collection of recent, featured books. |
-| **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** | [R4DS](https://twitter.com/rstats4ds)'s weekly data project aimed at creating opportunities to develop understanding in how to summarize data to make meaningful charts|
-| [Data Science StreamRs](https://rpodcast.shinyapps.io/shinycal/)| Several data science professionals and hobbyists who video stream their projects and share their knowledge |
+| [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|R4DS hosts interactive Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, birds-of-a-feature groups, and career tips |
+| [bookdown.org](https://bookdown.org/) | Bookdown is an open source R-package that makes writing and publishing technical books easy. This website is a collection of recent books. |
+| **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** | [R4DS](https://twitter.com/rstats4ds)'s weekly data project aimed at creating opportunities to develop understanding in how to summarize data to make meaningful charts. You will find the hashtag in use by the community over on Twitter.|
+| [Data Science StreamRs](https://rpodcast.shinyapps.io/shinycal/)| Several data science professionals and hobbyists video stream their projects and share their knowledge |
 
 ----
 ## Introductory Books
+
+Every one of us starts our journey from somewhere. 
 
 |     |    | 
 |:---|:---:|
 |**[R for Data Science](https://r4ds.had.co.nz/)** by [Hadley Wickham](https://twitter.com/hadleywickham) and [Garrett Grolemund](https://twitter.com/StatGarrett) is an excellent introduction to the Tidyverse. The [R for Data Science Online Learning Community](https://www.rfordatasci.com/) hosts book club-style weekly chapter discussions through their Slack channels. [Vebash Naidoo](https://twitter.com/sciencificity) has assembled a related [solutions guide supplement](https://sciencificity.github.io/R4DS_study_exams/index.html).|<a href="https://r4ds.had.co.nz/"><img alt="R for Data Science" src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png" width="250"></a>|
 |**[R Cookbook](https://rc2e.com/)** by [JD Long](https://twitter.com/CMastication), [Paul Teetor](https://twitter.com/pteetor) and [R-Cookbook](https://twitter.com/R_cookbook) is full of how-to recipes, each of which solves a specific problem. The recipe includes a quick introduction followed by a discussion that unpacks the solution and provides insight into how it works.|<a href="https://rc2e.com/"><img alt="R Cookbook, 2nd Edition" src="https://rc2e.com/images_v2/book_cover.jpg" width="250"></a>|
 
-Other books for students starting from Excel and basic statistics:
+Other books for those starting from Excel and basic statistics:
 |   |    | 
 |:---|:---|
 | [Data Science: A First Introduction](https://ubc-dsci.github.io/introduction-to-datascience/) | by [Tiffany-Anne Timbers](https://twitter.com/TiffanyTimbers), Trevor Campbell, and Melissa Lee |
-| **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** | by [Garrett Grolemund](https://twitter.com/StatGarrett)|
 | [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) | by [Roger Peng](https://twitter.com/rdpeng)|
-| [Big Book of R](https://www.bigbookofr.com/) | includes about 150 links to other Books |
 | **[YaRrr! The Pirate’s Guide to R](https://bookdown.org/ndphillips/YaRrr/)** |by [Nathaniel D Phillips](https://twitter.com/YaRrrBook)|
 | [ModernDive Statistical Inference via Data Science](https://moderndive.com/index.html)|by [Chester Ismay](https://twitter.com/old_man_chester) and [Albert Kim](https://twitter.com/rudeboybert)|
-| [R in a Nutshell](https://paulvanderlaken.files.wordpress.com/2017/08/r_in_a_nutshell.pdf) |by [Joseph Adler](https://twitter.com/jadler)|
 | [Learning Statistics with R](https://learningstatisticswithr.com/) |by [Danielle Navarro](https://twitter.com/djnavarro)|
-| [Getting used to R, RStudio, and R Markdown](https://bookdown.org/chesterismay/rbasics/) |by [Chester Ismay](https://twitter.com/old_man_chester)|
 | [Statistical Inference via Data Science (2018)](https://moderndive.com/2-viz.html) |by [Chester Ismay](https://twitter.com/old_man_chester) and [Albert Y. Kim](https://twitter.com/rudeboybert)|
 | [Answering questions with data](https://crumplab.github.io/statistics/) |by [Matt Crump](https://twitter.com/MattCrump_)|
 | [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/) | by [Russ Poldrack](https://twitter.com/russpoldrack) |
-| [Data Science with R: A Resource Compendium](https://bookdown.org/martin_monkman/DataScienceResources_book/) | by [Martin Monkman](https://twitter.com/monkmanmh)|
 
 Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.html), or at least the early chapters. It's not as well written as more modern documentation, but it is important in being able to understand older legacy code.
 
 ----
 ## Online Courses
+
+Many of us want to try before we buy. Making the investment of time into reading a book (even a free one) could still be too much to ask. While there are a handful of LinkedIn Learning videos, these may be more representative of the content of an intensive college course:
+
 |     |    | 
 |:---|:---|
 | The [R-Studio Cloud Primers](https://rstudio.cloud/learn/primers)
 | [Data Science in a Box](https://datasciencebox.org/index.html)
 | **[STAT545](https://stat545.com/)** |by [Jenny Bryan](https://twitter.com/JennyBryan)|
+| [Tidy Data Science with the Tidyverse and Tidymodels](https://tidyds-2021.wjakethompson.com) |by Jake Thompson |
 | [Dublin City University R Tutorials](https://dcu-r-tutorials.netlify.com/)
 | [R Programming](https://www.coursera.org/learn/r-programming) |by [Roger Peng](https://twitter.com/rdpeng)|
 | [Statistical Computing with R Programming Language: a Gentle Introduction](https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction) |by [Max Reuter](https://twitter.com/MaxReuterEvo) and [Chris Barnes](https://twitter.com/cssb_lab)|
@@ -85,8 +94,6 @@ Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-int
 | [Johns Hopkins Chromebook Data Science (CBDS)](http://jhudatascience.org/chromebookdatascience/cbds.html)
 | [University of Cincinnati Introduction to R](https://github.com/uc-r/Intro-R) |by [Bradley Boehmke](https://twitter.com/bradleyboehmke) |
 | [University of Cincinnati Intermediate R](https://github.com/uc-r/Intermediate-R) |by [Bradley Boehmke](https://twitter.com/bradleyboehmke) |
-| [learnr4free.com](https://www.learnr4free.com/en/index.html)| |
-| [`swirl`](https://swirlstats.com/students.html) | |
 
 ----
 ## Data Visualization
@@ -97,9 +104,7 @@ If your toolkit has been limited to Powerpoint and Excel, you might not yet appr
 | [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/) |the online version of work-in-progress 3rd edition by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen|
 | [Hands-On Data Visualization](https://handsondataviz.org/) |by Jack Dougherty and Ilya Ilyankou|
 | [Custom fonts and plot quality with ggplot on Windows](https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows) |by [W R Chase](https://twitter.com/W_R_Chase)|
-| [MPA 635: Data Visualization](https://datavizf18.classes.andrewheiss.com/) |by [Andrew Heiss](https://twitter.com/andrewheiss)|
 | [How to Create BBC Style Graphics](https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics)| |
-| [ggplot**2tor**](https://ggplot2tor.com/)  | Tutorials and guides to aesthetics and scales by [Christian Burkhart](https://christianburkhart.de/) |
 | [R Graph Gallery](https://www.r-graph-gallery.com/)
 | **[Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)** |by [Claus Wilke](https://twitter.com/ClausWilke)|
 | [Exploratory Data Analysis & Visualization](https://edav.info/index.html) |by [Zach Bogart](https://twitter.com/zachbogart) and [Joyce Robbins](https://twitter.com/jtrnyc)|
@@ -109,7 +114,7 @@ If your toolkit has been limited to Powerpoint and Excel, you might not yet appr
 
 ----
 ## Empirical Bayes
-In this little book, David Robinson introduces powerful tools for handling uncertainty across observations. It teaches both the math behind these and the code that you can adapt to your own data through the detail of a single case study: batting averages in baseball. He wrote it for people (like me) who need to understand and apply methods, but would rather work with real data than face down pages of equations.
+In this little book David Robinson introduces a powerful tool for handling uncertainty across observations. It teaches both the math behind these and the code that you can adapt to your own data through the detail of a single case study: batting averages in baseball. He wrote it for people (like me) who need to understand and apply methods, but would rather work with real data than face down pages of equations.
 
 So why is Empirical Bayes worth learning? These methods are especially well suited for many modern applications of data science.
 
@@ -117,6 +122,9 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 
 ----
 ## Shiny
+
+Shiny is an R package that makes it easy to build interactive web apps for non-programmers. You can host standalone apps on a webpage or embed them or build dashboards to be served from a cloud facility. You can also extend Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.
+
 |     |    | 
 |:---|:---|
 | [Engineering Production-Grad Shiny Apps](https://engineering-shiny.org/index.html) |by [Colin Fay](https://twitter.com/_ColinFay), [Sébastien Rochette](https://twitter.com/StatnMap), [Vincent Guyader](https://twitter.com/VincentGuyader), & [Cervan Girard](https://twitter.com/CervanGirard) on the {`golem`} package|
@@ -125,7 +133,12 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 | [Advanced Shiny Tips and Tricks](https://github.com/daattali/advanced-shiny#readme) |by [Dean Attali](https://twitter.com/daattali)|
 
 ----
-## Markdown and Blogdown
+## RMarkdown and Quarto
+
+R Markdown is a file format for building dynamic documents that contain both code and document text. The package has been extended to provide systems for authoring and publishing books, presentations, blogs, and dashboards. 
+
+[Quarto](https://quarto.org/) is a newer open-source, multi-language scientific and technical publishing system built on Pandoc. Like R Markdown, Quarto uses Knitr to execute code.
+
 |     |    | 
 |:---|:---|
 | [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/) |
@@ -148,6 +161,7 @@ So why is Empirical Bayes worth learning? These methods are especially well suit
 ## More Advanced Books
 |     |    | 
 |:---|:---|
+| **[Hands-On Programming with R](https://rstudio-education.github.io/hopr/)** | by [Garrett Grolemund](https://twitter.com/StatGarrett)|
 | [Advanced R (Wickham, 2018)](https://adv-r.hadley.nz/introduction.html) |by [Hadley Wickham](https://twitter.com/hadleywickham)|
 | [R Packages](https://r-pkgs.org/) |by [Hadley Wickham](https://twitter.com/hadleywickham) and [Jenny Bryan](https://twitter.com/JennyBryan)|
 | [Efficient R programming](https://csgillespie.github.io/efficientR/) |by [Colin Gillespie](https://twitter.com/csgillespie) and [Robin Lovelace](https://twitter.com/robinlovelace)|
@@ -163,18 +177,18 @@ The leading edge of thinking in many ML areas is changing rapidly. These are jus
 |     |    |
 |:----|:---|
 | [Data Science for Business](http://pages.stern.nyu.edu/~fprovost/) |by Provost and Fawcett ([2013 O'Reilly](https://www.oreilly.com/library/view/data-science-for/9781449374273/))| 
-| [An Introduction to Statistical Learning](https://www.statlearning.com/) | 2nd edition |
 |:star: [Machine Learning Engineering in Action](https://www.manning.com/books/machine-learning-engineering-in-action) | Ben Wilson |
+|:star: [Designing Machine Learning Systems](https://www.amazon.com/Designing-Machine-Learning-Systems-Huyen-ebook-dp-B0B1LGL2SR/dp/B0B1LGL2SR) | Chip Huyen |
 | [Introduction to Computational Thinking and Data Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/)| Grimson, Guttag, and Bell |
 | [Tidy Modeling with R](https://www.tmwr.org/) |by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)|
 | [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/) |by [Max Kuhn](https://twitter.com/topepos) and Kjell Johnson|
-| [Jared Lander](https://www.jaredlander.com/talks/)'s talks
+| [An Introduction to Statistical Learning](https://www.statlearning.com/) | 2nd edition |
 | [An Introduction to Statistical Learning Labs](https://emilhvitfeldt.github.io/ISLR-tidymodels-labs/index.html) | `tidymodels` examples |
 | [Practical Machine Learning in R](https://www.wiley.com/en-us/Practical+Machine+Learning+in+R-p-9781119591535) | by Nwanganga and Chapple (2020)  [reviewed here](https://jimgruman.netlify.app/post/practical-machine-learning-in-r/). |
 
 Find other materials on AI ethics in your specific working domain and be prepared to consider the impacts of validating and generalizing your work. No computing tool does this for you by itself, even if it claims to be automatic.
 
-Machine learning modeling frameworks offer streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from many programming languages. In R the widely used frameworks are `caret`, `tidymodels`, and `mlr3`. Any machine learning solution put into production will require proper orchestration and monitoring along with conversations with the business client on service levels. 
+Machine learning modeling frameworks offer streamlined solutions for pre-processing, scoring, and publishing models. The most popular is arguably [scikit-learn](https://scikit-learn.org/stable/index.html) over in the Python world. There are also fully supported proprietary systems available from SAS and Mathworks, at a cost. The most popular deep learning neural-net frameworks at this point in time are Tensorflow and Torch, with interfaces from several programming languages. In R the widely used frameworks are `caret`, `tidymodels`, and `mlr3`. Any machine learning solution put into production will require proper orchestration and monitoring to assure delivery to the enterprise's service level requirements. 
 
 |    |    |
 |:---|:---|
