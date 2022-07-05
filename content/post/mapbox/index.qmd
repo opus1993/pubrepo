@@ -1,0 +1,147 @@
+---
+title: "mapboxapi"
+author: "Jim Gruman"
+date: "2022-07-04"
+format: hugo
+categories: R
+summary: 'Mapbox web services APIs for #rspatial data science projects'
+featured: false
+draft: false
+---
+
+**Mapbox** is a developer platform used to create custom geospatial applications. Their analysis tools are building blocks for web and mobile map-making. [Kyle Walker](https://twitter.com/kyle_e_walker) has built an interface to the Mapbox APIs, including 18 functions to facilitate the use of Mapbox web services for spatial data science in R. The package is currently hosted on github at [walkerke /mapboxapi](https://github.com/walkerke/mapboxapi)
+
+To get started, [sign up for a Mapbox account](https://docs.mapbox.com/api/) and generate an access token. Set your public or secret token for use in the package with `mb_access_token()`. 
+
+```{r }
+#| label: setup
+#| message: false
+
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE
+)
+suppressPackageStartupMessages({
+library(mapboxapi)
+library(sf)
+library(leaflet)
+library(tigris)
+library(mapdeck)
+})
+options(tigris_use_cache = TRUE)
+```
+
+## Interactive mapping with Mapbox styles
+
+Assume that you’ve designed a custom map style in [Mapbox Studio](https://www.mapbox.com/mapbox-studio/) that you’d like to incorporate into your R projects. We can retrieve the style ID from the Mapbox account directly, or use the `list_styles()` function in `mapboxapi` to get the ID. With the style ID and username, the `addMapboxTiles()` function allows for direct incorporation of this style in an R `Leaflet` project.
+
+```{r Chicago_interactive}
+leaflet() %>%
+  addMapboxTiles(style_id = "ckbflscq349ty1ioe3j6z1hzr",
+                 username = "opus1993") %>%
+  setView(lng = -87.62,
+          lat = 41.87,
+          zoom = 13)
+```
+
+## TravelTime Matrices
+
+`Mapbox` navigation services can be called from #rstats to return routes, isochrones, and travel-time matrices as objects ready for spatial analysis. 
+
+In this example, the walkable region around the CNH Burr Ridge that is to be closed is illustrated.
+
+```{r }
+#| label: BurrRidge_walktime
+
+walk_15min <- mb_isochrone("6900 Veterans Boulevard, Burr Ridge, IL 60527",
+                           profile = "walking",
+                           time = 15)
+
+leaflet(walk_15min) %>%
+  addMapboxTiles(style_id = "ckbflscq349ty1ioe3j6z1hzr",
+                 username = "opus1993") %>%
+  addPolygons()
+```
+
+For comparison, the walkable region around the new CNH office in Oak Brook:
+
+```{r }
+#| label: OakBrook_walktime
+
+walk_15min <- mb_isochrone("711 Jorie Boulevard, Oak Brook, IL 60523",
+                           profile = "walking",
+                           time = 15)
+
+leaflet(walk_15min) %>%
+  addMapboxTiles(style_id = "ckbflscq349ty1ioe3j6z1hzr",
+                 username = "opus1993") %>%
+  addPolygons()
+```
+
+## Isochrones 
+
+The US Census defines tracts as small, relatively permanent geographic entities within counties delineated by a committee of local data users. Generally, census tracts have between 2,500 and 8,000 residents and boundaries that follow visible features. When first established, census tracts were to be as homogeneous as possible with respect to population characteristics, economic status, and living conditions.  
+
+The `tracts` function gathers shapefile polygons of US Census tracts. `mb_geocode` runs a reverse geocode to provide a latitude/longitude from an address.
+
+The Mapbox Isochrone API returns polygons representing isochrones, or areas reachable within a given travel time, around a given location. Travel-time matrices are available in the `mb_matrix()` function.
+
+This map illustrates places that are walkable within 4, 8, and 12 minutes from Wrigley Field.
+
+```{r }
+#| label: Isochrones1
+
+isochrones <- mb_isochrone("Wrigley Field, Chicago IL",
+                           time = c(4, 8, 12),
+                           profile = "walking")
+
+mapdeck(style = mapdeck_style("streets"), zoom = 8,
+        min_zoom = 4, max_zoom = 10) %>%
+  add_polygon(data = isochrones,
+              fill_colour = "time",
+              fill_opacity = 0.3,
+              legend = TRUE, 
+              legend_format = list( fill_colour = as.integer )) 
+
+```
+
+This map illustrates commute times within Dupage County to Naper Settlement.
+
+```{r}
+#| label: Isochrones2
+
+dupage_tracts <- tracts(state ="IL",
+                        county = "Dupage",
+                        cb = TRUE, class = "sf")
+
+downtown_naperville <- mb_geocode("Naper Settlement, Naperville IL")
+
+time_to_downtown <- mb_matrix(dupage_tracts, downtown_naperville)
+
+dupage_tracts$time <- time_to_downtown
+
+mapdeck(style = mapdeck_style("light"), zoom = 8,
+        min_zoom = 4, max_zoom = 10) %>%
+  add_polygon(data = dupage_tracts,
+              fill_colour = "time",
+              fill_opacity = 0.6,
+              legend = TRUE, 
+              legend_format = list( fill_colour = as.integer )) |> 
+  mapdeck::add_title(title = "Driving time to Naper Settlement within Dupage County")
+```
+
+
+>Inspired by [Kyle Walker's walker-data.com vignette](https://walker-data.com/mapboxapi/) post. There's more at
+
+```{r}
+#| include: true
+#| echo: false
+
+tweetrmd::include_tweet("https://twitter.com/kyle_e_walker/status/1271157392760324098")
+```
+
+----
+                
+### Did you find this page helpful? Consider sharing it 🙌
+                
