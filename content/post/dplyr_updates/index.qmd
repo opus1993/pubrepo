@@ -1,0 +1,26 @@
+---
+title: "Ten Tidyverse Updates"
+author: "Jim Gruman"
+date: "2020-09-01"
+format: hugo
+categories: [Data Science, R]
+summary: "Stay up to date with examples using the penguins dataset" 
+# Featured image
+# To use, add an image named `featured.jpg/png` to your page's folder.
+# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
+featured: false
+draft: false
+---
+
+There is no doubt that the `tidyverse` opinionated collection of R packages offers attractive, intuitive ways of wrangling data for data science. In earlier versions of `tidyverse` some elements of user control were sacrificed in favor of simplifying functions that could be picked up and easily used by rookies. In the 2020 updates to `dplyr` and `tidyr` there has been progress to restoring finer control.
+
+> Read Keith McNulty's post, [here](https://towardsdatascience.com/ten-up-to-date-ways-to-do-common-data-tasks-in-r-4f15e56c92d)
+
+----
+
+### Did you find this page helpful? Consider sharing it 🙌
+
+
+
+
+
