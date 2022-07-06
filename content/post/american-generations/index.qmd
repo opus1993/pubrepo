@@ -3,54 +3,39 @@ date: "2022-06-16"
 title: 'Generations in America'
 author: "Jim Gruman"
 format: hugo
+execute:
+  echo: false
+  warning: false
 categories: [R]
-summary: "The composition of American generations per Pew Research & US Census"
+summary: "The composition of American generations per Pew Research & the US Census"
 featured: false
 draft: false
 ---
 
-Inspired and updated from
+Inspired by
 
-> [Jason Timm's post](https://www.jtimm.net/2020/06/10/american-generations/)
+> Jason Timm's [post on Seven Generations of America](https://www.jtimm.net/posts/seven-generations/)
 
-> Kyle Walker's [Analyzing US Census Data](https://walker-data.com/census-r/index.html) updates 
+> Kyle Walker's [Analyzing US Census Data](https://walker-data.com/census-r/index.html) 
 
-### American Generations
+> The `tidymodels` [Multi-scale model assessment with spatialsample](https://www.tidymodels.org/learn/work/multi-scale/) vignette by Mike Mahoney
 
-Let's have a look at the composition of American generations with Pew Research definitions and US Census data. 
+Let's have a look at the composition of American generations with Pew Research definitions and US Census data. By the end of this post, we should have a perspective on a few tools for exploring the changing demographics of America. This document was authored in RStudio in a qmd Quarto file using the R language and several open source packages, and is publicly available [here](https://github.com/opus1993/pubrepo).
 
-The outcome: a perspective on the changing demographics of America.
-
-Four of America’s seven living generations are more or less “complete,” and only getting smaller: `Greatest`, `Silent`, `Boomers`, and `Gen X`. The generation comprised of `Millenials` is complete as well, in that it has been delineated chronologically; however, the group continues to grow via immigration.
-
-```{r }
-#| label: setup
-#| include: false
-#| code-fold: true
-#| code-summary: "Show code"
-
-knitr::opts_chunk$set(
-  echo = TRUE,
-  message = FALSE,
-  warning = FALSE
-)
-```
+Four of America’s seven living generations are more or less complete and only getting smaller: `Greatest`, `Silent`, `Boomers`, and `Gen X`. The generation comprised of `Millenials` is complete as well, in that it has been delineated chronologically; however, the group continues to grow via immigration.
 
 ```{r}
 #| label: load
-#| code-fold: true
-#| code-summary: "Show code"
 
 suppressPackageStartupMessages({
-library(tidyverse) # tidy data manipulation, including dplyr and ggplot
+library(tidyverse)   # data manipulation, incl dplyr and ggplot
 library(lubridate)   # date manipulation tools
-library(tidycensus)
-  
-library(tigris)
-
+library(tidycensus)  # census API
+library(tigris)      # US Shapefiles for maps
+library(spatialsample) # geospatial sampling
+library(tidymodels)   # machine learning
 })
-theme_set(hrbrthemes::theme_ipsum_tw())   # Set a ggplot color, font theme
-showtext::showtext_auto() # helps to locate windows fonts
+theme_set(ggplot2::theme_minimal()) # Set a color, font theme
 
 options(tigris_use_cache = TRUE, 
         tigris_class = "sf")
@@ -76,6 +61,7 @@ gen_desc <- tibble(rank = 7:1,
                    range = range) %>%
   arrange(rank)
 
+
 gen_desc %>%
   knitr::kable(format = "html",
                booktabs = T,
@@ -100,8 +86,7 @@ The *Monthly Postcensal Resident Population plus Armed Forces Overseas, December
 
 ```{r}
 #| label: readCensus
-#| code-fold: true
-#| code-summary: "Show code"
+ 
 pops <- read_csv(
   file = "https://www2.census.gov/programs-surveys/popest/datasets/2010-2020/national/asrh/NC-EST2020-ALLDATA-R-File24.csv",
   show_col_types = FALSE) %>% 
@@ -116,17 +101,16 @@ A more detailed description of the population estimates can be found [here](http
 
 ```{r}
 #| label: prepForJoin
-#| code-fold: true
-#| code-summary: "Show code"
+ 
 race <- c('NHWA', 'NHBA', 'NHIA', 
           'NHAA', 'NHNA', 'NHTOM', 'H')
 
-race1 <- c('White Alone',
-           'Black Alone',
-           'American Indian Alone',
-           'Asian Alone',
-           'Native Hawaiian Alone',
-           'Two or More Races',
+race1 <- c('White',
+           'Black',
+           'American Indian',
+           'Asian',
+           'Native Hawaiian',
+           'Two or More',
            'Hispanic')
 
 labels <- tibble(race = race, 
@@ -139,8 +123,8 @@ The following table details **a random sample of the data set** – with Pew Res
 
 ```{r}
 #| label: genPops
-#| code-fold: true
-#| code-summary: "Show code"
+
+
 gen_pops <- pops %>%
   filter(grepl(search, race)) %>%
   mutate(race = gsub('_.*$', '', race)) %>%
@@ -162,7 +146,8 @@ gen_pops <- pops %>%
   left_join(gen_desc, by = "gen") %>%
   ungroup() %>%
   select(gen, rank, range, race, 
-         race1, yob, AGE, pop)
+         race1, yob, AGE, pop) |> 
+  mutate(gen = fct_reorder(gen, rank))
 
 set.seed(999)
 gen_pops %>% sample_n(7)  %>%
@@ -183,8 +168,6 @@ The figure below summarizes the US population by generation. These numbers will 
 ```{r }
 #| label: barchart
 #| fig.asp: 1
-#| code-fold: true
-#| code-summary: "Show code"
 
 gen_pops %>%
   group_by(gen, rank) %>%
@@ -198,7 +181,7 @@ gen_pops %>%
   geom_text(aes(label = lab), 
             size = 6,
             nudge_x = 3000000) +
-  hrbrthemes::scale_fill_ipsum() +
+  scale_fill_brewer(type = "seq") +
   theme(axis.text.x = element_blank(),
         axis.ticks.x = element_blank(),
         panel.grid.major.y = element_blank(),
@@ -212,8 +195,6 @@ gen_pops %>%
 ```
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show code"
 #| label: annotationHelper
 
 gg <- gen_pops %>% 
@@ -230,9 +211,6 @@ The figure below illustrates the US population by single year of age, ranging fr
 
 ```{r }
 #| label: singleyear
-#| fig.asp: 1
-#| code-fold: true
-#| code-summary: "Show code"
 
 gen_pops %>%
   ggplot(aes(x = AGE, 
@@ -245,18 +223,18 @@ gen_pops %>%
   geom_col(show.legend = FALSE,
            width = .7)   +
   annotate(geom = "text", 
-           x = gg$AGE - 8, 
+           x = gg$AGE - 7, 
            y = gg$tot + 100000, 
            label = gg$gen,
-           size = 8) +
-  hrbrthemes::scale_fill_ipsum() +
+           size = 4) +
+  scale_fill_brewer(type = "seq") +
   theme(legend.position = "bottom",
         legend.title = element_blank(),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         panel.grid.minor.y = element_blank(),
-        axis.text.x = element_text(size = 18),
-        axis.text.y = element_text(size = 18),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
         plot.title.position = "plot") +
   scale_x_reverse(breaks = rev(gg$AGE)) +
   scale_y_continuous(labels = scales::comma_format()) +
@@ -265,13 +243,10 @@ gen_pops %>%
        x = "Age",
        y = NULL)
 ```
-Next, let's crosscut the single year of age counts presented above by race & ethnicity.
+Next, let's cross the single year of age counts presented above by race & ethnicity.
 
 ```{r}
 #| label: ethnicity
-#| fig.asp: 1
-#| code-fold: true
-#| code-summary: "Show code"
 
 gen_pops %>%
   ggplot(aes(x = AGE, 
@@ -282,21 +257,23 @@ gen_pops %>%
   geom_vline(xintercept = gg$AGE,
              linetype = 2, color = 'gray', size = .25) +
   annotate(geom = "text", 
-           x = gg$AGE - 8, 
+           x = gg$AGE - 7, 
            y = gg$tot + 100000, 
            label = gg$gen,
-           size = 8) +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = "bottom",
+           size = 4) +
+  scale_fill_brewer(type = "qual",
+    guide = guide_legend(label.position = "bottom",
              nrow = 1, 
-             label.theme = element_text(size = 18) )) +
+             label.theme = element_text(size = 12) )) +
   theme(legend.position = "bottom",
         legend.justification = "center",
         legend.title = element_blank(),
+        plot.margin = margin(1, 2, 0, 2, "cm"),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
         panel.grid.minor.y = element_blank(),
-        axis.text.x = element_text(size = 18),
-        axis.text.y = element_text(size = 18),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
         plot.title.position = "plot",
         legend.key.width = unit(5, "line")) +
   scale_x_reverse(breaks = rev(gg$AGE) ) +
@@ -310,13 +287,12 @@ gen_pops %>%
 
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show code"
+#| label: AnnotationHelpers
 
 white_label <- gen_pops %>% 
   group_by(gen, AGE) %>%
   mutate(per = pop/sum(pop)) %>%
-  filter(race1 == 'White Alone') %>%
+  filter(race1 == 'White') %>%
   group_by(gen) %>%
   mutate(per = max(per)) %>% #For labels below.
   arrange(yob) %>%
@@ -328,9 +304,6 @@ The last figure illustrates a **proportional perspective of race & ethnicity in 
 
 ```{r}
 #| label: ethnicityProportion
-#| fig.asp: 1
-#| code-fold: true
-#| code-summary: "Show code"
 
 gen_pops %>%
   group_by(gen, AGE) %>%
@@ -352,19 +325,21 @@ gen_pops %>%
            x = gg$AGE - 4.5, 
            y = white_label$per - .09, 
            label = gg$gen,
-           size = 8,
+           size = 4,
            color = "black") +
-  hrbrthemes::scale_fill_ipsum(guide = guide_legend(label.position = "bottom",
+  scale_fill_brewer(type = "qual",
+    guide = guide_legend(label.position = "bottom",
              nrow = 1,
-             label.theme = element_text(size = 18)
+             label.theme = element_text(size = 12)
              )) +
   theme(legend.position = "bottom",
         legend.justification = "center",
         legend.title = element_blank(),
+        plot.margin = margin(1, 2, 0, 2, "cm"),
         panel.grid.major.x = element_blank(),
         panel.grid.minor.x = element_blank(),
-        axis.text.x = element_text(size = 18),
-        axis.text.y = element_text(size = 18),
+        axis.text.x = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
         plot.title.position = "plot",
         legend.key.width = unit(5, "line")) +
   scale_y_continuous(labels = scales::percent_format()) +
@@ -372,17 +347,17 @@ gen_pops %>%
   labs(title = 'Portion of American Population by Age, Race & Generation',
        fill = "",
        x = "Age",
-       y = NULL)
+       y = NULL,
+       caption = 'SOURCE: US Census, Monthly Postcensal Resident Population \nplus Armed Forces Overseas, December 2021.')
 
 ```
 
 ### American generations in (apparent) time & space
 
-Aggregate race-ethnicity profiles for America’s seven living generations are presented in the table below. Per [American Community Survey (ACS) 2018 5-year estimates](https://github.com/jaytimm/tech-notes-american-politics/blob/master/notes/America_american.md), the `Gen X` race-ethnicity profile (or distribution) is most representative of American demographics overall.
+Aggregate race-ethnicity profiles for America’s seven living generations are presented in the table below. Per [American Community Survey (ACS) 2020 5-year estimates](https://github.com/jaytimm/tech-notes-american-politics/blob/master/notes/America_american.md), the `Gen X` race-ethnicity profile (or distribution) is most representative of American demographics overall.
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show code"
+#| label: populationSums
 
 sums <- gen_pops %>%
   group_by(rank, gen, race1) %>%
@@ -411,8 +386,7 @@ sums %>%
 Here, we compare race-ethnicity profiles for US counties to those of American generations. Using the `tidycensus` R package, we first obtain county-level race-ethnicity estimates (ACS 2020 5-year);
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show code"
+#| label: GetAcs
 
 #x <- tidycensus::load_variables(year = 2018, dataset = 'acs5/profile')
 variable <- c('DP05_0071P', 'DP05_0077P', 'DP05_0078P',
@@ -420,7 +394,7 @@ variable <- c('DP05_0071P', 'DP05_0077P', 'DP05_0078P',
               'DP05_0081P', 'DP05_0082P', 
               'DP05_0083P')
 
-variable_name <- c('Hispanic', 'White Alone', 'Black Alone','American Indian Alone', 'Asian Alone','Native Hawaiian Alone', 'Some Other Race Alone','Two or More Races')
+variable_name <- c('Hispanic', 'White', 'Black','American Indian', 'Asian','Native Hawaiian', 'Some Other','Two or More')
 
 gen <-  tidycensus::get_acs(geography = 'county',
                             variables = variable,
@@ -432,11 +406,10 @@ gen <-  tidycensus::get_acs(geography = 'county',
   select(GEOID:NAME, variable, estimate)
 ```
 
-then, via the `tigris` library, we obtain shapefiles for (1) all US counties and (2) US states.
+then, via the `tigris` library, we obtain shapefiles for the contiguous (1) US counties and (2) US states. 
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show code"
+#| label: tigris
 
 nonx <- c('78', '69', '66', '72', '60', '15', '02')
 
@@ -455,8 +428,7 @@ us_states <- sf::st_transform(us_states, laea)
 The table below highlights the race-ethnicity distribution for my hometown, in **Buchanan County, IA**, GEOID = 19019.
 
 ```{r }
-#| code-fold: true
-#| code-summary: "Show code"
+#| label: BuchananCtyDist
 
 gen %>%
   filter(GEOID == "19019",
@@ -478,8 +450,7 @@ gen %>%
 Via `Kullback–Leibler divergence` (ie, relative entropy), we compare the demographic profile of Buchanan County to the demographic profiles of each American generation. Per the table below, the Buchanan County profile is most similar to that of the `Greatest` generation. Per the lowest relative entropy value. This is not to say that there are more `Greatest` generation in Buchanan County; instead, the racial demographics of Buchanan County are most akin to an America when the `Greatest` generation were in their prime.
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show code"
+#| label: joinGeospatialcalcEntropy
 
 which1 <- gen %>%
   mutate(estimate = ifelse(estimate == 0, .0000001, estimate)) %>%
@@ -506,31 +477,10 @@ which1 %>%
 
 ```
 
-For reference, the table below highlights the generational distribution for **Buchanan County, IA**, GEOID = 19019.
+At this point, let's pull the minimum relative entropies for every US County:
 
 ```{r}
-#| code-fold: true
-#| code-summary: "Show code"
-
-which1 %>%
-  filter(GEOID == "19019") %>%
-  mutate(relative_entropy = scales::percent(relative_entropy, accuracy = 0.1)) %>%
-  pivot_wider(names_from = "gen",
-              values_from = "relative_entropy") %>%
-  select(-GEOID,-NAME) %>%
-  knitr::kable(format = "html",
-               booktabs = T,
-               caption = "Generational Distribution of Buchanan County, Iowa",
-  ) %>%
-  kableExtra::kable_styling(
-    bootstrap_options = c("striped", "hover", "condensed"),
-    full_width = F
-  ) 
-```
-
-```{r}
-#| code-fold: true
-#| code-summary: "Show code"
+#| label: calcMinEntropyNationwide
 
 which2 <- which1 %>%
   group_by(GEOID, NAME) %>%
@@ -543,8 +493,6 @@ So, while `Gen X` is most representative of America in the aggregate, per the ma
 ```{r}
 #| label: uscounties
 #| fig.asp: 1
-#| code-fold: true
-#| code-summary: "Show code"
 
 us_counties %>%
   left_join(which2, by = 'GEOID') %>%
@@ -555,8 +503,8 @@ us_counties %>%
           show.legend = F, 
           color = "darkgray", 
           lwd = .5) +
-  hrbrthemes::scale_fill_ipsum(guide =
-  guide_legend(label.position = "bottom", 
+  scale_fill_brewer(type = "seq",
+    guide = guide_legend(label.position = "bottom", 
              nrow = 1, 
              keywidth = 5,
              label.theme = element_text(size = 18))) +
@@ -569,13 +517,170 @@ us_counties %>%
         legend.justification = "center",
         plot.title.position = "plot",
         legend.key.width = unit(0.5, "cm")) +
-  labs(title = "Counties & their Most Representative Generational Proportions",
-       fill = "")
+  labs(title = "Most Representative Generational Proportions",
+       fill = "",
+       caption = "Sources: US Census 2021")
+```
+
+## Comparing Grouping Aggregations
+
+Aggregating by county is convenient, but not often the best practice for statistical modeling.  In addition to the usual difficulties, models of spatially structured data may have spatial structure in their errors, with different regions being more or less well-described by a given model. This also means that it can be hard to tell how well our model performs when its predictions are aggregated to different scales, which is common when models fit to data from point measurements (for instance, the sale prices of individual homes) are used to try and estimate quantities over an entire area (the average value of all homes in a city or state). If model accuracy is only investigated at individual aggregation scales, such as when accuracy is only assessed for the original point measurements or across the entire study area as a whole, then local differences in accuracy might be “smoothed out” accidentally resulting in an inaccurate picture of model performance.
+
+For this reason, researchers (most notably, Riemann et al. (2010)) have suggested assessing models at multiple scales of spatial aggregation to ensure cross-scale differences in model accuracy are identified and reported. This is not the same thing as tuning a model, where we’re looking to select the best hyperparameters for our final model fit; instead, we want to assess how that final model performs when its predictions are aggregated to multiple scales. 
+
+## Multi-Scale Assessment
+
+Riemann et al. were working with data from the US Forest Inventory and Analysis (FIA) program. As a demonstration, we're going to push a relative_entropy of the Post-Z generation map through the same technique. Because our main goal is to show how `spatialsample` can support this type of analysis, we won’t spend a ton of time worrying about feature engineering.
+
+We want to assess our model’s performance at multiple scales, following the approach in Riemann et al, so we need to do the following:
+
+1. Block our study area using multiple sets of regular hexagons of different sizes, and assign our data to the hexagon it falls into within each set.
+
+1. Perform leave-one-block-out cross-validation with each of those sets, fitting our model to `n - 1` of the `n` hexagons we’ve created and assessing it on the hold-out hexagon.
+
+1. Calculate model accuracy for each size based on the aggregated predictions for each of those held-out hexes.
+
+So to get started, we need to block our study area. We can do this using the `spatial_block_cv()` function from `spatialsample`. We’ll generate ten different sets of hexagon tiles, using `cellsize` arguments of between 100,000 and 1,000,000 meters. The code to do that, and to store all of our resamples in a single tibble, looks like this:
+
+```{r}
+#| label: hexgridGenerator
+
+cellsize <- seq(10, 100, 10) * 10000
+
+create_resample <- function(cellsize) {
+  spatial_block_cv(
+    us_counties |> 
+       left_join(
+         which1 |> 
+           group_by(GEOID, NAME) |> 
+           filter(gen == "Post-Z") |> 
+           ungroup(), by = 'GEOID') |> 
+       left_join(gen |> pivot_wider(names_from = variable, values_from = estimate), by = 'GEOID'),
+    v = Inf,
+    cellsize = cellsize,
+    square = FALSE
+  )
+}
+
+riemann_resamples <- tibble(
+  cellsize = cellsize,
+  resamples = purrr::map(cellsize, create_resample)
+)
+```
+
+Two things to highlight about this code:
+
+`cellsize` is in meters because our coordinate reference system is in meters. This argument represents the length of the apothem, from the center of each polygon to the middle of the side.
+
+`v` is Inf because we want to perform leave-one-block-out cross-validation, but we don’t know how many blocks there will be before they’re created. 
+
+If we want, we can visualize a few of our resamples, to get a sense of what our tiling looks like:
+
+```{r}
+#| label: hexgrid1
+
+autoplot(riemann_resamples$resamples[[1]]) +
+  theme(legend.position = "none")
+```
+
+```{r}
+#| label: hexgrid10
+
+autoplot(riemann_resamples$resamples[[10]]) +
+  theme(legend.position = "none")
+```
+
+And that’s step 1 of the process completed! Now we need to move on to step 2, and actually fit models to each of these resamples. As a heads-up, this is a lot of models, and so is going to take a while:
+
+```{r}
+#| label: countofResamples
+
+riemann_resamples$resamples %>% purrr::map_dbl(nrow) %>% sum()
+```
+
+Here we define a workflow, specifying the formula where we look to understand the relationship between Post-Z relative_entropy with Census demographics on race and model to fit to each resample:
+
+```{r}
+#| label: createWorkflow
+
+lm_workflow <- workflow(relative_entropy ~ Hispanic
+                        + `White` 
+                        + `Black`
+                        + `American Indian`
+                        + `Asian`
+                        + `Native Hawaiian`
+                        + `Some Other`
+                        + `Two or More`,
+                        linear_reg())
+```
+
+Next, we’ll actually apply that workflow a few thousand times! Now as we said at the start, we aren’t looking to tune our models using these resamples. Instead, we’re looking to see how well our point predictions do at estimating relative entropy across larger areas. As such, we don’t really care about calculating model metrics for each hexagon, and we’ll set our code to only calculate a single metric (root-mean-squared error, or RMSE) to save a little bit of time. We’ll also use the `control_resamples()` function with `save_pred = TRUE` to make sure we keep the predictions we’re making across each resample. We can add these predictions as a new column to our resamples using the following:
+
+```{r}
+#| label: fitResamplesLinearModels
+
+riemann_resamples <- riemann_resamples |> 
+  mutate(
+    resampled_outputs = purrr::map(
+      resamples, 
+      fit_resamples,
+      object = lm_workflow,
+      metrics = metric_set(rmse),
+      control = control_resamples(save_pred = TRUE)
+    )
+  )
+```
+
+The `riemann_resamples` object now includes both our original resamples as well as the predictions generated from each run of the model. We can use the following code to “unnest” our predictions and estimate both the average “true” relative_entropy and our average prediction at each hexagon:
+
+```{r}
+#| label: unNestMetrics
+
+riemann_metrics <- riemann_resamples %>% 
+  select(cellsize, resampled_outputs) %>% 
+  unnest(resampled_outputs) %>%
+  transmute(
+    cellsize = cellsize,
+    mean_relative_entropy  = purrr::map_dbl(.predictions, function(x) mean(x$relative_entropy)),
+    mean_pred = purrr::map_dbl(.predictions, function(x) mean(x$.pred))
+  ) 
+
+head(riemann_metrics)
+```
+
+Now that we’ve got our “true” and estimated relative_entropy for each hexagon, all that’s left is for us to calculate our model accuracy metrics for each aggregation scale we investigated. We can use functions from `yardstick` to quickly calculate our root-mean-squared error (RMSE) and mean absolute error (MAE) for each cell size we investigated:
+
+```{r}
+#| label: summariseMetrics
+
+riemann_metrics <- riemann_metrics %>%
+  group_by(cellsize) %>%
+  summarize(rmse = rmse_vec(mean_relative_entropy, mean_pred),
+            mae  =  mae_vec(mean_relative_entropy, mean_pred))
+```
+
+And just like that, we’ve got a multi-scale assessment of our model’s accuracy. To repeat a point from earlier, we aren’t using this as a way to tune our model. Instead, we can use our results to investigate and report how well our model does at different levels of aggregation. For instance, while it appears that both RMSE and MAE improve as we aggregate our predictions to various size hexagons, some scales have a larger difference between the two metrics than others. This hints that, at those specific scales, a few individual hexagons are large outliers driving RMSE higher, which might indicate that our model isn’t performing well in a few specific locations:
+
+```{r}
+#| label: plotYardstickMetrics
+
+riemann_metrics %>%
+  pivot_longer(-cellsize) %>%
+  ggplot(aes(cellsize, value, color = name)) + 
+  geom_line() +
+  geom_point() + 
+  theme_minimal() +
+  labs(color = NULL,
+       y = NULL)
 ```
 
 ### Conclusion
 
 There are many ways to characterize the different perspectives on the composition of America & American generations, and the changing demographics of America.
+
+### References
+
+Riemann, R., Wilston, B. T., Lister, A., and Parks, S. 2010. An effective assessment protocol for continuous geospatial datasets of forest characteristics using USFS Forest Inventory and Analysis (FIA) data. Remote Sensing of Environment, 114, pp. 2337-2353. doi: 10.1016/j.rse.2010.05.010.
 
 ----
 
