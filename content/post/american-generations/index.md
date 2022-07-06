@@ -485,10 +485,9 @@ the approach in Riemann et al, so we need to do the following:
 So to get started, we need to block our study area. We can do this using
 the `spatial_block_cv()` function from `spatialsample`. We'll generate
 ten different sets of hexagon tiles, using `cellsize` arguments of
-between 100,000 and 1,000,000 meters. The code to do that, and to store
-all of our resamples in a single tibble, looks like this:
+between 100,000 and 1,000,000 meters.
 
-Two things to highlight about this code:
+Two things to highlight:
 
 `cellsize` is in meters because our coordinate reference system is in
 meters. This argument represents the length of the apothem, from the
@@ -507,9 +506,8 @@ what our tiling looks like:
 
 And that's step 1 of the process completed! Now we need to move on to
 step 2, and actually fit models to each of these resamples. As a
-heads-up, this is a lot of models, and so is going to take a while:
-
-    [1] 1497
+heads-up, across all sets of resamples, 1497 is a lot of models, and so
+is going to take a while:
 
 Here we define a workflow, specifying the formula where we look to
 understand the relationship between Post-Z relative_entropy with Census
@@ -520,17 +518,15 @@ said at the start, we aren't looking to tune our models using these
 resamples. Instead, we're looking to see how well our point predictions
 do at estimating relative entropy across larger areas. As such, we don't
 really care about calculating model metrics for each hexagon, and we'll
-set our code to only calculate a single metric (root-mean-squared error,
-or RMSE) to save a little bit of time. We'll also use the
-`control_resamples()` function with `save_pred = TRUE` to make sure we
-keep the predictions we're making across each resample. We can add these
-predictions as a new column to our resamples using the following:
+only calculate a single metric (root-mean-squared error, or RMSE) to
+save a little bit of time. We'll also use the `control_resamples()`
+function with `save_pred = TRUE` to make sure we keep the predictions
+we're making across each resample.
 
 The `riemann_resamples` object now includes both our original resamples
-as well as the predictions generated from each run of the model. We can
-use the following code to "unnest" our predictions and estimate both the
-average "true" relative_entropy and our average prediction at each
-hexagon:
+as well as the predictions generated from each run of the model. We then
+"unnest" our predictions and estimate both the average "true"
+relative_entropy and our average prediction at each hexagon:
 
     # A tibble: 6 x 3
       cellsize mean_relative_entropy mean_pred
