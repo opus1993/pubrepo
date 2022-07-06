@@ -6,3 +6,4 @@ docs/* linguist-documentation
 *.css linguist-detectable=false
 *.js linguist-detectable=false
 *.tex linguist-detectable=false
+*.scss linguist-detectable=false
