@@ -423,37 +423,6 @@ demographics of Buchanan County are most akin to an America when the
 </tbody>
 </table>
 
-For reference, the table below highlights the
-`Kullback–Leibler divergence` for the generational distribution for
-**Buchanan County, IA**, GEOID = 19019. The lowest value aligns with the
-Greatest Generation.
-
-<table class="table table-striped table-hover table-condensed" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>Relative Entropy of Buchanan County, Iowa</caption>
- <thead>
-  <tr>
-   <th style="text-align:left;"> Greatest </th>
-   <th style="text-align:left;"> Silent </th>
-   <th style="text-align:left;"> Boomers </th>
-   <th style="text-align:left;"> Gen X </th>
-   <th style="text-align:left;"> Millennial </th>
-   <th style="text-align:left;"> Gen Z </th>
-   <th style="text-align:left;"> Post-Z </th>
-  </tr>
- </thead>
-<tbody>
-  <tr>
-   <td style="text-align:left;"> 17.6% </td>
-   <td style="text-align:left;"> 18.7% </td>
-   <td style="text-align:left;"> 24.9% </td>
-   <td style="text-align:left;"> 40.8% </td>
-   <td style="text-align:left;"> 47.6% </td>
-   <td style="text-align:left;"> 52.8% </td>
-   <td style="text-align:left;"> 57.3% </td>
-  </tr>
-</tbody>
-</table>
-
 At this point, let's pull the minimum relative entropies for every US
 County:
 
