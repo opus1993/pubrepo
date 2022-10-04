@@ -1,5 +1,5 @@
 ---
-date: "2022-07-05"
+date: "2022-10-04"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -74,10 +74,13 @@ Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-int
 ----
 ## Online Courses
 
-Many of us want to try before we buy. Making the investment of time into reading a book (even a free one) could still be too much to ask. While there are a handful of LinkedIn Learning videos, these may be more representative of the content of an intensive college course:
+Many of us want to try before we buy. Making the investment of time into reading a book (even a free one) could still be too much to ask. These materials, some even with interactive notebooks and project examples, may be a better path for you.
 
 |     |    | 
 |:---|:---|
+| [Kaggle](https://www.kaggle.com/learn)   | An online community of data scientists and machine learning practitioners, now part of Google. |
+| [Linkedin Learning: Fred Nwanganga](https://www.linkedin.com/learning/instructors/frederick-nwanganga)    |  A sequence of introductory :star: Python ML video courses |
+| [Linkedin Learning: Keith McCormick](https://www.linkedin.com/learning/instructors/keith-mccormick) | Look for Keith's Data Mining, CRISP-DM, and executive training materials |
 | The [R-Studio Cloud Primers](https://rstudio.cloud/learn/primers)
 | [Data Science in a Box](https://datasciencebox.org/index.html)
 | **[STAT545](https://stat545.com/)** |by [Jenny Bryan](https://twitter.com/JennyBryan)|
@@ -127,6 +130,7 @@ Shiny is an R package that makes it easy to build interactive web apps for non-p
 
 |     |    | 
 |:---|:---|
+| [Mastering Shiny](https://mastering-shiny.org/)  |  <a href="https://mastering-shiny.org/"><img alt="Mastering Shiny" src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" width="250"></a>  |
 | [Engineering Production-Grad Shiny Apps](https://engineering-shiny.org/index.html) |by [Colin Fay](https://twitter.com/_ColinFay), [Sébastien Rochette](https://twitter.com/StatnMap), [Vincent Guyader](https://twitter.com/VincentGuyader), & [Cervan Girard](https://twitter.com/CervanGirard) on the {`golem`} package|
 | [R Views Enterprise-ready dashboards with Shiny and Databases](https://rviews.rstudio.com/2017/09/20/dashboards-with-r-and-databases/)
 | [R Shiny upgrade packages](http://enhancedatascience.com/2017/07/10/the-packages-you-need-for-your-r-shiny-application/)
