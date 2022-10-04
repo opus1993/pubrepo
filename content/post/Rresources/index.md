@@ -14,9 +14,6 @@ categories:
   - Education, R
 tags:
   - Education, R
-twitter:
-  site: "@jim_gruman"
-  creator: "@jim_gruman"
 ---
 My short list of useful books, courses, and expert blogs. Many are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice. 
 
