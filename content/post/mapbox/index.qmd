@@ -113,7 +113,7 @@ This map illustrates commute times within Dupage County to Naper Settlement.
 ```{r}
 #| label: Isochrones2
 
-dupage_tracts <- tracts(state ="IL",
+dupage_tracts <- tracts(state = "IL",
                         county = "Dupage",
                         cb = TRUE, class = "sf")
 
@@ -136,12 +136,7 @@ mapdeck(style = mapdeck_style("light"), zoom = 8,
 
 >Inspired by [Kyle Walker's walker-data.com vignette](https://walker-data.com/mapboxapi/) post. There's more at
 
-```{r}
-#| include: true
-#| echo: false
-
-tweetrmd::include_tweet("https://twitter.com/kyle_e_walker/status/1271157392760324098")
-```
+{{<tweet user="kyle_e_walker" id="1271157392760324098">}}
 
 ----
                 
