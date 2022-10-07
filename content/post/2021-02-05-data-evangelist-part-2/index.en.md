@@ -74,8 +74,6 @@ Landing the connection with the audience is a core tenet of business school prog
 
 My blog post cover image is an 1875 woodblock printing entitled "[Tokugawa Iemitsu Receiving Lords in Audience](https://artvee.com/dl/tokugawa-iemitsu-receiving-lords-in-audience)" The artist, Tsukioka Yoshitoshi, like many Japanese of that era, was interested in new things from the rest of the world like photography, but over time he became increasingly concerned with the loss of aspects of traditional Japanese culture that brought people together.
 
-{{<tweet user="nicoleradziwill" id="1356650318730305537" >}}
-
 In Amanda Mull's Atlantic piece "[The Pandemic Has Erased Entire Categories of Friendship](https://www.theatlantic.com/health/archive/2021/01/pandemic-goodbye-casual-friends/617839/)," she explains how there’s a reason you miss the people you didn’t even know that well. Most people are familiar with the idea of an inner circle. Sociologists propose that we also have an outer circle, vital to our social health in its own ways, functioning as the forums that we normally look to to find validation for our work and ideas.
 
 "Inducing the wobble" in change management requires that our data science community of practice find new ways to re-connect with colleagues and leaders.
@@ -157,9 +155,5 @@ Staff Engineer
 *A pragmatic look at attaining and operating in Staff engineering roles, building on the lived experience of folks who've walked before you.*
 
 ----
-
-ICYMI the last post of the series:
-
-{{<tweet user="RyanHamze" id="1354203415962902529" >}}
 
 ### Did you find this page helpful? Consider sharing it 🙌

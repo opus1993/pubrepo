@@ -181,8 +181,6 @@ By rejecting the identity of a service organization, we turn our queues of reque
 
 Just as a support team will never finish their work on the queue, we’ll never be done with maintenance. We can’t change that. But we change how we see it, and how we value ourselves on the days that we do it. 
 
-{{<tweet user="DynamicWebPaige" id="1487827151986597897">}}
-
 ----
 ## Book Recommendation
 

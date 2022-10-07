@@ -52,8 +52,6 @@ On the surface, the benefit of participating in local chapter events is visibili
 
 ----
 
-{{<tweet user="MapScaping" id="1379424631648555015" >}}
-
 ## Google Maps' Moat is Evaporating
 
 Joe Morrison has published a number of great substack articles in recent months. [Here](https://joemorrison.substack.com/p/google-maps-moat-is-evaporating), he makes a compelling argument that *OpenStreetMap (OSM), over the next decade, has the potential to do to Google what Android did to Apple: dramatically grow the overall market while drawing a clear line between the larger “open” ecosystem and the smaller “proprietary” one.* Joe doesn't believe Google can maintain its current leading position in the  mapping world for another decade without pivoting to embrace the same open ecosystem that FAAMm (Facebook, Apple, Amazon, Microsoft, and Mapbox) is using to challenge them.
@@ -77,10 +75,6 @@ As a general rule, business and industrial engineering programs at universities 
 Students assemble documentation on a capstone or internship experience and post it to a blog or github to showcase the work. Some will also prepare a business case presentation and video content. Interviews for junior analytics roles should have some context for how what the candidate brings fits with what the enterprise workflow requires.
 
 [Not every data scientist does "data science" work](https://towardsdatascience.com/heres-the-honest-truth-about-making-a-career-switch-into-data-science-2e5a42d24879). The range of skills and job responsibilities at one company can look completely different at another. There really are very few organizations with the specialization where a single person only builds machine learning models.
-
-Matt Dancho writes here in more detail on team building and skills alignment in the enterprise:
-
-{{<tweet user="bizScienc" id="1383423259656396801" >}}
 
 ------------------------------------------------------------------------
 

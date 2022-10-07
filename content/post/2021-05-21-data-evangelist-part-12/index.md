@@ -31,8 +31,6 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ----
 
-{{<tweet user="joshuastarmer" id="1394703930232385542" >}}
-
 ## Gatekeeping
 
 The glitzy marketing side of data science has a really combative vibe. One might think that when you make it to the 'inner circle' through all the gatekeeping, you'll get to be a person doing 'magic' for insight-hungry stakeholders. There is an enormous empathy cliff to understand here. Folks are less hungry for data than they are hungry for *partnership* and genuine collaboration. There are lots of people in this world trying to use data as a means to an end, no doubt. But there is a growing awareness of all the ways data science disappoints, and there are so many options for how this all works. 
@@ -42,8 +40,6 @@ There are agendas at work in telling us who gets access, who gets to be smart, w
 The proprietary walled gardens of SAS, Salesforce, Matlab and others are beginning to crumble. I do wonder if this is a factor.
 
 ----
-
-{{<tweet user="WePredictUK" id="1296187374221713408" >}}
 
 ## We Predict
 
@@ -92,13 +88,9 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ------
 
-{{<tweet user="jasnonaz" id="1395022400660594689" >}}
-
 ## Data Engineering
 
 The critical thing to know about data engineering for analytics is that by making data analysis and operations more efficient, it unlocks a huge number of use cases that were impractical before. Out in startup world - this probably isn't huge news. Many have already recognized the value and importance of analytics engineering. That's going to continue and accelerate. There are huge potential applications in research, in academia, and in civic life. The big story of the past decade has been a lot of organizations drowning in data and unsure how to manage it all. Analytics engineering presents an answer to that question.
-
-{{<tweet user="quaesita" id="1395374178631626753" >}}
 
 So [what makes a data analyst excellent?](https://towardsdatascience.com/what-makes-a-data-analyst-excellent-17ee4651c6db)
 

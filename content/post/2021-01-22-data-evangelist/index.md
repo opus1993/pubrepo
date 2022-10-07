@@ -36,8 +36,6 @@ This post is intended to accomplish three things:  1) reflect on a handful of ta
 
 One track of talks at the conference featured topics on diversity, fairness, and inclusiveness. Speaking on these can be challenging because the issues manifest themselves both in our workplaces and in our work output, the algorithms and tools we build. Grant Fleming here is very much qualified to deliver this particular talk as an author and contributor to two recent books on fairness in machine learning and model explainability. 
 
-{{<tweet user="hearthehearsay" id="1352072130184306689">}}
-
 **Gulp** is right :flushed: 
 
 The many failures in AI and data science in recent years should be well known by now. How many of you have received offers both from AI HR services that screen candidate resumes -AND- AI HR services that help write a better resume? For any one of the algorithms deployed, what could possibly go wrong, and who owns it? Who is the owner of the algorithms used where you work, and who sets the standards? Diversity and fairness must be addressed as a normal course of work processes, for processes that in many cases do not have guardrails yet.
@@ -46,15 +44,11 @@ In his time, [Sergio Marchionne](https://www.ft.com/content/6a813814-8ff3-11e8-b
 
 ----
 
-Vicki Boykis gave a keynote address at the conference on empowerment. A synopsis:
-
-{{<tweet user="jim_gruman" id="1352415527248023556">}}
+Vicki Boykis gave a keynote address at the conference on empowerment. 
 
 On a related note, [Brian Popp](https://www.linkedin.com/in/brian-popp-mba/) makes a compelling argument in his [How to Build a High-Performance Analytics Team](https://www.meetup.com/St-Louis-Machine-Learning/events/275340419/) talk that we should be taking time to assess the curiosity of job candidates. Does the candidate have a trusted network of peers to bounce ideas off of? Some organizations host internal communities of practice, book clubs, or even Toastmasters chapters to bring out the best in their people. As the manager, we are committing to make a significant investment in building out both skills and the network for the new employee's success, so they are in a position to make positive contributions. 
 
 I've observed that avid readers often exhibit a deeper sense of curiosity, going beyond doom-scrolling the echo-box of social media. Readers often can bring value to the organization making the greater impact on the non technical parts of the enterprise. 
-
-{{<tweet user="MRAguy" id="1330449208600649730">}}
 
 The ability to convey stories with a sense of our shared history makes the math come alive in more meaningful ways. Other probing questions:
 
@@ -64,9 +58,7 @@ The ability to convey stories with a sense of our shared history makes the math 
 
 - When and where has there been a stage and a receptive audience for data science?
 
-{{< tweet user="LittleMissData" id="1352604567800864769" >}}
-
-Laura Ellis notes here that data evangelism is also the manager's role. Admittedly, every organization is at a different point in the data maturity journey. Besides eventually making colleagues self sufficient, the point of data evangelism is to strengthen both the technical team and promote awareness of the potential of data science across the enterprise.
+Laura Ellis notes that data evangelism is also the manager's role. Admittedly, every organization is at a different point in the data maturity journey. Besides eventually making colleagues self sufficient, the point of data evangelism is to strengthen both the technical team and promote awareness of the potential of data science across the enterprise.
 
 Creating contexts for people to share their work and what they are learning builds those networks and development pathways. External stakeholders may also benefit from greater insight into what exactly the data science team does, and how they can help the company achieve all business objectives.
 
@@ -107,7 +99,5 @@ An important step in educating colleagues is writing documentation on topics tha
 A culture which educates and empowers employees through data evangelism efforts will be one that will reap many benefits. Sometimes it’s as simple as walking a business stakeholder through the mechanics of a model in production to get them to understand how it works, as opposed to having them think it’s black-box magic. With increased transparency, business stakeholders may be more likely to cooperate and may even come up with new applications. These types of efforts will ultimately lead to increased credibility and trust. Without these two things, no matter how great the team's technical potential, the ability to impact the company will be limited.
 
 ----
-
-{{<tweet user="vboykis" id="1352630279387676673">}}
 
 ### Did you find this page helpful? Consider sharing it 🙌

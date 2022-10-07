@@ -44,8 +44,6 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ------------------------------------------------------------------------
 
-{{<tweet user="MSFTnews" id="1287782817963954178" >}}
-
 ## Teaming up to Innovate in the Garage
 
 > “In less than one year, we went from not even a concept on a napkin to an operating, deployed, scaled product to customers,” says **Parag Garg**, T-Mobile’s vice president of Product & Technology. “Together, we really quickly came to an architecture that worked and a solution center that worked. [Microsoft](https://news.microsoft.com/transform/from-hackathons-to-new-products-northwest-neighbors-t-mobile-and-microsoft-team-up-to-innovate/) brought in architects, they gave us support, they were really good partners and they’re right there in Redmond.”
@@ -59,8 +57,6 @@ In the early days of The Garage, the focus was on employees and mobilizing Micro
 <a href="https://www.microsoft.com/en-us/garage/about/"><img src="https://www.microsoft.com/en-us/garage/wp-content/uploads/sites/5/2018/02/RedmondGarage-WEB.jpg" alt="What is The Garage?" width="600"/></a>
 
 ----
-
-{{<tweet user="PhDemetri" id="1371912042140024833" >}}
 
 ## Data Science Generalist
 
@@ -126,8 +122,6 @@ Randy's blog is at [Counting Stuff](https://ko-fi.com/countingstuff). Support hi
 
 ------------------------------------------------------------------------
 
-{{<tweet user="AsqDiv" id="1379550608991080457" >}}
-
 ## Survival Analysis In Engineering, Business, And Medicine
 
 Dr. Nelson delivered a timely ASQ talk this week that demonstrated how analytical techniques in several domains are related in the context of censored, survival analytical examples. His slide materials are  [posted here](https://handouts-live.s3.amazonaws.com/2163e383912a4f9fa1ddd105f850baec?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20210408T155814Z&X-Amz-SignedHeaders=host&X-Amz-Expires=86400&X-Amz-Credential=AKIAJICNIQWVMWBRIUMQ%2F20210408%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=a59a9689d5297aa234e27f5559425d6dfc2c077598a1fcd32c892c7d2d9d7e09). The video recording, when available, will be posted [here](https://asqrrd.org/recorded-webinars/).
@@ -151,8 +145,6 @@ These are opportunities to engage and learn about analytics, data science, and A
 :star:️ September 6-10th [EARL Conference 2021](https://info.mango-solutions.com/earl-2021#:~:text=EARL%202021%206%2D10th%20September,of%20the%20world%27s%20leading%20practitioners)
 
 ------------------------------------------------------------------------
-
-{{<tweet user="orestistsinalis" id="1374716048583368706" >}}
 
 ## Outsourcing Analytics
 
@@ -179,8 +171,6 @@ Why do companies use external providers for data and analytical services they ca
 *What should you do if as a data scientist (or manager of a data science team) you find the company you work for uses you just as a pricing tool for external providers?*
 
 *Start interviewing for innovative companies that really want you to create IP internally.*
-
-{{<tweet user="ChelseaParlett" id="879773567386140672" >}}
 
 ------------------------------------------------------------------------
 

@@ -53,10 +53,6 @@ The difficulty in choosing a "best" stack has to do with the nature of strategic
 > The trick is to move beyond metrics that just show validity and results for certain projects, and deploy metrics that show the overall performance of your complete data science program. You want to show how your team is getting faster, how they are delivering measurable results, and how the team is situated to keep growing. These are the key areas to evaluate for your data science KPIs, to show how your group is adding value to the broader organization.
 
 -----
-
-{{<tweet user="CMastication" id="1460992737851981831" >}}
-
------
 ## Standard Work
 
 In a wide-ranging interview recently, our CEO was asked

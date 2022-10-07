@@ -56,8 +56,6 @@ My condensed trip notes to Don reflected anxiety over mismatches between the con
 
 At CES, engineers anticipated that 4G/5G telematics and over the air updates would transform vehicle service experiences. At the same time, most were certainly also concerned with hacking, security, penetration testing, and the role of government in setting the lines for liability. Mining huge central stores of logged event data would also become a possibility, ranging from little insights like which podcasts the driver enjoyed all the way to watching driver behavior and giving immediate feedback. Would sensing driver condition, like sleepiness or cognitive overload, become the next safety feature? Would the EPA or other government agencies require calibrations or mobile emissions inspections now that it was technically feasible? If the automobile industry was addressing these issues, would heavy equipment be required to follow?
 
-{{<tweet user="jim_gruman" id="1385227419641077761">}}
-
 The two hundred plus year story of mechanized agriculture parallels the story of thermodynamics, illustrated in the book Einstein's Fridge (below). All of the great World's Fairs had halls celebrating technical progress in agricultural innovation. Harnessing energy at  scale for the harvest, for refrigeration, and for transport and trade has transformed lives and increased human potential in ways that are easy to take for granted today.
 
 Twenty five years ago my colleagues worked together with firms in the newly commercialized satellite global positioning systems to outfit equipment with guidance and mapping capabilities. On a basic level, artificial intelligence is only the most recent chapter in a story of continuous mechanization. 
@@ -74,23 +72,15 @@ The consultants’ message to C.E.O.s is clear: Move forward or be left behind.
 
 If the first step in “AI adoption” is to recognize that your customers have problems that lend themselves to deep-learning solutions, and the second is to prioritize those particular problems, the third is to build the kind of infrastructure that AI requires.
 
-{{<tweet user="ShaneHand01" id="1022216760785690624">}}
-
 John Deere's Alex Purdy [explains](https://www.aventine.org/artificial-intelligence/feature/john-deere): 
 
 > “A customer makes a hundred and forty decisions for each seed. I don’t know much about seed genetics, and I don’t want to. . . . When you take your data off your equipment at the end of the year — how much seed you put down, where you put it down, what you did to it, and your final yield — you can put it into DuPont Pioneer’s Granular system, and then your seed adviser will help you determine those seed choices for next year — which hybrid, how much to put down, where — and then you’ll work with an agronomist to develop a seed plan, a map, which by the end of the winter goes right back into your equipment.”
-
-Check out the full Gideon Lewis-Kraus article on Deere's journey here:
-
-{{<tweet user="jim_gruman" id="1388156047211352064">}}
 
 ----
 
 ## The CIA’s' Simple Sabotage Field Manual' (1944)
 
 The inner workings of many organizations may make more sense when viewed in the light of a set of instructions for “purposeful stupidity,” namely the once top-secret Simple Sabotage Field Manual, written in 1944 by the US CIA’s precursor, the Office of Strategic Services (OSS).
-
-{{<tweet user="mweigel" id="1106489969529552896">}}
 
 Now declassified, the manual the agency describes as “surprisingly relevant” was once distributed to OSS officers abroad to assist them in training “citizen-saboteurs” in occupied countries. Such people, [writes Rebecca Onion at Slate](http://www.slate.com/blogs/the_vault/2015/11/20/how_the_cia_encouraged_citizens_under_occupation_to_sabotage_their_workplaces.html), “might already be sabotaging materials, machinery, or operations of their own initiative,” but may have lacked the devious talent for sowing chaos that only an intelligence agency can properly master. Genuine laziness, arrogance, and mindlessness may surely be endemic. But the Field Manual asserts that “purposeful stupidity is contrary to human nature” and requires a particular set of skills. The citizen-saboteur “frequently needs pressure, stimulation or assurance, and information and suggestions regarding feasible methods of simple sabotage.”
 

@@ -100,8 +100,6 @@ Consider an industry like FinTech. The reason hedge funds are willing to pay Mac
 
 ----
 
-{{<tweet user="vboykis" id="1366430206181969922" >}}
-
 ## Removing Barriers 
 
 Kenny Ning's [blog post](https://kleandata.substack.com/p/data-science-is-different) on his poor experiences as a new hire tell an all-too-common story. His employer's job description read “Data Scientist” with requirements of “Master’s degree or higher; experience in deep learning frameworks a plus.” But that was not the content of the job.
@@ -109,8 +107,6 @@ Kenny Ning's [blog post](https://kleandata.substack.com/p/data-science-is-differ
 In the end, Kenny was more than glad to get out and find a company where management was actually competent enough to articulate what they were looking for. Ironically, the best tools are largely open source. Much of the talent is already out there, and even upskilling can be relatively inexpensive when compared to employee churn. If company governance blocks access to data and tools, there is little benefit to be gained from hiring people with data science & AI skills.
 
 ----
-
-{{<tweet user="v_vashishta" id="1366493451169144832" >}}
 
 ## An example at Microsoft
 

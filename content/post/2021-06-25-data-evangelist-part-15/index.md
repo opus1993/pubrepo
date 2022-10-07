@@ -122,8 +122,6 @@ For more Data Science terms and concepts, check out Chris Albon's flash cards:
 
 ----
 
-{{<tweet user="DynamicWebPaige" id="1406300644567310340" >}}
-
 ## Data Science Roles
 
 “Data Scientist”, “Machine Learning Developer”, “Deep Learning Engineer”, “Data Engineer”, “ML Ops Engineer”, and “Data Analyst” are often overloaded role titles -- and not necessarily indicative of the day-to-day work, or the tools they are using to accomplish that work.
@@ -179,8 +177,6 @@ Some of the people that learn R have some background in programming. The mental 
 
 On this digital journey, even in 2021 there remains a huge barrier between people that code and people that do not code to get work done. I am observing that, generally, the coders thrive in communities of practice and seek out new ways of building solutions. On the surface, non-coders appear to be... frustrated with the status of projects.
 
-{{<tweet user="abhi1thakur" id="1407278287760543745" >}}
-
 Consistent delivery to digital SLAs requires that every team member have a minimum of understanding of the common parlance of machine learning.
 
 -----
@@ -198,8 +194,6 @@ These are opportunities to engage and learn about analytics, data science, and A
 :star: September 8-10 [New York R Conference](https://twitter.com/rstatsai)
 
 :star: September 16-17 [INFORMS Midwest Regional Analytics Conference](http://meetings2.informs.org/wordpress/regional-analytics-midwest2021/) Chicago Chapter hosting, virtual event
-
-{{<tweet user="MeganRisdal" id="1407010171755368448" >}}
 
 ----
 

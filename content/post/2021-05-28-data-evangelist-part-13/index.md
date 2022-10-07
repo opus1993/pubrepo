@@ -43,8 +43,6 @@ On that theme, this post covers highlights from this week in the world we all wo
 
 ----
 
-{{<tweet user="PhDemetri" id="1397204275508482061" >}}
-
 ## Let's talk about teams
 
 Contrary to the digital-transformation promises in sales pitches today, as long as decisions need to be made by people, with all of the types of stakeholders and their individual motivations, the path to improving decision-making has little to do with adding sensors and dashboards. We need to first address modes of communication through  human networks, and **who** needs to know **what** actionable information **when**. 
@@ -68,8 +66,6 @@ Great managers and great teams do exist. A great team lead will
 Most data scientists can build math models, but only a few can create business impact working solo. Let's admit that that this itself is going to be seen as a gap and the business will have little sympathy. Working on a well-orchestrated team though, each individual member has far more potential to flourish. 
 
 ----
-
-{{<tweet user="charliehoehn" id="1397255027635359747" >}}
 
 ## We’re solving the wrong problems
 

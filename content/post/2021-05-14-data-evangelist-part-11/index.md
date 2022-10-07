@@ -38,8 +38,6 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ------------------------------------------------------------------------
 
-{{< tweet user="margaretdcp" id="1344386037695569921" >}}
-
 ## Decision Making
 
 My favorite part of this interview:

@@ -115,8 +115,6 @@ Other accomplishments include an updated R interface package for the Google Civi
 
 Special thanks to [Angela Li](https://twitter.com/CivicAngela), [Emily Riederer](https://twitter.com/EmilyRiederer), [Will Bonnell](https://twitter.com/_willdebras), and [Sydney Purdue](https://twitter.com/Sydney_NotAUS) for all of the effort in orchestrating this event.
 
-{{< tweet user="CivicAngela" id="1251994675281563651" >}}
-
 ----
 
 ### Did you find this page helpful? Consider sharing it 🙌

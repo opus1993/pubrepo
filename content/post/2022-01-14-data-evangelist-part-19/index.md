@@ -26,8 +26,6 @@ During my talk, an audience member Teams chatted "*What should be the starting p
 
 Whatever prompted you to read this blog post, I hope that you come away with a handful of useful insights for your own work.
 
-{{< tweet user="vboykis" id="1451985733867216898" >}}
-
 -----
 ## Core Data Science Skills 
 

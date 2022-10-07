@@ -46,8 +46,6 @@ Whatever prompted you to read this blog post, I hope that you come away with a h
 
 ----
 
-{{< tweet user="ErrantScience" id="1373137457663868930" >}}
-
 ## Talent and Role Definitions
 
 Early in every university statistics 101 course there is that moment when the professor delivers the line about what happens to the average income of the room when Bill Gates walks in. Of course, the story is a bridge to a conversation about the median and interquartile range.  Later, students hear the story of Siméon Denis Poisson's estimation of the annual number of Prussian cavalry soldiers killed due to horse-kicks. If you are lucky, you might learn there to apply Poisson's distribution to modern examples like estimating the number of car crashes, or forecasting counts of fault code events. 
@@ -77,8 +75,6 @@ Its more useful to think about the “OKR process” than it is to simply consid
 **Stretching:** OKRs help the team elevate their performance beyond what they thought “was possible.” So the goals are ambitious, and a 70% achievement is considered as “strong performance.”
 
 A large proportion of the AI talent pool today is aiming to join the 100,000 at Google, the 120,000 at Alibaba, the 160,000 at Microsoft, the 492,000 at Accenture, or even the 1.3 million at Amazon. Each organization has their own take on AI learning development and OKRs.
-
-{{< tweet user="satyanadella" id="1373987720905715719" >}}
 
 ----
 
@@ -115,8 +111,6 @@ These are opportunities to engage and learn about analytics, data science, and A
 
 ----
 
-{{< tweet user="v_vashishta" id="1373381331309129729" >}}
-
 ## The Principal Data Scientist
 
 Since the days of Sarbanes-Oxley in the `00s, and more recently GDPR,  organizations have added layers of policy documentation in various places for governance and security compliance. Some may be overlapping. And some are not widely known, or conformed to, leaving gaps. It should be obvious that there must be a single champion for driving standards and rigor across the enterprise, and this is even more true in AI. AI models must be retained and  performance reviewed periodically by the business, post deployment. Though parts of the role might currently reside in finance, internal audit, or even information technology, the statistical expertise required adds another critical dimension. Again, as a practical matter of assuring rigor, this means that, prior to deployment, all work should be subject to “peer review” by the business. 
@@ -139,8 +133,6 @@ the expert in data science, responsible for helping others do data science, with
 In contrast to a business manager at any level, the principal data scientist is still very much doing data science work, reading technical papers, acting as an active participant in the technical community. This role is all data science all the time. And the Principal Data Scientist then is a core member of the AI Center of Excellence. More on this in a moment.
 
 ----
-
-{{<tweet user="asmae_toumi" id="1360592032306106380" >}}
 
 ## Skills Inventory
 

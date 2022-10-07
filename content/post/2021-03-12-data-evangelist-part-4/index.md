@@ -85,8 +85,6 @@ Consultancies like Accenture, the [International Institute for Analytics](https:
 
 ----
 
-{{<tweet user="PurdueME" id="1333033134481420289" >}}
-
 ## Analytic Maturity
 
 The [National Science Foundation](https://twitter.com/NSF), through a 5-year, $26 million grant, has established the [NSF Engineering Research Center for the Internet of Things for Precision Agriculture](https://iot4ag.us/). Better known as [IoT4Ag](https://iot4ag.us/), the project unites faculty and students from the University of Pennsylvania, Purdue University, the University of California Merced, and the University of Florida with industry and government partners to transform agriculture. 
@@ -102,8 +100,6 @@ A few weeks back I posed several [change management and leadership questions](ht
 A sizable portion of advanced AI efforts is investigating potential partners and knowledge resources, like IoT4Ag, both in industry and in academia. The focus goes well beyond mandating the choice of a single tool or a programming language. An **AI Center of Excellence** is a small cross-functional business leadership team that coordinates these activities. No one person is expected to read every academic paper, participate in all the conferences, or be an expert on every algorithmic technique. But the coordination and dissemination of AI needs to be driven for the portfolio of projects that are strategic to the business, to the wider community of practice.
 
 Business leaders recognize the importance of starting with a clear requirements definition for the business opportunity. Product owners know that insights accumulated on the AI journey may cause directional adjustments as the team uncovers the truth from the data. At every level, teams must avoid having the pursuit of business value turn into simply a lab experiment with new technology. The promise of AI is real, but as data is explored, the findings may surprise everyone. This doesn’t mean making everybody a data scientist, but it calls for establishing data literacy throughout the extended enterprise. The community of practice is also an opportunity for individuals to share the rigor of what they are doing and how they are doing it. 
-
-{{<tweet user="matsonj" id="1369738859248971776" >}}
 
 ----
 
