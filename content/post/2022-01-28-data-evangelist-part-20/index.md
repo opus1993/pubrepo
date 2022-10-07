@@ -144,8 +144,6 @@ The same applies to analytics. As [Randy Au eloquently put it](https://counting.
 
 We can’t do either of these things if we act as consultants, charged with imposing our expertise on the unenlightened masses. Instead, analysts must model themselves after detectives who don’t seek to correct others’ experiences, but to understand them. And just as a detective (and a support agent) would never tell a witness they’re wrong, neither should we. We should instead say, “that’s interesting; tell me more.”
 
-{{<tweet user="bennstancil" id="1487125500644446210">}}
-
 ### People Want to be Seen
 
 In Benn Stancil's excellent post on [Service Pressure](https://benn.substack.com/p/service-pressure), he reports once being told by a senior leader that the biggest complaint users have about support teams is that they don't listen, and they don't understand users’ businesses. For these users, being told no was fine; they knew their questions were sometimes unreasonable, and their new feature requests were unrealistic. But being rejected offhand, before they had a chance to explain what they wanted and why it was important to them was unforgivable. 
