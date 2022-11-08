@@ -98,4 +98,14 @@ date_format = "Jan 2006"
   date_end = "2020-07-11"
   description = "Earners of the Unified Data Analytics have demonstrated the understanding of fundamental concepts related to achieving a Unified Data Analytics approach with Databricks."
 
+[[item]]
+  organization = "DataCamp"
+  organization_url = "https://www.datacamp.com"
+  title = "Modeling with tidymodels in R"
+  url = ""
+  certificate_url = "https://www.datacamp.com/statement-of-accomplishment/course/32975e471cdce255f55e8646687620c7ac763b55?share=true"
+  date_start = "2022-11-08"
+  date_end = "2022-11-08"
+  description = ""
+  
 +++
