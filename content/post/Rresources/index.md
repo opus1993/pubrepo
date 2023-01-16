@@ -1,5 +1,5 @@
 ---
-date: "2022-10-04"
+date: "2023-01-16"
 diagram: true
 image: 
   caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
@@ -19,7 +19,7 @@ My short list of useful books, courses, and expert blogs. Many are free. These c
 
 Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.
 
-I re-visit the content of this list a few times a year as my work takes me further away from coding and more into defining how best to build production solutions. Many of you, too, will eventually be drawn into roles somewhere between educator, developer advocate, [R admin](https://kelly-obriant.medium.com/r-in-production-devops-and-the-importance-of-empathetic-witnesses-78ecf4430e36), and devops engineer. Every R user needs some exposure to a handful of Python libraries, YAML, DevOps and other tools that I mark with stars :star:.  Tell me about what is good here, and what was missed, from your perspective.
+I re-visit the content of this list a few times a year as my work takes me further away from coding and more into defining how best to build production solutions. Many of you, too, will eventually be drawn into roles somewhere between educator, developer advocate, [R admin](https://kelly-obriant.medium.com/r-in-production-devops-and-the-importance-of-empathetic-witnesses-78ecf4430e36), and devops engineer. Every R user also needs to have some exposure to a handful of Python libraries, YAML, DevOps and other tools that I mark with stars :star:.  Tell me about what is good here, and what was missed.
 
 Inspired by these excellent pages:
 > Paul VanDerLaken's [R resources](https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533)
@@ -220,25 +220,19 @@ Machine learning modeling frameworks offer streamlined solutions for pre-process
 
 ----
 ## Meetups, Blogs, and User Groups
+
 A seasoned [useR group](https://www.r-consortium.org/projects/r-user-group-support-program) organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the [open source](https://jimgruman.netlify.app/post/open-source/) R community to lift one another up and recognize efforts. The software is "free" as in speech, not as in beer. If you learn something useful and encounter a [buy me coffee](https://www.buymeacoffee.com/) button, be sure to offer  a cup of java to the presenter in return.
+
 |    |    |
 |:---|:---|
 | [R Views](https://rviews.rstudio.com/)| the RStudio blog |
 | [TidyTuesday Tweets](https://www.notion.so/8cfed86c707e4974b2f483716c35bac3?v=7e87113d8a7946fdaeeafd7cdaf69598) |  curated by [Silvia Canelón](https://twitter.com/spcanelon) |
-| [WhyR Foundation](http://whyr.pl/foundation/webinars)
 | [Simply Statistics](https://simplystatistics.org/) |by Rafa Irizarry, Roger Peng, and Jeff Leek|
 | [R User Group Meetups Worldwide](https://www.meetup.com/pro/r-user-groups/) | ~89 chapters sponsored by the R Consortium |
 | [themockup](https://themockup.blog/)|by [Thomas Mock](https://twitter.com/thomas_mock) |
 | [Win Vector blog](https://win-vector.com/blog-2/) | by Dr. John Mount and Dr. Nina Zumel|
 | [RevolutionAnalytics](https://blog.revolutionanalytics.com/)| by [David Smith](https://twitter.com/revodavid)|
 [Business Science Blog](https://www.business-science.io/blog/index.html) |by [Matt Dancho](https://twitter.com/mdancho84)|
-
-The [Business Science University](https://www.business-science.io/) team has built an on-line school with virtual workshop course tracks, private Slack forum, and a [Learning Labs Pro](https://university.business-science.io/p/learning-labs-pro) bi-weekly seminar. Their courses are not free, as the curriculum extends into building a wide array of useful business solutions on cloud services. Matt is an open source package author and a prominent member of the R community. If your work is in non-academic settings (out in "industry"), consider the "pro" offering.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nogIHBPixP0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-|    |    |
-|:---|:---|
 | [Julia Silge](https://juliasilge.com/blog/)
 | [Variance Explained](http://varianceexplained.org/posts/) | by [David Robinson](https://twitter.com/drob)|
 | [Ken Benoit](https://kenbenoit.net/posts/) |on Text and NLP|
