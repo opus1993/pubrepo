@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.335">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jim Gruman">
+<meta name="dcterms.date" content="2023-03-16">
+
+<title>R Resources</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="index_files/libs/clipboard/clipboard.min.js"></script>
+<script src="index_files/libs/quarto-html/quarto.js"></script>
+<script src="index_files/libs/quarto-html/popper.min.js"></script>
+<script src="index_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="index_files/libs/quarto-html/anchor.min.js"></script>
+<link href="index_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="index_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+  </head><body class="fullcontent">true
+
+
+
+
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">R Resources</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Education, R</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jim Gruman </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 16, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Image credit: <a href="https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png">Artwork by <span class="citation" data-cites="allison_horst">@allison_horst</span></a>’</p>
+<p>My short list of useful books, courses, and expert blogs. Many are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice.</p>
+<p>Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.</p>
+<p>I re-visit the content of this list a few times a year as my work takes me further away from coding and more into defining how best to build production solutions. Many of you, too, will eventually be drawn into roles somewhere between educator, developer advocate, <a href="https://kelly-obriant.medium.com/r-in-production-devops-and-the-importance-of-empathetic-witnesses-78ecf4430e36">R admin</a>, and devops engineer. Every R user also needs to have some exposure to a handful of Python libraries, YAML, DevOps and other tools that I mark with stars :star:. Tell me about what is good here, and what was missed.</p>
+<p>Inspired by these excellent pages: &gt; Paul VanDerLaken’s <a href="https://paulvanderlaken.com/2017/08/10/r-resources-cheatsheets-tutorials-books/?blogsub=confirming#533">R resources</a></p>
+<blockquote class="blockquote">
+<p>Nathan Stephens’s <a href="https://www.rstudio.com/resources/webinars/professional-r-tooling-and-integration/">Professional R Tooling and Integration</a></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Oscar Baruffa’s <a href="https://www.bigbookofr.com/">Big Book of R</a></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Martin Monkman’s <a href="https://bookdown.org/martin_monkman/DataScienceResources_book/">Data Science with R: A Resource Compendium</a></p>
+</blockquote>
+<table class="table">
+<thead>
+<tr class="header">
+<th>## The R Community</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>## Introductory Books</td>
+</tr>
+<tr class="even">
+<td>Every one of us starts our journey from somewhere.</td>
+</tr>
+<tr class="odd">
+<td>| | | |:—|:—:| |<strong><a href="https://r4ds.had.co.nz/">R for Data Science</a></strong> by <a href="https://twitter.com/hadleywickham">Hadley Wickham</a> and <a href="https://twitter.com/StatGarrett">Garrett Grolemund</a> is an excellent introduction to the Tidyverse. The <a href="https://www.rfordatasci.com/">R for Data Science Online Learning Community</a> hosts book club-style weekly chapter discussions through their Slack channels. <a href="https://twitter.com/sciencificity">Vebash Naidoo</a> has assembled a related <a href="https://sciencificity.github.io/R4DS_study_exams/index.html">solutions guide supplement</a>.|<a href="https://r4ds.had.co.nz/"><img alt="R for Data Science" src="https://d33wubrfki0l68.cloudfront.net/b88ef926a004b0fce72b2526b0b5c4413666a4cb/24a30/cover.png" width="250"></a>| |<strong><a href="https://rc2e.com/">R Cookbook</a></strong> by <a href="https://twitter.com/CMastication">JD Long</a>, <a href="https://twitter.com/pteetor">Paul Teetor</a> and <a href="https://twitter.com/R_cookbook">R-Cookbook</a> is full of how-to recipes, each of which solves a specific problem. The recipe includes a quick introduction followed by a discussion that unpacks the solution and provides insight into how it works.|<a href="https://rc2e.com/"><img alt="R Cookbook, 2nd Edition" src="https://rc2e.com/images_v2/book_cover.jpg" width="250"></a>|</td>
+</tr>
+<tr class="even">
+<td>Other books for those starting from Excel and basic statistics: | | | |:—|:—| | <a href="https://ubc-dsci.github.io/introduction-to-datascience/">Data Science: A First Introduction</a> | by <a href="https://twitter.com/TiffanyTimbers">Tiffany-Anne Timbers</a>, Trevor Campbell, and Melissa Lee | | <a href="https://bookdown.org/rdpeng/rprogdatascience/">R Programming for Data Science</a> | by <a href="https://twitter.com/rdpeng">Roger Peng</a>| | <strong><a href="https://bookdown.org/ndphillips/YaRrr/">YaRrr! The Pirate’s Guide to R</a></strong> |by <a href="https://twitter.com/YaRrrBook">Nathaniel D Phillips</a>| | <a href="https://moderndive.com/index.html">ModernDive Statistical Inference via Data Science</a>|by <a href="https://twitter.com/old_man_chester">Chester Ismay</a> and <a href="https://twitter.com/rudeboybert">Albert Kim</a>| | <a href="https://learningstatisticswithr.com/">Learning Statistics with R</a> |by <a href="https://twitter.com/djnavarro">Danielle Navarro</a>| | <a href="https://moderndive.com/2-viz.html">Statistical Inference via Data Science (2018)</a> |by <a href="https://twitter.com/old_man_chester">Chester Ismay</a> and <a href="https://twitter.com/rudeboybert">Albert Y. Kim</a>| | <a href="https://crumplab.github.io/statistics/">Answering questions with data</a> |by <a href="https://twitter.com/MattCrump_">Matt Crump</a>| | <a href="https://statsthinking21.github.io/statsthinking21-core-site/">Statistical Thinking for the 21st Century</a> | by <a href="https://twitter.com/russpoldrack">Russ Poldrack</a> |</td>
+</tr>
+<tr class="odd">
+<td>Read the <a href="https://rstudio.github.io/r-manuals/">basic R manual</a>, or at least the early chapters. It’s not as well written as more modern documentation, but it is important in being able to understand the tenents of legacy code.</td>
+</tr>
+</tbody>
+</table>
+<section id="online-courses" class="level2">
+<h2 class="anchored" data-anchor-id="online-courses">Online Courses</h2>
+<p>Many of us want to try before we buy. Making the investment of time into reading a book (even a free one) could still be too much to ask. These materials, some even with interactive notebooks and project examples, may be a better path for you.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.kaggle.com/learn">Kaggle</a></td>
+<td style="text-align: left;">An online community of data scientists and machine learning practitioners, now part of Google.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.linkedin.com/learning/instructors/frederick-nwanganga">Linkedin Learning: Fred Nwanganga</a></td>
+<td style="text-align: left;">A sequence of introductory :star: Python ML video courses</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.linkedin.com/learning/instructors/keith-mccormick">Linkedin Learning: Keith McCormick</a></td>
+<td style="text-align: left;">Look for Keith’s Data Mining, CRISP-DM, and executive training materials</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">The <a href="https://rstudio.cloud/learn/primers">R-Studio Cloud Primers</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://datasciencebox.org/index.html">Data Science in a Box</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong><a href="https://stat545.com/">STAT545</a></strong></td>
+<td style="text-align: left;">by <a href="https://twitter.com/JennyBryan">Jenny Bryan</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://tidyds-2021.wjakethompson.com">Tidy Data Science with the Tidyverse and Tidymodels</a></td>
+<td style="text-align: left;">by Jake Thompson</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://dcu-r-tutorials.netlify.com/">Dublin City University R Tutorials</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.coursera.org/learn/r-programming">R Programming</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/rdpeng">Roger Peng</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.ucl.ac.uk/short-courses/search-courses/statistical-computing-r-programming-language-gentle-introduction">Statistical Computing with R Programming Language: a Gentle Introduction</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/MaxReuterEvo">Max Reuter</a> and <a href="https://twitter.com/cssb_lab">Chris Barnes</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">:star: <strong><a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a></strong></td>
+<td style="text-align: left;">by <a href="https://twitter.com/JennyBryan">Jenny Bryan</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">:star: <strong><a href="https://stat447.com/">STAT 447 : Data Science Programming Methods</a></strong></td>
+<td style="text-align: left;">by <a href="https://twitter.com/eddelbuettel">Dirk Eddelbuettel</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://docs.microsoft.com/en-us/learn/modules/contribute-open-source/?WT.mc_id=opensource-0000-davidsmi">Contribute to an open-source project on GitHub</a></td>
+<td style="text-align: left;">Microsoft</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://bookdown.org/rdpeng/timeseriesbook/">A Very Short Course on Time Series Analysis</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/rdpeng">Roger Peng</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://www.r-exercises.com/start-here-to-learn-r/">Learn R by R-Exercises</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.youtube.com/playlist?list=PL9tt3I41HFS9gmeZFEuNrnu_7V_NFngfJ">YaRrr! The Pirate’s Guide to R (Video)</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/YaRrrBook">Nathaniel D Phillips</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="http://jhudatascience.org/chromebookdatascience/cbds.html">Johns Hopkins Chromebook Data Science (CBDS)</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://github.com/uc-r/Intro-R">University of Cincinnati Introduction to R</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/bradleyboehmke">Bradley Boehmke</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/uc-r/Intermediate-R">University of Cincinnati Intermediate R</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/bradleyboehmke">Bradley Boehmke</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>## Data Visualization If your toolkit has been limited to Powerpoint and Excel, you might not yet appreciate that there is so much more to crafting effective visual communication materials. In addition to the learning resources listed here, look for the recent books by Alberto Cairo and David McCandless at your local library. | | | |:—|:—| | <strong><a href="https://socviz.co/index.html">Data Visualization, a Practial Introduction in R</a></strong> |by <a href="https://twitter.com/kjhealy">Kieran Healy</a>| | <a href="https://ggplot2-book.org/">ggplot2: Elegant Graphics for Data Analysis</a> |the online version of work-in-progress 3rd edition by Hadley Wickham, Danielle Navarro, and Thomas Lin Pedersen| | <a href="https://handsondataviz.org/">Hands-On Data Visualization</a> |by Jack Dougherty and Ilya Ilyankou| | <a href="https://www.williamrchase.com/post/custom-fonts-and-plot-quality-with-ggplot-on-windows">Custom fonts and plot quality with ggplot on Windows</a> |by <a href="https://twitter.com/W_R_Chase">W R Chase</a>| | <a href="https://bbc.github.io/rcookbook/#how_to_create_bbc_style_graphics">How to Create BBC Style Graphics</a>| | | <a href="https://www.r-graph-gallery.com/">R Graph Gallery</a> | <strong><a href="https://clauswilke.com/dataviz/">Fundamentals of Data Visualization</a></strong> |by <a href="https://twitter.com/ClausWilke">Claus Wilke</a>| | <a href="https://edav.info/index.html">Exploratory Data Analysis &amp; Visualization</a> |by <a href="https://twitter.com/zachbogart">Zach Bogart</a> and <a href="https://twitter.com/jtrnyc">Joyce Robbins</a>| | <a href="http://r-statistics.co/Complete-Ggplot2-Tutorial-Part1-With-R-Code.html">The Complete ggplot2 Tutorial</a> | <a href="https://flowingdata.com/">flowingdata.com</a> | <a href="https://paulvanderlaken.com/2020/03/20/how-to-standardize-group-colors-in-data-visualizations-in-r/">How to standardize group colors in data visualizations in R</a> |by <a href="https://twitter.com/paulvanderlaken">Paul van der Laken</a>|</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>## Empirical Bayes In this little book David Robinson introduces a powerful tool for handling uncertainty across observations. It teaches both the math behind these and the code that you can adapt to your own data through the detail of a single case study: batting averages in baseball. He wrote it for people (like me) who need to understand and apply methods, but would rather work with real data than face down pages of equations.</td>
+</tr>
+<tr class="even">
+<td>So why is Empirical Bayes worth learning? These methods are especially well suited for many modern applications of data science.</td>
+</tr>
+<tr class="odd">
+<td><a href="https://gumroad.com/l/empirical-bayes"><img alt="Introduction to Empirical Bayes" src="https://public-files.gumroad.com/variants/070hlmq86og1qo2kgb3tl2fgwkbi/35a9dc65b899b4bc9688c9aa5d9d6d5f21c77fd36a53b6adc66ca71a81bc9933" width="335"></a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="shiny" class="level2">
+<h2 class="anchored" data-anchor-id="shiny">Shiny</h2>
+<p>Shiny is an R package that makes it easy to build interactive web apps for non-programmers. You can host standalone apps on a webpage or embed them or build dashboards to be served from a cloud facility. You can also extend Shiny apps with CSS themes, htmlwidgets, and JavaScript actions.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://mastering-shiny.org/">Mastering Shiny</a></td>
+<td style="text-align: left;"><a href="https://mastering-shiny.org/"><img alt="Mastering Shiny" src="https://d33wubrfki0l68.cloudfront.net/0c97eee3d8fc820f3a8d670c08b286e8a524257b/e426c/cover.png" width="250"></a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://engineering-shiny.org/index.html">Engineering Production-Grad Shiny Apps</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/_ColinFay">Colin Fay</a>, <a href="https://twitter.com/StatnMap">Sébastien Rochette</a>, <a href="https://twitter.com/VincentGuyader">Vincent Guyader</a>, &amp; <a href="https://twitter.com/CervanGirard">Cervan Girard</a> on the {<code>golem</code>} package</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://rviews.rstudio.com/2017/09/20/dashboards-with-r-and-databases/">R Views Enterprise-ready dashboards with Shiny and Databases</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="http://enhancedatascience.com/2017/07/10/the-packages-you-need-for-your-r-shiny-application/">R Shiny upgrade packages</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/daattali/advanced-shiny#readme">Advanced Shiny Tips and Tricks</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/daattali">Dean Attali</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>## RMarkdown and Quarto</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>## NLP: Text Mining, Document Classification, Sentiment Analysis, and Topic Modeling | | | |:—|:—| | <a href="https://smltar.com/">Supervised Machine Learning for Text Analysis in R</a>| by <a href="https://twitter.com/juliasilge">Julia Silge</a> and <a href="https://twitter.com/Emil_Hvitfeldt">Emil Hvitfeldt</a> | <a href="https://www.tidytextmining.com/">Text mining</a> |by <a href="https://twitter.com/juliasilge">Julia Silge</a> and <a href="https://twitter.com/drob">David Robinson</a>| | <a href="https://juliasilge.shinyapps.io/learntidytext/">Learn Tidytext</a> | by <a href="https://twitter.com/juliasilge">Julia Silge</a>| | <a href="https://kenbenoit.net/pdfs/CURINI_FRANZESE_Ch26.pdf">Text as Data: An Overview</a> |by <a href="https://twitter.com/kenbenoit">Ken Benoit</a>| | <a href="https://www.bnosac.be/index.php/blog/100-word2vec-in-r">word2vec in R</a> |Belgium Network of Open Source Analytical Consultants| | <a href="https://regexone.com/">Learn Regular Expressions</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="more-advanced-books" class="level2">
+<h2 class="anchored" data-anchor-id="more-advanced-books">More Advanced Books</h2>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong><a href="https://rstudio-education.github.io/hopr/">Hands-On Programming with R</a></strong></td>
+<td style="text-align: left;">by <a href="https://twitter.com/StatGarrett">Garrett Grolemund</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://adv-r.hadley.nz/introduction.html">Advanced R (Wickham, 2018)</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/hadleywickham">Hadley Wickham</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://r-pkgs.org/">R Packages</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/hadleywickham">Hadley Wickham</a> and <a href="https://twitter.com/JennyBryan">Jenny Bryan</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://csgillespie.github.io/efficientR/">Efficient R programming</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/csgillespie">Colin Gillespie</a> and <a href="https://twitter.com/robinlovelace">Robin Lovelace</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://github.com/uc-r/Advanced-R">Advanced R</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/bradleyboehmke">Bradley Boehmke</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://atrebas.github.io/post/2019-03-03-datatable-dplyr/">A data.table and dplyr tour</a></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+<thead>
+<tr class="header">
+<th>## Machine Learning Mastery of the wide array of Machine Learning techniques in real business contexts requires a broad and deep study. Long-time engineers like me often make the mistake of skipping ahead to the Kaggle award winning algorithms and the CV buzzwords. We’re smart. Just wing it, right? <em>This is a bad idea.</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>## Geospatial</td>
+</tr>
+<tr class="even">
+<td><a href="https://walker-data.com/census-r/index.html"><img src="https://walker-data.com/census-r/07-spatial-analysis-census_files/figure-html/show-min-times-1.png" alt="Map of travel-times to trauma centers by Census tract in Iowa" width="50%"></a></td>
+</tr>
+<tr class="odd">
+<td>| | | |:—|:—| | <a href="https://walker-data.com/census-r/index.html">Analyzing US Census Data: Methods, Maps, and Models in R</a> | The goal of this book, by <a href="https://walker-data.com/">Kyle Walker</a> is to illustrate the utility of R to prepare, map, and present data products| | <a href="https://www.littlemissdata.com/blog/maps">Map Plots Created With R And Ggmap</a> |by <a href="https://twitter.com/LittleMissData">Laura Ellis</a>| | <a href="http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html">Making Maps with R</a> | by Eric Anderson for (NOAA/SWFSC)| | <a href="https://keen-swartz-3146c4.netlify.app/">Spatial Data Science</a> |by <a href="https://twitter.com/edzerpebesma">Edzer Pebesma</a> and <a href="https://twitter.com/RogerBivand">Roger Bivand</a>| | <a href="https://geobgu.xyz/r/">Introduction to Spatial Data Programming with R</a> |by <a href="https://twitter.com/MichaelDorman84">Michael Dorman</a>| | <a href="https://soilmapper.org/">Predictive Soil Mapping with R</a> |by <a href="https://twitter.com/tom_hengl">Tomislav Hengl</a> and <a href="https://twitter.com/opengeohub">Robert A. MacMillan</a>| | <a href="https://www.racfoundation.org/research/safety/reproducible-road-safety-research-with-r">Reproducible road safety research with R</a> | <a href="https://spatialanalysis.github.io/tutorials/">Spatial Data Science</a> |by <a href="https://twitter.com/CivicAngela">Angela Li</a>| | <a href="https://github.com/GDSL-UL/Teaching_Links">The GDSL Big List of Teaching Links</a> | University of Liverpool| | <a href="https://geocompr.robinlovelace.net/">Geocomputation with R</a> |by <a href="https://twitter.com/robinlovelace">Robin Lovelace</a>| | <a href="https://github.com/sshuair/awesome-gis#r">another collection of geospatial sources</a> |<a href="https://twitter.com/sshuair">sshuair</a>|</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="meetups-blogs-and-user-groups" class="level2">
+<h2 class="anchored" data-anchor-id="meetups-blogs-and-user-groups">Meetups, Blogs, and User Groups</h2>
+<p>A seasoned <a href="https://www.r-consortium.org/projects/r-user-group-support-program">useR group</a> organizer reminded me recently that a non-trivial amount of effort is required to organize meetups, find speakers, get locations (non-covid times), market the meetups, etc. One way we all can help is to volunteer to speak, volunteer a location, help market, farm for speakers, etc. There is a moral motivation in the <a href="https://jimgruman.netlify.app/post/open-source/">open source</a> R community to lift one another up and recognize efforts. The software is “free” as in speech, not as in beer. If you learn something useful and encounter a <a href="https://www.buymeacoffee.com/">buy me coffee</a> button, be sure to offer a cup of java to the presenter in return.</p>
+<table class="table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://rviews.rstudio.com/">R Views</a></td>
+<td style="text-align: left;">the RStudio blog</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.notion.so/8cfed86c707e4974b2f483716c35bac3?v=7e87113d8a7946fdaeeafd7cdaf69598">TidyTuesday Tweets</a></td>
+<td style="text-align: left;">curated by <a href="https://twitter.com/spcanelon">Silvia Canelón</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://simplystatistics.org/">Simply Statistics</a></td>
+<td style="text-align: left;">by Rafa Irizarry, Roger Peng, and Jeff Leek</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.meetup.com/pro/r-user-groups/">R User Group Meetups Worldwide</a></td>
+<td style="text-align: left;">~89 chapters sponsored by the R Consortium</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://themockup.blog/">themockup</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/thomas_mock">Thomas Mock</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://win-vector.com/blog-2/">Win Vector blog</a></td>
+<td style="text-align: left;">by Dr.&nbsp;John Mount and Dr.&nbsp;Nina Zumel</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://blog.revolutionanalytics.com/">RevolutionAnalytics</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/revodavid">David Smith</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.business-science.io/blog/index.html">Business Science Blog</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/mdancho84">Matt Dancho</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://juliasilge.com/blog/">Julia Silge</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="http://varianceexplained.org/posts/">Variance Explained</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/drob">David Robinson</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://kenbenoit.net/posts/">Ken Benoit</a></td>
+<td style="text-align: left;">on Text and NLP</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.data-imaginist.com/">Data Imaginist</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/thomasp85">Thomas Lin Pederson</a> on ggplot2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://alison.rbind.io/">Alison Hill</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/apreshill">Alison Hill</a> on education</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://thomasadventure.blog/posts/">Thomas Neitmann</a></td>
+<td style="text-align: left;">Biostatistics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://alistaire.rbind.io/">Edward Visel</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/alistaire">Edward Visel</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://plantoutofplace.com/">Plant out of Place</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/WyoWeeds">Andrew Kniss</a> on agriculture</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://asmith.ucdavis.edu/news">Ag Data News</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/ASmithUCD">Aaron Smith</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.allyourbayes.com/">AllYourBayes</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/Domenic_DF">Domenic Di Francesco</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="http://www.rebeccabarter.com/blog/">Data Meets Narrative</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/rlbarter">Rebecca Barter</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.jakelearnsdatascience.com/post/">Jake Rozran Learns Data Science</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/StatsManPHL">Jake Rozran</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="http://rcrastinate.rbind.io/">RCrastinate</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/sascha_wolfer">Sascha Wolfer</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://colin-fraser.net/">Colin Fraser</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="https://rgeomatic.hypotheses.org/category/r-en">rgeomatic</a></td>
+<td style="text-align: left;">geospatial topics</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="http://www.thertrader.com">Arnaud Amsellem</a></td>
+<td style="text-align: left;">for quantitative finance</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="http://laderast.github.io/">Ted Laderas</a></td>
+<td style="text-align: left;">on Bioinformatics and Computational Biology</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="http://r4stats.com/blog/">r4stats.com</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="http://www.r-bloggers.com/">R-bloggers</a></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="http://kbroman.org/blog/">Karl Broman</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/kwbroman">Karl Broman</a> on Biostatistics</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><a href="http://www.brodrigues.co/">Bruno Rodrigues</a></td>
+<td style="text-align: left;">on Education Statistics</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><a href="https://www.programmingwithr.com/">Abdul Majed</a></td>
+<td style="text-align: left;">by <a href="https://twitter.com/1littlecoder">Abdul Majed</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<section id="did-you-find-this-page-helpful-consider-sharing-it" class="level3">
+<h3 class="anchored" data-anchor-id="did-you-find-this-page-helpful-consider-sharing-it">Did you find this page helpful? Consider sharing it 🙌</h3>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

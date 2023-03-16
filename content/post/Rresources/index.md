@@ -1,10 +1,9 @@
 ---
-date: "2023-01-16"
+date: "2023-03-16"
 diagram: true
-image: 
-  caption: 'Image credit: [Artwork by @allison_horst](https://github.com/allisonhorst/stats-illustrations/blob/master/rstats-artwork/code_hero_rstats.png)'
-  placement: 10
 markup: goldmark
+image: 
+  caption: "Artwork by @allison_horst"
 math: true
 title: R Resources
 author: Jim Gruman
@@ -15,6 +14,7 @@ categories:
 tags:
   - Education, R
 ---
+
 My short list of useful books, courses, and expert blogs. Many are free. These could be departure points for your own learning journey. My hope is that you take and copy sections for sharing with your own community of practice. 
 
 Yes, I am giving away all of the secrets. One of the things that I spend a lot of time thinking about is how to communicate about data science with other human beings. It is often too easy to focus on “just” the technical skills like being able to wrangle, explore, analyze, and visualize data. Describing, documenting, planning, collaborating, questioning, and communicating effectively is harder than it sounds. When team members each have a baseline of shared competencies, we work better together on the problems we face.
@@ -42,7 +42,7 @@ A brief list of sources that has helped me feel informed and included in the com
 | [R for Data Science Online Learning Community](https://www.rfordatasci.com/)|R4DS hosts interactive Slack channels (button in the upper right hand corner) for community news, book clubs, meetup events, birds-of-a-feature groups, and career tips |
 | [bookdown.org](https://bookdown.org/) | Bookdown is an open source R-package that makes writing and publishing technical books easy. This website is a collection of recent books. |
 | **[#TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/README.md)** | [R4DS](https://twitter.com/rstats4ds)'s weekly data project aimed at creating opportunities to develop understanding in how to summarize data to make meaningful charts. You will find the hashtag in use by the community over on Twitter.|
-| [Data Science StreamRs](https://rpodcast.shinyapps.io/shinycal/)| Several data science professionals and hobbyists video stream their projects and share their knowledge |
+| [Data Science StreamRs](https://rpodcast.shinyapps.io/shinycal/)| Several data science professionals sharing their knowledge via video stream |
 
 ----
 ## Introductory Books
@@ -66,7 +66,7 @@ Other books for those starting from Excel and basic statistics:
 | [Answering questions with data](https://crumplab.github.io/statistics/) |by [Matt Crump](https://twitter.com/MattCrump_)|
 | [Statistical Thinking for the 21st Century](https://statsthinking21.github.io/statsthinking21-core-site/) | by [Russ Poldrack](https://twitter.com/russpoldrack) |
 
-Read the [basic R manual](https://cran.r-project.org/doc/manuals/r-release/R-intro.html), or at least the early chapters. It's not as well written as more modern documentation, but it is important in being able to understand older legacy code.
+Read the [basic R manual](https://rstudio.github.io/r-manuals/), or at least the early chapters. It's not as well written as more modern documentation, but it is important in being able to understand the tenents of legacy code.
 
 ----
 ## Online Courses
@@ -180,6 +180,7 @@ The leading edge of thinking in many ML areas is changing rapidly. These are jus
 | [Data Science for Business](http://pages.stern.nyu.edu/~fprovost/) |by Provost and Fawcett ([2013 O'Reilly](https://www.oreilly.com/library/view/data-science-for/9781449374273/))| 
 |:star: [Machine Learning Engineering in Action](https://www.manning.com/books/machine-learning-engineering-in-action) | Ben Wilson |
 |:star: [Designing Machine Learning Systems](https://www.amazon.com/Designing-Machine-Learning-Systems-Huyen-ebook-dp-B0B1LGL2SR/dp/B0B1LGL2SR) | Chip Huyen |
+|:star: [Reliable Machine Learning](https://www.oreilly.com/library/view/reliable-machine-learning/9781098106218/) | Cathy Chen, Niall Murphy, Kranti Parisa, D. Sculley, Todd Underwood |
 | [Introduction to Computational Thinking and Data Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0002-introduction-to-computational-thinking-and-data-science-fall-2016/)| Grimson, Guttag, and Bell |
 | [Tidy Modeling with R](https://www.tmwr.org/) |by [Max Kuhn](https://twitter.com/topepos) and [Julia Silge](https://www.tmwr.org/)|
 | [Feature Engineering and Selection: A Practical Approach for Predictive Models](http://www.feat.engineering/) |by [Max Kuhn](https://twitter.com/topepos) and Kjell Johnson|
