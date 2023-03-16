@@ -6,6 +6,4 @@ If I have time, I'll add materials for building communities of practice, on-the-
 
 [https://jimgruman.netlify.app/](https://jimgruman.netlify.app/)
 
-Your feedback is very much welcomed
-
 My blog posts are released under a [Creative Commons Attribution-ShareAlike 4.0 International License.](http://creativecommons.org/licenses/by-sa/4.0/)
