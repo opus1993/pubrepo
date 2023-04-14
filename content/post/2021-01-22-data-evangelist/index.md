@@ -10,7 +10,7 @@ tags:
 date: 2021-01-22T08:48:52-06:00
 lastmod: 2021-01-22T08:48:52-06:00
 featured: false
-draft: false
+draft: true
 
 # Featured image
 # To use, add an image named `featured.jpg/png` to your page's folder.

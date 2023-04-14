@@ -15,7 +15,7 @@ image:
   focal_point: ''
   preview_only: false
 projects: []
-draft: false
+draft: true
 ---
 
 The weekly check-in conversations with my boss in the COVID era often dwell on the finer points of change management, which is certainly one of his strengths. Organizational change happens [**one person at a time**](https://www.prosci.com/resources/articles/the-what-why-and-how-of-change-management). Or more succinctly, organizations don't change. People within organizations change. Whatever prompted you to read this blog post, I'd like to think that you are in a position where you want to be a part of the change.  Or, at least, to "induce the wobble."
