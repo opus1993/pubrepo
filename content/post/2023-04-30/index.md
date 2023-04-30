@@ -80,7 +80,6 @@ John Cutler [writes](https://www.linkedin.com/posts/johnpcutler_not-all-a-player
 >> 4. Instead of trying to change people, create an environment where their natural traits can shine.
 
 ## Recruiters
-y
 Outplacement advisory will pick up in a couple of weeks. Let's keep this section as a placeholder.  I'm keen on hearing what the experts have to say about the marketplace and what works.
 
 ## Referrals

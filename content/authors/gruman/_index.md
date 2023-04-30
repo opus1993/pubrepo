@@ -39,7 +39,7 @@ user_groups:
 - Visitors
 ---
 
-This vanity site is my outlet for infrequent posts on building communities of practice in data analytics and machine learning operations topics. I am an **R** enthusiast and follow a wonderfully supportive open source community all over the world. My day job is with CNH Industrial in the Chicago area. This content does not represent the views of my employer in any way.
+This vanity site is my outlet for infrequent posts on building communities of practice in data analytics. I am an **R** enthusiast and follow a wonderfully supportive open source community all over the world. This content does not represent the views of my employer in any way.
 
 
 
