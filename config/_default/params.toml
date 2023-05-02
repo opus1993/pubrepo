@@ -85,7 +85,7 @@ privacy_pack = true
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
- email = "jim.gruman@gmail.com"
+ email = ""
  phone = ""
 
 # Address
@@ -248,7 +248,7 @@ plugins_js  = []
   #   1: Google Maps
   #   2: OpenStreetMap (Mapnik)
   #   3: OpenStreetMap (Mapbox)
-  engine = 2
+  engine = 0
   api_key = ""
   zoom = 15
 
