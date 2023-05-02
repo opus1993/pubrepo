@@ -23,7 +23,7 @@ date_format = "Jan 2006"
   company_url = "https://www.cnhindustrial.com/"
   location = "Illinois"
   date_start = "2017-01-01"
-  date_end = ""
+  date_end = "2023-05-05"
 #  description = """
 #  Responsibilities include:
   

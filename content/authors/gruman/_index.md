@@ -20,16 +20,13 @@ interests:
 - Cycling
 name: Jim Gruman
 organizations:
-- name: CNH Industrial
-  url: "https://www.cnhindustrial.com/"
-role: Senior Program Manger, AI/ML Governance
+- name: #OpenToWork
+  url: "https://www.linkedin.com/in/jim-gruman/"
+role: #OpenToWork
 social:
 - icon: envelope
   icon_pack: fas
   link: '#contact'
-- icon: twitter
-  icon_pack: fab
-  link: https://twitter.com/jim_gruman
 - icon: github
   icon_pack: fab
   link: https://github.com/opus1993

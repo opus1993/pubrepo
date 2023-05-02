@@ -85,7 +85,7 @@ privacy_pack = true
 ############################
 
 # Enter contact details (optional). To hide a field, clear it to "".
- email = "jim.gruman@cnhind.com"
+ email = "jim.gruman@gmail.com"
  phone = ""
 
 # Address
@@ -94,7 +94,7 @@ privacy_pack = true
 
 # Geographic coordinates
 # To get your coordinates, right-click on Google Maps and choose "What's here?". The coords will show up at the bottom.
-coordinates = {latitude = "41.763711", longitude = "-87.921033"}
+coordinates = {latitude = "41.832514", longitude = "-88.252407"}
 
 # Directions for visitors to locate you.
 # directions = "Enter Building 1 and take the stairs to Office 200 on Floor 2"
@@ -109,11 +109,11 @@ coordinates = {latitude = "41.763711", longitude = "-87.921033"}
 # Contact links
 #   Set to `[]` to disable, or comment out unwanted lines with a hash `#`.
 contact_links = [
-  {icon = "twitter", icon_pack = "fab", name = "Send a DM", link = "https://twitter.com/jim_gruman"},
+#  {icon = "twitter", icon_pack = "fab", name = "Send a DM", link = "https://twitter.com/jim_gruman"},
 #  {icon = "skype", icon_pack = "fab", name = "Skype Me", link = "skype:echo123?call"},
 #  {icon = "keybase", icon_pack = "fab", name = "Chat on Keybase", link = "https://keybase.io/"},
 #  {icon = "comments", icon_pack = "fas", name = "Discuss on Forum", link = "https://discourse.gohugo.io"},
-  # {icon = "telegram", icon_pack = "fab", name = "Telegram Me", link = "https://telegram.me/@Telegram"},
+   {icon = "telegram", icon_pack = "fab", name = "Telegram Me", link = "https://telegram.me/@JimGruman"},
   ]
 
 ############################
