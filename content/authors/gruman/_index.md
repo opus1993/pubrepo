@@ -12,7 +12,6 @@ Education:
     year: 2000
   - course: BS Mechanical Engineering
     institution: Iowa State University
-    year: 1993
 email: ""
 interests:
 - Machine Learning
