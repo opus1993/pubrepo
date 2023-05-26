@@ -9,7 +9,7 @@ tags:
   - OpenToWork
 date: 2023-04-30
 featured: false
-draft: false
+draft: true
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
 image:
   caption: ""

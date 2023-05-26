@@ -1,13 +1,13 @@
 ---
-title: Week 2
+title: Week 3
 subtitle: "Making Progress"
-summary: "I'm pleased to start each morning with a list and end the day with items checked off. LinkedIn Premium Career and Indeed each provide feeds of hundreds of leads, many in non-profits and government departments. "
+summary: "Building My Brand Week"
 authors: [Jim Gruman]
 categories: 
   - OpenToWork
 tags: 
   - OpenToWork
-date: 2023-05-15
+date: 2023-05-23
 featured: false
 draft: true
 # Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
@@ -18,7 +18,38 @@ image:
 projects: []
 ---
 
-As of mid-May, I've identified a handful of skills gaps to make some time to address.  I am learning that when the application asks for a target salary, put in $1 and have the discussion with the screener.  
+Navigating a big career transition is a complex, ever-changing process. There is so much information to take in.  
+
+I'm finding myself re-tracing 
+
+Simon Sinek's TED talk 
+
+{{< youtube u4ZoJKF_VuA >}}
+
+
+> There are leaders and there are those who lead.
+
+> Leaders hold a position of power or influence.
+
+> Those who lead inspire us.
+
+> Whether individuals or organizations, we follow those who lead not because we have to, but because we want to.
+
+> We follow those who lead not for them, but for ourselves.
+
+
+
+
+
+Negotiating a compensation package
+
+Hacking the online application process
+
+Managing emotions, optimism
+
+
+The US Department of Labor's [https://www.onetonline.org/](https://www.onetonline.org/) career exploration and job analysis tool.
+
 
 ## Networking
 
@@ -26,7 +57,9 @@ As of mid-May, I've identified a handful of skills gaps to make some time to add
 
 2. Out of my 2000+ 1st degree connections in LinkedIn, some 700-ish are with good people at my previous employer.  But the more valuable ones to me today are in the 1300, particularly those that have made recent moves and understand the post-COVID hiring landscape. It's too bad that LinkedIn doesn't offer the API that they used to for a deep dive analysis.
 
-{{< tweet user="TheOnion" id="1658177972258390016" >}}
+
+
+
 
 ----
 ## What I'm reading this week:
