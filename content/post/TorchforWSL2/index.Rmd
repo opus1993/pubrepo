@@ -1,0 +1,113 @@
+---
+title: "Torch for R on WSL2"
+author: "Jim Gruman"
+date: "2023-08-15"
+diagram: true
+output: 
+ blogdown::html_page:
+  toc: false
+categories: [R]
+description: "**Installing CUDA and Torch for GPU-enabled deep learning with R**" 
+image: 
+  caption: 'R Torch Package'
+  focal_point: "Smart"
+  preview_only: false
+featured: false
+draft: false
+---
+
+This past spring my laptop of 5 years died and had to be replaced. Unlike the more forward thinking experts out there, I failed to hang on to most any installation scripts, so it's taken some time to re-build my local work environment to my liking.
+
+I've made a commitment to organizing much more on the Windows Subsystem for Linux (Ubuntu 22.04 jammy jellyfish) instead of Windows this time for speed and code interoperability.  All but 6 Gb of of the RAM have been allocated to Linux [using the .wslconfig trick](https://mrakelinggar.medium.com/set-up-configs-like-memory-limits-in-docker-for-windows-and-wsl2-80689997309c).  But to tap into the full capability of this PC, I want to enable the NVIDIA Gpu-compute for fast deep learning and other data science workloads. Over the past couple of years I have followed the [Posit mlverse youtube channel](https://youtube.com/@mlverse) and the development of packages like [`tabnet`](https://mlverse.github.io/tabnet/) and [`brulee`](https://brulee.tidymodels.org/) and I'd like to be familiar with what they are capable of.
+
+Daniel Falbel and Javier Luraschi provide a [`torch` installation guide](https://torch.mlverse.org/docs/articles/installation) that is a good start, but has a few gaps that I thought I'd write about here, mostly for future me.  I'd be thrilled if this blog post happens to help someone else.
+
+## WSL installation
+
+[Microsoft provides installation](https://learn.microsoft.com/en-us/windows/wsl/install) instructions.  We will assume here that WSL is already fully installed, and that an Ubuntu terminal shell is available.
+
+At the terminal shell, execute 
+
+`lsb_release -a` 
+
+and make note of your Ubuntu operating system version.
+
+## Video Card and Driver
+
+The first step is checking system information for your machine to confirm that a GPU capable video card is installed.  Look for something like NVIDIA GeForce RTX 3070 Ti or higher.
+
+Back at the terminal, execute
+
+`nvidia-smi`
+
+and make a note of the driver version.  Right now, CUDA requires that the driver be at least 530.  If not, execute
+
+`sudo apt install nvidia-driver-535` 
+
+or build with an even newer version.
+
+## CUDA
+
+I ran the two [local WSL-Ubuntu runfile](https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=runfile_local) script commands at the terminal. This script makes a few checks for driver versioning and takes care of the installer.
+
+
+`wget https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda_12.2.1_535.86.10_linux.run`
+
+`sudo sh cuda_12.2.1_535.86.10_linux.run`
+
+This is a very large package and will require some time to finish.
+
+## cuDNN
+
+NVIDIA [cudnn](https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html) has its own installation guide. 
+
+In order to download cuDNN, ensure you are registered for the NVIDIA Developer Program.
+
+1)  Go to: [NVIDIA cuDNN](https://developer.nvidia.com/cudnn) home page.
+1)  Click Download.
+1)  Complete the short survey and click Submit.
+1)  Accept the Terms and Conditions. The site provides a list of available cuDNN versions for download.  
+1)  Select the cuDNN version that you want to install. I chose cuDNN v8.9.4 for CUDA 12.x.
+
+Move the downloaded deb file from downloads to the Ubuntu /tmp folder.
+
+Skip down to the subsection called "Debian Local Installation" and execute:
+
+`sudo dpkg -i /tmp/cudnn-local-repo-ubuntu2204-8.9.4.25_1.0-1_amd64.deb`
+
+`sudo cp /var/cudnn-local-repo-*/cudnn-local-*-keyring.gpg /usr/share/keyrings/`
+
+`sudo apt-get update`
+
+`sudo apt-get install libcudnn8=8.9.4.25-1+cuda12.2`
+
+`sudo apt-get install libcudnn8-dev=8.9.4.25-1+cuda12.2`
+
+## in RStudio
+
+If you haven't already, execute `sudo rstudio-server start` and launch Rstudio in a browser at localhost:8787
+
+Then inside a console, run
+
+```>	install.packages(“torch”)```
+
+```>	Sys.setenv(CUDA="11.7")```
+
+```>	torch::install_torch(reinstall = TRUE)```
+
+```> install.packages("tensorflow")```
+
+```> tensorflow::install_tensorflow()```
+
+----
+
+Other Resources: 
+
+- [The Posit AI blog](https://blogs.rstudio.com/ai/index.html)
+
+- [Deep Learning and Scientific Computing with R torch: the book](https://blogs.rstudio.com/ai/posts/2023-04-05-deep-learning-scientific-computing-r-torch/)
+
+
+----
+
+### Did you find this page helpful? Consider sharing it 🙌
